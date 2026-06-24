@@ -1,0 +1,229 @@
+# Wiki Index
+
+这是这套《荒野乱斗》知识图谱的导航入口。
+
+## Start Here
+
+- [[syntheses/Brawl-Stars-资源系统综述|Brawl Stars 资源系统综述]]
+- [[syntheses/Brawl-Stars-英雄定位综述|Brawl Stars 英雄定位综述]]
+- [[syntheses/Fandom-学习与摄取路线图|Fandom 学习与摄取路线图]]
+- [[syntheses/llm-wiki-操作手册|LLM Wiki 操作手册]]
+
+## Sources
+
+- 核心地图：
+- [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
+- 玩法模式来源：
+- [[sources/Fandom-Gem-Grab|Fandom 来源摘要: Gem Grab]]
+- [[sources/Fandom-Brawl-Ball|Fandom 来源摘要: Brawl Ball]]
+- [[sources/Fandom-Knockout|Fandom 来源摘要: Knockout]]
+- [[sources/Fandom-Showdown|Fandom 来源摘要: Showdown]]
+- 英雄来源：
+- [[sources/Fandom-Shelly|Fandom 来源摘要: Shelly]]
+- [[sources/Fandom-Colt|Fandom 来源摘要: Colt]]
+- [[sources/Fandom-Bull|Fandom 来源摘要: Bull]]
+- [[sources/Fandom-Nita|Fandom 来源摘要: Nita]]
+- [[sources/Fandom-Jessie|Fandom 来源摘要: Jessie]]
+- [[sources/Fandom-Rosa|Fandom 来源摘要: Rosa]]
+- [[sources/Fandom-Rico|Fandom 来源摘要: Rico]]
+- [[sources/Fandom-Penny|Fandom 来源摘要: Penny]]
+- [[sources/Fandom-Brock|Fandom 来源摘要: Brock]]
+- [[sources/Fandom-El-Primo|Fandom 来源摘要: El Primo]]
+- [[sources/Fandom-Barley|Fandom 来源摘要: Barley]]
+- [[sources/Fandom-Poco|Fandom 来源摘要: Poco]]
+- [[sources/Fandom-Dynamike|Fandom 来源摘要: Dynamike]]
+- [[sources/Fandom-Tick|Fandom 来源摘要: Tick]]
+- [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]]
+- [[sources/Fandom-Darryl|Fandom 来源摘要: Darryl]]
+- [[sources/Fandom-Carl|Fandom 来源摘要: Carl]]
+- [[sources/Fandom-Jacky|Fandom 来源摘要: Jacky]]
+- [[sources/Fandom-Piper|Fandom 来源摘要: Piper]]
+- [[sources/Fandom-Pam|Fandom 来源摘要: Pam]]
+- [[sources/Fandom-Frank|Fandom 来源摘要: Frank]]
+- [[sources/Fandom-Bibi|Fandom 来源摘要: Bibi]]
+- [[sources/Fandom-Bea|Fandom 来源摘要: Bea]]
+- [[sources/Fandom-Nani|Fandom 来源摘要: Nani]]
+- [[sources/Fandom-Mortis|Fandom 来源摘要: Mortis]]
+- [[sources/Fandom-Gene|Fandom 来源摘要: Gene]]
+- [[sources/Fandom-Max|Fandom 来源摘要: Max]]
+- [[sources/Fandom-Byron|Fandom 来源摘要: Byron]]
+- [[sources/Fandom-Spike|Fandom 来源摘要: Spike]]
+- [[sources/Fandom-Crow|Fandom 来源摘要: Crow]]
+- [[sources/Fandom-Leon|Fandom 来源摘要: Leon]]
+- [[sources/Fandom-Sandy|Fandom 来源摘要: Sandy]]
+- [[sources/Fandom-Mr-P|Fandom 来源摘要: Mr. P]]
+- [[sources/Fandom-Sprout|Fandom 来源摘要: Sprout]]
+- [[sources/Fandom-Squeak|Fandom 来源摘要: Squeak]]
+- [[sources/Fandom-Lou|Fandom 来源摘要: Lou]]
+- [[sources/Fandom-Tara|Fandom 来源摘要: Tara]]
+- [[sources/Fandom-Bo|Fandom 来源摘要: Bo]]
+- [[sources/Fandom-Emz|Fandom 来源摘要: Emz]]
+- [[sources/Fandom-Stu|Fandom 来源摘要: Stu]]
+- [[sources/Fandom-Amber|Fandom 来源摘要: Amber]]
+- [[sources/Fandom-Meg|Fandom 来源摘要: Meg]]
+- [[sources/Fandom-Chester|Fandom 来源摘要: Chester]]
+- [[sources/Fandom-Surge|Fandom 来源摘要: Surge]]
+- [[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
+- [[sources/Fandom-Maisie|Fandom 来源摘要: Maisie]]
+- [[sources/Fandom-Pearl|Fandom 来源摘要: Pearl]]
+- [[sources/Fandom-Angelo|Fandom 来源摘要: Angelo]]
+- 资源与进度来源：
+- [[sources/Fandom-Credits|Fandom 来源摘要: Credits]]
+- [[sources/Fandom-Coins|Fandom 来源摘要: Coins]]
+- [[sources/Fandom-Power-Points|Fandom 来源摘要: Power Points]]
+- [[sources/Fandom-Gems|Fandom 来源摘要: Gems]]
+- [[sources/Fandom-Trophies|Fandom 来源摘要: Trophies]]
+- [[sources/Fandom-Bling|Fandom 来源摘要: Bling]]
+- [[sources/Fandom-Starr-Drops|Fandom 来源摘要: Starr Drops]]
+- [[sources/Fandom-Brawl-Pass|Fandom 来源摘要: Brawl Pass]]
+- [[sources/Fandom-Daily-Streak|Fandom 来源摘要: Daily Streak]]
+- [[sources/Fandom-Gears|Fandom 来源摘要: Gears]]
+- [[sources/Fandom-Starr-Road|Fandom 来源摘要: Starr Road]]
+- [[sources/Fandom-Fame|Fandom 来源摘要: Fame]]
+- [[sources/Fandom-Catalog|Fandom 来源摘要: Catalog]]
+- [[sources/Fandom-Quests|Fandom 来源摘要: Quests]]
+- [[sources/Fandom-Mega-Pig|Fandom 来源摘要: Mega Pig]]
+- [[sources/Fandom-Trophy-Road|Fandom 来源摘要: Trophy Road]]
+- [[sources/Fandom-XP|Fandom 来源摘要: XP]]
+- [[sources/Fandom-Daily-Wins|Fandom 来源摘要: Daily Wins]]
+- [[sources/Fandom-Brawler-Keys|Fandom 来源摘要: Brawler Keys]]
+- [[sources/Fandom-XP-Doublers|Fandom 来源摘要: XP Doublers]]
+- 竞技与俱乐部来源：
+- [[sources/Fandom-Ranked|Fandom 来源摘要: Ranked]]
+- [[sources/Fandom-Club|Fandom 来源摘要: Club]]
+- [[sources/Fandom-Clubs|Fandom 来源摘要: Clubs]]
+- 历史系统来源：
+- [[sources/Fandom-Power-League|Fandom 来源摘要: Power League]]
+- [[sources/Fandom-Club-League|Fandom 来源摘要: Club League]]
+- [[sources/Fandom-Club-Quests|Fandom 来源摘要: Club Quests]]
+- [[sources/Fandom-Club-Coins|Fandom 来源摘要: Club Coins]]
+- [[sources/Fandom-Club-Games|Fandom 来源摘要: Club Games]]
+
+## Concepts
+
+- 核心玩法模式：
+- [[concepts/Gem Grab|Gem Grab]]
+- [[concepts/Brawl Ball|Brawl Ball]]
+- [[concepts/Knockout|Knockout]]
+- [[concepts/Showdown|Showdown]]
+- 现行资源与进度：
+- [[concepts/Credits|Credits]]
+- [[concepts/Coins|Coins]]
+- [[concepts/Power Points|Power Points]]
+- [[concepts/Gems|Gems]]
+- [[concepts/Bling|Bling]]
+- [[concepts/Trophies|Trophies]]
+- [[concepts/XP|XP]]
+- [[concepts/XP Doublers|XP Doublers]]
+- [[concepts/Starr Drops|Starr Drops]]
+- [[concepts/Brawl Pass|Brawl Pass]]
+- [[concepts/Daily Streak|Daily Streak]]
+- [[concepts/Daily Wins|Daily Wins]]
+- [[concepts/Gears|Gears]]
+- [[concepts/Starr Road|Starr Road]]
+- [[concepts/Fame|Fame]]
+- [[concepts/Catalog|Catalog]]
+- [[concepts/Quests|Quests]]
+- [[concepts/Mega Pig|Mega Pig]]
+- [[concepts/Trophy Road|Trophy Road]]
+- [[concepts/Brawler Keys|Brawler Keys]]
+- 竞技与社交：
+- [[concepts/Ranked|Ranked]]
+- [[concepts/Club|Club]]
+- [[concepts/Clubs|Clubs]]
+- 历史系统：
+- [[concepts/Power League|Power League]]
+- [[concepts/Club League|Club League]]
+- [[concepts/Club Quests|Club Quests]]
+- [[concepts/Club Coins|Club Coins]]
+- [[concepts/Club Games|Club Games]]
+
+## Entities
+
+- 英雄总览：
+- 起始与基础上手：
+- [[entities/Shelly|Shelly]]
+- [[entities/Colt|Colt]]
+- [[entities/Bull|Bull]]
+- [[entities/Nita|Nita]]
+- 远程压线与狙击：
+- [[entities/Brock|Brock]]
+- [[entities/Piper|Piper]]
+- [[entities/Bea|Bea]]
+- [[entities/Mandy|Mandy]]
+- [[entities/Angelo|Angelo]]
+- [[entities/8-Bit|8-Bit]]
+- 近战前排与开团：
+- [[entities/El Primo|El Primo]]
+- [[entities/Frank|Frank]]
+- [[entities/Jacky|Jacky]]
+- [[entities/Bibi|Bibi]]
+- [[entities/Rosa|Rosa]]
+- [[entities/Darryl|Darryl]]
+- [[entities/Meg|Meg]]
+- 控场与区域压制：
+- [[entities/Jessie|Jessie]]
+- [[entities/Rico|Rico]]
+- [[entities/Penny|Penny]]
+- [[entities/Mr. P|Mr. P]]
+- [[entities/Sprout|Sprout]]
+- [[entities/Squeak|Squeak]]
+- [[entities/Lou|Lou]]
+- [[entities/Tara|Tara]]
+- [[entities/Bo|Bo]]
+- [[entities/Emz|Emz]]
+- [[entities/Spike|Spike]]
+- [[entities/Sandy|Sandy]]
+- [[entities/Barley|Barley]]
+- [[entities/Dynamike|Dynamike]]
+- [[entities/Tick|Tick]]
+- [[entities/Gene|Gene]]
+- [[entities/Amber|Amber]]
+- 刺客与绕后收割：
+- [[entities/Mortis|Mortis]]
+- [[entities/Crow|Crow]]
+- [[entities/Leon|Leon]]
+- 支援与团队节奏：
+- [[entities/Poco|Poco]]
+- [[entities/Pam|Pam]]
+- [[entities/Max|Max]]
+- [[entities/Byron|Byron]]
+- 机动与高上限：
+- [[entities/Carl|Carl]]
+- [[entities/Stu|Stu]]
+- [[entities/Nani|Nani]]
+- 机动与成长型：
+- [[entities/Surge|Surge]]
+- [[entities/Chester|Chester]]
+- [[entities/Pearl|Pearl]]
+- [[entities/Maisie|Maisie]]
+- 地图
+- 赛事
+- 组织
+
+## Syntheses
+
+- [[syntheses/llm-wiki-操作手册|LLM Wiki 操作手册]]
+- [[syntheses/Fandom-学习与摄取路线图|Fandom 学习与摄取路线图]]
+- [[syntheses/Brawl-Stars-资源系统综述|Brawl Stars 资源系统综述]]
+- [[syntheses/Brawl-Stars-英雄定位综述|Brawl Stars 英雄定位综述]]
+
+## How To Use
+
+- 新原始资料先放进 `raw/inbox/` 或 `raw/sources/`
+- ingest 时同步更新来源页、相关概念页或实体页
+- 查询前优先从本页进入相关 wiki 页面
+- 维护方法见 [[syntheses/llm-wiki-操作手册|LLM Wiki 操作手册]]
+- 结构约定优先遵循 `AGENTS.md` 里的 Brawl Stars 分类规则
+- 如果某个主题暂时没有页面，优先按 `AGENTS.md` 的分类规则决定它应成为哪类页面
+- 外部站点的长期 ingest 顺序见 [[syntheses/Fandom-学习与摄取路线图|Fandom 学习与摄取路线图]]
+- 第一批 Gameplay 已开始摄取，优先围绕基础资源系统扩展
+- 当前基础资源层已覆盖解锁、升级、高级货币、外观货币与进度指标
+- 资源系统第一版综述已建立，可作为后续 Gameplay ingest 的总览页
+- 当前已补到资源入口、资源出口与主要进度轨道，适合继续向 XP / Ranked / Clubs 扩展
+- 当前已补到 XP、日常奖励循环、排位入口与俱乐部生态，可继续向历史系统与更细粒度机制扩展
+- 当前已显式区分现行系统与历史系统，后续适合补旧货币、旧商店和旧奖励容器
+- 当前导航已按“现行 / 竞技与社交 / 历史”分组，后续新增页面应尽量挂到对应分组下
+- 当前主线已切入“玩法模式 + 英雄实体”，后续应优先扩这两条主干而非继续堆系统细节
+- 当前英雄层已形成可浏览的分组入口，后续可在继续铺英雄的同时补一页“英雄定位综述”
+- 当前英雄图谱已能按“远程 / 前排 / 控场 / 刺客 / 支援 / 成长”检索，后续新增英雄应尽量落到这些谱系中
