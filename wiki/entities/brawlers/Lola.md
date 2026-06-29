@@ -37,6 +37,6 @@ Lola 是“本体输出 + 分身施压”的史诗伤害英雄，打法核心在
 ## 关联页面
 
 - [[sources/Fandom-Lola|Fandom 来源摘要: Lola]]
-- [[entities/Rico|Rico]]
-- [[entities/8-Bit|8-Bit]]
-- [[entities/Pam|Pam]]
+- [[entities/brawlers/Rico|Rico]]
+- [[entities/brawlers/8-Bit|8-Bit]]
+- [[entities/brawlers/Pam|Pam]]

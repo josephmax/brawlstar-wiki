@@ -37,6 +37,6 @@ Fang 是“近战切入 + 连续跳跃收割”的神话刺客，核心是用 Su
 ## 关联页面
 
 - [[sources/Fandom-Fang|Fandom 来源摘要: Fang]]
-- [[entities/Mortis|Mortis]]
-- [[entities/Leon|Leon]]
-- [[entities/Stu|Stu]]
+- [[entities/brawlers/Mortis|Mortis]]
+- [[entities/brawlers/Leon|Leon]]
+- [[entities/brawlers/Stu|Stu]]

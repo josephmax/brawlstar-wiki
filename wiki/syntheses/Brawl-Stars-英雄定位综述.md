@@ -1,6 +1,6 @@
 # Brawl Stars 英雄定位综述
 
-这篇综述把当前已 ingest 的英雄，按玩法体感和战术职责重新归类，方便后续从“我想打什么”而不是“我记得谁叫什么”来查英雄。
+这篇综述把当前本地 wiki 已整理的英雄，按玩法体感和战术职责重新归类，方便从“我想打什么”而不是“我记得谁叫什么”来查英雄。
 
 ## 大方向
 
@@ -22,13 +22,13 @@
 
 代表英雄：
 
-- [[entities/Colt|Colt]]
-- [[entities/Brock|Brock]]
-- [[entities/Piper|Piper]]
-- [[entities/Bea|Bea]]
-- [[entities/Mandy|Mandy]]
-- [[entities/Angelo|Angelo]]
-- [[entities/8-Bit|8-Bit]]
+- [[entities/brawlers/Colt|Colt]]
+- [[entities/brawlers/Brock|Brock]]
+- [[entities/brawlers/Piper|Piper]]
+- [[entities/brawlers/Bea|Bea]]
+- [[entities/brawlers/Mandy|Mandy]]
+- [[entities/brawlers/Angelo|Angelo]]
+- [[entities/brawlers/8-Bit|8-Bit]]
 
 ## 近战前排与开团
 
@@ -36,12 +36,12 @@
 
 代表英雄：
 
-- [[entities/Bull|Bull]]
-- [[entities/El Primo|El Primo]]
-- [[entities/Frank|Frank]]
-- [[entities/Jacky|Jacky]]
-- [[entities/Bibi|Bibi]]
-- [[entities/Meg|Meg]]
+- [[entities/brawlers/Bull|Bull]]
+- [[entities/brawlers/El Primo|El Primo]]
+- [[entities/brawlers/Frank|Frank]]
+- [[entities/brawlers/Jacky|Jacky]]
+- [[entities/brawlers/Bibi|Bibi]]
+- [[entities/brawlers/Meg|Meg]]
 
 ## 控场与区域压制
 
@@ -49,23 +49,23 @@
 
 代表英雄：
 
-- [[entities/Jessie|Jessie]]
-- [[entities/Rosa|Rosa]]
-- [[entities/Rico|Rico]]
-- [[entities/Penny|Penny]]
-- [[entities/Barley|Barley]]
-- [[entities/Dynamike|Dynamike]]
-- [[entities/Tick|Tick]]
-- [[entities/Mr. P|Mr. P]]
-- [[entities/Sprout|Sprout]]
-- [[entities/Squeak|Squeak]]
-- [[entities/Lou|Lou]]
-- [[entities/Tara|Tara]]
-- [[entities/Bo|Bo]]
-- [[entities/Emz|Emz]]
-- [[entities/Gene|Gene]]
-- [[entities/Sandy|Sandy]]
-- [[entities/Spike|Spike]]
+- [[entities/brawlers/Jessie|Jessie]]
+- [[entities/brawlers/Rosa|Rosa]]
+- [[entities/brawlers/Rico|Rico]]
+- [[entities/brawlers/Penny|Penny]]
+- [[entities/brawlers/Barley|Barley]]
+- [[entities/brawlers/Dynamike|Dynamike]]
+- [[entities/brawlers/Tick|Tick]]
+- [[entities/brawlers/Mr. P|Mr. P]]
+- [[entities/brawlers/Sprout|Sprout]]
+- [[entities/brawlers/Squeak|Squeak]]
+- [[entities/brawlers/Lou|Lou]]
+- [[entities/brawlers/Tara|Tara]]
+- [[entities/brawlers/Bo|Bo]]
+- [[entities/brawlers/Emz|Emz]]
+- [[entities/brawlers/Gene|Gene]]
+- [[entities/brawlers/Sandy|Sandy]]
+- [[entities/brawlers/Spike|Spike]]
 
 ## 刺客与绕后收割
 
@@ -73,9 +73,9 @@
 
 代表英雄：
 
-- [[entities/Mortis|Mortis]]
-- [[entities/Crow|Crow]]
-- [[entities/Leon|Leon]]
+- [[entities/brawlers/Mortis|Mortis]]
+- [[entities/brawlers/Crow|Crow]]
+- [[entities/brawlers/Leon|Leon]]
 
 ## 支援与团队节奏
 
@@ -83,10 +83,10 @@
 
 代表英雄：
 
-- [[entities/Pam|Pam]]
-- [[entities/Poco|Poco]]
-- [[entities/Max|Max]]
-- [[entities/Byron|Byron]]
+- [[entities/brawlers/Pam|Pam]]
+- [[entities/brawlers/Poco|Poco]]
+- [[entities/brawlers/Max|Max]]
+- [[entities/brawlers/Byron|Byron]]
 
 ## 机动与高上限操作
 
@@ -94,9 +94,9 @@
 
 代表英雄：
 
-- [[entities/Carl|Carl]]
-- [[entities/Stu|Stu]]
-- [[entities/Nani|Nani]]
+- [[entities/brawlers/Carl|Carl]]
+- [[entities/brawlers/Stu|Stu]]
+- [[entities/brawlers/Nani|Nani]]
 
 ## 成长型与形态切换型
 
@@ -104,11 +104,11 @@
 
 代表英雄：
 
-- [[entities/Surge|Surge]]
-- [[entities/Pearl|Pearl]]
-- [[entities/Chester|Chester]]
-- [[entities/Meg|Meg]]
-- [[entities/Lou|Lou]]
+- [[entities/brawlers/Surge|Surge]]
+- [[entities/brawlers/Pearl|Pearl]]
+- [[entities/brawlers/Chester|Chester]]
+- [[entities/brawlers/Meg|Meg]]
+- [[entities/brawlers/Lou|Lou]]
 
 ## 怎么用这页
 
@@ -139,9 +139,23 @@
 - 因此像 `Janet`、`Crow` 这类兼具机动性、生存和主动威胁宝石位能力的英雄，会成为更好的先手选择
 - 相反，像 `El Primo` 这类虽然有极强进场或翻盘潜力，但如果前期作用过低，整体选取权重依然会被拉低
 
-## 当前边界
+## 与 BP 的关系
 
-这页是“第一版英雄地图”，后续随着更多英雄与版本更新，可能会继续细分为：
+英雄定位页只回答“这个英雄大体承担什么职责”，但 BP 还需要回答“这个职责在当前地图、模式、顺位和对位里是否真的成立”。
+
+[[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]] 这类竞技攻略不应被直接写成最终排序，而应转译成：
+
+- 当前 build 支持的战术功能
+- 当前模式里的目标贡献
+- 对哪些英雄或阵容路线有反制意义
+- 容易被哪些反手 pick 或地形条件破坏
+- 是否能在高水平对局中降低操作负担
+
+具体拆解框架见 [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]。
+
+## 分类边界
+
+这页是当前英雄地图。大类之间不是互斥关系，以下维度目前仍被合并在大类中理解：
 
 - 射手细分
 - 坦克细分

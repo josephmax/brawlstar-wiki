@@ -6,7 +6,7 @@
 - 来源：当前知识库维护者的用户经验笔记
 - 记录日期：2026-04-07
 - 类型：玩家经验 / 实战框架 / 非官方来源
-- 上游 raw：[[../raw/inbox/2026-04-07-user-note-gem-grab-evaluation-framework.md]]
+- 上游 raw：[[../../raw/inbox/2026-04-07-user-note-gem-grab-evaluation-framework.md]]
 
 ## 核心内容
 
