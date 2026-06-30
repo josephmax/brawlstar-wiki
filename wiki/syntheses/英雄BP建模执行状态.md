@@ -48,7 +48,7 @@
 - 新建 32 个缺失 BP-active 英雄实体页。
 - 69 个既有英雄页追加 `profile_status: draft_from_raw_signals` 草案。
 - `Brock`、`Gene`、`Otis` 三个已有人工草案已复核为 `profile_status: reviewed`，并同步 corrected Fandom raw 日期。
-- `Belle`、`Colt`、`Angelo`、`Rico`、`Max`、`Stu`、`Mico`、`Shade`、`Ash`、`Nita`、`Sandy`、`Draco`、`Gigi`、`Poco`、`Bibi`、`Buster`、`Sam`、`Charlie`、`Chuck`、`Clancy`、`Cordelius`、`Crow`、`Darryl`、`Doug`、`Emz`、`Gus` 已完成 reviewed profile、reviewed 条件化对位边和 Ranked 地图 hook，升级为 `profile_status: bp_ready`。
+- `8-Bit`、`Alli`、`Amber`、`Angelo`、`Ash`、`Barley`、`Bea`、`Belle`、`Bibi`、`Bo`、`Bolt`、`Bonnie`、`Buster`、`Buzz`、`Carl`、`Charlie`、`Chuck`、`Clancy`、`Colette`、`Colt`、`Cordelius`、`Crow`、`Darryl`、`Doug`、`Draco`、`Emz`、`Finx`、`Gale`、`Gigi`、`Gus`、`Hank`、`Jae-yong`、`Janet`、`Jessie`、`Kaze`、`Kenji`、`Lily`、`Lola`、`Lou`、`Lumi`、`Maisie`、`Mandy`、`Max`、`Meg`、`Melodie`、`Mico`、`Mina`、`Mortis`、`Mr. P`、`Nita`、`Ollie`、`Pam`、`Pearl`、`Penny`、`Poco`、`Rico`、`Rosa`、`Sam`、`Sandy`、`Shade`、`Shelly`、`Squeak`、`Starr Nova`、`Stu`、`Willow`、`Ziggy` 已完成 reviewed profile、reviewed 条件化对位边和 Ranked 地图 hook，升级为 `profile_status: bp_ready`。
 
 草案边界：
 
@@ -63,27 +63,27 @@
   - 覆盖 104 个 BP-active 英雄。
   - 收录 PLP matchup seed 方向信号 1664 条。
   - 状态为 `draft_seed_index_from_plp_payload`，不是最终 counter 表。
-  - 已追加 `reviewed_from_brawler_profiles` 区，当前有 84 组 reviewed 条件化对位边。
+  - 已追加 `reviewed_from_brawler_profiles` 区，当前有 244 组 reviewed 条件化对位边。
 - 新增 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]。
   - 覆盖 104 个 BP-active 英雄。
-  - 汇总英雄页 map hook seed 201 条。
+  - 汇总英雄页 map hook seed 271 条。
   - 状态为 `draft_seed_index_from_brawler_profiles`，不是最终地图适配结论。
-  - 已追加 `reviewed_from_brawler_profiles` 区，当前有 80 条 reviewed Ranked 地图 hook。
+  - 已追加 `reviewed_from_brawler_profiles` 区，当前有 240 条 reviewed Ranked 地图 hook。
 
 ## Phase 5: reviewed / bp_ready 质量升级
 
 状态：进行中。
 
-- `bp_ready`：26 个，分别为 `Angelo`、`Ash`、`Belle`、`Bibi`、`Buster`、`Charlie`、`Chuck`、`Clancy`、`Colt`、`Cordelius`、`Crow`、`Darryl`、`Doug`、`Draco`、`Emz`、`Gigi`、`Gus`、`Max`、`Mico`、`Nita`、`Poco`、`Rico`、`Sam`、`Sandy`、`Shade`、`Stu`。
+- `bp_ready`：66 个，分别为 `8-Bit`、`Alli`、`Amber`、`Angelo`、`Ash`、`Barley`、`Bea`、`Belle`、`Bibi`、`Bo`、`Bolt`、`Bonnie`、`Buster`、`Buzz`、`Carl`、`Charlie`、`Chuck`、`Clancy`、`Colette`、`Colt`、`Cordelius`、`Crow`、`Darryl`、`Doug`、`Draco`、`Emz`、`Finx`、`Gale`、`Gigi`、`Gus`、`Hank`、`Jae-yong`、`Janet`、`Jessie`、`Kaze`、`Kenji`、`Lily`、`Lola`、`Lou`、`Lumi`、`Maisie`、`Mandy`、`Max`、`Meg`、`Melodie`、`Mico`、`Mina`、`Mortis`、`Mr. P`、`Nita`、`Ollie`、`Pam`、`Pearl`、`Penny`、`Poco`、`Rico`、`Rosa`、`Sam`、`Sandy`、`Shade`、`Shelly`、`Squeak`、`Starr Nova`、`Stu`、`Willow`、`Ziggy`。
 - `reviewed`：3 个，分别为 `Brock`、`Gene`、`Otis`；这三页已过单英雄 reviewed 门槛，但仍缺至少 3 条 reviewed 条件化对位边和 3 条接入 Ranked 地图的 hook，暂不标 `bp_ready`。
-- `draft_from_raw_signals`：75 个，仍含自动占位、空地图示例或未复核 matchup seed。
+- `draft_from_raw_signals`：35 个，仍含自动占位、空地图示例或未复核 matchup seed。
 - 质量审计页：[[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]。
 
 ## 剩余质量门槛
 
 下一步不再是“抓取缺口”，而是“把 draft seed 升级为可消费 BP 知识”：
 
-1. 逐批把剩余 75 个 `draft_from_raw_signals` 英雄提升为 reviewed：先复核 Fandom 机制抽取，再修正自动能力向量误判。
+1. 逐批把剩余 35 个 `draft_from_raw_signals` 英雄提升为 reviewed：先复核 Fandom 机制抽取，再修正自动能力向量误判。
 2. 对 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]] 中的高频边补 `mechanism / active_when / fails_when / bp_use`。
 3. 对 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]] 中的 hook 接入具体 Ranked Season 46 地图、路线/位置、目标收益和失效条件。
 4. 只有完成上述复核的英雄或边，才能从 `draft` 升级为 `reviewed` 或 `bp_ready`；不要直接批量标记 `bp_ready`。
@@ -93,9 +93,9 @@
 - BP-active 英雄：104。
 - 英雄实体页：104。
 - 含 `bp_brawler_profile`：104。
-- `profile_status: bp_ready`：26。
+- `profile_status: bp_ready`：66。
 - `profile_status: reviewed`：3。
-- `profile_status: draft_from_raw_signals`：75。
+- `profile_status: draft_from_raw_signals`：35。
 - Fandom source：104。
 - PLP source：104。
 - Buzz Lightyear 实体页：0。

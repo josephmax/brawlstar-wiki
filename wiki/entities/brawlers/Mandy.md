@@ -2,159 +2,198 @@
 
 ## 基本信息
 
-- 稀有度：Chromatic
+- 稀有度：Epic
 - 定位：Marksman
-- 类型：蓄力狙击英雄
+- 类型：专注超远程狙击 / 直线斩杀
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击在专注时会拉长并增强
-- 适合超远距离压线和精准惩罚
-- 很依赖节奏和站位
-
-## 超级技能特征
-
-- Super 会发射一条超长射线
-- 很适合穿线、收割和远距离压制
-- 能在开阔地图里打出很强的存在感
-
-## 适合场景
-
-- 开阔地图
-- 需要长线压制的模式
-- 想通过一枪定节奏的对局
+- Fandom：[[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
+- PLP：[[sources/PLP-Mandy|PLP 来源摘要: Mandy]]
+- PLP 推荐模式：Bounty, Knockout
 
 ## 角色定位总结
 
-Mandy 是一个靠蓄力超远射击和直线大招建立压制的狙击英雄，和 `Piper` 一样讲距离，但更强调专注后的高额一枪。
+Mandy 的 BP 价值来自 12 格 Focus 射程、In My Sights 的弹速修正、Cookie Crumbs 的墙后惩罚，以及 Sugar Ray 的超长直线收割。她适合把 Bounty/Knockout 的“先拿空间、逼对手分散、在窄线里一枪改局”做极致；弱点是专注需要站定，Super 可被打断，且 3000 HP 对刺客和高压长线都很脆。
 
-## 关联页面
-
-- [[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=9 (Long)<br> 12 (Focused)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.5 seconds (Normal)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=3000; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "very_long; 9 格基础射程，站定 0.45 秒后 Focus 到 12 格，Super 40 格穿墙直线"
+    projectile_reliability: "medium_high_with_in_my_sights; Focus 弹速星徽提高命中，未专注或被迫移动时可靠性下降"
+    burst: "high_pick_burst; Sugar Ray 2500 直线伤害可跨屏收割或逼退低血"
+    sustained_dps: "medium; 1.5 秒装填和单发节奏，适合稳定换血而非近距离持续战"
+    objective_damage: "conditional_heist_lane; Safe Zone 等直线角度可用 Super 打 safe，但不是 PLP 主模式"
+    mobility: "low; 专注和 Super 都要求站位纪律"
+    survivability: "low_medium; 3000 HP 依赖距离、Shield gear、Hard Candy 或队友 peel"
+    engage: "low; 主要通过射程先手压线，不主动进场"
+    disengage: "low_medium; Caramelize 可拖接近，但没有位移"
+    anti_aggro: "low; 贴脸后只能靠 slow、队友和提前击杀"
+    anti_tank: "medium_on_open_lanes; 长线能消耗前排，近身后会崩"
+    wall_break: "none"
+    throw_or_wall_bypass: "high_for_pick; Cookie Crumbs 下一发穿墙，Super 天然穿透墙体/敌人"
+    area_control: "medium; Super 直线威慑窄口和撤退线，但没有持续地面控制"
+    scouting_or_vision: "medium_with_vision_gear; 长线和 Vision gear 可跟踪草后撤退目标"
+    team_support: "low; 通过长线压制间接保护队友"
+    crowd_control: "conditional; Caramelize 下一发提供 2.5 秒 slow"
 
   build_switches:
     - build: "Cookie Crumbs / In My Sights / Shield, Damage"
       source: "[[sources/PLP-Mandy|PLP-Mandy]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "把墙后残血、掩体后复位和 Knockout 缩圈前躲墙目标纳入击杀线"
+        - "In My Sights 修正 Focus 弹速，是默认远程可靠性来源"
       enables:
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
+        - "Bounty/Knockout 中穿墙收割和远程对狙"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "wall_cover_breaks_line"
+        - "low_health_needs_extra_survival"
+      best_when: "地图有长线和少量墙体，敌方会用掩体回避 Mandy 射线"
+      poor_when: "敌方有稳定 dive、Buster 屏障或水域/off-angle 长手压 Mandy"
+      bp_use: "default_plp_sniper_build"
+    - build: "Caramelize / In My Sights / Shield, Vision"
+      source: "[[sources/Fandom-Mandy|Fandom-Mandy]]"
+      changes_capabilities:
+        - "把单发从纯伤害改成反接近和窄口控制"
+      enables:
+        - "开阔图减速前排、迫使突进者交资源、追踪草后撤退"
+      mitigates_failure_modes:
+        - "focused_immobility_dive_window"
+      best_when: "敌方需要经过开阔窄口接近，且我方已有穿墙/收割手段"
+      poor_when: "敌方主要躲在墙后，Mandy 需要 Cookie Crumbs 打掩体后目标"
+      bp_use: "anti_approach_variant"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
+    - id: "bounty_open_sightline_star_pick"
+      map_feature_type: "open_sniper_bounty"
+      uses_feature_by: "Focus 12 格和 In My Sights 在开阔长线低承诺换血，Sugar Ray 惩罚直线站位"
+      objective_conversion: "先拿星或血量优势后，Mandy 可以用射程保星并压制落后方进场"
+      active_when: "地图主矛盾是长线对枪，敌方缺强突进或墙后口袋"
+      fails_if: "敌方投掷口袋完整、墙体遮断长线，或 Mandy 被迫频繁移动导致不能 Focus"
+      example_maps: ["[[entities/maps/Shooting Star|Shooting Star]]", "[[entities/maps/Dry Season|Dry Season]]", "[[entities/maps/Hideout|Hideout]]", "[[entities/maps/Layer Cake|Layer Cake]]"]
+      bp_use: "Bounty 长线核心或回答短手前排"
+    - id: "knockout_round_end_sugar_ray_choke"
+      map_feature_type: "knockout_choke_and_round_close"
+      uses_feature_by: "保留 Super，在缩圈、窄口或低血撤退线上跨屏穿墙收割"
+      objective_conversion: "Knockout 中一发 Sugar Ray 可把空间优势转成不可复活击杀"
+      active_when: "敌方必须经过可预判直线，或低血躲在墙后"
+      fails_if: "Super 被 stun/knockback/pull 打断，或敌方分散不给直线"
+      example_maps: ["[[entities/maps/Out in the Open|Out in the Open]]", "[[entities/maps/Flaring Phoenix|Flaring Phoenix]]", "[[entities/maps/New Horizons|New Horizons]]", "[[entities/maps/Belle's Rock|Belle's Rock]]"]
+      bp_use: "Knockout 终结窗口；需要队友给视野或逼路线"
+    - id: "cookie_crumbs_wall_pick_or_recovery_punish"
+      map_feature_type: "limited_wall_pick"
+      uses_feature_by: "Cookie Crumbs 穿墙补掉躲墙目标，迫使投掷/低血远程不能安全复位"
+      objective_conversion: "拆掉敌方用墙体保命的习惯后，长线阵容可继续推进空间"
+      active_when: "墙体数量有限且目标会在固定墙后回位"
+      fails_if: "敌方有持续投掷压 Mandy，或 Buster/屏障类工具吃掉直线"
+      example_maps: ["[[entities/maps/Belle's Rock|Belle's Rock]]", "[[entities/maps/Layer Cake|Layer Cake]]", "[[entities/maps/Gem Fort|Gem Fort]]"]
+      bp_use: "回答墙后低血，不等于处理完整投掷体系"
+    - id: "heist_cross_map_sugar_ray_safe_angle"
+      map_feature_type: "remote_safe_damage_angle"
+      uses_feature_by: "在固定直线角度用 Sugar Ray 同时穿过防守位和 safe"
+      objective_conversion: "补充低承诺金库伤害，或迫使敌方分散防线"
+      active_when: "地图存在可重复对 safe 的直线，且 Mandy 不会被侧路 dive"
+      fails_if: "safe 角度被河道/墙体错开，或敌方 Heist race 更快"
+      example_maps: ["[[entities/maps/Safe Zone|Safe Zone]]", "[[entities/maps/Bridge Too Far|Bridge Too Far]]", "[[entities/maps/Kaboom Canyon|Kaboom Canyon]]"]
+      bp_use: "Heist 附加角度，不作为主 safe DPS"
 
   objective_contracts:
     - mode: "Bounty"
       can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "开阔长线保星、穿墙收残、逼敌方分散"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "处理多路近身或持续墙后投掷"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "反刺客、开墙或探草队友"
+      false_positive: "射程长不代表能无视投掷口袋和 dive"
     - mode: "Knockout"
       can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "第一波远程压血，缩圈前用 Super 结束回合"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "独自守住被强开的侧路"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "peel、视野、逼路线或补伤"
+      false_positive: "Sugar Ray 需要直线和时机；敌方分散时威慑大于实际击杀"
+    - mode: "Heist"
+      can_fulfill:
+        - "特定直线角度打 safe 或穿过防守位"
+      cannot_fulfill:
+        - "承担持续 safe race"
+      needs_teammate_support:
+        - "主 safe DPS、侧路防突进"
+      false_positive: "不能因为 Super 可打库就把 Mandy 当 Heist 核心"
 
   failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
+    - id: "focused_immobility_dive_window"
+      active_when: "Mandy 为了 12 格射程站定，敌方用 dash、jump、侧草或水域 off-angle 接近"
+      exposed_by: "Focus requires standing still; low HP"
+      mitigation: "保留 Caramelize、队友 peel、选择开阔可视路线"
+      bp_use: "check_enemy_engage_before_pick"
+    - id: "super_cancelled_by_cc"
+      active_when: "敌方有 stun、pull、knockback 或快速贴身打断 0.75 秒前摇"
+      exposed_by: "Sugar Ray can be cancelled by stun/pull/knockback"
+      mitigation: "在草外安全位、队友控线后开 Super"
+      bp_use: "do_not_rely_on_super_when_interrupts_are_live"
+    - id: "wall_pocket_thrower_or_barrier_screen"
+      active_when: "敌方投掷安全口袋完整，或 Buster 屏障/召唤物吸收直线"
+      exposed_by: "linear marksman kit with limited anti-pocket tools"
+      mitigation: "Cookie Crumbs 只补单点，队伍仍需开墙/突进/反投掷"
+      bp_use: "must_answer_wall_pocket"
+    - id: "enemy_spreads_no_lineup"
+      active_when: "敌方分散站位且不给 Super 直线"
+      exposed_by: "Sugar Ray is line-based"
+      mitigation: "用长线先压血，等待 choke/缩圈/目标线"
+      bp_use: "avoid_overvaluing_multi_hit_super"
 
-  conditional_matchup_seeds:
-    - target:
-        - "El Primo"
-        - "Meg"
-        - "Jacky"
-        - "Chuck"
-        - "Poco"
-        - "Frank"
-        - "Lola"
-        - "Clancy"
+  conditional_matchups:
+    - target: ["El Primo", "Jacky", "Frank", "Clancy"]
       direction: "subject_favored"
       source: "[[sources/PLP-Mandy|PLP-Mandy]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Pearl"
-        - "Najia"
-        - "Angelo"
-        - "Eve"
-        - "Darryl"
-        - "Damian"
-        - "Sprout"
-        - "Buster"
+      mechanism: "开阔长线让 Mandy 在前排接近前反复压血，Caramelize 可拖慢最后接近"
+      active_when: "地图缺连续掩体，队友能阻止前排直接贴脸"
+      fails_when: "目标通过草墙/跳板/队友控制接近 Mandy"
+      bp_use: "anti_frontline_on_open_maps"
+    - target: ["Meg", "Poco", "Lola", "Chuck"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Mandy|PLP-Mandy]]"
+      mechanism: "Mandy 射程和 Super 能惩罚中距离支援、召唤/身体推进或固定路线"
+      active_when: "目标需要走直线或站在可预判路线里输出/支援"
+      fails_when: "目标获得墙体保护，或能用队友强开解除 Mandy 距离"
+      bp_use: "pick_into_predictable_midrange_or_route"
+    - target: ["Angelo", "Eve", "Najia", "Pearl"]
       direction: "target_favored"
       source: "[[sources/PLP-Mandy|PLP-Mandy]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "水域/off-angle、长线对狙或高压单发会让 Mandy 站定 Focus 的窗口变危险"
+      active_when: "地图允许这些目标从侧角或更安全长线压 Mandy"
+      fails_when: "Mandy 有掩体、队友压住侧角，或 Cookie/Super 先拿击杀"
+      bp_use: "avoid_blind_sniper_mirror"
+    - target: ["Darryl", "Damian", "Buster", "Sprout"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Mandy|PLP-Mandy]]"
+      mechanism: "dive、屏障或墙后投掷能绕开或吸收 Mandy 的直线价值"
+      active_when: "地图有墙体口袋、侧路突进或屏障推进"
+      fails_when: "墙体被打开、突进路线被 slow/peel 控住"
+      bp_use: "requires_peel_or_wallbreak_before_lock"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "只在开阔 Bounty/Knockout 且 ban 掉主要 dive/投掷回答时考虑"
+    slot_2_3: "可作为长线基本面，但需要队伍后续补 peel 和墙体答案"
+    slot_4_5: "看到敌方缺突进、缺投掷或站位直线后价值更高"
+    slot_6: "惩罚无位移、固定路线、低血后排或前排过多的阵容"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
+- [[sources/PLP-Mandy|PLP 来源摘要: Mandy]]

@@ -2,166 +2,228 @@
 
 ## 基本信息
 
-- 稀有度：Chromatic
-- 定位：Controller
-- 类型：反开团控制英雄
+- 稀有度：Epic
+- 定位：Marksman
+- 类型：长射程反突进 / Shockwave 推离 / Tremors 减速
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击带有中距离冲击特性
-- 适合打断推进和逼退近战
-- 更偏防守反打而不是强压线
-
-## 超级技能特征
-
-- Super 会造成大范围冲击并减速
-- 很适合把突进敌人推回去
-- 具有明显的反冲锋价值
-
-## 适合场景
-
-- 对手喜欢冲脸或强开团的对局
-- 需要守点和反推的模式
-- 地图中存在很多强行进场路线时
+- Fandom：[[sources/Fandom-Maisie|Fandom 来源摘要: Maisie]]
+- PLP：[[sources/PLP-Maisie|PLP 来源摘要: Maisie]]
+- PLP 推荐模式：Brawl Ball, Hot Zone
 
 ## 角色定位总结
 
-Maisie 是一个靠冲击波和大范围减速来反打的控制英雄，她的价值很大一部分来自把对手的进攻打断。
+Maisie 是长线 Marksman，但 BP 用法更像反突进控制：8.67 格主攻伤害高，弹体起速慢、越飞越快；Super `Shockwave` 有 0.5 秒前摇，之后 360 度推开周围敌人 3 格并伤害，`Tremors` 让命中的敌人 slow 2 秒。她在 Brawl Ball 和 Hot Zone 的价值来自防守球门、清区、打断短手推进和把敌人推离目标点；风险是主攻远距离容易被横移躲，Super 前摇会被 stun/pull/knockback 取消，`Disengage!` 也不能穿墙/水。
 
-## 关联页面
-
-- [[sources/Fandom-Maisie|Fandom 来源摘要: Maisie]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "long_mid; fandom_attack_range=8.67 (Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.5 seconds (Normal)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=4000; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "not_observed_in_selected_raw"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "long; 主攻 8.67 格，Super 半径 5 格"
+    projectile_reliability: "medium; 主攻初速慢后段快，靠预判/slow/stun 提高命中"
+    burst: "high_if_hit_chain; 单发 1500，Finish Them 可按目标缺失生命加伤，Hyper 近身爆发高"
+    sustained_dps: "medium; 1.5 秒装填，弹药有限且需要命中"
+    objective_damage: "medium_high_on_stationary_targets; Fandom 支持 Heist fixed safe burst，但 PLP 主推 Ball/Zone"
+    mobility: "medium_with_disengage; Gadget dash 2.67 格并可 0.5 秒 stun 近敌，不能过墙/水"
+    survivability: "medium; 4000 HP，依赖推离/slow/Disengage"
+    engage: "medium; Super+Disengage 可主动贴近打 surprise shockwave"
+    disengage: "high; Shockwave 推离、Tremors slow、Disengage dash"
+    anti_aggro: "very_high; 反刺客/坦克进场是核心消费场景"
+    anti_tank: "high_if_finish_them_or_super_cycle; 推离+slow+缺血加伤可惩罚坦克"
+    wall_break: "none"
+    throw_or_wall_bypass: "low; Shockwave 穿墙推人但不越墙输出，本体/Disengage 不穿墙水"
+    area_control: "medium_high; Super AoE、Tremors slow 和 Hyper radial shots 清点"
+    scouting_or_vision: "medium; 长线扫草但无专属 reveal"
+    team_support: "medium; 推离/slow 给队友目标窗口"
+    spawnable_or_pet: "none"
+    crowd_control: "high; pushback, slow, 0.5s stun on Disengage"
+    source_trace:
+      - "[[sources/Fandom-Maisie|Fandom-Maisie]]"
+      - "[[sources/PLP-Maisie|PLP-Maisie]]"
 
   build_switches:
     - build: "Disengage / Tremors / Shield, Damage"
       source: "[[sources/PLP-Maisie|PLP-Maisie]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Disengage 2.67 格 dash，近敌 2.33 格内 stun 0.5 秒，可逃生或连 Super"
+        - "Tremors 让 Shockwave 命中者 slow 2 秒，增强 Brawl Ball/Hot Zone 目标控制"
+        - "Shield/Damage 提高反突进时的存活和击杀确认"
       enables:
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Hot Zone"
+        - "Brawl Ball 持球/守门推离"
+        - "Hot Zone 清点"
+        - "反突进后撤"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "slow_projectile_misses"
+        - "assassin_gets_inside"
+      best_when: "敌方需要从草口/球门/热区入口近身，且缺前摇打断"
+      poor_when: "敌方长手/投掷能在 Super 范围外压制，或多控制取消 Maisie 前摇"
+      bp_use: "default_plp_anti_aggro_control_build"
+    - build: "Finish Them / Pinpoint Precision variant"
+      source: "[[sources/Fandom-Maisie|Fandom-Maisie]]"
+      changes_capabilities:
+        - "Finish Them 即刻回 1 ammo，并按目标缺失生命提高下一发伤害，不能作用于 Heist safe"
+        - "Pinpoint Precision 满射程命中 +25% 伤害/充能"
+      enables:
+        - "反坦 finish"
+        - "长线 poke 伤害"
+        - "Heist 防守击杀而非 safe gadget burst"
+      mitigates_failure_modes:
+        - "high_hp_target_survives_shockwave"
+      best_when: "需要打坦克/高血量目标且能命中长线"
+      poor_when: "敌方多突进，需要 Disengage 的保命"
+      bp_use: "anti_tank_or_long_range_variant"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - id: "brawl_ball_shockwave_goal_peel"
+      map_feature_type: "goal_peel_and_ball_disarm"
+      uses_feature_by: "Shockwave 推离持球者/守门人，Tremors slow 后续跟伤，Disengage 可补 stun"
+      route_or_position: "球门前三格、中路球权、侧草推进和 overtime 直线"
+      objective_conversion: "打断持球、清守门人、或把敌方推出射门线"
+      active_when: "敌方必须靠近球门或聚集防守"
+      fails_if: "Super 前摇被取消，或队伍没有 scorer/破墙跟进"
+      example_maps:
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+      bp_use: "slot_task.goal_peel_and_ball_disarm"
+    - id: "hot_zone_tremors_zone_clear"
+      map_feature_type: "zone_body_push_and_slow"
+      uses_feature_by: "Super 把站区 body 推出区，Tremors slow 2 秒阻止立刻回区"
+      route_or_position: "单区中心、区边墙、敌方回区 chokepoint"
+      objective_conversion: "把一次 Super 转成 zone score swing 和队友击杀窗口"
+      active_when: "敌方必须站区或从固定入口进区，Maisie 有 Super"
+      fails_if: "敌方 thrower/long range 从区外清 Maisie，或控制取消前摇"
+      example_maps:
+        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
+        - "[[entities/maps/Ring of Fire|Ring of Fire]]"
+        - "[[entities/maps/Open Business|Open Business]]"
+      bp_use: "map_bp_factors.zone_body_displacement"
+    - id: "gem_mine_long_damage_and_shockwave_peel"
+      map_feature_type: "gem_mid_long_lane_anti_aggro"
+      uses_feature_by: "长线高伤压矿区，Shockwave 推开刺客/坦克并保护 carrier"
+      route_or_position: "宝石矿入口、carrier 撤退线、侧草突进路径"
+      objective_conversion: "守住矿区射线，或在倒计时追击时推离敌方 body"
+      active_when: "地图有足够长线给主攻加速，敌方从可预判草口进"
+      fails_if: "敌方长手 outrange 或投掷墙袋压制 Maisie"
+      example_maps:
+        - "[[entities/maps/Gem Fort|Gem Fort]]"
+        - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
+      bp_use: "candidate_eval.gem_mid_anti_aggro_marksman"
+    - id: "heist_safe_fixed_target_and_defense"
+      map_feature_type: "stationary_target_damage_with_defensive_push"
+      uses_feature_by: "safe 固定易吃主攻，Super 可防守推开入库者并 slow"
+      route_or_position: "safe lane、safe 前墙、敌方入库线"
+      objective_conversion: "把三发+Super 转成 safe burst，或防守入库短手"
+      active_when: "Maisie 有安全直线输出且队伍能保护她不被突脸"
+      fails_if: "敌方从墙后/多路进库，或需要更稳定远程 race"
+      example_maps:
+        - "[[entities/maps/Bridge Too Far|Bridge Too Far]]"
+        - "[[entities/maps/Kaboom Canyon|Kaboom Canyon]]"
+        - "[[entities/maps/Hot Potato|Hot Potato]]"
+      bp_use: "candidate_eval.heist_auxiliary_damage_and_peel"
 
   objective_contracts:
     - mode: "Brawl Ball"
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - "守门推离和持球掉节奏"
+        - "Tremors slow 后续射门/击杀"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "稳定破门"
+        - "Super 前摇被控制时硬守"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "scorer、破墙、反投掷"
+      false_positive: "Shockwave 推人不等于进球；队伍必须能接后续球权"
     - mode: "Hot Zone"
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - "清点、推离 body、slow 回区"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "长期主站区"
+        - "处理所有区外长手"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "站区 body、墙后处理、治疗"
+      false_positive: "Maisie 清区强，但清完需要队友站住"
+    - mode: "Gem Grab/Heist"
+      can_fulfill:
+        - "carrier peel"
+        - "fixed safe damage variant"
+      cannot_fulfill:
+        - "安全主 carrier"
+        - "无保护 solo race"
+      needs_teammate_support:
+        - "carrier、视野、反突进"
+      false_positive: "Heist 是 Fandom 机制支持的变体，不是 PLP 默认模式"
 
   failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "source_signal_not_reviewed"
-      active_when: "BP relies on PLP mode/matchup seed without mechanism validation"
-      exposed_by: "third-party guide fields"
-      mitigation: "convert seed into conditional matchup or map hook before bp_ready"
-      bp_use: "do_not_mark_bp_ready"
+    - id: "slow_start_projectile_dodged"
+      active_when: "远距离对手横移或有 dash，Maisie 单发预判失败"
+      exposed_by: "[[sources/Fandom-Maisie|Fandom-Maisie]] projectile starts slow then speeds up"
+      mitigation: "用 Tremors/Disengage/队友 slow 后射击，或在 choke/近中距离打"
+      bp_use: "projectile_reliability_filter"
+    - id: "super_delay_cancelled"
+      active_when: "Shockwave 0.5 秒前摇中被 stun/pull/knockback"
+      exposed_by: "Fandom Super cancellation rules"
+      mitigation: "等控制交掉、从草墙逼近，或用 Disengage 调角"
+      bp_use: "cc_hard_gate"
+    - id: "disengage_not_terrain_bypass"
+      active_when: "把 Disengage 当作过墙/过水逃生"
+      exposed_by: "Fandom notes Disengage cannot dash through walls or water"
+      mitigation: "只按直线路径建模，预留墙前位置"
+      bp_use: "map_route_false_positive_filter"
+    - id: "long_range_pressure_outside_super"
+      active_when: "敌方 Piper/Nani/Bea/8-Bit 等在 Super 范围外压制"
+      exposed_by: "PLP target_favored range/body seeds and Fandom long-range struggle note"
+      mitigation: "补开墙/长手队友，不在纯开阔长线单独早手"
+      bp_use: "draft_needs_lane_support"
 
-  conditional_matchup_seeds:
-    - target:
-        - "Jae-Yong"
-        - "Gigi"
-        - "Piper"
-        - "Darryl"
-        - "Lily"
-        - "Chuck"
-        - "El Primo"
-        - "Nani"
+  conditional_matchups:
+    - target: ["Darryl", "Lily", "El Primo", "Chuck"]
       direction: "subject_favored"
       source: "[[sources/PLP-Maisie|PLP-Maisie]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Sandy"
-        - "Rosa"
-        - "Larry & Lawrie"
-        - "Damian"
-        - "Sirius"
-        - "Nita"
-        - "8-Bit"
-        - "Bibi"
+      mechanism: "Shockwave 推离、Tremors slow 和 Disengage stun 能打断滚入/突进/短手接触"
+      active_when: "他们必须从可预判路线进球门、热区或矿区"
+      fails_when: "Maisie Super 前摇被打断，或目标从侧草贴脸先手"
+      bp_use: "anti_aggro_response"
+    - target: ["Jae-Yong", "Gigi", "Piper", "Nani"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Maisie|PLP-Maisie]]"
+      mechanism: "高单发长线和反突进工具可惩罚低血支援/长手在目标路线上站位"
+      active_when: "Maisie 有射线且队友能帮她进入有效距离"
+      fails_when: "他们维持最大距离、墙后角度，或用队友控制取消 Super"
+      bp_use: "long_lane_or_peel_response"
+    - target: ["Sandy", "Rosa", "Nita", "Bibi"]
       direction: "target_favored"
       source: "[[sources/PLP-Maisie|PLP-Maisie]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "隐蔽、草丛 body、召唤物或速度短手能躲/吃掉 Maisie 的慢起弹道和前摇"
+      active_when: "地图有草墙接近，Maisie 缺视野和队友 peel"
+      fails_when: "草被清、Maisie 有 Super+Tremors，或队友先压低 body"
+      bp_use: "requires_vision_and_anti_body_support"
+    - target: ["Larry & Lawrie", "Damian", "Sirius", "8-Bit"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Maisie|PLP-Maisie]]"
+      mechanism: "墙后/召唤控制、特殊路线或高持续火力可在 Maisie 反开范围外压制她"
+      active_when: "他们站墙袋、远线或召唤物后，Maisie 无开墙/突进队友"
+      fails_when: "地图线打开，或 Maisie 只负责反突进而不和他们对线"
+      bp_use: "must_answer_wall_or_sustain_lane"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "Brawl Ball/Hot Zone 可早手，但要防后手长手/投掷"
+    slot_2_3: "作为反突进和目标点清场核心，后续补站区/scorer"
+    slot_4_5: "看到敌方短手推进或球路 dash 后价值高"
+    slot_6: "最后手可封死单一突进计划；遇多长手墙袋不要硬选"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Maisie|Fandom 来源摘要: Maisie]]
+- [[sources/PLP-Maisie|PLP 来源摘要: Maisie]]

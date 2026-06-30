@@ -384,3 +384,83 @@
 - 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 72 增至 84。
 - 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 71 增至 80。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 26 个、`reviewed` 3 个、`draft_from_raw_signals` 75 个。
+
+## [2026-06-30] review | Jae-yong / Lily / Mandy / Meg 升级到 bp_ready
+
+- 复核 `Jae-yong`、`Lily`、`Mandy`、`Meg` 四个英雄页，将团队加速/治疗支援、Vanish 突袭、Focus 超长线、Mecha 目标区身体等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 84 增至 100。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 80 增至 96。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 30 个、`reviewed` 3 个、`draft_from_raw_signals` 71 个。
+
+## [2026-06-30] review | Melodie / Mina / Mortis / Rosa 升级到 bp_ready
+
+- 复核 `Melodie`、`Mina`、`Mortis`、`Rosa` 四个英雄页，将音符叠层三段冲刺、三段连段与 Windmill、dash 收割、Grow Light 草丛前排等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 100 增至 116。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 96 增至 112。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 34 个、`reviewed` 3 个、`draft_from_raw_signals` 67 个。
+
+## [2026-06-30] review | 8-Bit / Bo / Bolt / Bonnie 升级到 bp_ready
+
+- 复核 `8-Bit`、`Bo`、`Bolt`、`Bonnie` 四个英雄页，将 Booster 阵地增伤、地雷/视野控口、动量接触路线、Clyde/Bonnie 双形态跳入爆发等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 116 增至 132。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 112 增至 128，hook seed 条目数从 201 增至 207。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 38 个、`reviewed` 3 个、`draft_from_raw_signals` 63 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Buzz / Carl / Colette / Finx 升级到 bp_ready
+
+- 复核 `Buzz`、`Carl`、`Colette`、`Finx` 四个英雄页，将常驻 Buzz 的抓钩眩晕、Carl 的回旋镐/墙边循环、Colette 的百分比伤害与 special target 伤害、Finx 的 Time Warp 投射物速度控制等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 132 增至 148。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 128 增至 144，hook seed 条目数从 207 增至 217。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 42 个、`reviewed` 3 个、`draft_from_raw_signals` 59 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Gale / Hank / Janet / Jessie 升级到 bp_ready
+
+- 复核 `Gale`、`Hank`、`Janet`、`Jessie` 四个英雄页，将推离/减速/Twister、蓄力水泡与近身鱼雷、空中携宝/草区 speaker、Scrappy 炮台与弹射等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 148 增至 164。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 144 增至 160，hook seed 条目数从 217 增至 226。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 46 个、`reviewed` 3 个、`draft_from_raw_signals` 55 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Kaze / Kenji / Lola / Lou 升级到 bp_ready
+
+- 复核 `Kaze`、`Kenji`、`Lola`、`Lou` 四个英雄页，将 Kaze 双形态风暴与标记、Kenji dash/slash 吸血与 Super 免疫、Lola Ego 分身交叉火力、Lou Frost / Hot Zone 冰冻控场等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 164 增至 180。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 160 增至 176，hook seed 条目数从 226 增至 236。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 50 个、`reviewed` 3 个、`draft_from_raw_signals` 51 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Lumi / Maisie / Mr. P / Ollie 升级到 bp_ready
+
+- 复核 `Lumi`、`Maisie`、`Mr. P`、`Ollie` 四个英雄页，将 Lumi 双锤召回/root、Maisie Shockwave 反突进、Mr. P Porter 弹药税、Ollie Hypnotize 控制坦克等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 180 增至 196。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 176 增至 192，hook seed 条目数从 236 增至 246。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 54 个、`reviewed` 3 个、`draft_from_raw_signals` 47 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Pam / Pearl / Penny / Shelly 升级到 bp_ready
+
+- 复核 `Pam`、`Pearl`、`Penny`、`Shelly` 四个英雄页，将治疗炮台和 Scrapsucker 弹药剥夺、Heat 条成长输出、Old Lobber 炮台控图、近身霰弹反坦/破门等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 196 增至 212。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 192 增至 208，hook seed 条目数从 246 增至 254。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 58 个、`reviewed` 3 个、`draft_from_raw_signals` 43 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Squeak / Starr Nova / Willow / Ziggy 升级到 bp_ready
+
+- 复核 `Squeak`、`Starr Nova`、`Willow`、`Ziggy` 四个英雄页，将延迟粘弹与 Residue、Starr Nova Super 剑形态与 Floaty Time、Willow Hex 心控位移、Ziggy 延迟落雷与移动 storm 等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 212 增至 228。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 208 增至 224，hook seed 条目数从 254 增至 264。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 62 个、`reviewed` 3 个、`draft_from_raw_signals` 39 个，并完成本批占位符扫描。
+
+## [2026-06-30] review | Alli / Amber / Barley / Bea 升级到 bp_ready
+
+- 复核 `Alli`、`Amber`、`Barley`、`Bea` 四个英雄页，将草/水跳跃追猎、燃油火墙控区、墙后投掷 puddle、Supercharged 长线 slow 等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 228 增至 244。
+- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 224 增至 240，hook seed 条目数从 264 增至 271。
+- 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 66 个、`reviewed` 3 个、`draft_from_raw_signals` 35 个，并完成本批占位符扫描。

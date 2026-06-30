@@ -2,156 +2,233 @@
 
 ## 基本信息
 
-- 稀有度：Legendary
-- 定位：Support
-- 类型：冰冻控场英雄
+- 稀有度：Mythic
+- 定位：Controller
+- 类型：Frost 进度 / Hot Zone 控场 / 冰冻反坦
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击会持续堆叠冰冻进度
-- 连续命中后能把敌人冻住
-- 更偏向稳定压制而不是高爆发
-
-## 超级技能特征
-
-- Super 会投放一片降雪区域
-- 区域内会持续压低敌方移动自由度
-- 很适合配合队友推进或卡位
-
-## 适合场景
-
-- 需要压节奏和锁路线的模式
-- 适合围绕一个区域打推进的对局
-- 适合拖慢对手行动、制造击杀窗口
+- Fandom：[[sources/Fandom-Lou|Fandom 来源摘要: Lou]]
+- PLP：[[sources/PLP-Lou|PLP 来源摘要: Lou]]
+- PLP 推荐模式：Hot Zone
 
 ## 角色定位总结
 
-Lou 是一个靠冰冻进度和降雪区域锁住节奏的控场支援英雄，他的价值主要来自把敌人行动变得越来越笨重。
+Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板是 3500 HP、三发细弹需要命中，Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤会让 Lou 难以稳定叠满。
 
-## 关联页面
-
-- [[sources/Fandom-Lou|Fandom 来源摘要: Lou]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=9.33 (Very Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.1 seconds (Very Fast)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=3500; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "very_long_control; 普攻 9.33 格，Super 7.67 格越墙投放"
+    projectile_reliability: "medium; 3 枚细弹 0.7 秒卸弹，命中移动目标需要路线限制"
+    burst: "low; 击杀依赖 Frost stun 后队友/后续命中"
+    sustained_dps: "medium; 1.1 秒 very fast reload，但单枚伤害低"
+    objective_damage: "low; 主要控区/控球/控 carrier，不是 Heist race"
+    mobility: "low; 无位移"
+    survivability: "medium_with_ice_block; 3500 HP，Ice Block 可 1 秒无敌但不能动/攻击"
+    engage: "low_to_medium; 靠 Super 预铺目标点而非主动接触"
+    disengage: "high_against_short_range; Frost、冰面和 Ice Block 可拖突进"
+    anti_aggro: "high_if_frost_stacks; 眩晕、滑地、Hypothermia 输出削减惩罚坦克/刺客"
+    anti_tank: "high_on_objective; 坦克站点越久越接近 stun 和伤害削减"
+    wall_break: "none"
+    throw_or_wall_bypass: "medium_area; Super 可越墙铺冰，普攻不能隔墙"
+    area_control: "very_high; 10 秒冰面覆盖 Hot Zone 或球/矿区入口"
+    scouting_or_vision: "medium_with_vision_gear; Super 阻回血/迫移动，Vision gear 支持草区持续标记"
+    team_support: "high; stun、slow-like滑地、输出削减给队友击杀窗口"
+    spawnable_or_pet: "area_syrup; Super 生成 10 秒区域"
+    crowd_control: "very_high; Frost stun 1.5 秒，Cryo Syrup 即时 +50% Frost，Hyper Super 落点瞬冻"
+    source_trace:
+      - "[[sources/Fandom-Lou|Fandom-Lou]]"
+      - "[[sources/PLP-Lou|PLP-Lou]]"
 
   build_switches:
     - build: "Cryo Syrup / Hypothermia / Super Charge, Vision, Damage, Shield"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Cryo Syrup 只能在敌人处于 Lou Super 内时使用，并立即增加 50% Frost"
+        - "Hypothermia 随 Frost 进度降低敌方输出，最高 50%，让站区 body 和坦克推进变弱"
+        - "Super Charge gear 加速冰面循环，Vision 支持草区/Hot Zone 持续标记"
       enables:
-        - "mode_candidate:Hot Zone"
+        - "Hot Zone 区域锁定"
+        - "坦克/刺客进场削伤"
+        - "Super -> Gadget 快速 stun"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "frost_decay_before_stun"
+        - "tank_survives_low_damage"
+      best_when: "敌方必须站在固定区域或通过单一入口，且 Lou 可循环 Super"
+      poor_when: "敌方多机动长手分散站位，从冰面外持续输出"
+      bp_use: "default_plp_hot_zone_control_build"
+    - build: "Ice Block / Supercool variant"
+      source: "[[sources/Fandom-Lou|Fandom-Lou]]"
+      changes_capabilities:
+        - "Ice Block 1 秒无敌可吃 Nani/Tick/Mandy/Dynamike Super 或刺客第一轮爆发"
+        - "Supercool 把 Super 区内 Frost 叠加从 14%/秒提高到 16%/秒"
+      enables:
+        - "反爆发保命"
+        - "更稳定 zone freeze"
+      mitigates_failure_modes:
+        - "lou_bursted_before_freeze"
+        - "super_zone_frost_too_slow"
+      best_when: "敌方有单次高伤/刺客 burst，或 Lou 需要独自撑过第一轮"
+      poor_when: "敌方控制会在 Ice Block 后继续命中，或队伍更需要 Hypothermia 输出削减"
+      bp_use: "survival_or_supercool_variant"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
+    - id: "hot_zone_super_full_zone_freeze"
+      map_feature_type: "zone_area_freeze_control"
+      uses_feature_by: "Super 10 秒冰面覆盖区口/区内，Cryo Syrup 快速补 50% Frost"
+      route_or_position: "单热区中心、区口窄线、敌方回区路径"
+      objective_conversion: "让敌方进区即被滑地/冻结/削伤，转成己方踩区时间"
+      active_when: "目标区可被 Super 覆盖，敌方必须站点或穿过冰面"
+      fails_if: "敌方从冰面外远程/投掷清区，或 Lou 没有队友站区"
+      example_maps:
+        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
+        - "[[entities/maps/Ring of Fire|Ring of Fire]]"
+        - "[[entities/maps/Open Business|Open Business]]"
+        - "[[entities/maps/Parallel Plays|Parallel Plays]]"
+      bp_use: "map_bp_factors.hot_zone_freeze_control"
+    - id: "brawl_ball_freeze_disarm"
+      map_feature_type: "ball_carrier_frost_disarm"
+      uses_feature_by: "普攻叠满 Frost stun 让持球者掉球，Super 铺在球/门前阻止拾球"
+      route_or_position: "中路球权、球门前三格、球落点和侧草推进口"
+      objective_conversion: "打断持球、延迟拾球、或冻结守门人创造射门窗口"
+      active_when: "敌方持球或守门必须通过 Lou 的射线/冰面"
+      fails_if: "球门未打开且队伍无 scorer，或敌方机动目标反复躲开三枚细弹"
+      example_maps:
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+      bp_use: "slot_task.ball_disarm_and_pickup_denial"
+    - id: "gem_mine_super_and_carrier_freeze"
+      map_feature_type: "gem_mine_frost_control"
+      uses_feature_by: "Super 铺矿区让敌方收宝风险升高，普攻/Hyper 可冻结 carrier"
+      route_or_position: "宝石矿正中、carrier 退线、矿区侧墙入口"
+      objective_conversion: "保护收宝、冻结 carrier 逼掉宝，或让敌方不能安全进矿"
+      active_when: "矿区路线固定，Lou 有 Super cycle 或 Hyper 落点"
+      fails_if: "敌方远程从矿区外打 Lou，或队伍缺拾宝/收割"
+      example_maps:
+        - "[[entities/maps/Gem Fort|Gem Fort]]"
+        - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
+        - "[[entities/maps/Double Swoosh|Double Swoosh]]"
+      bp_use: "map_bp_factors.mine_freeze_and_carrier_punish"
+    - id: "anti_tank_choke_hypothermia"
+      map_feature_type: "choke_anti_tank_damage_debuff"
+      uses_feature_by: "Frost stun 与 Hypothermia 输出削减让坦克/短手穿越 chokepoint 的收益下降"
+      route_or_position: "热区入口、球路草口、矿区侧草和短手必须进入的窄线"
+      objective_conversion: "把坦克推进变成低输出慢速目标，给队友集火窗口"
+      active_when: "坦克/刺客必须重复经过同一条路线，且 Lou 保持射线"
+      fails_if: "目标有突进绕后、免控/净化，或长手队友先把 Lou 打退"
+      example_maps:
+        - "[[entities/maps/Ring of Fire|Ring of Fire]]"
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Gem Fort|Gem Fort]]"
+      bp_use: "candidate_eval.anti_tank_route_lock"
 
   objective_contracts:
     - mode: "Hot Zone"
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - "区内 Super 覆盖和快速冰冻"
+        - "Hypothermia 削站区者输出"
+        - "Vision gear 草边持续标记"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "单人长期站区"
+        - "从墙后清所有 thrower"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "站区 body、区外长手、投掷处理"
+      false_positive: "Lou 控区强，但需要队友把冰冻窗口转成实际踩区/击杀"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "冻结持球者掉球"
+        - "Super 封球落点/门前"
+      cannot_fulfill:
+        - "稳定破门或主 scorer"
+        - "追高速目标到开阔地"
+      needs_teammate_support:
+        - "射门位、破墙、反突进"
+      false_positive: "Lou 能防球路，但没有进球工具；进攻端要靠队友"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "矿区冰面控制"
+        - "冻结 carrier 或 bodyguard"
+      cannot_fulfill:
+        - "安全主 carrier"
+        - "独自处理长手开阔线"
+      needs_teammate_support:
+        - "主 carrier、长手输出、收割冰冻目标"
+      false_positive: "Frost 控制 carrier 后必须有队友接宝/补伤害"
 
   failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
+    - id: "thin_projectiles_and_frost_decay"
+      active_when: "Lou 间断命中，敌方 2.5 秒后让 Frost 开始衰减"
+      exposed_by: "[[sources/Fandom-Lou|Fandom-Lou]] Frost meter and projectile details"
+      mitigation: "选择 choke/zone 路线，铺 Super 后再用 Cryo Syrup/普攻补满"
+      bp_use: "projectile_reliability_gate"
+    - id: "cryo_syrup_requires_enemy_inside_super"
+      active_when: "Lou 没有 Super 区内目标却指望 Gadget 直接冻人"
+      exposed_by: "Cryo Syrup cannot be used if no enemies are in Lou's Super"
+      mitigation: "先铺 Super 覆盖目标任务点，再等敌方进区使用 Gadget"
+      bp_use: "build_resource_sequence_check"
+    - id: "ice_block_immobile_after_control"
+      active_when: "Lou 用 Ice Block 吃控制但解冻后仍被 stun/围杀"
+      exposed_by: "Fandom notes Ice Block immobile and weak into some stun timings"
+      mitigation: "用于吃单次高伤或刺客卸弹，不用于已经被控制链覆盖的位置"
+      bp_use: "survival_false_positive_filter"
+    - id: "outranged_or_flanked_before_super_cycle"
+      active_when: "敌方 long range/thrower 从冰面外压低 Lou"
+      exposed_by: "Lou low health and PLP target_favored range/mobility seeds"
+      mitigation: "补前排/开墙/视野，不在无掩护长线让 Lou 单独控区"
+      bp_use: "map_openness_and_peel_check"
 
-  conditional_matchup_seeds:
-    - target:
-        - "Poco"
-        - "Pam"
-        - "El Primo"
-        - "Bull"
-        - "Jacky"
-        - "Frank"
-        - "8-Bit"
-        - "Darryl"
+  conditional_matchups:
+    - target: ["El Primo", "Bull", "Jacky", "Frank", "Darryl"]
       direction: "subject_favored"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Stu"
-        - "Griff"
-        - "Bea"
-        - "Crow"
-        - "Emz"
-        - "Tara"
-        - "Lola"
-        - "Max"
+      mechanism: "坦克/短手在进区或球路停留越久越容易被 Frost stun 和 Hypothermia 削伤"
+      active_when: "目标必须经过 Lou 的冰面/射线并缺净化或远程护送"
+      fails_when: "目标从草墙瞬间贴脸，Lou 无 Ice Block/Super，或队友无法击杀冻住目标"
+      bp_use: "anti_tank_objective_response"
+    - target: ["Poco", "Pam", "8-Bit"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Lou|PLP-Lou]]"
+      mechanism: "站桩 sustain/阵地 body 被冰面和输出削减拖慢，无法轻松占住固定区"
+      active_when: "战斗围绕 Hot Zone/矿区/球点聚集，Lou 有 Super cycle"
+      fails_when: "他们用队友长手/投掷先清 Lou，或 sustain shell 分散不站冰面"
+      bp_use: "zone_sustain_shell_counter"
+    - target: ["Stu", "Max", "Bea", "Griff"]
       direction: "target_favored"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "机动、长线 burst 或高 DPS 让 Lou 难以连续命中细弹并维持 Frost"
+      active_when: "地图开阔，目标可从冰面外打 Lou 或快速换线"
+      fails_when: "目标被迫进 Hot Zone/choke，或队友 slow/控制先限制移动"
+      bp_use: "avoid_open_lane_without_cover"
+    - target: ["Crow", "Emz", "Tara", "Lola"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Lou|PLP-Lou]]"
+      mechanism: "毒伤/范围喷雾/拉人/分身长线会打断 Lou 的站线和 Frost cycle"
+      active_when: "他们能从侧角或墙边压 Lou，迫使他交 Super 防守而非控目标"
+      fails_when: "Lou 先铺目标区并有前排保护，或队友清掉分身/拉人威胁"
+      bp_use: "requires_frontline_and_angle_control"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "Hot Zone 明确且队伍能站区时可早手；开阔图会被长手后手惩罚"
+    slot_2_3: "作为控区/反坦计划核心，后续补实际站区和击杀"
+    slot_4_5: "看到敌方坦克、阵地 sustain 或球路短手时响应价值高"
+    slot_6: "最后手可封死单一目标区，但不能补队伍缺输出/站区 body"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Lou|Fandom 来源摘要: Lou]]
+- [[sources/PLP-Lou|PLP 来源摘要: Lou]]

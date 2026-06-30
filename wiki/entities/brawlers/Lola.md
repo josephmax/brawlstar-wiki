@@ -4,183 +4,235 @@
 
 - 稀有度：Epic
 - 定位：Damage Dealer
-- 来源：史诗输出英雄
+- 类型：长线六连发 / Ego 分身交叉火力 / 炮台式护盾
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是长距离扇形六连发
-- 适合中距离持续输出
-- 需要注意扇形覆盖和站位角度
-
-## 超级技能特征
-
-- Super 会生成分身
-- 分身能复制她的部分输出压力
-- 可以用来双线压制、吸引火力或辅助推进
-
-## 适合场景
-
-- 需要中距离压线的对局
-- 想要通过分身分担压力的阵容
-- 地图中有较多对线和转点空间的模式
+- Fandom：[[sources/Fandom-Lola|Fandom 来源摘要: Lola]]
+- PLP：[[sources/PLP-Lola|PLP 来源摘要: Lola]]
+- PLP 推荐模式：Brawl Ball, Heist, Bounty
 
 ## 角色定位总结
 
-Lola 是“本体输出 + 分身施压”的史诗伤害英雄，打法核心在于让分身替自己把场面拉开。
+Lola 是“本体输出 + Ego 分身”的长线伤害英雄。她 9 格六连发有高命中上限，Super 生成的 Ego 会复制移动和攻击，能双线压迫、挡弹、攻击墙后目标或在 `Freeze Frame` 下用 50% 减伤硬吃火力。BP 上她适合需要长线持续 DPS、固定目标打库或 Bounty/Knockout 压线的地图；但 Ego 不能捡宝、不能占 Hot Zone，靠近 Lola 3 格内伤害会降低 35%，且非常怕 Penny/Jessie/Nita/Belle/Tara/Mr. P 等弹射、穿透、召唤物或投掷清分身方式。
 
-## 与其他英雄的区别
-
-- 不同于 `Rico`：Rico 更靠反弹角度，Lola 更靠本体和分身双点施压
-- 不同于 `8-Bit`：8-Bit 偏阵地放大，Lola 偏主动分身压迫
-- 不同于 `Pam`：Pam 是支援续航，Lola 是输出压制
-
-## 关联页面
-
-- [[sources/Fandom-Lola|Fandom 来源摘要: Lola]]
-- [[entities/brawlers/Rico|Rico]]
-- [[entities/brawlers/8-Bit|8-Bit]]
-- [[entities/brawlers/Pam|Pam]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=9 (Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.7 seconds (Normal)<br>1.445 seconds (with Reload Gear)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=4000; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "long; Lola 与 Ego 均 9 格攻击范围"
+    projectile_reliability: "medium_high_on_lanes; 6 发 15 度 spread，0.85 秒卸弹，需跟踪"
+    burst: "medium_high_with_improvise; 最后一发 ammo 攻击 +30%，双点命中上限高"
+    sustained_dps: "high_when_ego_lives; 本体 1.7 秒装填，Ego 有独立 ammo/reload，可叠加火力"
+    objective_damage: "high_conditional; Heist safe/固定目标可吃本体+Ego+Freeze Frame 保护"
+    mobility: "low; Stunt Double 可与 Ego 换位，但默认 build 不带"
+    survivability: "medium; 4000 HP，Ego 可挡非穿透弹，Freeze Frame 让 Ego 4 秒 50% 减伤"
+    engage: "low; 主要压线和分身前压，不主动突进"
+    disengage: "medium_with_stunt_double; 默认更依赖 Ego 挡弹和站位"
+    anti_aggro: "medium; Ego 可挡弹/Spark? 非穿透攻击，但刺客绕过分身会威胁本体"
+    anti_tank: "medium_high_if_lane_open; 高持续 DPS 压坦，但近身后缺硬控"
+    wall_break: "none"
+    throw_or_wall_bypass: "medium_spawnable_angle; Ego 可越墙投放后攻击墙后目标，本体不能隔墙"
+    area_control: "medium_high; 双线火力和 Ego 占位压 chokepoint"
+    scouting_or_vision: "medium; Ego 前置探路和承伤"
+    team_support: "medium; Ego 挡弹，Sealed With a Kiss 变体可治疗队友"
+    spawnable_or_pet: "high; Ego 2200 HP，Hyper Ego 5200 HP/更高伤害"
+    crowd_control: "none"
+    source_trace:
+      - "[[sources/Fandom-Lola|Fandom-Lola]]"
+      - "[[sources/PLP-Lola|PLP-Lola]]"
 
   build_switches:
     - build: "Freeze Frame / Improvise / Shield, Damage, Reload"
       source: "[[sources/PLP-Lola|PLP-Lola]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Freeze Frame 让 Ego 停住 4 秒并获得 50% 减伤，能挡 safe/球路/长线火力"
+        - "Improvise 在最后一格 ammo 时提高 30% 攻击伤害，配合 Damage/Reload gear 放大持续输出"
+        - "Reload gear 同时影响 Ego 的独立装填，强化双点压线"
       enables:
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Heist"
-        - "mode_candidate:Bounty"
+        - "Heist safe pressure"
+        - "Bounty/Knockout 长线交叉火力"
+        - "Brawl Ball 中路 Ego 挡弹/压守门人"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "ego_dies_before_value"
+        - "reload_downtime_after_unload"
+      best_when: "地图有长线、固定目标或可保护 Ego 的墙角"
+      poor_when: "敌方有高效穿透/弹射/投掷清 Ego 或多突进直取本体"
+      bp_use: "default_plp_crossfire_damage_build"
+    - build: "Stunt Double / Sealed With a Kiss variant"
+      source: "[[sources/Fandom-Lola|Fandom-Lola]]"
+      changes_capabilities:
+        - "Stunt Double 让 Lola 与 Ego 互换位置并各回复 20% 最大生命，可用于 Bounty/Knockout 进出敌方 base"
+        - "Sealed With a Kiss 让 Ego 弹道治疗队友，但操作复杂且通常不如 Improvise 直接"
+      enables:
+        - "位置欺骗和撤退"
+        - "低血换位保命"
+        - "双线支援"
+      mitigates_failure_modes:
+        - "body_rushes_lola_not_ego"
+        - "needs_escape_from_long_lane"
+      best_when: "地图允许 Ego 安全插入敌方侧后，或需要换位保命"
+      poor_when: "团队需要最大输出/打库，或 Ego 会被快速清掉"
+      bp_use: "reposition_or_support_variant"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
+    - id: "long_lane_ego_crossfire"
+      map_feature_type: "long_sightline_crossfire"
+      uses_feature_by: "Lola 本体和 Ego 同时 9 格输出，形成两个射线角度"
+      route_or_position: "Bounty/Knockout 长线、Heist 三线、Brawl Ball 中路"
+      objective_conversion: "保护星差、压退长手，或让敌方必须同时处理两个火力点"
+      active_when: "Ego 可放在不贴近 Lola 且不被秒清的位置"
+      fails_if: "敌方用弹射/穿透/投掷清 Ego，或墙体阻断双线"
+      example_maps:
+        - "[[entities/maps/Shooting Star|Shooting Star]]"
+        - "[[entities/maps/Dry Season|Dry Season]]"
+        - "[[entities/maps/Out in the Open|Out in the Open]]"
+        - "[[entities/maps/Bridge Too Far|Bridge Too Far]]"
+      bp_use: "required_capabilities.long_range_crossfire"
+    - id: "heist_freeze_frame_safe_block"
+      map_feature_type: "stationary_objective_ego_dps"
+      uses_feature_by: "Ego 靠近 safe 或 safe 防线后 Freeze Frame 50% 减伤，Lola 在后方同步输出"
+      route_or_position: "enemy safe 侧墙、safe 前挡弹位、自家 safe 防守线"
+      objective_conversion: "把 Super+Gadget 转成 safe race、挡弹或强制敌方清分身"
+      active_when: "Ego 能存活 4 秒并持续对 safe/防守者开火"
+      fails_if: "Penny/Jessie/投掷/穿透利用 Ego 反打，或敌方 race 更快"
+      example_maps:
+        - "[[entities/maps/Bridge Too Far|Bridge Too Far]]"
+        - "[[entities/maps/Kaboom Canyon|Kaboom Canyon]]"
+        - "[[entities/maps/Hot Potato|Hot Potato]]"
+        - "[[entities/maps/Pit Stop|Pit Stop]]"
+      bp_use: "candidate_eval.heist_spawnable_dps_with_liability_check"
+    - id: "brawl_ball_mid_ego_shield"
+      map_feature_type: "ball_lane_spawnable_cover"
+      uses_feature_by: "Ego 可开局放中路挡非穿透火力，Freeze Frame 让它硬吃防守弹药"
+      route_or_position: "中路开球点、球门前防守线、侧草推进入口"
+      objective_conversion: "保护抢球、压守门人、或让队友在分身后推进"
+      active_when: "敌方主要是非穿透直线弹道且必须从正面处理 Ego"
+      fails_if: "敌方绕侧刺本体、穿透/弹射清分身，或队伍缺 scorer/破墙"
+      example_maps:
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+      bp_use: "slot_task.ball_mid_cover_and_pressure"
+    - id: "knockout_bounty_stunt_double_base_swap"
+      map_feature_type: "clone_reposition_and_base_pressure"
+      uses_feature_by: "Stunt Double 可与 Ego 互换位置并治疗，用于进出敌方 base 或撤离被压线位置"
+      route_or_position: "Knockout 侧墙、Bounty 敌方 base 角、长线低血撤退点"
+      objective_conversion: "制造侧后压力、骗火力，或保住星差/生命"
+      active_when: "Ego 已安全走到可换位位置，且敌方缺即时 burst 覆盖两个点"
+      fails_if: "Lola 带默认 Freeze Frame 而非 Stunt Double，或换位保留负面状态后仍被收掉"
+      example_maps:
+        - "[[entities/maps/Belle's Rock|Belle's Rock]]"
+        - "[[entities/maps/Layer Cake|Layer Cake]]"
+        - "[[entities/maps/New Horizons|New Horizons]]"
+      bp_use: "candidate_eval.clone_reposition_variant"
 
   objective_contracts:
     - mode: "Brawl Ball"
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - "Ego 中路挡弹和交叉火力"
+        - "长线压守门人"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "稳定破门"
+        - "处理多突进贴本体"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "scorer、破墙、反刺客"
+      false_positive: "Ego 能挡弹但不能持球；球权转换仍靠队友"
     - mode: "Heist"
       can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
+        - "Ego + 本体打 safe"
+        - "Freeze Frame 防守挡弹"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "无路线时稳定进库"
+        - "对 Penny/弹射阵容无脑放 Ego"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
+        - "开路、护送分身、处理反分身英雄"
+      false_positive: "Heist 价值取决于 Ego 存活，分身也可能成为敌方弹射跳板"
+    - mode: "Bounty/Knockout"
       can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "长线交叉火力"
+        - "Ego 探点和承伤"
+        - "Stunt Double 变体撤退/进 base"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "硬控刺客"
+        - "处理深墙投掷口袋"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "反投掷/开墙、近身 peel、视野"
+      false_positive: "双线火力需要可保护 Ego 的角度；被快速清掉时 Lola 只是普通长手"
 
   failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
+    - id: "ego_cannot_hold_objectives"
+      active_when: "BP 把 Ego 当作能捡宝、占 Hot Zone 或带球的实体"
+      exposed_by: "[[sources/Fandom-Lola|Fandom-Lola]] notes Ego cannot pick items or score Hot Zone"
+      mitigation: "把 Ego 只当火力/挡弹/探路工具，目标由 Lola 或队友完成"
+      bp_use: "objective_contract_hard_gate"
+    - id: "ego_damage_penalty_near_lola"
+      active_when: "Ego 放在 Lola 3 格内叠点输出"
+      exposed_by: "Fandom Super damage penalty radius"
+      mitigation: "保持分身离开 3 格，或只在需要挡弹/一致命中时临时贴身"
+      bp_use: "damage_output_positioning_check"
+    - id: "pierce_bounce_or_thrower_liability"
+      active_when: "敌方 Penny/Jessie/Nita/Belle/Tara/Mr. P/投掷利用 Ego 或快速清掉它"
+      exposed_by: "Fandom tips warn against bouncing or piercing attacks"
+      mitigation: "避开对应 matchup，改变 Ego 位置，或不用分身挡 safe/队友"
+      bp_use: "spawnable_counter_filter"
+    - id: "low_mobility_body_dive"
+      active_when: "敌方绕开 Ego 直接突 Lola 本体"
+      exposed_by: "Lola has no default mobility and PLP target_favored speed/control seeds"
+      mitigation: "队友 peel、Stunt Double 变体、把 Ego 放在进场线而不是远端"
+      bp_use: "requires_peel_against_dive"
 
-  conditional_matchup_seeds:
-    - target:
-        - "Bibi"
-        - "Piper"
-        - "Griff"
-        - "Charlie"
-        - "Bull"
-        - "Byron"
-        - "Shelly"
-        - "Brock"
+  conditional_matchups:
+    - target: ["Piper", "Byron", "Brock", "Griff", "Charlie"]
       direction: "subject_favored"
       source: "[[sources/PLP-Lola|PLP-Lola]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Penny"
-        - "Willow"
-        - "8-Bit"
-        - "Barley"
-        - "Sandy"
-        - "Max"
-        - "Dynamike"
-        - "Bo"
+      mechanism: "Lola 用长线双点输出和 Ego 挡弹迫使线性长手处理额外火力点"
+      active_when: "Ego 可避开穿透/弹射反利用，且 Lola 保持最大射程"
+      fails_when: "目标有 thrower 支援、开墙后 outrange，或直接清 Ego"
+      bp_use: "long_lane_crossfire_response"
+    - target: ["Bibi", "Bull", "Shelly"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Lola|PLP-Lola]]"
+      mechanism: "Ego 挡非穿透近身路线，Freeze Frame 吃第一轮弹药，本体和分身交叉火力压短手"
+      active_when: "短手必须从可见正面接近，且没有草/墙直达 Lola"
+      fails_when: "短手从侧草接触本体，或 knockback/爆发先清分身后继续追"
+      bp_use: "anti_short_range_if_route_visible"
+    - target: ["Penny", "Barley", "Dynamike", "Bo", "Willow"]
       direction: "target_favored"
       source: "[[sources/PLP-Lola|PLP-Lola]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "弹射、投掷、地雷或控制接管能绕过/利用 Ego，并惩罚 Lola 低机动"
+      active_when: "墙袋或 objective 让 Lola 必须靠 Ego 承压"
+      fails_when: "墙体打开、投掷被逼退，或 Lola 在开阔长线只用 Ego 作远端火力"
+      bp_use: "must_answer_spawnable_liability"
+    - target: ["8-Bit", "Sandy", "Max"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Lola|PLP-Lola]]"
+      mechanism: "Booster 火力、团队隐蔽或速度压缩会让 Lola 的静态双点输出跟不上 tempo"
+      active_when: "他们能保护推进路线或快速绕过 Ego 直逼本体"
+      fails_when: "Lola 的长线和队友控制先清核心资源，或 Ego 阻断唯一入口"
+      bp_use: "tempo_and_resource_warning"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "长线/Heist 明确且反分身少时可早手；否则容易被后手投掷/弹射惩罚"
+    slot_2_3: "作为持续 DPS 与交叉火力核心，后续补反突进和开墙"
+    slot_4_5: "看到敌方缺清分身、缺突进时价值高"
+    slot_6: "可最后手惩罚线性长手或短手正面阵容；多穿透/投掷时避选"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Lola|Fandom 来源摘要: Lola]]
+- [[sources/PLP-Lola|PLP 来源摘要: Lola]]
+- [[entities/brawlers/Rico|Rico]]
+- [[entities/brawlers/8-Bit|8-Bit]]
+- [[entities/brawlers/Pam|Pam]]

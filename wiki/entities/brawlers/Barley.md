@@ -4,170 +4,233 @@
 
 - 稀有度：Rare
 - 定位：Artillery
-- 类型：持续铺场型投掷英雄
+- 类型：越墙铺地、chokepoint 控制、Sticky Syrup 反突进
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是远距离投瓶
-- 瓶子破裂后留下持续伤害地面
-- 擅长在狭窄区域制造走位压力
-
-## 超级技能特征
-
-- Super 会扔出多瓶燃烧液体
-- 可以大范围覆盖地图区域
-- 更适合逼退和拆阵型，而不是瞬间秒人
-
-## 适合场景
-
-- 墙体较多的地图
-- 容易卡位的狭窄路线
-- 需要封路和分割战场的模式
-- 喜欢通过持续消耗慢慢建立优势的对局
+- Fandom：[[sources/Fandom-Barley|Fandom 来源摘要: Barley]]
+- PLP：[[sources/PLP-Barley|PLP 来源摘要: Barley]]
+- PLP 推荐模式：Brawl Ball、Hot Zone
 
 ## 角色定位总结
 
-Barley 是标准的后排区域压制英雄。和 `Brock` 比，他更像“地面控制”而不是“空中轰炸”；和 `Poco` 比，他负责拆阵和逼位，而不是治疗支援。
+Barley 是典型低血投掷控场英雄。普攻落地后形成 2 格 puddle，命中和持续站在其中可造成两跳伤害；Super 连续投出 5 个瓶子，覆盖大面积路线和固定目标。PLP 默认 `Sticky Syrup Mixer / Medical Use / Shield, Damage`，把他定位成墙后控区与反突进工具；Heist 场景可按 PLP 注记切 `Extra Noxious` 增加 tick 伤害。BP 中 Barley 的核心不是“远程射手”，而是“墙后安全投掷位能否持续存在”：墙被打开、刺客绕后或 Super 被打断时，他会快速失去价值。
 
-## 关联页面
-
-- [[sources/Fandom-Barley|Fandom 来源摘要: Barley]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "long_mid; fandom_attack_range=7.33 (Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=2 seconds (Slow)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=2700; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "long_thrower; 普攻 7.33 格，Super 9.33 格越墙覆盖"
+    projectile_reliability: "medium_on_fixed_routes_low_vs_open_dash; 瓶子落地慢，近距离落更快"
+    burst: "medium_if_target_stays_in_puddle; 普攻可两跳，多 puddle 叠加，但不是即时爆发"
+    sustained_dps: "medium_area; 2 秒 reload，依赖落点和路线限制"
+    objective_damage: "high_heist_if_super_on_safe; safe 可吃普攻两跳和 Super 多跳，Extra Noxious 强化"
+    mobility: "low; 无位移"
+    survivability: "medium_low; 2700 HP，Medical Use/Shield 缓解但仍怕贴脸"
+    engage: "low; 通过封路逼退，不主动开团"
+    disengage: "medium_with_sticky_syrup; 自身周围 slow 可拖刺客/坦克"
+    anti_aggro: "medium_high_if_gadget_available; Sticky Syrup 4 秒 slow 可防门前/草口突进"
+    anti_tank: "medium; 多跳地面伤害和 slow 能逼坦克绕路，贴脸仍危险"
+    wall_break: "none"
+    throw_or_wall_bypass: "very_high; 普攻和 Super 都可越墙"
+    area_control: "very_high; puddle 堆叠、Super 大面积封路"
+    scouting_or_vision: "low_medium; 可用瓶子/slow 检草，但无真实 reveal"
+    team_support: "medium; Medical Use 自保，Herbal Tonic 可治疗队友但会打断 Super"
+    spawnable_or_pet: "none"
+    crowd_control: "slow_with_sticky_syrup; 3.33 格半径 4 秒 slow"
+    source_trace:
+      - "[[sources/Fandom-Barley|Fandom-Barley]]"
+      - "[[sources/PLP-Barley|PLP-Barley]]"
 
   build_switches:
     - build: "Sticky Syrup Mixer / Medical Use / Shield, Damage"
       source: "[[sources/PLP-Barley|PLP-Barley]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Sticky Syrup 在 Barley 身边留下 3.33 格 slow 区，适合阻止 aggro 和 Brawl Ball 门前冲刺"
+        - "Medical Use 每次普攻治疗 Barley 10% 最大生命，提高墙后换血续航"
+        - "Shield/Damage gear 提高低血投掷位容错和收割伤害"
       enables:
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Hot Zone"
+        - "Brawl Ball 门前防守"
+        - "Hot Zone 墙后持续控区"
+        - "草口/墙角反突进"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "low_health_dive_pressure"
+        - "pocket_collapses_after_chip"
+      best_when: "墙体保护 Barley，敌方必须穿 chokepoint 或门前入口"
+      poor_when: "敌方有多段位移/传送或廉价破墙直接打开投掷位"
+      bp_use: "default_plp_control_build"
+    - build: "Sticky Syrup Mixer / Extra Noxious / Damage variant"
+      source: "[[sources/Fandom-Barley|Fandom-Barley]] / [[sources/PLP-Barley|PLP-Barley]]"
+      changes_capabilities:
+        - "Extra Noxious 每跳增加 200 伤害，显著提高 Heist safe 和固定目标收益"
+        - "保留 Sticky Syrup 处理贴脸者"
+      enables:
+        - "Heist safe burst"
+        - "固定 zone/body 高伤害威胁"
+      mitigates_failure_modes:
+        - "area_damage_not_converting_to_kill"
+        - "safe_damage_too_low"
+      best_when: "Barley 能安全把 Super/普攻投到 safe 或固定站位"
+      poor_when: "需要 Medical Use 才能在投掷位存活"
+      bp_use: "heist_or_damage_conversion_variant"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
+    - id: "hot_zone_wall_puddle_choke_control"
+      map_feature_type: "protected_thrower_pocket_zone_choke"
+      uses_feature_by: "墙后连续普攻和 Super 覆盖区口，逼敌方绕路或离区"
+      route_or_position: "Hot Zone 区口、墙后投掷 pocket、敌方回区 chokepoint"
+      objective_conversion: "延迟回区、清站区边缘、保护己方 body 站区"
+      active_when: "墙体未被打开，Barley 可安全预铺区口并保留 Sticky Syrup"
+      fails_if: "敌方 wall break 打开 pocket，或 Edgar/Mortis/Kenji 等从侧路贴 Barley"
+      example_maps:
+        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
+        - "[[entities/maps/Ring of Fire|Ring of Fire]]"
+        - "[[entities/maps/Open Business|Open Business]]"
+        - "[[entities/maps/Parallel Plays|Parallel Plays]]"
+      bp_use: "map_bp_factors.protected_thrower_zone_control"
+    - id: "brawl_ball_sticky_syrup_goal_defense"
+      map_feature_type: "goal_choke_slow_and_puddle_defense"
+      uses_feature_by: "Sticky Syrup 在门前/草口 slow 持球者，普攻 puddle 迫使掉球后撤"
+      route_or_position: "门前窄口、侧草推进线、己方禁区墙后"
+      objective_conversion: "拖慢 scorer、让队友补伤、阻断二次进球路线"
+      active_when: "球路必须穿过门前窄口且 Barley 有墙后安全位"
+      fails_if: "敌方先破门/破墙，或高机动 scorer 绕过 slow 区直接射门"
+      example_maps:
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+        - "[[entities/maps/Pinball Dreams|Pinball Dreams]]"
+      bp_use: "slot_task.goal_defense_and_anti_aggro"
+    - id: "heist_extra_noxious_super_safe_burst"
+      map_feature_type: "fixed_safe_thrower_burst"
+      uses_feature_by: "Super 五瓶覆盖 safe，固定目标可吃满多跳；Extra Noxious 增加每跳伤害"
+      route_or_position: "safe 前墙、safe 侧投掷角、lane win 后安全投 Super 位置"
+      objective_conversion: "把一次 lane win 转换成高额 safe 伤害，同时封防守路线"
+      active_when: "Barley 能在不被打断/近身的情况下完整释放 Super"
+      fails_if: "Super 被 knockback/pull/stun 打断，或防守者直接处理 Barley"
+      example_maps:
+        - "[[entities/maps/Hot Potato|Hot Potato]]"
+        - "[[entities/maps/Pit Stop|Pit Stop]]"
+        - "[[entities/maps/Safe(r) Zone|Safe(r) Zone]]"
+      bp_use: "candidate_eval.heist_thrower_safe_burst"
+    - id: "gem_mine_thrower_pocket_control"
+      map_feature_type: "mine_wall_thrower_area_denial"
+      uses_feature_by: "墙后 puddle 覆盖矿区和收宝路径，逼宝石拾取者停顿或绕路"
+      route_or_position: "宝石矿边墙、侧草入口、carrier 撤退线"
+      objective_conversion: "阻止收宝、保护己方 carrier、迫使敌方进入长线队友火力"
+      active_when: "矿区墙体保留且敌方缺直接 dive Barley 的路线"
+      fails_if: "墙被打开，或敌方长手/投掷从更远角度反压 Barley"
+      example_maps:
+        - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
+        - "[[entities/maps/Gem Fort|Gem Fort]]"
+        - "[[entities/maps/Double Swoosh|Double Swoosh]]"
+      bp_use: "map_bp_factors.mine_thrower_denial"
 
   objective_contracts:
     - mode: "Brawl Ball"
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - "门前 Sticky Syrup slow"
+        - "墙后 puddle 防守"
+        - "进攻时封 defender 站位"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "主 scorer"
+        - "无墙开阔守门"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "破门/持球者、反刺客、近身 body"
+      false_positive: "Barley 可以防门前窄口，但不是硬控守门员；门被打开后价值下降"
     - mode: "Hot Zone"
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - "墙后控区"
+        - "Super 大范围清区"
+        - "Sticky Syrup 防突进"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "单人站区 body"
+        - "被长手打开后的正面对枪"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "站区前排、墙体保护、anti-dive"
+      false_positive: "Hot Zone 推荐取决于 protected pocket 是否存在，不是所有区图通用"
+    - mode: "Heist"
+      can_fulfill:
+        - "Super safe burst"
+        - "普攻多跳固定目标伤害"
+        - "防守近战 safe hitter 的路线"
+      cannot_fulfill:
+        - "开阔远程 race"
+        - "被打断后继续输出"
+      needs_teammate_support:
+        - "赢线、保护释放 Super、处理 wall break"
+      false_positive: "Heist 变体需要 Extra Noxious 和安全投掷角，不是默认 PLP 主模式"
 
   failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
+    - id: "low_health_dive_pressure"
+      active_when: "Edgar、Mortis、Kenji、Sam、Ollie、Bolt 等从草/墙角贴 Barley"
+      exposed_by: "[[sources/PLP-Barley|PLP-Barley]] target_favored seeds and 2700 HP"
+      mitigation: "保留 Sticky Syrup，补队友 peel，不在无墙侧路单站"
+      bp_use: "draft_requires_peel"
+    - id: "thrower_pocket_opened"
+      active_when: "敌方破墙或长手打开 Barley 安全投掷位"
+      exposed_by: "Barley value depends on throwing over walls and low HP"
+      mitigation: "优先选择稳定墙体地图，或 ban/回答 cheap wall break"
+      bp_use: "map_factor_false_positive_filter"
+    - id: "super_interrupted_or_misused"
+      active_when: "Barley 释放 Super 的 1.5 秒内被 knockback、pull、stun，或用 Herbal Tonic 打断自己"
+      exposed_by: "[[sources/Fandom-Barley|Fandom-Barley]] Super interruption and Herbal Tonic interaction"
+      mitigation: "在安全墙后或敌方控制空窗释放；使用 Herbal Tonic 时不要覆盖关键 Super 时机"
+      bp_use: "super_window_gate"
+    - id: "slow_projectile_autoaim_miss"
+      active_when: "敌方高速移动或开阔绕路，Barley 自动瞄准只能打一跳甚至落空"
+      exposed_by: "Fandom notes slow projectile, closer throws land sooner, auto-aim often misses"
+      mitigation: "预判 chokepoint 而非追着移动目标乱投，配控制或站位限制"
+      bp_use: "projectile_reliability_gate"
 
-  conditional_matchup_seeds:
-    - target:
-        - "Jae-Yong"
-        - "Sprout"
-        - "Nani"
-        - "Mandy"
-        - "Squeak"
-        - "Poco"
-        - "Piper"
-        - "Meg"
+  conditional_matchups:
+    - target: ["Jae-Yong", "Sprout", "Poco", "Meg"]
       direction: "subject_favored"
       source: "[[sources/PLP-Barley|PLP-Barley]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Edgar"
-        - "Trunk"
-        - "Sam"
-        - "Damian"
-        - "Mortis"
-        - "Kenji"
-        - "Ollie"
-        - "Bolt"
+      mechanism: "Barley 可从墙后持续给支援/阵地位脚下铺 puddle，迫使他们离开治疗、召唤或 body 站位"
+      active_when: "目标需要固定站区/支援线，且 Barley 的墙后 pocket 安全"
+      fails_when: "Meg/队友直接开墙或用 body 路线压到 Barley 面前"
+      bp_use: "thrower_response_to_static_support"
+    - target: ["Nani", "Mandy", "Squeak", "Piper"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Barley|PLP-Barley]]"
+      mechanism: "越墙 puddle 可惩罚长线/延迟输出在墙边卡点，迫使他们离开瞄准线"
+      active_when: "地图有墙角让 Barley 能先手投到目标站位"
+      fails_when: "目标处于完全开阔长线，Barley 不能接近投掷距离"
+      bp_use: "wall_pocket_pressure_into_long_lane"
+    - target: ["Edgar", "Trunk", "Sam", "Damian"]
       direction: "target_favored"
       source: "[[sources/PLP-Barley|PLP-Barley]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "高机动或高血量 aggro 可穿过 puddle 承受一轮伤害，迫使 Barley 在低血时交 gadget 或阵亡"
+      active_when: "他们有草/墙/位移接近路线，Barley 没有队友 peel"
+      fails_when: "Sticky Syrup 先锁住入口并由队友跟伤"
+      bp_use: "avoid_without_peel_or_slow_route"
+    - target: ["Mortis", "Kenji", "Ollie", "Bolt"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Barley|PLP-Barley]]"
+      mechanism: "连续 dash、控制或速度压迫会绕开慢落点，并在 Barley reload/Super 施法时惩罚"
+      active_when: "地图侧路开放或 Barley 的墙后位被迫向前"
+      fails_when: "他们进场路径经过预铺 puddle/Sticky Syrup，且队友有即时 burst"
+      bp_use: "draft_requires_route_lock"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "只有在地图明确保留墙后投掷位且敌方难以廉价破墙时才早手"
+    slot_2_3: "作为控区层时要同时补 anti-dive；不要让 Barley 独自处理突进"
+    slot_4_5: "看到敌方固定支援/长线站位且缺刺客时，Barley 的越墙惩罚价值高"
+    slot_6: "最后手适合封死无位移阵地阵容或补 Heist safe burst 变体"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Barley|Fandom 来源摘要: Barley]]
+- [[sources/PLP-Barley|PLP 来源摘要: Barley]]

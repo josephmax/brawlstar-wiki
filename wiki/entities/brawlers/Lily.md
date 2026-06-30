@@ -4,177 +4,218 @@
 
 - 稀有度：Mythic
 - 定位：Assassin
-- 类型：短程背刺型英雄
+- 类型：短程背刺 / Shadow Realm 突袭
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是短距离 thorn 戳刺
-- 攻速和移速都很快
-- 更依赖贴近敌人后迅速打满伤害
-
-## 超级技能特征
-
-- Super `Flourish` 命中敌人后会传送到目标背后
-- 适合偷袭、绕后和收割残血
-- 很依赖命中时机和目标站位
-
-## 适合场景
-
-- 草丛多或路线隐蔽的地图
-- 适合埋伏和绕后的模式
-- 需要快速切后排的对局
+- Fandom：[[sources/Fandom-Lily|Fandom 来源摘要: Lily]]
+- PLP：[[sources/PLP-Lily|PLP 来源摘要: Lily]]
+- PLP 推荐模式：Gem Grab, Brawl Ball, Hot Zone, Heist
 
 ## 角色定位总结
 
-Lily 是一个靠近身充能和背后传送制造击杀机会的短程刺客，核心价值在于偷袭和突然改写站位。
+Lily 是强条件刺客：她用 6 格 Trait 在墙后、草内或近距离压迫中充 Super，再靠 Vanish 和 Flourish 突然改变站位。她的强度来自“接近路线 + 命中确认 + 逃生资源”同时成立，而不是短手本身。Spiky 提供击杀阈值，Vigilance 提供运动模式中的追击/抢线，Repot 则把 Super 从命中传送改成越墙落点工具。
 
-## 关联页面
-
-- [[sources/Fandom-Lily|Fandom 来源摘要: Lily]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
     fandom: "direct_raw_capture_2026-06-30-v2"
     plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    reviewed_against:
+      - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
+      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
-    effective_range: "short; fandom_attack_range=2 (Short)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=0.8 seconds (Very Fast)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=4200; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "short; 主攻击 2 格，击杀依赖 Super/Vanish/草墙路线把距离问题消掉"
+    projectile_reliability: "high_at_contact; 贴身后输出可靠，Super 未命中则没有传送收益"
+    burst: "high; Flourish 命中后接 Spiky 和双 ammo 可快速击杀低中血后排"
+    sustained_dps: "medium_high_at_melee; 0.8 秒装填但只有 2 ammo，长时间站撸仍怕高身体"
+    objective_damage: "conditional_heist; Vanish 可绕过防线摸 safe，但缺少稳定远程打库"
+    mobility: "very_high_when_resources_ready; Vanish、Super teleport、Repot 和 Hypercharge 共同提供突袭角度"
+    survivability: "medium_resource_based; 4200 HP 加 Vanish 逃生，gadget 用掉后容错急降"
+    engage: "high_conditional; 需要 trait 充能、草墙路线或 Repot 落点"
+    disengage: "medium_high_with_vanish; 没有 Vanish 时短手撤退差"
+    anti_aggro: "low_medium; 可用 Vanish 躲技能，但不适合正面接高爆发近战"
+    anti_tank: "low; 对高血量和近战反打英雄不稳定"
+    wall_break: "none"
+    throw_or_wall_bypass: "conditional; Repot 可把 Super 越墙投到落点，Hypercharge 可弹墙并拉入 Shadow Realm"
+    area_control: "low; 主要是目标删除，不是持续封区"
+    scouting_or_vision: "medium_high; trait 可侦测 6 格内草丛/隐身敌人，Super 满后会失去该侦测收益"
+    team_support: "low; 通过击杀后排和逼走威胁间接服务队友"
+    crowd_control: "conditional_hypercharge; Shadow Realm 限制双方 Super/Gadget/Hypercharge 使用"
 
   build_switches:
     - build: "Vanish / Spiky / Shield, Damage, Gadget Cooldown"
       source: "[[sources/PLP-Lily|PLP-Lily]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "最大化突袭、逃生和单杀阈值"
+        - "Gadget Cooldown 提高一局内可执行的隐身进场次数"
       enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Heist"
+        - "Gem carrier 暗杀与撤退"
+        - "Heist 绕防线摸 safe"
+        - "Knockout/Bounty 中最后手切后排"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "open_lane_no_approach"
+        - "super_hit_no_escape"
+      best_when: "敌方后排缺 peel，地图有草、墙或侧路让 Lily 蓄 Super 和接近"
+      poor_when: "敌方有 Bull、Bibi、Chester、Nita、Tara 等近身反打或显形/召唤物压力"
+      bp_use: "default_assassin_build"
+    - build: "Vanish / Vigilance / Speed, Gadget Cooldown"
+      source: "[[sources/Fandom-Lily|Fandom-Lily]]"
+      changes_capabilities:
+        - "提高有敌人在 trait 范围内时的追击、抢球和草图移动速度"
+      enables:
+        - "Brawl Ball 中侧草拿球、追传球线、逼防守者交资源"
+      mitigates_failure_modes:
+        - "short_range_cannot_stay_connected"
+      best_when: "地图目标奖励移动和侧路节奏，击杀阈值不是唯一问题"
+      poor_when: "目标是秒杀高价值后排或摸 safe，需要 Spiky 阈值"
+      bp_use: "movement_mode_variant"
+    - build: "Repot / Spiky / Shield, Damage"
+      source: "[[sources/Fandom-Lily|Fandom-Lily]]"
+      changes_capabilities:
+        - "把 Super 改成越墙落点和小范围命中工具"
+      enables:
+        - "墙后投掷口袋、Belle's Rock 类棋盘墙、Gem Fort 中心墙的后排威胁"
+      mitigates_failure_modes:
+        - "route_blocked_by_wall"
+      best_when: "Lily 已能稳定充 Super，且目标躲在可预测墙后"
+      poor_when: "没有 Super 充能环境，或敌方有高爆发近身反打"
+      bp_use: "wall_pocket_punish_variant"
 
   map_feature_hooks:
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
+    - id: "bush_trait_scout_and_vanish_entry"
+      map_feature_type: "grass_flank_and_scout"
+      uses_feature_by: "trait 侦测草内敌人，Vanish 穿过危险视野区后从侧草发起贴身"
+      objective_conversion: "Gem Grab/Hot Zone/Brawl Ball 中把探草与侧压转成载宝威胁、进圈清人或持球突破"
+      active_when: "草丛连接目标区，且敌方缺持续扫草或显形"
+      fails_if: "草被烧掉、敌方召唤物/范围控制占草，或 Lily Vanish 进入后没有出口"
+      example_maps: ["[[entities/maps/Double Swoosh|Double Swoosh]]", "[[entities/maps/Center Stage|Center Stage]]", "[[entities/maps/Ring of Fire|Ring of Fire]]", "[[entities/maps/Sneaky Fields|Sneaky Fields]]"]
+      bp_use: "草图最后手或中后手刺客；同时承担探草价值"
+    - id: "wall_backline_or_thrower_pocket_assassin_route"
+      map_feature_type: "route_based_assassin_into_wall_pocket"
+      uses_feature_by: "Vanish 越过视野压力，Flourish 或 Repot 切入墙后投掷/狙击位置"
+      objective_conversion: "Knockout/Bounty 中删除安全口袋目标，Gem Grab 中打开中心入口"
+      active_when: "敌方后排依赖墙体或静态站位，且没有近战保护"
+      fails_if: "墙后口袋有 Tara/Nita/Bibi/Bull 等反切，或 Lily Super 未命中后无法撤出"
+      example_maps: ["[[entities/maps/Belle's Rock|Belle's Rock]]", "[[entities/maps/Layer Cake|Layer Cake]]", "[[entities/maps/Gem Fort|Gem Fort]]", "[[entities/maps/Hideout|Hideout]]"]
+      bp_use: "回答投掷/静态后排，但必须验证路线"
+    - id: "gem_carrier_shadow_pick"
+      map_feature_type: "gem_carrier_chase"
+      uses_feature_by: "Vanish 靠近载宝位，Flourish 命中后贴身爆发，击杀后用剩余资源撤离"
+      objective_conversion: "直接打断倒计时或抢回宝石"
+      active_when: "敌方 carrier 后撤路线经过草/墙，且队友能压住其他两人"
+      fails_if: "carrier 周围有硬反切、召唤物阻路或 Lily 没有满 ammo"
+      example_maps: ["[[entities/maps/Gem Fort|Gem Fort]]", "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]", "[[entities/maps/Double Swoosh|Double Swoosh]]"]
+      bp_use: "Gem Grab 翻盘窗口；不要当稳定中路"
+    - id: "heist_vanish_safe_entry_window"
+      map_feature_type: "safe_entry_after_lane_or_bush"
+      uses_feature_by: "Vanish 绕过中路视野，Spiky 突袭 safe 或防守位"
+      objective_conversion: "把一次隐身进库转成 safe damage 或迫使敌方回防"
+      active_when: "敌方缺基地清理，侧路/草带能通往金库"
+      fails_if: "防守方有近战反打、召唤物堵位或可持续扫描"
+      example_maps: ["[[entities/maps/Hot Potato|Hot Potato]]", "[[entities/maps/Pit Stop|Pit Stop]]", "[[entities/maps/Safe Zone|Safe Zone]]"]
+      bp_use: "Heist 条件后手，不等同于稳定打库核心"
 
   objective_contracts:
     - mode: "Gem Grab"
       can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
+        - "侧路探草和逼退 carrier"
+        - "倒计时阶段用 Vanish/Flourish 执行载宝暗杀"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "长期站中路收宝石"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "中路控矿者、显形/扫草或压线队友"
+      false_positive: "Lily 能杀 carrier，但没有中线控制时很难稳定到达 carrier"
     - mode: "Brawl Ball"
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - "侧草持球、切传球线、删除防守后排"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "独自破门或正面顶球门"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "破门、控人或能接 Lily 制造的人数差"
+      false_positive: "短手刺客不等于天然 scorer；需要球路和退路"
     - mode: "Hot Zone"
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - "从草/墙后切掉圈外支援，短时间清圈"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "持续站圈抗伤害"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "站圈身体、区域控制或治疗"
+      false_positive: "进圈击杀后没有站圈队友时，Lily 的价值会断掉"
     - mode: "Heist"
       can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
+        - "隐身进库、偷防守位、迫使回防"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "在开阔路线上稳定远程打库"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "边路线权、清基地和 safe DPS 补充"
+      false_positive: "一次摸库不能替代整局 race DPS"
 
   failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
+    - id: "vanish_cooldown_overextension"
+      active_when: "Vanish 用于进场后没有保留撤退或第二波资源"
+      exposed_by: "Vanish 持续 3 秒且冷却长"
+      mitigation: "只在击杀确认、目标价值或队友跟进明确时进场"
+      bp_use: "resource_timing_check"
+    - id: "short_range_open_lane"
+      active_when: "地图开阔且没有草墙路线"
+      exposed_by: "主攻击 2 格"
+      mitigation: "等最后手惩罚无 peel 后排，或不选"
+      bp_use: "avoid_blind_pick_on_open_maps"
+    - id: "anti_assassin_body_or_spawnable_tracking"
+      active_when: "敌方有近战反打、召唤物、显形或群控守后排"
+      exposed_by: "PLP counteredBy: Chester, Bull, Tara, Nita, Ash, Sam, Bibi"
+      mitigation: "后手确认目标孤立，或队友先清召唤物/反切"
+      bp_use: "counter_screen_before_pick"
+    - id: "super_miss_or_no_ammo_confirm"
+      active_when: "Flourish 未命中，或 Lily 没有满 ammo 就进场"
+      exposed_by: "Super miss gives no teleport; tips mention full ammo before Super"
+      mitigation: "使用 Repot 落点、等目标卡墙，或先充满 ammo"
+      bp_use: "execution_reliability_filter"
 
-  conditional_matchup_seeds:
-    - target:
-        - "Sprout"
-        - "Jae-Yong"
-        - "Squeak"
-        - "Ziggy"
-        - "Dynamike"
-        - "Piper"
-        - "Grom"
-        - "Poco"
+  conditional_matchups:
+    - target: ["Sprout", "Dynamike", "Grom", "Piper", "Ziggy", "Squeak"]
       direction: "subject_favored"
       source: "[[sources/PLP-Lily|PLP-Lily]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Chester"
-        - "Bull"
-        - "Damian"
-        - "Tara"
-        - "Nita"
-        - "Ash"
-        - "Sam"
-        - "Bibi"
+      mechanism: "这些后排/投掷/控制位怕 Lily 绕过视野后贴身；Vanish 消除接近成本，Flourish 提供击杀确认"
+      active_when: "有草墙路线，目标缺近身保护，Lily 有 Super 或 Vanish"
+      fails_when: "目标身边有反刺客，或地图开阔让 Lily 进场前被消耗"
+      bp_use: "last_pick_punish_backline"
+    - target: ["Jae-Yong", "Poco"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Lily|PLP-Lily]]"
+      mechanism: "低爆发支援位一旦被 Lily 贴身，很难在单人窗口内把 Lily 推走"
+      active_when: "支援位脱离队友或为了给支援站位靠前"
+      fails_when: "目标身边有硬控/坦克，或 Lily 被迫先交 Vanish"
+      bp_use: "punish_unprotected_support"
+    - target: ["Chester", "Bull", "Bibi", "Sam", "Ash", "Damian"]
       direction: "target_favored"
       source: "[[sources/PLP-Lily|PLP-Lily]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "近战爆发、高身体或反突进技能能把 Lily 的贴身窗口反杀"
+      active_when: "目标守在 Lily 必须进入的草口、球门或 zone 入口"
+      fails_when: "目标已残血、技能交掉，或 Lily 能从背后切孤立目标"
+      bp_use: "do_not_draft_lily_as_primary_answer"
+    - target: ["Tara", "Nita"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Lily|PLP-Lily]]"
+      mechanism: "显形、召唤物、拉扯和反打能降低 Lily 的隐身接近与爆发可靠性"
+      active_when: "Tara/Nita 有资源守后排或占住草口"
+      fails_when: "召唤物被清，目标孤立且 Lily 有完整资源"
+      bp_use: "requires_team_clear_or_late_pick"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "除非地图极端草墙且队伍已经准备围绕刺客打，否则不早手"
+    slot_2_3: "可作为草图侧路计划，但仍要看敌方是否能用近战/召唤物回答"
+    slot_4_5: "最佳区间；看到敌方后排、投掷或支援缺 peel 后再锁"
+    slot_6: "高价值惩罚位；用于删除已暴露的无保护后排或 carrier"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Lily|Fandom 来源摘要: Lily]]
+- [[sources/PLP-Lily|PLP 来源摘要: Lily]]
