@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Tara
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Tara)
-- 读取日期：2026-04-06
-- 分类：Mythic / Controller
+- 来源：[Tara | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Tara)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-04-29T15:48:04Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/tara-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Tara` 是一名以卡牌投掷和黑洞控制为核心的神话控制英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会投出三张卡牌
-- 贴近时更容易打满伤害
-- `Super` 会制造黑洞，把敌人拉到一起
-- 很适合打团战先手和聚怪连招
+- 稀有度: Mythic
+- 官方定位: Damage Dealer
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3300
+- 攻击距离: 8 (Long)
+- 装填: 2 seconds (Slow)
+- 普攻数值: 480
+- Super 距离: 6.67 (Normal)
+- Super 数值: 800
+- Gadgets: Psychic Enhancer, Support from Beyond
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Tara 的价值在于聚怪和团战控制，不是单点爆发
-- 她更适合把敌方阵型强行拉散或拉拢后再处理
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Tara` 应作为控制和聚怪型实体维护
-- 适合和 `Gene`、`Lou`、`Sandy` 一起形成控制谱系
+- Lead excerpt
+- Attack: Triple Tarot
+- Super: Gravity
+- Gadgets / Psychic Enhancer
+- Gadgets / Support from Beyond
+- Star Powers / Black Portal
+- Star Powers / Healing Shade
+- Hypercharge: Supermassive
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Tara 是一个靠黑洞聚怪和卡牌压制来开团的控制型英雄
+- `Tara` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Tara|Tara]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Tara|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Tara|Tara]]
+- [[sources/PLP-Tara|PLP 来源摘要: Tara]]

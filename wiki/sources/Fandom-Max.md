@@ -3,32 +3,58 @@
 ## 来源信息
 
 - 标题：Max
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Max)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Mythic / Support
+- 来源：[Max | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Max)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-19T19:36:08Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/max-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Max 是一名 Mythic Support，核心价值在于高机动性、持续输出和团队加速。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是快速发射的长距离多弹丸射击
-- Super 会为自己和队友提供移动速度加成
-- 她能把队伍节奏整体拉快，适合推进、撤退和追击
-- 她的星徽和道具都进一步强化移动、续航和节奏感
+- 稀有度: Mythic
+- 官方定位: Support
+- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>1120 (with Super)<br>1208 (with Super and Hypercharge)<br>1167 (with Hypercharged Super)<br>2400 (with Phase Shifter)
+- 生命值: 3500
+- 攻击距离: 8.33 (Long)
+- 装填: 1.3 seconds (Very Fast)<br>1.1 seconds (with Run n' Gun)
+- 普攻数值: 320
+- Super 距离: 4
+- Super 数值: unknown
+- Gadgets: Phase Shifter, Sneaky Sneakers
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Gene` 更偏团队节奏而不是单点控制
-- 比 `Byron` 更像推进型辅助，不是纯远程治疗
-- 比 `Poco` 更强调机动和节奏爆发
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Max 是“速度型支援”代表
-- 适合和控图、追击、快速轮转的玩法一起理解
+- Lead excerpt
+- Attack: Faster Blaster
+- Super: Let's Go!
+- Gadgets / Phase Shifter
+- Gadgets / Sneaky Sneakers
+- Star Powers / Super Charged
+- Star Powers / Run n' Gun
+- Hypercharge: Unlimited Energy
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Max 是“带节奏的加速支援”，她的价值主要体现在帮全队更快地进、退、追、转点
+- `Max` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Max|Max]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Max|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Max|Max]]
+- [[sources/PLP-Max|PLP 来源摘要: Max]]

@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Mr. P
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mr._P)
-- 读取日期：2026-04-06
-- 分类：Mythic / Support
+- 来源：[Mr. P | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mr._P)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-20T04:53:25Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/mr-p-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Mr. P` 是一名以行李箱为武器的神话支援英雄，主攻是会在敌人之间弹跳的公文包投掷。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会在目标间跳弹，适合骚扰和逼位
-- `Super` 会部署一台 `Porter` 生成器
-- 生成器会持续产出可追击的企鹅服务员
-- 他的强项在于控图、骚扰和用召唤物分散对手注意力
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3700
+- 攻击距离: 7 (Long)<br>10.33 (after bounce)
+- 装填: 1.6 seconds (Normal)
+- 普攻数值: 760
+- Super 距离: 5
+- Super 数值: 2500
+- Gadgets: Service Bell, Porter Reinforcements
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Mr. P 不是纯爆发型输出，而是召唤物和持续压制的混合体
-- 他的价值更多来自场面经营，而不是单点秒杀
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Mr. P` 应作为 `entities/` 的持续追踪对象
-- 他适合和 `Sprout`、`Squeak` 一起构成“控场与区域压制”谱系
+- Lead excerpt
+- Attack: Your Suitcase Sir!
+- Super: Porters! Attack!
+- Gadgets / Service Bell
+- Gadgets / Porter Reinforcements
+- Star Powers / Handle With Care
+- Star Powers / Revolving Door
+- Hypercharge: Super Porters! Assemble!
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Mr. P 是一个靠弹跳攻击和召唤物持续施压的控图型支援英雄
+- `Mr. P` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Mr. P|Mr. P]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Mr-P|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Mr. P|Mr. P]]
+- [[sources/PLP-Mr-P|PLP 来源摘要: Mr. P]]

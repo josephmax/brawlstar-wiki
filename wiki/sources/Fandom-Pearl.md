@@ -3,31 +3,58 @@
 ## 来源信息
 
 - 标题：Pearl
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pearl)
-- 读取日期：2026-04-06
-- 分类：Chromatic / Damage Dealer
+- 来源：[Pearl | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pearl)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-11T08:58:20Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/pearl-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Pearl` 是一名以热量累积和爆发射击为核心的输出英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 攻击会随着热量提升而增强
-- 很适合打持续压线和阶段性爆发
-- `Super` 会释放大范围烘烤式伤害
-- 很擅长在发育后打出高额压制
+- 稀有度: Epic
+- 官方定位: Damage Dealer
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 4300
+- 攻击距离: 9 (Long)
+- 装填: 1.5 seconds (Normal)
+- 普攻数值: 280
+- Super 距离: 3.33 (Short)
+- Super 数值: 1550
+- Gadgets: Overcooked, Made With Love
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Pearl 的核心是热量管理和强化爆发
-- 她属于成长节奏明显的输出英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Pearl` 应作为成长型输出实体维护
-- 适合和 `Surge`、`Mandy`、`Bea` 一起看成长与爆发差异
+- Lead excerpt
+- Trait
+- Attack: Hot Cookies
+- Super: Let Out Some Steam
+- Gadgets / Overcooked
+- Gadgets / Made With Love
+- Star Powers / Heat Retention
+- Star Powers / Heat Shield
+- Hypercharge: Pyrolitic
+- Tips / Game Modes and Maps
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Pearl 是一个靠热量累积把普通攻击越打越强的成长型输出英雄
+- `Pearl` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Pearl|Pearl]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Pearl|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Pearl|Pearl]]
+- [[sources/PLP-Pearl|PLP 来源摘要: Pearl]]

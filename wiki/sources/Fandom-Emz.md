@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Emz
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Emz)
-- 读取日期：2026-04-06
-- 分类：Epic / Controller
+- 来源：[Emz | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Emz)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:51:58Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/emz-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Emz` 是一名以喷雾持续伤害和范围压制为核心的控制英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会在前方形成持续喷雾
-- 越靠近核心区域伤害越完整
-- `Super` 会释放更大范围的雾气并减速敌人
-- 很适合把对手卡在不想站的位置
+- 稀有度: Epic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3900
+- 攻击距离: 6.67 (Normal)
+- 装填: 2 seconds (Slow)
+- 普攻数值: 560
+- Super 距离: 5.67 (Normal)
+- Super 数值: 240
+- Gadgets: Friendzoner, Acid Spray
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Emz 的价值来自持续压线与减速控场
-- 她更偏区域压制，不是突进或爆发角色
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Emz` 应作为持续范围压制实体维护
-- 适合作为“站位惩罚型控制”代表
+- Lead excerpt
+- Attack: Spray
+- Super: Caustic Charisma
+- Gadgets / Friendzoner
+- Gadgets / Acid Spray
+- Star Powers / Bad Karma
+- Star Powers / Hype
+- Hypercharge: Overhyped Haze
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Emz 是一个靠喷雾持续伤害和减速区域来逼位的控场英雄
+- `Emz` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Emz|Emz]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Emz|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Emz|Emz]]
+- [[sources/PLP-Emz|PLP 来源摘要: Emz]]

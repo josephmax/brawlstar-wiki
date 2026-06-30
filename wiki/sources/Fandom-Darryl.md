@@ -3,25 +3,60 @@
 ## 来源信息
 
 - 标题：Darryl
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Darryl)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Super Rare / Tank
+- 来源：[Darryl | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Darryl)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:46:48Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/darryl-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Darryl` 是一名 `Super Rare` 的 `Tank` 英雄，兼具高血量、滚动突进和自充能 Super 的特点。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是中近距离双管霰弹，近身时威胁很高
-- Super 会变成滚桶向前滚动，能击退敌人、减伤并撞墙反弹
-- 他的 Super 会随时间自动充能，因此切入节奏很有特色
+- 稀有度: Super Rare
+- 官方定位: Tank
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>2400 (with Super)
+- 生命值: 5500
+- 攻击距离: 6 (Normal)
+- 装填: 1.8 seconds (Normal)<br>0.9 seconds (with Rolling Reload)
+- 普攻数值: 240
+- Super 距离: 7 (Long)
+- Super 数值: 660
+- Gadgets: Recoiling Rotator, Tar Barrel
 
-## 对本地 wiki 的意义
+## BP 建模可抽取信号
 
-- `Darryl` 是典型的切入型前排
-- 他和 `Bull`、`El Primo` 一样属于近战开团谱系，但更强调滚动路线和自动充能节奏
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 本次摄取结论
+## 抓取覆盖
 
-- `Darryl` 是靠滚桶切入和滚动压制吃饭的前排英雄，核心价值在于机动突进和持续贴脸输出
+- Lead excerpt
+- Trait
+- Attack: Double Deuce
+- Super: Barrel Roll
+- Gadgets / Recoiling Rotator
+- Gadgets / Tar Barrel
+- Star Powers / Steel Hoops
+- Star Powers / Rolling Reload
+- Hypercharge: Barrel o' Bullets
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
+
+## 与本地 wiki 的意义
+
+- `Darryl` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Darryl|Darryl]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Darryl|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Darryl|Darryl]]
+- [[sources/PLP-Darryl|PLP 来源摘要: Darryl]]

@@ -3,33 +3,58 @@
 ## 来源信息
 
 - 标题：Otis
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Otis)
-- 读取日期：2026-04-07
-- 分类：Mythic / Controller
+- 来源：[Otis | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Otis)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-05T15:40:21Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/otis-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Otis 是一名 Mythic 等级的 Controller，核心价值在于远程输出和“禁言”式控场。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Otis 的普通攻击会发射三枚画笔颜料弹，射程长、节奏稳定
-- 他的 Super 会让目标短时间内无法攻击，也不能使用 Super、Gadget 或 Hypercharge
-- 他的控制效果对很多 spawned 单位也有干扰价值
-- 他的 Gadget 和 Star Power 进一步强化了控场与命中收益
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3600
+- 攻击距离: 9 (Long)
+- 装填: 1.5 seconds (Normal)
+- 普攻数值: 500
+- Super 距离: 9 (Long)
+- Super 数值: 340
+- Gadgets: Dormant Star, Phat Splatter
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Otis 的价值核心是“让对手失去操作权”
-- 他不是单纯的伤害型英雄，而是把输出转化为控制窗口
-- 他的强度非常依赖 Super 命中时机
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Otis 适合作为 `entities/` 中“控制型射手”样本
-- 他能和 `Gene`、`Sandy`、`Bo` 一起组成更完整的控场谱系
-- 他的禁言效果也适合作为后续定位综述里的特殊机制案例
+- Lead excerpt
+- Attack: Inky Art
+- Super: Silent Seabed
+- Gadgets / Dormant Star
+- Gadgets / Phat Splatter
+- Star Powers / Stencil Glue
+- Star Powers / Ink Refills
+- Hypercharge: Silent Stunner
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Otis 是靠远程输出和禁言 Super 改写对手操作空间的 Mythic Controller
+- `Otis` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Otis|Otis]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Otis|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Otis|Otis]]
+- [[sources/PLP-Otis|PLP 来源摘要: Otis]]

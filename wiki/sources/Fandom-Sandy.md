@@ -3,28 +3,58 @@
 ## 来源信息
 
 - 标题：Sandy
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Sandy)
-- 读取日期：2026-04-06
-- 分类：Legendary / Controller
+- 来源：[Sandy | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Sandy)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-05-17T03:24:52Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/sandy-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Sandy 是一名传奇控制型英雄，当前页面将其归类为 `Controller`。他的主攻击是中距离散射的穿透石子，而他的 Super 会生成一片沙暴，让自己和队友在其中隐身。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Sandy 的 Super 主要服务于推进、埋伏和控图
-- 他的 Gadget 和 Star Power 让他兼具回复、睡眠控制和持续区域价值
-- 页面明确提到他非常适合 3v3 场景中的推进和占点
+- 稀有度: Legendary
+- 官方定位: Controller
+- 移动速度: 770 (Fast)<br>963 (with Hypercharge)<br>1163 (with Hypercharge and Super)
+- 生命值: 4100
+- 攻击距离: 6 (Normal)
+- 装填: 1.8 seconds (Normal)
+- 普攻数值: 900
+- Super 距离: 7.33 (Long)
+- Super 数值: unknown
+- Gadgets: Sleep Stimulator, Sweet Dreams
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 `Leon`，Sandy 更像团队版隐身工具，而不是单人刺客
-- 相比 `Spike`，Sandy 更强调团队位置控制，不是纯爆发输出
-- 相比 `Crow`，Sandy 更偏控场与节奏，而不是持续毒伤
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Sandy 适合放进 `entities/`
-- 他是“隐身控场 + 团队推进”的代表
-- 后续如果整理信息控制和团队推进型英雄，Sandy 应该是关键锚点
+- Lead excerpt
+- Attack: Pebble Blast
+- Super: Sandstorm
+- Gadgets / Sleep Stimulator
+- Gadgets / Sweet Dreams
+- Star Powers / Rude Sands
+- Star Powers / Healing Winds
+- Hypercharge: Swift Winds
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+
+## 与本地 wiki 的意义
+
+- `Sandy` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Sandy|Sandy]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Sandy|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Sandy|Sandy]]
+- [[sources/PLP-Sandy|PLP 来源摘要: Sandy]]

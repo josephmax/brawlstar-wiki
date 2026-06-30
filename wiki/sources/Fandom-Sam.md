@@ -4,32 +4,58 @@
 
 - 标题：Sam
 - 来源：[Sam | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Sam)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Assassin
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-16T12:42:12Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/sam-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Sam` 是一名 `Epic` `Assassin`，核心机制围绕 `Knuckle Busters` 的投掷与回收。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 他开局就拥有满 Super，能立刻进入进攻节奏
-- 主攻击是双拳近距离打击，装备 Knuckle Busters 时伤害更高
-- `Super` 会把 Knuckle Busters 投出去，后续再召回
-- 取回 Knuckle Busters 时可以改变攻击、机动和回收节奏
-- `Magnetic Field` 和 `Pulse Repellent` 都围绕 Knuckle Busters 的落点做控制
+- 稀有度: Epic
+- 官方定位: Assassin
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>963 (after throwing Knuckle Busters; Very Fast)<br>1117 (after throwing Knuckle Busters with Hypercharge)
+- 生命值: 5700
+- 攻击距离: 3 (Short)
+- 装填: 1.6 seconds (with Knuckle Busters; Normal)<br> 0.9 seconds (without Knuckle Busters; Very Fast)
+- 普攻数值: 800
+- Super 距离: 8.67 (throwing Knuckle Busters; Long)
+- Super 数值: 1400
+- Gadgets: Magnetic Field, Pulse Repellent
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Mortis` 更强调“武器分离后再回收”的节奏管理
-- 比 `Darryl` 更像贴身刺客而不是纯滚动开团
-- 比一般刺客更依赖手感切换和 Super 循环
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Sam` 是理解“武器回收型刺客”的核心英雄
-- 他适合用来说明高机动英雄如何在进退之间切换节奏
+- Lead excerpt
+- Trait
+- Attack: Heavy Haymakers
+- Super: Knuckle Busters
+- Gadgets / Magnetic Field
+- Gadgets / Pulse Repellent
+- Star Powers / Hearty Recovery
+- Star Powers / Remote Recharge
+- Hypercharge: Hyper Fist
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Sam 是靠拳套投掷与回收打节奏的近战刺客
+- `Sam` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Sam|Sam]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Sam|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Sam|Sam]]
+- [[sources/PLP-Sam|PLP 来源摘要: Sam]]

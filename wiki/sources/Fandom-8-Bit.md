@@ -3,25 +3,59 @@
 ## 来源信息
 
 - 标题：8-Bit
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/8-Bit)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Super Rare / Damage Dealer
+- 来源：[8-Bit | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/8-Bit)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-17T09:17:51Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/8-bit-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`8-Bit` 是一名 `Super Rare` 的 `Damage Dealer` 英雄，拥有很高的生命值、很长的射程和极慢的移动速度。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是远距离激光连射，能够稳定压线
-- Super 会部署 `Damage Booster`，提高范围内友军和自己的输出
-- 他的 Gadget 和 Star Power 让他能在推进、撤退和控图之间切换
+- 稀有度: Super Rare
+- 官方定位: Damage Dealer
+- 移动速度: 580 (Very Slow)<br>700 (with Hypercharge)<br>720 (with Plugged In)<br>871 (with Plugged In and Hypercharge)
+- 生命值: 5200
+- 攻击距离: 10 (Very Long)
+- 装填: 1.5 seconds (Normal)<br>1.275 seconds (with Reload Gear)
+- 普攻数值: 340
+- Super 距离: 5
+- Super 数值: 2800
+- Gadgets: Cheat Cartridge, Extra Credits
 
-## 对本地 wiki 的意义
+## BP 建模可抽取信号
 
-- `8-Bit` 是“阵地型输出 + 团队增伤”的典型实体
-- 他和普通远程枪手不同，不是靠灵活拉扯吃饭，而是靠站位和场面控制吃饭
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 本次摄取结论
+## 抓取覆盖
 
-- `8-Bit` 是慢速高伤的阵地型英雄，核心价值在于 Damage Booster 带来的团队输出放大
+- Lead excerpt
+- Attack: Blaster Beams
+- Super: Damage Booster
+- Gadgets / Cheat Cartridge
+- Gadgets / Extra Credits
+- Star Powers / Boosted Booster
+- Star Powers / Plugged In
+- Hypercharge: Aimbot
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
+
+## 与本地 wiki 的意义
+
+- `8-Bit` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/8-Bit|8-Bit]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-8-Bit|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/8-Bit|8-Bit]]
+- [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]

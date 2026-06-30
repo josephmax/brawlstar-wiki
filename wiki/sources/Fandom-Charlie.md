@@ -3,28 +3,56 @@
 ## 来源信息
 
 - 标题：Charlie
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Charlie)
-- 读取日期：2026-04-07
-- 分类：Brawlers / Mythic / Controller
+- 来源：[Charlie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Charlie)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-05-20T12:09:57Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/charlie-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Charlie 是一名神话控制型英雄，主打长线 yo-yo 攻击和 Cocoon 控场。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Charlie 的攻击会往返两次命中，既有前进伤害也有回收伤害
-- 她的 Super 会把敌人包成 cocoon，短时间内让目标失去行动能力
-- 她的 Gadget、Star Power 和 Hypercharge 都围绕蜘蛛、减速和更强控制展开
-- 她的 Super 还能显著影响 Gem Grab、Brawl Ball 这类目标型模式
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3700
+- 攻击距离: 9 (Long)
+- 装填: unknown
+- 普攻数值: 800
+- Super 距离: 9 (Long)
+- Super 数值: 4200
+- Gadgets: Spiders, Personal Space
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Gene` 更偏单体禁锢，而不是拉人重排站位
-- 比 `Lou` 更偏封锁关键单位，而不是冰冻控区
-- 比 `Squeak` 更强调硬控和对位封锁，而不是延迟压迫
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Charlie 的强度和玩法都高度围绕 Super 展开，适合放入英雄实体层
-- 她是后续做“控制型英雄”专题时的重要样本
+- Lead excerpt
+- Attack: Yo-yo
+- Super: Cocoon
+- Gadgets / Spiders
+- Gadgets / Personal Space
+- Star Powers / Digestive
+- Star Powers / Slimy
+- Hypercharge: Pestilence
+- Tips
+
+## 与本地 wiki 的意义
+
+- `Charlie` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Charlie|Charlie]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Charlie|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Charlie|Charlie]]
+- [[sources/PLP-Charlie|PLP 来源摘要: Charlie]]

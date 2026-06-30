@@ -4,32 +4,57 @@
 
 - 标题：Colette
 - 来源：[Colette | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Colette)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Damage Dealer
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T10:05:23Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/colette-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Colette` 是一名 `Epic` `Damage Dealer`，核心机制是“按敌人生命值计算伤害”。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Taxes` 是长距离直线攻击，对高生命值目标伤害更高
-- `Super` `Time to Collect` 会前冲并返回，沿途按目标最大生命值造成伤害
-- `Na-ah!` 能让下一发攻击打出更高伤害
-- `Gotcha!` 会在短时间内把命中的攻击转为治疗
-- `Push It` 和 `Mass Tax` 让她的 Super 兼具控制与生存
+- 稀有度: Epic
+- 官方定位: Damage Dealer
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>4000 (with Super)<br>6000 (with Super + Push It and Star Buffie)
+- 生命值: 3600
+- 攻击距离: 8.67 (Long)
+- 装填: 1.6 seconds (Normal)
+- 普攻数值: 500
+- Super 距离: 11 (Very Long)
+- Super 数值: 500
+- Gadgets: Na-ah!, Gotcha!
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比一般射手更强调“按血量比例惩罚坦克”
-- 比 `Belle` 更偏直接压血和二段位移，而不是持续标记
-- 比 `Piper` 更不依赖单点极限爆头，更依赖对目标血量的判断
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Colette` 适合作为“按目标血量变化输出”的代表英雄
-- 她是理解反坦克压制、追击和进退节奏的核心样本
+- Lead excerpt
+- Attack: Taxing Shot
+- Super: Time To Collect
+- Gadgets / Na-ah!
+- Gadgets / Gotcha!
+- Star Powers / Push It
+- Star Powers / Mass Tax
+- Hypercharge: Teen Spirit
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Colette 是按敌人生命值定伤害的中距离压制型英雄
+- `Colette` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Colette|Colette]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Colette|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Colette|Colette]]
+- [[sources/PLP-Colette|PLP 来源摘要: Colette]]

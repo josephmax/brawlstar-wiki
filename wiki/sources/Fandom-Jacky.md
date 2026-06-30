@@ -3,26 +3,60 @@
 ## 来源信息
 
 - 标题：Jacky
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Jacky)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Super Rare
+- 来源：[Jacky | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Jacky)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-17T00:29:44Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/jacky-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Jacky 是一名 `Super Rare` 的 `Tank`。她的主攻击会围绕自己产生圆形范围伤害，属于非常贴身的近战压制型英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 近距离是 Jacky 的强势区
-- 她的攻击方向感弱，但覆盖自己周围一圈，能打到身后
-- `Super` 会把敌人拉向自己，方便接后续近战输出
-- 她有“受击充能”特性，挨打也能更快攒出超级技能
+- 稀有度: Super Rare
+- 官方定位: Tank
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>965 (with Pneumatic Booster)<br>1119 (with Pneumatic Booster and Hypercharge)
+- 生命值: 5000
+- 攻击距离: 3.33 (Short)
+- 装填: 1.8 seconds (Normal)
+- 普攻数值: 1240
+- Super 距离: 5 (Normal)
+- Super 数值: unknown
+- Gadgets: Pneumatic Booster, Rebuild
 
-## 对本地 wiki 的意义
+## BP 建模可抽取信号
 
-- Jacky 是典型的近战开团坦克
-- 她适合作为“进场、拉人、贴身输出”这类玩法的代表英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 本次摄取结论
+## 抓取覆盖
 
-- Jacky 的价值在于强行把战斗拉进近身区，并用范围拉扯控制敌人站位
+- Lead excerpt
+- Trait
+- Attack: Groundbreaker
+- Super: Holey Moley!
+- Gadgets / Pneumatic Booster
+- Gadgets / Rebuild
+- Star Powers / Counter Crush
+- Star Powers / Hardy Hard Hat
+- Hypercharge: Seismic Event
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
+
+## 与本地 wiki 的意义
+
+- `Jacky` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Jacky|Jacky]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Jacky|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Jacky|Jacky]]
+- [[sources/PLP-Jacky|PLP 来源摘要: Jacky]]

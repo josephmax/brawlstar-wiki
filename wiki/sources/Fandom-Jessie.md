@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Jessie
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Jessie)
-- 读取日期：2026-04-06
-- 分类：Brawler / Super Rare / Controller
+- 来源：[Jessie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Jessie)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-17T12:58:07Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/jessie-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Jessie 是一名以弹射攻击和炮台压制为核心的 `Super Rare` 英雄。页面说明她的主攻击 `Shock Rifle` 会在命中后弹跳到附近目标，最多命中 3 个敌人。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-## 核心技能
+## 页面核心字段
 
-- 主攻击：弹跳型能量球，适合打密集站位和隔墙压制
-- Super：`Scrappy!`，放置一座自动攻击的炮台
-- 玩法重点：通过炮台占点、逼位和持续输出建立场面压力
+- 稀有度: Super Rare
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3300
+- 攻击距离: 9 (Long)
+- 装填: 1.8 seconds (Normal)
+- 普攻数值: 1060
+- Super 距离: 5
+- Super 数值: 3600
+- Gadgets: Spark Plug, Recoil Spring
 
-## 玩法印象
+## BP 建模可抽取信号
 
-Jessie 不是纯爆发型射手，而是更偏控制和场面经营的英雄。她的强项在于把“一个攻击”和“一个炮台”都变成持续干扰来源。
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 与前一批英雄的差异
+## 抓取覆盖
 
-- 不同于 `Shelly`：Shelly 强在贴脸爆发与击退，Jessie 强在中远距离弹射和炮台控场
-- 不同于 `Colt`：Colt 是直线高精度压制，Jessie 更依赖弹射和摆位
-- 不同于 `Bull`：Bull 负责强切近身，Jessie 更像远一点的阵地型压制
+- Lead excerpt
+- Attack: Shock Rifle
+- Super: Scrappy!
+- Gadgets / Spark Plug
+- Gadgets / Recoil Spring
+- Star Powers / Energize
+- Star Powers / Shocky
+- Hypercharge: Scrappy 2.0
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 对本地 wiki 的意义
+## 与本地 wiki 的意义
 
-- `Jessie` 适合作为“弹射攻击 + 召唤炮台”这一玩法范式的代表英雄
-- 她也能作为后续 `Penny`、`Rico` 这类间接输出英雄的对照点
+- `Jessie` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Jessie|Jessie]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Jessie|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Jessie|Jessie]]
+- [[sources/PLP-Jessie|PLP 来源摘要: Jessie]]

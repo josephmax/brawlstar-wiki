@@ -2,7 +2,7 @@
 
 本页审计 `wiki/entities/brawlers/` 下英雄页是否足够支撑 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]。审计日期：2026-06-29。
 
-后续升级执行计划见 [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]。该计划按维护者最新要求以 105 位英雄为完整 scope，并要求先保留 Fandom 与 Power League Prodigy 详情页 raw，再做 BP 中间层抽象。
+后续升级执行计划见 [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]。该计划先保留 105 行 Fandom roster manifest 作为上游抓取事实，但按维护者校正排除临时下架的 `Buzz Lightyear`，以 104 个 BP-active 英雄为建模 scope。执行时仍要求先保留 Fandom 与 Power League Prodigy 详情页 raw，再做 BP 中间层抽象。
 
 ## 结论
 

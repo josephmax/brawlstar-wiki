@@ -3,26 +3,60 @@
 ## 来源信息
 
 - 标题：Pam
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pam)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic
+- 来源：[Pam | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pam)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T09:19:36Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/pam-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Pam 是一名 `Epic` 的 `Support`。她的主攻击是宽扇形散射，近距离能打出很高伤害，但远距离命中单个目标并不稳定。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Pam 的攻击适合打团战与范围压制
-- `Super` 会部署一个治疗炮台，为附近队友和自己持续回血
-- 她很擅长把战斗拖成“站点消耗”或“阵地战”
-- 她的部分技能会围绕炮台的存在而放大团队收益
+- 稀有度: Epic
+- 官方定位: Support
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 5000
+- 攻击距离: 9 (Long)
+- 装填: 1.3 seconds (Very Fast)
+- 普攻数值: 300
+- Super 距离: 5
+- Super 数值: 3040
+- Gadgets: Pulse Modulator, Scrapsucker
 
-## 对本地 wiki 的意义
+## BP 建模可抽取信号
 
-- Pam 是支援型英雄的典型代表
-- 她适合放在 `entities/` 中作为“治疗、驻点、团队续航”路线的样本
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 本次摄取结论
+## 抓取覆盖
 
-- Pam 的核心不是单点击杀，而是通过治疗炮台和持续火力把团队留在优势状态
+- Lead excerpt
+- Attack: Scrapstorm
+- Super: Mama's Kiss
+- Gadgets / Pulse Modulator
+- Gadgets / Scrapsucker
+- Mythic Gear: Super Turret
+- Star Powers / Mama's Hug
+- Star Powers / Mama's Squeeze
+- Hypercharge: Mama's Love
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
+
+## 与本地 wiki 的意义
+
+- `Pam` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Pam|Pam]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Pam|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Pam|Pam]]
+- [[sources/PLP-Pam|PLP 来源摘要: Pam]]

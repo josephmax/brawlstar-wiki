@@ -3,33 +3,60 @@
 ## 来源信息
 
 - 标题：Frank
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Frank)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Tank
+- 来源：[Frank | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Frank)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:57:22Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/frank-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Frank 是一名 Epic Tank，拥有全游戏最高生命值之一，主打高耐久、强控制和环境破坏。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Hammer Hit` 有明显前摇，但会打出贯穿型震荡波
-- Frank 的攻击速度会随着生命值降低而变快
-- 他的 Super `Stunning Blow` 造成更大范围的震荡波，能摧毁障碍并眩晕敌人
-- Frank 的 Trait 会让他在受到伤害时为 Super 充能
-- 他的 Gadget 和 Star Power 都围绕免控、拉拽、增伤和坦度强化展开
+- 稀有度: Epic
+- 官方定位: Tank
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)
+- 生命值: 6800
+- 攻击距离: 6 (Normal)
+- 装填: 0.8 seconds (Very Fast)
+- 普攻数值: 1160
+- Super 距离: 7 (Long) <br> 6.33 (with Hypercharge; Normal)
+- Super 数值: 1240
+- Gadgets: Active Noise Canceling, Irresistible Attraction
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比一般坦克，Frank 更依赖“吃伤害换节奏”
-- 相比 Bibi 的机动贴脸，Frank 更像慢速但更强的正面开团器
-- 相比 Bull 的突进，Frank 更像团战里负责先手封控和拆地形的重锤
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Frank 应作为 `entities/` 中的坦克型英雄对象处理
-- 他适合和开团坦克、控场坦克做后续对比页
+- Lead excerpt
+- Trait
+- Attack: Hammer Hit
+- Super: Stunning Blow
+- Gadgets / Active Noise Canceling
+- Gadgets / Irresistible Attraction
+- Star Powers / Power Grab
+- Star Powers / Sponge
+- Hypercharge: Seismic Smash
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Frank 是一个用高血量、迟缓重击和强眩晕控制局面的前排英雄
+- `Frank` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Frank|Frank]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Frank|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Frank|Frank]]
+- [[sources/PLP-Frank|PLP 来源摘要: Frank]]

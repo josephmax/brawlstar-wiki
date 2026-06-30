@@ -4,31 +4,58 @@
 
 - 标题：Brock
 - 来源：[Brock | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Brock)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Rare / Marksman
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-28T19:38:05Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Brock` 是一名 `Rare` `Marksman`，主打超远距离单体火箭与范围爆炸。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Rockin' Rocket` 是单发远程火箭，带范围溅射和燃烧地面效果
-- Super `Rocket Rain` 会在大范围区域内连续轰炸，兼顾打人和拆障碍
-- Brock 的攻击距离很长，但弹速较慢，需要预判和压线能力
-- Brock 的地形破坏能力很强，尤其适合把墙体从地图上削掉
+- 稀有度: Rare
+- 官方定位: Marksman
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3000
+- 攻击距离: 9 (Long)
+- 装填: 2.1 seconds (Slow)<br>1.785 seconds (with Reload Gear)
+- 普攻数值: 1160
+- Super 距离: 8.33 (Long)
+- Super 数值: 1040
+- Gadgets: Rocket Laces, Rocket Fuel
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Colt` 更强调单发高溅射和远距离区域威慑
-- 比 `Barley` 更偏直线炮击，而不是持续地面铺场
-- 比近战英雄更依赖站位、视野和预判
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Brock` 应作为 `entities/` 中的远程拆墙型英雄处理
-- 他是理解“高距离输出 + 地形改造”的核心样本
+- Lead excerpt
+- Attack: Rockin' Rocket
+- Super: Rocket Rain
+- Gadgets / Rocket Laces
+- Gadgets / Rocket Fuel
+- Star Powers / More Rockets!
+- Star Powers / Rocket No. 4
+- Hypercharge: Rocket Barrage
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Brock 是远程火箭压制和拆墙开图的代表英雄
+- `Brock` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Brock|Brock]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Brock|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Brock|Brock]]
+- [[sources/PLP-Brock|PLP 来源摘要: Brock]]

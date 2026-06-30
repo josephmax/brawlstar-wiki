@@ -3,29 +3,57 @@
 ## 来源信息
 
 - 标题：Chuck
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chuck)
-- 读取日期：2026-04-07
-- 分类：Brawlers / Mythic / Controller
+- 来源：[Chuck | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chuck)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-05-23T20:01:30Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/chuck-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Chuck 是一名神话控制型英雄，核心是轨道式 Post 布局和多段 Dash 机动。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Chuck 的攻击是三团中距离蒸汽
-- 攻击会在近距离造成更高伤害
-- 他的 Super 会放置 Post，并在 Posts 之间进行连段冲刺
-- Super 可随着时间自动充能
-- 他的 Gadget 和 Star Power 都围绕 Posts、机动和 ammo 交换展开
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>3700 (with Super)
+- 生命值: 4700
+- 攻击距离: 6.67 (Normal)
+- 装填: 2 seconds (Slow)
+- 普攻数值: 540
+- Super 距离: 10 (post; Very Long)<br>6.67 (dash; Normal)
+- Super 数值: 400
+- Gadgets: Rerouting, Ghost Train
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Darryl` 更像“预设路径”的机动英雄
-- 比 `Carl` 更强调点位布局，而不是回旋持续输出
-- 比 `Stu` 更偏结构化冲刺，不是纯粹连续位移
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Chuck 是很典型的“英雄对象 + 地图路径结构”组合，适合在实体页里保留
-- 他后续很可能会被模式分析和版本变动反复引用
+- Lead excerpt
+- Trait
+- Attack: Steam Engine
+- Super: Choo-Choo!
+- Gadgets / Rerouting
+- Gadgets / Ghost Train
+- Star Powers / Pit Stop
+- Star Powers / Tickets Please!
+- Hypercharge: Full Steam Ahead!
+- Tips
+
+## 与本地 wiki 的意义
+
+- `Chuck` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Chuck|Chuck]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Chuck|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Chuck|Chuck]]
+- [[sources/PLP-Chuck|PLP 来源摘要: Chuck]]

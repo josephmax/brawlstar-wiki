@@ -3,31 +3,58 @@
 ## 来源信息
 
 - 标题：Amber
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Amber)
-- 读取日期：2026-04-06
-- 分类：Legendary / Damage Dealer
+- 来源：[Amber | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Amber)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-25T21:14:34Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/amber-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Amber` 是一名以持续喷火和地面燃油控制为核心的传奇输出英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会持续喷火
-- 适合长时间压线和持续灼烧
-- `Super` 会泼洒燃油并可点燃形成大范围火场
-- 很擅长封路和改变敌人站位
+- 稀有度: Legendary
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>820 (with Fire Starters)<br>964 (with Fire Starters and Hypercharge)
+- 生命值: 3400
+- 攻击距离: 8.33 (Long)
+- 装填: 0.22 seconds (8.8 seconds max; Very Fast)<br>0.187 seconds (7.48 seconds max; with Reload Gear)<br>0.146 seconds (5.86 seconds max; with Scorchin' Siphon)<br>0.124 seconds (4.96 seconds max; with Scorchin' Siphon and Reload Gear)
+- 普攻数值: 210
+- Super 距离: 7.33 (Long)
+- Super 数值: 480
+- Gadgets: Fire Starters, Dancing Flames
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Amber 既能输出，也能铺设持续性区域威胁
-- 她的节奏更像“持续压迫”而不是一击爆发
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Amber` 应作为持续灼烧与区域封锁实体维护
-- 很适合和 `Barley`、`Emz`、`Squeak` 一起看作控区谱系
+- Lead excerpt
+- Attack: Dragon's Breath
+- Super: Torch 'Em!
+- Gadgets / Fire Starters
+- Gadgets / Dancing Flames
+- Star Powers / Wild Flames
+- Star Powers / Scorchin' Siphon
+- Hypercharge: Oil Spill
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Amber 是一个靠持续喷火和燃油火场来封路的传奇控区输出英雄
+- `Amber` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Amber|Amber]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Amber|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Amber|Amber]]
+- [[sources/PLP-Amber|PLP 来源摘要: Amber]]

@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Lou
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Lou)
-- 读取日期：2026-04-06
-- 分类：Legendary / Support
+- 来源：[Lou | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Lou)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-08T09:07:21Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/lou-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Lou` 是一名以冰冻和减速为核心的传奇支援英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会持续施加冰冻进度
-- 连续命中可以把敌人冻住
-- `Super` 会投放一片降雪区域，进一步压制敌方移动
-- 他的强项是控速、卡位和团队推进中的节奏压制
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3500
+- 攻击距离: 9.33 (Very Long)
+- 装填: 1.1 seconds (Very Fast)
+- 普攻数值: 440
+- Super 距离: 7.67 (Long)
+- Super 数值: 40
+- Gadgets: Ice Block, Cryo Syrup
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Lou 的核心不是治疗，而是通过减速和冻结创造优势
-- 他更像节奏控制器，而不是传统输出英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Lou` 应作为节奏控制和控图型实体维护
-- 适合和 `Sandy`、`Gene`、`Spike` 一起归入控场谱系
+- Lead excerpt
+- Attack: Brain Freeze
+- Super: Can-Do
+- Gadgets / Ice Block
+- Gadgets / Cryo Syrup
+- Star Powers / Supercool
+- Star Powers / Hypothermia
+- Hypercharge: Slushie Storm
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Lou 是一个靠冰冻进度和降雪区域锁住节奏的控场支援英雄
+- `Lou` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Lou|Lou]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Lou|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Lou|Lou]]
+- [[sources/PLP-Lou|PLP 来源摘要: Lou]]

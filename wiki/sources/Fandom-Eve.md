@@ -3,33 +3,59 @@
 ## 来源信息
 
 - 标题：Eve
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Eve)
-- 读取日期：2026-04-07
-- 分类：Brawler / Mythic / Damage Dealer
+- 来源：[Eve | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Eve)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T18:12:56Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/eve-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Eve` 是一名神话输出英雄，依靠超远距离攻击和孵化物持续施压。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 她可以在水面上移动
-- 主攻击会发射三枚不同大小的蛋，造成不同伤害
-- Super 会放置巢蛋，之后孵化出追击敌人的幼崽
-- 这些幼崽还能持续骚扰与压低敌方站位
+- 稀有度: Mythic
+- 官方定位: Damage Dealer
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3100
+- 攻击距离: 9.33 (Very Long)
+- 装填: 1.6 seconds (Normal) <br> 1.36 seconds (with Reload Gear)
+- 普攻数值: 400
+- Super 距离: 5
+- Super 数值: 1900
+- Gadgets: Gotta Go!, Motherly Love
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- `Eve` 更像“空间压制 + 召唤骚扰”的复合型英雄
-- 她的价值在于拖慢敌方推进并逼迫对手拆解场面
-- 水面机动让她在部分地图里拥有额外路线优势
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Eve` 应作为 `entities/` 中的召唤压制型英雄
-- 她适合和 `Nita`、`Jessie`、`Penny` 一起看，但机制更偏持续孵化与绕线
-- 后续如果做地形与控区综述，她是值得单列的代表
+- Lead excerpt
+- Trait
+- Attack: Egg Shooter
+- Super: Baby Boom
+- Gadgets / Gotta Go!
+- Gadgets / Motherly Love
+- Star Powers / Unnatural Order
+- Star Powers / Happy Surprise
+- Hypercharge: Generations
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Eve 是“超远压线 + 幼崽骚扰”的神话控场输出英雄
+- `Eve` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Eve|Eve]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Eve|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Eve|Eve]]
+- [[sources/PLP-Eve|PLP 来源摘要: Eve]]

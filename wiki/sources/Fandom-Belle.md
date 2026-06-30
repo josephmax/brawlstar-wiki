@@ -4,32 +4,57 @@
 
 - 标题：Belle
 - 来源：[Belle | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Belle)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Marksman
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T10:06:21Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/belle-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Belle` 是一名 `Epic` `Marksman`，核心机制是“远程点名 + 伤害标记”。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是超远距离电弧弹体，能够在敌人之间跳弹
-- `Super` 会对被命中的目标施加标记，让后续伤害更高
-- `Nest Egg` 提供地雷式封区
-- `Reverse Polarity` 让下一发攻击可以借墙反弹
-- `Positive Feedback` 让命中敌人后获得短暂护盾
+- 稀有度: Epic
+- 官方定位: Marksman
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 2900
+- 攻击距离: 10 (Very Long)
+- 装填: 1.4 seconds (Fast)<br>1.19 seconds (with Reload Gear)
+- 普攻数值: 1040
+- Super 距离: 10.67 (Very Long)
+- Super 数值: 550
+- Gadgets: Nest Egg, Reverse Polarity
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Brock` 更强调标记与持续追击，而不是纯轰炸拆墙
-- 比 `Piper` 更稳定地把“先手命中”转成后续击杀收益
-- 比普通射手更擅长给团队制造集火目标
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Belle` 是“远程标记型射手”的代表英雄
-- 她适合用来理解团队集火、站位压制和反墙利用
+- Lead excerpt
+- Attack: Shocker
+- Super: Spotter
+- Gadgets / Nest Egg
+- Gadgets / Reverse Polarity
+- Star Powers / Positive Feedback
+- Star Powers / Grounded
+- Hypercharge: Magnetic
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Belle 是靠标记放大团队伤害的超远程射手
+- `Belle` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Belle|Belle]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Belle|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Belle|Belle]]
+- [[sources/PLP-Belle|PLP 来源摘要: Belle]]

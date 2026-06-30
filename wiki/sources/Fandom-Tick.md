@@ -3,25 +3,59 @@
 ## 来源信息
 
 - 标题：Tick
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Tick)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Super Rare / Artillery
+- 来源：[Tick | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Tick)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:43:32Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/tick-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Tick` 是一名 `Super Rare` 的 `Artillery` 英雄，擅长用高延迟、高干扰的地雷封锁区域。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会抛出三枚地雷，落地后延迟爆炸，适合封路和逼位
-- Super 会拆下自己的头部并追踪敌人，爆炸时还能击退并拆障碍
-- 他的玩法很依赖地形、预判和持续骚扰
+- 稀有度: Super Rare
+- 官方定位: Artillery
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 2400
+- 攻击距离: 8.67 (Long)
+- 装填: 2.4 seconds (Very Slow)<br>2.18 seconds (with Automa-Tick Reload)
+- 普攻数值: 680
+- Super 距离: 3.33 (Short)
+- Super 数值: 1600
+- Gadgets: Mine Mania, Last Hurrah
 
-## 对本地 wiki 的意义
+## BP 建模可抽取信号
 
-- `Tick` 是典型的区域控制型英雄
-- 他和 `Dynamike` 的差异在于：`Dynamike` 更偏爆发和拆墙，`Tick` 更偏延迟压制和控区
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 本次摄取结论
+## 抓取覆盖
 
-- `Tick` 是低血量高干扰的控图区英雄，核心价值在于地雷封锁和追踪头部带来的持续骚扰
+- Lead excerpt
+- Attack: Minimines
+- Super: Headfirst
+- Gadgets / Mine Mania
+- Gadgets / Last Hurrah
+- Star Powers / Well Oiled
+- Star Powers / Automa-Tick Reload
+- Hypercharge: Headstrong
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
+
+## 与本地 wiki 的意义
+
+- `Tick` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Tick|Tick]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Tick|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Tick|Tick]]
+- [[sources/PLP-Tick|PLP 来源摘要: Tick]]

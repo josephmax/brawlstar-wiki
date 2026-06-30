@@ -3,31 +3,59 @@
 ## 来源信息
 
 - 标题：Penny
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Penny)
-- 读取日期：2026-04-06
-- 分类：Brawler / Super Rare / Controller
+- 来源：[Penny | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Penny)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-17T15:45:08Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/penny-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Penny 是一名 `Super Rare` `Controller`，主攻击会在命中后向目标后方散出金币，Super 会部署一门炮台式火炮，对敌人形成持续区域压制。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-## 核心技能
+## 页面核心字段
 
-- 主攻击：远程金币袋命中后分裂，对后方敌人造成溅射压力
-- Super：部署炮台，持续发射炮弹并能制造火焰区域
-- 玩法重点：依靠炮台、溅射和区域封锁控制地图节奏
+- 稀有度: Super Rare
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3500
+- 攻击距离: 8.67 (Long)
+- 装填: 2 seconds (Slow)
+- 普攻数值: 980
+- Super 距离: 5 (Normal)
+- Super 数值: 3400
+- Gadgets: Salty Barrel, Trusty Spyglass
 
-## 玩法印象
+## BP 建模可抽取信号
 
-Penny 更像“远程区域控制 + 资源封锁”的英雄。她不是靠瞬间爆发压倒对手，而是靠攻击溅射和炮台火力不断逼迫对手离开位置。
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 与前一批英雄的差异
+## 抓取覆盖
 
-- 不同于 `Nita`：Nita 的压力来自熊和中距离压制，Penny 的压力来自炮台和后排溅射
-- 不同于 `Jessie`：Jessie 通过弹射和 Scrappy 控场，Penny 更强调慢速炮台和火力封区
-- 不同于 `Rosa`：Rosa 是前排近身压制，Penny 是后排远程控场
+- Lead excerpt
+- Attack: Plunderbuss
+- Super: Old Lobber
+- Gadgets / Salty Barrel
+- Gadgets / Trusty Spyglass
+- Star Powers / Heavy Coffers
+- Star Powers / Master Blaster
+- Hypercharge: New Lobber
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 对本地 wiki 的意义
+## 与本地 wiki 的意义
 
-- `Penny` 是“炮台型控制英雄”的另一种模板
-- 她适合和 `Jessie` 一起作为后续召唤物/区域控制体系的核心对照页
+- `Penny` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Penny|Penny]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Penny|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Penny|Penny]]
+- [[sources/PLP-Penny|PLP 来源摘要: Penny]]

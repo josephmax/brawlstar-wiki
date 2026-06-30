@@ -3,31 +3,60 @@
 ## 来源信息
 
 - 标题：Rosa
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Rosa)
-- 读取日期：2026-04-06
-- 分类：Brawler / Rare / Tank
+- 来源：[Rosa | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Rosa)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-23T21:50:55Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/rosa-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Rosa 是一名 `Rare` `Tank`，以高生命值、近距离拳击攻击和强减伤护盾著称。她的攻击是三段短距离拳击，Super 会为自己套上显著减伤护盾。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-## 核心技能
+## 页面核心字段
 
-- 主攻击：短距离、宽弧形的三连拳，必须贴近目标
-- Super：提供持续数秒的高减伤护盾
-- 玩法重点：依靠身板、草丛和护盾强行进入近身范围
+- 稀有度: Rare
+- 官方定位: Tank
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)
+- 生命值: 5400
+- 攻击距离: 3.67 (Short)
+- 装填: 1 second (Very Fast)
+- 普攻数值: 500
+- Super 距离: unknown
+- Super 数值: unknown
+- Gadgets: Grow Light, Unfriendly Bushes
 
-## 玩法印象
+## BP 建模可抽取信号
 
-Rosa 是非常典型的贴身坦克，强在压线、冲阵和在草丛环境里逼迫对手后退。她的玩法比 `Bull` 更稳定，更偏持续站场而不是冲刺切入。
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 与前一批英雄的差异
+## 抓取覆盖
 
-- 不同于 `Bull`：Bull 靠冲锋强切，Rosa 靠护盾和近身持续压制
-- 不同于 `Shelly`：Shelly 是霰弹爆发和击退，Rosa 是更稳定的短距离持续输出
-- 不同于 `Nita`：Nita 用召唤物拉开场面，Rosa 靠本体硬度直接推进
+- Lead excerpt
+- Trait
+- Attack: Hands of Stone
+- Super: Strong Stuff
+- Gadgets / Grow Light
+- Gadgets / Unfriendly Bushes
+- Star Powers / Plant Life
+- Star Powers / Thorny Gloves
+- Hypercharge: Grasping Roots
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 对本地 wiki 的意义
+## 与本地 wiki 的意义
 
-- `Rosa` 是近战坦克和草丛控场的代表
-- 她很适合作为“前排压线”类型英雄的基础样本
+- `Rosa` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Rosa|Rosa]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Rosa|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Rosa|Rosa]]
+- [[sources/PLP-Rosa|PLP 来源摘要: Rosa]]

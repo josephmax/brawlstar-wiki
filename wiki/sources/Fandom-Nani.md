@@ -3,33 +3,59 @@
 ## 来源信息
 
 - 标题：Nani
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Nani)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Marksman
+- 来源：[Nani | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Nani)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:59:55Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/nani-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Nani 是一名 Epic Marksman，拥有高操作上限，依赖三枚子弹的轨迹控制和远程手动操纵的 Super。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会射出 3 枚弹体，后段会逐渐收拢
-- Super `Manual Override` 让玩家直接遥控 `Peep`
-- Peep 碰到敌人或障碍时会爆炸、拆墙并击退敌人
-- Nani 在 Super 期间本体会非常脆弱，需要借助位置和时机保护自己
-- 她的 Gadget 和 Star Power 提供位移、反伤、防御和 Super 增益
+- 稀有度: Epic
+- 官方定位: Marksman
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 2500
+- 攻击距离: 8.67 (Long)<br>11.67 (after convergence)
+- 装填: 1.8 seconds (Normal)
+- 普攻数值: 800
+- Super 距离: 58.33 (Very Long)
+- Super 数值: 1800
+- Gadgets: Warpin' Time, Return to Sender
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 Bea，Nani 更难、也更依赖轨迹和遥控精度
-- 相比 Brock，她的远程压制更具“高风险高回报”的单点爆发感
-- 相比一般射手，她更像“以操作换上限”的技术型英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Nani 应作为 `entities/` 中的高操作远程英雄对象处理
-- 她适合后续和其他高难度射手一起做技术型英雄对比页
+- Lead excerpt
+- Attack: Trigger-Nometry
+- Super: Manual Override
+- Gadgets / Warpin' Time
+- Gadgets / Return to Sender
+- Star Powers / Autofocus
+- Star Powers / Tempered Steel
+- Hypercharge: Big Peep
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Nani 是一个靠弹体收拢和遥控爆发实现高上限输出的技术型射手
+- `Nani` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Nani|Nani]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Nani|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Nani|Nani]]
+- [[sources/PLP-Nani|PLP 来源摘要: Nani]]

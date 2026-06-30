@@ -3,29 +3,59 @@
 ## 来源信息
 
 - 标题：Crow
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Crow)
-- 读取日期：2026-04-06
-- 分类：Legendary / Assassin
+- 来源：[Crow | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Crow)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-13T07:05:56Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/crow-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Crow 是一名传奇刺客英雄，当前页面将其归类为 `Assassin`。他的主攻击是三发长距离匕首，命中后会附带中毒效果，持续压低敌方血量并抑制回复。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Crow 的 Super 会向目标跳跃并在起跳与落地时投掷一圈匕首
-- 他的 Super 既能追击，也能逃生
-- 中毒会削弱敌方治疗效率，并暴露草丛中的目标
-- 页面强调他擅长中距离消耗、残局收割和反治疗
+- 稀有度: Legendary
+- 官方定位: Assassin
+- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>0–2600 (with Super)
+- 生命值: 3000
+- 攻击距离: 8.67 (Long)
+- 装填: 1.4 seconds (Fast)
+- 普攻数值: 320
+- Super 距离: 8.67 (Long)
+- Super 数值: 320
+- Gadgets: Instapoison, Slowing Toxin
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 `Leon`，Crow 更偏持续消耗和视野压制，不是纯爆发潜入
-- 相比 `Spike`，Crow 更像稳定削血和收割，而不是一次性大范围控区
-- 相比 `Sandy`，Crow 不是团队隐身工具，而是单体骚扰与追击手
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Crow 适合放进 `entities/`
-- 他是“中距离刺客 + 毒伤压制”的代表
-- 后续如果整理反治疗、收割和追击类英雄，Crow 应该是中心页之一
+- Lead excerpt
+- Attack: Switchblade
+- Super: Swoop
+- Gadgets / Instapoison
+- Gadgets / Slowing Toxin
+- Star Powers / Extra Toxic
+- Star Powers / Carrion Crow
+- Hypercharge: Utility Knives
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Cosmetics / Portraits
+
+## 与本地 wiki 的意义
+
+- `Crow` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Crow|Crow]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Crow|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Crow|Crow]]
+- [[sources/PLP-Crow|PLP 来源摘要: Crow]]

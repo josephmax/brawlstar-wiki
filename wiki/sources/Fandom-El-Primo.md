@@ -4,31 +4,59 @@
 
 - 标题：El Primo
 - 来源：[El Primo | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/El_Primo)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Rare / Tank
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-14T21:07:34Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/el-primo-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`El Primo` 是一名 `Rare` `Tank`，核心是贴身拳击与高机动跳跃切入。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Fists of Fury` 是四连击近战拳击
-- Super `Flying Elbow Drop` 可以跳跃切入、击退敌人并摧毁障碍
-- 他的 Trait 让他在受伤时给 Super 充能，越挨打越容易跳脸
-- 机动性和进场能力是他的核心价值
+- 稀有度: Rare
+- 官方定位: Tank
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>970 (with Meteor Rush)<br>1163 (with Meteor Rush and Hypercharge)<br>1600 (with Super)
+- 生命值: 6500
+- 攻击距离: 3 (Short)
+- 装填: 0.8 seconds (Very Fast)
+- 普攻数值: 380
+- Super 距离: 9 (Long)
+- Super 数值: 960
+- Gadgets: Asteroid Belt, Suplex Supplement
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Bull` 更依赖“吃伤害换 Super”的节奏
-- 比 `Shelly` 更纯粹地承担近战开团职责
-- 比远程英雄更适合把战斗直接拉进脸贴脸距离
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `El Primo` 应作为 `entities/` 中的前排切入英雄处理
-- 他是理解“受击充能 + 跳跃开团”的重要样本
+- Lead excerpt
+- Trait
+- Attack: Fists of Fury
+- Super: Flying Elbow Drop
+- Gadgets / Suplex Supplement
+- Gadgets / Asteroid Belt
+- Star Powers / El Fuego
+- Star Powers / Meteor Rush
+- Hypercharge: Gravity Leap
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- El Primo 是靠挨打充能、靠跳跃切入的典型近战开团坦克
+- `El Primo` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/El Primo|El Primo]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-El-Primo|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/El Primo|El Primo]]
+- [[sources/PLP-El-Primo|PLP 来源摘要: El Primo]]

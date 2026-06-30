@@ -3,33 +3,59 @@
 ## 来源信息
 
 - 标题：Bibi
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bibi)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Tank
+- 来源：[Bibi | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bibi)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:58:08Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/bibi-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Bibi 是一名 Epic Tank，兼具短距离贴身压制、高机动性和强击退能力。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Three Strikes` 是短距离宽弧挥击
-- 积满 `Home Run` 条后，下一次攻击会击退敌人
-- Super `Spitball` 会发射可弹墙、可穿透并重复命中的泡泡
-- 她的 Gadget 和 Star Power 强化续航、减速和机动推进
-- Hypercharge 会让 Super 分裂成两个泡泡，提升区域压制能力
+- 稀有度: Epic
+- 官方定位: Tank
+- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>920 (with Home Run)<br>1117 (with Home Run and Hypercharge)
+- 生命值: 5000
+- 攻击距离: 3.67 (Short)
+- 装填: 0.8 seconds (Very Fast)
+- 普攻数值: 1400
+- Super 距离: 40 (Very Long)
+- Super 数值: 900
+- Gadgets: Vitamin Booster, Extra Sticky
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 Frank，Bibi 更轻、更快，也更依赖机动和击退
-- 相比 El Primo，Bibi 的价值不在纯跳脸，而在持续逼退和路线控制
-- 相比一般近战英雄，她更像“控线型前排”而不是纯爆发前排
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Bibi 应作为 `entities/` 中的近战控场英雄对象处理
-- 她适合后续和其他近战前排一起做对比页
+- Lead excerpt
+- Attack: Three Strikes
+- Super: Spitball
+- Gadgets / Vitamin Booster
+- Gadgets / Extra Sticky
+- Star Powers / Home Run
+- Star Powers / Batting Stance
+- Hypercharge: Out of Bounds
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Bibi 是一个靠短距挥击、击退条和弹墙泡泡来压制前线的近战坦克
+- `Bibi` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Bibi|Bibi]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Bibi|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Bibi|Bibi]]
+- [[sources/PLP-Bibi|PLP 来源摘要: Bibi]]

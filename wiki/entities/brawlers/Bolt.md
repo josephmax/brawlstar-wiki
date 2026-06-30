@@ -1,0 +1,145 @@
+# Bolt
+
+## 基本信息
+
+- 稀有度：Epic
+- 定位：Tank
+- 类型：待复核；当前仅由 Fandom 定位和 PLP 竞技信号初始化
+
+## 来源摘要
+
+- Fandom：[[sources/Fandom-Bolt|Fandom 来源摘要: Bolt]]
+- PLP：[[sources/PLP-Bolt|PLP 来源摘要: Bolt]]
+- PLP 推荐模式候选：Bounty
+
+## 角色定位总结
+
+本页是从 2026-06-30 抓取件初始化的英雄实体页。当前只保存稳定来源链接和 BP 草案；所有模式适配、对位和顺位判断仍需通过地图因素与条件化对位模型复核。
+
+## BP 建模草案
+
+```yaml
+bp_brawler_profile:
+  profile_status: draft_from_raw_signals
+  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  source_quality:
+    fandom: "direct_raw_capture_2026-06-30-v2"
+    plp: "direct_raw_capture_2026-06-30"
+    user_notes: "none"
+
+  capability_vector:
+    effective_range: "unknown_from_fandom_attack_range:unknown"
+    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
+    burst: "unknown_pending_damage_review"
+    sustained_dps: "reload_signal_from_fandom=2.2 seconds (Very Slow)"
+    objective_damage: "heist_candidate_from_plp_modes=False"
+    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
+    survivability: "fandom_health=5400; high_health_body_presence_candidate; self_or_team_sustain_text_present"
+    engage: "engage_candidate_if_mobility_or_cc_text_activates"
+    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
+    anti_aggro: "candidate_from_control_or_escape_text"
+    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
+    wall_break: "present_from_fandom_text"
+    throw_or_wall_bypass: "not_observed_in_selected_raw"
+    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
+    scouting_or_vision: "present_from_reveal_vision_bush_text"
+    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
+    spawnable_or_pet: "not_observed_in_selected_raw"
+    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
+    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
+    terrain_destruction: "present_from_fandom_text"
+
+  build_switches:
+    - build: "Bouncy Ball / Unstoppaball / Health, Damage"
+      source: "[[sources/PLP-Bolt|PLP-Bolt]]"
+      changes_capabilities:
+        - "third_party_build_candidate; exact capability delta needs mechanism review"
+      enables:
+        - "mode_candidate:Bounty"
+      mitigates_failure_modes:
+        - "unknown_until_reviewed_against_failure_modes"
+      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
+      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
+      bp_use: "build_candidate_not_final_recommendation"
+
+  map_feature_hooks:
+    - map_feature_type: "wall_break_transform"
+      uses_feature_by: "terrain destruction text present in Fandom raw"
+      objective_conversion: "can create or deny lanes only if our comp benefits after transform"
+      active_when: "key wall blocks objective route or protects enemy pocket"
+      fails_if: "opening wall benefits enemy range/engage more than ours"
+      example_maps: []
+      bp_use: "terrain_state_plan_candidate"
+    - map_feature_type: "water_crossing_or_obstacle_bypass"
+      uses_feature_by: "raw text mentions water/obstacle interaction"
+      objective_conversion: "must be tied to route, target access, or survival anchor"
+      active_when: "bypass creates real objective access"
+      fails_if: "bypass leads to short-range trap or no objective pressure"
+      example_maps: []
+      bp_use: "false_positive_filter_candidate"
+
+  objective_contracts:
+    - mode: "Bounty"
+      can_fulfill:
+        - "Bounty_candidate_from_plp"
+      cannot_fulfill:
+        - "not_inferred_from_source; requires map/matchup review"
+      needs_teammate_support:
+        - "cover failure modes and convert source candidate into map objective"
+      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+
+  failure_modes:
+    - id: "reliability_into_mobility"
+      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
+      exposed_by: "selected Fandom text markers"
+      mitigation: "pick on constrained routes or pair with control"
+      bp_use: "must_avoid_or_needs_support"
+    - id: "terrain_transform_backfires"
+      active_when: "opened lane improves enemy range or engage more than ours"
+      exposed_by: "terrain destruction candidate"
+      mitigation: "define exact wall and follow-up before pick"
+      bp_use: "terrain_state_plan_check"
+
+  conditional_matchup_seeds:
+    - target:
+        - "Grom"
+        - "Mr. P"
+        - "Buster"
+        - "Frank"
+        - "Squeak"
+        - "Lumi"
+        - "Leon"
+        - "Carl"
+      direction: "subject_favored"
+      source: "[[sources/PLP-Bolt|PLP-Bolt]]"
+      mechanism: "pending; PLP seed must be explained through capability_vector before use"
+      active_when: "requires map/mode/build validation"
+      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
+      bp_use: "conditional_matchup_seed_only"
+    - target:
+        - "Gale"
+        - "Charlie"
+        - "Buzz"
+        - "Willow"
+        - "Clancy"
+        - "Rosa"
+        - "Melodie"
+        - "Meg"
+      direction: "target_favored"
+      source: "[[sources/PLP-Bolt|PLP-Bolt]]"
+      mechanism: "pending; PLP seed must be explained through capability_vector before use"
+      active_when: "requires map/mode/build validation"
+      fails_when: "map or comp removes target's access to the punishment mechanism"
+      bp_use: "must_avoid_or_protection_seed_only"
+
+  slot_notes:
+    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
+    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
+    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
+    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+```
+
+## 关联页面
+
+- [[sources/Fandom-Bolt|Fandom 来源摘要: Bolt]]
+- [[sources/PLP-Bolt|PLP 来源摘要: Bolt]]

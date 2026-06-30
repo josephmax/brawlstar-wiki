@@ -3,29 +3,57 @@
 ## 来源信息
 
 - 标题：Leon
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Leon)
-- 读取日期：2026-04-06
-- 分类：Legendary / Assassin
+- 来源：[Leon | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Leon)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-04-26T16:04:51Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/leon-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Leon 是一名传奇刺客英雄，当前页面将其归类为 `Assassin`。他的主攻击是四发长距离飞刀，近距离伤害更高，远距离伤害会明显下降，体现出典型的贴近爆发收益。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Leon 的 Super 会让自己隐身一段时间
-- 他可以用隐身进行伏击、撤退和抢目标
-- 他的技能组里有分身、队友隐身和加速等操控信息的工具
-- 页面强调他在单挑、偷球、收割和绕后方面很强
+- 稀有度: Legendary
+- 官方定位: Assassin
+- 移动速度: 820 (Very Fast)<br>1017 (with Hypercharge)<br>1070 (with Smoke Trails)<br>1267 (with Smoke Trails and Hypercharge)
+- 生命值: 3300
+- 攻击距离: 9.67 (Very Long)
+- 装填: 1.9 seconds (Normal)
+- 普攻数值: 480
+- Super 距离: unknown
+- Super 数值: unknown
+- Gadgets: Clone Projector, Lollipop Drop
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 `Crow`，Leon 更偏直接潜入和一波切入
-- 相比 `Sandy`，Leon 的隐身更偏个人行动，Sandy 更偏团队推进
-- 相比 `Rico`、`Colt` 这类纯火力英雄，Leon 的强项不是压线，而是制造信息差
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Leon 适合放进 `entities/`
-- 他是“隐身切入 + 爆发收割”的代表
-- 后续如果整理偷袭、绕后和信息控制型英雄，Leon 会是核心对象
+- Lead excerpt
+- Attack: Spinner Blades
+- Super: Smoke Bomb
+- Gadgets / Clone Projector
+- Gadgets / Lollipop Drop
+- Star Powers / Smoke Trails
+- Star Powers / Invisiheal
+- Hypercharge: Limbo
+- Tips
+- Cosmetics / Portraits
+
+## 与本地 wiki 的意义
+
+- `Leon` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Leon|Leon]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Leon|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Leon|Leon]]
+- [[sources/PLP-Leon|PLP 来源摘要: Leon]]

@@ -3,32 +3,59 @@
 ## 来源信息
 
 - 标题：Mortis
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mortis)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Mythic / Assassin
+- 来源：[Mortis | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mortis)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-13T18:20:54Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/mortis-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Mortis 是一名 Mythic Assassin，特点是非常高的机动性、短射程和偏低频但高风险的贴脸节奏。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会让 Mortis 向前突进并挥锹造成伤害
-- 他的攻击射程很短，但带有位移属性，适合连续切入
-- Super `Life Blood` 会召唤蝙蝠群，造成伤害并回复自身生命
-- 他的高价值玩法通常围绕切后排、收割残局和快速转点展开
+- 稀有度: Mythic
+- 官方定位: Assassin
+- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>2700 (dash)<br>1000 (with Creature of the Night)
+- 生命值: 4000
+- 攻击距离: 2.67 (Short)<br>4.67 (with dash bar charged)
+- 装填: 2.4 seconds (Very Slow)
+- 普攻数值: 1000
+- Super 距离: 10 (Very Long)
+- Super 数值: 900
+- Gadgets: Combo Spinner, Creature of the Night
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Bull` 更灵活，但容错更低
-- 比 `El Primo` 更依赖节奏感和切入角度
-- 比 `Rosa` 更像刺客而不是前排坦克
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Mortis 应作为 `entities/` 中的高机动刺客代表
-- 他适合和 `Showdown`、`Gem Grab`、`Brawl Ball` 的切入打法一起理解
+- Lead excerpt
+- Attack: Shovel Swing
+- Super: Life Blood
+- Gadgets / Combo Spinner
+- Gadgets / Creature of the Night
+- Star Powers / Creepy Harvest
+- Star Powers / Coiled Snake
+- Hypercharge: Blood Boomerang
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Mortis 是“位移型贴脸刺客”，强在切入、收割和连续追击，不适合无脑正面硬打
+- `Mortis` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Mortis|Mortis]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Mortis|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Mortis|Mortis]]
+- [[sources/PLP-Mortis|PLP 来源摘要: Mortis]]

@@ -3,33 +3,60 @@
 ## 来源信息
 
 - 标题：Bonnie
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bonnie)
-- 读取日期：2026-04-07
-- 分类：Epic / Marksman
+- 来源：[Bonnie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bonnie)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T08:03:16Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/bonnie-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Bonnie 是一名 Epic 等级的 Marksman，最大的特征是能在炮台形态与近战形态之间切换。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- Bonnie 的炮台形态血量高、射程长，但移动慢
-- 她的 Super 会把她发射出去，转入近战形态并改变攻击方式
-- 近战形态攻击更短，但爆发更高，移动也更快
-- 她可以通过超级技能在两种节奏之间来回切换
+- 稀有度: Epic
+- 官方定位: Marksman
+- 移动速度: 620 (Clyde; Slow)<br>744 (Clyde; with Hypercharge)<br>806 (with Sugar Rush)<br>930 (with Sugar Rush and Hypercharge)<br>0–1833 (with Super)<br>0–2500 (with Super and Black Powder)<br>820 (Bonnie; Very Fast)<br>1025 (Bonnie; with Hypercharge)<br>2000 (with Crash Test)
+- 生命值: 5000
+- 攻击距离: 9 (Clyde; Long)<br> 5 (Bonnie; Normal)
+- 装填: 1 second (Clyde; Very Fast)<br>0.769 seconds (with Sugar Rush)<br>2 seconds (Bonnie; Slow)
+- 普攻数值: 1120
+- Super 距离: 7.33 (Long)<br>10 (with Black Powder)
+- Super 数值: 1000
+- Gadgets: Sugar Rush, Crash Test
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Bonnie 同时覆盖“远程压线”和“近战收割”两种手感
-- 她的双形态让她在同一英雄页里就能体现明显的阶段性
-- 她比大多数英雄更依赖 Super 的节奏管理
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Bonnie 适合作为 `entities/` 中“双形态英雄”样本
-- 她可以和 `Meg` 一起作为“形态切换”谱系的代表
-- 她的角色页适合后续在定位综述里单独放入“成长/切换型”段落
+- Lead excerpt
+- Attacks / Cannon: Loose Tooth
+- Attacks / Bonnie: Bomber Jacket
+- Supers / Cannon: Star Launcher
+- Supers / Bonnie: Clyde
+- Gadgets / Sugar Rush
+- Gadgets / Crash Test
+- Star Powers / Black Powder
+- Star Powers / Wisdom Tooth
+- Hypercharge: Daredevil
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Bonnie 是靠炮台形态与近战形态切换来制造双阶段节奏的 Epic Marksman
+- `Bonnie` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Bonnie|Bonnie]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Bonnie|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Bonnie|Bonnie]]
+- [[sources/PLP-Bonnie|PLP 来源摘要: Bonnie]]

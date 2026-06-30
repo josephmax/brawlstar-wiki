@@ -3,33 +3,59 @@
 ## 来源信息
 
 - 标题：Bea
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bea)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Marksman
+- 来源：[Bea | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bea)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T07:58:54Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/bea-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Bea 是一名 Epic Marksman，擅长长距离单发压线、命中后强化下一发输出，并用减速型 Super 参与控场。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Big Sting` 射程很长，命中后会让下一发变成 Supercharged
-- Supercharged Shot 伤害显著更高，但需要重新命中来循环
-- Super `Iron Hive` 会释放 7 枚无人机式飞行体，对敌人造成轻伤并减速
-- 她的 Gadget 和 Star Power 围绕补刀、减速、容错和护盾展开
-- Hypercharge 会让 Super 在命中或最远距离分裂
+- 稀有度: Epic
+- 官方定位: Marksman
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 2800
+- 攻击距离: 10 (Very Long)
+- 装填: 0.9 seconds (Very Fast)
+- 普攻数值: 800
+- Super 距离: 9 (Long)
+- Super 数值: 100
+- Gadgets: Honey Molasses, Rattled Hive
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 相比 Nani，Bea 更稳定、更直线，也更像“单发定点狙击”
-- 相比 Brock，Bea 更看重命中后的节奏奖励，而不是爆炸覆盖
-- 相比一般射手，她是“打一枪赚一枪”的节奏型英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Bea 应作为 `entities/` 中的节奏型远程英雄对象处理
-- 她适合后续和其他 Marksman 做长线对比
+- Lead excerpt
+- Attack: Big Sting
+- Super: Iron Hive
+- Gadgets / Honey Molasses
+- Gadgets / Rattled Hive
+- Star Powers / Insta Beaload
+- Star Powers / Honeycomb
+- Hypercharge: Protect the Queen
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Bea 是一个靠超远单发和命中奖励建立压制节奏的标枪型射手
+- `Bea` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Bea|Bea]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Bea|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Bea|Bea]]
+- [[sources/PLP-Bea|PLP 来源摘要: Bea]]

@@ -3,32 +3,58 @@
 ## 来源信息
 
 - 标题：Gene
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gene)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Mythic / Controller
+- 来源：[Gene | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gene)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-04T09:53:04Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/gene-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-Gene 是一名 Mythic Controller，核心价值来自长距离干扰、拉人开团和保护队友。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是会分裂的魔法烟雾，远近表现不同
-- Super `Magic Hand` 会把命中的敌人拉到自己位置
-- 这个 Super 能打断敌人动作，并对站位错误的目标形成强惩罚
-- Gene 还能通过道具和星徽进一步强化拉人、保人和反制能力
+- 稀有度: Mythic
+- 官方定位: Controller
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 3800
+- 攻击距离: 5.67 (close range; Normal)<br>11.33 (max range; Very long)
+- 装填: 2 seconds (Slow)
+- 普攻数值: 1000
+- Super 距离: 7.67 (Long)<br>8.67 (with Talk to the Hand Gear)
+- Super 数值: unknown
+- Gadgets: Lamp Blowout, Vengeful Spirits
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Mortis` 更偏控制和拉扯，不是纯切入型
-- 比 `Byron` 更擅长强制改写站位
-- 比 `Max` 更像战术发动机而不是纯速度支援
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- Gene 是典型的“控制型实体”
-- 适合放在后续的控图、拉扯、开团和反开团分析里
+- Lead excerpt
+- Attack: Smoke Blast
+- Super: Magic Hand
+- Gadgets / Lamp Blowout
+- Gadgets / Vengeful Spirits
+- Star Powers / Magic Puffs
+- Star Powers / Spirit Slap
+- Hypercharge: Hyper Hands
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Gene 是“拉人开团 + 反开团”的中距离控制核心，最看重站位判断和出手时机
+- `Gene` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Gene|Gene]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Gene|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Gene|Gene]]
+- [[sources/PLP-Gene|PLP 来源摘要: Gene]]

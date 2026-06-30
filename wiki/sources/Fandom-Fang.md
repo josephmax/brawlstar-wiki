@@ -3,33 +3,57 @@
 ## 来源信息
 
 - 标题：Fang
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Fang)
-- 读取日期：2026-04-07
-- 分类：Brawler / Mythic / Assassin
+- 来源：[Fang | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Fang)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-05-20T16:26:32Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/fang-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Fang` 是一名神话刺客，靠近距离踢击与长距离追击 Super 打出收割节奏。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是近距离踢击，贴脸伤害很高
-- 命中后会获得鞋子式远程补刀
-- Super 可以连续跳跃并追击多个目标
-- 他的整体节奏偏向切入、连跳和收割
+- 稀有度: Mythic
+- 官方定位: Assassin
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>4000 (with Super)
+- 生命值: 4800
+- 攻击距离: 2.67 (kick; Short)<br>9.33 (shoe; Very Long)
+- 装填: 1 second (Very Fast)
+- 普攻数值: 1360
+- Super 距离: 10 (Very Long)
+- Super 数值: 1500
+- Gadgets: Corn-Fu, Roundhouse Kick
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- `Fang` 兼具近战刺客和连锁追击者的特点
-- 他比 `Mortis` 更依赖 Super 连段，比 `Leon` 更偏正面切入
-- 在团战收尾和连杀时尤其有威胁
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Fang` 应作为 `entities/` 中的高机动刺客英雄
-- 他适合和 `Mortis`、`Stu`、`Darryl` 一起看，但打法重心更偏连续切入
-- 后续若写刺客综述，他是很好的“追击型刺客”样本
+- Lead excerpt
+- Attack: Wu-Shoe
+- Super: Sneak Ahead
+- Gadgets / Corn-Fu
+- Gadgets / Roundhouse Kick
+- Star Powers / Fresh Kicks
+- Star Powers / Divine Soles
+- Hypercharge: Dragon Kick
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Fang 是“近战切入 + 连续跳跃收割”的神话刺客英雄
+- `Fang` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Fang|Fang]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Fang|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Fang|Fang]]
+- [[sources/PLP-Fang|PLP 来源摘要: Fang]]

@@ -4,31 +4,58 @@
 
 - 标题：Doug
 - 来源：[Doug | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Doug)
-- 读取日期：2026-04-07
-- 分类：Brawlers / Mythic / Support
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-05-09T18:24:29Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/doug-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Doug` 是一名 `Mythic Support`，核心特色是近身范围治疗与复活队友。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击 `Snack Attack` 会对敌人造成范围伤害，同时对范围内友军进行治疗
-- Super `Second Serving` 会给友军一个热狗 buff，死亡后可在延迟后复活
-- Doug 的 Gadget 会在治疗和伤害之间切换强度
-- 他的 Star Power 与 Hypercharge 进一步围绕自疗、复活联动和双重输出展开
+- 稀有度: Mythic
+- 官方定位: Support
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)
+- 生命值: 5200
+- 攻击距离: 3.33 (Short)
+- 装填: 1.5 seconds (Normal)
+- 普攻数值: 1200
+- Super 距离: 9.33 (Very Long)
+- Super 数值: unknown
+- Gadgets: Double Sausage, Extra Mustard
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Poco` 更偏单体与复活节奏，而不是纯群体回血
-- 比 `Pam` 更偏近身站位和前排贴伴，而不是阵地炮台
-- 比 `Byron` 更像“战斗中续命”，而不是远程续航消耗
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Doug` 应作为 `entities/` 中的复活支援英雄处理
-- 他是理解“治疗 + 复活 + 团队节奏翻盘”的关键样本
+- Lead excerpt
+- Trait
+- Attack: Snack Attack
+- Super: Second Serving
+- Gadgets / Double Sausage
+- Gadgets / Extra Mustard
+- Star Powers / Fast Food
+- Star Powers / Self Service
+- Hypercharge: Free Toppings
+- Tips / Recommended Build
+- Tips / Strategies
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Doug 是一个能同时提供治疗和复活价值的近身支援英雄
+- `Doug` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Doug|Doug]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Doug|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Doug|Doug]]
+- [[sources/PLP-Doug|PLP 来源摘要: Doug]]

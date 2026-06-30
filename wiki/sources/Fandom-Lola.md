@@ -3,33 +3,58 @@
 ## 来源信息
 
 - 标题：Lola
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Lola)
-- 读取日期：2026-04-07
-- 分类：Brawler / Epic / Damage Dealer
+- 来源：[Lola | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Lola)
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-13T18:52:33Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/lola-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Lola` 是一名史诗伤害英雄，特点是本体输出与分身协同。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击是长距离扇形六连发
-- Super 会生成分身，复制她的部分战斗压力
-- 分身可以用来双线施压、吸引火力或叠加输出
-- 她的 Gadget 和 Star Power 都围绕本体与分身的节奏切换
+- 稀有度: Epic
+- 官方定位: Damage Dealer
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 4000
+- 攻击距离: 9 (Long)
+- 装填: 1.7 seconds (Normal)<br>1.445 seconds (with Reload Gear)
+- 普攻数值: 280
+- Super 距离: 5 (Normal)
+- Super 数值: 2200
+- Gadgets: Freeze Frame, Stunt Double
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- `Lola` 的核心不是纯爆发，而是双体协同
-- 她更适合做中距离压线和区域压迫
-- 和传统射手相比，她的站位和节奏管理更复杂
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Lola` 应作为 `entities/` 中的分身型输出英雄
-- 她可以和 `Mr. P`、`Penny`、`8-Bit` 一起放进“本体 + 场面结构”谱系
-- 若后续做“特殊机制型英雄”综述，她很适合作为分身类代表
+- Lead excerpt
+- Attack: Diamond Eyes
+- Super: Megalomaniac
+- Gadgets / Freeze Frame
+- Gadgets / Stunt Double
+- Star Powers / Improvise
+- Star Powers / Sealed With a Kiss
+- Hypercharge: Inflated Ego
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Other
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Lola 是“本体输出 + 分身施压”的史诗伤害英雄
+- `Lola` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Lola|Lola]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Lola|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Lola|Lola]]
+- [[sources/PLP-Lola|PLP 来源摘要: Lola]]

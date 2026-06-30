@@ -3,31 +3,61 @@
 ## 来源信息
 
 - 标题：Chester
-- 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chester)
-- 读取日期：2026-04-06
-- 分类：Legendary / Damage Dealer
+- 来源：[Chester | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chester)
+- 读取日期：2026-06-30-v3
+- Fandom 页面最后编辑：2026-05-28T15:51:20Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/chester-2026-06-30-v3.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Chester` 是一名以多段随机铃铛组合和灵活应对为核心的传奇输出英雄。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- 主攻击会随连段变化
-- 攻击节奏和弹药顺序很关键
-- `Super` 会随着音铃变化而产生不同效果
-- 很适合灵活应对不同局势
+- 稀有度: Legendary
+- 官方定位: Damage Dealer
+- 移动速度: 770 (Fast)<br>920 (with Candy Beans)<br>955 (with Hypercharge)<br>1105 (with Candy Beans and Hypercharge)
+- 生命值: 3800
+- 攻击距离: 8.33 (Long)
+- 装填: 1.9 seconds (Normal)<br>0.633 seconds (with Candy Beans)
+- 普攻数值: 670
+- Super 距离: 6.33 (Normal)
+- Super 数值: 1880
+- Gadgets: Spicy Dice, Candy Beans
 
-## 与其他系统的关系
+## BP 建模可抽取信号
 
-- Chester 的重点是随机性和适应性
-- 他更像多工具箱输出，而不是单一机制英雄
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Chester` 应作为多形态节奏型实体维护
-- 适合和 `Stu`、`Max`、`Bibi` 一起看作节奏与变化谱系
+- Lead excerpt
+- Trait
+- Attack: Cap and Bells
+- Super: Jack in the Box / Candy Popper
+- Super: Jack in the Box / Jawbreaker
+- Super: Jack in the Box / Salmiakki
+- Super: Jack in the Box / Pop Rocks
+- Super: Jack in the Box / Strong Mint
+- Gadgets / Spicy Dice
+- Gadgets / Candy Beans
+- Star Powers / Single Bell 'O' Mania
+- Star Powers / Sneak Peek
+- Hypercharge: Crunchy, Chewy, Gooey
+- Tips
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Chester 是一个靠随机铃铛组合打节奏变化的传奇灵活输出英雄
+- `Chester` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Chester|Chester]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Chester|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Chester|Chester]]
+- [[sources/PLP-Chester|PLP 来源摘要: Chester]]

@@ -2,17 +2,17 @@
 
 本计划用于把英雄知识从“人类可读机制摘要”升级为“可供 BP DSL 消费的结构化中间层”。本页只定义交接计划，不执行抓取、不批量修改英雄页。
 
-计划日期：2026-06-29。维护者要求按当前 105 位英雄作为完整 scope；本地现状是 `wiki/entities/brawlers/` 只有 72 个英雄页，因此正式执行前必须先建立 105 行 roster manifest。
+计划日期：2026-06-29。维护者最初要求按当前 105 位 Fandom roster 建立完整 manifest；后续维护者校正指出 `Buzz Lightyear` 是临时英雄且已下架，不进入 BP 建模。当前执行规则是：先保留 105 行 roster manifest 作为上游抓取事实，再按 104 个非临时英雄作为 BP-active scope 执行。
 
 ## 交接目标
 
 额度重置后的会话应能按本页直接开工，完成以下闭环：
 
-1. 建立当前 105 位英雄 roster manifest。
+1. 建立当前 105 行 Fandom roster manifest。
 2. 对每个英雄保留 Fandom 详情页 raw capture。
 3. 对每个 PLP 可达英雄保留 Power League Prodigy 详情页 raw capture。
 4. 从 raw 生成 source 摘要，保留来源差异与证据强度。
-5. 将英雄页升级为 BP-ready 中间层。
+5. 将 BP-active 英雄页升级为 BP-ready 中间层。
 6. 将 build、地图、模式、对位、slot 风险接入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]。
 7. 更新索引和日志，确保后续 BP 查询能读到新结构。
 
@@ -28,7 +28,8 @@
 
 关键缺口：
 
-- 当前英雄总 scope 应为 105，本地缺 33 位英雄的实体页、source 摘要和 raw。
+- Fandom roster raw scope 为 105；BP-active scope 为 104，排除临时下架英雄 `Buzz Lightyear`。
+- 本地缺 33 个 Fandom roster 实体页；其中 `Buzz Lightyear` 不进入 BP，因此 BP-active 缺 32 位英雄的实体页、source 摘要和 raw。
 - 现有 72 个英雄页没有结构化 `bp_brawler_profile`。
 - 71 个 Fandom hero raw 是 `provisional raw backfill`，不是完整网页正文。
 - PLP 只做过抽检，没有全英雄详情页 raw。
@@ -139,9 +140,11 @@ wiki/syntheses/BP-英雄地图特征适配索引.md
 
 其中后三个索引在执行阶段视需要创建，不在本计划会话创建。
 
-## 105 英雄 roster manifest
+## 105 行 roster manifest 与 104 BP-active scope
 
 正式执行第一步必须建立 roster manifest，不要从本地 72 个英雄推断完整名单。
+
+范围校正：[[sources/User-Note-Buzz-Lightyear-Out-of-Scope|维护者说明]] 已确认 `Buzz Lightyear` 是临时英雄且已下架。manifest 仍保留它，用于解释 Fandom 抓取为何返回 105 行；但它不进入 BP 建模、PLP 缺口追踪、英雄 raw 补抓批次、条件化对位边索引或地图适配索引。
 
 manifest 字段：
 
@@ -165,7 +168,8 @@ roster_row:
 
 - manifest 必须有 105 行。
 - 本地已有 72 个英雄必须全部映射到 manifest。
-- 缺失 33 位英雄必须明确列出。
+- 缺失 33 个 Fandom roster 成员必须明确列出，并标出 `Buzz Lightyear` 为 `BP out-of-scope`。
+- BP-active 缺口按 32 位非临时英雄处理。
 - 名称差异要保留 aliases，不要用重命名覆盖历史链接。
 - 每个英雄都要有 Fandom URL；PLP URL 可以是 `no_page_found`，但必须经过检查。
 
@@ -410,12 +414,13 @@ slot_model:
 
 1. 读取本页、[[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]。
 2. 建立 105 行 roster manifest。
-3. 对照本地 72 个英雄页，列出 33 个缺失英雄。
+3. 对照本地 72 个英雄页，列出 33 个 Fandom roster 缺失项，并标注 `Buzz Lightyear` 为 BP out-of-scope。
 4. 不改英雄页，只更新 manifest 和 log。
 
 验收：
 
 - roster 行数为 105。
+- BP-active scope 为 104。
 - 每行有 Fandom URL。
 - 每行有 PLP URL 状态。
 
@@ -450,7 +455,7 @@ slot_model:
 
 验收：
 
-- 105 个英雄均有 Fandom source。
+- 104 个 BP-active 英雄均有 Fandom source；`Buzz Lightyear` 不要求 source。
 - PLP 有页面的英雄均有 PLP source。
 - 每个 source 页可以追溯到 raw。
 
@@ -520,7 +525,7 @@ slot_model:
 
 ### Phase 6: 全量扩展
 
-目标：从样本扩到 105 英雄。
+目标：从样本扩到 104 个 BP-active 英雄。
 
 步骤：
 
@@ -573,7 +578,7 @@ slot_model:
 
 ## 交接提醒
 
-下一会话开始时，不要直接抓 105 个详情页。先做 Phase 0 的 roster manifest。确认 105 行、URL、slug、已有 72 页映射和缺失 33 页之后，再分批抓取。
+下一会话开始时，不要直接抓 105 个详情页。先读 Phase 0 的 roster manifest 和 [[sources/User-Note-Buzz-Lightyear-Out-of-Scope|Buzz Lightyear 范围校正]]。确认 105 行、URL、slug、已有 72 页映射、33 个 Fandom roster 缺口，以及 32 个 BP-active 缺口之后，再分批抓取。
 
 本计划的核心不是“让资料看起来更全”，而是让每条英雄信息都能回答：它在 BP 中改变了什么决策。
 
@@ -585,4 +590,5 @@ slot_model:
 - [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
 - [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
 - [[sources/User-Note-Hero-BP-Ingest-Plan|用户经验来源摘要: 英雄 BP 建模 ingest 计划要求]]
+- [[sources/User-Note-Buzz-Lightyear-Out-of-Scope|用户经验来源摘要: Buzz Lightyear 不进入 BP 建模]]
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]

@@ -4,32 +4,57 @@
 
 - 标题：Ash
 - 来源：[Ash | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Ash)
-- 读取日期：2026-04-06
-- 分类：Brawlers / Epic / Tank
+- 读取日期：2026-06-30-v2
+- Fandom 页面最后编辑：2026-06-15T10:07:39Z
+- 分类：Brawlers / Fandom hero page
+- 上游 raw：[[../../raw/sources/fandom/heroes/ash-2026-06-30-v2.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
-## 页面核心内容
+## 可用范围
 
-`Ash` 是一名 `Epic` `Tank`，核心机制是 `Rage` 叠加后逐步增强机动和输出。
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
-根据该页：
+## 页面核心字段
 
-- `Rage` 会在 Ash 造成或承受伤害时增长
-- Rage 越高，Ash 越快，也越强
-- 主攻击是扫地式的前方冲击波，伤害会随 Rage 上升
-- `Super` 会召唤机器人老鼠追击敌人并爆炸
-- 他的 Gadget 和 Star Power 都围绕 Rage、续战和节奏维持展开
+- 稀有度: Epic
+- 官方定位: Tank
+- 移动速度: 720 (Normal)<br>770 (Fast; half Rage)<br>820 (Very Fast, full Rage)<br>864 (with Hypercharge)<br>924 (half Rage and with Hypercharge)<br> 984 (full Rage and with Hypercharge)
+- 生命值: 5900
+- 攻击距离: 4.67 (Normal)
+- 装填: 1.4 seconds (Fast)<br>1 second (with full Rage and Mad As Heck)
+- 普攻数值: 800
+- Super 距离: 5 (Normal)
+- Super 数值: 300
+- Gadgets: Chill Pill, Rotten Banana
 
-## 与其他英雄的关系
+## BP 建模可抽取信号
 
-- 比 `Frank` 更强调“越打越快”的节奏变化，而不是纯粹重锤开团
-- 比 `El Primo` 更依赖怒气积累后的持续压线，而不是一次跳入
-- 比普通坦克更像“会成长的前排”
+- `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
+- `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
+- 本页不直接生成 counter 或 pick 顺位结论。
 
-## 对本地 wiki 的意义
+## 抓取覆盖
 
-- `Ash` 适合作为 Rage 机制的核心样本
-- 他是理解“前排会随战斗推进而改变手感”的代表英雄
+- Lead excerpt
+- Attack: Clean-Up
+- Super: Little Helpers
+- Gadgets / Chill Pill
+- Gadgets / Rotten Banana
+- Star Powers / First Bash
+- Star Powers / Mad As Heck
+- Hypercharge: Rat King
+- Tips / Game Modes and Maps
+- Tips / Recommended Build
+- Tips / Strategies
 
-## 本次摄取结论
+## 与本地 wiki 的意义
 
-- Ash 是靠怒气成长、逐步加速压线的节奏型坦克
+- `Ash` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Ash|Ash]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Ash|PLP 竞技信号]] 分层合并。
+
+## 关联页面
+
+- [[entities/brawlers/Ash|Ash]]
+- [[sources/PLP-Ash|PLP 来源摘要: Ash]]
