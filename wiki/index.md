@@ -13,6 +13,7 @@
 - [[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]
 - [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
 - [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]
+- [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]
 - [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]
 - [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]
 - [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
@@ -232,7 +233,7 @@
 
 ## Entities
 
-- 英雄（104 个 BP-active；均含 `bp_brawler_profile` 草案）：
+- 英雄（104 个 BP-active；均含 `bp_brawler_profile`，当前 104 个 `bp_ready` / 0 个 draft）：
 - [[entities/brawlers/8-Bit|8-Bit]]
 - [[entities/brawlers/Alli|Alli]]
 - [[entities/brawlers/Amber|Amber]]

@@ -4,209 +4,216 @@
 
 - 稀有度：Legendary
 - 定位：Damage Dealer
-- 类型：近中距离爆发与控区英雄
+- 类型：中距离爆发与控区英雄
 
 ## 攻击特征
 
-- 主攻击是命中后爆开的仙人掌炸弹
-- 仙人掌会向四周散射尖刺
-- 贴脸命中时伤害特别高
+- 主攻击命中或到达终点后爆开并向周围散射尖刺。
+- `Curveball` 会改变尖刺轨迹，提高绕角骚扰和命中压力。
+- 贴近目标或固定目标时，尖刺多段命中能形成很高爆发。
 
 ## 超级技能特征
 
-- Super 会投出一枚带减速效果的尖刺炸弹
-- 爆炸后会留下持续伤害区域
-- 既能打阵地战，也能逼迫敌人走位
-
-## 适合场景
-
-- 敌人容易聚堆的地图
-- 需要控区和逼位的模式
-- 近距离卡点或掩体较多的对局
+- Super 会生成持续伤害和减速区域。
+- 能逼退站点、切断持球/进场路线，也能让队友补伤害。
 
 ## 角色定位总结
 
-Spike 是“爆发伤害 + 区域减速”的代表英雄。和 `Brock` 比，他更擅长贴近后的爆发；和 `Barley` 比，他更偏瞬间压制而不是持续铺场；和 `Crow` 比，他少了消耗和追击，多了正面爆发。
+Spike 是高爆发、区域减速和中距离卡点英雄。他不是纯长手，也不是纯投掷；BP 中要把他理解成“惩罚身体/路线/目标区拥挤”的控制爆发位。
+
+## BP 建模资料
+
+```yaml
+bp_brawler_profile:
+  profile_status: bp_ready
+  source_quality:
+    fandom: direct_raw_capture_2026-06-30-v2
+    plp: direct_raw_capture_2026-06-30
+    user_notes: none
+
+  capability_vector:
+    effective_range: mid_long
+    projectile_reliability: medium_high_with_Curveball; 角度压力强但直线远端不等于狙击稳定性
+    burst: very_high_at_close_or_fixed_target
+    sustained_dps: medium; 装填慢但命中质量高
+    objective_damage: high_conditional_with_Popping_Pincushion_or_close_safe_access
+    mobility: low
+    survivability: low_medium; 生命值不高，依赖距离和 Life Plant/队友
+    engage: low
+    disengage: low
+    anti_aggro: high_if_Super_or_close_burst_ready
+    anti_tank: high; 多段尖刺和减速区域惩罚前排
+    wall_break: none
+    throw_or_wall_bypass: medium_with_spike_split_angles
+    area_control: high_with_Super
+    scouting_or_vision: medium; Curveball/散射可检查草边和角落
+    team_support: slow_zone_and_route_denial
+    crowd_control: high_slow_with_Super
+
+  build_switches:
+    - build: Popping Pincushion / Curveball / Shield + Damage
+      source: "[[sources/PLP-Spike|PLP-Spike]] / [[sources/Fandom-Spike|Fandom-Spike]]"
+      changes_capabilities:
+        - Curveball 提高中距离命中和绕角骚扰
+        - Popping Pincushion 提高近身反打和固定目标爆发
+      enables:
+        - anti_tank_burst
+        - objective_choke_control
+        - heist_fixed_target_burst
+      mitigates_failure_modes:
+        - 纯普攻难以瞬间清前排
+      poor_when:
+        - 需要持续远程狙击、开墙或逃生位移
+      bp_use: 默认竞技 build；地图/模式要求 close burst 或目标区控制时价值最高
+    - build: Life Plant / Fertilize sustain variant
+      source: "[[sources/Fandom-Spike|Fandom-Spike]]"
+      changes_capabilities:
+        - 提高站位续航、临时挡线和目标区自保
+      enables:
+        - zone_anchor_survival
+        - projectile_blocking
+      mitigates_failure_modes:
+        - 被远程单发或投掷 chip 压出位置
+      poor_when:
+        - 需要 Popping Pincushion 的爆发打库或反坦
+      bp_use: Hot Zone/Gem Grab 需要活在目标边缘时的 build requirement
+
+  map_feature_hooks:
+    - map_feature_type: zone_choke_slow_and_area
+      uses_feature_by: Super 覆盖入口、减速前排，并让队友集火被困目标
+      objective_conversion: Hot Zone 站圈时间、重进场税和防守反打
+      active_when: 热区入口或 L 墙附近形成重复路线，敌方必须穿过 Spike 区域
+      fails_if: 敌方投掷/长手从圈外清 Spike，或目标有跳跃/无敌/强位移绕开区域
+      example_maps:
+        - Ring of Fire
+        - Open Business
+        - Dueling Beetles
+        - Parallel Plays
+      bp_use: map_bp_factors.zone_slow_and_anti_body
+    - map_feature_type: gem_mine_curveball_control
+      uses_feature_by: Curveball 和散射尖刺检查草边/墙角，Super 切 carrier 退路
+      objective_conversion: 控矿、保护 carrier、惩罚敌方倒计时撤退
+      active_when: 宝石矿附近有入口/草边/墙角让敌人反复经过
+      fails_if: 敌方投掷占深口袋，或 Spike 被长手从安全距离压退
+      example_maps:
+        - Gem Fort
+        - Hard Rock Mine
+        - Double Swoosh
+      bp_use: map_bp_factors.mine_route_control
+    - map_feature_type: brawl_ball_goal_choke_and_anti_tank
+      uses_feature_by: Super 减速持球/防守者，贴近多段爆发清前排或门前身体
+      objective_conversion: 防守进球、创造射门窗口、惩罚坦克推进
+      active_when: 球路经过草口、窄口或门前防守区，队友能接 slow 后的击杀
+      fails_if: 敌方投掷/位移 scorer 从侧路绕开，或我方没有破门/得分手
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Pinball Dreams
+        - Triple Dribble
+      bp_use: slot_task.ball_route_slow_and_body_clear
+    - map_feature_type: heist_popping_pincushion_safe_or_defense
+      uses_feature_by: Popping Pincushion 和贴近多段尖刺打固定 safe 或入库前排
+      objective_conversion: 短窗口 safe burst、反入库坦克、迫使防守资源
+      active_when: Spike 能通过线权/草墙接近 safe，或敌方前排必须进入他的爆发区
+      fails_if: 开阔长线让 Spike 永远摸不到 safe，或敌方远程 race 更快
+      example_maps:
+        - Hot Potato
+        - Pit Stop
+        - Kaboom Canyon
+        - Safe Zone
+      bp_use: candidate_eval.heist_close_burst_with_access_check
+
+  objective_contracts:
+    - mode: Hot Zone_or_Gem Grab
+      can_fulfill:
+        - route_slow_and_area_denial
+        - anti_body_burst
+        - carrier_or_zone_retreat_cut
+      cannot_fulfill:
+        - pure_long_range_anchor
+        - wallbreak_to_open_thrower_pocket
+      needs_teammate_support:
+        - thrower_or_long_range_answer
+        - actual_zone_body_or_carrier
+      false_positive: Spike 控区强，但被隔墙压制时不能单独站点
+    - mode: Brawl Ball
+      can_fulfill:
+        - anti_tank_goal_defense
+        - slow_scorer_or_defender
+        - goal_choke_control
+      cannot_fulfill:
+        - primary_wallbreak
+        - fastest_scorer
+      needs_teammate_support:
+        - scorer_or_wallbreak
+        - anti_thrower_cover
+      false_positive: 防守慢住不等于能进球，必须有得分转化
+    - mode: Heist
+      can_fulfill:
+        - close_safe_burst_if_access_exists
+        - anti_aggro_defense
+      cannot_fulfill:
+        - stable_remote_safe_DPS
+      needs_teammate_support:
+        - lane_win_or_speed_to_reach_safe
+        - ranged_race_component
+      false_positive: 只有能摸到 safe 或能反入库时才是 Heist 候选
+
+  failure_modes:
+    - id: outranged_or_walled_out
+      active_when: 敌方投掷/长狙在墙后或开阔远端攻击，Spike 不能稳定接触
+      exposed_by: Fandom 射程与 PLP counteredBy
+      mitigation: 队友开墙、突进清口袋、选择中距离目标图
+      bp_use: false_positive_filter
+    - id: mobility_bypasses_slow_zone
+      active_when: Mico/Melodie/Edgar/Chuck 等从跳跃、dash 或路线技能绕过 Super 区域
+      exposed_by: PLP counteredBy
+      mitigation: 保存 Super 到落点，配硬控/视野，或避免开放多路线图
+      bp_use: must_avoid_or_needs_peel
+    - id: no_objective_conversion
+      active_when: Spike 只消耗但队伍缺站圈、carrier、scorer 或 safe DPS
+      exposed_by: BP objective_contract
+      mitigation: 搭配目标身体、得分手或远程 race 组件
+      bp_use: role_coverage_check
+
+  conditional_matchup_seeds:
+    - target: El_Primo_or_Fang_or_Meg_or_Gale
+      direction: subject_favored
+      source: "[[sources/PLP-Spike|PLP-Spike]]"
+      mechanism: 多段尖刺和 Super slow 惩罚必须进入中近距离的前排/控制英雄
+      active_when: 目标要穿过 choke、草口、球路或站圈入口，Spike 持有 ammo/Super
+      fails_when: 目标用队友投掷/长手先压退 Spike，或从多路线同时进场
+      bp_use: anti_body_or_route_response
+    - target: Bea_or_Lou_or_Glowy_or_Jae_yong
+      direction: subject_favored
+      source: "[[sources/PLP-Spike|PLP-Spike]]"
+      mechanism: Curveball 和区域 slow 能压迫低血或节奏型控制/支援位，让他们难以稳定站目标边缘
+      active_when: 地图是中距离目标区，目标必须在 Spike 射程内反复 peek
+      fails_when: 目标保持全开放远线或有队友清掉 Spike 的站位
+      bp_use: midrange_control_pressure_seed
+    - target: Mico_or_Melodie_or_Edgar_or_Chuck
+      direction: target_favored
+      source: "[[sources/PLP-Spike|PLP-Spike]]"
+      mechanism: 跳跃、连续 dash 或路径技能可绕过 Spike 的预置慢区并直接攻击低血本体
+      active_when: 地图有侧路、墙草或 safe/goal route 让他们选择 first contact
+      fails_when: Spike 预判落点留 Super，且队友有硬控或爆发接 slow
+      bp_use: avoid_without_peel_or_route_lock
+    - target: Larry_and_Lawrie_or_Jessie_or_Frank_or_Damian
+      direction: target_favored
+      source: "[[sources/PLP-Spike|PLP-Spike]]"
+      mechanism: 召唤物、投掷/墙压、重身体或特殊路线会消耗 Spike 弹药并逼他离开中距离爆发点
+      active_when: 地图墙体保护资源，或 objective 迫使 Spike 先清额外身体
+      fails_when: 队友先清 summon/wall pocket，Spike 只负责 Super slow 和爆发收割
+      bp_use: must_answer_resource_or_wall_control
+
+  slot_notes:
+    slot_1: 可以在目标区/反坦价值稳定的图先手，但要警惕投掷和机动后手。
+    slot_2_3: 适合建立 anti-body 和控区基本面，尤其队友已有远程/开墙时。
+    slot_4_5: 用于惩罚敌方缺投掷/缺机动的前排或中距离阵容，同时补足我方目标区控制。
+    slot_6: 敌方三人已经暴露必须走 choke 或缺远程答案时，Spike 是高收益 last pick。
+```
 
 ## 关联页面
 
 - [[sources/Fandom-Spike|Fandom 来源摘要: Spike]]
-
-## BP 建模草案
-
-```yaml
-bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
-  source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
-
-  capability_vector:
-    effective_range: "long_mid; fandom_attack_range=7.67 (Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=2 seconds (Slow)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=3000; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
-
-  build_switches:
-    - build: "Popping Pincushion / Curveball / Shield, Damage"
-      source: "[[sources/PLP-Spike|PLP-Spike]]"
-      changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
-      enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Heist"
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
-      mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
-
-  map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
-
-  objective_contracts:
-    - mode: "Gem Grab"
-      can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Brawl Ball"
-      can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Heist"
-      can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Hot Zone"
-      can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
-      can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Knockout"
-      can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-
-  failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
-
-  conditional_matchup_seeds:
-    - target:
-        - "Gale"
-        - "Meg"
-        - "Jae-Yong"
-        - "Bea"
-        - "Lou"
-        - "El Primo"
-        - "Glowy"
-        - "Fang"
-      direction: "subject_favored"
-      source: "[[sources/PLP-Spike|PLP-Spike]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Damian"
-        - "Mico"
-        - "Melodie"
-        - "Larry & Lawrie"
-        - "Chuck"
-        - "Edgar"
-        - "Jessie"
-        - "Frank"
-      direction: "target_favored"
-      source: "[[sources/PLP-Spike|PLP-Spike]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
-
-  slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
-```
+- [[sources/PLP-Spike|PLP 来源摘要: Spike]]

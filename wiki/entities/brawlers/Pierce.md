@@ -4,7 +4,7 @@
 
 - 稀有度：Legendary
 - 定位：Marksman
-- 类型：待复核；当前仅由 Fandom 定位和 PLP 竞技信号初始化
+- 类型：弹壳资源型长手 / 中距离节奏压制
 
 ## 来源摘要
 
@@ -14,180 +14,225 @@
 
 ## 角色定位总结
 
-本页是从 2026-06-30 抓取件初始化的英雄实体页。当前只保存稳定来源链接和 BP 草案；所有模式适配、对位和顺位判断仍需通过地图因素与条件化对位模型复核。
+Pierce 不是普通长手射手。他的输出和装填依赖弹壳循环：命中后掉壳、捡壳补弹并触发自动射击，最后一发有额外伤害/减速价值。BP 里要把“射程很长”和“资源循环脆弱”同时写进判断；在纯开放狙击镜像里他可能被更稳定的狙击手压制，在中距离目标图里则可以用弹壳、减速和 Super 反复制造节奏。
 
-## BP 建模草案
+## BP 建模资料
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    fandom: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
+    plp: "[[sources/PLP-Pierce|PLP-Pierce]]"
+    user_notes: none
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=10 (Very Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=3 seconds (full ammo bar; Very Slow)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=3000; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: very_long_but_best_on_medium_long_objective_lanes
+    projectile_reliability: medium; 直线长手命中稳定性受弹壳位置和敌方机动影响
+    burst: high_if_last_ammo_bonus_or_super_homing_hits
+    sustained_dps: conditional_on_shell_pickups; empty_ammo_reload_is_slow
+    objective_damage: conditional_heist_lane_pressure_after_shell_cycle
+    mobility: low_base; short_speed_burst_with_Slip_n_Snipe_if_selected
+    survivability: low_base_health; shield_and_shell_cache_reduce_one_entry_window
+    engage: low
+    disengage: medium_with_shell_knockback_or_slow_resource
+    anti_aggro: conditional_with_shell_cache_You_Only_Brawl_Twice_or_last_ammo_slow
+    anti_tank: medium_if_spacing_and_shell_cycle_are_kept
+    wall_break: none
+    throw_or_wall_bypass: low; Super homing shots pass obstacles after lock but setup is delayed
+    area_control: medium; shell positions and Super target circle tax objective routes
+    scouting_or_vision: low
+    team_support: slow_knockback_and_resource_pressure
+    spawnable_or_pet: none; spawnables_are_a_liability_because_they_waste_ammo
+    crowd_control: conditional_slow_or_knockback
+    terrain_creation: temporary_shell_resource_nodes
 
   build_switches:
-    - build: "Bottomless Mags / Mission Swimpossible / Shield, Damage"
+    - build: Bottomless Mags / Mission Swimpossible / Shield, Damage
       source: "[[sources/PLP-Pierce|PLP-Pierce]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - Bottomless Mags 补一发弹药并创造弹壳，降低空弹期
+        - Mission Swimpossible 让最后一发附带减速，提升中距离对线和防突进能力
+        - Shield/Damage 让低血长手更能撑过第一波接近
       enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Heist"
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
+        - medium_lane_shell_cycle
+        - last_ammo_slow_pick
+        - super_shell_swing
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - empty_ammo_lockout
+        - low_health_first_contact
+      poor_when:
+        - 敌方用召唤物、宠物或区域伤害干扰弹壳路线，或用刺客逼 Pierce 离开弹壳
+      bp_use: default_resource_cycle_build
+    - build: You Only Brawl Twice anti-aggro variant
+      source: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
+      changes_capabilities:
+        - 吸收弹壳转护盾并击退附近敌人，适合防一波强突进
+      enables:
+        - close_entry_peel
+        - shell_cache_defensive_conversion
+      mitigates_failure_modes:
+        - dive_after_shell_drop
+      poor_when:
+        - 弹壳太分散或 Pierce 需要持续弹药循环而不是一次性护盾
+      bp_use: defensive_variant_into_known_aggro
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - map_feature_type: medium_lane_shell_resource_control
+      uses_feature_by: 长手射击和弹壳回收在中距离矿区/热区边缘形成资源循环
+      objective_conversion: 稳定压线、保护矿区/热区入口、用最后一发减速创造击杀或逼退
+      active_when: Pierce 能安全捡壳且目标必须进入中距离 objective lane
+      fails_if: 弹壳落在危险区，或敌方召唤物/范围技能让 Pierce 空弹
+      example_maps:
+        - Hard Rock Mine
+        - Gem Fort
+        - Open Business
+      bp_use: map_bp_factors.shell_cycle_mid_control
+    - map_feature_type: bounty_knockout_super_shell_swing
+      uses_feature_by: 长线基础射程配合 Super 锁定范围，可在对方 peek 或缩圈时制造高伤害追踪波
+      objective_conversion: 争取第一杀、保护回合血量领先或逼出敌方关键位
+      active_when: Pierce 有壳/弹药资源，敌方不能轻易用墙体或召唤物吃掉节奏
+      fails_if: 纯开放长线镜像被更稳定狙击手压制，或 Super 1 秒延迟被轻松离开
+      example_maps:
+        - Shooting Star
+        - Dry Season
+        - Belle's Rock
+        - New Horizons
+      bp_use: candidate_eval.long_lane_resource_marksman
+    - map_feature_type: brawl_ball_last_ammo_slow_or_shell_knockback
+      uses_feature_by: 最后一发减速、弹壳护盾/击退和 Super 追踪可处理持球者或门前防守者
+      objective_conversion: 减速持球推进、打断门前身体、或为队友创造射门窗口
+      active_when: Pierce 有弹壳缓存或最后一发资源，且队友能接住控制窗口
+      fails_if: Pierce 被迫自己带球推进，或对方用多身体/召唤物吃掉弹药
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Triple Dribble
+      bp_use: slot_task.ball_control_marksman_with_resource_gate
+    - map_feature_type: heist_shell_cycle_after_lane_win
+      uses_feature_by: 长线赢边后可以用弹壳循环维持金库压力，但不是无条件 race 核心
+      objective_conversion: 边路压制、补 safe damage、迫使敌方回防
+      active_when: Pierce 已赢线或有队友控住入口，弹壳能安全回收
+      fails_if: 需要他裸冲金库、弹壳在敌方基地危险区，或敌方 race 速度更快
+      example_maps:
+        - Bridge Too Far
+        - Kaboom Canyon
+        - Hot Potato
+        - Pit Stop
+      bp_use: candidate_eval.heist_lane_pressure_after_shell_setup
 
   objective_contracts:
-    - mode: "Gem Grab"
+    - mode: Gem Grab
       can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
+        - lane_pressure
+        - last_ammo_slow_on_carrier_route
+        - shell_cycle_mid_control
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - primary_gem_carrier_under_dive_pressure
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Brawl Ball"
+        - bush_check_or_anti_aggro
+        - body_or_support_to_hold_mid_when_Pierce_recovers_shells
+      false_positive: 长射程不能替代矿区身体和探草
+    - mode: Brawl Ball
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - slow_or_knockback_ball_route
+        - door_front_damage_pressure
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - primary_scorer
+        - goal_wallbreak
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Heist"
+        - scorer
+        - wallbreak_or_hard_cc
+      false_positive: 控制持球者不等于能进球，必须有射门/破门跟进
+    - mode: Heist
       can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
+        - lane_win_to_safe_pressure
+        - defensive_marksman_against_entry
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - solo_safe_race_if_shells_are_unsafe
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Hot Zone"
+        - primary_safe_DPS_or_wallbreak
+        - anti_dive_on_safe_lane
+      false_positive: PLP Heist 信号要落到具体打库角度和弹壳回收路径
+    - mode: Hot Zone
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - zone_edge_pressure
+        - last_ammo_slow_on_entry
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - durable_zone_body
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
+        - zone_holder
+        - area_clear_or_sustain
+      false_positive: Pierce 在圈外打准不代表能持续计分
+    - mode: Bounty_or_Knockout
       can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - long_range_pick_pressure
+        - Super_finish_window
+        - defensive_shell_cache
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - safe_close_duel_when_shells_are_gone
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Knockout"
-      can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - peel
+        - wallbreak_or_control_against_thrower_pockets
+      false_positive: 纯开放狙击镜像里要检查对面是否有更稳定弹道和更低资源成本
 
   failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
+    - id: shell_resource_tax
+      active_when: Pierce 为了捡壳必须走进危险区或离开关键角度
+      exposed_by: Fandom 弹壳回收和空弹慢装填机制
+      mitigation: 只在弹壳落点可控、中距离目标路线明确时选
+      bp_use: resource_tracking.shell_position
+    - id: low_health_aggro_window
+      active_when: 敌方刺客、速度或草路能在 Pierce 空弹/捡壳时贴脸
+      exposed_by: Fandom 低血量与 PLP counteredBy
+      mitigation: 保留壳护盾/击退，搭配视野和队友 peel
+      bp_use: must_have_peel_or_shell_cache
+    - id: pure_long_sniper_mirror
+      active_when: 地图完全开放且对手是更稳定长手，Pierce 难以安全滚动壳资源
+      exposed_by: Fandom tips 对长射手镜像的风险说明
+      mitigation: 选择中距离目标图，或确保 Super/队友控制能迫使对方进圈/进路
+      bp_use: false_positive_filter.not_every_long_map
+    - id: spawnable_or_pet_ammo_waste
+      active_when: 敌方用 Nita、Mr. P、Jessie、Penny、Larry & Lawrie 等身体/资源吃掉 Pierce 弹药
+      exposed_by: Fandom tips 对 pets/spawnables 干扰装填的说明
+      mitigation: 先清资源或避免把 Pierce 当唯一输出
+      bp_use: enemy_resource_filter
 
   conditional_matchup_seeds:
-    - target:
-        - "Gale"
-        - "Jacky"
-        - "Meg"
-        - "El Primo"
-        - "R-T"
-        - "Dynamike"
-        - "Sam"
-        - "Jae-Yong"
-      direction: "subject_favored"
+    - target: Gale_or_Jacky_or_Meg_or_El_Primo_or_R-T_or_Dynamike_or_Sam_or_Jae-Yong
+      direction: subject_favored
       source: "[[sources/PLP-Pierce|PLP-Pierce]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Chuck"
-        - "Damian"
-        - "Barley"
-        - "Amber"
-        - "Eve"
-        - "Sprout"
-        - "Lola"
-        - "Nita"
-      direction: "target_favored"
+      mechanism: Pierce 用中长线、最后一发减速和弹壳资源惩罚固定路线、短手身体或需要站位输出的目标
+      active_when: 目标必须穿过可见 objective lane，Pierce 有弹药/弹壳缓存
+      fails_when: 目标有队友遮挡、召唤物吃弹，或地图给其草/墙先手
+      bp_use: resource_gated_lane_response
+    - target: Chuck_or_Damian_or_Barley_or_Amber_or_Eve_or_Sprout_or_Lola_or_Nita
+      direction: target_favored
       source: "[[sources/PLP-Pierce|PLP-Pierce]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: 路线突进、墙控、区域燃烧、水/角度、替身或召唤物会干扰 Pierce 的壳循环和直线输出
+      active_when: 地图给这些目标墙袋、侧角、水线或资源保护
+      fails_when: 墙体被打开、资源被清，且 Pierce 能保持中长线弹壳循环
+      bp_use: must_answer_resource_disruption_before_pierce
+    - target: Mr_P_or_Jessie_or_Penny_or_spawnable_core
+      direction: target_favored
+      source: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
+      mechanism: 额外身体会浪费 Pierce 弹药、打乱掉壳节奏，并让他无法把最后一发资源打到真实目标
+      active_when: 召唤物能安全过线或炮台/宠物站在 Pierce 必须射击的角度
+      fails_when: 我方先清资源，或 Pierce 只负责补伤害不负责独自处理资源层
+      bp_use: spawnable_liability_filter
+    - target: Ball_carrier_or_goal_defender
+      direction: subject_favored
+      source: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
+      mechanism: 最后一发减速、Super 追踪和弹壳击退可以打断固定持球路线或门前防守站位
+      active_when: 球路经过中距离直线，队友能接控制窗口完成射门
+      fails_when: 目标有多身体挡弹或 Pierce 控住后无人转化进球
+      bp_use: objective_specific_control_edge
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: 只有在地图目标路线适合中长线壳循环，且敌方召唤物/刺客反制面窄时可先手。
+    slot_2_3: 可作为长手控制和资源压线手，但队伍必须补身体、探草或反突进。
+    slot_4_5: 适合回答敌方短手/固定路线，同时防止敌方最后手拿召唤物、墙控或强突进。
+    slot_6: 如果敌方三人缺资源干扰和近身开口，Pierce 可作为高收益壳循环惩罚 pick。
 ```
 
 ## 关联页面

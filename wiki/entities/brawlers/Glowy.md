@@ -4,7 +4,7 @@
 
 - 稀有度：Mythic
 - 定位：Support
-- 类型：待复核；当前仅由 Fandom 定位和 PLP 竞技信号初始化
+- 类型：牵线治疗/伤害支援 / 恐惧反突进控制
 
 ## 来源摘要
 
@@ -14,150 +14,207 @@
 
 ## 角色定位总结
 
-本页是从 2026-06-30 抓取件初始化的英雄实体页。当前只保存稳定来源链接和 BP 草案；所有模式适配、对位和顺位判断仍需通过地图因素与条件化对位模型复核。
+Glowy 的 BP 价值来自双牵线：对敌人造成持续伤害，对队友提供治疗，Super 则用减速和恐惧打断正面进入。她不是独立 carry，而是把队友的站点/对枪能力放大；线会被距离和视线阻断，飞行目标也会暂停部分效果，所以地图墙体、队友站位和敌方突进路径决定她是稳定支援还是低伤害负担。
 
-## BP 建模草案
+## BP 建模资料
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    fandom: "[[sources/Fandom-Glowy|Fandom-Glowy]]"
+    plp: "[[sources/PLP-Glowy|PLP-Glowy]]"
+    user_notes: none
 
   capability_vector:
-    effective_range: "long_mid; fandom_attack_range=7.34 (Normal)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.7 seconds (Normal)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=3900; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: mid_long_tether_range
+    projectile_reliability: medium; 需要维持距离和视线，墙体阻断会让牵线闪烁
+    burst: low_medium; Super 提供控制而非单人爆发
+    sustained_dps: medium_if_enemy_tether_is_maintained
+    objective_damage: low_direct_heist_value
+    mobility: conditional_dash_with_Slippery_Savior
+    survivability: medium_with_self_heal_from_Parasitism_and_team_heal_cycle
+    engage: low; control_entry_with_super_if_team_follows
+    disengage: medium_with_fear_slow_or_dash_heal
+    anti_aggro: high_if_fear_cone_hits_front_facing_entry
+    anti_tank: conditional_sustain_and_damage_debuff; needs_team_damage
+    wall_break: none
+    throw_or_wall_bypass: none
+    area_control: medium_with_super_cone_and_tether_zone
+    scouting_or_vision: low
+    team_support: high; healing_tether_damage_buff_or_damage_debuff_builds
+    spawnable_or_pet: none
+    crowd_control: slow_and_fear
+    terrain_creation: none
 
   build_switches:
-    - build: "More Lumens / Parasitism / Shield, Damage"
+    - build: More Lumens / Parasitism / Shield, Damage
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - More Lumens 提高短时间牵线 tick 频率，增强对线和站点换血
+        - Parasitism 让敌方牵线回补 Glowy，自身更能维持支援位置
+        - Shield/Damage 让中线支援不至于被第一波 poke 赶走
       enables:
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
+        - hot_zone_sustain_anchor
+        - bounty_knockout_trade_support
+        - anti_aggro_fear_window
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - support_low_self_sustain
+        - short_trade_without_tether_value
+      poor_when:
+        - 墙体/距离让牵线反复断开，或队友无法在 Glowy 控制窗口内输出
+      bp_use: default_support_trade_build
+    - build: Biotic Ecosystem team-swing variant
+      source: "[[sources/Fandom-Glowy|Fandom-Glowy]]"
+      changes_capabilities:
+        - 同时连敌人和队友时降低敌方伤害并提高队友伤害，提升前排或站点队友的换血质量
+      enables:
+        - bodyguard_lane
+        - zone_teamfight_swing
+      mitigates_failure_modes:
+        - teammate_cannot_convert_tether
+      poor_when:
+        - 队伍没有稳定站点/前排，或地图让双牵线难以同时维持
+      bp_use: teamfight_variant_when_comp_has_body_to_buff
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - map_feature_type: hot_zone_tether_sustain_and_fear_entry
+      uses_feature_by: 治疗/伤害牵线配合 Super 恐惧，可在热区入口延长队友站圈时间并阻止突进
+      objective_conversion: 把敌方进圈变成被减速/恐惧的失败接触，同时让己方身体继续计分
+      active_when: 队伍有真实 zone body，Glowy 能在墙边或中距离维持视线
+      fails_if: 墙体阻断牵线、敌方从多角度进入，或 Glowy 被要求自己站圈吃第一波
+      example_maps:
+        - Dueling Beetles
+        - Open Business
+        - Ring of Fire
+        - Parallel Plays
+      bp_use: map_bp_factors.zone_sustain_and_fear_entry
+    - map_feature_type: knockout_bounty_tether_trade_support
+      uses_feature_by: 长中距离牵线让队友赢 poke 交换，Super 恐惧可保护回合/星数领先
+      objective_conversion: 保血量领先、拖缩圈、阻止刺客进入低血后排
+      active_when: 地图有可维持视线的中长线，且队友能利用治疗或伤害 debuff 稳定换血
+      fails_if: 敌方投掷/墙控打断视线，或纯长狙距离让 Glowy 无法保持牵线
+      example_maps:
+        - Belle's Rock
+        - New Horizons
+        - Shooting Star
+        - Dry Season
+      bp_use: candidate_eval.round_trade_support
+    - map_feature_type: brawl_ball_fear_disarm_or_push_support
+      uses_feature_by: Super 的减速/恐惧可让持球者或防守者离开路线，牵线治疗护送 scorer
+      objective_conversion: 清中场球权、保护持球推进或把门前防守者赶出射门角度
+      active_when: 队友有 scorer/破门/突进，Glowy 只负责控制和治疗窗口
+      fails_if: 队伍没有射门转化，或敌方从侧草绕过 Glowy 的正面恐惧锥
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Triple Dribble
+      bp_use: slot_task.ball_support_control_with_followup
+    - map_feature_type: line_of_sight_tether_break_filter
+      uses_feature_by: 地图墙体既可保护 Glowy，也会切断她的牵线；需要把站位写进 pick 逻辑
+      objective_conversion: 只在牵线能稳定作用于矿区、热区或回合路线时给 Glowy 计入支援价值
+      active_when: Glowy 能沿墙边保持队友/敌人的可见线，或队友主动站在牵线半径内
+      fails_if: 墙袋太深、目标频繁绕角、或敌方投掷把 Glowy 从支援位赶走
+      example_maps:
+        - Hard Rock Mine
+        - Open Business
+        - Belle's Rock
+        - Ring of Fire
+      bp_use: false_positive_filter.support_requires_los
 
   objective_contracts:
-    - mode: "Hot Zone"
+    - mode: Hot Zone
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - sustain_zone_body
+        - fear_entry
+        - damage_debuff_or_team_buff_trade
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - solo_zone_body
+        - long_range_clear_without_teammate
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
+        - durable_zone_holder
+        - area_clear_or_wall_control
+      false_positive: Glowy 支援强不代表她能自己站圈
+    - mode: Bounty_or_Knockout
       can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - trade_support
+        - anti_dive_peel
+        - round_lead_sustain
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - primary_long_range_pick_damage
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Knockout"
+        - marksman_or_burst_to_convert_tether_advantage
+        - wall_control_answer
+      false_positive: 开阔长线如果牵线距离不足，Glowy 会被纯狙击体系压出价值区
+    - mode: Brawl Ball
       can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - fear_or_slow_ball_route
+        - heal_scorer_or_body_push
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - primary_scorer
+        - goal_wallbreak
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - scorer
+        - wallbreak_or_hard_displacement
+      false_positive: 恐惧只是窗口，不能替代射门路径
 
   failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "source_signal_not_reviewed"
-      active_when: "BP relies on PLP mode/matchup seed without mechanism validation"
-      exposed_by: "third-party guide fields"
-      mitigation: "convert seed into conditional matchup or map hook before bp_ready"
-      bp_use: "do_not_mark_bp_ready"
+    - id: line_of_sight_or_range_break
+      active_when: 墙体、绕角或距离让敌方/队友牵线闪烁并中断效果
+      exposed_by: Fandom 牵线距离和视线规则
+      mitigation: 只在有稳定支援位和队友站位纪律的地图使用
+      bp_use: map_geometry_filter
+    - id: flying_target_pause_or_fear_immunity
+      active_when: 敌方飞行/滞空目标绕过牵线伤害或不吃正面恐惧窗口
+      exposed_by: Fandom 对 flying target 的规则说明
+      mitigation: 不把 Glowy 当作唯一 anti-air/anti-jump 答案
+      bp_use: enemy_capability_filter
+    - id: dash_heal_interrupted
+      active_when: Slippery Savior dash 被墙、水、眩晕或路径打断，导致治疗不触发
+      exposed_by: Fandom gadget 说明
+      mitigation: dash 只作为明确路线的保命/补血工具，不当无条件解控
+      bp_use: resource_tracking.mobility_reliability
+    - id: support_without_followup
+      active_when: Glowy 恐惧或牵线产生优势，但队友没有爆发、身体或站点转化
+      exposed_by: Support 定位与牵线机制
+      mitigation: 先确认队伍有 scorer、zone body 或长线输出核心
+      bp_use: comp_dependency_check
 
   conditional_matchup_seeds:
-    - target:
-        - "Jae-Yong"
-        - "El Primo"
-        - "Mico"
-        - "Stu"
-        - "Alli"
-        - "Shade"
-        - "Buzz"
-        - "Sam"
-      direction: "subject_favored"
+    - target: El_Primo_or_Mico_or_Stu_or_Alli_or_Shade_or_Buzz_or_Sam
+      direction: subject_favored
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Gale"
-        - "Sandy"
-        - "Willow"
-        - "Lou"
-        - "Lumi"
-        - "Emz"
-        - "Sirius"
-        - "Jessie"
-      direction: "target_favored"
+      mechanism: 恐惧/减速和敌方牵线能阻止近身或移动型目标完成第一波接触，队友再利用控制窗口补伤害
+      active_when: 目标从正面或固定入口进入，Glowy 保留 Super 或牵线位置
+      fails_when: 目标从侧草/墙后绕入，或 Glowy 的队友无法在恐惧期间击杀
+      bp_use: anti_aggro_support_response
+    - target: Jae-Yong
+      direction: subject_favored
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: Glowy 的持续牵线和治疗回补能把节奏支援对局拖成持续换血，削弱 Jae-yong 依赖节奏窗口的推进
+      active_when: 双方围绕热区/回合空间打正面交换，Glowy 的队友输出更稳定
+      fails_when: Jae-yong 让队友快速换线或绕开 Glowy 的牵线范围
+      bp_use: support_tempo_matchup
+    - target: Gale_or_Sandy_or_Willow_or_Lou_or_Lumi_or_Emz_or_Sirius_or_Jessie
+      direction: target_favored
+      source: "[[sources/PLP-Glowy|PLP-Glowy]]"
+      mechanism: 击退/隐蔽/墙控/冰冻/区域压制/召唤物会打断 Glowy 的牵线站位或让她的支援窗口无法转化
+      active_when: 地图有墙袋、草丛、热区入口或召唤物锚点保护这些资源
+      fails_when: 资源被清、视线打开，且 Glowy 能站在队友身后持续牵线
+      bp_use: must_answer_control_or_spawnable_before_glowy
+    - target: Flying_or_airborne_entry
+      direction: target_favored
+      source: "[[sources/Fandom-Glowy|Fandom-Glowy]]"
+      mechanism: 飞行目标会暂停牵线伤害或绕开正面恐惧，让 Glowy 的 anti-aggro 价值下降
+      active_when: 对方有跳跃/滞空进入并能落在 Glowy 或核心队友身边
+      fails_when: 落点被队友控制覆盖，或 Glowy 只负责治疗不是反跳核心
+      bp_use: anti_aggro_false_positive_filter
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: 不适合盲目先手；只有 Hot Zone/回合图明确需要支援 sustain，且敌方反支援资源不宽时才考虑。
+    slot_2_3: 可作为队伍站点或长线核心的放大器，但必须同步锁定一个真实输出/身体。
+    slot_4_5: 适合回答已暴露的正面突进或低爆发支援壳，注意不要给敌方最后手拿墙控/召唤物清牵线。
+    slot_6: 当敌方缺绕后、墙控和飞行进场时，Glowy 可以作为高质量保护与反突进 last pick。
 ```
 
 ## 关联页面

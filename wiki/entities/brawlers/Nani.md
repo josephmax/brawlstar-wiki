@@ -8,185 +8,193 @@
 
 ## 攻击特征
 
-- 主攻击一次发射 3 枚弹体
-- 弹体会在飞行过程中逐渐收拢
-- 适合在中远距离找角度命中
-- 对站位和预判要求高
+- 主攻击一次发射 3 枚弹体，飞行后逐渐收拢。
+- 极远端命中上限很高，但近中距离和移动目标会显著降低稳定性。
+- 对站位、预判和发射角度要求很高。
 
 ## 超级技能特征
 
-- Super 会遥控 `Peep`
-- Peep 可以远程穿行并在命中时爆炸、拆墙、击退
-- Nani 本体在 Super 期间会非常脆弱
-- Hypercharge 会放大 Peep 的体型与存在感
-
-## 适合场景
-
-- 开阔地图
-- 需要远程点杀的模式
-- 适合抓失误和打关键目标
-- 更适合有操作经验的玩家
+- Super 会遥控 `Peep`，可以远程爆炸、击退并破坏地形。
+- Nani 本体在操控 Peep 时非常脆弱。
+- `Autofocus` 能把远距离 Peep 转成更高爆发，适合打远程对位或固定目标。
 
 ## 角色定位总结
 
-Nani 是一个靠轨迹控制和手动 Super 追求高上限输出的技术型射手，强在爆发和操作奖励，但容错较低。
+Nani 是高上限远程爆发和远程 Peep 威慑英雄。她适合在开阔地图惩罚脆弱长手或用 Peep 改写墙体/血量局面，但非常怕贴脸、召唤物挡线和 Super 期间被切本体。
+
+## BP 建模资料
+
+```yaml
+bp_brawler_profile:
+  profile_status: bp_ready
+  source_quality:
+    fandom: direct_raw_capture_2026-06-30-v2
+    plp: direct_raw_capture_2026-06-30
+    user_notes: none
+
+  capability_vector:
+    effective_range: very_long_after_convergence
+    projectile_reliability: medium; 极远端收束命中很强，但中距离、机动目标和遮挡会降低稳定性
+    burst: very_high_if_full_convergence_or_Autofocus_Peep_hits
+    sustained_dps: medium_low; 更偏高爆发窗口而非持续扫线
+    objective_damage: high_conditional_in_heist_with_Peep_or_clean_lane
+    mobility: conditional_with_Warpin_Time
+    survivability: very_low_base_health; Tempered Steel 可保护操控 Peep 期间但不是常驻生存
+    engage: medium_with_Peep_pick_or_Warpin_Time
+    disengage: low_without_peep_teleport_or_teammate_cover
+    anti_aggro: conditional_with_Return_to_Sender_or_Peep_knockback
+    anti_tank: medium_if_full_burst_lands
+    wall_break: high_with_Peep
+    throw_or_wall_bypass: medium_high_with_Peep_remote_path
+    area_control: low_medium; 主要靠威慑和爆点，不是持续铺场
+    scouting_or_vision: medium_with_Peep_path_information
+    team_support: terrain_transform_and_pick_threat
+    terrain_destruction: high_with_Peep
+
+  build_switches:
+    - build: Warpin' Time / Autofocus / Shield + Damage
+      source: "[[sources/PLP-Nani|PLP-Nani]] / [[sources/Fandom-Nani|Fandom-Nani]]"
+      changes_capabilities:
+        - 把 Peep 从纯远程爆破变成可位移的进攻/收割路线
+        - Autofocus 强化长距离 Peep 命中后的秒杀和 Heist 爆发
+      enables:
+        - long_range_pick
+        - peep_wallbreak
+        - heist_peep_burst
+      mitigates_failure_modes:
+        - 缺少主动进场或收割路线
+      poor_when:
+        - 地图给敌方刺客直接碰到 Nani 本体，或 Peep 路线被召唤物/墙体资源吸收
+      bp_use: 默认高上限 build；需要确认 Nani 能安全开 Super
+    - build: Return to Sender / Tempered Steel defensive variant
+      source: "[[sources/Fandom-Nani|Fandom-Nani]]"
+      changes_capabilities:
+        - 提高狙击镜像或单发爆发对位中的容错
+        - 操控 Peep 期间更不容易被远程秒掉
+      enables:
+        - sniper_mirror_answer
+        - peep_control_under_fire
+      mitigates_failure_modes:
+        - Piper/Angelo/Mandy 等单发压制
+      poor_when:
+        - 需要 Warpin' Time 提供进攻位移或 Heist 转化
+      bp_use: 对方远程单发爆发过高时的 build requirement
+
+  map_feature_hooks:
+    - map_feature_type: open_lane_converged_burst
+      uses_feature_by: 在开阔长线用收束三弹和高爆发威慑长手
+      objective_conversion: Bounty/Knockout first pick、保星线、远程对位压制
+      active_when: Nani 可站极远端发射，敌方没有召唤物或墙体挡线
+      fails_if: 敌方有 Max/Leon/Carl 等机动切角，或墙体让三弹无法收束命中
+      example_maps:
+        - Shooting Star
+        - Dry Season
+        - Out in the Open
+        - New Horizons
+      bp_use: candidate_eval.high_burst_long_lane_marksman
+    - map_feature_type: peep_wallbreak_pick_or_retarget
+      uses_feature_by: Peep 远程绕路、破墙、击退并打残关键目标
+      objective_conversion: 打开 Bounty/Knockout 墙体，逼投掷/狙击离开口袋，或创造收割窗口
+      active_when: Nani 本体有安全角落，Peep 路线能接触关键墙或低血目标
+      fails_if: 本体被切、Peep 被召唤物/墙体骗掉，或破墙后敌方长线更强
+      example_maps:
+        - Belle's Rock
+        - Layer Cake
+        - Shooting Star
+        - Gem Fort
+      bp_use: terrain_state_plan.peep_transform_and_pick
+    - map_feature_type: heist_autofocus_peep_safe_pressure
+      uses_feature_by: 用远距离 Peep、收束普攻或 Warpin' Time 路线制造固定目标爆发
+      objective_conversion: Heist 金库爆发、迫使防守回头、或用破墙打开 safe angle
+      active_when: Nani 能安全攒 Super，且金库路线不被召唤物或近身 defender 低成本拦截
+      fails_if: 敌方 race 更快，或 Nani 操控 Peep 时被侧路突进击杀
+      example_maps:
+        - Bridge Too Far
+        - Kaboom Canyon
+        - Hot Potato
+        - Safe Zone
+      bp_use: candidate_eval.heist_peep_burst_with_body_risk
+
+  objective_contracts:
+    - mode: Bounty_or_Knockout
+      can_fulfill:
+        - extreme_range_burst
+        - peep_wallbreak_or_pick
+        - sniper_mirror_pressure
+      cannot_fulfill:
+        - stable_body_or_area_hold
+        - close_range_self_peel_without_resource
+      needs_teammate_support:
+        - anti_dive
+        - body_or_vision_to_protect_Super_cast
+      false_positive: Nani 的长线价值依赖命中窗口；机动和召唤物会显著降低稳定性
+    - mode: Heist
+      can_fulfill:
+        - peep_safe_burst
+        - remote_wallbreak
+        - long_lane_safe_pressure
+      cannot_fulfill:
+        - reliable_standing_safe_DPS_under_dive
+      needs_teammate_support:
+        - lane_body_or_defender_clear
+        - anti_assassin_cover
+      false_positive: Heist 适配来自 Peep/爆发窗口，不是持续站桩打库
+
+  failure_modes:
+    - id: super_body_vulnerable
+      active_when: Nani 操控 Peep 时敌方有 Leon/Max/Mortis/Chuck 等能直接碰本体
+      exposed_by: Fandom Super 机制与低生命值字段
+      mitigation: 只在安全角落开 Super，或配队友视野/peel
+      bp_use: must_avoid_or_needs_protection
+    - id: convergence_unreliable_into_mobility
+      active_when: 目标能横移、加速、dash 或在中距离打乱三弹收束
+      exposed_by: Fandom 攻击机制
+      mitigation: 选择开阔极远线、用队友 slow/control 固定目标
+      bp_use: false_positive_filter
+    - id: bodies_and_spawnables_absorb_shots
+      active_when: Mr. P、Pam、Pearl、Eve 等用召唤物/身体/分体挡住三弹或 Peep
+      exposed_by: PLP counteredBy
+      mitigation: 先清资源，或只在资源不在路线上时开 Peep
+      bp_use: must_answer_body_block_before_nani
+
+  conditional_matchup_seeds:
+    - target: Piper_or_Angelo_or_Belle_or_Mandy
+      direction: subject_favored
+      source: "[[sources/PLP-Nani|PLP-Nani]]"
+      mechanism: Nani 的极远收束爆发、Return to Sender 变体和 Peep 威慑能惩罚单发长狙站位
+      active_when: 地图开阔，Nani 能站极远端，目标没有召唤物/墙体保护
+      fails_when: 目标先取得安全角度，或 Nani 被 side pressure 迫使中距离出手
+      bp_use: sniper_mirror_response_seed
+    - target: Mortis_or_Fang_or_8-Bit_or_R-T
+      direction: subject_favored
+      source: "[[sources/PLP-Nani|PLP-Nani]]"
+      mechanism: 满额爆发或 Peep 可惩罚直线进场/低机动目标，但条件是先看到路线
+      active_when: 接近路线长而可预判，Nani 有 Super/Return to Sender 或队友 peel
+      fails_when: 目标从草墙贴脸，或 Nani 没有资源时被逼近
+      bp_use: conditional_anti_entry_or_low_mobility_pick
+    - target: Max_or_Leon_or_Carl_or_Eve
+      direction: target_favored
+      source: "[[sources/PLP-Nani|PLP-Nani]]"
+      mechanism: 速度、隐身、回旋镖压力或隔水/幼体资源会破坏 Nani 的收束命中和 Peep 安全窗口
+      active_when: 地图有侧路、水域、墙体或 dodge space，让目标选择 first contact
+      fails_when: 路线被队友视野锁住，或 Nani 保留 Peep/Return to Sender 等资源等真正进场
+      bp_use: avoid_without_vision_or_peel
+    - target: Pam_or_Mr_P_or_Pearl_or_Amber
+      direction: target_favored
+      source: "[[sources/PLP-Nani|PLP-Nani]]"
+      mechanism: 高血量、召唤物、持续火力或火区能吸收/压制 Nani 的单次爆发窗口
+      active_when: 目标能站在 objective 附近并让 Nani 的三弹或 Peep 打到非核心资源
+      fails_when: Nani 有清晰极远线，或队友先拆掉 summon/body 让 Peep 直达本体
+      bp_use: body_block_and_resource_warning
+
+  slot_notes:
+    slot_1: 只适合极开阔且反机动压力低的图；早手暴露后很容易被 Max/Leon/Mr. P 等功能回答。
+    slot_2_3: 可作为长线镜像或 Heist 爆发计划的一部分，但需要补保护本体的队友。
+    slot_4_5: 用于回答敌方脆弱长手或缺机动阵容，同时检查敌方 6 位是否能补切本体。
+    slot_6: 敌方三人缺召唤物、缺机动、缺隔墙压制时，Nani 是高上限惩罚位。
+```
 
 ## 关联页面
 
 - [[sources/Fandom-Nani|Fandom 来源摘要: Nani]]
-
-## BP 建模草案
-
-```yaml
-bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
-  source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
-
-  capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=8.67 (Long)<br>11.67 (after convergence)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.8 seconds (Normal)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=2500; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "present_from_fandom_text"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "present_from_fandom_text"
-
-  build_switches:
-    - build: "Warpin Time / Autofocus / Shield, Damage"
-      source: "[[sources/PLP-Nani|PLP-Nani]]"
-      changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
-      enables:
-        - "mode_candidate:Heist"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
-      mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
-
-  map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "wall_break_transform"
-      uses_feature_by: "terrain destruction text present in Fandom raw"
-      objective_conversion: "can create or deny lanes only if our comp benefits after transform"
-      active_when: "key wall blocks objective route or protects enemy pocket"
-      fails_if: "opening wall benefits enemy range/engage more than ours"
-      example_maps: []
-      bp_use: "terrain_state_plan_candidate"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
-
-  objective_contracts:
-    - mode: "Heist"
-      can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
-      can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Knockout"
-      can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-
-  failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "terrain_transform_backfires"
-      active_when: "opened lane improves enemy range or engage more than ours"
-      exposed_by: "terrain destruction candidate"
-      mitigation: "define exact wall and follow-up before pick"
-      bp_use: "terrain_state_plan_check"
-
-  conditional_matchup_seeds:
-    - target:
-        - "Piper"
-        - "Mortis"
-        - "Angelo"
-        - "Belle"
-        - "Fang"
-        - "Mandy"
-        - "R-T"
-        - "8-Bit"
-      direction: "subject_favored"
-      source: "[[sources/PLP-Nani|PLP-Nani]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Pam"
-        - "Max"
-        - "Mr. P"
-        - "Eve"
-        - "Leon"
-        - "Carl"
-        - "Pearl"
-        - "Amber"
-      direction: "target_favored"
-      source: "[[sources/PLP-Nani|PLP-Nani]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
-
-  slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
-```
+- [[sources/PLP-Nani|PLP 来源摘要: Nani]]

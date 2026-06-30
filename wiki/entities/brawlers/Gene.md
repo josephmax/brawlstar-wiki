@@ -45,7 +45,7 @@ Gene 是中距离控制核心，最强之处不是单纯输出，而是用拉人
 
 ```yaml
 bp_brawler_profile:
-  profile_status: reviewed
+  profile_status: bp_ready
   source_quality:
     fandom: direct_raw_capture_2026-06-30-v2
     plp: direct_raw_capture_2026-06-29
@@ -98,7 +98,7 @@ bp_brawler_profile:
       bp_use: 敌方已暴露突进威胁时的 build requirement
 
   map_feature_hooks:
-    - map_feature_type: long_sightline
+    - map_feature_type: long_lane_chip_pull_vision
       uses_feature_by: 分裂弹远距消耗、Vision Gear 探草、Magic Hand 威慑关键站位
       objective_conversion: Bounty/Knockout 抓高价值目标，Gem Grab 抓 gem carrier 或保护中线
       active_when: 队友能接伤害，地图允许 Gene 安全蓄 Super
@@ -108,7 +108,7 @@ bp_brawler_profile:
         - Out in the Open
         - Hideout
       bp_use: pickoff_control_and_vision_support
-    - map_feature_type: thrower_pocket_or_wall_cover
+    - map_feature_type: wall_pocket_magic_hand_pick
       uses_feature_by: Magic Hand 穿墙拉出躲墙目标
       objective_conversion: 把投掷/控场位从安全口袋转成可击杀目标
       active_when: 拉中后队友能立刻集火
@@ -116,7 +116,18 @@ bp_brawler_profile:
       example_maps:
         - Belle's Rock
         - Layer Cake
+        - Gem Fort
       bp_use: must_answer_thrower_pocket_candidate
+    - map_feature_type: gem_carrier_countdown_pull
+      uses_feature_by: 分裂弹和 Vision Gear 找到 carrier 退路线，Magic Hand 抓宝石位或保护者
+      objective_conversion: 打断倒计时、迫使掉宝、或让己方重新进入宝石矿
+      active_when: 敌方 carrier 需要经过中心入口、侧草或墙边撤退，队友可立刻补伤害
+      fails_if: carrier 有召唤物/坦克身体挡手，或拉中后己方没有爆发完成击杀
+      example_maps:
+        - Gem Fort
+        - Hard Rock Mine
+        - Double Swoosh
+      bp_use: map_bp_factors.carrier_pull_and_countdown_break
 
   objective_contracts:
     - mode: Bounty_or_Knockout
@@ -172,13 +183,20 @@ bp_brawler_profile:
       bp_use: build_requirement_or_avoid
 
   conditional_matchup_seeds:
-    - target: Fang_or_Buzz
+    - target: Fang_or_Buzz_or_Carl
       direction: subject_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: Gene 可用拉人、推开或队友集火打断进场节奏
       active_when: Gene 有队友 follow-up，敌方进场路径可预判
       fails_when: 目标能绕侧路贴脸，或 Gene 没有 Lamp Blowout/保护
       bp_use: response_pick_seed_against_linear_engage
+    - target: Barley_or_Sprout_or_Squeak_or_Rico
+      direction: subject_favored
+      source: "[[sources/PLP-Gene|PLP-Gene]]"
+      mechanism: Magic Hand 穿墙威胁会把墙后控场/弹墙位从安全口袋拉成可集火目标
+      active_when: 地图墙体给 Gene 拉手机会，且己方有爆发或控制接拉
+      fails_when: 目标有召唤物挡手、口袋过深、或 Gene 被长线压到无法攒 Super
+      bp_use: wall_pocket_answer_seed
     - target: Piper_or_Mandy_or_Brock
       direction: target_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
@@ -186,6 +204,13 @@ bp_brawler_profile:
       active_when: 地图长线开阔，Gene 缺掩体和队友压制
       fails_when: Gene 可借墙体、视野或队友压力安全攒 Super
       bp_use: avoid_first_pick_on_pure_long_range_maps
+    - target: Mico_or_Stu_or_Eve_or_Mr_P
+      direction: target_favored
+      source: "[[sources/PLP-Gene|PLP-Gene]]"
+      mechanism: 跳跃/机动/水域角度或 porter 身体会让 Gene 的慢弹道和单次拉手更难稳定命中核心目标
+      active_when: 地图给目标侧路、跳墙、隔水或召唤物挡手，Gene 无法用队友先清资源
+      fails_when: 路线被视野锁住，或 Gene 保留 Lamp Blowout / Magic Hand 等关键资源等真正进场
+      bp_use: must_answer_mobility_or_body_block_before_gene
 
   slot_notes:
     slot_1: 不宜在纯长线且敌方有多个自然长狙答案时裸先；可在 Bounty/Knockout 需要控制和支援时作为可延展先手。

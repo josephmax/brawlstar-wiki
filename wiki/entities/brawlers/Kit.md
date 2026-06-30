@@ -4,7 +4,7 @@
 
 - 稀有度：Legendary
 - 定位：Support
-- 类型：待复核；当前仅由 Fandom 定位和 PLP 竞技信号初始化
+- 类型：自动充能跳跃 / 附身治疗 / 隐身单抓
 
 ## 来源摘要
 
@@ -14,152 +14,211 @@
 
 ## 角色定位总结
 
-本页是从 2026-06-30 抓取件初始化的英雄实体页。当前只保存稳定来源链接和 BP 草案；所有模式适配、对位和顺位判断仍需通过地图因素与条件化对位模型复核。
+Kit 是双态支援/刺杀英雄。常态短手、非常快装填，Super 自动充能；跳到敌人身上会短暂 stun 并持续低伤害，但 Kit 自己不能移动/攻击，适合孤立目标而不是跳进三人堆。跳到队友身上则进入附身形态，Kit 免疫伤害、治疗双方，并用远程越墙 yarn balls 输出；`Overly Attached` 把附身时间从 8 秒延长到 13 秒。BP 中 Kit 的关键问题是“有没有可靠载体/孤立目标”，而不是单独看跳跃距离。
 
-## BP 建模草案
+## BP 建模资料
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    fandom: "[[sources/Fandom-Kit|Fandom-Kit]]"
+    plp: "[[sources/PLP-Kit|PLP-Kit]]"
+    user_notes: none
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=3.67 (Short)<br> 7.33 (attached; Long)<br>10 (attached; with Hypercharge)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=0.8 seconds (Very Fast)<br>2 seconds (attached; Slow)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=3100; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "not_observed_in_selected_raw"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "not_observed_in_selected_raw"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: short_alone_long_thrower_when_attached
+    projectile_reliability: high_short_claw; medium_attached_yarn_balls_with_delay
+    burst: medium_on_isolated_enemy_jump; high_with_attached_yarn_followup
+    sustained_dps: low_medium_alone; conditional_high_with_good_teammate_carrier
+    objective_damage: low; objective value comes from sustain, pick, and route pressure
+    mobility: high_with_super_jump_and_detach_dash
+    survivability: low_alone_3100_hp; invulnerable_while_attached_to_ally
+    engage: high_on_isolated_enemy_or_ally_carrier
+    disengage: medium_with_super_detach_or_cardboard_box
+    anti_aggro: conditional_with_jump_stun_or_tank_attach
+    anti_tank: low_alone; high_support_if_attached_to_tank_with_Cheeseburger_variant
+    wall_break: none
+    throw_or_wall_bypass: high_when_attached_yarn_balls_over_obstacles
+    area_control: medium_when_attached
+    scouting_or_vision: medium_with_Cardboard_Box_stealth_route
+    team_support: very_high_attached_heal_and_Cheeseburger_variant
+    spawnable_or_pet: none
+    crowd_control: enemy_super_stun
+    terrain_destruction: none
 
   build_switches:
     - build: "Cardboard Box / Overly Attached / Shield, Damage"
       source: "[[sources/PLP-Kit|PLP-Kit]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Cardboard Box 给 3 秒隐身并在静止时加速自动 Super 充能，适合单抓或回合前储 Super"
+        - "Overly Attached 延长附身队友时间，提升治疗和越墙 yarn ball 输出窗口"
+        - "Shield/Damage 弥补常态低血和单抓斩杀线"
       enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Knockout"
+        - "Gem Grab carrier sustain"
+        - "Knockout isolated pick"
+        - "stealth route setup"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "low_base_health_when_alone"
+        - "super_cycle_wait_time"
+      best_when: "队伍有可靠载体或敌方有孤立长手/投掷目标"
+      poor_when: "敌方有强群控、反跳、沉默、茧、拉人或坦克爆发等资源等 Kit 落点"
+      bp_use: default_stealth_attach_build
+    - build: "Cheeseburger tank-attach variant"
+      source: "[[sources/Fandom-Kit|Fandom-Kit]] / [[sources/PLP-Kit|PLP-Kit]]"
+      changes_capabilities:
+        - "Cheeseburger 只能在附身形态使用，为 Kit 和载体立刻治疗 30% 最大生命"
+        - "PLP notes 标注有坦克队友时可考虑 Gadget 2"
+      enables:
+        - "tank_push_sustain"
+        - "Brawl Ball_or_zone_body_support"
+      mitigates_failure_modes:
+        - "carrier_focus_fire"
+      best_when: "队友有 Draco、Frank、Hank、El Primo、Bull、Darryl 等高血载体并能转化推进"
+      poor_when: "队伍没有载体或敌方有反坦/沉默/击退能直接拆推进"
+      bp_use: teammate_dependent_sustain_variant
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - map_feature_type: gem_attach_carrier_sustain_or_pick
+      uses_feature_by: "附身队友持续按最大生命治疗，同时用 yarn balls 越墙压矿区或追击 carrier"
+      route_or_position: "gem mine、center fort doorway、carrier countdown retreat、side grass chase"
+      objective_conversion: "保护己方 carrier、逼敌方 carrier 退线、或用隐身/Super 单抓孤立目标"
+      active_when: "己方有可承载 Kit 的 carrier/body，或敌方 carrier 缺队友保护"
+      fails_if: "Kit 被要求自己长期带宝石，或敌方控制保留给载体"
+      example_maps:
+        - Hard Rock Mine
+        - Gem Fort
+        - Double Swoosh
+      bp_use: map_bp_factors.carrier_sustain_or_isolated_pick
+    - map_feature_type: knockout_cardboard_box_isolated_pick_or_attach_trade
+      uses_feature_by: "Cardboard Box 加速 Super 并提供隐身接近，附身队友可在回合里提供长时间治疗和越墙火力"
+      route_or_position: "wall edge、side grass、late-round choke、low-health retreat"
+      objective_conversion: "抓孤立长手/投掷，或附身队友把 HP lead 转成回合优势"
+      active_when: "目标孤立，敌方缺 Gale/Charlie/Cordelius 等硬反制，Kit 能安全充到 Super"
+      fails_if: "目标身边有队友，Kit 跳上后无法移动/攻击并被集火"
+      example_maps:
+        - Belle's Rock
+        - New Horizons
+        - Layer Cake
+        - Shooting Star
+      bp_use: slot_task.round_isolated_pick_or_sustain
+    - map_feature_type: tank_attach_push_support
+      uses_feature_by: "Kit 附身高血队友后治疗并越墙输出，Cheeseburger 可补一波大治疗"
+      route_or_position: "goal route、zone entrance、safe entry、midfield body push"
+      objective_conversion: "让坦克/身体推进更久，给进球、站区或金库入口制造持续压力"
+      active_when: "队伍有真实载体且载体路线能转化目标，敌方反坦资源已被处理"
+      fails_if: "Poco/反坦/控制壳比 Kit sustain 更稳定，或载体进场后被沉默/击退/茧隔离"
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Ring of Fire
+        - Open Business
+      bp_use: candidate_eval.teammate_carrier_sustain_not_solo_pick
+    - map_feature_type: stealth_route_backline_punish
+      uses_feature_by: "Cardboard Box 隐身和自动 Super 让 Kit 可从草/墙边接近脆弱后排"
+      route_or_position: "side bush、thrower pocket edge、long-lane flank、carrier retreat"
+      objective_conversion: "逼出后排资源、击杀孤立目标或让敌方阵型回撤"
+      active_when: "地图有侧路，目标缺近身保镖，Kit 的 Super 不会被目标移动 Super 取消"
+      fails_if: "目标留有位移 Super、无敌盾或控制，或队友距离太近保护被跳目标"
+      example_maps:
+        - Double Swoosh
+        - Center Stage
+        - Sneaky Fields
+        - Belle's Rock
+      bp_use: slot_task.stealth_backline_punish_with_cancel_check
 
   objective_contracts:
     - mode: "Gem Grab"
       can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
+        - "carrier_sustain"
+        - "isolated_carrier_pick"
+        - "attached_wall_pressure"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "primary_carrier_when_alone"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "carrier_or_tank_body"
+        - "anti_control_on_attach_target"
+      false_positive: "Kit 强在附身保护 carrier，不是自己低血拿宝石站中路"
     - mode: "Knockout"
       can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "isolated_target_stun"
+        - "round_sustain_on_teammate"
+        - "attached_yarn_over_wall"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "jump_into_grouped_team"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "focus_fire_after_stun"
+        - "safe_carrier_for_attach"
+      false_positive: "跳到敌方身上时 Kit 不能移动/攻击；如果目标旁边有人会被反打"
+    - mode: "Brawl Ball_or_Hot Zone"
+      can_fulfill:
+        - "tank_push_sustain"
+        - "ball_or_zone_body_healing"
+        - "enemy_carrier_stun_if_isolated"
+      cannot_fulfill:
+        - "primary_scorer_or_zone_body_alone"
+      needs_teammate_support:
+        - "tank_or_scorer_carrier"
+        - "anti_knockback_or_anti_control"
+      false_positive: "该分支高度依赖队友载体，PLP 默认模式并不把它列为主推荐"
 
   failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
+    - id: jump_on_grouped_enemy
+      active_when: "Kit 跳到敌人身上但目标附近有队友，Kit 1.5 秒不能移动/攻击"
+      exposed_by: "[[sources/Fandom-Kit|Fandom-Kit]] Super tips"
+      mitigation: "只跳孤立目标、低血目标或有队友立即跟伤的目标"
+      bp_use: target_selection_gate
+    - id: moving_super_cancel_or_pull_along
+      active_when: "Kit 跳到正在使用位移 Super 的 Buzz、Fang、Chuck、Berry、Darryl、Bull 等目标"
+      exposed_by: "[[sources/Fandom-Kit|Fandom-Kit]] Super cancellation warning"
+      mitigation: "记录目标位移资源，等其交出后再跳"
+      bp_use: resource_tracking.enemy_super_state
+    - id: no_teammate_carrier
+      active_when: "队伍没有高血/安全载体，Kit 的 Overly Attached 和 Cheeseburger 无法转化目标"
+      exposed_by: "[[sources/Fandom-Kit|Fandom-Kit]] tank synergy tips and PLP notes"
+      mitigation: "只在已有 carrier/body 或后手确认孤立目标时选"
+      bp_use: team_comp_hard_gate
+    - id: hard_control_answers_attach_or_jump
+      active_when: "Lou、Cordelius、Charlie、Tara、Gale、Frank 等保留控制处理 Kit 或载体"
+      exposed_by: "[[sources/PLP-Kit|PLP-Kit]] counteredBy list"
+      mitigation: "先逼出控制，或让 Kit 附身目标避开控制入口"
+      bp_use: must_answer_control_before_kit
 
   conditional_matchup_seeds:
-    - target:
-        - "Colt"
-        - "Brock"
-        - "Dynamike"
-        - "Belle"
-        - "Grom"
-        - "Squeak"
-        - "Mr. P"
-        - "Angelo"
-      direction: "subject_favored"
+    - target: Colt_or_Brock_or_Dynamike_or_Belle_or_Grom_or_Squeak_or_Mr_P_or_Angelo
+      direction: subject_favored
       source: "[[sources/PLP-Kit|PLP-Kit]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Lou"
-        - "Cordelius"
-        - "Charlie"
-        - "Bull"
-        - "Tara"
-        - "Chester"
-        - "Gale"
-        - "Frank"
-      direction: "target_favored"
+      mechanism: "Cardboard Box 隐身、自动充能 Super 和跳跃 stun 可以惩罚孤立长手/投掷/资源位"
+      active_when: "目标缺队友保护，Kit 有 Super 或即将充好，并能从草/墙路接近"
+      fails_when: "目标抱团、保留位移/控制，或开阔长线在 Kit 接近前压低他"
+      bp_use: isolated_backline_punish
+    - target: Lou_or_Cordelius_or_Charlie_or_Bull_or_Tara_or_Chester_or_Gale_or_Frank
+      direction: target_favored
       source: "[[sources/PLP-Kit|PLP-Kit]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "控制、领域、茧、击退、爆发和高身体能阻止 Kit 跳入或拆掉其附身载体"
+      active_when: "这些资源能保存给 Kit 或他的载体路线"
+      fails_when: "资源已被逼出，Kit 只附安全队友远程输出"
+      bp_use: must_answer_control_or_body_before_kit
+    - target: Tank_teammate
+      direction: subject_favored
+      source: "[[sources/Fandom-Kit|Fandom-Kit]] / [[sources/PLP-Kit|PLP-Kit]]"
+      mechanism: "附身高血队友提供持续百分比治疗、免疫本体伤害和越墙 yarn ball 输出"
+      active_when: "队友路线可转化进球、站区、carrier 保护或回合推进"
+      fails_when: "敌方反坦/控制直接阻断载体，或 Kit 需要自己创造目标"
+      bp_use: teammate_synergy_edge
+    - target: Poco_sustain_shell
+      direction: target_favored
+      source: "[[sources/PLP-Kit|PLP-Kit]]"
+      mechanism: "PLP avoid 标注 Poco，说明对面群体 sustain 可能降低 Kit 单抓/附身交易的击杀收益"
+      active_when: "Poco 队友能抱团、回血并保护 Kit 想跳的目标"
+      fails_when: "Kit 只打孤立后排或附身高压载体绕开 Poco 治疗核心"
+      bp_use: avoid_into_group_sustain_without_burst
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "不适合盲先手，除非己方已锁定强载体或地图/模式明确奖励附身 sustain。"
+    slot_2_3: "可与坦克、carrier 或强回合队友形成计划，但需要避免对方后手拿硬控。"
+    slot_4_5: "看到敌方孤立长手/投掷且缺保护时可作为惩罚 pick，同时检查目标位移 Super。"
+    slot_6: "最适合最后手确认敌方缺控制、缺抱团保护后，用隐身/跳跃或附身队友打高上限。"
 ```
 
 ## 关联页面

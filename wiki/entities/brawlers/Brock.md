@@ -33,7 +33,7 @@ Brock 是远程炮击和拆墙开图的代表英雄。和 `Colt` 相比，他更
 
 ```yaml
 bp_brawler_profile:
-  profile_status: reviewed
+  profile_status: bp_ready
   source_quality:
     fandom: direct_raw_capture_2026-06-30-v2
     plp: direct_raw_capture_2026-06-29
@@ -89,26 +89,38 @@ bp_brawler_profile:
       bp_use: 地图状态需要主动改图时的 build requirement
 
   map_feature_hooks:
-    - map_feature_type: long_sightline
-      uses_feature_by: 远程火箭压线、低承诺消耗和安全目标输出
-      objective_conversion: Bounty/Knockout 减员压力；Heist 远程打库
-      active_when: 视线长、接近路径单一、敌方缺高机动突脸
-      fails_if: 敌方有多条接近路线、草丛伏击、或高机动持续压近
+    - map_feature_type: heist_remote_safe_angle
+      uses_feature_by: 长射程火箭从隔水/长直线安全角度压线和打库
+      objective_conversion: Heist 远程 safe DPS、迫使敌方回防或让队友赢另一侧
+      active_when: 视线长、接近路径单一、Brock 不需要越过危险地形就能碰到金库
+      fails_if: 敌方有侧草突进、多路线夹击、或我方缺少反突进保护
       example_maps:
-        - Shooting Star
-        - Out in the Open
         - Bridge Too Far
-      bp_use: required_capabilities.long_range_pressure
-    - map_feature_type: wall_break_transform
-      uses_feature_by: Super 或 Rocket Fuel 破关键墙
-      objective_conversion: 打开金库角度、球门通路或反投掷角度
+        - Safe Zone
+        - Kaboom Canyon
+        - Hot Potato
+      bp_use: required_capabilities.heist_remote_safe_damage
+    - map_feature_type: selective_wall_break_transform
+      uses_feature_by: Super 或 Rocket Fuel 破关键墙，把墙体保护转成远程对枪图
+      objective_conversion: 打开反投掷角度、剥夺 Bounty/Knockout 掩体、扩大长线领先
       active_when: 我方阵容能利用开墙后的长线
       fails_if: 过度开墙反而帮助敌方射程或突进
       example_maps:
-        - Safe Zone
         - Shooting Star
-        - Brawl Ball goal_wall_maps
+        - Belle's Rock
+        - Layer Cake
+        - Gem Fort
       bp_use: terrain_state_plan.transform
+    - map_feature_type: brawl_ball_goal_wallbreak_and_defender_zone
+      uses_feature_by: Rocket Fuel 或 Super 打开球门/防守墙，并用溅射和火焰逼退门前防守
+      objective_conversion: 把一次线权或击杀转成射门窗口
+      active_when: 队友有 scorer / tank pressure / pass route 可以立刻吃到破门收益
+      fails_if: 我方没有得分手，或开墙后敌方远程/突进更容易反打
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Triple Dribble
+      bp_use: slot_task.goal_wallbreak_window_with_followup
 
   objective_contracts:
     - mode: Heist
@@ -159,20 +171,34 @@ bp_brawler_profile:
       bp_use: terrain_state_plan_check
 
   conditional_matchup_seeds:
-    - target: 8-Bit_or_Pam_or_Nita
+    - target: 8-Bit_or_Pam_or_Nita_or_Hank
       direction: subject_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: 长射程与溅射惩罚低机动或站位笨重目标
       active_when: 开阔长线、对方缺接近压力、Brock 可保持距离
       fails_when: 敌方有硬开或 Brock 被迫中距离对枪
       bp_use: response_pick_or_lane_pressure_seed
-    - target: Stu_or_Max_or_Mortis
+    - target: Emz_or_Spike_or_Mr_P_or_Shelly
+      direction: subject_favored
+      source: "[[sources/PLP-Brock|PLP-Brock]]"
+      mechanism: Brock 可用长射程、溅射和开墙惩罚依赖中距离、墙体、召唤物或固定防守位置的目标
+      active_when: 地图允许 Brock 先开距离或先改图，目标必须守矿/球门/金库路线
+      fails_when: 草丛、墙角或目标队友让 Brock 被迫进入中近距离
+      bp_use: map_conditioned_response_not_unconditional_counter
+    - target: Stu_or_Max_or_Leon_or_Mortis_or_Edgar
       direction: target_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: 高机动缩短距离，惩罚 Brock 慢弹道和低血量
       active_when: 地图给出侧路、草丛或多接近路线
       fails_when: 地图长线开阔且 Brock 有队友 peel
       bp_use: must_avoid_or_ban_reason_if_plan_depends_on_Brock
+    - target: Crow_or_Cordelius_or_Bibi
+      direction: target_favored
+      source: "[[sources/PLP-Brock|PLP-Brock]]"
+      mechanism: 毒、领域隔离、加速身体或击退接触会破坏 Brock 的安全距离和慢装填节奏
+      active_when: Brock 需要独立守路，且敌方有草/墙/侧路让这些目标选择 first contact
+      fails_when: 地图像 Bridge Too Far 这类长直线隔离路，接近路线过于明确且 Brock 有 Rocket Laces
+      bp_use: false_positive_filter_for_named_counter_edges
 
   slot_notes:
     slot_1: 只在地图/模式基本面很强且敌方低成本反制面窄时可先手；Heist 长线图优先级更高。

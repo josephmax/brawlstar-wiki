@@ -4,195 +4,231 @@
 
 - 稀有度：Mythic
 - 定位：Damage Dealer
-- 来源：神话输出英雄
+- 类型：水域路线 / 超远程压线 / hatchling 召唤物骚扰
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是三枚不同大小的蛋
-- 不同蛋命中时的伤害不同
-- 射程很长，适合远距离压制
-
-## 超级技能特征
-
-- Super 会放下巢蛋
-- 巢蛋会孵化出幼崽
-- 幼崽会追击敌人并持续施压
-
-## 适合场景
-
-- 需要持续压线的模式
-- 有水域、地形分割或绕行空间的地图
-- 敌方容易被幼崽和远程火力双重打乱的局面
+- Fandom：[[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
+- PLP：[[sources/PLP-Eve|PLP 来源摘要: Eve]]
+- PLP 推荐模式候选：Heist, Bounty, Knockout
 
 ## 角色定位总结
 
-Eve 是“超远压线 + 幼崽骚扰”的控场输出英雄，擅长把对手逼离理想站位，再靠召唤物持续补压力。
+Eve 的核心价值是“水域或障碍让她拥有别人没有的站位，同时用超远程普攻和 hatchling 迫使敌方交弹药/让位”。她不是普通投掷，也不是所有水图自动强；如果水域不能提供有效输出角度、逃生路线或目标压力，她只是一个低血量、慢 unload、怕突进的远程输出。
 
 ## 与其他英雄的区别
 
-- 不同于 `Nita`：Nita 更偏召唤物贴身压制，Eve 更偏远程孵化和空间骚扰
-- 不同于 `Jessie`：Jessie 更偏炮台与弹射，Eve 更偏持续孵化
-- 不同于 `Sprout`：Sprout 更偏地形墙与封路，Eve 更偏长期站位压迫
+- 不同于 `Angelo`：Eve 的水域价值更依赖持续站位和 hatchling 压力，而不是单发蓄力爆发。
+- 不同于 `Mr. P`：Eve 的召唤物来自巢蛋与 Star Power 触发，压制节奏更依赖放置距离和敌方清召唤物效率。
+- 不同于 `Piper` / `Mandy`：Eve 的长线收益会被水域路线和召唤物放大，但正面对枪爆发和命中稳定性不等同于纯狙。
 
-## 关联页面
-
-- [[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
-- [[entities/brawlers/Nita|Nita]]
-- [[entities/brawlers/Jessie|Jessie]]
-- [[entities/brawlers/Sprout|Sprout]]
-
-## BP 建模草案
+## BP 建模
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    fandom: "[[sources/Fandom-Eve|Fandom-Eve]] direct_raw_capture_2026-06-30-v2"
+    plp: "[[sources/PLP-Eve|PLP-Eve]] direct_raw_capture_2026-06-30"
+    user_notes: "本地 BP 规则要求水域能力必须绑定路线、目标收益和失效条件"
 
   capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=9.33 (Very Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.6 seconds (Normal) <br> 1.36 seconds (with Reload Gear)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=3100; low_health_failure_check; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "not_observed_in_selected_raw"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "not_observed_in_selected_raw"
+    effective_range: "very_long; 9.33 格普攻，适合长线消耗和隔水压制"
+    projectile_reliability: "中等；三枚蛋有顺序和大小差异，Unnatural Order 提高第一发大蛋即时命中价值"
+    burst: "中低；非贴脸爆发英雄，主要靠持续消耗和 hatchling 补压力"
+    sustained_dps: "中等；Reload gear 可提高长线持续输出"
+    objective_damage: "条件性；Heist 更偏低承诺压线和 hatchling 牵制，不是顶级 safe melt"
+    mobility: "Trait 可在水上移动；Gotta Go 可跳墙/跳水域边缘并留下 hatchling"
+    survivability: "低血量；水域可让短手无法触达，但怕远程、召唤物清理和强突进"
+    engage: "弱直接 engage；通过水域站位和 hatchling 逼走位"
+    disengage: "中等；水域站位和 Gotta Go 提供逃离角度"
+    anti_aggro: "条件性强；大水域让普通短手无法接近，但没有水或被远程压制时很脆"
+    anti_tank: "弱到中；可以用距离和 hatchling 消耗，但慢 unload 怕贴脸高爆发"
+    wall_break: "无"
+    throw_or_wall_bypass: "Super 可越过障碍放巢蛋；Gotta Go 可跳过墙"
+    area_control: "中等；巢蛋和 hatchling 逼迫敌方清理或走位"
+    scouting_or_vision: "hatchling 可间接探草/探位，但不是稳定 reveal"
+    team_support: "Motherly Love 可把 hatchling 转为治疗，属于小范围条件支援"
+    spawnable_or_pet: "强；Super、Happy Surprise、Hypercharge 都能制造 hatchling 压力"
+    crowd_control: "无硬控；控制来自召唤物追击和站位压缩"
+    terrain_creation: "无"
+    terrain_destruction: "无"
 
   build_switches:
-    - build: "Gotta Go / Unnatural Order / Quadruplets, Reload"
-      source: "[[sources/PLP-Eve|PLP-Eve]]"
+    - build: "Gotta Go / Unnatural Order / Quadruplets + Reload"
+      source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - "Gotta Go 提供保命跳跃和额外 hatchling，可在水域/墙边重置距离"
+        - "Unnatural Order 让最大蛋先出，提高即时远程消耗和开枪威慑"
+        - "Quadruplets 增加 Super hatchling 数量，Reload 提高长线持续压制"
       enables:
-        - "mode_candidate:Heist"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
+        - "水域图隔水站位"
+        - "Heist/Bounty/Knockout 低承诺消耗"
+        - "对单体远程制造 hatchling 清理税"
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - "partially_mitigates_slow_unload"
+        - "partially_mitigates_dive_through_reposition"
+      best_when: "地图水域提供有效输出角度，敌方缺快速清 hatchling 或缺能跨水/强突进的答案"
+      poor_when: "水域不影响主战场、敌方有 Penny/Sandy/Rosa/Bibi/Chuck 等能清召唤物或强进场的结构"
+      bp_use: "水域长线先手、Heist/Bounty/Knockout 条件核心、anti-short-range route denial"
+    - build: "Motherly Love / Happy Surprise"
+      source: "[[sources/Fandom-Eve|Fandom-Eve]]"
+      changes_capabilities:
+        - "Motherly Love 把下一次 Super hatchling 改为治疗，服务站位续航"
+        - "Happy Surprise 对单体远程增加额外 hatchling 清理税"
+      enables:
+        - "保护长线队友或热区/淘汰阵地"
+      mitigates_failure_modes:
+        - "partially_mitigates_low_team_sustain"
+      best_when: "敌方缺 AoE 清理，且我方需要巢蛋提供队伍续航或持续骚扰"
+      poor_when: "敌方能快速摧毁巢蛋或用范围伤害免费清 hatchling"
+      bp_use: "build branch；不是默认竞技推荐，但可解释特定阵容的支援价值"
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - id: "water_crossing_with_range"
+      map_feature_type: "river_crossing"
+      example_maps:
+        - "[[entities/maps/Safe Zone|Safe Zone]]"
+        - "[[entities/maps/Safe(r) Zone|Safe(r) Zone]]"
+        - "[[entities/maps/New Horizons|New Horizons]]"
+      route_or_position: "站在水域或跨水绕到普通英雄无法站住的位置，用 9.33 格射程继续压线"
+      objective_conversion: "Safe Zone / Safe(r) Zone 可绕过普通路线限制并形成远程打库或防守角度；New Horizons 可从角落水域制造非正面压力"
+      active_when: "水域位置能影响金库、长线对枪或 Knockout 空间，且敌方不能同样跨水追击"
+      fails_if: "水域只在边角且不能影响主战场，或敌方有更强远程/跨水/突进答案"
+      bp_use: "map_factor_fit；同时触发 false_positive_filter，不能把 water_crossing 单独加分"
+    - id: "long_range_hatchling_tax"
+      map_feature_type: "long_sightline_plus_spawnable"
+      example_maps:
+        - "[[entities/maps/Shooting Star|Shooting Star]]"
+        - "[[entities/maps/Dry Season|Dry Season]]"
+        - "[[entities/maps/Flaring Phoenix|Flaring Phoenix]]"
+      route_or_position: "长线低承诺消耗，巢蛋放在敌方必须清理但不容易无损处理的位置"
+      objective_conversion: "Bounty/Knockout 中迫使敌方交弹药清 hatchling，从而降低其换血或进场节奏"
+      active_when: "敌方是单体远程、清召唤物效率低、且 Eve 能保持距离"
+      fails_if: "敌方有 Penny/Sandy/Rosa/Lumi 等范围清理，或能直接突破 Eve 慢 unload"
+      bp_use: "回答纯长线和单体狙；也可作为 ban/pick 的召唤物税判断"
+    - id: "safe_zone_remote_and_water_angle"
+      map_feature_type: "objective_access"
+      example_maps:
+        - "[[entities/maps/Safe Zone|Safe Zone]]"
+        - "[[entities/maps/Safe(r) Zone|Safe(r) Zone]]"
+        - "[[entities/maps/Bridge Too Far|Bridge Too Far]]"
+      route_or_position: "利用水域/长线绕开普通步行路线，保持远程压力而不是贴脸进库"
+      objective_conversion: "Heist 中提供低承诺路线权和召唤物牵制，帮助队友争取 safe DPS 时间"
+      active_when: "长线或跨水站位能持续影响金库路线，队友有真正 safe damage"
+      fails_if: "需要 Eve 独自承担主要 safe melt，或三路隔离导致她无法支援崩线队友"
+      bp_use: "Heist 条件适配；需要队友补 sustained safe DPS"
+    - id: "anti_short_range_lake_anchor"
+      map_feature_type: "short_range_denial"
+      example_maps:
+        - "[[entities/maps/Safe Zone|Safe Zone]]"
+        - "[[entities/maps/New Horizons|New Horizons]]"
+        - "[[entities/maps/Flaring Phoenix|Flaring Phoenix]]"
+      route_or_position: "站在足够大的水域或水域边缘，让 Edgar/Mortis/El Primo/Mico 类普通短手无法直接触达"
+      objective_conversion: "把敌方进场路线变成绕路或交位移，从而保护长线站位"
+      active_when: "水域足够大且 Eve 不需要离开水域去拿目标"
+      fails_if: "敌方有跳跃/钩子/隐身/长线 burst，或目标逼迫 Eve 离开水域"
+      bp_use: "anti-aggro 条件边；不能泛化到所有地图"
 
   objective_contracts:
     - mode: "Heist"
       can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
+        - "water_route_lane_control"
+        - "remote_angle_pressure"
+        - "hatchling_distraction_for_safe_race"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "单独承担高速拆库主 DPS"
+        - "在无水/无长线角度时强行走短路进库"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "真正 sustained safe DPS"
+        - "能守住敌方反推路线的防守点"
+      false_positive: "可过水如果不能形成打库角度或防守收益，就不是强适配"
     - mode: "Bounty"
       can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "low_commitment_poke"
+        - "single_target_hatchling_tax"
+        - "water_or_range_survival_space"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "快速连杀或强制开团"
+        - "在被突进贴脸后独立自保"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "反突进 peel"
+        - "能开墙或保护长线的队友"
+      false_positive: "长线图也要看敌方清 hatchling 和突进能力"
     - mode: "Knockout"
       can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
+        - "space_control_from_water_angle"
+        - "巢蛋逼迫敌方交弹药"
+        - "残局远程压血"
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - "硬开团或稳定收割"
+        - "墙被打开后抗住高机动强切"
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - "开墙/反突进/补斩杀"
+      false_positive: "如果水域不影响中心空间，Eve 只是低血长手，优先级下降"
 
   failure_modes:
-    - id: "low_health_pressure"
-      active_when: "enemy can force close-range duel or repeated chip"
-      exposed_by: "Fandom health field and selected mechanics"
-      mitigation: "peel, range discipline, terrain plan, or survivability build"
-      bp_use: "false_positive_filter"
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
+    - id: "slow_unload_into_dive"
+      active_when: "敌方 Edgar/Leon/Mortis/Crow/Kenji/Buzz/Mico 等能跨过距离或绕过水域"
+      exposed_by: "[[sources/Fandom-Eve|Fandom-Eve]] 提到 Eve 慢 unload 且怕高 burst 贴脸"
+      mitigation: "选择有足够水域、队友 peel 或 Gotta Go 可撤的地图"
+      bp_use: "must_avoid / needs_protection"
+    - id: "water_without_objective_pressure"
+      active_when: "候选地图只有边角水域，不能影响 safe、星差、中心空间或 gem route"
+      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] 的 water false positive 规则"
+      mitigation: "要求水域站位能转化为目标访问、低承诺输出或撤退安全"
       bp_use: "map_factor_false_positive_check"
+    - id: "hatchlings_cleared_for_free"
+      active_when: "敌方有范围伤害、炮台、召唤物、穿透或站位可无损清巢蛋"
+      exposed_by: "[[sources/Fandom-Eve|Fandom-Eve]] 巢蛋需 5 秒孵化，提前被摧毁则无 hatchling"
+      mitigation: "巢蛋放置在敌方必须走位处理的位置，或只作为消耗弹药工具"
+      bp_use: "candidate_eval.spawnable_value"
+    - id: "low_health_long_range_mirror"
+      active_when: "敌方长线命中更稳定且可以越过 hatchling 直接打 Eve"
+      exposed_by: "Eve 血量 3100，长线对枪容错低"
+      mitigation: "利用水域角度和队友火力交叉，而不是纯正面对狙"
+      bp_use: "must_avoid_against_sniper_core"
 
   conditional_matchup_seeds:
-    - target:
-        - "Najia"
-        - "Piper"
-        - "Rico"
-        - "Mandy"
-        - "Shelly"
-        - "Jessie"
-        - "Meg"
-        - "Bea"
+    - target: ["Piper", "Mandy", "Bea", "Bonnie", "Byron"]
       direction: "subject_favored"
-      source: "[[sources/PLP-Eve|PLP-Eve]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Penny"
-        - "Bibi"
-        - "Grom"
-        - "Sandy"
-        - "Rosa"
-        - "Chuck"
-        - "Lumi"
-        - "Alli"
+      source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
+      mechanism: "Eve 用水域站位和 hatchling 清理税干扰单体远程的低承诺换血"
+      active_when: "地图提供水域/侧角，敌方缺范围清召唤物，Eve 不需要正面吃完整狙击线"
+      fails_when: "地图纯开阔无水域价值，目标命中更稳定，或敌方队友能免费清 hatchling"
+      bp_use: "response to single-target marksman；不是无条件狙击 counter"
+    - target: ["Shelly", "Meg", "Rosa", "El Primo", "Mortis", "Edgar"]
+      direction: "volatile"
+      source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
+      mechanism: "足够大的水域让普通短手难以触达 Eve，但一旦离水或被强进场贴脸，Eve 慢 unload 会失效"
+      active_when: "水域直接参与主战场，短手没有跳跃/钩子/隐身或队友开路"
+      fails_when: "短手拥有跨距手段、草墙逼迫 Eve 离水、或目标模式要求 Eve 站到陆地"
+      bp_use: "map-dependent anti-aggro；BP 输出必须引用具体地图 feature"
+    - target: ["Penny", "Sandy", "Rosa", "Bibi", "Chuck", "Lumi", "Alli"]
       direction: "target_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: "这些英雄通过范围清理、持续压迫、强进场或路线改写降低 Eve 的水域/召唤物收益"
+      active_when: "他们能接触巢蛋、清 hatchling，或逼 Eve 离开安全水域"
+      fails_when: "地图水域隔绝他们的主路线，或队友压制使其不能追 Eve"
+      bp_use: "enemy_response_prediction / must_avoid"
+    - target: ["Grom", "Rico", "Jessie"]
+      direction: "volatile"
+      source: "[[sources/PLP-Eve|PLP-Eve]]"
+      mechanism: "Eve 可用水域/长线避免部分常规路线，但这些英雄也可能通过特殊弹道、弹墙或炮台清理 hatchling"
+      active_when: "Eve 有隔水角度且不会被弹墙/炮台逼离"
+      fails_when: "墙体角度让对方绕过水域打到 Eve，或召唤物被快速清掉"
+      bp_use: "map geometry check before accepting PLP seed"
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: "只在地图水域/长线是硬职责且敌方低成本答案被 ban 时可早手；否则容易被后手范围清理或突进惩罚"
+    slot_2_3: "适合回答敌方短手或单体远程，但要补队友 peel 和 safe DPS / 斩杀"
+    slot_4_5: "在已知敌方缺跨水答案或清 hatchling 时提高价值；同时要防 slot_6 补强突进"
+    slot_6: "可作为地图特化最后手，确认水域直接影响目标且敌方剩余池无法高效追击/清召唤物"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
+- [[sources/PLP-Eve|PLP 来源摘要: Eve]]
+- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/条件化对位模型|条件化对位模型]]

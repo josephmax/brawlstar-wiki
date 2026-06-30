@@ -4,215 +4,231 @@
 
 - 稀有度：Mythic
 - 定位：Assassin
-- 来源：神话刺客英雄
+- 类型：连跳收割 / 后排切入 / clump punish
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是近距离踢击
-- 贴脸伤害很高
-- 还能通过鞋子式远程补刀维持压力
-
-## 超级技能特征
-
-- Super 会连续跳跃追击
-- 可以快速切入后排
-- 连跳命中后很适合收割和串联击杀
-
-## 适合场景
-
-- 适合收残血和追击
-- 敌方站位分散时更容易打出连段
-- 需要高机动切入的模式和地图
+- Fandom：[[sources/Fandom-Fang|Fandom 来源摘要: Fang]]
+- PLP：[[sources/PLP-Fang|PLP 来源摘要: Fang]]
+- PLP 推荐模式候选：Gem Grab, Brawl Ball, Hot Zone, Bounty, Knockout
 
 ## 角色定位总结
 
-Fang 是“近战切入 + 连续跳跃收割”的神话刺客，核心是用 Super 把一次击杀变成连续击杀。
+Fang 的 BP 价值来自“用远端鞋子充 Super，再把一次进场转成连锁击杀”。他的贴脸伤害、Roundhouse Kick 短眩晕和 Fresh Kicks 重置让他能惩罚低自保后排、投掷和残血抱团，但 Super 过程中仍会吃伤害、控制和减速，且连跳不能穿过墙。Fang 不是泛用长手，他需要目标站位、地图路线和敌方控制资源同时满足。
 
-## 与其他英雄的区别
+## BP 建模
 
-- 不同于 `Mortis`：Mortis 更依赖位移连续性，Fang 更依赖跳跃追击链
-- 不同于 `Leon`：Leon 强在隐身伏击，Fang 强在正面切入后的连锁追击
-- 不同于 `Stu`：Stu 更偏高频骚扰，Fang 更偏瞬时收割
+```yaml
+bp_brawler_profile:
+  profile_status: bp_ready
+  source_quality:
+    fandom: "[[sources/Fandom-Fang|Fandom-Fang]] direct_raw_capture_2026-06-30-v2"
+    plp: "[[sources/PLP-Fang|PLP-Fang]] direct_raw_capture_2026-06-30"
+    user_notes: "按高水平 BP 处理：连跳刺客必须证明进场目标、重置条件和控制资源状态"
+
+  capability_vector:
+    effective_range: "近身踢击 2.67 格；miss 后鞋子额外延伸到 9.33 格但只造成 25% 伤害"
+    projectile_reliability: "贴脸可靠；鞋子适合充能和消耗，不适合当主要击杀手段"
+    burst: "Super + 普攻 + Roundhouse Kick 的短窗口爆发很高"
+    sustained_dps: "非常快装填，但 unload 和进退场节奏限制持续输出"
+    objective_damage: "低到中；不是 Heist safe DPS，目标价值主要来自击杀后转目标"
+    mobility: "Super 10 格高速突进并可最多连跳 4 个目标；Hypercharge 后 Super 可穿墙"
+    survivability: "生命值高于多数刺客；Divine Soles/Shield Gear 可挡一次关键伤害，但进场中仍可被打断或集火"
+    engage: "强条件 engage；需要 Super、目标距离和连跳路径"
+    disengage: "Super 可用于逃生，但一旦落点被预判很难撤出"
+    anti_aggro: "Roundhouse Kick 和 Corn-Fu 可惩罚部分依赖移动的刺客"
+    anti_tank: "不是稳定反坦；可借坦克作为跳板打后排，但落到坦克脸上会亏"
+    wall_break: "基础形态无破墙；Hypercharge Super 可穿墙但不等于常态路线"
+    throw_or_wall_bypass: "Corn-Fu 可越墙/隔墙覆盖，Hypercharge Super 可穿墙"
+    area_control: "Corn-Fu 提供短时地面爆点，主要用于封路或补伤害"
+    scouting_or_vision: "无稳定探草"
+    team_support: "主要通过击杀、逼退后排和连跳制造人数差"
+    spawnable_or_pet: "无"
+    crowd_control: "Roundhouse Kick 2.33 格短眩晕 0.5 秒"
+    terrain_creation: "Corn-Fu/Hypercharge 路径产生 popcorn 爆点，但不改变墙体"
+    terrain_destruction: "无常态地形破坏"
+
+  build_switches:
+    - build: "Roundhouse Kick / Fresh Kicks / Shield + Damage"
+      source: "[[sources/PLP-Fang|PLP-Fang]] + [[sources/Fandom-Fang|Fandom-Fang]]"
+      changes_capabilities:
+        - "Roundhouse Kick 重置攻击节奏并短暂眩晕，让 Fang 能把 Super 落点转成确认击杀"
+        - "Fresh Kicks 在 Super 击杀后立即重置 Super，放大残血连锁和多目标抱团惩罚"
+        - "Shield/Damage 提高进场容错和击杀阈值"
+      enables:
+        - "后排/投掷收割"
+        - "Brawl Ball 击杀防守者后得分"
+        - "Bounty/Knockout 残血链式收头"
+      mitigates_failure_modes:
+        - "partially_mitigates_landing_target_survives"
+        - "partially_mitigates_single_cc_window_if_target_dies_fast"
+      best_when: "敌方有低自保后排、站位会被目标牵连，且主要控制/击退资源不稳定"
+      poor_when: "敌方有 Surge/Shelly/Gale/Colette 等专门留资源处理突进，或站位极度分散"
+      bp_use: "last_pick_chain_assassin / backline_punish"
+    - build: "Corn-Fu / Divine Soles"
+      source: "[[sources/Fandom-Fang|Fandom-Fang]]"
+      changes_capabilities:
+        - "Corn-Fu 提供围绕 Fang 的短时区域爆点，可隔墙打扰投掷或限制移动型刺客"
+        - "Divine Soles 每 3 秒减少下一次投射物伤害，提高过线充能和吃一发关键伤害的能力"
+      enables:
+        - "墙后补伤害"
+        - "反移动刺客近身"
+        - "更保守的充能路线"
+      mitigates_failure_modes:
+        - "mitigates_open_lane_chip_before_super"
+      best_when: "需要先靠鞋子/走位充 Super，或对方主要威胁来自远程单发消耗"
+      poor_when: "目标击杀阈值依赖 Roundhouse Kick 确认控制"
+      bp_use: "survival_or_area_denial_branch"
+
+  map_feature_hooks:
+    - id: "brawl_ball_chain_to_score"
+      map_feature_type: "score_window"
+      example_maps:
+        - "[[entities/maps/Center Stage|Center Stage]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+      route_or_position: "中路抢球、侧草推进、球门前防守者和低血量补位链"
+      objective_conversion: "用 Super/Roundhouse 击杀或眩晕防守者，随后制造直接射门或持球推进窗口"
+      active_when: "敌方防守者站位靠近、缺 Gale/Shelly/Surge 等反突进资源，Fang 已有 Super 或可用鞋子安全充能"
+      fails_if: "敌方分散站位、控制留给 Fang 落点，或 Fang 击杀后没有队友/球权转化为进球"
+      bp_use: "slot_task.scoring_window_assassin"
+    - id: "ko_bounty_backline_chain"
+      map_feature_type: "pickoff_chain"
+      example_maps:
+        - "[[entities/maps/Belle's Rock|Belle's Rock]]"
+        - "[[entities/maps/Flaring Phoenix|Flaring Phoenix]]"
+        - "[[entities/maps/New Horizons|New Horizons]]"
+      route_or_position: "掩体边缘、复活后站位交汇处、低血量后排和投掷口袋"
+      objective_conversion: "一次收头转成连跳或逼迫后排退位，服务 Bounty/Knockout 的人数差"
+      active_when: "我方能先压低目标，敌方没有墙体阻断连跳，且 Fang 的落点不在三人火力中心"
+      fails_if: "目标满血且有 peel，墙阻断 7 格连跳搜索，或 Fang Super 先落到高血量前排"
+      bp_use: "candidate_eval.pickoff_chain"
+    - id: "hot_zone_clump_clear"
+      map_feature_type: "zone_clear"
+      example_maps:
+        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
+        - "[[entities/maps/Open Business|Open Business]]"
+        - "[[entities/maps/Ring of Fire|Ring of Fire]]"
+      route_or_position: "热区入口、圈旁墙后控制点、敌方抱团站圈位置"
+      objective_conversion: "用 Super 连跳、Roundhouse 和 Corn-Fu 把站圈人员打散或击杀"
+      active_when: "敌方为了站圈而空间重叠，且我方有队友同步清圈或接管区域"
+      fails_if: "Fang 单人进圈被集火，敌方保留减速/击退，或站位分散导致无法连跳"
+      bp_use: "map_bp_factors.clump_punish_zone_clear"
+    - id: "wall_pocket_hypercharge_or_cornfu"
+      map_feature_type: "wall_pocket_pressure"
+      example_maps:
+        - "[[entities/maps/Open Business|Open Business]]"
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Belle's Rock|Belle's Rock]]"
+      route_or_position: "墙后投掷口袋、球门墙后防守位或区域控制点"
+      objective_conversion: "用 Corn-Fu 越墙补伤害，或在 Hypercharge 后穿墙切入"
+      active_when: "敌方依赖墙后低自保控制，且 Fang 不需要先穿越完整开阔线"
+      fails_if: "没有 Hypercharge 时把穿墙当常态能力，或墙后目标有 bodyguard/控制"
+      bp_use: "terrain_state_plan.conditional_wall_bypass"
+
+  objective_contracts:
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "defender_pickoff"
+        - "scoring_window_after_kill"
+        - "side_lane_assassin_pressure"
+      cannot_fulfill:
+        - "稳定破门"
+        - "无 Super 正面持球硬推"
+      needs_teammate_support:
+        - "球权、破墙或补射跟进"
+      false_positive: "Fang 能杀人不等于能进球；必须说明击杀后如何转成得分窗口"
+    - mode: "Bounty"
+      can_fulfill:
+        - "low_hp_chain_finisher"
+        - "backline_threat"
+      cannot_fulfill:
+        - "全程长线消耗"
+        - "无代价先进场开团"
+      needs_teammate_support:
+        - "先手压血和控制目标血线"
+      false_positive: "鞋子远不等于射手；远端鞋子主要是充 Super 和补伤害"
+    - mode: "Knockout"
+      can_fulfill:
+        - "late_round_pickoff"
+        - "thrower_or_marksman_collapse"
+      cannot_fulfill:
+        - "无视敌方控制强行开局进场"
+      needs_teammate_support:
+        - "逼资源、压缩走位和保护 Fang 落点"
+      false_positive: "敌方站位分散时 Fresh Kicks 价值下降，Fang 变成单次突进"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "clump_punish"
+        - "anti_thrower_clear"
+      cannot_fulfill:
+        - "长期站圈锚点"
+        - "被控制覆盖时单人清圈"
+      needs_teammate_support:
+        - "清场后站圈的人"
+      false_positive: "Fang 清圈不是占圈；没有队友站圈会赢击杀输计分"
+
+  failure_modes:
+    - id: "super_controlled_during_travel"
+      active_when: "敌方保留 stun/slow/knockback/silence 或爆发火力覆盖 Fang 落点"
+      exposed_by: "[[sources/Fandom-Fang|Fandom-Fang]] 明确 Super 过程中仍会受伤、被眩晕或减速"
+      mitigation: "等待关键控制交出，或用队友先压血/控人再进场"
+      bp_use: "must_track_enemy_cc_resources"
+    - id: "chain_blocked_by_wall_or_spacing"
+      active_when: "目标之间被墙隔开或敌方站位超过连跳半径"
+      exposed_by: "[[sources/Fandom-Fang|Fandom-Fang]] Super 连跳要求附近目标且不能在墙后"
+      mitigation: "只把连跳写入计划时，明确敌方会为目标/站圈/防守而靠近"
+      bp_use: "map_and_position_gate"
+    - id: "lands_on_tank_not_backline"
+      active_when: "Fang Super 先命中高血量前排，且无法跳到后排或击杀重置"
+      exposed_by: "[[sources/Fandom-Fang|Fandom-Fang]] 提示可借坦克跳后排但不应结束在坦克身上"
+      mitigation: "用鞋子/队友伤害压低后排，或等待坦克与后排成链"
+      bp_use: "target_selection_check"
+    - id: "kill_only_no_objective"
+      active_when: "Brawl Ball/Hot Zone 中 Fang 击杀后没有球权、站圈或队友接管"
+      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] objective_conversion 要求"
+      mitigation: "把 Fang 当 scoring window / zone clear，而不是唯一目标位"
+      bp_use: "objective_contract_check"
+
+  conditional_matchup_seeds:
+    - target: ["Piper", "Tick", "Dynamike", "Grom", "Mr. P", "Berry"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Fang|PLP-Fang]]"
+      mechanism: "Fang 用鞋子充能后通过 Super/Roundhouse 越过远程消耗区，惩罚低近战自保后排和投掷"
+      active_when: "地图有掩体或目标被压血，后排没有 bodyguard，Fang 能在落点完成击杀"
+      fails_when: "目标有墙阻断连跳、队友保护或保留控制，Fang 先被消耗到无法进场"
+      bp_use: "last_pick_backline_punish"
+    - target: ["Jessie", "El Primo"]
+      direction: "volatile"
+      source: "[[sources/PLP-Fang|PLP-Fang]]"
+      mechanism: "Fang 可用 Super 处理孤立 Jessie 或借前排跳后排，但炮台/高血量身体会改变落点和击杀阈值"
+      active_when: "目标孤立、炮台不影响落点，或前排只是跳板"
+      fails_when: "Jessie 炮台和队友保护覆盖 Fang，或 Primo/Bull 类前排把 Fang 留在近身互打"
+      bp_use: "route_and_landing_check"
+    - target: ["Surge", "Shelly", "Nita", "Gale", "Chester", "Bull", "Colette", "Sirius"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Fang|PLP-Fang]]"
+      mechanism: "击退、反突进爆发、召唤物身体、百分比伤害或随机/控制爆发能阻断 Fang 落点击杀"
+      active_when: "这些资源被留给 Fang 的 Super 或 Roundhouse 前后窗口"
+      fails_when: "资源已交、目标低血孤立，或 Fang 只需要一次 Super 重置"
+      bp_use: "must_avoid_or_ban_reason_for_fang_plan"
+    - target: ["Mortis", "Kenji", "Alli", "Mico"]
+      direction: "subject_favored"
+      source: "[[sources/Fandom-Fang|Fandom-Fang]]"
+      mechanism: "Corn-Fu 和 Roundhouse Kick 能限制依赖移动贴脸的刺客，Fang 贴脸爆发可反打"
+      active_when: "Fang 有弹药或 gadget，且对方必须进 Fang 身边完成伤害"
+      fails_when: "对方先手骗出 Roundhouse，或 Fang 被连续位移/队友伤害夹击"
+      bp_use: "anti_mobile_aggro_branch"
+
+  slot_notes:
+    slot_1: "不建议作为普通一抢；早手会暴露刺客路线并被反突进/控制回答"
+    slot_2_3: "仅在地图天然奖励后排切入或 clump punish 时可早出，并要求队友补目标承接"
+    slot_4_5: "适合在已知敌方 2 位缺硬反突进时补后排威胁，或针对投掷/射手口袋"
+    slot_6: "最适合最后手：确认敌方无稳定 peel、站位会被目标牵连，且 Fang 的击杀能转成进球、收星或站圈"
+```
 
 ## 关联页面
 
 - [[sources/Fandom-Fang|Fandom 来源摘要: Fang]]
-- [[entities/brawlers/Mortis|Mortis]]
-- [[entities/brawlers/Leon|Leon]]
-- [[entities/brawlers/Stu|Stu]]
-
-## BP 建模草案
-
-```yaml
-bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
-  source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
-
-  capability_vector:
-    effective_range: "very_long_or_long; fandom_attack_range=2.67 (kick; Short)<br>9.33 (shoe; Very Long)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1 second (Very Fast)"
-    objective_damage: "heist_candidate_from_plp_modes=False"
-    mobility: "mobility_or_speed_tool_text_present"
-    survivability: "fandom_health=4800; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "present_from_fandom_text"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "present_from_fandom_text"
-
-  build_switches:
-    - build: "Roundhouse Kick / Fresh Kicks / Shield, Damage"
-      source: "[[sources/PLP-Fang|PLP-Fang]]"
-      changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
-      enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Bounty"
-        - "mode_candidate:Knockout"
-      mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
-
-  map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "wall_break_transform"
-      uses_feature_by: "terrain destruction text present in Fandom raw"
-      objective_conversion: "can create or deny lanes only if our comp benefits after transform"
-      active_when: "key wall blocks objective route or protects enemy pocket"
-      fails_if: "opening wall benefits enemy range/engage more than ours"
-      example_maps: []
-      bp_use: "terrain_state_plan_candidate"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
-
-  objective_contracts:
-    - mode: "Gem Grab"
-      can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Brawl Ball"
-      can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Hot Zone"
-      can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Bounty"
-      can_fulfill:
-        - "Bounty_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Knockout"
-      can_fulfill:
-        - "Knockout_candidate_from_plp"
-        - "survival_range_pressure_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-
-  failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
-    - id: "terrain_transform_backfires"
-      active_when: "opened lane improves enemy range or engage more than ours"
-      exposed_by: "terrain destruction candidate"
-      mitigation: "define exact wall and follow-up before pick"
-      bp_use: "terrain_state_plan_check"
-
-  conditional_matchup_seeds:
-    - target:
-        - "Piper"
-        - "Tick"
-        - "Dynamike"
-        - "Grom"
-        - "Mr. P"
-        - "Jessie"
-        - "El Primo"
-        - "Berry"
-      direction: "subject_favored"
-      source: "[[sources/PLP-Fang|PLP-Fang]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Surge"
-        - "Shelly"
-        - "Nita"
-        - "Gale"
-        - "Chester"
-        - "Bull"
-        - "Colette"
-        - "Sirius"
-      direction: "target_favored"
-      source: "[[sources/PLP-Fang|PLP-Fang]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
-
-  slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
-```
+- [[sources/PLP-Fang|PLP 来源摘要: Fang]]
+- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]

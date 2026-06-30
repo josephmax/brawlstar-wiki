@@ -4,197 +4,234 @@
 
 - 稀有度：Rare
 - 定位：Tank
-- 类型：前排突进英雄
+- 类型：近身霰弹 / 冲锋破墙 / Heist 接触爆发
 
-## 攻击特征
+## 来源摘要
 
-- 主攻击是短距离五连发霰弹
-- 贴近敌人时威胁最大
-- 更适合强行近身而不是远距离换血
-
-## 超级技能特征
-
-- Super 会向前冲锋
-- 可以穿障、击退并伤害路径上的敌人
-- 终点还能压制附近敌人位置
-
-## 适合场景
-
-- 草丛埋伏
-- 强行切入
-- 需要正面开团的局面
-- 贴脸爆发和冲阵型玩法
+- Fandom：[[sources/Fandom-Bull|Fandom 来源摘要: Bull]]
+- PLP：[[sources/PLP-Bull|PLP 来源摘要: Bull]]
+- PLP 推荐模式候选：Gem Grab, Brawl Ball, Hot Zone, Heist
 
 ## 角色定位总结
 
-Bull 是典型的突进坦克，靠高血量和冲锋把战斗强行拉到近距离，是理解“前排切入”最直接的英雄之一。
+Bull 的 BP 价值来自“能否把自己送到目标脸上”。他贴脸霰弹和 Berserker 在 Heist 打库、Brawl Ball 破门/自传球、草丛伏击里很有上限，但在开阔图或敌方有击退、反坦、沉默、减速时很容易变成给对面充 Super 的短手。Bull 不是泛用前排；他是需要路线、草墙、入库角度和控制真空的目标接触型坦克。
+
+## BP 建模
+
+```yaml
+bp_brawler_profile:
+  profile_status: bp_ready
+  source_quality:
+    fandom: "[[sources/Fandom-Bull|Fandom-Bull]] direct_raw_capture_2026-06-30-v2"
+    plp: "[[sources/PLP-Bull|PLP-Bull]] direct_raw_capture_2026-06-30"
+    user_notes: "按高水平 BP 处理：短手必须证明路线、目标收益和反制资源状态"
+
+  capability_vector:
+    effective_range: "短到中；5.33 格霰弹只有贴脸才有最大价值"
+    projectile_reliability: "贴脸可靠，远端散弹价值快速下降"
+    burst: "极高贴脸爆发；Berserker 低血时把 safe/body DPS 拉满"
+    sustained_dps: "条件性高；必须保持近身接触"
+    objective_damage: "高；Heist 能接触 safe 时是核心卖点"
+    mobility: "Super 长距离冲锋、破墙并越过水/障碍路线；Stomper 可停止冲锋并转为近身控制"
+    survivability: "高血量，T-Bone Missile 治疗，Tough Guy 可低血护盾；但冲锋中不免伤"
+    engage: "强但路线可读；依赖草、墙、Super 或敌方站位错误"
+    disengage: "Super 可逃跑，但会破坏墙体并可能冲到危险位置"
+    anti_aggro: "贴脸霰弹能惩罚部分刺客/前排，但怕控制链和高 burst"
+    anti_tank: "对短手有高贴脸伤害，但被更稳定反坦/击退克制"
+    wall_break: "Super 破坏路径障碍，可打开金库或球门角度"
+    throw_or_wall_bypass: "Super 可穿越障碍接近目标"
+    area_control: "低；主要是身体压迫和路径破坏"
+    scouting_or_vision: "无稳定探草"
+    team_support: "破墙可服务队友，T-Bone 仅自保"
+    spawnable_or_pet: "无"
+    crowd_control: "Super 击退；Stomper 可转为近身减速/控制窗口"
+    terrain_creation: "无"
+    terrain_destruction: "强；冲锋开墙会永久改变地图"
+
+  build_switches:
+    - build: "T-Bone Missile / Berserker / Health + Damage"
+      source: "[[sources/PLP-Bull|PLP-Bull]] + [[sources/Fandom-Bull|Fandom-Bull]]"
+      changes_capabilities:
+        - "T-Bone Missile 让 Bull 进库或进草后多活一轮，适合 Heist 持续打库"
+        - "Berserker 在低血时翻倍装填，打 safe 或近身 body 的窗口非常高"
+        - "Health/Damage 服务前排承伤和低血爆发"
+      enables:
+        - "Heist 短窗口 safe melt"
+        - "Brawl Ball 破墙/自传球"
+        - "Hot Zone / Gem Grab 草口身体压迫"
+      mitigates_failure_modes:
+        - "partially_mitigates_focus_fire_during_contact"
+        - "partially_mitigates_low_health_safe_race"
+      best_when: "地图有金库屏障、草路、短入口或球门墙，敌方反坦资源不足"
+      poor_when: "地图开阔、敌方有 Maisie/Shelly/Colette/Lou/Otis/Surge 等稳定反制，或开墙会帮敌方长手"
+      bp_use: "Heist access pick、Brawl Ball wallbreak/scorer、last-pick tank route punish"
+    - build: "Stomper / Tough Guy"
+      source: "[[sources/Fandom-Bull|Fandom-Bull]]"
+      changes_capabilities:
+        - "Stomper 让冲锋不再必须全程走完，可停在目标旁边转贴脸击杀"
+        - "Tough Guy 增强低血承伤，适合需要持续站住而不是纯 race 的局面"
+      enables:
+        - "停止错误冲锋"
+        - "抓侧路或防守反打"
+      mitigates_failure_modes:
+        - "mitigates_overcharge_into_bad_position"
+      best_when: "需要精确停在目标身边或地图容易让长距离冲锋送进危险区"
+      poor_when: "Heist 主要任务是远距离冲到 safe，且敌方没有守库身体"
+      bp_use: "control/survival branch"
+
+  map_feature_hooks:
+    - id: "heist_super_to_safe_burst"
+      map_feature_type: "objective_access"
+      example_maps:
+        - "[[entities/maps/Pit Stop|Pit Stop]]"
+        - "[[entities/maps/Hot Potato|Hot Potato]]"
+        - "[[entities/maps/Safe(r) Zone|Safe(r) Zone]]"
+      route_or_position: "金库屏障、斜草或侧路入库口，用 Super 破墙并贴库输出"
+      objective_conversion: "把一次蓄满 Super 转成高额 safe damage，同时开出队友打库线"
+      active_when: "敌方缺守库击退/反坦，Bull 能接触 safe 至少数秒"
+      fails_if: "Super 入口被控、safe 旁有 Shelly/Colette/Lou/Otis，或开墙反而让敌方远程 race 更快"
+      bp_use: "candidate_eval.heist_contact_dps"
+    - id: "brawl_ball_wallbreak_self_pass"
+      map_feature_type: "score_window"
+      example_maps:
+        - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
+        - "[[entities/maps/Triple Dribble|Triple Dribble]]"
+        - "[[entities/maps/Center Stage|Center Stage]]"
+      route_or_position: "球门墙、侧草推进线或中路球权，踢球后冲锋跟球"
+      objective_conversion: "打开球门或自传球制造直接得分窗口"
+      active_when: "破墙后我方 scorer/远程更受益，敌方没有保留击退和硬控"
+      fails_if: "Super 破坏己方关键墙、敌方开阔图更强，或 Bull 只击退敌方持球者帮对面开门"
+      bp_use: "slot_task.goal_wallbreak_and_scorer"
+    - id: "grass_choke_tank_entry"
+      map_feature_type: "grass_route"
+      example_maps:
+        - "[[entities/maps/Hot Potato|Hot Potato]]"
+        - "[[entities/maps/Double Swoosh|Double Swoosh]]"
+        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
+      route_or_position: "斜草、侧草或热区入口 chokepoint"
+      objective_conversion: "从草口逼退长手、守圈或迫使 gem carrier 后撤"
+      active_when: "敌方缺探草/扫草，队友能跟随 Bull 的身体压迫"
+      fails_if: "草被清、入口被 slow/stun/anti-tank 覆盖，或 Bull 被迫横穿开阔区"
+      bp_use: "map_bp_factors.grass_body_entry"
+    - id: "terrain_transform_risk"
+      map_feature_type: "wall_break_transform"
+      example_maps:
+        - "[[entities/maps/Pit Stop|Pit Stop]]"
+        - "[[entities/maps/Pinball Dreams|Pinball Dreams]]"
+        - "[[entities/maps/Gem Fort|Gem Fort]]"
+      route_or_position: "safe wall、球门墙、中心堡垒墙或 trick-shot 墙"
+      objective_conversion: "选择性破墙可打开目标；错误破墙会拆掉己方路线/掩体"
+      active_when: "我方后续能利用开放线，且敌方不会因此获得更强远程"
+      fails_if: "开墙让敌方 marksman/scorer 接管，或移除 Bull 自己需要的接近墙"
+      bp_use: "terrain_state_plan.check_before_pick"
+
+  objective_contracts:
+    - mode: "Heist"
+      can_fulfill:
+        - "contact_safe_dps"
+        - "safe_wall_break_route"
+        - "defender_recall_pressure"
+      cannot_fulfill:
+        - "远程低承诺打库"
+        - "三路长线隔离中稳定守一路"
+      needs_teammate_support:
+        - "开路前的线权或探草"
+        - "防止敌方远程 race 反超"
+      false_positive: "会冲锋不等于能打库；必须证明入库后能活并输出"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "wallbreak_score_window"
+        - "self_pass_scorer"
+        - "goal_front_body_pressure"
+      cannot_fulfill:
+        - "稳定远程清球"
+        - "无脑破墙后仍保证防守"
+      needs_teammate_support:
+        - "控人/补射/远程接管开放线"
+      false_positive: "破门收益必须大于帮敌方打开射门线的风险"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "zone_entry_body"
+        - "grass_choke_pressure"
+        - "反投掷/炮台的贴脸清点"
+      cannot_fulfill:
+        - "圈外远程清场"
+        - "被多重 slow/control 覆盖时单独进圈"
+      needs_teammate_support:
+        - "探草、清场或控制跟进"
+      false_positive: "站圈身体如果不能接近入口，只会给对面充资源"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "侧草压迫"
+        - "保护/追击 gem carrier"
+      cannot_fulfill:
+        - "稳定中路持宝石"
+        - "无视远程消耗穿越开阔中线"
+      needs_teammate_support:
+        - "稳定 mid 和视野控制"
+      false_positive: "高血量不等于适合拿宝石；Bull 更适合侧压和反切"
+
+  failure_modes:
+    - id: "open_lane_kited"
+      active_when: "Shooting Star、Dry Season、Bridge Too Far 等长线开阔或三路隔离场景"
+      exposed_by: "[[sources/Fandom-Bull|Fandom-Bull]] 贴脸才有最大伤害"
+      mitigation: "只在草墙/入库路线存在时选，或作为最后手惩罚无反坦阵容"
+      bp_use: "map_hard_gate"
+    - id: "anti_tank_control_chain"
+      active_when: "敌方有 Maisie/Shelly/Colette/Lou/Otis/Surge/Charlie"
+      exposed_by: "[[sources/PLP-Bull|PLP-Bull]] counteredBy seed + 本地条件化对位规则"
+      mitigation: "ban 关键反制、等待资源交出，或用队友先开路"
+      bp_use: "must_avoid / ban_reason"
+    - id: "wallbreak_backfires"
+      active_when: "Bull 的 Super 打开己方防守墙、球门墙或让敌方长线更强"
+      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] terrain_state_plan"
+      mitigation: "明确要开的墙和后续受益方；必要时使用 Stomper 精确停位"
+      bp_use: "terrain_state_plan_check"
+    - id: "super_path_predictable"
+      active_when: "冲锋路径长且直，敌方能预站终点或用控制覆盖"
+      exposed_by: "Super 不是免伤位移且路径会破墙"
+      mitigation: "从草/侧路起手，或配合队友控制让终点安全"
+      bp_use: "candidate_eval.route_safety"
+
+  conditional_matchup_seeds:
+    - target: ["Sprout", "Grom", "Poco", "Gus"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Bull|PLP-Bull]]"
+      mechanism: "Bull 通过草墙路线或 Super 穿墙把低近战自保的控制/支援拉入贴脸霰弹区"
+      active_when: "地图提供接近路线，目标缺 hard peel，Bull 进场后能持续接触"
+      fails_when: "墙口被控制覆盖、队友保护目标，或 Bull 被开阔线提前消耗"
+      bp_use: "last_pick_route_punish"
+    - target: ["Buzz", "Buster", "Bibi", "Sam"]
+      direction: "volatile"
+      source: "[[sources/PLP-Bull|PLP-Bull]]"
+      mechanism: "Bull 的贴脸爆发能赢部分近身 body trade，但对方也可能用控制、屏障、位移或弹药状态反打"
+      active_when: "Bull 有先手草口/终点优势或目标资源已交"
+      fails_when: "对方保留 stun/screen/knockback 或多角度队友跟伤害"
+      bp_use: "close_body_trade_check"
+    - target: ["Maisie", "Shelly", "Stu", "Charlie", "Colette", "Lou", "Otis", "Surge"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Bull|PLP-Bull]]"
+      mechanism: "击退、百分比伤害、沉默、冻结/减速、位移和反突进技能能阻断 Bull 的接触窗口"
+      active_when: "这些资源能留给 Bull 的入场或 safe 终点"
+      fails_when: "资源被 bait，Bull 从侧草进场，或目标被队友先压低"
+      bp_use: "must_avoid_or_ban_reason_for_bull_plan"
+    - target: ["Heist safe", "Goal wall", "Zone entry"]
+      direction: "subject_favored"
+      source: "[[sources/Fandom-Bull|Fandom-Bull]]"
+      mechanism: "Super 破墙和近身霰弹可直接转换目标压力"
+      active_when: "目标入口被墙/草保护且敌方无法立即控制 Bull"
+      fails_when: "目标已被远程 race 接管，或开墙帮助敌方多于我方"
+      bp_use: "objective_specific_route_edge"
+
+  slot_notes:
+    slot_1: "只在 Heist/Brawl Ball 地图明确奖励入库或破门且主要反坦已被 ban 时考虑；否则早手容易被低成本反制"
+    slot_2_3: "可作为地图计划手，围绕 safe access 或 goal wallbreak 建队，但要补探草和反控制"
+    slot_4_5: "适合在已知敌方缺反坦/控制时压目标路线，也可回答投掷/支援口袋"
+    slot_6: "最适合用于惩罚敌方无反坦、无探草、无守库控制的阵容，要求能明确转化为打库/得分/站圈"
+```
 
 ## 关联页面
 
 - [[sources/Fandom-Bull|Fandom 来源摘要: Bull]]
-
-## BP 建模草案
-
-```yaml
-bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
-  source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
-
-  capability_vector:
-    effective_range: "mid; fandom_attack_range=5.33 (Normal)<br>4.67 (with Hyper Buffie)"
-    projectile_reliability: "needs_review; raw_mentions_slow_delay_spread_or_random"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.6 seconds (Normal)<br>0.8 seconds (with Berserker)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=5000; high_health_body_presence_candidate; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "present_from_fandom_text"
-    throw_or_wall_bypass: "present_from_artillery_or_over_obstacles"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "present_from_fandom_text"
-
-  build_switches:
-    - build: "T-Bone Missile / Berserker / Health, Damage"
-      source: "[[sources/PLP-Bull|PLP-Bull]]"
-      changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
-      enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Hot Zone"
-        - "mode_candidate:Heist"
-      mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
-
-  map_feature_hooks:
-    - map_feature_type: "wall_break_transform"
-      uses_feature_by: "terrain destruction text present in Fandom raw"
-      objective_conversion: "can create or deny lanes only if our comp benefits after transform"
-      active_when: "key wall blocks objective route or protects enemy pocket"
-      fails_if: "opening wall benefits enemy range/engage more than ours"
-      example_maps: []
-      bp_use: "terrain_state_plan_candidate"
-    - map_feature_type: "thrower_pocket"
-      uses_feature_by: "over-wall or artillery signal from Fandom raw"
-      objective_conversion: "can contest protected zones if pocket remains intact"
-      active_when: "walls survive and enemy lacks cheap wall break or dive"
-      fails_if: "terrain is opened or dive path reaches the pocket"
-      example_maps: []
-      bp_use: "map_factor_fit_candidate"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
-
-  objective_contracts:
-    - mode: "Gem Grab"
-      can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Brawl Ball"
-      can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Hot Zone"
-      can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Heist"
-      can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
-      cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
-      needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-
-  failure_modes:
-    - id: "reliability_into_mobility"
-      active_when: "enemy has speed, dash, cover, or unpredictable pathing"
-      exposed_by: "selected Fandom text markers"
-      mitigation: "pick on constrained routes or pair with control"
-      bp_use: "must_avoid_or_needs_support"
-    - id: "pocket_removed_or_dived"
-      active_when: "enemy opens terrain or reaches thrower pocket"
-      exposed_by: "artillery/over-wall capability candidate"
-      mitigation: "ban cheap wall break, draft peel, or choose stable pocket map"
-      bp_use: "map_factor_false_positive_check"
-    - id: "terrain_transform_backfires"
-      active_when: "opened lane improves enemy range or engage more than ours"
-      exposed_by: "terrain destruction candidate"
-      mitigation: "define exact wall and follow-up before pick"
-      bp_use: "terrain_state_plan_check"
-
-  conditional_matchup_seeds:
-    - target:
-        - "Sprout"
-        - "Grom"
-        - "Buzz"
-        - "Buster"
-        - "Bibi"
-        - "Sam"
-        - "Poco"
-        - "Gus"
-      direction: "subject_favored"
-      source: "[[sources/PLP-Bull|PLP-Bull]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Maisie"
-        - "Shelly"
-        - "Stu"
-        - "Charlie"
-        - "Colette"
-        - "Lou"
-        - "Otis"
-        - "Surge"
-      direction: "target_favored"
-      source: "[[sources/PLP-Bull|PLP-Bull]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
-
-  slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
-```
+- [[sources/PLP-Bull|PLP 来源摘要: Bull]]
+- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]

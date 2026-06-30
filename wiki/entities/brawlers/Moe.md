@@ -4,7 +4,7 @@
 
 - 稀有度：Mythic
 - 定位：Damage Dealer
-- 类型：待复核；当前仅由 Fandom 定位和 PLP 竞技信号初始化
+- 类型：分裂弹远程压制 / Driller 形态地形绕行爆发
 
 ## 来源摘要
 
@@ -14,167 +14,219 @@
 
 ## 角色定位总结
 
-本页是从 2026-06-30 抓取件初始化的英雄实体页。当前只保存稳定来源链接和 BP 草案；所有模式适配、对位和顺位判断仍需通过地图因素与条件化对位模型复核。
+Moe 的 BP 价值来自两层节奏：普通形态用分裂石块压中远距离、摸草和惩罚固定站位；Super 进入 Driller 形态后用地下路线、击退和短窗爆发制造目标转换。不要把“能钻地/能绕墙”单独当成地图加分，必须同时检查出土后的弹药比例、短手窗口、敌方控制和 DoT。
 
-## BP 建模草案
+## BP 建模资料
 
 ```yaml
 bp_brawler_profile:
-  profile_status: draft_from_raw_signals
-  review_gate: not_bp_ready; requires conditional matchup and map_bp_factor review
+  profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
-    plp: "direct_raw_capture_2026-06-30"
-    user_notes: "none"
+    fandom: "[[sources/Fandom-Moe|Fandom-Moe]]"
+    plp: "[[sources/PLP-Moe|PLP-Moe]]"
+    user_notes: none
 
   capability_vector:
-    effective_range: "long_mid; fandom_attack_range=7.67 (Long)<br>7 (with Skipping Stones)<br>1.67 (Driller; Short)<br>3.33 (Driller; with Hypercharge)"
-    projectile_reliability: "needs_review; no_obvious_slow_or_random_marker_in_selected_raw"
-    burst: "burst_candidate_from_damage_or_super_text"
-    sustained_dps: "reload_signal_from_fandom=1.5 seconds (Normal)<br>0.22 seconds (Driller; Very Fast)"
-    objective_damage: "heist_candidate_from_plp_modes=True"
-    mobility: "mobility_or_speed_tool_text_present; water_or_obstacle_interaction_text_present"
-    survivability: "fandom_health=3600; self_or_team_sustain_text_present"
-    engage: "engage_candidate_if_mobility_or_cc_text_activates"
-    disengage: "disengage_candidate_if_mobility_slow_stun_or_knockback_text_activates"
-    anti_aggro: "candidate_from_control_or_escape_text"
-    anti_tank: "candidate_from_high_damage_percent_slow_or_continuous_damage_text"
-    wall_break: "present_from_fandom_text"
-    throw_or_wall_bypass: "not_observed_in_selected_raw"
-    area_control: "present_from_area_zone_trap_puddle_or_spawnable_text"
-    scouting_or_vision: "present_from_reveal_vision_bush_text"
-    team_support: "present_from_heal_shield_speed_pull_or_buff_text"
-    spawnable_or_pet: "present_from_spawn_turret_pet_minion_text"
-    crowd_control: "present_from_slow_stun_knockback_pull_silence_text"
-    terrain_creation: "present_from_wall_or_puddle_obstacle_creation_text"
-    terrain_destruction: "present_from_fandom_text"
+    effective_range: long_mid_in_normal; short_high_pressure_in_driller
+    projectile_reliability: medium; 普通石块要利用分裂点、墙体或目标走位，Driller 近身更稳定但窗口短
+    burst: high_when_super_surfacing_or_driller_ammo_available
+    sustained_dps: medium_in_normal; high_short_window_in_driller
+    objective_damage: conditional_heist_pressure_after_tunnel_or_lane_win
+    mobility: high_with_super_underground_route; conditional_dash_with_Rat_Race
+    survivability: medium_low_base_health; underground avoids direct damage but status_or_dot仍可惩罚
+    engage: high_if_super_route_reaches_backline_or_objective
+    disengage: medium_with_Bail_Out_or_Rat_Race_path
+    anti_aggro: conditional; surfacing knockback and short-range Driller damage punish predictable entry
+    anti_tank: medium_if_Driller_window_is_protected; poor_if_front_to_front_into_hard_body
+    wall_break: conditional_with_Rat_Race_or_route_transform
+    throw_or_wall_bypass: high_with_underground_super
+    area_control: medium; split rocks and surfacing zone tax chokes
+    scouting_or_vision: medium_with_Vision_Gear_or_split_rock_bush_check
+    team_support: knockback_disarm_and_terrain_route_creation
+    spawnable_or_pet: none
+    crowd_control: surfacing_knockback_and_Rat_Race_knockback
+    terrain_destruction: conditional_Rat_Race_wall_break
 
   build_switches:
-    - build: "Dodgy Digging / Speeding Ticket / Vision, Speed, Shield, Damage"
+    - build: Dodgy Digging / Speeding Ticket / Vision, Speed, Shield, Damage
       source: "[[sources/PLP-Moe|PLP-Moe]]"
       changes_capabilities:
-        - "third_party_build_candidate; exact capability delta needs mechanism review"
+        - Dodgy Digging 加速 Super 循环，提升从普通形态进入 Driller 形态的频率
+        - Speeding Ticket 让 Driller 窗口更像短时间路线压迫，而不是纯站桩爆发
+        - Vision/Speed 只在草图或边路草线能转化成目标访问时升值
       enables:
-        - "mode_candidate:Gem Grab"
-        - "mode_candidate:Brawl Ball"
-        - "mode_candidate:Heist"
-        - "mode_candidate:Hot Zone"
+        - gem_mid_split_pressure
+        - brawl_ball_knockback_disarm
+        - heist_route_entry
+        - hot_zone_entry_clear
       mitigates_failure_modes:
-        - "unknown_until_reviewed_against_failure_modes"
-      best_when: "PLP mode/matchup seed aligns with current map_bp_factors"
-      poor_when: "build is copied without checking map route, enemy answers, or slot duty"
-      bp_use: "build_candidate_not_final_recommendation"
+        - slow_super_cycle
+        - bush_route_information_gap
+      poor_when:
+        - 敌方有稳定 anti-tank body、沉默、硬控或 DoT，能在 Moe 出土后立刻惩罚
+        - 地图给 Moe 绕行但没有金库、球门、矿区或热区收益
+      bp_use: default_competitive_build_with_resource_gate
+    - build: Rat Race route-break variant
+      source: "[[sources/Fandom-Moe|Fandom-Moe]]"
+      changes_capabilities:
+        - Driller dash 可破坏障碍并击退敌人，适合处理关键球门墙、金库入口或墙袋
+      enables:
+        - terrain_state_plan.selective_break
+        - brawl_ball_goal_or_disarm_angle
+        - heist_base_entry_route
+      mitigates_failure_modes:
+        - closed_wall_blocks_objective_conversion
+      poor_when:
+        - 破墙后敌方远程或突进比我方更受益
+      bp_use: route_break_variant_when_map_demands
 
   map_feature_hooks:
-    - map_feature_type: "long_sightline"
-      uses_feature_by: "range pressure candidate from Fandom attack range"
-      objective_conversion: "mode/objective payoff must be checked against active map_bp_factors"
-      active_when: "route offers safe line of sight and target access"
-      fails_if: "enemy has low-cost approach, walls block line, or projectile reliability fails"
-      example_maps: []
-      bp_use: "candidate_generation_not_final"
-    - map_feature_type: "wall_break_transform"
-      uses_feature_by: "terrain destruction text present in Fandom raw"
-      objective_conversion: "can create or deny lanes only if our comp benefits after transform"
-      active_when: "key wall blocks objective route or protects enemy pocket"
-      fails_if: "opening wall benefits enemy range/engage more than ours"
-      example_maps: []
-      bp_use: "terrain_state_plan_candidate"
-    - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "raw text mentions water/obstacle interaction"
-      objective_conversion: "must be tied to route, target access, or survival anchor"
-      active_when: "bypass creates real objective access"
-      fails_if: "bypass leads to short-range trap or no objective pressure"
-      example_maps: []
-      bp_use: "false_positive_filter_candidate"
+    - map_feature_type: brawl_ball_driller_knockback_score_or_disarm
+      uses_feature_by: Super 地下接近、出土击退和 Bail Out 让 Moe 能从侧草或墙后切入球权点
+      objective_conversion: 把一次出土窗口转成抢球、击退持球者、清门前防守或配合队友射门
+      active_when: Moe 有 Super 或即将循环到 Super，队友能接球/补伤害，敌方门前缺沉默或硬击退
+      fails_if: 出土后弹药比例不足、球门仍被墙体完全挡住、敌方保留硬控或反坦身体
+      example_maps:
+        - Center Stage
+        - Sneaky Fields
+        - Triple Dribble
+      bp_use: slot_task.ball_route_entry_with_resource_gate
+    - map_feature_type: gem_mid_split_rock_and_bush_choke_control
+      uses_feature_by: 普通形态分裂石块可摸草、打墙边和压缩宝石矿附近站位
+      objective_conversion: 保护 gem carrier、逼退矿区入口、惩罚敌方从侧草或堡垒入口挤进中路
+      active_when: 地图有 H 草、螺旋草或中心入口，Moe 不需要裸钻进敌方三人火力
+      fails_if: 敌方持续扫草并用长线压住 Moe，或 Moe 被迫用 Driller 当唯一进矿身体
+      example_maps:
+        - Hard Rock Mine
+        - Double Swoosh
+        - Gem Fort
+      bp_use: map_bp_factors.mid_choke_split_projectile_pressure
+    - map_feature_type: heist_driller_entry_or_safe_disruption
+      uses_feature_by: Super 绕墙/过障碍进入敌方半场，Rat Race 可打开障碍并制造短时间金库压力
+      objective_conversion: 逼回防、打断敌方 race，或在边路赢线后补一段近身 safe damage
+      active_when: 队友已有主 safe DPS 或远程压线，Moe 只需要制造入侵与回防压力
+      fails_if: Moe 被当成唯一打库核心，或敌方基地有保留控制/高 DPS 身体清掉 Driller
+      example_maps:
+        - Hot Potato
+        - Pit Stop
+        - Safe Zone
+        - Safe(r) Zone
+      bp_use: candidate_eval.heist_entry_disruption_not_primary_race
+    - map_feature_type: terrain_bypass_with_ammo_gate
+      uses_feature_by: 地下 Super 可穿过墙体和部分障碍，改变墙袋/热区/淘汰图的 first contact
+      objective_conversion: 绕过墙袋压力、压低后排或清热区边缘控制点
+      active_when: Moe 入场前有足够弹药，目标没有队友贴身保护，且路线终点能转换成击杀或赶人
+      fails_if: 地下路线只把 Moe 送进短手陷阱，或状态/DoT 在地下期间持续压血
+      example_maps:
+        - Belle's Rock
+        - New Horizons
+        - Open Business
+      bp_use: false_positive_filter.route_bypass_requires_exit_value
 
   objective_contracts:
-    - mode: "Gem Grab"
+    - mode: Gem Grab
       can_fulfill:
-        - "Gem Grab_candidate_from_plp"
-        - "area_control_candidate"
+        - mid_pressure_with_split_rocks
+        - side_route_pick_after_super
+        - carrier_retreat_disruption
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - stable_primary_gem_carrier_without_peel
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Brawl Ball"
+        - long_range_or_support_to_hold_mid_while_Moe_cycles_super
+        - anti_control_or_body_clear_after_driller_exit
+      false_positive: 只看 Super 绕后会高估 Moe；如果矿区正面没人站住，绕后只是交换资源
+    - mode: Brawl Ball
       can_fulfill:
-        - "Brawl Ball_candidate_from_plp"
-        - "ball_mode_contract_needs_push_clear_score_review"
+        - ball_carrier_disarm_with_surfacing_knockback
+        - side_route_score_window
+        - goal_wall_or_route_pressure_with_Rat_Race_variant
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - always_on_goal_wallbreak
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Heist"
+        - scorer_or_pass_receiver
+        - wallbreak_or_cc_if_goal_is_closed
+      false_positive: 出土击退不等于进球，必须有射门路线或队友 follow-up
+    - mode: Heist
       can_fulfill:
-        - "Heist_candidate_from_plp"
-        - "objective_damage_or_lane_pressure_needs_quant_review"
+        - forced_recall_entry
+        - auxiliary_safe_damage_after_lane_win
+        - defender_knockback_or_base_disruption
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - pure_remote_safe_DPS
+        - solo_race_without_teammate_safe_damage
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
-    - mode: "Hot Zone"
+        - real_safe_damage_core
+        - lane_control_to_cover_entry
+      false_positive: 会钻到金库附近不等于能持续打库
+    - mode: Hot Zone
       can_fulfill:
-        - "Hot Zone_candidate_from_plp"
-        - "area_control_candidate"
+        - entry_clear_with_driller
+        - zone_edge_split_rock_pressure
+        - control_point_disruption
       cannot_fulfill:
-        - "not_inferred_from_source; requires map/matchup review"
+        - durable_primary_zone_body
       needs_teammate_support:
-        - "cover failure modes and convert source candidate into map objective"
-      false_positive: "PLP mode fit is a seed; do not treat as unconditional map fit"
+        - zone_holder
+        - area_or_sustain_to_keep_zone_after_Moe_clears
+      false_positive: Moe 清点后如果无人站圈，Hot Zone 收益会断档
 
   failure_modes:
-    - id: "terrain_transform_backfires"
-      active_when: "opened lane improves enemy range or engage more than ours"
-      exposed_by: "terrain destruction candidate"
-      mitigation: "define exact wall and follow-up before pick"
-      bp_use: "terrain_state_plan_check"
-    - id: "source_signal_not_reviewed"
-      active_when: "BP relies on PLP mode/matchup seed without mechanism validation"
-      exposed_by: "third-party guide fields"
-      mitigation: "convert seed into conditional matchup or map hook before bp_ready"
-      bp_use: "do_not_mark_bp_ready"
+    - id: super_exit_ammo_gate
+      active_when: Moe Super 前弹药不足或出土后被迫立刻换形态
+      exposed_by: Fandom 说明回到普通形态时弹药比例沿用入场前状态
+      mitigation: 只在有弹药、队友压线或目标已被迫走位时入场
+      bp_use: resource_tracking.before_route_commit
+    - id: driller_short_window_trap
+      active_when: Driller 窗口结束前没有击杀、进球、打库或撤退路线
+      exposed_by: Fandom Driller 形态持续时间与短攻击范围
+      mitigation: 把 Driller 当短时间目标转换工具，不当稳定前排
+      bp_use: false_positive_filter.short_range_after_bypass
+    - id: status_or_dot_during_burrow
+      active_when: 敌方保留 DoT、沉默、减速、控制或基地防守资源
+      exposed_by: Fandom 地下状态仍可能吃状态/DoT的说明
+      mitigation: 先逼资源或让队友吸收控制，再用 Super 切入
+      bp_use: must_check_enemy_control_before_pick
+    - id: split_rock_reliability_into_fast_mobility
+      active_when: 敌方有 Stu/Max/Leon/Mortis 等高速横移或多路线接近
+      exposed_by: 分裂石块需要命中分裂点和预判
+      mitigation: 选择入口明确地图、搭配减速/视野，或把 Moe 留到后手惩罚低机动阵容
+      bp_use: avoid_blind_pick_into_multi_angle_mobility
 
   conditional_matchup_seeds:
-    - target:
-        - "Jae-Yong"
-        - "Sprout"
-        - "Nani"
-        - "Bea"
-        - "Piper"
-        - "Lola"
-        - "Squeak"
-        - "Poco"
-      direction: "subject_favored"
+    - target: Sprout_or_Nani_or_Bea_or_Piper_or_Squeak_or_Poco
+      direction: subject_favored
       source: "[[sources/PLP-Moe|PLP-Moe]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "target has support, map disables mechanism, or source seed lacks local validation"
-      bp_use: "conditional_matchup_seed_only"
-    - target:
-        - "Chester"
-        - "Damian"
-        - "Ash"
-        - "Draco"
-        - "Rosa"
-        - "Trunk"
-        - "8-Bit"
-        - "Willow"
-      direction: "target_favored"
+      mechanism: Moe 用分裂石块消耗墙边/长线目标，并用 Super 绕过固定站位或低机动后排的安全距离
+      active_when: 目标缺近身保镖，地图给 Moe 分裂角或地下切入路线
+      fails_when: 目标有硬 peel、投掷口袋被队友保护，或 Moe 出土点被预判
+      bp_use: response_pick_against_fragile_control_or_range
+    - target: Jae-Yong_or_Lola
+      direction: volatile
       source: "[[sources/PLP-Moe|PLP-Moe]]"
-      mechanism: "pending; PLP seed must be explained through capability_vector before use"
-      active_when: "requires map/mode/build validation"
-      fails_when: "map or comp removes target's access to the punishment mechanism"
-      bp_use: "must_avoid_or_protection_seed_only"
+      mechanism: Moe 可以用路线切入惩罚支援/固定输出，但 Jae-yong 的节奏支援和 Lola 的替身/角度会让出土目标选择变难
+      active_when: Moe 能先找到真身或支援核心，队友能跟上爆发
+      fails_when: 替身、加速或队友保护让 Moe 钻到错误目标或空窗
+      bp_use: matchup_requires_target_selection_check
+    - target: Chester_or_Damian_or_Ash_or_Draco_or_Rosa_or_Trunk_or_8-Bit_or_Willow
+      direction: target_favored
+      source: "[[sources/PLP-Moe|PLP-Moe]]"
+      mechanism: 高身体、爆发、持续 DPS、沉默/控制或墙控能吃下 Moe 出土窗口并反打短手 Driller
+      active_when: 这些目标守住 Moe 必须进入的球门、热区、金库入口或矿区路线
+      fails_when: Moe 只打侧面后排，或队友先拆掉控制/身体层
+      bp_use: must_avoid_or_require_team_clear_before_Moe_entry
+    - target: Ball_carrier_or_goal_defender_or_heist_safe
+      direction: subject_favored
+      source: "[[sources/Fandom-Moe|Fandom-Moe]]"
+      mechanism: Super 出土击退和 Driller 窗口可以直接影响持球者、门前防守者或金库附近防线
+      active_when: 目标正在固定位置执行目标动作，Moe 有 Super 且路线终点不被硬控覆盖
+      fails_when: 击退没有队友接球/补伤害，或金库防守把 Moe 清掉后 race 继续
+      bp_use: objective_specific_route_edge
 
   slot_notes:
-    slot_1: "only if map objective contract and low-cost counter checks are already satisfied; PLP seed alone is insufficient"
-    slot_2_3: "use as response or plan-building pick after checking enemy slot_1 and map duties"
-    slot_4_5: "can repair role gaps or answer enemy 2-3, but must not leave a clean slot_6 punish"
-    slot_6: "can punish exposed enemy draft only when conditional matchup seed is activated by map/mode/build"
+    slot_1: 只在地图明确奖励 Moe 的分裂压制和 Super 路线，且敌方低成本控制面窄时考虑；否则早手容易暴露短窗弱点。
+    slot_2_3: 适合作为建立中路压制加目标转换的计划手，但需要队友补站点/打库/得分职责。
+    slot_4_5: 用来回答敌方脆弱后排、墙袋或缺 anti-aggro 阵容，同时检查别把强控制或高身体留给敌方 slot_6。
+    slot_6: 最适合在敌方三人缺硬控和基地/门前清理时，作为高上限路线惩罚 pick。
 ```
 
 ## 关联页面
