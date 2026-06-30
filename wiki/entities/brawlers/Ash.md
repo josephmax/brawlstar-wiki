@@ -205,7 +205,7 @@ bp_brawler_profile:
       mechanism: "Rage-backed speed and piercing swings can walk through mid-range control once Ash reaches cover, while rats tax ammo and prevent clean retreats."
       active_when: "map has grass/chokes, Ash can build Rage before the all-in, and target lacks immediate anti-tank burst"
       fails_when: "target controls open distance, has protected wall pressure, or Ash enters at low Rage with no healer"
-      bp_use: "response_pick_seed_against_mid_control"
+      bp_use: "response_pick_candidate_against_mid_control"
     - target:
         - "Shelly"
         - "El Primo"

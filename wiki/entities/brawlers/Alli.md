@@ -201,7 +201,7 @@ bp_brawler_profile:
       bp_use: "super_window_reliability_check"
     - id: "tank_body_and_hard_cc_stop_entry"
       active_when: "Sam、Bull、Hank、Doug、Meg 等站住落点或用体型/回复吃掉 burst"
-      exposed_by: "[[sources/PLP-Alli|PLP-Alli]] target_favored seeds"
+      exposed_by: "[[sources/PLP-Alli|PLP-Alli]] target_favored signals"
       mitigation: "先 ban/回答 body，或把 Alli 留作后手惩罚脆后排"
       bp_use: "avoid_into_body_frontline"
 

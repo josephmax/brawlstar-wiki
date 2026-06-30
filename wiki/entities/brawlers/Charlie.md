@@ -231,7 +231,7 @@ bp_brawler_profile:
       mechanism: "Cocoon cancels engage, dash, scaling, or tank-forward plans and buys time for Charlie's team to burst or reset the objective."
       active_when: "target must enter a predictable ball, gem, zone, or safe route and Charlie has Super or Personal Space reset available"
       fails_when: "target baits Super, has wall/thrower cover, or Charlie's team cannot punish after Cocoon ends"
-      bp_use: response_pick_seed_against_single_core_or_aggro
+      bp_use: response_pick_candidate_against_single_core_or_aggro
     - target:
         - "Sprout"
         - "Barley"

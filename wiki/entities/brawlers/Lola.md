@@ -188,7 +188,7 @@ bp_brawler_profile:
       bp_use: "spawnable_counter_filter"
     - id: "low_mobility_body_dive"
       active_when: "敌方绕开 Ego 直接突 Lola 本体"
-      exposed_by: "Lola has no default mobility and PLP target_favored speed/control seeds"
+      exposed_by: "Lola has no default mobility and PLP target_favored speed/control signals"
       mitigation: "队友 peel、Stunt Double 变体、把 Ego 放在进场线而不是远端"
       bp_use: "requires_peel_against_dive"
 

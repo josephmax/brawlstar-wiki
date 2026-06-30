@@ -164,7 +164,7 @@ bp_brawler_profile:
       mechanism: Nani 的极远收束爆发、Return to Sender 变体和 Peep 威慑能惩罚单发长狙站位
       active_when: 地图开阔，Nani 能站极远端，目标没有召唤物/墙体保护
       fails_when: 目标先取得安全角度，或 Nani 被 side pressure 迫使中距离出手
-      bp_use: sniper_mirror_response_seed
+      bp_use: sniper_mirror_response_candidate
     - target: Mortis_or_Fang_or_8-Bit_or_R-T
       direction: subject_favored
       source: "[[sources/PLP-Nani|PLP-Nani]]"

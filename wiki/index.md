@@ -7,21 +7,28 @@
 - [[syntheses/Brawl-Stars-资源系统综述|Brawl Stars 资源系统综述]]
 - [[syntheses/Brawl-Stars-模式机制综述|Brawl Stars 模式机制综述]]
 - [[syntheses/Brawl-Stars-英雄定位综述|Brawl Stars 英雄定位综述]]
+
+## BP Runtime
+
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
-- [[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]
-- [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
-- [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]
-- [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]
-- [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]
-- [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]
-- [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
-- [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
 - [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
 - [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
-- [[syntheses/地图知识分层治理|地图知识分层治理]]
+- [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
+- [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+
+## BP Maintenance
+
+- [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
+- [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]
+- [[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]
+- [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]
+- [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]
+- [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]
+- [[syntheses/地图知识分层治理|地图知识分层治理]]
+- [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 
 ## Sources
 
@@ -29,6 +36,7 @@
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
 - [[sources/Brawler-Roster-2026-06-29|Brawler Roster 2026-06-29]]
+- [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 

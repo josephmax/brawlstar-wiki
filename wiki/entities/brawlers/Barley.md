@@ -174,7 +174,7 @@ bp_brawler_profile:
   failure_modes:
     - id: "low_health_dive_pressure"
       active_when: "Edgar、Mortis、Kenji、Sam、Ollie、Bolt 等从草/墙角贴 Barley"
-      exposed_by: "[[sources/PLP-Barley|PLP-Barley]] target_favored seeds and 2700 HP"
+      exposed_by: "[[sources/PLP-Barley|PLP-Barley]] target_favored signals and 2700 HP"
       mitigation: "保留 Sticky Syrup，补队友 peel，不在无墙侧路单站"
       bp_use: "draft_requires_peel"
     - id: "thrower_pocket_opened"

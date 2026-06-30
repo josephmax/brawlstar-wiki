@@ -204,7 +204,7 @@ bp_brawler_profile:
       mechanism: "Speed entry, Home Run knockback, and bubble bounce punish low-health, utility, wall-control, or close-range targets once Bibi chooses first contact."
       active_when: "walls, grass, ball lane, safe route, or carrier pressure force the target to remain near Bibi's approach"
       fails_when: "target keeps open spacing, has deeper cover or peel, baits knockback, or fights before Bibi reaches range"
-      bp_use: response_pick_seed_against_wall_control
+      bp_use: response_pick_candidate_against_wall_control
     - target:
         - "Otis"
         - "Clancy"

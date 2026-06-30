@@ -203,7 +203,7 @@ bp_brawler_profile:
       mechanism: "Gigi can threaten wall or spawnable/control pockets because Pirouette hits around her and Shadow Puppet changes position without walking the full lane."
       active_when: "map has walls or layered cover and the target lacks a bodyguard covering Gigi's endpoint"
       fails_when: "target has deeper peel, summon/bodyguard protection, or wallbreak opens the lane before Gigi can use cover"
-      bp_use: response_pick_seed_against_wall_control
+      bp_use: response_pick_candidate_against_wall_control
     - target:
         - "Bea"
         - "Lola"
@@ -214,7 +214,7 @@ bp_brawler_profile:
       mechanism: "Projectile traffic and aim-locked lanes can feed Gigi's Trait while teleport tempo punishes targets that lack close peel after the first dodge window."
       active_when: "Gigi can charge near cover and close after a miss or teammate chip"
       fails_when: "the target keeps a fully open long lane, has trap/peel support, or Gigi cannot enter Trait range without taking lethal damage"
-      bp_use: last_pick_or_side_lane_pressure_seed
+      bp_use: last_pick_or_side_lane_pressure_candidate
     - target:
         - "Chester"
         - "Bull"

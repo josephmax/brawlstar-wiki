@@ -185,7 +185,7 @@ bp_brawler_profile:
       bp_use: "sustain_resource_check"
     - id: "hard_anti_aggro_guard"
       active_when: "Gale/Otis/Shelly/Surge/Jacky 等守入口"
-      exposed_by: "[[sources/PLP-Kenji|PLP-Kenji]] target_favored seed and Fandom anti-control tips"
+      exposed_by: "[[sources/PLP-Kenji|PLP-Kenji]] target_favored signal and Fandom anti-control tips"
       mitigation: "等控制交掉、绕另一侧、或选后排而非正面 body"
       bp_use: "avoid_without_control_bait"
 

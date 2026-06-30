@@ -208,7 +208,7 @@ bp_brawler_profile:
       mechanism: "散射、炮台火区和 Master Blaster 可惩罚聚线、脆皮 poke 或单点控制站位"
       active_when: "目标必须围绕矿区/站区/球路移动，且 Penny 资源存活"
       fails_when: "他们分散、用跳跃/飞行/控制绕开火区，或先拆炮台"
-      bp_use: "objective_area_pressure_seed"
+      bp_use: "objective_area_pressure_candidate"
     - target: ["Carl", "Barley", "Belle", "Mr. P"]
       direction: "target_favored"
       source: "[[sources/PLP-Penny|PLP-Penny]]"

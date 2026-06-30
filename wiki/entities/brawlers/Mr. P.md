@@ -166,7 +166,7 @@ bp_brawler_profile:
       bp_use: "spawnable_liability_filter"
     - id: "dive_reaches_low_health_body"
       active_when: "Buzz/Edgar/Mortis/Fang/Sam 等绕过 porters 直接打 Mr. P"
-      exposed_by: "[[sources/PLP-Mr-P|PLP-Mr-P]] target_favored dive seeds"
+      exposed_by: "[[sources/PLP-Mr-P|PLP-Mr-P]] target_favored dive signals"
       mitigation: "必须有 peel、草视野和更深 base；不要盲早手进多刺客"
       bp_use: "requires_anti_dive_support"
     - id: "home_base_cleared_before_cycle"

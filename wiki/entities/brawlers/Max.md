@@ -209,7 +209,7 @@ bp_brawler_profile:
       bp_use: "false_positive_filter"
     - id: "low_pick_pressure_on_pure_long_range"
       active_when: "Max can dodge but cannot threaten kills into true snipers or throwers"
-      exposed_by: "[[sources/PLP-Max|PLP-Max]] matchup seeds include sniper/control answers"
+      exposed_by: "[[sources/PLP-Max|PLP-Max]] matchup signals include sniper/control answers"
       mitigation: "add long-range finisher, pull, or wallbreak teammate"
       bp_use: "role_coverage_check"
 
@@ -228,7 +228,7 @@ bp_brawler_profile:
       mechanism: "speed and Phase Shifter let Max dodge linear pressure, close weak angles, or chase immobile targets after chip"
       active_when: "map gives dodge space and target lacks hard CC or protected pocket"
       fails_when: "target plays behind wall/summon or Max lacks damage follow-up"
-      bp_use: "tempo_response_pick_seed"
+      bp_use: "tempo_response_pick_candidate"
     - target:
         - "Tara"
         - "Bea"

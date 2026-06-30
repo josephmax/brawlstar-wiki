@@ -181,7 +181,7 @@ bp_brawler_profile:
       bp_use: "timing_reliability_check"
     - id: "low_health_into_long_range_or_dot"
       active_when: "Lumi 被 Crow/Janet/Bea/Barley 等持续压线，无法站到召回角"
-      exposed_by: "3500 HP and PLP target_favored seeds"
+      exposed_by: "3500 HP and PLP target_favored signals"
       mitigation: "用墙角、Shield gear、队友 peel，不在开阔图无掩护早手"
       bp_use: "map_openness_filter"
 

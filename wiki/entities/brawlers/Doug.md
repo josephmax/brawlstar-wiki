@@ -202,7 +202,7 @@ bp_brawler_profile:
       mechanism: "revive and close sustain reduce the payoff of one-control or poke-based trades, while Doug can heal allies and clip wall-edge targets during objective contact"
       active_when: "map forces those targets to hold gem, ball, zone, or knockout cover where Doug's teammate can enter"
       fails_when: "they keep fully open spacing, clear the close teammate before Doug arrives, or destroy the revive location from range"
-      bp_use: "response_pick_seed_against_control_or_poke_trade"
+      bp_use: "response_pick_candidate_against_control_or_poke_trade"
     - target:
         - "Stu"
         - "Chuck"

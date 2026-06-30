@@ -217,7 +217,7 @@ bp_brawler_profile:
       mechanism: "Post routes and Ghost Train can bypass wall-control pockets and force throwers/control picks to answer an endpoint instead of free-casting."
       active_when: "map has a wall pocket or Heist route that Chuck can connect to without dying at the endpoint"
       fails_when: "the pocket has bodyguard peel, endpoint campers, or Chuck lacks time to set the route"
-      bp_use: response_pick_seed_against_wall_control_on_objective_maps
+      bp_use: response_pick_candidate_against_wall_control_on_objective_maps
     - target:
         - "Byron"
         - "Colt"
@@ -226,7 +226,7 @@ bp_brawler_profile:
       mechanism: "Chuck can bypass linear range with a prepared dash route and convert directly onto safe or backline before poke attrition matters."
       active_when: "objective route is fixed, post path is already placed, and enemy lacks endpoint CC or tank bodyguard"
       fails_when: "they outrun the setup with safe DPS, open the map into long lanes, or hold final Post with teammates"
-      bp_use: heist_route_pressure_seed
+      bp_use: heist_route_pressure_candidate
     - target:
         - "Charlie"
         - "Cordelius"

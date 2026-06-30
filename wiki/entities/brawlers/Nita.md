@@ -218,7 +218,7 @@ bp_brawler_profile:
       mechanism: "Bruce can be thrown over walls or into control pockets while Nita's pierce punishes grouped entrances and prevents easy healing."
       active_when: "walls, entrances, or objective congestion let Bruce reach the target and Nita can follow with pierce"
       fails_when: "target has deeper thrower angle, instant bear clear, or Nita cannot charge Super safely"
-      bp_use: "response_pick_seed_against_control_pocket"
+      bp_use: "response_pick_candidate_against_control_pocket"
     - target:
         - "Damian"
         - "Edgar"

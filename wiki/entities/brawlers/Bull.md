@@ -179,7 +179,7 @@ bp_brawler_profile:
       bp_use: "map_hard_gate"
     - id: "anti_tank_control_chain"
       active_when: "敌方有 Maisie/Shelly/Colette/Lou/Otis/Surge/Charlie"
-      exposed_by: "[[sources/PLP-Bull|PLP-Bull]] counteredBy seed + 本地条件化对位规则"
+      exposed_by: "[[sources/PLP-Bull|PLP-Bull]] counteredBy signal + 本地条件化对位规则"
       mitigation: "ban 关键反制、等待资源交出，或用队友先开路"
       bp_use: "must_avoid / ban_reason"
     - id: "wallbreak_backfires"

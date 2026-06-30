@@ -209,7 +209,7 @@ bp_brawler_profile:
       mechanism: "Barrier can delete or reflect many projectile lanes while Slo-Mo Replay punishes targets that must stand in Buster's cone."
       active_when: "fight is lane-based, Buster faces the projectile source, and allies can use the protected space"
       fails_when: "target attacks from side angle, uses wall/thrower support, or Buster has to cross open range without Super"
-      bp_use: response_pick_seed_against_projectile_lane
+      bp_use: response_pick_candidate_against_projectile_lane
     - target:
         - "Cordelius"
         - "Tara"
@@ -220,7 +220,7 @@ bp_brawler_profile:
       mechanism: "Cone pressure, Slo-Mo pull, and team cover can punish short-to-mid engage tools when those targets must enter through Buster's front."
       active_when: "Buster is grouped with allies and the target's route is predictable through a choke or ball lane"
       fails_when: "Buster is isolated, the target flanks around the barrier, or their control lands before Kevlar/Super timing"
-      bp_use: grouped_anti_engage_seed
+      bp_use: grouped_anti_engage_candidate
     - target:
         - "Colette"
         - "El Primo"

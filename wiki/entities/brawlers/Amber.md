@@ -198,7 +198,7 @@ bp_brawler_profile:
       bp_use: "anti_aggro_false_positive_filter"
     - id: "long_range_outpoke"
       active_when: "Brock、Bea、Byron、Piper、Crow 等在 Amber 射程外或燃油外持续消耗"
-      exposed_by: "[[sources/PLP-Amber|PLP-Amber]] target_favored seeds"
+      exposed_by: "[[sources/PLP-Amber|PLP-Amber]] target_favored signals"
       mitigation: "用墙/草/燃油逼走位，或避免在纯开阔长线早选"
       bp_use: "range_gate_for_early_pick"
     - id: "oil_timing_and_water_interrupt"

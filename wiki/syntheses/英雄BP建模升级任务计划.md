@@ -300,7 +300,7 @@ PLP 负责竞技 guide 信号，不负责最终真理。
 
 - 推荐 build 进入 `build_switches`。
 - Modes 进入 `objective_contracts` 候选。
-- `countersThese` / `counteredBy` 进入 `conditional_matchup_seeds`。
+- `countersThese` / `counteredBy` 进入 `conditional_matchup_candidates`。
 - Draft study 进入 `slot_notes`、ban 理由、路线保护或 last pick 惩罚样例。
 - PLP 的强度、counter 和 mode fit 必须标注为第三方竞技信号。
 
@@ -311,12 +311,12 @@ plp_counter:
   subject:
   target:
   raw_direction:
-  converted_to_seed:
+  converted_to_candidate:
     mechanism:
     active_when:
     fails_when:
     bp_use:
-  status: seed_only_not_final
+  status: candidate_only_not_final
 ```
 
 ## 与地图中间层对齐
@@ -489,7 +489,7 @@ slot_model:
 
 - 每个样本英雄能生成 `candidate_eval`。
 - 每个样本英雄至少有 3 个 `failure_modes` 或明确说明缺证据。
-- 每个 PLP counter 都只是 seed，不是最终 counter。
+- 每个 PLP counter 都只是原始候选，不是最终 counter。
 
 ### Phase 4: 条件化对位索引
 
@@ -556,7 +556,7 @@ slot_model:
 9. 抽取 objective contracts。
 10. 抽取 map feature hooks。
 11. 抽取 failure modes。
-12. 抽取 conditional matchup seeds。
+12. 抽取 conditional matchup candidates。
 13. 写 slot notes。
 14. 更新英雄实体页。
 15. 更新或创建 source 页。
@@ -571,7 +571,7 @@ slot_model:
 - `capability_vector` 至少覆盖核心能力与核心短板。
 - 至少有一个 `objective_contract`。
 - 至少有一个 `failure_mode`，或明确说明该英雄缺少足够证据。
-- 所有 counter 关系都是 `conditional_matchup_seed`，没有无条件 counter。
+- 所有 counter 关系都是 `conditional_matchup_candidate`，没有无条件 counter。
 - 至少一个 map hook 能连接到现有 map schema，或明确说明该英雄目前不依赖地图结构。
 - `slot_notes` 覆盖四类顺位。
 - 页面引用 source，source 可追溯 raw。

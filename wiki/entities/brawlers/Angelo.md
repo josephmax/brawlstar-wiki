@@ -208,7 +208,7 @@ bp_brawler_profile:
       mechanism: "very long charged burst and water/jump reposition let Angelo win poke windows against many linear marksmen"
       active_when: "open map, Angelo can hold charge safely, and water or speed creates dodge angle"
       fails_when: "target has safer wall angle, summons, or burst follow-up while Angelo charges"
-      bp_use: "lane_duel_or_last_pick_seed"
+      bp_use: "lane_duel_or_last_pick_candidate"
     - target:
         - "Mandy"
         - "Grom"

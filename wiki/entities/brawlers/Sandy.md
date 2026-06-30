@@ -219,7 +219,7 @@ bp_brawler_profile:
       mechanism: "Sandstorm compresses sightlines and lets Sandy's team cross into fragile long-range or wall-control targets, while Sweet Dreams punishes the first defender who steps forward."
       active_when: "Sandy has Super or can charge it on grouped enemies, and the map objective forces the target to contest a zone, ball, or gem area"
       fails_when: "target holds a deeper wall pocket, Sandy lacks follow-up damage, or open range prevents Super cycle"
-      bp_use: "team_cover_response_pick_seed"
+      bp_use: "team_cover_response_pick_candidate"
     - target:
         - "Nita"
         - "Bo"

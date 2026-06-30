@@ -212,7 +212,7 @@ bp_brawler_profile:
       mechanism: "Bulky, close-route, or objective-contact targets feed Clancy tokens and become vulnerable to Stage 2/3 cone damage."
       active_when: "objective forces repeated contact in grass, zone, ball, or mine routes and Clancy has Snappy Shooting or Stage 2 timing"
       fails_when: "target reaches him before token ramp, has hard CC, or plays through a wall pocket outside his line"
-      bp_use: response_pick_seed_against_body_or_close_route
+      bp_use: response_pick_candidate_against_body_or_close_route
     - target:
         - "Tara"
         - "Sandy"

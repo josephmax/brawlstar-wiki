@@ -179,7 +179,7 @@ bp_brawler_profile:
       bp_use: "terrain_state_plan_check"
     - id: "percent_or_control_anti_tank"
       active_when: "敌方 Colette/Lou/Shelly/Emz/Maisie/Surge 等能持续处理高血量前排"
-      exposed_by: "[[sources/PLP-Frank|PLP-Frank]] counteredBy seed + Fandom 反制提醒"
+      exposed_by: "[[sources/PLP-Frank|PLP-Frank]] counteredBy signal + Fandom 反制提醒"
       mitigation: "ban 核心反坦，或把 Frank 放到最后手确认敌方回答不足"
       bp_use: "must_avoid_or_ban_reason"
 

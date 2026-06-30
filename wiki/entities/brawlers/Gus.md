@@ -212,7 +212,7 @@ bp_brawler_profile:
       mechanism: "Gus can outlast or swing ranged/control lanes by shielding the threatened ally, using Spirit Animal for finish windows, and placing spirits near contested paths"
       active_when: "map has playable long lanes and the target lacks cheap body-block or wall control that stops Gus's hits"
       fails_when: "target plays behind deeper walls, receives summon cover, or deletes Gus before shield cycle"
-      bp_use: "support_lane_response_seed"
+      bp_use: "support_lane_response_candidate"
     - target:
         - "Fang"
         - "Bull"

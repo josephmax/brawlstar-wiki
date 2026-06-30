@@ -218,7 +218,7 @@ bp_brawler_profile:
       mechanism: "very long poke plus Spotter amplification punishes bulky or linear targets before they connect"
       active_when: "map has long lanes, target lacks covered entry, and Belle has team damage follow-up"
       fails_when: "target uses grass/walls/speed support to force close range or Belle lacks peel"
-      bp_use: "response_pick_seed_against_linear_frontline"
+      bp_use: "response_pick_candidate_against_linear_frontline"
     - target:
         - "Sprout"
         - "Barley"

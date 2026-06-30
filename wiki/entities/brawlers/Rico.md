@@ -218,7 +218,7 @@ bp_brawler_profile:
       mechanism: "closed-lane bounce pressure and Multiball punish targets that must enter Rico's wall geometry"
       active_when: "walls create narrow approach and Rico can keep range or point-blank burst in corridor"
       fails_when: "target approaches from open angle, has hard CC, or walls are removed"
-      bp_use: "response_pick_seed_on_closed_maps"
+      bp_use: "response_pick_candidate_on_closed_maps"
     - target:
         - "Sprout"
         - "Tara"
@@ -241,7 +241,7 @@ bp_brawler_profile:
       mechanism: "pierce/bounce lanes can hit grouped summons and owners from indirect angles"
       active_when: "summons are placed near walls or lane choke"
       fails_when: "summon anchors are protected by thrower pocket or force Rico into open field"
-      bp_use: "summon_pressure_response_seed"
+      bp_use: "summon_pressure_response_candidate"
 
   slot_notes:
     slot_1: "只在墙体收益非常明确且敌方低成本开墙少时先手；否则容易被 2-3 位投掷/开墙回答。"

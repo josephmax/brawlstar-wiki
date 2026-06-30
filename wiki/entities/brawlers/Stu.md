@@ -180,7 +180,7 @@ bp_brawler_profile:
       bp_use: "candidate_eval.execution_risk"
     - id: "body_or_control_interrupts_dash_plan"
       active_when: "enemy tanks, slows, pulls, or stuns on the route Stu must dash through"
-      exposed_by: "[[sources/PLP-Stu|PLP-Stu]] counteredBy tank/control seeds"
+      exposed_by: "[[sources/PLP-Stu|PLP-Stu]] counteredBy tank/control signals"
       mitigation: "avoid hard control lanes, keep Super for escape, or draft anti-tank"
       bp_use: "must_avoid_or_needs_support"
     - id: "terrain_transform_backfires"
@@ -209,7 +209,7 @@ bp_brawler_profile:
       mechanism: "dash chain lets Stu dodge skillshots, close onto throwers/snipers, or break their cover timing"
       active_when: "Stu can land one hit and target lacks protected pocket or hard peel"
       fails_when: "walls/summons deny hit, or target has teammate control on Stu's dash route"
-      bp_use: "response_pick_seed_against_skillshot_or_thrower"
+      bp_use: "response_pick_candidate_against_skillshot_or_thrower"
     - target:
         - "Rosa"
         - "Damian"
@@ -235,7 +235,7 @@ bp_brawler_profile:
       mechanism: "one-hit Super charge and Zero Drag can dodge direct jump/dash engage and kite out of range"
       active_when: "Stu keeps Super charged or can land a projectile before contact"
       fails_when: "enemy chains CC, catches Stu without ammo/Super, or blocks retreat path"
-      bp_use: "anti_aggro_response_seed"
+      bp_use: "anti_aggro_response_candidate"
 
   slot_notes:
     slot_1: "可在 Brawl Ball/Hot Zone/Gem 作为高机动先手，但要避开敌方 2-3 位坦克控制组合。"

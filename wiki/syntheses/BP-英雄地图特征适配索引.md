@@ -1,16 +1,17 @@
 # BP 英雄地图特征适配索引
 
-状态：`draft_seed_index_from_brawler_profiles`。生成日期：2026-06-30。
+状态：`runtime_reviewed_index_from_brawler_profiles`。生成日期：2026-06-30。
 
-本页汇总 104 个 BP-active 英雄页 `bp_brawler_profile.map_feature_hooks` 中的地图特征候选。它用于查找“哪个英雄可能响应哪类地图因素”，不替代单地图 `map_profile` / `map_bp_factors`。
+本页汇总 104 个 BP-active 英雄页稳定 `map_feature_hooks` 与已接入 Ranked 地图的 reviewed hook。它用于查找“哪个英雄能响应哪类地图因素”，不替代单地图 `map_profile` / `map_bp_factors`，也不承载版本差分或临时强度判断。
 
 ## 使用边界
 
-- usable_for: 候选生成、复核队列、查找英雄能力与地图因素的待连接点。
+- usable_for: BP 候选生成、英雄能力与地图因素连接、地图适配检索。
 - not_usable_for: 直接判定某英雄适配某地图、无条件推荐、强度排序。
-- 每条 hook 升级前必须补具体地图、路线/位置、目标收益、失效条件和 slot 任务。
+- 运行消费时必须检查具体地图、路线/位置、目标收益、失效条件和 slot 任务。
+- 修改流程：先把经过复核的机制变化内联到对应英雄页或地图页稳定字段，再同步更新本索引；不要把未复核来源、版本差分或临时观察项直接写进本页。
 
-## Hook 总览
+## 英雄能力 Hook 总览
 
 | brawler | map_feature_hooks | source | status |
 | --- | --- | --- | --- |
@@ -119,11 +120,11 @@
 | [[entities/brawlers/Willow|Willow]] | `gem_hex_carrier_pull_or_drop`, `brawl_ball_hex_carrier_or_goalkeeper_displacement`, `hot_zone_thrower_poison_and_hex_exit`, `knockout_hex_into_poison_or_teammate_burst` | [[entities/brawlers/Willow|profile]] | reviewed_in_profile |
 | [[entities/brawlers/Ziggy|Ziggy]] | `hot_zone_storm_choke_slow`, `gem_wall_lightning_mine_control`, `brawl_ball_storm_lane_clear`, `bounty_knockout_delayed_area_pick` | [[entities/brawlers/Ziggy|profile]] | reviewed_in_profile |
 
-## 升级门槛
+## 运行消费门槛
 
 - 对接 [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] 时，必须把 hook 落到具体 `route_or_position`、`objective_payoff`、`failure_condition` 和 `false_positive_filter`。
 - `long_sightline`、`thrower_pocket`、`wall_break_transform` 等只是特征类型，不是最终 pick 理由。
-- 如果 hook 来源于自动草案，应优先复核 Fandom raw 机制，再接入 Ranked Season 46 单地图实体页。
+- 如果某个 hook 尚未绑定具体地图和路线，只能用于候选召回，不能作为 pick 结论。
 
 ## Reviewed 地图适配 Hook
 
@@ -519,7 +520,7 @@
 ## 覆盖统计
 
 - BP-active 英雄：104
-- hook seed 条目数：319
+- 英雄能力 hook 条目数：319
 - reviewed 地图 hook：384
 - `Buzz Lightyear`：out-of-scope，不进入本索引。
 

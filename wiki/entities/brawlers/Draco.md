@@ -190,7 +190,7 @@ bp_brawler_profile:
       mechanism: "Last Stand plus Dragon Solo lets Draco cross a controlled choke and then use cone pressure or body presence to force wall/control picks off the objective."
       active_when: "map has a choke, grass route, or zone/ball objective that makes the target hold ground instead of freely kiting"
       fails_when: "target sits in a deeper thrower pocket, Draco's Super delay is interrupted, or the map is open enough to kite before entry"
-      bp_use: response_pick_seed_against_control_pocket
+      bp_use: response_pick_candidate_against_control_pocket
     - target:
         - "Lily"
         - "Kenji"
@@ -201,7 +201,7 @@ bp_brawler_profile:
       mechanism: "High health, damage reduction, Last Stand, and close Dragon Solo damage can absorb a direct engage and punish mobile short-range threats after they commit."
       active_when: "the fight happens in a lane funnel or objective area and Draco has Super, Last Stand, or teammate control online"
       fails_when: "the mobile target baits Last Stand, dodges the dragon cone, or escapes into open space before Draco refreshes pressure"
-      bp_use: anti_aggro_or_bruiser_response_seed
+      bp_use: anti_aggro_or_bruiser_response_candidate
     - target:
         - "Maisie"
         - "8-Bit"

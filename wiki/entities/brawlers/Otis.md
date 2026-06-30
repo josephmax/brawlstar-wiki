@@ -174,14 +174,14 @@ bp_brawler_profile:
       mechanism: Otis 的 mute 会阻止进场英雄攻击、接 Super/Gadget 或完成目标动作
       active_when: 目标需要近身或技能连段转化为进球/打库/站圈
       fails_when: Otis 没有 Super、被先手逼退，或目标由队友保护进入
-      bp_use: response_pick_seed_against_entry_plan
+      bp_use: response_pick_candidate_against_entry_plan
     - target: Ash_or_Trunk_or_Damian
       direction: subject_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"
       mechanism: 高血量或路线型前排一旦被沉默，会失去近身输出/技能节奏，无法把身体转换成目标收益
       active_when: 目标必须通过窄口、草口或金库入口正面接触 Otis 队伍
       fails_when: 前排有远程队友先压低 Otis，或用多路线逼出 Super 后再进场
-      bp_use: anti_body_route_lock_seed
+      bp_use: anti_body_route_lock_candidate
     - target: Barley_or_Larry_and_Lawrie_or_Willow
       direction: target_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"

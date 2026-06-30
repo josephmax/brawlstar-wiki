@@ -200,7 +200,7 @@ bp_brawler_profile:
       mechanism: "Berry 可越墙铺地和治疗抗压，但 Sprout/Rico 的墙体几何、Chuck 的路线和 Najia 的毒区都会让地面价值高度依赖地图"
       active_when: "Berry 能覆盖他们必须经过的入口或支援己方处理路线"
       fails_when: "几何让对方从更安全角度输出，或固定路线绕开 Berry puddle"
-      bp_use: map_geometry_check_before_accepting_seed
+      bp_use: map_geometry_check_before_accepting_candidate
     - target: Buzz_or_short_entry_body
       direction: subject_favored
       source: "[[sources/PLP-Berry|PLP-Berry]] / [[sources/Fandom-Berry|Fandom-Berry]]"

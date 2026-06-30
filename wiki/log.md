@@ -537,3 +537,41 @@
 - 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 376 增至 396。
 - 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 364 增至 384，hook seed 条目数从 314 增至 319。
 - 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 104 个、`reviewed` 0 个、`draft_from_raw_signals` 0 个。
+
+## [2026-06-30] ingest | June 2026 版本 BP 影响覆盖
+
+- 读取 `raw/sources/fandom/systems/release-notes-june-2026-2026-06-30.md`，只抽取会影响 BP 决策、失败条件、build 资源门槛或条件化对位边的变化；未把普通血量/伤害数值变动照搬为英雄结论。
+- 新增 [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]] 与 [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]，作为版本 / meta 覆盖层。
+- 给 `Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`、`Bolt`、`Meeple`、`Damian`、`Colette`、`Crow`、`Mortis`、`Edgar`、`Chester`、`R-T`、`Spike`、`Griff` 写入结构或对位阈值版本覆盖。
+- 给 `Leon`、`Lumi`、`Najia`、`Pierce`、`Mina` 写入次级资源门槛版本覆盖；`Larry & Lawrie`、`Juju`、`Ruffs`、`Shade` 等暂留观察名单，等待玩家开发、对局样本或更明确阈值后再更新条件化对位边。
+- `Brawl Arena Only` 变化未进入 Ranked BP；后续如分析 Brawl Arena，应另建模式覆盖层。
+
+## [2026-06-30] compile | 固化 BP 当前有效模型
+
+- 根据维护者反馈，将 `version_override` 从 BP 运行时输入改为版本 ingest 的编译输入；BP 决策运行时默认读取 [[syntheses/BP-当前有效模型|BP 当前有效模型]]。
+- 更新 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]] 和 [[syntheses/条件化对位模型|条件化对位模型]]：新增 `effective_bp_model`，并将 `candidate_eval.version_fit` 改为 `candidate_eval.effective_model_fit`。
+- 新增 [[syntheses/BP-当前有效模型|BP 当前有效模型]]，把 2026-06-30 版本的 22 条 BP-relevant delta 编译为 `hard_gate_deltas`、`capability_deltas`、`build_deltas`、`matchup_deltas`、`map_hook_deltas` 和 `slot_policy_deltas`。
+- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[index|Wiki Index]] 与 `AGENTS.md`，固定“稳定底座 + 版本编译输入 -> 当前有效模型 -> BP 运行时”的治理规则。
+
+## [2026-06-30] repair | 移除 BP 运行时增量模型
+
+- 根据维护者反馈，删除 [[syntheses/BP-当前有效模型|BP 当前有效模型]] 和后续误建的 `BP-当前决策模型.md`；运行时不再读取中央版本覆盖层。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]] 与 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]，固定“版本资料先审计；只有定性 BP 影响，且必须直接融入英雄 / 地图 / 对位 / hook 稳定字段”的规则。
+- 撤回所有英雄页中的“版本覆盖”与“当前 BP 判断”页尾覆盖段，避免决策语料混入补丁式解释。
+- 重新审计 2026-06-30 版本资料：`Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`、`Bolt`、`Damian`、`Spike` 仅标记为 `profile_merge_candidate`，等待逐字段内联；`Meeple`、`Colette`、`Crow`、`Mortis`、`Edgar`、`Chester`、`R-T`、`Griff`、`Leon`、`Lumi`、`Najia`、`Pierce`、`Mina` 保留在版本审计页，不进入运行时 BP 模型。
+- 追加 `AGENTS.md` 英雄页治理规则：`wiki/entities/brawlers/` 只保存当前最新 BP 建模结果；版本 / meta 资料若不能直接内联改写稳定字段，只能留在来源、审计或日志层。
+
+## [2026-06-30] repair | 清理 BP 运行索引和维护边界
+
+- 将 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]] 改为 `runtime_reviewed_index_from_brawler_profiles`，删除原始候选总览和待复核口径，只保留从英雄页稳定 `conditional_matchups` 派生的 reviewed 对位边。
+- 将 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]] 改为运行时派生索引，明确只用于候选检索和地图因素连接，不保存版本差分或临时强度判断。
+- 更新 [[syntheses/条件化对位模型|条件化对位模型]]：版本资料接入门槛改为维护规则，不再作为运行对象；对象编号回到 `map_profile / mode_objective_profile / brawler_profile / build_profile / conditional_matchup / draft_state / pick_slot_state / draft_eval`。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/地图知识分层治理|地图知识分层治理]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 和 [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]，把运行时读取路径固定为稳定英雄页、地图页、对位索引和地图 hook 索引；来源候选、版本观察和审计交接只留在维护层。
+- 统一英雄页和对位索引中的 `bp_use` 命名，将旧抓取阶段的候选标签改为 `candidate` / `signal` 口径，避免运行语料继续暴露原始候选阶段术语。
+
+## [2026-06-30] skill | 新增 BP slot 决策 skill
+
+- 新增 `skills/brawl-stars-bp-slot-decision/SKILL.md`，固化 BP 查询时的必读运行时页面、slot policy、hard gate、候选评估和输出格式，要求每手输出 2-4 个可复盘决策。
+- 新增 `skills/brawl-stars-bp-slot-decision/scripts/bp_index.py`，提供只读检索辅助，用于定位 Season 46 地图实体页、英雄实体页、条件化对位边索引和英雄地图 hook 索引命中；脚本只做召回，不替代 BP 排序。
+- 新增 `skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py`，覆盖必读页面声明和 `Safe Zone / Brock / Mortis` 样例索引召回。
+- 已运行 `python3 skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py` 与 `quick_validate.py`，均通过。

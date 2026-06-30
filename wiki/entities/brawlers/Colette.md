@@ -195,7 +195,7 @@ bp_brawler_profile:
       bp_use: "objective_conversion_filter"
     - id: "summon_or_wall_control_target_dilution"
       active_when: "敌方用 Mr. P、Larry & Lawrie、Eve、Tara 等召唤/墙控稀释 Colette 的单目标节奏"
-      exposed_by: "[[sources/PLP-Colette|PLP-Colette]] target-favored seed list"
+      exposed_by: "[[sources/PLP-Colette|PLP-Colette]] target-favored signal list"
       mitigation: "补清召唤物、开墙或改用更稳定 area damage"
       bp_use: "must_answer_body_block_and_wall_control"
 

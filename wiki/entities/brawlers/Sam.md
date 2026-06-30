@@ -213,7 +213,7 @@ bp_brawler_profile:
       mechanism: "Speed entry, Magnetic Field pull, and wall-loop recovery punish fragile, utility, or low-burst control picks when Sam can compress the route."
       active_when: "cover, grass, or objective entrances force the target to hold ground within Sam's recoverable buster path"
       fails_when: "target keeps open spacing, sits in a deeper protected pocket, has bodyguard peel, or Sam cannot recover busters safely"
-      bp_use: response_pick_seed_against_control_pocket
+      bp_use: response_pick_candidate_against_control_pocket
     - target:
         - "Surge"
         - "Shelly"

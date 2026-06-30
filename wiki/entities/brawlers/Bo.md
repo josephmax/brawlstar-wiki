@@ -199,7 +199,7 @@ bp_brawler_profile:
       mechanism: "地雷封走位、视野税和长中距离三箭能压迫低机动或依赖墙/固定位置的控制与长手"
       active_when: "目标必须经过入口、矿区或热区路线，Bo 的地雷有队友跟伤害"
       fails_when: "目标拥有更深墙后口袋、传送/拉人先手，或 Bo 地雷被提前拆掉"
-      bp_use: "control_lane_response_seed"
+      bp_use: "control_lane_response_candidate"
     - target: ["Frank", "Jae-Yong", "Gale"]
       direction: "subject_favored"
       source: "[[sources/PLP-Bo|PLP-Bo]]"

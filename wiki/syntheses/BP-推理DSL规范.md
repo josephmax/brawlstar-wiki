@@ -116,12 +116,12 @@ bp_case:
     pickable_brawlers:
     banned_brawlers:
     unavailable_brawlers:
-    version_overrides:
 
   knowledge_refs:
     brawler_profiles:
     build_profiles:
     conditional_matchups:
+    map_hook_indexes:
     source_notes:
 ```
 
@@ -240,6 +240,33 @@ build_profile:
   best_when:
   poor_when:
 ```
+
+### 版本资料接入门槛
+
+版本补丁、临时 meta、重做、Buffies、Hypercharge 改动不直接进入 BP 运行时。它们先作为来源或审计材料保存；只有当资料改变英雄的能力类型、职责归类、硬门槛、对位成立条件、地图 hook 或 slot 策略时，才直接更新对应英雄页、地图页、条件化对位边索引或地图 hook 索引的稳定 BP 字段。
+
+```yaml
+version_audit_item:
+  subject:
+  source:
+  observed_change:
+  qualitative_bp_effect:
+    affects_hard_gate:
+    affects_required_capability:
+    affects_matchup_condition:
+    affects_map_hook:
+    affects_slot_strategy:
+  runtime_decision: merge_to_stable_profile | source_only | watchlist
+  reason:
+  evidence_needed:
+```
+
+接入规则：
+
+- 不能从血量、伤害、冷却或手感变化直接推出 BP 结论；必须说明它改变了哪个可消费的决策条件。
+- 只让已有失败条件“更重要”或“更不重要”的资料，默认不更新运行时页面，除非它让候选从可用变成不可用，或反过来。
+- 不能证明常见高水平对位、地图职责或顺位策略变化时，结论留在来源页、审计页或观察名单。
+- 进入稳定 BP 字段的内容必须写成干净的当前状态规则，不写成变化过程。
 
 ### conditional_matchup
 
@@ -391,10 +418,10 @@ slot_policy:
 5. 更新 `draft_state`：识别双方已暴露计划、角色缺口和被保护或暴露的 pick。
 6. 更新 `pick_slot_state`：明确当前手的信息量、主要任务和后续反制风险。
 7. 运行 `hard_gate_result`：先处理必须抢、必须 ban、必须回答、必须避免的项。
-8. 激活 `conditional_matchup`：只保留在当前地图、模式、阵容、build 条件下成立的对位边。
+8. 激活 `conditional_matchup`：只保留在当前地图、模式、阵容和 build 条件下成立的对位边。
 9. 推导 `required_capabilities`：列出当前位置最需要的能力，而不是先锁死某个英雄。
 10. 生成候选：从可用英雄池中找能满足硬门槛、slot 任务和能力需求的 pick 或 ban。
-11. 评估候选：对每个候选写出收益、风险、需要的 build、对手自然回应和后续阵容影响。
+11. 评估候选：对每个候选写出收益、风险、使用到的稳定 BP 规则、需要的 build、对手自然回应和后续阵容影响。
 12. 输出 2 到 4 个优先决策：按“最稳基本面”“最高收益惩罚”“最强路线保护”“必要 ban”区分用途。
 
 ## Candidate Eval
@@ -430,6 +457,11 @@ candidate_eval:
   matchup_value:
     activated_edges:
     disabled_edges:
+  knowledge_fit:
+    stable_rules_used:
+    evidence_sources:
+    confidence:
+    decision_effect:
   role_coverage:
   build_requirement:
   exposure_risk:
@@ -471,6 +503,8 @@ bp_recommendation:
     mode_conditions:
     activated_matchups:
     disabled_matchups:
+    stable_knowledge_refs:
+    ignored_watchlist:
 
   required_capabilities:
     primary:
@@ -567,6 +601,7 @@ conditional_matchup:
 - 用户经验：用于修正模型边界、模式评价框架、顺位视角和静态 counter 的误用。
 - 赛事或复盘：用于补充 `draft_eval` 样例，校准 ban 如何拆路线、pick 如何建立或破坏计划。
 - 地图经验：进入 `map_profile` 与 `map_feature`，记录地形如何打开路线、制造目标角度、惩罚拥挤、产生假阳性适配和改变 ban / pick 价值。
+- 版本资料：先进入来源页或审计页；只有产生定性 BP 影响时，才以当前状态规则直接更新对应英雄页、地图页、对位索引或地图 hook 索引。
 
 ## 关联页面
 

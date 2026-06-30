@@ -205,7 +205,7 @@ bp_brawler_profile:
       mechanism: "wallbreak plus long bullet lanes can remove pockets and punish low-health control picks"
       active_when: "key wall is breakable and Colt can shoot after opening without being dived"
       fails_when: "thrower has deeper pocket, Colt lacks wallbreak build, or enemy punishes the opened lane"
-      bp_use: "response_pick_seed_against_cover_control"
+      bp_use: "response_pick_candidate_against_cover_control"
     - target:
         - "El Primo"
         - "Brock"
@@ -216,7 +216,7 @@ bp_brawler_profile:
       mechanism: "high DPS and speed punish linear or aim-locked targets when Colt has a clean tracking lane"
       active_when: "open side lane, predictable movement, and no immediate flank threat"
       fails_when: "target outranges from safer angle or closes through cover before full burst lands"
-      bp_use: "lane_duel_seed"
+      bp_use: "lane_duel_candidate"
     - target:
         - "Angelo"
         - "Moe"

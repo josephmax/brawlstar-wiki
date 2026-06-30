@@ -18,7 +18,7 @@
 | Phase 1: 全量 raw capture | 完成 | 104 个 BP-active 英雄均有 Fandom corrected raw 与 PLP direct raw；旧 raw 不覆盖，修正件保留 dated 文件。 |
 | Phase 2: source summaries | 完成 | 104 个 Fandom source 摘要与 104 个 PLP source 摘要均已建立，并标明可用边界。 |
 | Phase 3: 英雄实体与 BP profile | 完成 | 104 个英雄实体页均含 `bp_brawler_profile`，且全部通过结构门槛。 |
-| Phase 4: 全局 seed / reviewed 索引 | 完成 | 对位 seed 与地图 hook seed 已建立；reviewed 边和 reviewed 地图 hook 已同步到索引。 |
+| Phase 4: 运行时检索索引 | 完成 | reviewed 条件化对位边和 reviewed 地图 hook 已同步到运行时索引；未复核来源信号不进入运行索引。 |
 | Phase 5: bp_ready 质量升级 | 完成 | 104 个 BP-active 英雄全部为 `profile_status: bp_ready`；无 `reviewed` 中间态、无 draft。 |
 
 ## 当前验收快照
@@ -36,21 +36,21 @@
 ## 索引快照
 
 - [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
-  - PLP matchup seed signals：1664。
+  - 已归档 PLP matchup 原始信号：1664。
   - reviewed 条件化对位边组：396。
 - [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
-  - map hook seed 条目数：319。
+  - 英雄能力 hook 条目数：319。
   - reviewed Ranked 地图 hook：384。
 
 ## 最终收尾批次
 
 - `Damian`、`Juju`、`Kit`、`Larry & Lawrie`、`Meeple` 已从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`。
-- 该批补齐了特殊规则区、元素地形、附身支援、双人召唤执法和临时地形陷阱的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
+- 该批补齐了特殊规则区、元素地形、附身支援、双人召唤执法和临时地形陷阱的能力向量、build 选择、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 已重跑 [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]，审计结果为 104 个 `bp_ready`，无阻塞类型。
 
 ## 后续维护边界
 
-`bp_ready` 表示结构上可供 [[syntheses/BP-推理DSL规范|BP 推理 DSL]] 消费，不表示该英雄在当前版本一定强。版本强度、新英雄超模、赛事 meta、平衡补丁影响应写入版本 / meta 覆盖层，不反写成稳定英雄事实。
+`bp_ready` 表示结构上可供 [[syntheses/BP-推理DSL规范|BP 推理 DSL]] 消费，不表示该英雄在当前版本一定强。版本强度、新英雄超模、赛事 meta、平衡补丁影响应先进入来源页、审计页或日志；只有产生定性 BP 影响时，才直接更新对应英雄页、地图页、条件化对位边索引或地图 hook 索引的稳定 BP 字段。BP 推理运行时默认读取这些稳定页面，而不是临场叠加旧补丁记录。
 
 后续如果新英雄、地图池、build 或数值变化出现，应按原三层治理继续维护：先保留 raw，再更新 source 摘要，最后更新英雄页、地图页、索引和日志。
 

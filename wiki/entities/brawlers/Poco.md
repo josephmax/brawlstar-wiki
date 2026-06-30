@@ -212,7 +212,7 @@ bp_brawler_profile:
       mechanism: "Protective Tunes removes or prevents many control/status effects, while Super and Da Capo undo chip that these targets rely on to win objective fights."
       active_when: "fight is clustered around Hot Zone, Brawl Ball push, or carrier retreat and Poco's allies remain within cleanse/heal reach"
       fails_when: "enemy wins through raw burst, displacement that Protective Tunes does not interrupt, or anti-heal after Poco spends cleanse"
-      bp_use: response_pick_seed_against_status_control
+      bp_use: response_pick_candidate_against_status_control
     - target:
         - "Najia"
         - "Jae-Yong"
@@ -221,7 +221,7 @@ bp_brawler_profile:
       mechanism: "PLP flags the matchup as favorable; Poco's BP-consumable reason is sustain tempo, where repeated heal waves can outlast poke if teammates provide the damage."
       active_when: "objective is grouped and Poco has a durable teammate converting the health lead"
       fails_when: "the fight spreads across lanes or Poco's team lacks damage after healing"
-      bp_use: support_tempo_matchup_seed
+      bp_use: support_tempo_matchup_candidate
     - target:
         - "Rosa"
         - "Ash"

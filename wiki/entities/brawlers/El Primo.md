@@ -167,7 +167,7 @@ bp_brawler_profile:
       bp_use: "map_hard_gate"
     - id: "anti_tank_or_silence_denies_jump"
       active_when: "敌方有 Colette/Otis/Clancy/8-Bit/Maisie/Shelly/Colt 等反坦或控制"
-      exposed_by: "[[sources/PLP-El-Primo|PLP-El-Primo]] counteredBy seed"
+      exposed_by: "[[sources/PLP-El-Primo|PLP-El-Primo]] counteredBy signal"
       mitigation: "ban 核心反制或最后手确认敌方缺反坦"
       bp_use: "must_avoid / ban_reason"
     - id: "super_trajectory_readable"

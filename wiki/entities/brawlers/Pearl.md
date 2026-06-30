@@ -189,7 +189,7 @@ bp_brawler_profile:
       bp_use: "projectile_reliability_gate"
     - id: "outranged_or_controlled_before_heat_window"
       active_when: "Belle、Nani、Brock、Mandy、Eve、Amber、Lou 等从安全距离或控制位压 Pearl"
-      exposed_by: "[[sources/PLP-Pearl|PLP-Pearl]] target_favored seeds"
+      exposed_by: "[[sources/PLP-Pearl|PLP-Pearl]] target_favored signals"
       mitigation: "补墙体/前排/投掷处理，避免 Pearl 独自承担开阔长线"
       bp_use: "map_openness_and_control_warning"
 

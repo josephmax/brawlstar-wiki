@@ -220,7 +220,7 @@ bp_brawler_profile:
       mechanism: "wall-phase entry and through-wall attacks punish backline or control picks that depend on fixed cover"
       active_when: "map has walls near the target and Shade can charge or activate Super before being kited"
       fails_when: "target has through-wall answer, bodyguard, or open retreat space"
-      bp_use: "response_pick_seed_against_wall_backline"
+      bp_use: "response_pick_candidate_against_wall_backline"
     - target:
         - "Doug"
         - "Jacky"

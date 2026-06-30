@@ -189,14 +189,14 @@ bp_brawler_profile:
       mechanism: Gene 可用拉人、推开或队友集火打断进场节奏
       active_when: Gene 有队友 follow-up，敌方进场路径可预判
       fails_when: 目标能绕侧路贴脸，或 Gene 没有 Lamp Blowout/保护
-      bp_use: response_pick_seed_against_linear_engage
+      bp_use: response_pick_candidate_against_linear_engage
     - target: Barley_or_Sprout_or_Squeak_or_Rico
       direction: subject_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: Magic Hand 穿墙威胁会把墙后控场/弹墙位从安全口袋拉成可集火目标
       active_when: 地图墙体给 Gene 拉手机会，且己方有爆发或控制接拉
       fails_when: 目标有召唤物挡手、口袋过深、或 Gene 被长线压到无法攒 Super
-      bp_use: wall_pocket_answer_seed
+      bp_use: wall_pocket_answer_candidate
     - target: Piper_or_Mandy_or_Brock
       direction: target_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"

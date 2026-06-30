@@ -188,7 +188,7 @@ bp_brawler_profile:
       bp_use: "survival_false_positive_filter"
     - id: "slow_thrower_reload_under_dive_pressure"
       active_when: "Mortis、Mico、Melodie、Stu、Lily、Moe、Gray、Sam 等从侧翼压 Willow"
-      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored seeds and 3300 HP"
+      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored signals and 3300 HP"
       mitigation: "补视野/peel，选墙后投掷角，避免无防守侧路"
       bp_use: "draft_requires_peel"
 

@@ -235,7 +235,7 @@ bp_brawler_profile:
       mechanism: "Shadow Realm and Poison Mushroom deny close-range Supers/Gadgets and force tanks or engage picks into a Cordelius-favored 1v1."
       active_when: "target must enter a choke, ball route, zone, or gem lane and Cordelius has Super, Poison Mushroom, or Replanting angle ready"
       fails_when: "target keeps open spacing, baits Super, has teammate pressure on the remaining 2v2, or Cordelius lacks health to win the duel"
-      bp_use: response_pick_seed_against_tank_or_single_engage
+      bp_use: response_pick_candidate_against_tank_or_single_engage
     - target:
         - "Chuck"
         - "Stu"
@@ -244,7 +244,7 @@ bp_brawler_profile:
       mechanism: "Shadow Realm interrupts route or dash tempo by removing the target from the normal objective race and disabling Super/Gadget follow-up."
       active_when: "their value depends on a predictable dash/post/scoring route and Cordelius can hit the Super before objective contact"
       fails_when: "they bait the isolation, already completed the objective touch, or Cordelius' teammates lose the normal-map fight"
-      bp_use: route_plan_disruption_seed
+      bp_use: route_plan_disruption_candidate
     - target:
         - "Gale"
         - "Max"

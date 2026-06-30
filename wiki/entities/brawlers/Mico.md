@@ -228,7 +228,7 @@ bp_brawler_profile:
       mechanism: "Record Smash doubles damage against non-Brawlers and special targets"
       active_when: "target is reachable and Mico can spend ammo on objective instead of escape"
       fails_when: "defenders body-block landing or Mico needs all ammo to survive"
-      bp_use: "objective_or_spawnable_answer_seed"
+      bp_use: "objective_or_spawnable_answer_candidate"
 
   slot_notes:
     slot_1: "不宜裸先，除非地图明确奖励跳墙且敌方反刺客池被 ban；否则容易被坦克/控制 2-3 回答。"

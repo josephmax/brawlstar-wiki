@@ -207,7 +207,7 @@ bp_brawler_profile:
       mechanism: "midrange spray, Super slow, and Friendzoner punish bulky or close-objective bodies before they can stay on the goal, zone, or mine"
       active_when: "objective requires walking through Emz's spray band and she has peel resources available"
       fails_when: "target outranges first, baits Friendzoner, or reaches point-blank with mobility still available"
-      bp_use: "response_pick_seed_against_close_or_body_pressure"
+      bp_use: "response_pick_candidate_against_close_or_body_pressure"
     - target:
         - "Squeak"
         - "Glowy"

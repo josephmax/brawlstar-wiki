@@ -227,7 +227,7 @@ bp_brawler_profile:
       mechanism: "Shielded roll, wall bounce, knockback, and point-blank shotgun burst punish fragile, static, or wall-control targets once Darryl has a valid route."
       active_when: "map gives a grass, wall, water, or choke path ending in shotgun range and target lacks a bodyguard or hard interrupt"
       fails_when: "target controls from a deeper pocket, endpoint is camped, or Darryl must cross open range before roll"
-      bp_use: response_pick_seed_against_fragile_control
+      bp_use: response_pick_candidate_against_fragile_control
     - target:
         - "Alli"
         - "Jae-Yong"
@@ -237,7 +237,7 @@ bp_brawler_profile:
       mechanism: "Darryl can force close contact before utility or support tempo accumulates, using Tar Barrel and roll knockback to prevent clean retreat."
       active_when: "objective forces the target to stand near a lane, safe, or zone route and Darryl has Super or a protected flank"
       fails_when: "support shell has anti-tank damage, Darryl cannot isolate the target, or he spends both rolls without a kill"
-      bp_use: dive_or_objective_contact_response_seed
+      bp_use: dive_or_objective_contact_response_candidate
     - target:
         - "Chester"
         - "Bull"

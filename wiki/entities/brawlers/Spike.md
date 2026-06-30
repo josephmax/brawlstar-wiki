@@ -190,7 +190,7 @@ bp_brawler_profile:
       mechanism: Curveball 和区域 slow 能压迫低血或节奏型控制/支援位，让他们难以稳定站目标边缘
       active_when: 地图是中距离目标区，目标必须在 Spike 射程内反复 peek
       fails_when: 目标保持全开放远线或有队友清掉 Spike 的站位
-      bp_use: midrange_control_pressure_seed
+      bp_use: midrange_control_pressure_candidate
     - target: Mico_or_Melodie_or_Edgar_or_Chuck
       direction: target_favored
       source: "[[sources/PLP-Spike|PLP-Spike]]"

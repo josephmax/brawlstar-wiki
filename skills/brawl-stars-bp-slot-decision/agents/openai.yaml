@@ -1,0 +1,7 @@
+interface:
+  display_name: "Brawl Stars BP Slot Decision"
+  short_description: "Ideal BP slot picks and bans from this vault."
+  default_prompt: "Use $brawl-stars-bp-slot-decision to decide the best current Brawl Stars BP slot from this vault."
+
+policy:
+  allow_implicit_invocation: true

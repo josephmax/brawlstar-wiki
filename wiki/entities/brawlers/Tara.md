@@ -187,7 +187,7 @@ bp_brawler_profile:
       bp_use: tempo_and_slot_risk
     - id: open_long_range_kite
       active_when: Piper/Mandy/Belle/Nani 等在纯开阔长线保持距离，Tara 无法进入 Super 范围
-      exposed_by: PLP matchup seed 与长线地图模型
+      exposed_by: PLP matchup signal 与长线地图模型
       mitigation: 草丛/墙体路线、Speed gear、队友压迫或避免早手暴露
       bp_use: false_positive_filter
     - id: summon_clear_or_body_block

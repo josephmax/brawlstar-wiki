@@ -187,7 +187,7 @@ bp_brawler_profile:
       bp_use: "survival_false_positive_filter"
     - id: "outranged_or_flanked_before_super_cycle"
       active_when: "敌方 long range/thrower 从冰面外压低 Lou"
-      exposed_by: "Lou low health and PLP target_favored range/mobility seeds"
+      exposed_by: "Lou low health and PLP target_favored range/mobility signals"
       mitigation: "补前排/开墙/视野，不在无掩护长线让 Lou 单独控区"
       bp_use: "map_openness_and_peel_check"
 

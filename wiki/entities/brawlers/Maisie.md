@@ -182,7 +182,7 @@ bp_brawler_profile:
       bp_use: "map_route_false_positive_filter"
     - id: "long_range_pressure_outside_super"
       active_when: "敌方 Piper/Nani/Bea/8-Bit 等在 Super 范围外压制"
-      exposed_by: "PLP target_favored range/body seeds and Fandom long-range struggle note"
+      exposed_by: "PLP target_favored range/body signals and Fandom long-range struggle note"
       mitigation: "补开墙/长手队友，不在纯开阔长线单独早手"
       bp_use: "draft_needs_lane_support"
 

@@ -1,13 +1,13 @@
 # Ranked Season 46 地图 Map Profile 总览
 
-这页现在只作为 `Ranked Season 46` 的赛季地图池索引。稳定地图结构、`map_feature`、`hero_model_delta` 和 `false_positive` 已拆入单地图实体页。
+这页现在只作为 `Ranked Season 46` 的赛季地图池索引。稳定地图结构、`map_feature`、地图特征对英雄能力的稳定影响和 `false_positive` 已拆入单地图实体页。
 
 治理原则见 [[syntheses/地图知识分层治理|地图知识分层治理]]：
 
 - 地图实体页：长期稳定，放在 `wiki/entities/maps/`。
 - 本页：赛季轮换索引，只记录当前 Ranked Season 46 地图池和入口。
-- 版本 / meta 覆盖层：记录当前强势英雄、新英雄和版本超模。
-- 英雄页 map-fit：记录英雄在具体地图特征上能做什么。
+- 版本 / meta 审计：记录来源摘要、观察项和是否足以改写稳定 BP 字段的判断，不作为运行时叠加层。
+- 英雄页 map-fit：记录英雄在具体地图特征上能做什么；若版本资料形成定性变化，直接内联改写稳定字段。
 
 ## 来源与时间语境
 
@@ -67,7 +67,7 @@
 -> 读 BP DSL
 -> 读本页确定地图是否在 Season 46 池内
 -> 进入对应地图实体页读取稳定 map_profile
--> 再读英雄页和版本 / meta 覆盖层
+-> 再读相关英雄页、条件化对位边索引和地图 hook 索引
 ```
 
 ## 关联页面

@@ -217,7 +217,7 @@ bp_brawler_profile:
       mechanism: "Eve 可用水域/长线避免部分常规路线，但这些英雄也可能通过特殊弹道、弹墙或炮台清理 hatchling"
       active_when: "Eve 有隔水角度且不会被弹墙/炮台逼离"
       fails_when: "墙体角度让对方绕过水域打到 Eve，或召唤物被快速清掉"
-      bp_use: "map geometry check before accepting PLP seed"
+      bp_use: "map geometry check before accepting PLP signal"
 
   slot_notes:
     slot_1: "只在地图水域/长线是硬职责且敌方低成本答案被 ban 时可早手；否则容易被后手范围清理或突进惩罚"

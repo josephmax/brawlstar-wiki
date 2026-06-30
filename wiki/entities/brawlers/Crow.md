@@ -238,7 +238,7 @@ bp_brawler_profile:
       mechanism: "Poison halves healing and delays natural regeneration, making healer or sustain shells lose tempo before objective contact."
       active_when: "fight is repeated poke around gem, zone, or ball objective and Crow can keep at least one poison tag active"
       fails_when: "healer's team hard-engages before poison accumulates or Crow cannot tag through walls/spawnables"
-      bp_use: response_pick_seed_against_heal_or_sustain
+      bp_use: response_pick_candidate_against_heal_or_sustain
     - target:
         - "Leon"
         - "Shelly"
@@ -251,7 +251,7 @@ bp_brawler_profile:
       mechanism: "Long tag range, reveal, anti-heal, slow, and Super cleanup punish targets that rely on hiding, short-range entry, or post-chip retreat."
       active_when: "Crow has space to kite, target must cross visible grass/choke, and Slowing Toxin or Carrion converts a low-health window"
       fails_when: "target reaches close range without Crow Super, outranges him, or has a teammate body blocking the landing"
-      bp_use: lane_pressure_or_cleanup_response_seed
+      bp_use: lane_pressure_or_cleanup_response_candidate
     - target:
         - "Lola"
         - "Spike"

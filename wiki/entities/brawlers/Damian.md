@@ -165,7 +165,7 @@ bp_brawler_profile:
   failure_modes:
     - id: short_range_kited_before_super
       active_when: "Piper、Nani、Mr. P、Squeak 等在开阔线或墙外持续消耗 Damian"
-      exposed_by: "[[sources/Fandom-Damian|Fandom-Damian]] short range and PLP matchup seeds"
+      exposed_by: "[[sources/Fandom-Damian|Fandom-Damian]] short range and PLP matchup signals"
       mitigation: "选有墙/草/目标接触点的地图，或保留 Super 作为 first contact"
       bp_use: false_positive_filter.not_open_lane_tank
     - id: empowered_bar_decay_or_miss

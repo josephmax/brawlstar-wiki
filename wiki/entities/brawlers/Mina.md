@@ -188,7 +188,7 @@ bp_brawler_profile:
       mechanism: "Windmill 和 dash 降低线性/中距离控制命中率，Super/root 可打断固定站位"
       active_when: "目标需要站在中线、矿区或球路入口"
       fails_when: "召唤物/地雷/高爆发先限制 Mina 连段"
-      bp_use: "mid_control_duel_seed"
+      bp_use: "mid_control_duel_candidate"
     - target: ["Gale", "Damian", "Buster", "Nita"]
       direction: "target_favored"
       source: "[[sources/PLP-Mina|PLP-Mina]]"

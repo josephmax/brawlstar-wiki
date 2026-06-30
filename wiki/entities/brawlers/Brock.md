@@ -177,7 +177,7 @@ bp_brawler_profile:
       mechanism: 长射程与溅射惩罚低机动或站位笨重目标
       active_when: 开阔长线、对方缺接近压力、Brock 可保持距离
       fails_when: 敌方有硬开或 Brock 被迫中距离对枪
-      bp_use: response_pick_or_lane_pressure_seed
+      bp_use: response_pick_or_lane_pressure_candidate
     - target: Emz_or_Spike_or_Mr_P_or_Shelly
       direction: subject_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
