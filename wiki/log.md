@@ -575,3 +575,10 @@
 - 新增 `skills/brawl-stars-bp-slot-decision/scripts/bp_index.py`，提供只读检索辅助，用于定位 Season 46 地图实体页、英雄实体页、条件化对位边索引和英雄地图 hook 索引命中；脚本只做召回，不替代 BP 排序。
 - 新增 `skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py`，覆盖必读页面声明和 `Safe Zone / Brock / Mortis` 样例索引召回。
 - 已运行 `python3 skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py` 与 `quick_validate.py`，均通过。
+
+## [2026-07-01] query | BP 实战查询速度与模型形态评估
+
+- 回答“当前数据量是否能满足实战 BP 思考速度，以及实时 skill 查询和直接微调哪个更快”的问题。
+- 读取 [[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 `skills/brawl-stars-bp-slot-decision/`。
+- 新增 [[syntheses/BP-实战查询速度与模型形态评估|BP 实战查询速度与模型形态评估]]，结论为当前数据量足够支撑实战 BP 的有依据思考；推荐 `skill + 本地检索 + 预热上下文 + 小范围候选评估`，不建议把可变事实库直接作为微调主载体。
+- 更新 [[index|Wiki Index]] 增加该 synthesis 入口。
