@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Brawl Stars BP"
+  short_description: "Neutral-recorder Brawl Stars BP simulations."
+  default_prompt: "Use $run-brawl-stars-bp to run a neutral-recorder Brawl Stars BP simulation with simultaneous bans, sequential picks, and player-submitted conclusions."

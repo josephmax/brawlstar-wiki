@@ -18,6 +18,9 @@
 - [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
 - [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+- BP skills:
+- `skills/run-brawl-stars-bp/`：裁判 / run-bp 编排 skill，负责同步 ban、顺序 pick、策略偏好、回合指标和统一 match report。
+- `skills/brawl-stars-bp-slot-decision/`：选手 / 单手 BP 决策 skill，负责基于地图、阵容、强度语境和策略偏好输出 ban / pick 决策。
 
 ## BP Maintenance
 
@@ -30,6 +33,7 @@
 - [[syntheses/地图知识分层治理|地图知识分层治理]]
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 - [[syntheses/BP-实战查询速度与模型形态评估|BP 实战查询速度与模型形态评估]]
+- [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
 ## Sources
 
@@ -397,6 +401,7 @@
 - [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
 - [[syntheses/地图知识分层治理|地图知识分层治理]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+- [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
 ## How To Use
 

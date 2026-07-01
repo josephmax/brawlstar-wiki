@@ -582,3 +582,43 @@
 - 读取 [[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 `skills/brawl-stars-bp-slot-decision/`。
 - 新增 [[syntheses/BP-实战查询速度与模型形态评估|BP 实战查询速度与模型形态评估]]，结论为当前数据量足够支撑实战 BP 的有依据思考；推荐 `skill + 本地检索 + 预热上下文 + 小范围候选评估`，不建议把可变事实库直接作为微调主载体。
 - 更新 [[index|Wiki Index]] 增加该 synthesis 入口。
+
+## [2026-07-01] skill | 固化 run-bp 裁判与 BP 选手扩展
+
+- 新增 `skills/run-brawl-stars-bp/SKILL.md`，将 BP 模拟固定为裁判编排：红蓝 ban 阶段同步提交并允许重复 ban，随后按 `blue_slot1 -> red_slot2_3 -> blue_slot4_5 -> red_slot6` 顺序轮流决策。
+- 新增 `skills/run-brawl-stars-bp/references/match-report-schema.md`，统一 match report 的 Match Header、Ban Phase、Pick Turn Schema、Turn Metrics 和 Final Draft Evaluation；报告开头必须记录 `blue_model`、`red_model` 与双方 `strategy_bias`。
+- 更新 `skills/brawl-stars-bp-slot-decision/SKILL.md`，新增 `strength_context`、`meta_pressure`、`overpowered_or_t0_exception` 和 `strategy_bias`；强度信号必须有来源，策略偏好只在 hard gate 与地图适配之后改变候选排序。
+- 新增 `tools/test_bp_skill_contract.py`，用契约测试覆盖裁判同步 ban、报告格式、回合指标、强度语境和保守 / 均衡 / 激进 / 高方差偏好字段。
+
+## [2026-07-01] skill | 收窄 run-bp 裁判职责
+
+- 根据实跑反馈，将 `skills/run-brawl-stars-bp/SKILL.md` 明确改为 `neutral_recorder` / `deal_cards_only`：裁判只维护隐藏信息、发起子 agent、cue 回合、记录指标和整理选手提交内容。
+- 明确 `no_judge_draft_evaluation`：裁判不读取地图 / 英雄 / 对位页面来形成 BP 判断，不评价 ban/pick 好坏，不修补选手逻辑，不给出 favored side。
+- 明确 `style_bias_assigned_at_spawn` 与 `do_not_validate_style_compliance`：选手风格在创建子 agent 时固定，后续不再额外校验是否符合保守 / 激进风格。
+- 将报告结尾从裁判生成的 `Final Draft Evaluation` 改为 `Player Final Statements`，只记录双方选手提交的胜利条件、风险和不确定性。
+
+## [2026-07-01] docs | 新增 BP skill 调用 README
+
+- 新增 `README.md`，给 agent 提供两段可直接复制的提示词：一段通过 `$run-brawl-stars-bp` 从 Ranked Season 46 地图池随机选图并开完整 BP；一段通过 `$brawl-stars-bp-slot-decision` 针对指定地图、ban 位和当前 slot 做单手 BP 决策。
+- README 明确裁判只做中立记录和流程 cue，不做 BP 评价；单手 BP 示例要求输出候选、理由、风险、后续需求和被排除选项。
+
+## [2026-07-01] skill | 固化 BP 对局人类报告模板
+
+- 更新 `skills/run-brawl-stars-bp/SKILL.md`：裁判默认在发起选手子 agent 前随机分配双方 `strategy_bias`，并把选定值传入后续所有选手 prompt；只有用户明确要求 deterministic / balanced 时才固定为 `balanced`。
+- 重写 `skills/run-brawl-stars-bp/references/match-report-schema.md`：最终 match report 改为纯 Markdown 人类可读报告，固定包含 Match Summary、Ban Phase、Draft Timeline、Player Final Statements、Stable Knowledge Refs，并禁止 YAML、raw structured log、match header、favored side 与裁判侧 Draft Evaluation。
+- 新增 `skills/run-brawl-stars-bp/scripts/render_match_report.py`：用 `REPORT_TEMPLATE` 和变量注入生成稳定格式报告，保留中间数据在渲染输入中，不把 raw structured log 交付给人类读者。
+- 更新 `tools/test_bp_skill_contract.py`：加入报告模板契约测试，覆盖随机 / 显式 strategy bias、人类可读段落、禁用旧评价字段和渲染脚本存在性。
+
+## [2026-07-01] skill | 修正 balanced BP 对坦刺的系统性降权
+
+- 更新 `skills/brawl-stars-bp-slot-decision/SKILL.md`：在候选生成阶段加入 `balanced_threat_probe`，要求每轮 2-4 个候选中主动评估至少一个 `route_based_tank_or_assassin` / `proactive_threat_candidate`，除非 `hard_gate_result.must_avoid` 或地图假阳性过滤明确排除。
+- 明确 `route_endpoint_payoff`：坦刺路线必须说明可转化为进球、打库、掉宝、拿星、清投掷、翻圈、保护 carrier 或迫使防守资源，避免只按“短手能接近”粗判。
+- 明确 `do_not_demote_tank_assassin_for_style_alone`：不能因为 `balanced` 风格本身把坦克 / 刺客降权；必须指出失败路线、缺少目标收益或敌方剩余低成本反制。
+- 更新 `tools/test_bp_skill_contract.py`，把 balanced 主动威胁探针和坦刺候选要求加入契约测试，避免后续模拟继续收敛到单调长手 / 控制 / 续航壳。
+
+## [2026-07-01] cleanup | 提炼并移除逐局 BP 模拟报告
+
+- 新增 [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]，将 14 份临时 match report 提炼为单页摘要，仅保留每图 ban 位、slot 1 / 2-3 / 4-5 / 6 选出和关键构筑理由。
+- 删除 `wiki/syntheses/bp-simulations/` 临时报告目录；该目录不再作为 wiki 知识层的一部分。
+- 更新 [[index|Wiki Index]]，移除 14 个逐局报告链接，只保留汇总页入口。
+- 更新 `README.md`：逐局完整报告以后写入 `outputs/bp-simulations/` 作为临时运行产物；只有提炼后的关键结论进入 `wiki/syntheses/`。

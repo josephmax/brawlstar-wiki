@@ -9,6 +9,8 @@ description: Use when deciding Brawl Stars Ranked Ban Pick picks or bans for a s
 
 Make each BP slot decision from the vault's stable runtime layer, not from memory, tier lists, or raw strength. The ideal slot decision is the pick or ban that best satisfies current hard gates, map duties, mode objectives, role gaps, matchup conditions, and future exposure risk.
 
+Strength matters when there is evidence. Do not ignore current meta pressure or overpowered brawlers, but do not invent tier lists from memory. Treat strength as a separate evidence layer that can raise or lower priority only after map/mode duties and counter availability are checked.
+
 ## Required Reads
 
 Always read these files before a serious BP answer:
@@ -53,6 +55,13 @@ bp_case:
   bans:
   candidate_pool:
   known_player_constraints:
+  strategy_bias: conservative | balanced | aggressive | high_variance
+  strength_context:
+    source: stable_wiki | user_supplied | source_page | unknown
+    meta_pressure:
+    overpowered_or_t0_exception:
+    counter_availability:
+    balance_volatility:
 ```
 
 If `map`, `mode`, or current slot is missing, state that the conclusion is incomplete. Ask only when the missing field changes the decision; otherwise proceed with explicit assumptions.
@@ -65,10 +74,27 @@ If `map`, `mode`, or current slot is missing, state that the conclusion is incom
 4. Update `draft_state`: known picks, bans, revealed plans, role gaps, protected picks, exposed picks.
 5. Update `pick_slot_state`: team side, known own/enemy picks, remaining enemy answers, current slot job.
 6. Run `hard_gate_result`: `must_pick`, `must_ban`, `must_answer`, `must_avoid`.
-7. Derive required capabilities before naming heroes.
-8. Generate 2-4 candidate decisions from available heroes or bans.
-9. For each candidate, write `candidate_eval`: purpose, map factor fit, mode fit, role coverage, conditional matchups, build requirement, exposure risk, likely enemy response.
-10. Rank by current slot value, not isolated hero strength.
+7. Check `strength_context`: current meta pressure, overpowered_or_t0_exception, balance volatility, and whether counters are realistic in this map/slot.
+8. Derive required capabilities before naming heroes.
+9. Run `balanced_threat_probe`: identify whether the current map/draft exposes a real `route_based_tank_or_assassin` lane.
+10. Generate 2-4 candidate decisions from available heroes or bans.
+11. For each candidate, write `candidate_eval`: purpose, map factor fit, mode fit, strength fit, role coverage, conditional matchups, build requirement, exposure risk, likely enemy response.
+12. Rank by current slot value, strategy bias, and evidence-backed strength context; never by isolated hero strength alone.
+
+## Proactive Threat Probe
+
+Before ranking picks, run `balanced_threat_probe` even when `strategy_bias: balanced`. This prevents balanced drafts from collapsing into only long-range/control/sustain shells.
+
+Create a `proactive_threat_candidate` when all are true:
+
+- The map exposes a route, pocket, grass lane, wall edge, goal window, safe entry, carrier retreat, zone entrance, or thrower pocket that a tank/assassin can actually reach.
+- The route has `route_endpoint_payoff`: score, safe damage, gem drop, star pick, thrower removal, zone flip, carrier peel, or forced defender resource.
+- Enemy remaining answers are not a clear hard gate, or those answers are already banned, picked elsewhere, on cooldown in the plan, or must cover a different route.
+- The candidate can name required teammate support or build when needed.
+
+For every pick turn, the 2-4 candidate decisions must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or a map false-positive filter explicitly rules it out. If ruled out, write the route that failed and the exact blocker. Do not simply omit tanks/assassins because they are volatile.
+
+The proactive candidate does not have to be the top decision. It must be honestly evaluated beside control, range, sustain, and spawnable options.
 
 ## Slot Policies
 
@@ -88,9 +114,58 @@ Use this as ordering logic, not a numeric formula:
 1. Hard gates beat everything.
 2. Mode objective and map duty coverage beat matchup comfort.
 3. A conditional matchup counts only when its `active_when` conditions match the map, mode, comp, and build.
-4. Slot exposure can demote an otherwise strong candidate.
-5. Build requirements must be explicit when they change the candidate's role.
-6. A ban is ideal only when it removes a low-cost route, protects a real plan, or prevents a hard gate that picks cannot answer efficiently.
+4. Evidence-backed `overpowered_or_t0_exception` can create a must-pick or must-ban, but only if the map/mode does not provide cheap reliable answers.
+5. Slot exposure can demote an otherwise strong candidate.
+6. Build requirements must be explicit when they change the candidate's role.
+7. A ban is ideal only when it removes a low-cost route, protects a real plan, prevents a hard gate, or removes an evidence-backed overpowered route that picks cannot answer efficiently.
+8. Use `do_not_demote_tank_assassin_for_style_alone`: do not demote a route-based tank or assassin only because it is volatile. Demotion requires a named failed route, missing `route_endpoint_payoff`, or a realistic remaining counter.
+9. When a tank/assassin route is valid and enemy answers are constrained, treat it as structural pressure, not high variance by default.
+
+## Strength Context
+
+Use this object when the request, source pages, user notes, or current wiki pages provide strength information:
+
+```yaml
+strength_context:
+  source: stable_wiki | user_supplied | source_page | unknown
+  meta_pressure:
+    - brawler:
+      signal: t0 | overpowered | high_pick_ban | strong | normal | weak
+      reason:
+      evidence_ref:
+  overpowered_or_t0_exception:
+    must_pick:
+    must_ban:
+    still_requires_map_fit:
+    cheap_answers_available:
+  counter_availability:
+    realistic_answers:
+    answers_banned_or_taken:
+    answers_false_positive_if:
+  balance_volatility:
+    patch_sensitive:
+    confidence:
+```
+
+Rules:
+
+- If strength source is `unknown`, state that meta strength was not available and do not fabricate tiers.
+- If a hero is evidence-backed T0/overpowered and reliable answers are banned, unavailable, or map-false-positive, promote it into `hard_gate_result.must_pick` or `must_ban`.
+- If a hero is strong but invites cheap slot response on this map, keep it in candidate eval instead of hard gate.
+- Do not let strength erase failure modes. Example: a strong thrower on a wall map still needs anti-dive or wallbreak protection; a strong assassin still needs a route and endpoint safety.
+
+## Strategy Bias
+
+Apply the judge-provided `strategy_bias` after hard gates and strength context:
+
+| bias | Pick/ban preference | Risk posture |
+| --- | --- | --- |
+| `conservative` | stable first picks, flexible role coverage, low exposure bans | demote volatile tanks/assassins unless all routes and peel are proven |
+| `balanced` | default BP DSL ordering plus one proactive threat check | use strongest map/mode fit with manageable exposure, but must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or map false-positive filters rule it out |
+| `aggressive` | route-based engage, last-pick punish, early pressure if counters are constrained | allow tanks/assassins when map route, build, and teammate follow-up are explicit |
+| `high_variance` | unusual punish lines and stress-test picks | allowed only with written failure modes and recovery plan |
+
+The bias changes ranking among viable candidates; it cannot make a false-positive map fit viable. Balanced is not conservative: it must compare one proactive route to one stable/control route when both are legal.
 
 ## Required Output
 
@@ -105,6 +180,7 @@ bp_recommendation:
     activated_matchups:
     disabled_matchups:
     stable_knowledge_refs:
+    strength_context:
   required_capabilities:
   candidate_evals:
   top_decisions:
@@ -114,11 +190,28 @@ bp_recommendation:
 
 Include 2-4 top decisions. For each decision include `why_now`, required build, risk control, likely enemy response, and next step.
 
+Each ban or pick must include:
+
+```yaml
+decision_detail:
+  construct_direction:
+  capabilities_provided:
+  answers_enemy_picks:
+  answers_map_factors:
+  risks_removed:
+  new_risks_created:
+  followup_needs:
+  rejected_options:
+```
+
 ## Common Mistakes
 
 - Do not output a single pick without alternatives.
 - Do not use `open`, `wall density`, `water`, or `summary_tags` as direct scoring signals.
 - Do not treat `A counters B` as unconditional. Explain mechanism, active conditions, fails conditions, and BP use.
 - Do not read version/meta audit pages as runtime overlays. If a version item is not merged into stable hero/map/index fields, keep it out of the decision or mark it as uncertainty.
+- Do not ignore evidence-backed T0/overpowered signals just because they are not elegant map theory; strength can become a hard gate when reliable answers are unavailable.
+- Do not invent T0/meta claims from memory. If no strength source is provided or present in the wiki, write `strength_context.source: unknown`.
+- Do not let `strategy_bias: aggressive` justify a tank/assassin without route, follow-up, and endpoint safety.
 - Do not include `Buzz Lightyear` in BP-active pools.
 - Do not let the script's retrieved lines become the answer. Use them to choose what to read next.
