@@ -9,29 +9,33 @@ SKILL_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = SKILL_DIR.parents[1]
 SKILL_MD = SKILL_DIR / "SKILL.md"
 SCRIPT = SKILL_DIR / "scripts" / "bp_index.py"
+COMPILE_REF = SKILL_DIR / "references" / "compile-knowledge.md"
+DECIDE_REF = SKILL_DIR / "references" / "runtime-decision-knowledge.md"
 
 
 class BPSkillIndexTest(unittest.TestCase):
-    def test_skill_mentions_required_runtime_pages(self):
+    def test_skill_uses_mode_specific_references_not_syntheses(self):
         text = SKILL_MD.read_text(encoding="utf-8")
+        script = SCRIPT.read_text(encoding="utf-8")
 
-        required_pages = [
-            "wiki/index.md",
-            "wiki/syntheses/BP-推理DSL规范.md",
-            "wiki/syntheses/条件化对位模型.md",
-            "wiki/syntheses/Ban-Pick-问题拆分.md",
-            "wiki/syntheses/地图特征建模Schema.md",
-            "wiki/syntheses/地图因素BP表达规范.md",
-            "wiki/syntheses/Ranked-Season-46-地图Map-Profile总览.md",
-            "wiki/syntheses/英雄BP建模执行状态.md",
-            "wiki/syntheses/BP-条件化对位边索引.md",
-            "wiki/syntheses/BP-英雄地图特征适配索引.md",
+        required_terms = [
+            "compile",
+            "decide",
+            "references/compile-knowledge.md",
+            "references/runtime-decision-knowledge.md",
+            "wiki/entities/maps/",
+            "wiki/entities/brawlers/",
+            "runtime_bp_index",
         ]
+        for term in required_terms:
+            self.assertIn(term, text)
 
-        for page in required_pages:
-            self.assertIn(page, text)
+        self.assertTrue(COMPILE_REF.exists())
+        self.assertTrue(DECIDE_REF.exists())
+        self.assertNotIn("wiki/syntheses/", text)
+        self.assertNotIn("wiki/syntheses/", script)
 
-    def test_index_script_finds_ranked_map_brawler_and_matchup_refs(self):
+    def test_index_script_finds_ranked_map_and_brawler_pages(self):
         result = subprocess.run(
             [
                 sys.executable,
@@ -52,11 +56,19 @@ class BPSkillIndexTest(unittest.TestCase):
         )
         payload = json.loads(result.stdout)
 
+        self.assertEqual(
+            [
+                "skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md",
+                "skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md",
+            ],
+            [page["path"] for page in payload["skill_reference_pages"]],
+        )
+        self.assertNotIn("runtime_pages", payload)
         self.assertTrue(payload["map"]["path"].endswith("wiki/entities/maps/Safe Zone.md"))
         self.assertTrue(payload["brawlers"]["Brock"]["path"].endswith("wiki/entities/brawlers/Brock.md"))
         self.assertTrue(payload["brawlers"]["Mortis"]["path"].endswith("wiki/entities/brawlers/Mortis.md"))
-        self.assertTrue(payload["index_hits"]["matchups"])
-        self.assertTrue(payload["index_hits"]["map_hooks"])
+        self.assertEqual("user_supplied_or_compiled_runtime_index_required", payload["map"]["pool_membership"])
+        self.assertTrue(payload["stable_source_hits"])
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@
 - 类型：用户经验 / schema 治理原则
 - 日期：2026-06-29
 - 上游 raw：[[../../raw/inbox/2026-06-29-user-note-bp-schema-occam.md]]
-- 关联：[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/地图特征建模Schema|地图特征建模 Schema]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- 关联：[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 
 ## 核心观点
 

@@ -186,7 +186,7 @@ bp_brawler_profile:
       bp_use: "duty_coverage_check"
     - id: "wall_break_backfires"
       active_when: "Grand Piano 打开墙后敌方长手/刺客比我方更受益"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] 地形状态计划"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] 地形状态计划"
       mitigation: "先定义要开的墙和后续站位，再决定 build"
       bp_use: "terrain_state_plan_check"
 
@@ -231,5 +231,5 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Gray|Fandom 来源摘要: Gray]]
 - [[sources/PLP-Gray|PLP 来源摘要: Gray]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]

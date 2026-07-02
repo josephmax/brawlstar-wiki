@@ -197,7 +197,7 @@ bp_brawler_profile:
       bp_use: role_coverage_check
     - id: terrain_transform_backfires
       active_when: Air Superiority 开墙后敌方远程/突进比我方更受益
-      exposed_by: 地图因素 BP 表达规范与 Brawl Ball/Knockout map rules
+      exposed_by: BP 地图建模与决策规范与 Brawl Ball/Knockout map rules
       mitigation: 只开关键墙，或在 draft 中确认我方有开墙后的远程/得分后续
       bp_use: terrain_state_plan_check
     - id: support_tempo_too_slow

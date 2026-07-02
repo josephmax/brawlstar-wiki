@@ -17,9 +17,6 @@ ROSTER = ROOT / "raw/sources/roster/brawlers-roster-2026-06-29.md"
 FANDOM_DIR = ROOT / "raw/sources/fandom/heroes"
 PLP_DIR = ROOT / "raw/sources/pl-prodigy/brawlers"
 ENTITY_DIR = ROOT / "wiki/entities/brawlers"
-BP_OUT_OF_SCOPE = {"Buzz Lightyear"}
-
-
 @dataclass(frozen=True)
 class RosterRow:
     name: str
@@ -45,6 +42,10 @@ def parse_roster(path: Path) -> list[RosterRow]:
         if len(cells) >= 3:
             rows.append(RosterRow(cells[0], cells[1], cells[2]))
     return rows
+
+
+def has_active_bp_sources(row: RosterRow) -> bool:
+    return row.fandom_url != "no_page_found" and row.plp_url != "no_page_found"
 
 
 def source_suffix(name: str) -> str:
@@ -544,7 +545,7 @@ def upsert_profile(row: RosterRow, *, dry_run: bool, overwrite: bool) -> tuple[s
 def main() -> int:
     args = parse_args()
     ENTITY_DIR.mkdir(parents=True, exist_ok=True)
-    rows = [row for row in parse_roster(Path(args.roster)) if row.name not in BP_OUT_OF_SCOPE]
+    rows = [row for row in parse_roster(Path(args.roster)) if has_active_bp_sources(row)]
     if args.names:
         wanted = set(args.names)
         rows = [row for row in rows if row.name in wanted]

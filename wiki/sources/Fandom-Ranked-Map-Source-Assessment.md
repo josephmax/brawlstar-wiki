@@ -11,7 +11,7 @@
 
 ## 调研问题
 
-本次调研回答一个具体问题：Fandom 的地图页能否提供足够细的地图信息，用来支持 [[syntheses/地图特征建模Schema|地图特征建模 Schema]]，而不是只给出 `open`、`water_value`、`wall_density` 这类粗标签。
+本次调研回答一个具体问题：Fandom 的地图页能否提供足够细的地图信息，用来支持 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]，而不是只给出 `open`、`water_value`、`wall_density` 这类粗标签。
 
 结论：可以作为第一批地图建模的主来源，但不能直接作为最终 BP 结论。
 
@@ -97,7 +97,7 @@ Fandom map page
 
 ## 关联页面
 
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]

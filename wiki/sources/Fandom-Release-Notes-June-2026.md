@@ -34,7 +34,7 @@
 ## 本地 ingest 结果
 
 - 版本 BP 影响评估：[[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
-- 只有产生定性 BP 影响的条目才允许直接更新对应英雄页、地图页、条件化对位边索引或地图 hook 索引的稳定 BP 字段。本次先标记需要逐页复核的候选主体：`Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`、`Bolt`、`Damian`、`Spike`。
+- 只有产生定性 BP 影响的条目才允许直接更新对应英雄页或地图页的稳定 BP 字段；运行时索引由 compile 重新生成。本次先标记需要逐页复核的候选主体：`Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`、`Bolt`、`Damian`、`Spike`。
 - `Meeple`、`Colette`、`Crow`、`Mortis`、`Edgar`、`Chester`、`R-T`、`Griff`、`Leon`、`Lumi`、`Najia`、`Pierce`、`Mina` 等变化目前只保留为版本审计或观察材料；尚未证明会改变常见高水平 BP 的定性判断。
 - BP 运行时默认读取稳定 BP 页面，不临场叠加本来源。
 

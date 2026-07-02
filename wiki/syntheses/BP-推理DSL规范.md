@@ -131,7 +131,7 @@ bp_case:
 
 地图不能只用 `open`、`wall_density`、`water_value` 这类粗分档表达。粗标签不进入 Canonical Input；真正参与 BP 的必须是具体地图特征如何打开路线、关闭路线、制造目标角度、奖励某类能力或制造假阳性。
 
-完整 schema 见 [[syntheses/地图特征建模Schema|地图特征建模 Schema]]。最小可用对象如下：
+完整 schema 见 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]。最小可用对象如下：
 
 ```yaml
 map_feature:
@@ -162,7 +162,7 @@ map_feature:
 
 ### map_bp_factors
 
-`map_profile` 记录稳定地图结构，`map_bp_factors` 记录这些结构在当前 BP 中制造的决策义务。完整规范见 [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]。
+`map_profile` 记录稳定地图结构，`map_bp_factors` 记录这些结构在当前 BP 中制造的决策义务。完整规范见 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]。
 
 ```yaml
 map_bp_factors:
@@ -243,7 +243,7 @@ build_profile:
 
 ### 版本资料接入门槛
 
-版本补丁、临时 meta、重做、Buffies、Hypercharge 改动不直接进入 BP 运行时。它们先作为来源或审计材料保存；只有当资料改变英雄的能力类型、职责归类、硬门槛、对位成立条件、地图 hook 或 slot 策略时，才直接更新对应英雄页、地图页、条件化对位边索引或地图 hook 索引的稳定 BP 字段。
+版本补丁、临时 meta、重做、Buffies、Hypercharge 改动不直接进入 BP 运行时。它们先作为来源或审计材料保存；只有当资料改变英雄的能力类型、职责归类、硬门槛、对位成立条件、地图 hook 或 slot 策略时，才直接更新对应英雄页或地图页的稳定 BP 字段；运行时索引由 compile 阶段重新生成。
 
 ```yaml
 version_audit_item:
@@ -601,14 +601,13 @@ conditional_matchup:
 - 用户经验：用于修正模型边界、模式评价框架、顺位视角和静态 counter 的误用。
 - 赛事或复盘：用于补充 `draft_eval` 样例，校准 ban 如何拆路线、pick 如何建立或破坏计划。
 - 地图经验：进入 `map_profile` 与 `map_feature`，记录地形如何打开路线、制造目标角度、惩罚拥挤、产生假阳性适配和改变 ban / pick 价值。
-- 版本资料：先进入来源页或审计页；只有产生定性 BP 影响时，才以当前状态规则直接更新对应英雄页、地图页、对位索引或地图 hook 索引。
+- 版本资料：先进入来源页或审计页；只有产生定性 BP 影响时，才以当前状态规则直接更新对应英雄页或地图页，运行时对位和地图 hook 视图由 compile 重新生成。
 
 ## 关联页面
 
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[sources/User-Note-BP-DSL-Requirement|用户经验来源摘要: BP DSL 固化需求]]
 - [[sources/User-Note-Map-Profile-Schema|用户经验来源摘要: 地图特征建模需要战术特征 Schema]]
 - [[sources/User-Note-BP-Reasoning-Intermediate-Layer|用户经验来源摘要: BP 需要条件化推理中间层]]

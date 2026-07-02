@@ -26,7 +26,7 @@ bp_brawler_profile:
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
-      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
       - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:
@@ -188,7 +188,7 @@ bp_brawler_profile:
       bp_use: "must_answer_thrower_before_totem_plan"
     - id: "terrain_transform_backfires"
       active_when: "Tripwire/地雷破墙后帮助敌方长手接管，或破坏己方 carrier/站圈掩体"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] terrain_state checks"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] terrain_state checks"
       mitigation: "BP 中先定义要开的墙和后续远程/得分/打库收益"
       bp_use: "terrain_state_plan_check"
 

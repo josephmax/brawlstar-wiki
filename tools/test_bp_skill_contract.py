@@ -11,6 +11,8 @@ JUDGE_SKILL = ROOT / "skills" / "run-brawl-stars-bp" / "SKILL.md"
 JUDGE_SCHEMA = ROOT / "skills" / "run-brawl-stars-bp" / "references" / "match-report-schema.md"
 JUDGE_RENDERER = ROOT / "skills" / "run-brawl-stars-bp" / "scripts" / "render_match_report.py"
 PLAYER_SKILL = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "SKILL.md"
+PLAYER_COMPILE_REF = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "references" / "compile-knowledge.md"
+PLAYER_DECIDE_REF = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "references" / "runtime-decision-knowledge.md"
 
 
 def read(path: Path) -> str:
@@ -90,8 +92,17 @@ def test_judge_report_renderer_contract() -> None:
 
 def test_player_skill_contract() -> None:
     text = read(PLAYER_SKILL)
+    compile_ref = read(PLAYER_COMPILE_REF)
+    decide_ref = read(PLAYER_DECIDE_REF)
 
     required_terms = [
+        "compile",
+        "decide",
+        "references/compile-knowledge.md",
+        "references/runtime-decision-knowledge.md",
+        "runtime_bp_index",
+        "wiki/entities/maps/",
+        "wiki/entities/brawlers/",
         "strength_context",
         "meta_pressure",
         "overpowered_or_t0_exception",
@@ -118,6 +129,30 @@ def test_player_skill_contract() -> None:
     ]
     for marker in balanced_section_markers:
         assert marker in text, marker
+
+    for term in [
+        "compile_input",
+        "strength_profile",
+        "map_duties",
+        "brawler_cards",
+        "map_brawler_edges",
+        "draft_edges",
+    ]:
+        assert term in compile_ref, term
+
+    for term in [
+        "decide_input",
+        "slot_policy",
+        "hard_gate_result",
+        "candidate_eval",
+        "balanced_threat_probe",
+        "bp_recommendation",
+    ]:
+        assert term in decide_ref, term
+
+    forbidden_runtime_path = "wiki/syntheses/"
+    for artifact in [text, compile_ref, decide_ref]:
+        assert forbidden_runtime_path not in artifact, forbidden_runtime_path
 
 
 if __name__ == "__main__":

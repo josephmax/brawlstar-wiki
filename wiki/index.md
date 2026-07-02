@@ -13,10 +13,8 @@
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
-- [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
-- [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
+- [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 - BP skills:
 - `skills/run-brawl-stars-bp/`：裁判 / run-bp 编排 skill，负责同步 ban、顺序 pick、策略偏好、回合指标和统一 match report。
@@ -24,15 +22,12 @@
 
 ## BP Maintenance
 
-- [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
-- [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]
-- [[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]
-- [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]
-- [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]
-- [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]
-- [[syntheses/地图知识分层治理|地图知识分层治理]]
+- [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
+- [[syntheses/BP-维护归档|BP 维护归档]]
+
+## BP Archive
+
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
-- [[syntheses/BP-实战查询速度与模型形态评估|BP 实战查询速度与模型形态评估]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
 ## Sources
@@ -45,7 +40,7 @@
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 
-- 英雄来源（104 个 BP-active；Buzz Lightyear out-of-scope）：
+- 英雄来源（104 个 BP-active）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]
 - [[sources/Fandom-Alli|Fandom 来源摘要: Alli]] / [[sources/PLP-Alli|PLP 来源摘要: Alli]]
 - [[sources/Fandom-Amber|Fandom 来源摘要: Amber]] / [[sources/PLP-Amber|PLP 来源摘要: Amber]]
@@ -196,10 +191,10 @@
 - [[sources/User-Note-BP-DSL-Requirement|User-Note-BP-DSL-Requirement]]
 - [[sources/User-Note-BP-Schema-Occam|User-Note-BP-Schema-Occam]]
 - [[sources/User-Note-Hero-BP-Ingest-Plan|User-Note-Hero-BP-Ingest-Plan]]
-- [[sources/User-Note-Buzz-Lightyear-Out-of-Scope|User-Note-Buzz-Lightyear-Out-of-Scope]]
 - [[sources/User-Note-Map-Profile-Schema|User-Note-Map-Profile-Schema]]
 - [[sources/User-Note-Map-Factor-BP-Expression|User-Note-Map-Factor-BP-Expression]]
 - [[sources/User-Note-Map-Layered-Governance|User-Note-Map-Layered-Governance]]
+- [[sources/User-Note-BP-Runtime-Index-Compilation|User-Note-BP-Runtime-Index-Compilation]]
 - [[sources/User-Note-Gene-in-Brawl-Ball|User-Note-Gene-in-Brawl-Ball]]
 - [[sources/User-Note-Brawl-Ball-Evaluation-Framework|User-Note-Brawl-Ball-Evaluation-Framework]]
 - [[sources/User-Note-Brawl-Ball-Scorer-Framework|User-Note-Brawl-Ball-Scorer-Framework]]
@@ -390,16 +385,10 @@
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
-- [[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]
-- [[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
-- [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]
-- [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]
-- [[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]
-- [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]
-- [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
-- [[syntheses/地图知识分层治理|地图知识分层治理]]
+- [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]
+- [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
+- [[syntheses/BP-维护归档|BP 维护归档]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
@@ -409,4 +398,4 @@
 - `wiki/sources/` 保存来源摘要，`wiki/concepts/` 保存机制与规则，`wiki/entities/brawlers/` 与 `wiki/entities/maps/` 保存英雄、地图等可追踪对象，`wiki/syntheses/` 保存跨来源专题结论。
 - 查询时优先从本页进入相关页面，再沿页面底部的关联链接追溯来源。
 - 页面分类、命名和来源接入规则以 `AGENTS.md` 为准。
-- BP 推演相关问题优先进入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]，再读 [[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]、[[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]、[[syntheses/英雄BP建模质量审计|英雄 BP 建模质量审计]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/地图特征建模Schema|地图特征建模 Schema]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、地图、模式、英雄和来源页补证据。
+- BP 维护者讨论 / wiki 查询优先进入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]，再读 [[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、地图、模式、英雄和来源页补证据；批量维护和缺口排查再读 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 与 [[syntheses/BP-维护归档|BP 维护归档]]。BP skill 执行不读取 syntheses，按 skill 内 `compile` / `decide` references 与 `runtime_bp_index` 分治。

@@ -166,7 +166,7 @@ bp_brawler_profile:
       bp_use: false_positive_filter
     - id: overbreak_helps_enemy
       active_when: 开墙后敌方远程或突进收益大于我方
-      exposed_by: 地图因素 BP 表达规范
+      exposed_by: BP 地图建模与决策规范
       mitigation: 只开关键墙，并确认 follow-up
       bp_use: terrain_state_plan_check
 

@@ -223,4 +223,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Jacky|Fandom 来源摘要: Jacky]]
 - [[sources/PLP-Jacky|PLP 来源摘要: Jacky]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]

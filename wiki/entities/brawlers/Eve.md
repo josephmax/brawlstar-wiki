@@ -175,7 +175,7 @@ bp_brawler_profile:
       bp_use: "must_avoid / needs_protection"
     - id: "water_without_objective_pressure"
       active_when: "候选地图只有边角水域，不能影响 safe、星差、中心空间或 gem route"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] 的 water false positive 规则"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] 的 water false positive 规则"
       mitigation: "要求水域站位能转化为目标访问、低承诺输出或撤退安全"
       bp_use: "map_factor_false_positive_check"
     - id: "hatchlings_cleared_for_free"
@@ -230,5 +230,5 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
 - [[sources/PLP-Eve|PLP 来源摘要: Eve]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]

@@ -7,7 +7,7 @@
 - Fandom URL：https://brawlstars.fandom.com/wiki/Sneaky_Fields
 - 来源：[[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 - 当前赛季索引：[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
-- Schema：[[syntheses/地图特征建模Schema|地图特征建模 Schema]]
+- 地图规范：[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - 状态：`bp_map_profile_v2`
 - 更新日期：2026-06-29
 

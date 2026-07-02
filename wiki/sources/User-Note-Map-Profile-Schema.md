@@ -32,4 +32,4 @@
 
 ## 状态
 
-这条经验已作为 [[syntheses/地图特征建模Schema|地图特征建模 Schema]] 的来源依据，并接入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]] 与 [[syntheses/条件化对位模型|条件化对位模型]]。
+这条经验已作为 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] 的来源依据，并接入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]] 与 [[syntheses/条件化对位模型|条件化对位模型]]。

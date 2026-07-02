@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only helper for locating Brawl Stars BP runtime wiki inputs."""
+"""Read-only helper for locating Brawl Stars BP skill references and entity inputs."""
 
 from __future__ import annotations
 
@@ -10,22 +10,10 @@ from pathlib import Path
 from typing import Iterable
 
 
-RUNTIME_PAGES = [
-    "wiki/index.md",
-    "wiki/syntheses/BP-推理DSL规范.md",
-    "wiki/syntheses/条件化对位模型.md",
-    "wiki/syntheses/Ban-Pick-问题拆分.md",
-    "wiki/syntheses/地图特征建模Schema.md",
-    "wiki/syntheses/地图因素BP表达规范.md",
-    "wiki/syntheses/Ranked-Season-46-地图Map-Profile总览.md",
-    "wiki/syntheses/英雄BP建模执行状态.md",
-    "wiki/syntheses/BP-条件化对位边索引.md",
-    "wiki/syntheses/BP-英雄地图特征适配索引.md",
+SKILL_REFERENCE_PAGES = [
+    "skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md",
+    "skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md",
 ]
-
-MATCHUP_INDEX = "wiki/syntheses/BP-条件化对位边索引.md"
-MAP_HOOK_INDEX = "wiki/syntheses/BP-英雄地图特征适配索引.md"
-RANKED_MAP_INDEX = "wiki/syntheses/Ranked-Season-46-地图Map-Profile总览.md"
 
 
 def normalize(value: str) -> str:
@@ -75,7 +63,7 @@ def extract_profile_status(path: Path) -> str | None:
     return match.group(1).strip() if match else None
 
 
-def markdown_table_hits(path: Path, terms: Iterable[str], limit: int) -> list[dict[str, str | int]]:
+def markdown_line_hits(path: Path, terms: Iterable[str], limit: int) -> list[dict[str, str | int]]:
     text = read_text(path)
     normalized_terms = [normalize(term) for term in terms if term]
     if not text or not normalized_terms:
@@ -83,8 +71,6 @@ def markdown_table_hits(path: Path, terms: Iterable[str], limit: int) -> list[di
 
     hits: list[tuple[int, int, str]] = []
     for line_no, line in enumerate(text.splitlines(), start=1):
-        if not line.startswith("|"):
-            continue
         normalized_line = normalize(line)
         score = sum(1 for term in normalized_terms if term in normalized_line)
         if score:
@@ -92,13 +78,6 @@ def markdown_table_hits(path: Path, terms: Iterable[str], limit: int) -> list[di
 
     hits.sort(key=lambda item: (-item[0], item[1]))
     return [{"line": line_no, "text": line} for _, line_no, line in hits[:limit]]
-
-
-def ranked_map_present(repo: Path, map_name: str) -> bool:
-    text = read_text(repo / RANKED_MAP_INDEX)
-    if not text:
-        return False
-    return normalize(map_name) in normalize(text)
 
 
 def build_payload(args: argparse.Namespace) -> dict:
@@ -124,34 +103,45 @@ def build_payload(args: argparse.Namespace) -> dict:
     if args.mode:
         search_terms.append(args.mode)
 
+    source_paths: list[Path] = []
+    if map_path:
+        source_paths.append(map_path)
+    for info in brawlers.values():
+        path_value = info["path"]
+        if path_value:
+            source_paths.append(repo / str(path_value))
+
     return {
         "repo": str(repo),
-        "runtime_pages": [
-            {"path": page, "exists": (repo / page).exists()} for page in RUNTIME_PAGES
+        "skill_reference_pages": [
+            {"path": page, "exists": (repo / page).exists()} for page in SKILL_REFERENCE_PAGES
         ],
         "map": {
             "name": args.map,
             "path": rel(map_path, repo) if map_path else None,
             "mode": extract_mode(map_path) if map_path else args.mode,
-            "ranked_season_46": ranked_map_present(repo, args.map) if args.map else None,
+            "pool_membership": "user_supplied_or_compiled_runtime_index_required",
         },
         "brawlers": brawlers,
-        "index_hits": {
-            "matchups": markdown_table_hits(repo / MATCHUP_INDEX, brawler_names, args.limit),
-            "map_hooks": markdown_table_hits(repo / MAP_HOOK_INDEX, search_terms, args.limit),
-        },
+        "stable_source_hits": [
+            {
+                "path": rel(path, repo),
+                "hits": markdown_line_hits(path, search_terms, args.limit),
+            }
+            for path in source_paths
+        ],
         "reminders": [
             "Read matched pages before deciding; this script only retrieves candidates.",
+            "If no compiled runtime_bp_index is provided, run compile before decide.",
             "Do not use coarse map tags as direct scoring signals.",
-            "Exclude Buzz Lightyear from BP-active decisions.",
         ],
     }
 
 
 def print_text(payload: dict) -> None:
     print(f"repo: {payload['repo']}")
-    print("runtime_pages:")
-    for page in payload["runtime_pages"]:
+    print("skill_reference_pages:")
+    for page in payload["skill_reference_pages"]:
         mark = "ok" if page["exists"] else "missing"
         print(f"  - [{mark}] {page['path']}")
 
@@ -161,17 +151,18 @@ def print_text(payload: dict) -> None:
         print(f"  name: {map_info['name']}")
         print(f"  path: {map_info['path']}")
         print(f"  mode: {map_info['mode']}")
-        print(f"  ranked_season_46: {map_info['ranked_season_46']}")
+        print(f"  pool_membership: {map_info['pool_membership']}")
 
     if payload["brawlers"]:
         print("brawlers:")
         for name, info in payload["brawlers"].items():
             print(f"  - {name}: {info['path']} ({info['profile_status']})")
 
-    for group, hits in payload["index_hits"].items():
-        print(f"{group}:")
-        for hit in hits:
-            print(f"  - L{hit['line']}: {hit['text']}")
+    print("stable_source_hits:")
+    for source in payload["stable_source_hits"]:
+        print(f"  - {source['path']}:")
+        for hit in source["hits"]:
+            print(f"    - L{hit['line']}: {hit['text']}")
 
 
 def parse_args() -> argparse.Namespace:

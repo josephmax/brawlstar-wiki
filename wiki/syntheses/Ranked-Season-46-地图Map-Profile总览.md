@@ -2,7 +2,7 @@
 
 这页现在只作为 `Ranked Season 46` 的赛季地图池索引。稳定地图结构、`map_feature`、地图特征对英雄能力的稳定影响和 `false_positive` 已拆入单地图实体页。
 
-治理原则见 [[syntheses/地图知识分层治理|地图知识分层治理]]：
+治理原则见 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]：
 
 - 地图实体页：长期稳定，放在 `wiki/entities/maps/`。
 - 本页：赛季轮换索引，只记录当前 Ranked Season 46 地图池和入口。
@@ -67,12 +67,11 @@
 -> 读 BP DSL
 -> 读本页确定地图是否在 Season 46 池内
 -> 进入对应地图实体页读取稳定 map_profile
--> 再读相关英雄页、条件化对位边索引和地图 hook 索引
+-> 再读相关英雄页；若已有 runtime_bp_index，则读取编译产物
 ```
 
 ## 关联页面
 
-- [[syntheses/地图知识分层治理|地图知识分层治理]]
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]

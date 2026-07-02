@@ -5,7 +5,7 @@
 - 类型：用户经验 / 建模需求
 - 日期：2026-06-29
 - 上游 raw：[[../../raw/inbox/2026-06-29-user-note-map-factor-bp-expression.md]]
-- 关联专题：[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- 关联专题：[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 
 ## 摘要
 
@@ -20,9 +20,8 @@
 
 ## 本地 wiki 的处理
 
-本条经验沉淀到 [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]，并反向接入：
+本条经验沉淀到 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]，并反向接入：
 
-- [[syntheses/地图特征建模Schema|地图特征建模 Schema]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
 

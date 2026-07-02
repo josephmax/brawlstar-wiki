@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ENTITY_DIR = ROOT / "wiki/entities/brawlers"
-OUT = ROOT / "wiki/syntheses/英雄BP建模质量审计.md"
+OUT = ROOT / "outputs/bp-profile-quality-audit.md"
 
 AUTO_PLACEHOLDERS = [
     "draft_from_raw_signals",
@@ -141,11 +141,11 @@ def render_markdown(rows: list[dict[str, object]]) -> str:
             blocker_counts[str(blocker_type)] = blocker_counts.get(str(blocker_type), 0) + 1
 
     lines = [
-        "# 英雄 BP 建模质量审计",
+        "# BP Profile Quality Audit",
         "",
-        "状态：`quality_gate_audit`。生成日期：2026-06-30。",
+        "状态：`temporary_quality_gate_audit`。",
         "",
-        "本页由 `tools/audit_bp_profile_quality.py` 根据 [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]] 生成。它只审计结构和明显占位符，不替代人工机制复核。",
+        "本报告由 `tools/audit_bp_profile_quality.py` 根据 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 生成。它只审计结构和明显占位符，不替代人工机制复核；默认不写入 `wiki/syntheses/`。",
         "",
         "## 汇总",
         "",
@@ -186,10 +186,8 @@ def render_markdown(rows: list[dict[str, object]]) -> str:
         "",
         "## 关联页面",
         "",
-        "- [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]",
-        "- [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]",
-        "- [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]",
-        "- [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]",
+        "- [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]",
+        "- [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]",
         "",
     ])
     return "\n".join(lines)
@@ -203,6 +201,7 @@ def main() -> int:
     else:
         markdown = render_markdown(rows)
         if args.write:
+            OUT.parent.mkdir(parents=True, exist_ok=True)
             OUT.write_text(markdown, encoding="utf-8")
             print(OUT.relative_to(ROOT))
         else:

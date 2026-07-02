@@ -144,9 +144,68 @@
 - Slot 4-5：Blue `Brock + Carl`。理由：Ruffs buff 核心后补 Brock 开层墙与 Carl 机动侧压，拆 Larry 口袋并压 Mandy 站定 Focus。
 - Slot 6：Red `Gale`。理由：最后手修复 Carl 对 Mandy / Larry & Lawrie 的越层和 Hook 威胁，保住层级控图。
 
+## 2026-07-02 重跑批次（neutral_recorder 新 schema）
+
+本批为按更新后的 `run-brawl-stars-bp` `neutral_recorder` 规则重跑的 6 场对局：主线程当裁判直接派 player 子 agent（每场 ban 并行 → slot 1 → 2-3 → 4-5 → 6 串行），无 `judge_continuation_after_player_failure`；策略偏好按种子 20260702 随机分配，不再是双 balanced。完整人类可读报告位于 `outputs/bp-simulations/match-<map>.md`，schema 合规（无 `favored_side`、无 YAML、无 `match_header`、无裁判侧 Draft Evaluation）。
+
+### Brawl Ball — Center Stage（blue `balanced` / red `conservative`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Kenji / Kaze / Otis`；Red `Kenji / Lou / Buzz`；重复 ban：`Kenji`。
+- Slot 1：Blue `Spike`。理由：中距控场核心，覆盖中心草球权争夺与球门 choke 反坦，开启可延展到 4-5 的得分窗口+破墙计划。
+- Slot 2-3：Red `Brock + Bibi`。理由：Brock 用射程+破墙拆 Spike 的球门 choke 壳并打开球门墙，Bibi 把打开通道与侧草 flank 转成得分窗口——红方第一条真实胜利路线。
+- Slot 4-5：Blue `Shelly + Maisie`。理由：草门反坦 + 球门破墙 peel pair，近距回答 Bibi、否认 Brock 安全接近、为 Spike 跟进创造得分窗口。
+- Slot 6：Red `Max`。理由：速度节奏引擎，把 Brock 破墙窗口与 Bibi 击退转成得分推进，惩罚蓝方无修复、轻硬控结构。
+
+### Brawl Ball — Triple Dribble（blue `conservative` / red `aggressive`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Kenji / Pearl / Lou`；Red `Kenji / Lou / Pearl`；重复 ban：`Kenji / Lou / Pearl`（三 ban 全 dup）。
+- Slot 1：Blue `Brock`。理由：Rocket Fuel 破墙 + 长线 splash zone-out 建立可延展得分窗口计划，4-5 围绕它建 scorer/peel。
+- Slot 2-3：Red `Spike + Bull`。理由：Spike 用中长爆发与球门 choke slow 回答 Brock 长线，Bull 通过球门桶创造路线型破墙得分窗口——逼蓝方 4-5 同时解 zone 控制和 tank-break。
+- Slot 4-5：Blue `Shelly + Maisie`。理由：为 Brock 得分窗口补反坦 peel + 球门破墙；Maisie shockwave 否认 Bull 接触与 Spike 中距，Shelly 打破球门 L 墙并缴械持球者。
+- Slot 6：Red `Max`。理由：团队节奏赋能，压缩 Brock 间距、让 Spike 进爆发距离、助 Bull 在 Maisie Super 延迟前闭合接触。
+
+### Hot Zone — Ring of Fire（blue `balanced` / red `conservative`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Lou / Leon / Kenji`；Red `Lou / Byron / Spike`；重复 ban：`Lou`。
+- Slot 1：Blue `Pam`。理由：站圈续航 + 草扫 body + 弹药税三位一体核心，把地图最硬的探草视野和站圈可持续两条职责一次收口。
+- Slot 2-3：Red `Otis + Sandy`。理由：Otis 在 zone 口 mute 掉 Pam 的 station/Scrapsucker 循环，Sandy 的 Sandstorm+Rude Sands 剥掉 Pam 续航优势并给红方团队隐身 zone 争夺。
+- Slot 4-5：Blue `Bo + Tara`。理由：草丛视野硬门（Bo）+ 拉-显形惩罚核心（Tara），把 Sandy 遮蔽和 Otis choke 计划转成可爆发聚团窗口，同时保护 Pam station。
+- Slot 6：Red `Rosa`。理由：盾 body + 草控把草权优势转成 zone 时间，为 Otis/Sandy 控制壳补真实 body（Pam profile 标记 Rosa 对 Pam target_favored）。
+
+### Hot Zone — Open Business（blue `aggressive` / red `aggressive`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Lou / Penny / Kenji`；Red `Lou / Pam / Byron`；重复 ban：`Lou`。
+- Slot 1：Blue `Spike`。理由：中距 zone-clear 锚，Super slow + Curveball poke 穿过墙邻角度，惩罚单圈 body 抱团。
+- Slot 2-3：Red `Rosa + Emz`。理由：Rosa 在 zone 上种草把 body 时间转百分比，Emz 用喷雾+Super slow 锁墙簇边缘，逼蓝方同时回答区域否认和草丛 tank。
+- Slot 4-5：Blue `Shelly + Bo`。理由：反坦 body clear + 地雷-视野 zone 控制壳围绕 Spike slow zone；Shelly 对 Rosa subject_favored，Bo 地雷 zone 化 Emz 喷雾带并破墙开口袋。
+- Slot 6：Red `Fang`。理由：最后手链式刺客，惩罚三个低机动无修复 body（Spike/Shelly/Bo）的聚团，把击杀链转成不可争夺 zone 时间。
+
+### Knockout — Belle's Rock（blue `balanced` / red `aggressive`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Kenji / Brock / Mandy`；Red `Brock / Kenji / Pearl`；重复 ban：`Brock / Kenji`。
+- Slot 1：Blue `Rico`。理由：稳定弹墙通道控制者从掩体锁三路墙网，建立可延展的墙完好计划。
+- Slot 2-3：Red `Buster + Sam`。理由：Buster 屏蔽 Rico 弹墙通道，Sam 把侧 choke 转成路线型进场口袋——回答 + 计划构建 pair（两者对 Rico 均 subject_favored）。
+- Slot 4-5：Blue `Otis + Piper`。理由：沉默-门 Sam/Buster 的 choke 接触循环，加破墙+射程打破 Buster 屏蔽和 Sam 墙循环，保护 Rico 弹墙通道。
+- Slot 6：Red `Nani`。理由：Buster 投射屏蔽后的最终惩罚狙击，把屏蔽创造的空间转成对 Piper/Rico 的爆发首压；对 Piper subject_favored（汇聚爆发 + RtS 惩罚）。
+
+### Knockout — Out in the Open（blue `balanced` / red `balanced`）
+
+- 样本状态：新 schema；`neutral_recorder`；token usage 不可见；无 judge-local continuation。
+- Ban 位：Blue `Piper / Nani / Kaze`；Red `Angelo / Piper / Kaze`；重复 ban：`Piper / Kaze`。
+- Slot 1：Blue `Belle`。理由：在最偏狙击的 Knockout 地图上建立长线通道控制 + Spotter 团队焦点计划，可延展到反前排或 choke 控制队。
+- Slot 2-3：Red `Brock + Gus`。理由：长线 poke + 屏蔽的 pick 转化壳；Brock 控开放中并能破墙，Gus 屏蔽首接触队友并用 Spirit Animal 把 poke 转 pick（对 Belle subject_favored）。
+- Slot 4-5：Blue `Byron + Colt`。理由：长线续航+破墙壳让 Belle 永久赢通道，同时回答 Brock 地形计划和 Gus 屏蔽循环（Byron Malaise 否认 Gus 治疗，Colt 用子弹速度+破墙压过 Brock 慢火箭）。
+- Slot 6：Red `Darryl`。理由：路线型坦克进场，惩罚三个脆皮零 peel 狙击的结构失败（地图记录的 mobility_flank_window 最后手路线现已激活），滚动盾+Steel Hoops 吸收 poke 转成保证 frag。
+
 ## 样本观察
 
 - 重复 ban 在新裁判规则下自然出现，尤其 Heist / Bounty 的同质强势位会被双方同时封锁。
 - 旧样本中裁判侧 `favored_side` 不再沿用；正式运行只应记录选手最终陈述。
 - 多数样本的核心结构仍有复用价值：先封掉地图 hard gate，再用 slot 1 建立可扩展计划，slot 2-3 同时回答和建队，slot 4-5 修复暴露，slot 6 做最终 punish 或最终 repair。
-- 这些结论只适合作为样本回看，不应替代当前地图页、英雄页、条件化对位边索引和地图 hook 索引。
+- 2026-07-02 批次观察：保守 vs 激进的对比明显——`aggressive` 倾向 Bull/Fang/Darryl 路线型进场，`conservative` 倾向 Brock/Shelly 稳定 shell；`balanced` 在 balanced_threat_probe 后倾向控制壳（Spike/Shelly/Bo）但仍主动评估坦刺候选。重复 ban 在信息隔离下仍命中高杠杆英雄（Lou/Kenji/Brock/Piper/Kaze），与 wiki stable hook 一致而非 meta 误断。
+- 这些结论只适合作为样本回看，不应替代当前地图页、英雄页和后续可生成的 `runtime_bp_index`。

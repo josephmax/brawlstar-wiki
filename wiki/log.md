@@ -289,28 +289,28 @@
 ## [2026-06-29] ingest | 英雄 BP 建模 Phase 0-3 启动
 
 - 完成 Phase 0 roster manifest：新增 `raw/sources/roster/brawlers-roster-2026-06-29.md` 与 `wiki/sources/Brawler-Roster-2026-06-29.md`。
-- Fandom `Category:Brawlers` 当前返回 105 个 Brawler 页面；PLP sitemap 返回 104 个英雄 guide URL；本地 72 个英雄实体页之外缺失 33 个；唯一 PLP URL gap 是 `Buzz Lightyear`。
+- Fandom `Category:Brawlers` 当时返回 105 个 Brawler 页面；PLP sitemap 返回 104 个英雄 guide URL；本地 72 个英雄实体页之外缺失 33 个；唯一 PLP URL gap 后续确认为历史临时 roster 行。
 - 完成 Phase 1 Batch A raw capture：为 `Brock`、`Gene`、`Otis`、`Belle`、`Colt`、`Angelo`、`Shade`、`Rico`、`Mico`、`Max`、`Stu` 新增 dated Fandom raw 与 PLP raw。
 - 完成 Phase 2 Batch A source 摘要：更新上述 11 个 `wiki/sources/Fandom-*` 为 `direct_raw_capture`，新增 11 个 `wiki/sources/PLP-*` 来源页。
 - 开始 Phase 3 BP 建模：为 `wiki/entities/brawlers/Brock.md`、`wiki/entities/brawlers/Gene.md`、`wiki/entities/brawlers/Otis.md` 新增 `bp_brawler_profile` 草案，状态均为 `profile_status: draft`。
 - 新增 `wiki/syntheses/英雄BP建模执行状态.md`，记录 Phase 0-3 当前进度、Batch A 完成项和下一步建议。
 - 更新 `wiki/index.md`，接入 roster source、PLP Batch A 来源页、英雄 BP 建模执行状态页，并补齐 Syntheses 中的英雄审计/计划入口。
 
-## [2026-06-29] scope correction | Buzz Lightyear 不进入 BP 建模
+## [2026-06-29] scope correction | 历史临时 roster 行不进入 BP 建模
 
-- 新增 `raw/inbox/2026-06-29-user-note-buzz-lightyear-out-of-scope.md` 与 `wiki/sources/User-Note-Buzz-Lightyear-Out-of-Scope.md`，记录维护者校正：`Buzz Lightyear` 是临时英雄且已下架，不进入当前 BP 建模。
-- 更新 `wiki/sources/Brawler-Roster-2026-06-29.md`，保留 Fandom raw roster count 为 105，但将 BP-active scope 修正为 104，并把 `Buzz Lightyear` 从 BP-active 缺失英雄列表移到 out-of-scope。
+- 新增一条 raw 维护者说明与当时的 source 摘要，记录维护者校正：历史临时 roster 行不进入当前 BP 建模。
+- 更新 `wiki/sources/Brawler-Roster-2026-06-29.md`，保留 Fandom raw roster count 为 105，但将 BP-active scope 修正为 104，并把历史临时 roster 行从 BP-active 缺失英雄列表移出。
 - 更新 `wiki/syntheses/英雄BP建模升级任务计划.md`、`wiki/syntheses/英雄BP建模覆盖审计.md` 与 `wiki/syntheses/英雄BP建模执行状态.md`，统一“105 行 manifest / 104 BP-active 英雄”的口径。
-- 更新 `AGENTS.md` 与 `wiki/index.md`，明确未来全量英雄 BP 建模不追踪 `Buzz Lightyear` 的 PLP 缺口、对位边或地图适配。
+- 更新 `AGENTS.md` 与 `wiki/index.md`，明确未来全量英雄 BP 建模不追踪历史临时 roster 行的 PLP 缺口、对位边或地图适配。
 
 ## [2026-06-30] ingest | 104 个 BP-active 英雄 Fandom/PLP 全量抓取与 draft BP 建模
 
 - 新增 `tools/capture_brawler_sources.py`、`tools/ingest_brawler_sources.py`、`tools/ingest_brawler_bp_profiles.py`，用于可复跑地从 roster manifest 抓取 raw、生成 source 摘要和初始化英雄 BP 草案。
-- 补抓 104 个 BP-active 英雄的 Fandom corrected direct raw 与 PLP direct raw；`Buzz Lightyear` 保持 out-of-scope。
+- 补抓 104 个 BP-active 英雄的 Fandom corrected direct raw 与 PLP direct raw；历史临时 roster 行保持在 BP 概念集合之外。
 - 修正 Fandom 抓取漂移：首轮 `2026-06-30` 发现单行 infobox 解析污染，新增 `2026-06-30-v2` corrected raw；`Chester` / `Kaze` 专属 infobox 再用 `2026-06-30-v3` 定点修正。
 - 生成/更新 104 个 `wiki/sources/Fandom-*` 与 104 个 `wiki/sources/PLP-*` source 摘要，统一标注来源边界：Fandom 只作为稳定机制事实，PLP 只作为 build/mode/matchup 竞技信号。
 - 新建 32 个缺失 BP-active 英雄实体页，给 69 个既有英雄页追加 `profile_status: draft_from_raw_signals`；保留 `Brock`、`Gene`、`Otis` 已有人工 `draft` 草案。当前 104 个 BP-active 英雄均有 `bp_brawler_profile`，但没有任何英雄标记为 `bp_ready`。
-- 新增 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]] 与 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]，作为 seed-only 全局索引；它们不是最终 counter 表或地图适配结论。
+- 新增 BP 条件化对位边索引（已删除旧手写索引） 与 BP 英雄地图特征适配索引（已删除旧手写索引），作为 seed-only 全局索引；它们不是最终 counter 表或地图适配结论。
 - 更新 `wiki/syntheses/英雄BP建模执行状态.md` 与 `wiki/index.md`，记录当前验收快照、剩余质量门槛和全量导航。
 
 ## [2026-06-30] review | 英雄 BP 质量门槛与第一批 reviewed
@@ -325,150 +325,150 @@
 
 - 复核 `Belle`、`Colt`、`Angelo`、`Rico` 四个 Batch A 英雄页，删除自动草案占位语句，补全能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；它们已各自具备至少 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：新增 `reviewed_from_brawler_profiles` 区，记录 12 组 reviewed 条件化对位边。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：新增 `reviewed_from_brawler_profiles` 区，记录 12 条 reviewed Ranked 地图 hook。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：新增 `reviewed_from_brawler_profiles` 区，记录 12 组 reviewed 条件化对位边。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：新增 `reviewed_from_brawler_profiles` 区，记录 12 条 reviewed Ranked 地图 hook。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 4 个、`reviewed` 3 个、`draft_from_raw_signals` 97 个。
 
 ## [2026-06-30] review | Batch A 机动组升级到 bp_ready
 
 - 复核 `Max`、`Stu`、`Mico`、`Shade` 四个 Batch A 机动组英雄页，重点把团队速度、冲刺链、跳墙/穿墙、过水/越障等能力转成具体地图职责、目标收益和失效条件。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已各自具备至少 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 12 增至 24。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 12 增至 24。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 12 增至 24。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 12 增至 24。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 8 个、`reviewed` 3 个、`draft_from_raw_signals` 93 个。
 
 ## [2026-06-30] review | Ash / Nita / Sandy 升级到 bp_ready
 
 - 复核 `Ash`、`Nita`、`Sandy` 三个英雄页，将 Rage 前压、Bruce 召唤物、Sandstorm 团队隐身等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已各自具备至少 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 24 增至 33。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 24 增至 33。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 24 增至 33。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 24 增至 33。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 11 个、`reviewed` 3 个、`draft_from_raw_signals` 90 个。
 
 ## [2026-06-30] review | Draco / Gigi / Poco 升级到 bp_ready
 
 - 复核 `Draco`、`Gigi`、`Poco` 三个英雄页，将变身驻点、弹道充能传送、团队治疗净化等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已各自具备至少 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 33 增至 42。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 33 增至 42。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 33 增至 42。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 33 增至 42。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 14 个、`reviewed` 3 个、`draft_from_raw_signals` 87 个。
 
 ## [2026-06-30] review | Sam / Bibi / Buster 升级到 bp_ready
 
 - 复核 `Sam`、`Bibi`、`Buster` 三个英雄页，将拳套回收/拉拽、Home Run 击退/弹墙泡泡、屏障反射/队伍护送等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已各自具备 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 42 增至 51。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 42 增至 51。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 42 增至 51。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 42 增至 51。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 17 个、`reviewed` 3 个、`draft_from_raw_signals` 84 个。
 
 ## [2026-06-30] review | Charlie / Chuck / Clancy 升级到 bp_ready
 
 - 复核 `Charlie`、`Chuck`、`Clancy` 三个英雄页，将 Cocoon 单体移除与蜘蛛视野、Post 路线与 Heist 打库循环、token 阶段成长与 Stage 3 区域接管等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已各自具备 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 51 增至 60。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 51 增至 60。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 51 增至 60。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 51 增至 60。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 20 个、`reviewed` 3 个、`draft_from_raw_signals` 81 个。
 
 ## [2026-06-30] review | Cordelius / Crow / Darryl 升级到 bp_ready
 
 - 复核 `Cordelius`、`Crow`、`Darryl` 三个英雄页，将 Shadow Realm 隔离与沉默、毒伤反治疗/探草/残局跳杀、滚桶路线/击退/近身爆发等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 3 组 reviewed 条件化对位边和至少 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 60 增至 72。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 60 增至 71。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 60 增至 72。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 60 增至 71。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 23 个、`reviewed` 3 个、`draft_from_raw_signals` 78 个。
 
 ## [2026-06-30] review | Doug / Emz / Gus 升级到 bp_ready
 
 - 复核 `Doug`、`Emz`、`Gus` 三个英雄页，将复活支援、喷雾控场/反突进、远程护盾支援等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述三个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 3 组 reviewed 条件化对位边和 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 72 增至 84。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 71 增至 80。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 72 增至 84。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 71 增至 80。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 26 个、`reviewed` 3 个、`draft_from_raw_signals` 75 个。
 
 ## [2026-06-30] review | Jae-yong / Lily / Mandy / Meg 升级到 bp_ready
 
 - 复核 `Jae-yong`、`Lily`、`Mandy`、`Meg` 四个英雄页，将团队加速/治疗支援、Vanish 突袭、Focus 超长线、Mecha 目标区身体等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 84 增至 100。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 80 增至 96。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 84 增至 100。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 80 增至 96。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 30 个、`reviewed` 3 个、`draft_from_raw_signals` 71 个。
 
 ## [2026-06-30] review | Melodie / Mina / Mortis / Rosa 升级到 bp_ready
 
 - 复核 `Melodie`、`Mina`、`Mortis`、`Rosa` 四个英雄页，将音符叠层三段冲刺、三段连段与 Windmill、dash 收割、Grow Light 草丛前排等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备至少 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 100 增至 116。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 96 增至 112。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 100 增至 116。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 96 增至 112。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 34 个、`reviewed` 3 个、`draft_from_raw_signals` 67 个。
 
 ## [2026-06-30] review | 8-Bit / Bo / Bolt / Bonnie 升级到 bp_ready
 
 - 复核 `8-Bit`、`Bo`、`Bolt`、`Bonnie` 四个英雄页，将 Booster 阵地增伤、地雷/视野控口、动量接触路线、Clyde/Bonnie 双形态跳入爆发等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 116 增至 132。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 112 增至 128，hook seed 条目数从 201 增至 207。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 116 增至 132。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 112 增至 128，hook seed 条目数从 201 增至 207。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 38 个、`reviewed` 3 个、`draft_from_raw_signals` 63 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Buzz / Carl / Colette / Finx 升级到 bp_ready
 
 - 复核 `Buzz`、`Carl`、`Colette`、`Finx` 四个英雄页，将常驻 Buzz 的抓钩眩晕、Carl 的回旋镐/墙边循环、Colette 的百分比伤害与 special target 伤害、Finx 的 Time Warp 投射物速度控制等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 132 增至 148。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 128 增至 144，hook seed 条目数从 207 增至 217。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 132 增至 148。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 128 增至 144，hook seed 条目数从 207 增至 217。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 42 个、`reviewed` 3 个、`draft_from_raw_signals` 59 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Gale / Hank / Janet / Jessie 升级到 bp_ready
 
 - 复核 `Gale`、`Hank`、`Janet`、`Jessie` 四个英雄页，将推离/减速/Twister、蓄力水泡与近身鱼雷、空中携宝/草区 speaker、Scrappy 炮台与弹射等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 148 增至 164。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 144 增至 160，hook seed 条目数从 217 增至 226。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 148 增至 164。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 144 增至 160，hook seed 条目数从 217 增至 226。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 46 个、`reviewed` 3 个、`draft_from_raw_signals` 55 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Kaze / Kenji / Lola / Lou 升级到 bp_ready
 
 - 复核 `Kaze`、`Kenji`、`Lola`、`Lou` 四个英雄页，将 Kaze 双形态风暴与标记、Kenji dash/slash 吸血与 Super 免疫、Lola Ego 分身交叉火力、Lou Frost / Hot Zone 冰冻控场等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 164 增至 180。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 160 增至 176，hook seed 条目数从 226 增至 236。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 164 增至 180。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 160 增至 176，hook seed 条目数从 226 增至 236。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 50 个、`reviewed` 3 个、`draft_from_raw_signals` 51 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Lumi / Maisie / Mr. P / Ollie 升级到 bp_ready
 
 - 复核 `Lumi`、`Maisie`、`Mr. P`、`Ollie` 四个英雄页，将 Lumi 双锤召回/root、Maisie Shockwave 反突进、Mr. P Porter 弹药税、Ollie Hypnotize 控制坦克等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 180 增至 196。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 176 增至 192，hook seed 条目数从 236 增至 246。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 180 增至 196。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 176 增至 192，hook seed 条目数从 236 增至 246。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 54 个、`reviewed` 3 个、`draft_from_raw_signals` 47 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Pam / Pearl / Penny / Shelly 升级到 bp_ready
 
 - 复核 `Pam`、`Pearl`、`Penny`、`Shelly` 四个英雄页，将治疗炮台和 Scrapsucker 弹药剥夺、Heat 条成长输出、Old Lobber 炮台控图、近身霰弹反坦/破门等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 196 增至 212。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 192 增至 208，hook seed 条目数从 246 增至 254。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 196 增至 212。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 192 增至 208，hook seed 条目数从 246 增至 254。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 58 个、`reviewed` 3 个、`draft_from_raw_signals` 43 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Squeak / Starr Nova / Willow / Ziggy 升级到 bp_ready
 
 - 复核 `Squeak`、`Starr Nova`、`Willow`、`Ziggy` 四个英雄页，将延迟粘弹与 Residue、Starr Nova Super 剑形态与 Floaty Time、Willow Hex 心控位移、Ziggy 延迟落雷与移动 storm 等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 212 增至 228。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 208 增至 224，hook seed 条目数从 254 增至 264。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 212 增至 228。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 208 增至 224，hook seed 条目数从 254 增至 264。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 62 个、`reviewed` 3 个、`draft_from_raw_signals` 39 个，并完成本批占位符扫描。
 
 ## [2026-06-30] review | Alli / Amber / Barley / Bea 升级到 bp_ready
 
 - 复核 `Alli`、`Amber`、`Barley`、`Bea` 四个英雄页，将草/水跳跃追猎、燃油火墙控区、墙后投掷 puddle、Supercharged 长线 slow 等机制转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 228 增至 244。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 224 增至 240，hook seed 条目数从 264 增至 271。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 228 增至 244。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 224 增至 240，hook seed 条目数从 264 增至 271。
 - 重跑 `tools/audit_bp_profile_quality.py --write`；当前质量审计结果为 `bp_ready` 66 个、`reviewed` 3 个、`draft_from_raw_signals` 35 个，并完成本批占位符扫描。
 
 ## [2026-06-30] audit | 英雄 BP 建模当前进度检查
 
 - 复跑 `tools/audit_bp_profile_quality.py` 并抽样检查 `bp_ready`、`reviewed`、`draft_from_raw_signals` 三类英雄页，确认当前质量审计结果仍为 `bp_ready` 66 个、`reviewed` 3 个、`draft_from_raw_signals` 35 个。
-- 新增 [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]，记录抓取、来源摘要、实体页、BP profile、条件化对位边索引和地图 hook 索引的当前进度。
+- 新增 英雄 BP 建模进度审计 2026-06-30（已归并），记录抓取、来源摘要、实体页、BP profile、条件化对位边索引和地图 hook 索引的当前进度。
 - 判断当前主要缺口已从抓取转为质量复核：剩余 35 个 draft 英雄需要清理占位符、补具体地图路线/目标收益/失效条件、补 source traceability 和失败条件。
 - 更新 [[index|Wiki Index]]，加入本次进度审计入口。
 
@@ -476,67 +476,67 @@
 
 - 复核 `Brock`、`Gene`、`Otis` 三个 `reviewed` 英雄页，将 Brock 的远程打库/选择性开墙/破门窗口、Gene 的拉人抓单/宝石位倒计时打断、Otis 的沉默反进场和草口/金库入口防守补成可消费的地图 hook 与条件化对位边。
 - 将上述三个英雄从 `profile_status: reviewed` 升级为 `profile_status: bp_ready`；当前 `reviewed` 中间态归零。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 244 增至 256。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 240 增至 249，hook seed 条目数从 271 增至 273。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]；下一步进入 35 个 `draft_from_raw_signals` 英雄的分批质量复核。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 244 增至 256。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 240 增至 249，hook seed 条目数从 271 增至 273。
+- 更新 英雄 BP 建模执行状态（已归并） 与 英雄 BP 建模进度审计 2026-06-30（已归并）；下一步进入 35 个 `draft_from_raw_signals` 英雄的分批质量复核。
 
 ## [2026-06-30] review | Byron / Nani / Piper / Spike 升级到 bp_ready
 
 - 复核 `Byron`、`Nani`、`Piper`、`Spike` 四个自动草稿英雄页，将 Byron 的长线治疗/反坦 poke、Nani 的远距爆发与 Peep 开墙、Piper 的极长线击杀窗口、Spike 的控区减速与反坦能力转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和至少 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 256 增至 272。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 249 增至 262，hook seed 条目数从 273 增至 276。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 73 个、`reviewed` 0 个、`draft_from_raw_signals` 31 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 256 增至 272。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 249 增至 262，hook seed 条目数从 273 增至 276。
+- 更新 英雄 BP 建模执行状态（已归并） 与 英雄 BP 建模进度审计 2026-06-30（已归并）；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 73 个、`reviewed` 0 个、`draft_from_raw_signals` 31 个。
 
 ## [2026-06-30] review | Sprout / Surge / Tara / Ruffs 升级到 bp_ready
 
 - 复核 `Sprout`、`Surge`、`Tara`、`Ruffs` 四个自动草稿英雄页，修正 Sprout 被误抽成泛水/机动、Surge 被误抽成投掷、Tara 和 Ruffs 被泛化成粗长线/开墙标签的问题。
 - 将 Sprout 的投掷口袋与 Hedge 封路、Surge 的阶段成长与反近身、Tara 的 Gravity 聚怪/探草/召唤物、Ruffs 的弹墙/补给包/沙包/Air Superiority 开墙转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和至少 3 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 272 增至 288。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 262 增至 276，hook seed 条目数从 276 增至 281。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 [[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 77 个、`reviewed` 0 个、`draft_from_raw_signals` 27 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 272 增至 288。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 262 增至 276，hook seed 条目数从 276 增至 281。
+- 更新 英雄 BP 建模执行状态（已归并） 与 英雄 BP 建模进度审计 2026-06-30（已归并）；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 77 个、`reviewed` 0 个、`draft_from_raw_signals` 27 个。
 
 ## [2026-06-30] review | Edgar / Eve / Gray / Leon 升级到 bp_ready
 
 - 复核 `Edgar`、`Eve`、`Gray`、`Leon` 四个自动草稿英雄页，修正 Edgar / Leon 被泛化成错误投掷或长线标签、Eve 的水域价值未绑定目标收益、Gray 的传送门未绑定落点安全的问题。
 - 将 Edgar 的跳跃贴脸/足球得分窗口、Eve 的水域远程与 hatchling 清理税、Gray 的传送门路线改写与 Walking Cane 拉人、Leon 的隐身信息差与单抓/偷目标转成可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述四个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 288 增至 304。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 276 增至 292，hook seed 条目数从 281 增至 288。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 81 个、`reviewed` 0 个、`draft_from_raw_signals` 23 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 288 增至 304。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 276 增至 292，hook seed 条目数从 281 增至 288。
+- 更新 英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 81 个、`reviewed` 0 个、`draft_from_raw_signals` 23 个。
 
 ## [2026-06-30] review | Bull / El Primo / Fang / Frank / Jacky 升级到 bp_ready
 
 - 复核 `Bull`、`El Primo`、`Fang`、`Frank`、`Jacky` 五个自动草稿英雄页，将前排/切入英雄从粗粒度短手标签改写为目标接触、控球/站圈/打库转化、进场资源、地形变换、反坦失效条件和 slot 风险。
 - 将上述五个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 304 增至 324。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 292 增至 312，hook seed 条目数从 288 增至 294。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 86 个、`reviewed` 0 个、`draft_from_raw_signals` 18 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 304 增至 324。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 292 增至 312，hook seed 条目数从 288 增至 294。
+- 更新 英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 86 个、`reviewed` 0 个、`draft_from_raw_signals` 18 个。
 
 ## [2026-06-30] review | Moe / Trunk / R-T / Pierce / Glowy / Najia / Sirius 升级到 bp_ready
 
 - 复核 `Moe`、`Trunk`、`R-T`、`Pierce`、`Glowy`、`Najia`、`Sirius` 七个自动草稿英雄页，将 Moe 的 Driller 出土资源门槛、Trunk 的蚂蚁区域身体、R-T 的分体腿部风险、Pierce 的弹壳循环、Glowy 的牵线支援、Najia 的毒区控路、Sirius 的影子经济分别改写为可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述七个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 324 增至 352。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 312 增至 340，hook seed 条目数从 294 增至 308。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 93 个、`reviewed` 0 个、`draft_from_raw_signals` 11 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 324 增至 352。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 312 增至 340，hook seed 条目数从 294 增至 308。
+- 更新 英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 93 个、`reviewed` 0 个、`draft_from_raw_signals` 11 个。
 
 ## [2026-06-30] review | Berry / Chester / Dynamike / Griff / Grom / Tick 升级到 bp_ready
 
 - 复核 `Berry`、`Chester`、`Dynamike`、`Griff`、`Grom`、`Tick` 六个自动草稿英雄页，将 Berry 的治疗铺地与 Super 位移限制、Chester 的随机 Super 与铃铛序列、Dynamike 的 Satchel / Super 开墙、Griff 的 Piggy Bank 与近中距离爆发、Grom 的固定十字线和 Radio Check、Tick 的雷区封路与 Last Hurrah 自保分别改写为可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述六个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 352 增至 376。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 340 增至 364，hook seed 条目数从 308 增至 314。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 99 个、`reviewed` 0 个、`draft_from_raw_signals` 5 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 352 增至 376。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 340 增至 364，hook seed 条目数从 308 增至 314。
+- 更新 英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 99 个、`reviewed` 0 个、`draft_from_raw_signals` 5 个。
 
 ## [2026-06-30] review | Damian / Juju / Kit / Larry & Lawrie / Meeple 升级到 bp_ready
 
 - 复核 `Damian`、`Juju`、`Kit`、`Larry & Lawrie`、`Meeple` 五个剩余自动草稿英雄页，将 Mosh Pit / Wall of Sound、元素地形投掷、附身支援、Lawrie 召唤物经济、Meeple 规则区域和 Mansions / Ragequit 等机制改写为可消费的能力向量、build delta、地图 hook、目标契约、失败条件、条件化对位边和 slot notes。
 - 将上述五个英雄从 `profile_status: draft_from_raw_signals` 升级为 `profile_status: bp_ready`；每页已具备 4 组 reviewed 条件化对位边和 4 条接入 Ranked Season 46 地图的 reviewed hook。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]：reviewed 对位边组从 376 增至 396。
-- 更新 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]：reviewed Ranked 地图 hook 从 364 增至 384，hook seed 条目数从 314 增至 319。
-- 更新 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 104 个、`reviewed` 0 个、`draft_from_raw_signals` 0 个。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）：reviewed 对位边组从 376 增至 396。
+- 更新 BP 英雄地图特征适配索引（已删除旧手写索引）：reviewed Ranked 地图 hook 从 364 增至 384，hook seed 条目数从 314 增至 319。
+- 更新 英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 与 [[index|Wiki Index]]；重跑 `tools/audit_bp_profile_quality.py --write` 后，当前质量审计结果为 `bp_ready` 104 个、`reviewed` 0 个、`draft_from_raw_signals` 0 个。
 
 ## [2026-06-30] ingest | June 2026 版本 BP 影响覆盖
 
@@ -548,25 +548,25 @@
 
 ## [2026-06-30] compile | 固化 BP 当前有效模型
 
-- 根据维护者反馈，将 `version_override` 从 BP 运行时输入改为版本 ingest 的编译输入；BP 决策运行时默认读取 [[syntheses/BP-当前有效模型|BP 当前有效模型]]。
+- 根据维护者反馈，将 `version_override` 从 BP 运行时输入改为版本 ingest 的编译输入；当时曾尝试让 BP 决策运行时默认读取 BP 当前有效模型，后续已删除该中央覆盖层。
 - 更新 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]] 和 [[syntheses/条件化对位模型|条件化对位模型]]：新增 `effective_bp_model`，并将 `candidate_eval.version_fit` 改为 `candidate_eval.effective_model_fit`。
-- 新增 [[syntheses/BP-当前有效模型|BP 当前有效模型]]，把 2026-06-30 版本的 22 条 BP-relevant delta 编译为 `hard_gate_deltas`、`capability_deltas`、`build_deltas`、`matchup_deltas`、`map_hook_deltas` 和 `slot_policy_deltas`。
-- 更新 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[index|Wiki Index]] 与 `AGENTS.md`，固定“稳定底座 + 版本编译输入 -> 当前有效模型 -> BP 运行时”的治理规则。
+- 新增 BP 当前有效模型（已删除），把 2026-06-30 版本的 22 条 BP-relevant delta 编译为 `hard_gate_deltas`、`capability_deltas`、`build_deltas`、`matchup_deltas`、`map_hook_deltas` 和 `slot_policy_deltas`。
+- 更新 BP 条件化对位边索引（已删除旧手写索引）、BP 英雄地图特征适配索引（已删除旧手写索引）、英雄 BP 建模执行状态（已归并）、[[index|Wiki Index]] 与 `AGENTS.md`，固定“稳定底座 + 版本编译输入 -> 当前有效模型 -> BP 运行时”的治理规则。
 
 ## [2026-06-30] repair | 移除 BP 运行时增量模型
 
-- 根据维护者反馈，删除 [[syntheses/BP-当前有效模型|BP 当前有效模型]] 和后续误建的 `BP-当前决策模型.md`；运行时不再读取中央版本覆盖层。
-- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]] 与 [[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]，固定“版本资料先审计；只有定性 BP 影响，且必须直接融入英雄 / 地图 / 对位 / hook 稳定字段”的规则。
+- 根据维护者反馈，删除 BP 当前有效模型和后续误建的 `BP-当前决策模型.md`；运行时不再读取中央版本覆盖层。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、BP 条件化对位边索引（已删除旧手写索引）、BP 英雄地图特征适配索引（已删除旧手写索引） 与 英雄 BP 建模执行状态（已归并），固定“版本资料先审计；只有定性 BP 影响，且必须直接融入英雄 / 地图 / 对位 / hook 稳定字段”的规则。
 - 撤回所有英雄页中的“版本覆盖”与“当前 BP 判断”页尾覆盖段，避免决策语料混入补丁式解释。
 - 重新审计 2026-06-30 版本资料：`Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`、`Bolt`、`Damian`、`Spike` 仅标记为 `profile_merge_candidate`，等待逐字段内联；`Meeple`、`Colette`、`Crow`、`Mortis`、`Edgar`、`Chester`、`R-T`、`Griff`、`Leon`、`Lumi`、`Najia`、`Pierce`、`Mina` 保留在版本审计页，不进入运行时 BP 模型。
 - 追加 `AGENTS.md` 英雄页治理规则：`wiki/entities/brawlers/` 只保存当前最新 BP 建模结果；版本 / meta 资料若不能直接内联改写稳定字段，只能留在来源、审计或日志层。
 
 ## [2026-06-30] repair | 清理 BP 运行索引和维护边界
 
-- 将 [[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]] 改为 `runtime_reviewed_index_from_brawler_profiles`，删除原始候选总览和待复核口径，只保留从英雄页稳定 `conditional_matchups` 派生的 reviewed 对位边。
-- 将 [[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]] 改为运行时派生索引，明确只用于候选检索和地图因素连接，不保存版本差分或临时强度判断。
+- 将 BP 条件化对位边索引（已删除旧手写索引） 改为 `runtime_reviewed_index_from_brawler_profiles`，删除原始候选总览和待复核口径，只保留从英雄页稳定 `conditional_matchups` 派生的 reviewed 对位边。
+- 将 BP 英雄地图特征适配索引（已删除旧手写索引） 改为运行时派生索引，明确只用于候选检索和地图因素连接，不保存版本差分或临时强度判断。
 - 更新 [[syntheses/条件化对位模型|条件化对位模型]]：版本资料接入门槛改为维护规则，不再作为运行对象；对象编号回到 `map_profile / mode_objective_profile / brawler_profile / build_profile / conditional_matchup / draft_state / pick_slot_state / draft_eval`。
-- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/地图知识分层治理|地图知识分层治理]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]]、[[syntheses/英雄BP建模进度审计-2026-06-30|英雄 BP 建模进度审计 2026-06-30]] 和 [[syntheses/英雄BP建模质量门槛|英雄 BP 建模质量门槛]]，把运行时读取路径固定为稳定英雄页、地图页、对位索引和地图 hook 索引；来源候选、版本观察和审计交接只留在维护层。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、英雄 BP 建模执行状态（已归并）、英雄 BP 建模进度审计 2026-06-30（已归并） 和 英雄 BP 建模质量门槛（已归并），把运行时读取路径固定为稳定英雄页、地图页、对位索引和地图 hook 索引；来源候选、版本观察和审计交接只留在维护层。
 - 统一英雄页和对位索引中的 `bp_use` 命名，将旧抓取阶段的候选标签改为 `candidate` / `signal` 口径，避免运行语料继续暴露原始候选阶段术语。
 
 ## [2026-06-30] skill | 新增 BP slot 决策 skill
@@ -579,8 +579,8 @@
 ## [2026-07-01] query | BP 实战查询速度与模型形态评估
 
 - 回答“当前数据量是否能满足实战 BP 思考速度，以及实时 skill 查询和直接微调哪个更快”的问题。
-- 读取 [[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]、[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]、[[syntheses/BP-条件化对位边索引|BP 条件化对位边索引]]、[[syntheses/BP-英雄地图特征适配索引|BP 英雄地图特征适配索引]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、[[syntheses/英雄BP建模执行状态|英雄 BP 建模执行状态]] 与 `skills/brawl-stars-bp-slot-decision/`。
-- 新增 [[syntheses/BP-实战查询速度与模型形态评估|BP 实战查询速度与模型形态评估]]，结论为当前数据量足够支撑实战 BP 的有依据思考；推荐 `skill + 本地检索 + 预热上下文 + 小范围候选评估`，不建议把可变事实库直接作为微调主载体。
+- 读取 [[index|Wiki Index]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、BP 条件化对位边索引（已删除旧手写索引）、BP 英雄地图特征适配索引（已删除旧手写索引）、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、英雄 BP 建模执行状态（已归并） 与 `skills/brawl-stars-bp-slot-decision/`。
+- 新增 BP 实战查询速度与模型形态评估（已归并），结论为当前数据量足够支撑实战 BP 的有依据思考；推荐 `skill + 本地检索 + 预热上下文 + 小范围候选评估`，不建议把可变事实库直接作为微调主载体。
 - 更新 [[index|Wiki Index]] 增加该 synthesis 入口。
 
 ## [2026-07-01] skill | 固化 run-bp 裁判与 BP 选手扩展
@@ -622,3 +622,48 @@
 - 删除 `wiki/syntheses/bp-simulations/` 临时报告目录；该目录不再作为 wiki 知识层的一部分。
 - 更新 [[index|Wiki Index]]，移除 14 个逐局报告链接，只保留汇总页入口。
 - 更新 `README.md`：逐局完整报告以后写入 `outputs/bp-simulations/` 作为临时运行产物；只有提炼后的关键结论进入 `wiki/syntheses/`。
+
+## [2026-07-02] architecture | BP 运行时索引编译架构
+
+- 新增 `raw/inbox/2026-07-02-user-note-bp-runtime-index-compilation.md` 与 [[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]，记录维护者关于 BP runtime 的新版分层思路。
+- 新增 [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]，将 BP skill 领域拆成 `compile / understand-version` 与 `decide` 两阶段：前者结合稳定 wiki 事实与 strength profile 编译 runtime index，后者只消费 runtime index 做 ban / pick 决策。
+- 审计入口中的索引噪声：BP 条件化对位边索引（已删除旧手写索引） 与 BP 英雄地图特征适配索引（已删除旧手写索引） 当前混合了结构、slot 用途和候选语境，应在 compile 子命令落地后从长期 BP Runtime 入口移除，转为生成调试产物或删除。
+- 更新 [[index|Wiki Index]]，加入新版 runtime 编译架构和对应用户经验来源入口；本次初步审计曾保留旧索引作为过渡检索视图，随后按维护者确认见下一条 cleanup 直接删除。
+
+## [2026-07-02] cleanup | 删除旧手写 BP 运行时索引
+
+- 删除 `wiki/syntheses/BP-条件化对位边索引.md` 与 `wiki/syntheses/BP-英雄地图特征适配索引.md`；这两个文件不再作为长期 wiki 页面维护，等价信息后续由 `bp compile` 从英雄页、地图页、模式页和 strength profile 重新生成。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]、[[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、英雄 BP 建模执行状态（已归并）、英雄 BP 建模质量门槛（已归并） 等入口，将运行时读取路径切换为稳定英雄页 / 地图页和可再生成的 `runtime_bp_index`。
+- 更新 `skills/brawl-stars-bp-slot-decision/` 与 `tools/audit_bp_profile_quality.py`，移除旧索引必读和脚本检索依赖；`bp_index.py` 现在只定位稳定页面和页面内命中，不再搜索已删除索引。
+
+## [2026-07-02] cleanup | 归并过期 BP 维护任务页
+
+- 新增 [[syntheses/BP-维护归档|BP 维护归档]]，归并 4 个已经完成或被替代的临时任务页：英雄 BP 建模覆盖审计、英雄 BP 建模升级任务计划、英雄 BP 建模进度审计 2026-06-30、BP 实战查询速度与模型形态评估。
+- 删除上述 4 个原始 syntheses 页面；保留 [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]] 与 [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]] 作为非运行时归档页。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、英雄 BP 建模执行状态（已归并）、英雄 BP 建模质量门槛（已归并） 和相关来源页，修复已归并页面的入口链接。
+
+## [2026-07-02] cleanup | 从 BP 概念集合删除历史临时 roster 行
+
+- 删除 `wiki/sources/` 中专门描述该临时 roster 行的 source 摘要，并移除 `AGENTS.md`、[[index|Wiki Index]]、英雄 BP 建模执行状态（已归并）、[[syntheses/BP-维护归档|BP 维护归档]]、英雄页、skill、检索脚本和 ingest 工具中的显式命名提醒。
+- 将 BP-active 英雄集合定义改为“有有效来源覆盖的常驻英雄集合”；脚本通过有效 Fandom / PLP source 行自然得到 104 个 active 英雄，不再靠命名排除。
+- 保留 raw 原始抓取事实不动；长期 wiki 和 BP 运行层不再把该历史临时 roster 行建模为一个需要反复排除的概念。
+
+## [2026-07-02] cleanup | 将英雄 BP 建模记录页归并为标准流程
+
+- 新增 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]，沉淀英雄 BP 建模的输入边界、标准流程、`draft_from_raw_signals` / `reviewed` / `bp_ready` 质量状态和临时审计输出规范。
+- 删除英雄 BP 建模执行状态、英雄 BP 建模质量门槛、英雄 BP 建模质量审计三个完成态 / 进度型 syntheses 页面；可复用内容已进入标准流程，历史说明保留在 [[syntheses/BP-维护归档|BP 维护归档]]。
+- 更新 `tools/audit_bp_profile_quality.py`：`--write` 现在输出到 `outputs/bp-profile-quality-audit.md`，不再写回 `wiki/syntheses/`。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、`skills/brawl-stars-bp-slot-decision/`、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]] 和来源页，移除运行时读取完成态看板的依赖。
+
+## [2026-07-02] cleanup | 归并地图建模与 BP 表达规范
+
+- 新增 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]，将地图知识分层、`map_profile` / `map_feature` schema、`map_bp_factor`、地图 hard gate、slot 策略、候选地图适配评估和假阳性过滤合并为一个稳定入口。
+- 删除地图知识分层治理、地图特征建模 Schema、地图因素 BP 表达规范三个拆散的 syntheses 页面；它们此前表达的是同一条链路的不同层，现在统一到一份规范。
+- 更新 `AGENTS.md`、[[index|Wiki Index]]、`skills/brawl-stars-bp-slot-decision/`、地图实体页、英雄页、来源页和 BP 相关 syntheses 的链接，运行时读取路径改为单一地图规范页。
+
+## [2026-07-02] skill | BP skill 脱离 syntheses 运行时依赖
+
+- 重构 `skills/brawl-stars-bp-slot-decision/SKILL.md`：将选手 skill 明确拆成 `compile` 与 `decide` 两个模式，禁止把 syntheses 作为运行时渐进披露路径。
+- 新增 `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md` 与 `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`，把原本散在 syntheses 中的编译时规则和运行时决策规则复制进 skill 自身文档。
+- 更新 `skills/brawl-stars-bp-slot-decision/scripts/bp_index.py`：脚本只定位 skill references、地图实体页和英雄实体页，不再输出 syntheses runtime pages 或依赖赛季专题页判断地图池。
+- 更新 `AGENTS.md`、[[index|Wiki Index]] 与 `README.md`：区分维护者 wiki 查询和 BP skill 执行；skill 执行只依赖自身 references、`wiki/entities/` 和已生成的 `runtime_bp_index`。

@@ -25,4 +25,4 @@
 
 ## 状态
 
-这条经验已接入 [[syntheses/地图知识分层治理|地图知识分层治理]]，并用于拆分 [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]。
+这条经验已接入 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]，并用于拆分 [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]。

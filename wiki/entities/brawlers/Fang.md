@@ -186,7 +186,7 @@ bp_brawler_profile:
       bp_use: "target_selection_check"
     - id: "kill_only_no_objective"
       active_when: "Brawl Ball/Hot Zone 中 Fang 击杀后没有球权、站圈或队友接管"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] objective_conversion 要求"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] objective_conversion 要求"
       mitigation: "把 Fang 当 scoring window / zone clear，而不是唯一目标位"
       bp_use: "objective_contract_check"
 
@@ -231,4 +231,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Fang|Fandom 来源摘要: Fang]]
 - [[sources/PLP-Fang|PLP 来源摘要: Fang]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]

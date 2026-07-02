@@ -26,7 +26,7 @@ bp_brawler_profile:
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
-      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
       - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:

@@ -171,7 +171,7 @@ bp_brawler_profile:
       bp_use: role_coverage_check
     - id: open_long_map_after_overbreak
       active_when: 墙体被过度打开，地图转成纯远程对枪
-      exposed_by: 地图因素 BP 表达规范中的 terrain_state_plan
+      exposed_by: BP 地图建模与决策规范中的 terrain_state_plan
       mitigation: 保墙、选择性封路，或避免在纯开阔图早手暴露 Sprout
       bp_use: terrain_state_plan_check
 

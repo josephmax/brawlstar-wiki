@@ -222,4 +222,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-El-Primo|Fandom 来源摘要: El Primo]]
 - [[sources/PLP-El-Primo|PLP 来源摘要: El Primo]]
-- [[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]
+- [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]

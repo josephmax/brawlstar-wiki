@@ -5,7 +5,7 @@
 - 类型：用户经验 / 任务计划要求
 - 日期：2026-06-29
 - 上游 raw：[[../../raw/inbox/2026-06-29-user-note-hero-bp-ingest-plan.md]]
-- 关联：[[syntheses/英雄BP建模覆盖审计|英雄 BP 建模覆盖审计]]、[[syntheses/英雄BP建模升级任务计划|英雄 BP 建模升级任务计划]]
+- 关联：[[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]、[[syntheses/BP-维护归档|BP 维护归档]]
 
 ## 核心要求
 

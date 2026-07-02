@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Buzz 是常驻 Mythic Assassin，与临时下架的 `Buzz Lightyear` 无关。Buzz 的 BP 价值来自 Trait 被动充 Super、10 格抓钩和落地眩晕：他能从墙、草、金库、球路或 carrier 撤退线发起强制接触，并用 `Reserve Buoy` 在关键时刻立即获得一次位移资源。风险也很清晰：普攻只有 2.67 格且 0.9 秒卸弹，抓钩路上不免伤，被击退、眩晕、拉扯等会中断；如果目标有近身爆发、反突进或控制，Buzz 很容易把自己送到对方手里。
+Buzz 是常驻 Mythic Assassin。Buzz 的 BP 价值来自 Trait 被动充 Super、10 格抓钩和落地眩晕：他能从墙、草、金库、球路或 carrier 撤退线发起强制接触，并用 `Reserve Buoy` 在关键时刻立即获得一次位移资源。风险也很清晰：普攻只有 2.67 格且 0.9 秒卸弹，抓钩路上不免伤，被击退、眩晕、拉扯等会中断；如果目标有近身爆发、反突进或控制，Buzz 很容易把自己送到对方手里。
 
 ## BP 建模
 
@@ -26,7 +26,7 @@ bp_brawler_profile:
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
-      - "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]]"
+      - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
       - "[[syntheses/条件化对位模型|条件化对位模型]]"
 
   capability_vector:

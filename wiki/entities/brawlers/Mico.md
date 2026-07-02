@@ -183,7 +183,7 @@ bp_brawler_profile:
       bp_use: "candidate_eval.execution_risk"
     - id: "bypass_without_objective"
       active_when: "Mico can jump terrain but cannot convert landing into kill, safe damage, or escape"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] false-positive rules"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] false-positive rules"
       mitigation: "count only routes tied to target access and follow-up"
       bp_use: "map_factor_false_positive_check"
 

@@ -185,7 +185,7 @@ bp_brawler_profile:
       bp_use: "false_positive_filter"
     - id: "water_route_without_pressure"
       active_when: "water movement exists but does not create range, safe damage, or retreat value"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] false positive rule"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] false positive rule"
       mitigation: "only count water if it opens a real objective route or safe off-angle"
       bp_use: "map_factor_false_positive_check"
     - id: "wall_or_summon_absorbs_single_arrow"

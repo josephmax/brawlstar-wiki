@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Capture Brawl Stars brawler raw source pages from Fandom and PL Prodigy.
-
-The script reads the roster manifest, skips Buzz Lightyear for BP-active work,
-and writes dated raw capture files without overwriting existing captures.
-"""
+"""Capture Brawl Stars brawler raw source pages from Fandom and PL Prodigy."""
 
 from __future__ import annotations
 
@@ -27,9 +23,6 @@ FANDOM_DIR = ROOT / "raw/sources/fandom/heroes"
 PLP_DIR = ROOT / "raw/sources/pl-prodigy/brawlers"
 
 USER_AGENT = "Codex brawlstar wiki capture/1.0"
-BP_OUT_OF_SCOPE = {"Buzz Lightyear"}
-
-
 @dataclass(frozen=True)
 class RosterRow:
     name: str
@@ -60,6 +53,10 @@ def parse_roster(path: Path) -> list[RosterRow]:
             continue
         rows.append(RosterRow(cells[0], cells[1], cells[2]))
     return rows
+
+
+def has_active_bp_sources(row: RosterRow) -> bool:
+    return row.fandom_url != "no_page_found" and row.plp_url != "no_page_found"
 
 
 def slug_from_url_or_name(url: str, name: str) -> str:
@@ -457,7 +454,7 @@ def main() -> int:
     args = parse_args()
     roster = parse_roster(Path(args.roster))
     names = set(args.names or [])
-    targets = [row for row in roster if row.name not in BP_OUT_OF_SCOPE]
+    targets = [row for row in roster if has_active_bp_sources(row)]
     if names:
         targets = [row for row in targets if row.name in names]
     if args.limit:

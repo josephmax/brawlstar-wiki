@@ -1,34 +1,35 @@
 ---
 name: brawl-stars-bp-slot-decision
-description: Use when deciding Brawl Stars Ranked Ban Pick picks or bans for a specific draft slot, evaluating slot 1, 2-3, 4-5, or 6 decisions, comparing candidate brawlers, judging bans, counter-picks, map fit, hard gates, or ideal BP choices from this vault.
+description: Use when compiling or using a Brawl Stars Ranked Ban Pick runtime index, deciding a specific draft slot, evaluating bans or picks, comparing candidates, or checking map fit, hard gates, counter-picks, strategy bias, and strength context from this vault.
 ---
 
 # Brawl Stars BP Slot Decision
 
-## Core Principle
+## Core Boundary
 
-Make each BP slot decision from the vault's stable runtime layer, not from memory, tier lists, or raw strength. The ideal slot decision is the pick or ban that best satisfies current hard gates, map duties, mode objectives, role gaps, matchup conditions, and future exposure risk.
+This skill has two modes:
 
-Strength matters when there is evidence. Do not ignore current meta pressure or overpowered brawlers, but do not invent tier lists from memory. Treat strength as a separate evidence layer that can raise or lower priority only after map/mode duties and counter availability are checked.
+- `compile`: read stable entity facts and strength input, then generate a `runtime_bp_index`.
+- `decide`: read the compiled `runtime_bp_index`, current draft state, and runtime decision rules, then return one ban or pick recommendation set.
 
-## Required Reads
+The skill must not use the wiki's synthesis/topic discussion layer as a runtime dependency. Those pages are maintainer workspace, not player-facing knowledge. The skill is self-contained through its own references and stable entity pages.
 
-Always read these files before a serious BP answer:
+## Mode Required Reads
 
-- `wiki/index.md`
-- `wiki/syntheses/BP-推理DSL规范.md`
-- `wiki/syntheses/条件化对位模型.md`
-- `wiki/syntheses/Ban-Pick-问题拆分.md`
-- `wiki/syntheses/地图特征建模Schema.md`
-- `wiki/syntheses/地图因素BP表达规范.md`
-- `wiki/syntheses/Ranked-Season-46-地图Map-Profile总览.md`
-- `wiki/syntheses/英雄BP建模执行状态.md`
-- `wiki/syntheses/BP-条件化对位边索引.md`
-- `wiki/syntheses/BP-英雄地图特征适配索引.md`
+### compile
 
-Then read the relevant single-map page under `wiki/entities/maps/`, relevant brawler pages under `wiki/entities/brawlers/`, and any source pages only when a stable page points to them or a claim needs provenance.
+Read:
 
-Use `scripts/bp_index.py` to find likely pages and reviewed runtime-index hits:
+- `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md`
+- Relevant map pages under `wiki/entities/maps/`
+- Relevant brawler pages under `wiki/entities/brawlers/`
+- User, judge, or external `strength_profile` supplied for this session
+
+Output:
+
+- `runtime_bp_index`
+
+Use `scripts/bp_index.py` only as a locator for skill references and stable entity pages:
 
 ```bash
 python3 skills/brawl-stars-bp-slot-decision/scripts/bp_index.py \
@@ -39,14 +40,37 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/bp_index.py \
   --json
 ```
 
-Treat script output as retrieval only. It does not rank candidates and does not replace reading the matched pages.
+### decide
+
+Read:
+
+- `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`
+- The compiled `runtime_bp_index`
+- Current ban/pick state, side, slot, available pool, and `strategy_bias`
+
+If no `runtime_bp_index` exists, run `compile` first or state that the decision is incomplete. Do not silently fall back to maintainer discussion pages.
 
 ## Input Contract
 
-Normalize the user request into:
+Normalize requests into one of these objects:
 
 ```yaml
-bp_case:
+compile_input:
+  patch_id:
+  map_pool:
+  available_brawlers:
+  strength_profile:
+    profile_id:
+    owner:
+    scope: global | mode | map | custom
+    entries:
+  source_policy:
+    read_stable_entities_only: true
+```
+
+```yaml
+decide_input:
+  runtime_bp_index:
   map:
   mode:
   current_global_slot: 1 | 2 | 3 | 4 | 5 | 6
@@ -56,120 +80,43 @@ bp_case:
   candidate_pool:
   known_player_constraints:
   strategy_bias: conservative | balanced | aggressive | high_variance
-  strength_context:
-    source: stable_wiki | user_supplied | source_page | unknown
-    meta_pressure:
-    overpowered_or_t0_exception:
-    counter_availability:
-    balance_volatility:
 ```
 
-If `map`, `mode`, or current slot is missing, state that the conclusion is incomplete. Ask only when the missing field changes the decision; otherwise proceed with explicit assumptions.
+If `map`, `mode`, or slot is missing, state the assumption. Ask only when the missing field changes the decision.
 
-## Decision Pipeline
+## Compile Summary
 
-1. Read the required runtime pages and target map/brawler pages.
-2. Build `mode_objective_profile`: define how this mode wins on this map.
-3. Build `map_factor_summary`: active objective contract, map BP factors, duty coverage, terrain state plan, false-positive alerts.
-4. Update `draft_state`: known picks, bans, revealed plans, role gaps, protected picks, exposed picks.
-5. Update `pick_slot_state`: team side, known own/enemy picks, remaining enemy answers, current slot job.
-6. Run `hard_gate_result`: `must_pick`, `must_ban`, `must_answer`, `must_avoid`.
-7. Check `strength_context`: current meta pressure, overpowered_or_t0_exception, balance volatility, and whether counters are realistic in this map/slot.
-8. Derive required capabilities before naming heroes.
-9. Run `balanced_threat_probe`: identify whether the current map/draft exposes a real `route_based_tank_or_assassin` lane.
-10. Generate 2-4 candidate decisions from available heroes or bans.
-11. For each candidate, write `candidate_eval`: purpose, map factor fit, mode fit, strength fit, role coverage, conditional matchups, build requirement, exposure risk, likely enemy response.
-12. Rank by current slot value, strategy bias, and evidence-backed strength context; never by isolated hero strength alone.
+`compile` converts stable facts into a compact runtime index:
 
-## Proactive Threat Probe
+- `map_duties`: objective contracts, required capabilities, route gates, false-positive filters.
+- `brawler_cards`: capabilities, builds, failure modes, strength visibility, proof thresholds.
+- `map_brawler_edges`: map fit, terrain dependency, objective conversion, failure conditions.
+- `draft_edges`: conditional matchups, bans that matter, protected picks, exposed routes.
 
-Before ranking picks, run `balanced_threat_probe` even when `strategy_bias: balanced`. This prevents balanced drafts from collapsing into only long-range/control/sustain shells.
+Strength matters only as a separate evidence layer. A high strength signal can raise priority or become a must-pick / must-ban only after map duties, counter availability, and failure modes are checked.
 
-Create a `proactive_threat_candidate` when all are true:
+The compiled index should expose `strength_context` with `meta_pressure`, `overpowered_or_t0_exception`, counter availability, and balance volatility. Unknown strength remains explicit uncertainty, not a license to invent tiers.
 
-- The map exposes a route, pocket, grass lane, wall edge, goal window, safe entry, carrier retreat, zone entrance, or thrower pocket that a tank/assassin can actually reach.
-- The route has `route_endpoint_payoff`: score, safe damage, gem drop, star pick, thrower removal, zone flip, carrier peel, or forced defender resource.
-- Enemy remaining answers are not a clear hard gate, or those answers are already banned, picked elsewhere, on cooldown in the plan, or must cover a different route.
-- The candidate can name required teammate support or build when needed.
+## Decide Summary
 
-For every pick turn, the 2-4 candidate decisions must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or a map false-positive filter explicitly rules it out. If ruled out, write the route that failed and the exact blocker. Do not simply omit tanks/assassins because they are volatile.
+`decide` uses the runtime index to produce `candidate_eval` and `bp_recommendation`.
 
-The proactive candidate does not have to be the top decision. It must be honestly evaluated beside control, range, sustain, and spawnable options.
-
-## Slot Policies
-
-| Slot | Main job | Prefer | Reject |
-| --- | --- | --- | --- |
-| 1 | Stable first pick; establish an extendable plan; cover a non-negotiable map/mode duty. | Flexible brawlers with narrow counter windows and real objective conversion. | Picks that need later protection, expose a cheap 2-3 response, or only hit a coarse map tag. |
-| 2-3 | Answer enemy slot 1 while creating the second team's first win route. | One answer plus one plan-builder; paired picks that pressure 4-5 in different ways. | Two purely defensive picks, or two picks sharing the same hard weakness. |
-| 4-5 | Answer the enemy 2-3 pair, repair/protect own slot 1, complete basic duties, and avoid a slot-6 collapse. | Picks that both cover gaps and reduce last-pick punishment. | Leaving vision, wallbreak, anti-aggro, safe DPS, zone body, scoring window, or thrower answer open when slot 6 can exploit it. |
-| 6 | Final punish or final repair after all enemy picks are known. | High-upside punish only when own core duties are already covered and enemy has no remaining repair slot. | Gambling on execution, ignoring missing core duties, or selecting a name-counter without route/condition proof. |
-
-For paired slots, evaluate the pair as a unit. Slot 2 and 3 should not be two independent "good picks"; slot 4 and 5 should not leave one structural failure for enemy slot 6.
-
-## Candidate Scoring Heuristic
-
-Use this as ordering logic, not a numeric formula:
+Ordering logic:
 
 1. Hard gates beat everything.
-2. Mode objective and map duty coverage beat matchup comfort.
-3. A conditional matchup counts only when its `active_when` conditions match the map, mode, comp, and build.
-4. Evidence-backed `overpowered_or_t0_exception` can create a must-pick or must-ban, but only if the map/mode does not provide cheap reliable answers.
-5. Slot exposure can demote an otherwise strong candidate.
-6. Build requirements must be explicit when they change the candidate's role.
-7. A ban is ideal only when it removes a low-cost route, protects a real plan, prevents a hard gate, or removes an evidence-backed overpowered route that picks cannot answer efficiently.
-8. Use `do_not_demote_tank_assassin_for_style_alone`: do not demote a route-based tank or assassin only because it is volatile. Demotion requires a named failed route, missing `route_endpoint_payoff`, or a realistic remaining counter.
-9. When a tank/assassin route is valid and enemy answers are constrained, treat it as structural pressure, not high variance by default.
+2. Mode objective and map duty coverage beat isolated matchup comfort.
+3. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
+4. Evidence-backed `overpowered_or_t0_exception` can become a hard gate when cheap reliable answers are unavailable.
+5. Slot exposure can demote otherwise strong candidates.
+6. Strategy bias changes ranking among viable candidates; it cannot make a false-positive map fit viable.
 
-## Strength Context
+Always run `balanced_threat_probe`. A balanced draft must still evaluate one legal `route_based_tank_or_assassin` / `proactive_threat_candidate` when the map exposes a real route, endpoint payoff, and constrained enemy answer set. Use `do_not_demote_tank_assassin_for_style_alone`: demotion requires a named failed route, missing `route_endpoint_payoff`, or realistic remaining counter.
 
-Use this object when the request, source pages, user notes, or current wiki pages provide strength information:
+For `balanced`, the 2-4 candidate decisions must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or map false-positive filters rule it out.
 
-```yaml
-strength_context:
-  source: stable_wiki | user_supplied | source_page | unknown
-  meta_pressure:
-    - brawler:
-      signal: t0 | overpowered | high_pick_ban | strong | normal | weak
-      reason:
-      evidence_ref:
-  overpowered_or_t0_exception:
-    must_pick:
-    must_ban:
-    still_requires_map_fit:
-    cheap_answers_available:
-  counter_availability:
-    realistic_answers:
-    answers_banned_or_taken:
-    answers_false_positive_if:
-  balance_volatility:
-    patch_sensitive:
-    confidence:
-```
+## Output Contract
 
-Rules:
-
-- If strength source is `unknown`, state that meta strength was not available and do not fabricate tiers.
-- If a hero is evidence-backed T0/overpowered and reliable answers are banned, unavailable, or map-false-positive, promote it into `hard_gate_result.must_pick` or `must_ban`.
-- If a hero is strong but invites cheap slot response on this map, keep it in candidate eval instead of hard gate.
-- Do not let strength erase failure modes. Example: a strong thrower on a wall map still needs anti-dive or wallbreak protection; a strong assassin still needs a route and endpoint safety.
-
-## Strategy Bias
-
-Apply the judge-provided `strategy_bias` after hard gates and strength context:
-
-| bias | Pick/ban preference | Risk posture |
-| --- | --- | --- |
-| `conservative` | stable first picks, flexible role coverage, low exposure bans | demote volatile tanks/assassins unless all routes and peel are proven |
-| `balanced` | default BP DSL ordering plus one proactive threat check | use strongest map/mode fit with manageable exposure, but must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or map false-positive filters rule it out |
-| `aggressive` | route-based engage, last-pick punish, early pressure if counters are constrained | allow tanks/assassins when map route, build, and teammate follow-up are explicit |
-| `high_variance` | unusual punish lines and stress-test picks | allowed only with written failure modes and recovery plan |
-
-The bias changes ranking among viable candidates; it cannot make a false-positive map fit viable. Balanced is not conservative: it must compare one proactive route to one stable/control route when both are legal.
-
-## Required Output
-
-Return a compact BP recommendation with:
+Return a compact recommendation:
 
 ```yaml
 bp_recommendation:
@@ -188,12 +135,13 @@ bp_recommendation:
   uncertainty:
 ```
 
-Include 2-4 top decisions. For each decision include `why_now`, required build, risk control, likely enemy response, and next step.
-
-Each ban or pick must include:
+Each candidate must include:
 
 ```yaml
-decision_detail:
+candidate_eval:
+  candidate:
+  decision_type: pick | ban
+  why_now:
   construct_direction:
   capabilities_provided:
   answers_enemy_picks:
@@ -208,10 +156,8 @@ decision_detail:
 
 - Do not output a single pick without alternatives.
 - Do not use `open`, `wall density`, `water`, or `summary_tags` as direct scoring signals.
-- Do not treat `A counters B` as unconditional. Explain mechanism, active conditions, fails conditions, and BP use.
-- Do not read version/meta audit pages as runtime overlays. If a version item is not merged into stable hero/map/index fields, keep it out of the decision or mark it as uncertainty.
-- Do not ignore evidence-backed T0/overpowered signals just because they are not elegant map theory; strength can become a hard gate when reliable answers are unavailable.
-- Do not invent T0/meta claims from memory. If no strength source is provided or present in the wiki, write `strength_context.source: unknown`.
+- Do not treat `A counters B` as unconditional; explain mechanism, active conditions, fail conditions, and BP use.
+- Do not invent T0/meta claims from memory. If no strength source is provided, write `strength_context.source: unknown`.
 - Do not let `strategy_bias: aggressive` justify a tank/assassin without route, follow-up, and endpoint safety.
-- Do not include `Buzz Lightyear` in BP-active pools.
-- Do not let the script's retrieved lines become the answer. Use them to choose what to read next.
+- Do not let `balanced` collapse into only range/control/sustain shells.
+- Do not let `scripts/bp_index.py` output become the answer; it only locates stable pages and skill references.

@@ -191,7 +191,7 @@ bp_brawler_profile:
       bp_use: "map_factor_false_positive_check"
     - id: "wallbreak_erases_plan"
       active_when: "enemy or teammate opens the specific walls Rico needs for lane control"
-      exposed_by: "[[syntheses/地图因素BP表达规范|地图因素 BP 表达规范]] terrain state plan"
+      exposed_by: "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]] terrain state plan"
       mitigation: "protect walls, ban/answer wallbreak, or choose non-wall-dependent DPS"
       bp_use: "terrain_state_plan_check"
     - id: "thrower_or_deeper_pocket_outcontrols"
