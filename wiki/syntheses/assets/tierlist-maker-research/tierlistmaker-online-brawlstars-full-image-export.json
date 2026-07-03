@@ -1,0 +1,616 @@
+{
+  "schema": "tierlistmaker.online.localStorage.tlm_v3",
+  "source": {
+    "site": "TierListMaker.online",
+    "url": "https://tierlistmaker.online/",
+    "captured_at": "2026-07-03T11:10:17.311Z",
+    "data_seed": "MetaCoreTroll public community tier list + MetaCoreTroll brawler API image URLs",
+    "note": "TierListMaker.online did not provide this Brawl Stars template itself; this verifies it can render and persist a prefilled Brawl Stars tier list as JSON."
+  },
+  "localStorageKey": "tlm_v3",
+  "missing_images": [],
+  "rendered_img_count": 93,
+  "value": {
+    "title": "Brawl Stars Strength Profile - MetaCoreTroll Export",
+    "logo": null,
+    "tiers": [
+      {
+        "id": "s",
+        "label": "S",
+        "color": "#f87171",
+        "items": [
+          {
+            "id": "lumi",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000091.png",
+            "name": "Lumi"
+          },
+          {
+            "id": "kenji",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000085.png",
+            "name": "Kenji"
+          },
+          {
+            "id": "chester",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000063.png",
+            "name": "Chester"
+          },
+          {
+            "id": "bea",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000029.png",
+            "name": "Bea"
+          },
+          {
+            "id": "griff",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000050.png",
+            "name": "Griff"
+          },
+          {
+            "id": "amber",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000040.png",
+            "name": "Amber"
+          },
+          {
+            "id": "gray",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000064.png",
+            "name": "Gray"
+          },
+          {
+            "id": "bo",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000014.png",
+            "name": "Bo"
+          },
+          {
+            "id": "carl",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000025.png",
+            "name": "Carl"
+          },
+          {
+            "id": "finx",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000092.png",
+            "name": "Finx"
+          }
+        ]
+      },
+      {
+        "id": "a",
+        "label": "A",
+        "color": "#fb923c",
+        "items": [
+          {
+            "id": "max",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000032.png",
+            "name": "Max"
+          },
+          {
+            "id": "squeak",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000047.png",
+            "name": "Squeak"
+          },
+          {
+            "id": "mandy",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000065.png",
+            "name": "Mandy"
+          },
+          {
+            "id": "gus",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000061.png",
+            "name": "Gus"
+          },
+          {
+            "id": "angelo",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000079.png",
+            "name": "Angelo"
+          },
+          {
+            "id": "hank",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000069.png",
+            "name": "Hank"
+          },
+          {
+            "id": "draco",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000080.png",
+            "name": "Draco"
+          },
+          {
+            "id": "lily",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000081.png",
+            "name": "Lily"
+          },
+          {
+            "id": "buster",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000062.png",
+            "name": "Buster"
+          },
+          {
+            "id": "janet",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000057.png",
+            "name": "Janet"
+          },
+          {
+            "id": "ollie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000090.png",
+            "name": "Ollie"
+          },
+          {
+            "id": "spike",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000005.png",
+            "name": "Spike"
+          },
+          {
+            "id": "juju",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000087.png",
+            "name": "Juju"
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "label": "B",
+        "color": "#fbbf24",
+        "items": [
+          {
+            "id": "darryl",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000018.png",
+            "name": "Darryl"
+          },
+          {
+            "id": "jae-yong",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000093.png",
+            "name": "Jae-Yong"
+          },
+          {
+            "id": "kaze",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000094.png",
+            "name": "Kaze"
+          },
+          {
+            "id": "leon",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000023.png",
+            "name": "Leon"
+          },
+          {
+            "id": "lou",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000041.png",
+            "name": "Lou"
+          },
+          {
+            "id": "piper",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000015.png",
+            "name": "Piper"
+          },
+          {
+            "id": "stu",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000045.png",
+            "name": "Stu"
+          },
+          {
+            "id": "byron",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000042.png",
+            "name": "Byron"
+          },
+          {
+            "id": "r-t",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000066.png",
+            "name": "R-T"
+          },
+          {
+            "id": "melodie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000078.png",
+            "name": "Melodie"
+          },
+          {
+            "id": "rico",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000004.png",
+            "name": "Rico"
+          },
+          {
+            "id": "colette",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000039.png",
+            "name": "Colette"
+          },
+          {
+            "id": "doug",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000071.png",
+            "name": "Doug"
+          },
+          {
+            "id": "berry",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000082.png",
+            "name": "Berry"
+          },
+          {
+            "id": "crow",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000012.png",
+            "name": "Crow"
+          },
+          {
+            "id": "belle",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000046.png",
+            "name": "Belle"
+          },
+          {
+            "id": "cordelius",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000070.png",
+            "name": "Cordelius"
+          },
+          {
+            "id": "larry-and-lawrie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000077.png",
+            "name": "Larry & Lawrie"
+          },
+          {
+            "id": "frank",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000020.png",
+            "name": "Frank"
+          },
+          {
+            "id": "shade",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000086.png",
+            "name": "Shade"
+          },
+          {
+            "id": "gene",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000021.png",
+            "name": "Gene"
+          },
+          {
+            "id": "kit",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000076.png",
+            "name": "Kit"
+          },
+          {
+            "id": "brock",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000003.png",
+            "name": "Brock"
+          }
+        ]
+      },
+      {
+        "id": "c",
+        "label": "C",
+        "color": "#a3e635",
+        "items": [
+          {
+            "id": "tara",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000017.png",
+            "name": "Tara"
+          },
+          {
+            "id": "bull",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000002.png",
+            "name": "Bull"
+          },
+          {
+            "id": "meg",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000052.png",
+            "name": "Meg"
+          },
+          {
+            "id": "nita",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000008.png",
+            "name": "Nita"
+          },
+          {
+            "id": "barley",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000006.png",
+            "name": "Barley"
+          },
+          {
+            "id": "moe",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000084.png",
+            "name": "Moe"
+          },
+          {
+            "id": "bonnie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000058.png",
+            "name": "Bonnie"
+          },
+          {
+            "id": "buzz",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000049.png",
+            "name": "Buzz"
+          },
+          {
+            "id": "meeple",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000089.png",
+            "name": "Meeple"
+          },
+          {
+            "id": "nani",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000036.png",
+            "name": "Nani"
+          },
+          {
+            "id": "pearl",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000072.png",
+            "name": "Pearl"
+          },
+          {
+            "id": "edgar",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000043.png",
+            "name": "Edgar"
+          },
+          {
+            "id": "penny",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000019.png",
+            "name": "Penny"
+          },
+          {
+            "id": "poco",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000013.png",
+            "name": "Poco"
+          },
+          {
+            "id": "otis",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000059.png",
+            "name": "Otis"
+          },
+          {
+            "id": "ash",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000051.png",
+            "name": "Ash"
+          },
+          {
+            "id": "charlie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000074.png",
+            "name": "Charlie"
+          },
+          {
+            "id": "8-bit",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000027.png",
+            "name": "8-Bit"
+          },
+          {
+            "id": "mr-p",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000031.png",
+            "name": "Mr. P"
+          },
+          {
+            "id": "dynamike",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000009.png",
+            "name": "Dynamike"
+          },
+          {
+            "id": "lola",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000053.png",
+            "name": "Lola"
+          },
+          {
+            "id": "willow",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000067.png",
+            "name": "Willow"
+          },
+          {
+            "id": "eve",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000056.png",
+            "name": "Eve"
+          }
+        ]
+      },
+      {
+        "id": "d",
+        "label": "D",
+        "color": "#4ade80",
+        "items": [
+          {
+            "id": "el-primo",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000010.png",
+            "name": "El Primo"
+          },
+          {
+            "id": "surge",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000038.png",
+            "name": "Surge"
+          },
+          {
+            "id": "tick",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000022.png",
+            "name": "Tick"
+          },
+          {
+            "id": "maisie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000068.png",
+            "name": "Maisie"
+          },
+          {
+            "id": "jacky",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000034.png",
+            "name": "Jacky"
+          },
+          {
+            "id": "mortis",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000011.png",
+            "name": "Mortis"
+          },
+          {
+            "id": "fang",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000054.png",
+            "name": "Fang"
+          },
+          {
+            "id": "colt",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000001.png",
+            "name": "Colt"
+          },
+          {
+            "id": "bibi",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000026.png",
+            "name": "Bibi"
+          },
+          {
+            "id": "ruffs",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000044.png",
+            "name": "Ruffs"
+          },
+          {
+            "id": "pam",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000016.png",
+            "name": "Pam"
+          },
+          {
+            "id": "mico",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000075.png",
+            "name": "Mico"
+          },
+          {
+            "id": "sandy",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000028.png",
+            "name": "Sandy"
+          },
+          {
+            "id": "clancy",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000083.png",
+            "name": "Clancy"
+          }
+        ]
+      },
+      {
+        "id": "f",
+        "label": "F",
+        "color": "#60a5fa",
+        "items": [
+          {
+            "id": "chuck",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000073.png",
+            "name": "Chuck"
+          },
+          {
+            "id": "sprout",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000037.png",
+            "name": "Sprout"
+          },
+          {
+            "id": "jessie",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000007.png",
+            "name": "Jessie"
+          },
+          {
+            "id": "gale",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000035.png",
+            "name": "Gale"
+          },
+          {
+            "id": "emz",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000030.png",
+            "name": "Emz"
+          },
+          {
+            "id": "shelly",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000000.png",
+            "name": "Shelly"
+          },
+          {
+            "id": "grom",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000048.png",
+            "name": "Grom"
+          },
+          {
+            "id": "rosa",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000024.png",
+            "name": "Rosa"
+          },
+          {
+            "id": "sam",
+            "type": "image",
+            "src": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000060.png",
+            "name": "Sam"
+          }
+        ]
+      }
+    ],
+    "library": [],
+    "format": "square",
+    "showLabels": true
+  }
+}

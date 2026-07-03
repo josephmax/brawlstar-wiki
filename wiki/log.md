@@ -721,3 +721,9 @@
 - 将 `AGENTS.md` 从旧三层概述升级为 agent 维护入口索引，显式列出 `$markdown-llm-wiki`、三个 BP skills、`wiki/index.md`、`wiki/log.md` 和真实目录职责。
 - 在 `AGENTS.md` 与 `skills/brawl-stars-bp-knowledge-maintenance/` 中声明 `$markdown-llm-wiki` 的远端来源：`https://github.com/josephmax/skills/tree/main/skills/markdown-llm-wiki`。
 - 将全量英雄 / 地图 BP 维护的执行入口调整为 `skills/brawl-stars-bp-knowledge-maintenance/` references；相关 syntheses 只作为维护背景和历史归档。
+
+## [2026-07-03] research | 沉淀 strength_profile tier list maker 调研
+
+- 新增 [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]，记录用户侧强度输入工具的调研目标、候选站点、验证结论和 adapter 路线。
+- 将 `TierListMaker.online` 完整 Brawl Stars 带图标 JSON / 截图、`MetaCoreTroll` brawler API 导出和 community tier list 导出复制到 `wiki/syntheses/assets/tierlist-maker-research/`，避免依赖被 `.gitignore` 忽略的 `outputs/` 临时目录。
+- 结论：未找到完全开箱满足“Brawl Stars 内置数据 + 自由制作 tier list + 原生 JSON 导出”的第三方站点；推荐用 `TierListMaker.online` 作为 UI 底座，并通过轻量 adapter 完成 roster 预填、JSON 导出和 `strength_profile` 转换。

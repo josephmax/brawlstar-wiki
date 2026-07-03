@@ -1,0 +1,312 @@
+{
+  "schema": "metacoretroll.community_tier_list.export.v1",
+  "source": {
+    "site": "MetaCoreTroll",
+    "url": "https://www.metacoretroll.com/tier-list",
+    "title": "Overall Tier List - Brawl Stars Community Rankings",
+    "captured_at": "2026-07-03T10:55:02.688Z",
+    "page_last_updated_text": "7/3/2026",
+    "note": "Public community tier list extracted from rendered page; personal tier lists require account/vote history."
+  },
+  "game": "Brawl Stars",
+  "mode": "overall",
+  "tiers": {
+    "S": [
+      {
+        "name": "Lumi"
+      },
+      {
+        "name": "Kenji"
+      },
+      {
+        "name": "Chester"
+      },
+      {
+        "name": "Bea"
+      },
+      {
+        "name": "Griff"
+      },
+      {
+        "name": "Amber"
+      },
+      {
+        "name": "Gray"
+      },
+      {
+        "name": "Bo"
+      },
+      {
+        "name": "Carl"
+      },
+      {
+        "name": "Finx"
+      }
+    ],
+    "A": [
+      {
+        "name": "Max"
+      },
+      {
+        "name": "Squeak"
+      },
+      {
+        "name": "Mandy"
+      },
+      {
+        "name": "Gus"
+      },
+      {
+        "name": "Angelo"
+      },
+      {
+        "name": "Hank"
+      },
+      {
+        "name": "Draco"
+      },
+      {
+        "name": "Lily"
+      },
+      {
+        "name": "Buster"
+      },
+      {
+        "name": "Janet"
+      },
+      {
+        "name": "Ollie"
+      },
+      {
+        "name": "Spike"
+      },
+      {
+        "name": "Juju"
+      }
+    ],
+    "B": [
+      {
+        "name": "Darryl"
+      },
+      {
+        "name": "Jae-Yong"
+      },
+      {
+        "name": "Kaze"
+      },
+      {
+        "name": "Leon"
+      },
+      {
+        "name": "Lou"
+      },
+      {
+        "name": "Piper"
+      },
+      {
+        "name": "Stu"
+      },
+      {
+        "name": "Byron"
+      },
+      {
+        "name": "R-T"
+      },
+      {
+        "name": "Melodie"
+      },
+      {
+        "name": "Rico"
+      },
+      {
+        "name": "Colette"
+      },
+      {
+        "name": "Doug"
+      },
+      {
+        "name": "Berry"
+      },
+      {
+        "name": "Crow"
+      },
+      {
+        "name": "Belle"
+      },
+      {
+        "name": "Cordelius"
+      },
+      {
+        "name": "Larry & Lawrie"
+      },
+      {
+        "name": "Frank"
+      },
+      {
+        "name": "Shade"
+      },
+      {
+        "name": "Gene"
+      },
+      {
+        "name": "Kit"
+      },
+      {
+        "name": "Brock"
+      }
+    ],
+    "C": [
+      {
+        "name": "Tara"
+      },
+      {
+        "name": "Bull"
+      },
+      {
+        "name": "Meg"
+      },
+      {
+        "name": "Nita"
+      },
+      {
+        "name": "Barley"
+      },
+      {
+        "name": "Moe"
+      },
+      {
+        "name": "Bonnie"
+      },
+      {
+        "name": "Buzz"
+      },
+      {
+        "name": "Meeple"
+      },
+      {
+        "name": "Nani"
+      },
+      {
+        "name": "Pearl"
+      },
+      {
+        "name": "Edgar"
+      },
+      {
+        "name": "Penny"
+      },
+      {
+        "name": "Poco"
+      },
+      {
+        "name": "Otis"
+      },
+      {
+        "name": "Ash"
+      },
+      {
+        "name": "Charlie"
+      },
+      {
+        "name": "8-Bit"
+      },
+      {
+        "name": "Mr. P"
+      },
+      {
+        "name": "Dynamike"
+      },
+      {
+        "name": "Lola"
+      },
+      {
+        "name": "Willow"
+      },
+      {
+        "name": "Eve"
+      }
+    ],
+    "D": [
+      {
+        "name": "El Primo"
+      },
+      {
+        "name": "Surge"
+      },
+      {
+        "name": "Tick"
+      },
+      {
+        "name": "Maisie"
+      },
+      {
+        "name": "Jacky"
+      },
+      {
+        "name": "Mortis"
+      },
+      {
+        "name": "Fang"
+      },
+      {
+        "name": "Colt"
+      },
+      {
+        "name": "Bibi"
+      },
+      {
+        "name": "Ruffs"
+      },
+      {
+        "name": "Pam"
+      },
+      {
+        "name": "Mico"
+      },
+      {
+        "name": "Sandy"
+      },
+      {
+        "name": "Clancy"
+      }
+    ],
+    "F": [
+      {
+        "name": "Chuck"
+      },
+      {
+        "name": "Sprout"
+      },
+      {
+        "name": "Jessie"
+      },
+      {
+        "name": "Gale"
+      },
+      {
+        "name": "Emz"
+      },
+      {
+        "name": "Shelly"
+      },
+      {
+        "name": "Grom"
+      },
+      {
+        "name": "Rosa"
+      },
+      {
+        "name": "Sam"
+      }
+    ]
+  },
+  "counts": {
+    "S": 10,
+    "A": 13,
+    "B": 23,
+    "C": 23,
+    "D": 14,
+    "F": 9
+  },
+  "total_brawlers": 92
+}

@@ -15,6 +15,7 @@
 - [[syntheses/条件化对位模型|条件化对位模型]]
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]
+- [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 
 ## BP Skill Runtime

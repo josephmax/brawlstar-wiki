@@ -1,0 +1,1388 @@
+{
+  "schema": "metacoretroll.supabase.brawlers.v1",
+  "source": {
+    "site": "MetaCoreTroll",
+    "url": "https://www.metacoretroll.com/vote",
+    "captured_at": "2026-07-03T11:09:33.769Z"
+  },
+  "total": 92,
+  "brawlers": [
+    {
+      "id": "a2f6a2dd-e5bb-47f7-a800-9cf250620e82",
+      "name": "8-Bit",
+      "class": "Damage Dealer",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000027.png",
+      "elo_ratings": {
+        "_heist": 1573,
+        "bounty": 1480,
+        "gem_grab": 1493,
+        "hot_zone": 1526,
+        "knock_out": 1413,
+        "brawl_ball": 1278
+      }
+    },
+    {
+      "id": "91852877-06c3-48c4-b54f-1abb3f78cde5",
+      "name": "Amber",
+      "class": "Controller",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000040.png",
+      "elo_ratings": {
+        "_heist": 1597,
+        "bounty": 1491,
+        "gem_grab": 1636,
+        "hot_zone": 1616,
+        "knock_out": 1510,
+        "brawl_ball": 1733
+      }
+    },
+    {
+      "id": "8ecfe89e-e0d8-453d-9e39-a71c30e9876b",
+      "name": "Angelo",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000079.png",
+      "elo_ratings": {
+        "_heist": 1627,
+        "bounty": 1671,
+        "gem_grab": 1583,
+        "hot_zone": 1556,
+        "knock_out": 1665,
+        "brawl_ball": 1295
+      }
+    },
+    {
+      "id": "5f3807fb-7c69-4649-8ec9-d0566bf9531f",
+      "name": "Ash",
+      "class": "Tank",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000051.png",
+      "elo_ratings": {
+        "_heist": 1389,
+        "bounty": 1456,
+        "gem_grab": 1638,
+        "hot_zone": 1549,
+        "knock_out": 1385,
+        "brawl_ball": 1375
+      }
+    },
+    {
+      "id": "205bcf06-33da-4475-94b3-32fd7e101830",
+      "name": "Barley",
+      "class": "Thrower",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000006.png",
+      "elo_ratings": {
+        "_heist": 1556,
+        "bounty": 1491,
+        "gem_grab": 1479,
+        "hot_zone": 1639,
+        "knock_out": 1538,
+        "brawl_ball": 1260
+      }
+    },
+    {
+      "id": "f3eff4c6-63b8-422e-8357-a23950422607",
+      "name": "Bea",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000029.png",
+      "elo_ratings": {
+        "_heist": 1394,
+        "bounty": 1656,
+        "gem_grab": 1600,
+        "hot_zone": 1554,
+        "knock_out": 1620,
+        "brawl_ball": 1866
+      }
+    },
+    {
+      "id": "e60b4100-a20d-4bfa-82d2-c106fe0b99dd",
+      "name": "Belle",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000046.png",
+      "elo_ratings": {
+        "_heist": 1499,
+        "bounty": 1622,
+        "gem_grab": 1510,
+        "hot_zone": 1529,
+        "knock_out": 1564,
+        "brawl_ball": 1403
+      }
+    },
+    {
+      "id": "1edec6d3-e909-42d3-a929-b2c806d2df4d",
+      "name": "Berry",
+      "class": "Support",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000082.png",
+      "elo_ratings": {
+        "_heist": 1659,
+        "bounty": 1501,
+        "gem_grab": 1489,
+        "hot_zone": 1631,
+        "knock_out": 1450,
+        "brawl_ball": 1400
+      }
+    },
+    {
+      "id": "147f1a5c-9559-414b-9a9f-ae571549b6e0",
+      "name": "Bibi",
+      "class": "Tank",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000026.png",
+      "elo_ratings": {
+        "_heist": 1465,
+        "bounty": 1398,
+        "gem_grab": 1330,
+        "hot_zone": 1384,
+        "knock_out": 1383,
+        "brawl_ball": 1595
+      }
+    },
+    {
+      "id": "9fbf254a-896e-4460-9afb-49c6ee774c87",
+      "name": "Bo",
+      "class": "Controller",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000014.png",
+      "elo_ratings": {
+        "_heist": 1586,
+        "bounty": 1565,
+        "gem_grab": 1641,
+        "hot_zone": 1687,
+        "knock_out": 1478,
+        "brawl_ball": 1572
+      }
+    },
+    {
+      "id": "83800148-3b4d-4d08-af4c-0d79aa1774b3",
+      "name": "Bonnie",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000058.png",
+      "elo_ratings": {
+        "_heist": 1560,
+        "bounty": 1501,
+        "gem_grab": 1563,
+        "hot_zone": 1452,
+        "knock_out": 1506,
+        "brawl_ball": 1368
+      }
+    },
+    {
+      "id": "5dddf4fe-f6a8-4403-a719-96e9ac3d501e",
+      "name": "Brock",
+      "class": "Marksman",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000003.png",
+      "elo_ratings": {
+        "_heist": 1661,
+        "bounty": 1575,
+        "gem_grab": 1492,
+        "hot_zone": 1502,
+        "knock_out": 1556,
+        "brawl_ball": 1250
+      }
+    },
+    {
+      "id": "830e5b17-1e89-49b5-a66d-d33c04ef8f9c",
+      "name": "Bull",
+      "class": "Tank",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000002.png",
+      "elo_ratings": {
+        "_heist": 1676,
+        "bounty": 1326,
+        "gem_grab": 1412,
+        "hot_zone": 1477,
+        "knock_out": 1362,
+        "brawl_ball": 1741
+      }
+    },
+    {
+      "id": "98384eec-f3d6-4357-96a7-8b1cc1f01db6",
+      "name": "Buster",
+      "class": "Tank",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000062.png",
+      "elo_ratings": {
+        "_heist": 1419,
+        "bounty": 1541,
+        "gem_grab": 1592,
+        "hot_zone": 1591,
+        "knock_out": 1585,
+        "brawl_ball": 1633
+      }
+    },
+    {
+      "id": "08f01596-a649-4ed0-87bf-16aa54a013f6",
+      "name": "Buzz",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000049.png",
+      "elo_ratings": {
+        "_heist": 1520,
+        "bounty": 1464,
+        "gem_grab": 1551,
+        "hot_zone": 1453,
+        "knock_out": 1385,
+        "brawl_ball": 1560
+      }
+    },
+    {
+      "id": "f2b7e976-f02b-46bc-bb9d-d228a87a0415",
+      "name": "Byron",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000042.png",
+      "elo_ratings": {
+        "_heist": 1468,
+        "bounty": 1613,
+        "gem_grab": 1570,
+        "hot_zone": 1530,
+        "knock_out": 1553,
+        "brawl_ball": 1484
+      }
+    },
+    {
+      "id": "a5f92b61-8b92-4d68-8e32-69a74c952724",
+      "name": "Carl",
+      "class": "Damage Dealer",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000025.png",
+      "elo_ratings": {
+        "_heist": 1656,
+        "bounty": 1605,
+        "gem_grab": 1572,
+        "hot_zone": 1606,
+        "knock_out": 1637,
+        "brawl_ball": 1431
+      }
+    },
+    {
+      "id": "23c44eef-58d2-405d-ab3f-7095c63175ed",
+      "name": "Charlie",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000074.png",
+      "elo_ratings": {
+        "_heist": 1454,
+        "bounty": 1483,
+        "gem_grab": 1443,
+        "hot_zone": 1482,
+        "knock_out": 1445,
+        "brawl_ball": 1458
+      }
+    },
+    {
+      "id": "6d7182e1-4729-432e-8c53-c920686aece9",
+      "name": "Chester",
+      "class": "Damage Dealer",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000063.png",
+      "elo_ratings": {
+        "_heist": 1539,
+        "bounty": 1536,
+        "gem_grab": 1607,
+        "hot_zone": 1677,
+        "knock_out": 1556,
+        "brawl_ball": 1974
+      }
+    },
+    {
+      "id": "966702bc-a159-4da8-a5bb-e9a8398b7b68",
+      "name": "Chuck",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000073.png",
+      "elo_ratings": {
+        "_heist": 1800,
+        "bounty": 1387,
+        "gem_grab": 1343,
+        "hot_zone": 1493,
+        "knock_out": 1273,
+        "brawl_ball": 1205
+      }
+    },
+    {
+      "id": "3e7516bc-4716-4dc4-af0d-b30d25855ca1",
+      "name": "Clancy",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000083.png",
+      "elo_ratings": {
+        "_heist": 1505,
+        "bounty": 1393,
+        "gem_grab": 1369,
+        "hot_zone": 1497,
+        "knock_out": 1354,
+        "brawl_ball": 1408
+      }
+    },
+    {
+      "id": "8b2d184c-4b89-46dc-af82-0c1eb4031df4",
+      "name": "Colette",
+      "class": "Damage Dealer",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000039.png",
+      "elo_ratings": {
+        "_heist": 1696,
+        "bounty": 1471,
+        "gem_grab": 1467,
+        "hot_zone": 1506,
+        "knock_out": 1521,
+        "brawl_ball": 1484
+      }
+    },
+    {
+      "id": "4d928a50-6e93-4584-8588-4091e3c31c76",
+      "name": "Colt",
+      "class": "Damage Dealer",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000001.png",
+      "elo_ratings": {
+        "_heist": 1602,
+        "bounty": 1397,
+        "gem_grab": 1419,
+        "hot_zone": 1368,
+        "knock_out": 1450,
+        "brawl_ball": 1340
+      }
+    },
+    {
+      "id": "dfda8835-53b4-49df-8f44-3f7f84e64c3a",
+      "name": "Cordelius",
+      "class": "Assassin",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000070.png",
+      "elo_ratings": {
+        "_heist": 1444,
+        "bounty": 1461,
+        "gem_grab": 1457,
+        "hot_zone": 1425,
+        "knock_out": 1456,
+        "brawl_ball": 1855
+      }
+    },
+    {
+      "id": "40993cb2-c1a2-4abc-837e-d90edeb40a30",
+      "name": "Crow",
+      "class": "Assassin",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000012.png",
+      "elo_ratings": {
+        "_heist": 1601,
+        "bounty": 1495,
+        "gem_grab": 1546,
+        "hot_zone": 1487,
+        "knock_out": 1485,
+        "brawl_ball": 1518
+      }
+    },
+    {
+      "id": "b6e72657-9a85-4b54-9bb4-0d6794a29bb1",
+      "name": "Darryl",
+      "class": "Tank",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000018.png",
+      "elo_ratings": {
+        "_heist": 1719,
+        "bounty": 1501,
+        "gem_grab": 1553,
+        "hot_zone": 1511,
+        "knock_out": 1604,
+        "brawl_ball": 1391
+      }
+    },
+    {
+      "id": "3a3c7cec-e055-4d64-9259-95ede735b03a",
+      "name": "Doug",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000071.png",
+      "elo_ratings": {
+        "_heist": 1496,
+        "bounty": 1417,
+        "gem_grab": 1324,
+        "hot_zone": 1732,
+        "knock_out": 1362,
+        "brawl_ball": 1810
+      }
+    },
+    {
+      "id": "904af414-0064-44bd-8c39-eab8cbe8601f",
+      "name": "Draco",
+      "class": "Tank",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000080.png",
+      "elo_ratings": {
+        "_heist": 1538,
+        "bounty": 1483,
+        "gem_grab": 1554,
+        "hot_zone": 1561,
+        "knock_out": 1431,
+        "brawl_ball": 1818
+      }
+    },
+    {
+      "id": "b7c92572-ce42-41a1-b2e3-37aedf79b58b",
+      "name": "Dynamike",
+      "class": "Thrower",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000009.png",
+      "elo_ratings": {
+        "_heist": 1574,
+        "bounty": 1407,
+        "gem_grab": 1410,
+        "hot_zone": 1438,
+        "knock_out": 1427,
+        "brawl_ball": 1495
+      }
+    },
+    {
+      "id": "32694fd9-ab38-42ce-843a-4f5c96af25b5",
+      "name": "Edgar",
+      "class": "Assassin",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000043.png",
+      "elo_ratings": {
+        "_heist": 1599,
+        "bounty": 1426,
+        "gem_grab": 1424,
+        "hot_zone": 1427,
+        "knock_out": 1525,
+        "brawl_ball": 1490
+      }
+    },
+    {
+      "id": "970eadd3-72a4-4dbb-aec5-7393bc421975",
+      "name": "El Primo",
+      "class": "Tank",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000010.png",
+      "elo_ratings": {
+        "_heist": 1487,
+        "bounty": 1442,
+        "gem_grab": 1406,
+        "hot_zone": 1472,
+        "knock_out": 1393,
+        "brawl_ball": 1507
+      }
+    },
+    {
+      "id": "3bb67179-6865-40f7-ae6f-c9a7ab709858",
+      "name": "Emz",
+      "class": "Controller",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000030.png",
+      "elo_ratings": {
+        "_heist": 1443,
+        "bounty": 1363,
+        "gem_grab": 1426,
+        "hot_zone": 1350,
+        "knock_out": 1353,
+        "brawl_ball": 1464
+      }
+    },
+    {
+      "id": "ef06e5be-b9bd-475d-b98f-d1c53893a497",
+      "name": "Eve",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000056.png",
+      "elo_ratings": {
+        "_heist": 1543,
+        "bounty": 1453,
+        "gem_grab": 1453,
+        "hot_zone": 1395,
+        "knock_out": 1531,
+        "brawl_ball": 1344
+      }
+    },
+    {
+      "id": "cee663a6-11d6-46f0-aeae-467783a3401f",
+      "name": "Fang",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000054.png",
+      "elo_ratings": {
+        "_heist": 1391,
+        "bounty": 1422,
+        "gem_grab": 1330,
+        "hot_zone": 1340,
+        "knock_out": 1469,
+        "brawl_ball": 1630
+      }
+    },
+    {
+      "id": "1eb8c58b-663a-4fb1-995c-bd61ee2f6c5d",
+      "name": "Finx",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000092.png",
+      "elo_ratings": {
+        "_heist": 1452,
+        "bounty": 1565,
+        "gem_grab": 1605,
+        "hot_zone": 1616,
+        "knock_out": 1583,
+        "brawl_ball": 1652
+      }
+    },
+    {
+      "id": "bd7da0c2-3f63-4f69-8a2b-7025681dd967",
+      "name": "Frank",
+      "class": "Tank",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000020.png",
+      "elo_ratings": {
+        "_heist": 1419,
+        "bounty": 1369,
+        "gem_grab": 1527,
+        "hot_zone": 1610,
+        "knock_out": 1510,
+        "brawl_ball": 1624
+      }
+    },
+    {
+      "id": "39c87435-83d0-4b7d-b655-93924104c6fc",
+      "name": "Gale",
+      "class": "Controller",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000035.png",
+      "elo_ratings": {
+        "_heist": 1417,
+        "bounty": 1413,
+        "gem_grab": 1389,
+        "hot_zone": 1317,
+        "knock_out": 1409,
+        "brawl_ball": 1510
+      }
+    },
+    {
+      "id": "efe1f144-85ef-4016-8719-e9a870107bb1",
+      "name": "Gene",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000021.png",
+      "elo_ratings": {
+        "_heist": 1381,
+        "bounty": 1583,
+        "gem_grab": 1635,
+        "hot_zone": 1483,
+        "knock_out": 1666,
+        "brawl_ball": 1291
+      }
+    },
+    {
+      "id": "46b83239-b81d-4f73-ae2b-774cfc0ad316",
+      "name": "Gray",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000064.png",
+      "elo_ratings": {
+        "_heist": 1420,
+        "bounty": 1643,
+        "gem_grab": 1647,
+        "hot_zone": 1592,
+        "knock_out": 1634,
+        "brawl_ball": 1641
+      }
+    },
+    {
+      "id": "d1343f9e-6331-4990-9163-bcfdd52f235e",
+      "name": "Griff",
+      "class": "Controller",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000050.png",
+      "elo_ratings": {
+        "_heist": 1647,
+        "bounty": 1535,
+        "gem_grab": 1603,
+        "hot_zone": 1624,
+        "knock_out": 1562,
+        "brawl_ball": 1667
+      }
+    },
+    {
+      "id": "1d80ea96-b839-4880-b04d-d5ca491d1726",
+      "name": "Grom",
+      "class": "Thrower",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000048.png",
+      "elo_ratings": {
+        "_heist": 1451,
+        "bounty": 1494,
+        "gem_grab": 1384,
+        "hot_zone": 1267,
+        "knock_out": 1512,
+        "brawl_ball": 1164
+      }
+    },
+    {
+      "id": "23c38ac2-f90c-40a2-9a2c-566bffe105c5",
+      "name": "Gus",
+      "class": "Support",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000061.png",
+      "elo_ratings": {
+        "_heist": 1482,
+        "bounty": 1650,
+        "gem_grab": 1641,
+        "hot_zone": 1579,
+        "knock_out": 1639,
+        "brawl_ball": 1425
+      }
+    },
+    {
+      "id": "ad89d5de-5566-4b93-9368-9785fc0b8366",
+      "name": "Hank",
+      "class": "Tank",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000069.png",
+      "elo_ratings": {
+        "_heist": 1422,
+        "bounty": 1557,
+        "gem_grab": 1631,
+        "hot_zone": 1644,
+        "knock_out": 1479,
+        "brawl_ball": 1662
+      }
+    },
+    {
+      "id": "a266f77e-9d13-40a5-a69e-3c6eeb752526",
+      "name": "Jacky",
+      "class": "Tank",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000034.png",
+      "elo_ratings": {
+        "_heist": 1366,
+        "bounty": 1463,
+        "gem_grab": 1483,
+        "hot_zone": 1566,
+        "knock_out": 1337,
+        "brawl_ball": 1448
+      }
+    },
+    {
+      "id": "02510cab-1891-4b63-9c49-0c7822b2fa2b",
+      "name": "Jae-Yong",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000093.png",
+      "elo_ratings": {
+        "_heist": 1412,
+        "bounty": 1608,
+        "gem_grab": 1650,
+        "hot_zone": 1676,
+        "knock_out": 1530,
+        "brawl_ball": 1396
+      }
+    },
+    {
+      "id": "6323addd-93ba-4e77-ab33-666d021ba398",
+      "name": "Janet",
+      "class": "Marksman",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000057.png",
+      "elo_ratings": {
+        "_heist": 1442,
+        "bounty": 1550,
+        "gem_grab": 1695,
+        "hot_zone": 1593,
+        "knock_out": 1408,
+        "brawl_ball": 1656
+      }
+    },
+    {
+      "id": "b24974fe-1686-421f-81fd-35c25a0b6a89",
+      "name": "Jessie",
+      "class": "Controller",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000007.png",
+      "elo_ratings": {
+        "_heist": 1641,
+        "bounty": 1348,
+        "gem_grab": 1411,
+        "hot_zone": 1354,
+        "knock_out": 1403,
+        "brawl_ball": 1322
+      }
+    },
+    {
+      "id": "bf232543-b720-44a7-b574-ab3ed5ac7f31",
+      "name": "Juju",
+      "class": "Thrower",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000087.png",
+      "elo_ratings": {
+        "_heist": 1490,
+        "bounty": 1542,
+        "gem_grab": 1620,
+        "hot_zone": 1500,
+        "knock_out": 1689,
+        "brawl_ball": 1466
+      }
+    },
+    {
+      "id": "adda6b12-3748-4f90-9e51-0a41bc29f5ce",
+      "name": "Kaze",
+      "class": "Assassin",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000094.png",
+      "elo_ratings": {
+        "_heist": 1519,
+        "knock_out": 1522,
+        "brawl_ball": 1725
+      }
+    },
+    {
+      "id": "045f8d03-126a-4a66-be71-9d6dbeb5e056",
+      "name": "Kenji",
+      "class": "Assassin",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000085.png",
+      "elo_ratings": {
+        "_heist": 1511,
+        "bounty": 1565,
+        "gem_grab": 1763,
+        "hot_zone": 1638,
+        "knock_out": 1652,
+        "brawl_ball": 1854
+      }
+    },
+    {
+      "id": "4b6ee1b2-aa2b-4cea-ae55-002bef5ebf37",
+      "name": "Kit",
+      "class": "Support",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000076.png",
+      "elo_ratings": {
+        "_heist": 1471,
+        "bounty": 1543,
+        "gem_grab": 1381,
+        "hot_zone": 1444,
+        "knock_out": 1567,
+        "brawl_ball": 1631
+      }
+    },
+    {
+      "id": "164339bc-b7f6-46e5-8918-cee77da71cbc",
+      "name": "Larry & Lawrie",
+      "class": "Thrower",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000077.png",
+      "elo_ratings": {
+        "_heist": 1585,
+        "bounty": 1496,
+        "gem_grab": 1397,
+        "hot_zone": 1549,
+        "knock_out": 1571,
+        "brawl_ball": 1483
+      }
+    },
+    {
+      "id": "ae2574bb-5531-4267-ad28-ff4d7bdba70a",
+      "name": "Leon",
+      "class": "Assassin",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000023.png",
+      "elo_ratings": {
+        "_heist": 1500,
+        "bounty": 1517,
+        "gem_grab": 1511,
+        "hot_zone": 1472,
+        "knock_out": 1607,
+        "brawl_ball": 1652
+      }
+    },
+    {
+      "id": "185bab85-5f38-4154-937f-6906eae98d46",
+      "name": "Lily",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000081.png",
+      "elo_ratings": {
+        "_heist": 1510,
+        "bounty": 1591,
+        "gem_grab": 1565,
+        "hot_zone": 1454,
+        "knock_out": 1620,
+        "brawl_ball": 1633
+      }
+    },
+    {
+      "id": "b248b559-c32f-43df-925e-80f368d1e09e",
+      "name": "Lola",
+      "class": "Damage Dealer",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000053.png",
+      "elo_ratings": {
+        "_heist": 1531,
+        "bounty": 1494,
+        "gem_grab": 1448,
+        "hot_zone": 1457,
+        "knock_out": 1456,
+        "brawl_ball": 1370
+      }
+    },
+    {
+      "id": "28e1bc36-3612-4242-8f87-cac6ed57e2a7",
+      "name": "Lou",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000041.png",
+      "elo_ratings": {
+        "_heist": 1490,
+        "bounty": 1534,
+        "gem_grab": 1553,
+        "hot_zone": 1669,
+        "knock_out": 1513,
+        "brawl_ball": 1490
+      }
+    },
+    {
+      "id": "d9242256-017d-47a6-87cd-2941e6ba87b3",
+      "name": "Lumi",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000091.png",
+      "elo_ratings": {
+        "_heist": 1796,
+        "bounty": 1722,
+        "gem_grab": 1752,
+        "hot_zone": 1757,
+        "knock_out": 1846,
+        "brawl_ball": 1757
+      }
+    },
+    {
+      "id": "4cbb22ae-5bed-417a-a526-134cd91e2d87",
+      "name": "Maisie",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000068.png",
+      "elo_ratings": {
+        "_heist": 1386,
+        "bounty": 1464,
+        "gem_grab": 1422,
+        "hot_zone": 1387,
+        "knock_out": 1506,
+        "brawl_ball": 1507
+      }
+    },
+    {
+      "id": "67a14aca-6744-47a8-99eb-23499ca4bae6",
+      "name": "Mandy",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000065.png",
+      "elo_ratings": {
+        "_heist": 1543,
+        "bounty": 1668,
+        "gem_grab": 1538,
+        "hot_zone": 1493,
+        "knock_out": 1635,
+        "brawl_ball": 1541
+      }
+    },
+    {
+      "id": "c6d5c215-b40d-4f90-9f5d-803a69305cca",
+      "name": "Max",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000032.png",
+      "elo_ratings": {
+        "_heist": 1503,
+        "bounty": 1566,
+        "gem_grab": 1589,
+        "hot_zone": 1564,
+        "knock_out": 1617,
+        "brawl_ball": 1629
+      }
+    },
+    {
+      "id": "49105571-1fd1-43b1-b5b9-e74972b85c73",
+      "name": "Meeple",
+      "class": "Controller",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000089.png",
+      "elo_ratings": {
+        "_heist": 1340,
+        "bounty": 1506,
+        "gem_grab": 1489,
+        "hot_zone": 1405,
+        "knock_out": 1590,
+        "brawl_ball": 1600
+      }
+    },
+    {
+      "id": "ee5f9f00-3d1c-48af-8129-22f230cd9cc7",
+      "name": "Meg",
+      "class": "Tank",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000052.png",
+      "elo_ratings": {
+        "_heist": 1495,
+        "bounty": 1521,
+        "gem_grab": 1463,
+        "hot_zone": 1535,
+        "knock_out": 1469,
+        "brawl_ball": 1505
+      }
+    },
+    {
+      "id": "ced93bcf-c3eb-4877-b41e-7affb8b1940b",
+      "name": "Melodie",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000078.png",
+      "elo_ratings": {
+        "_heist": 1603,
+        "bounty": 1494,
+        "gem_grab": 1490,
+        "hot_zone": 1465,
+        "knock_out": 1424,
+        "brawl_ball": 1721
+      }
+    },
+    {
+      "id": "91708d85-c0b4-42f1-abc1-9861087211b5",
+      "name": "Mico",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000075.png",
+      "elo_ratings": {
+        "_heist": 1642,
+        "bounty": 1481,
+        "gem_grab": 1368,
+        "hot_zone": 1410,
+        "knock_out": 1342,
+        "brawl_ball": 1296
+      }
+    },
+    {
+      "id": "38013202-60b6-478e-b929-43c2ecac6b85",
+      "name": "Moe",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000084.png",
+      "elo_ratings": {
+        "_heist": 1401,
+        "bounty": 1484,
+        "gem_grab": 1476,
+        "hot_zone": 1450,
+        "knock_out": 1476,
+        "brawl_ball": 1666
+      }
+    },
+    {
+      "id": "abe7087f-0d8b-4909-af6c-503438565b3d",
+      "name": "Mortis",
+      "class": "Assassin",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000011.png",
+      "elo_ratings": {
+        "_heist": 1235,
+        "bounty": 1464,
+        "gem_grab": 1341,
+        "hot_zone": 1384,
+        "knock_out": 1463,
+        "brawl_ball": 1766
+      }
+    },
+    {
+      "id": "76393c78-3e7f-4dcb-b763-9881abbb9385",
+      "name": "Mr. P",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000031.png",
+      "elo_ratings": {
+        "_heist": 1412,
+        "bounty": 1481,
+        "gem_grab": 1470,
+        "hot_zone": 1474,
+        "knock_out": 1568,
+        "brawl_ball": 1352
+      }
+    },
+    {
+      "id": "ad357beb-7dc8-4726-b6c8-1c8fcad62e7a",
+      "name": "Nani",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000036.png",
+      "elo_ratings": {
+        "_heist": 1524,
+        "bounty": 1659,
+        "gem_grab": 1467,
+        "hot_zone": 1394,
+        "knock_out": 1589,
+        "brawl_ball": 1295
+      }
+    },
+    {
+      "id": "a0ee1d40-0897-4059-8af6-abb7b0089935",
+      "name": "Nita",
+      "class": "Damage Dealer",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000008.png",
+      "elo_ratings": {
+        "_heist": 1659,
+        "bounty": 1376,
+        "gem_grab": 1486,
+        "hot_zone": 1470,
+        "knock_out": 1358,
+        "brawl_ball": 1619
+      }
+    },
+    {
+      "id": "2e2a5891-3116-46c8-982b-8a8a48b917e2",
+      "name": "Ollie",
+      "class": "Tank",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000090.png",
+      "elo_ratings": {
+        "_heist": 1395,
+        "bounty": 1538,
+        "gem_grab": 1583,
+        "hot_zone": 1557,
+        "knock_out": 1685,
+        "brawl_ball": 1577
+      }
+    },
+    {
+      "id": "f7c576e4-89ba-41c4-a4b1-2abd8b8a2ae0",
+      "name": "Otis",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000059.png",
+      "elo_ratings": {
+        "_heist": 1421,
+        "bounty": 1431,
+        "gem_grab": 1519,
+        "hot_zone": 1515,
+        "knock_out": 1447,
+        "brawl_ball": 1456
+      }
+    },
+    {
+      "id": "2319976e-a597-41bd-a9eb-18d7b424a4b0",
+      "name": "Pam",
+      "class": "Support",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000016.png",
+      "elo_ratings": {
+        "_heist": 1394,
+        "bounty": 1448,
+        "gem_grab": 1418,
+        "hot_zone": 1519,
+        "knock_out": 1406,
+        "brawl_ball": 1355
+      }
+    },
+    {
+      "id": "e13aaea9-70dc-4208-8f22-650a2343b9f0",
+      "name": "Pearl",
+      "class": "Damage Dealer",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000072.png",
+      "elo_ratings": {
+        "_heist": 1445,
+        "bounty": 1568,
+        "gem_grab": 1539,
+        "hot_zone": 1529,
+        "knock_out": 1464,
+        "brawl_ball": 1379
+      }
+    },
+    {
+      "id": "4384cbdc-5f29-4c8a-98c8-4a4ae375c812",
+      "name": "Penny",
+      "class": "Controller",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000019.png",
+      "elo_ratings": {
+        "_heist": 1633,
+        "bounty": 1446,
+        "gem_grab": 1479,
+        "hot_zone": 1459,
+        "knock_out": 1497,
+        "brawl_ball": 1380
+      }
+    },
+    {
+      "id": "89533d41-b63a-4549-9378-e904845f8589",
+      "name": "Piper",
+      "class": "Marksman",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000015.png",
+      "elo_ratings": {
+        "_heist": 1538,
+        "bounty": 1660,
+        "gem_grab": 1503,
+        "hot_zone": 1405,
+        "knock_out": 1625,
+        "brawl_ball": 1488
+      }
+    },
+    {
+      "id": "9589c303-e0cf-4677-87a7-9e585dd92950",
+      "name": "Poco",
+      "class": "Support",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000013.png",
+      "elo_ratings": {
+        "_heist": 1372,
+        "bounty": 1459,
+        "gem_grab": 1554,
+        "hot_zone": 1527,
+        "knock_out": 1473,
+        "brawl_ball": 1495
+      }
+    },
+    {
+      "id": "5b1c0017-c959-40f0-bd54-b9a1c4381dd2",
+      "name": "Rico",
+      "class": "Damage Dealer",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000004.png",
+      "elo_ratings": {
+        "_heist": 1517,
+        "bounty": 1458,
+        "gem_grab": 1534,
+        "hot_zone": 1481,
+        "knock_out": 1700,
+        "brawl_ball": 1500
+      }
+    },
+    {
+      "id": "1736b11e-8f71-4d56-9eb7-d82c0aa02464",
+      "name": "Rosa",
+      "class": "Tank",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000024.png",
+      "elo_ratings": {
+        "_heist": 1273,
+        "bounty": 1425,
+        "gem_grab": 1428,
+        "hot_zone": 1426,
+        "knock_out": 1327,
+        "brawl_ball": 1223
+      }
+    },
+    {
+      "id": "df8023c3-1ef4-4e4b-9f98-d89f90f5b060",
+      "name": "R-T",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000066.png",
+      "elo_ratings": {
+        "_heist": 1498,
+        "bounty": 1632,
+        "gem_grab": 1547,
+        "hot_zone": 1484,
+        "knock_out": 1588,
+        "brawl_ball": 1453
+      }
+    },
+    {
+      "id": "0e335016-12dd-4218-9e56-cc6b0b3c557b",
+      "name": "Ruffs",
+      "class": "Support",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000044.png",
+      "elo_ratings": {
+        "_heist": 1457,
+        "bounty": 1477,
+        "gem_grab": 1459,
+        "hot_zone": 1387,
+        "knock_out": 1407,
+        "brawl_ball": 1363
+      }
+    },
+    {
+      "id": "010f93bb-e29c-45d6-8cbc-44b8516d629e",
+      "name": "Sam",
+      "class": "Assassin",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000060.png",
+      "elo_ratings": {
+        "_heist": 1496,
+        "bounty": 1382,
+        "gem_grab": 1285,
+        "hot_zone": 1315,
+        "knock_out": 1279,
+        "brawl_ball": 1328
+      }
+    },
+    {
+      "id": "bc3b570e-ac61-4228-9896-481a6591f1a4",
+      "name": "Sandy",
+      "class": "Controller",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000028.png",
+      "elo_ratings": {
+        "_heist": 1382,
+        "bounty": 1359,
+        "gem_grab": 1435,
+        "hot_zone": 1539,
+        "knock_out": 1366,
+        "brawl_ball": 1449
+      }
+    },
+    {
+      "id": "b01779df-be02-4d30-b5ca-d081e79faeb4",
+      "name": "Shade",
+      "class": "Assassin",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000086.png",
+      "elo_ratings": {
+        "_heist": 1516,
+        "bounty": 1437,
+        "gem_grab": 1456,
+        "hot_zone": 1488,
+        "knock_out": 1460,
+        "brawl_ball": 1699
+      }
+    },
+    {
+      "id": "2a665fb6-1f84-4363-851e-52cf13e01fd4",
+      "name": "Shelly",
+      "class": "Damage Dealer",
+      "rarity": "Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000000.png",
+      "elo_ratings": {
+        "_heist": 1353,
+        "bounty": 1290,
+        "gem_grab": 1392,
+        "hot_zone": 1352,
+        "knock_out": 1370,
+        "brawl_ball": 1517
+      }
+    },
+    {
+      "id": "a583f739-dc07-45e4-b482-1735a8ffad8e",
+      "name": "Spike",
+      "class": "Damage Dealer",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000005.png",
+      "elo_ratings": {
+        "_heist": 1569,
+        "bounty": 1595,
+        "gem_grab": 1482,
+        "hot_zone": 1558,
+        "knock_out": 1533,
+        "brawl_ball": 1601
+      }
+    },
+    {
+      "id": "c8f556a2-0aba-4cc3-8cb0-d8ec191450c7",
+      "name": "Sprout",
+      "class": "Thrower",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000037.png",
+      "elo_ratings": {
+        "_heist": 1459,
+        "bounty": 1563,
+        "gem_grab": 1375,
+        "hot_zone": 1431,
+        "knock_out": 1448,
+        "brawl_ball": 1226
+      }
+    },
+    {
+      "id": "067174a8-6e96-4476-9203-befb8229de9b",
+      "name": "Squeak",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000047.png",
+      "elo_ratings": {
+        "_heist": 1564,
+        "bounty": 1623,
+        "gem_grab": 1575,
+        "hot_zone": 1586,
+        "knock_out": 1530,
+        "brawl_ball": 1580
+      }
+    },
+    {
+      "id": "204bda86-76b3-47a6-80da-07e936aa845d",
+      "name": "Stu",
+      "class": "Assassin",
+      "rarity": "Epic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000045.png",
+      "elo_ratings": {
+        "_heist": 1434,
+        "bounty": 1555,
+        "gem_grab": 1565,
+        "hot_zone": 1522,
+        "knock_out": 1593,
+        "brawl_ball": 1546
+      }
+    },
+    {
+      "id": "f515a9ef-56fd-47cd-af8f-3b02592577c9",
+      "name": "Surge",
+      "class": "Damage Dealer",
+      "rarity": "Legendary",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000038.png",
+      "elo_ratings": {
+        "_heist": 1389,
+        "bounty": 1442,
+        "gem_grab": 1432,
+        "hot_zone": 1454,
+        "knock_out": 1401,
+        "brawl_ball": 1573
+      }
+    },
+    {
+      "id": "a25a8e51-8588-47da-a2f7-3e639dccda22",
+      "name": "Tara",
+      "class": "Damage Dealer",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000017.png",
+      "elo_ratings": {
+        "_heist": 1559,
+        "bounty": 1396,
+        "gem_grab": 1546,
+        "hot_zone": 1483,
+        "knock_out": 1457,
+        "brawl_ball": 1587
+      }
+    },
+    {
+      "id": "7fe32b26-96c6-4b54-9765-421c5ad5fa21",
+      "name": "Tick",
+      "class": "Thrower",
+      "rarity": "Super Rare",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000022.png",
+      "elo_ratings": {
+        "_heist": 1372,
+        "bounty": 1642,
+        "gem_grab": 1430,
+        "hot_zone": 1364,
+        "knock_out": 1542,
+        "brawl_ball": 1335
+      }
+    },
+    {
+      "id": "5d31f91c-46fc-4d49-9ccc-ae7bc8841846",
+      "name": "Willow",
+      "class": "Controller",
+      "rarity": "Mythic",
+      "image_url": "https://raw.githubusercontent.com/Brawlify/CDN/refs/heads/master/brawlers/borderless/16000067.png",
+      "elo_ratings": {
+        "_heist": 1414,
+        "bounty": 1459,
+        "gem_grab": 1454,
+        "hot_zone": 1483,
+        "knock_out": 1466,
+        "brawl_ball": 1470
+      }
+    }
+  ]
+}
