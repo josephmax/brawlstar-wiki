@@ -22,7 +22,7 @@ Jacky 的 BP 价值来自短距离圆形即时伤害、隔墙打人、Pneumatic 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Jacky|Fandom-Jacky]] direct_raw_capture_2026-06-30-v2"
+    fandom: "[[sources/Fandom-Jacky|Fandom-Jacky]] direct_raw_capture_2026-06-30"
     plp: "[[sources/PLP-Jacky|PLP-Jacky]] direct_raw_capture_2026-06-30"
     user_notes: "按高水平 BP 处理：Jacky 必须证明接近路线、墙体利用和目标转化，不按低分局硬冲评估"
 

@@ -4,10 +4,10 @@
 
 - 标题：Eve
 - 来源：[Eve | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Eve)
-- 读取日期：2026-06-30-v2
+- 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-15T18:12:56Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/eve-2026-06-30-v2.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/eve-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

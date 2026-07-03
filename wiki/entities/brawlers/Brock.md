@@ -35,7 +35,7 @@ Brock 是远程炮击和拆墙开图的代表英雄。和 `Colt` 相比，他更
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30-v2
+    fandom: direct_raw_capture_2026-06-30
     plp: direct_raw_capture_2026-06-29
     user_notes: none
 

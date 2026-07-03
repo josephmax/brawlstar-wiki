@@ -11,9 +11,43 @@
 
 ## Infobox Fields
 
-- {{Ogg|Filename: starr nova start vo 16.ogg|Filedescription = "Starr Patrol arc, let's go!"}} | | | | | | |} ==Starr Nova Release Event== {{Main|New Brawler Event}} {{#lst:New Brawler Event/2026|Starr Nova}} ==History== *22/05/26: **{{Balance|Content=Starr Nova became available in [[Training Cave]].|Change=Neutral}} **{{Balance|Content=Starr Nova could be unlocked early from [[Brawl Boxes|Starr Nova Boxes]], obtaining 14 of them, or from the {{Link|Supercell Store}}, or in the Shop for $19.99 (standard pack) or $29.99 (premium pack).|Change=Neutral}} *04/06/26: **{{Balance|Neutral|Starr Nova became available in the Starr Road.}} ==Cosmetics== ===Skins=== {{Skin Gallery
-- Name1: |Cost1=|Campaign1=|Rarity1=}} ===Pins=== {| class="article-table" style="width: 100%;" ! colspan="12" |Starr Nova |- !Skin ! colspan="11" |Pins {{Pin Table}} |} ===Sprays=== {| class="article-table" style="width: 100%; text-align: center;" colspan="5" |-
-- {{Spray|Type: Starr Nova Sword|Rarity = Common}} | | |} ===Profile Icons=== {| class="article-table" style="width: 100%; text-align: center;" colspan="5" |- |{{Pfp|Starr Nova1}} |{{Pfp|Starr Nova2}} | |{{Pfp|Starr Nova4}} |} {{Navigation}} [[Category:Brawlers]] [[Category:Mythic Brawlers]] [[Category:Assassin Brawlers]] [[ru:Старр Нова]]
+- Title: Magical
+- PrestigeTitle: Anime Fan
+- Rarity: Mythic
+- Class: Assassin
+- MovementSpeed: 820 (Very Fast)<br>2300 (Super dash)<br>1025 (with Super)
+- HealthLabel: Health
+- Health: 3700
+- AttackRange: 5.67 (Normal)
+- Reload: 1.4 seconds (Fast)
+- AttackSuperCharge: 10.125%
+- AttackLabel: Damage per projectile
+- Attack: 540
+- AttackBullets: 2
+- AttackSpeed: 15000
+- SuperSpeed:
+- SuperRange: 4.33 (dash; Short)<br>3.67 (Sword Mode; Short)
+- SuperSuperCharge: 7.5% (dash)<br>18.75% (sword)
+- SuperLabel: Dash Damage
+- Super: 300
+- SuperLabel2: Sword Damage
+- Super2: 1000
+- SuperDuration: 7 seconds
+- SuperSpread: 135° (Sword Mode)
+- VoiceActor:
+- Gadget1Name: Floaty Time
+- Gadget1Cooldown: 20 seconds
+- Gadget2Name: Shining Starr of Friendship and Justice
+- Gadget2: 1280
+- Gadget2Label: Damage/Heal
+- Gadget2Cooldown: 20 seconds
+- Previous: Damian
+- Next: Spike
+- AttackWidth: 2.33
+- SuperMovementSpeed:
+- SuperAmmoReload: 0.7 seconds (Very Fast)
+- Gadget1Range: 7.33
+- Gadget2Range: 7.33
 
 ## Selected Wikitext Excerpts
 
@@ -56,11 +90,11 @@ Starr Nova's main attack heals allied Brawlers for 30% of the damage dealt. Heal
 
 ### Tips
 
-* Starr Nova's base attack has the fastest projectile speed in the game, making her extremely useful at continuously chipping away at Brawlers while maintaining her distance. She is also good at bush checking as opponents won't be able to anticipate her shots easily. 
+* Starr Nova's base attack has the fastest projectile speed in the game, making her extremely useful at continuously chipping away at Brawlers while maintaining her distance. She is also good at bush checking as opponents won't be able to anticipate her shots easily.
 ** When fighting against her, it's generally advised to just outrange or burst her down, as it's basically impossible to dodge her attacks.
 ** Due to the extremely fast attacks, it will be difficult to get a perception of how much distance to keep away to avoid being hit, as the attacks will be difficult to see. Try to make a comparison with other similar lengths to get an idea of how far you should be.
 * Starr Nova's extremely fast unload speed, decent range and survivability in her Super form make up for her lack of DPS when compared to other aggressive Brawlers. As such, always keep your distance from other aggressive brawlers and use your Super to escape whenever needed.
-** Her instant unload speed also means that she can easily strafe around other assassins and aggressive brawlers. 
+** Her instant unload speed also means that she can easily strafe around other assassins and aggressive brawlers.
 ** Do not use your Super to dive into enemy crowds: Starr Nova's healing is nowhere as potent as [[Edgar]], [[Mortis]], or [[Kenji]]'s, and she will often end up being defeated very quickly, which is why strafing from a safe distance is advised.
 *Owing to her agility and fast unload speed, Starr Nova is best used to harass teams and act as a distraction instead of actually taking them out herself. However, her Power Level: Maximum! Star Power still makes her very capable of dealing heavy damage to opponents, especially in crowds, allowing her to force retreats or help to wipe out survivors.
 * Avoid using your Floaty Time Gadget near important choke points or objectives, as you will often only end up sabotaging your team. Instead, use it as an escape from powerful enemy attacks when no other options are available, or place it near obstacles to overcome them.

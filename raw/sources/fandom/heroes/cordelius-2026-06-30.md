@@ -11,15 +11,45 @@
 
 ## Infobox Fields
 
-- Name1: Poison Cap|Cost1=Free from Strangest Packs, free after reaching 750 Trophies or 29 Gems|Campaign1=Enchanted Woods|Rarity1=Rare
-- Name2: Raider|Cost2=Free from Glowbert Boxes or 149 Gems|Campaign2=Wasteland|Rarity2=Epic
-- Name3: Odin|Cost3=149 Gems|Campaign3=Northern Saga|Rarity3=Epic
-- Name4: Paper|Cost4=Free from Nova Drops or 299 Gems|Campaign4=Cartoon Studios|Rarity4=Legendary
-- TrueSkins: Yes
-- NameP1: Sporemind|CostP1=Brawl Pass or 149 Gems|CampaignP1=Brawl Pass|CampaignP1_2 = The Worst Bunch|RarityP1=Epic
-- NameP2: Sultan|CostP2=2 Skin Keys|CampaignP2=Brawl Pass|CampaignP2_2 = Dark Sands|RarityP2=Epic
-- NameP3: Cooled Sultan|CostP3=Free after purchasing the Skin Set|CampaignP3=Brawl Pass|CampaignP3_2 = Dark Sands|RarityP3=Epic
-- NameP4: Heated Sultan|CostP4=Free after purchasing the Skin Set|CampaignP4=Brawl Pass|CampaignP4_2 = Dark Sands|RarityP4=Epic
+- Title: Toxic
+- PrestigeTitle: Spore Warden
+- Rarity: Legendary
+- Class: Assassin
+- MovementSpeed: 820 (Very Fast) <br> 902 (with Super) <br> 984 (with Hypercharge) <br> 1066 (with Super and Hypercharge)
+- HealthLabel: Health
+- Health: 3500
+- AttackRange: 5.33 (Normal)
+- Reload: 1.2 seconds (Very Fast)<br>0.96 seconds (with Super)
+- AttackSuperCharge: 18%<br>21.6% (with Comboshrooms)
+- AttackLabel: Damage per mushroom
+- Attack: 800
+- AttackSpeed: 3800
+- AttackWidth: 0.67<br>1.33 (with Poison Mushroom)
+- AttackBullets: 2<br>1 (with Poison Mushroom)
+- SuperRange: 9 (Long)
+- SuperSuperCharge: 1.8% (with Mushroom Kingdom)
+- SuperLabel:
+- Super:
+- SuperSpread:
+- SuperSpeed: 3800
+- SuperWidth: 1.33
+- VoiceActor: Nicholas Contreras
+- SuperDuration: 8 seconds
+- Gadget1Name: Replanting
+- Gadget1Cooldown: 18 seconds
+- Gadget2Name: Poison Mushroom
+- Gadget2Cooldown: 18 seconds
+- StarPower2Name: Mushroom Kingdom
+- StarPower2: 1296
+- StarPower22: 1269
+- StarPower2Label: Damage per mushroom
+- StarPower2Label2: Heal per mushroom
+- Previous: Chester
+- Next: Kit
+- HyperchargeMultiplier: 25%
+- AttackHyperchargeCharge: 4.5%<br>5.4% (with Comboshrooms)
+- SuperHyperchargeCharge: 0.45% (with Mushroom Kingdom)
+- Gadget1Range: 3
 
 ## Selected Wikitext Excerpts
 

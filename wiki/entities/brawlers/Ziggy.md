@@ -22,7 +22,7 @@ Ziggy 是用延迟落雷和超大移动风暴控制路线的 Controller。普攻
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"

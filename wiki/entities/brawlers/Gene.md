@@ -47,7 +47,7 @@ Gene 是中距离控制核心，最强之处不是单纯输出，而是用拉人
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30-v2
+    fandom: direct_raw_capture_2026-06-30
     plp: direct_raw_capture_2026-06-29
     user_notes: gene_brawl_ball_role_correction
 

@@ -4,10 +4,10 @@
 
 - 标题：Larry & Lawrie
 - 来源：[Larry & Lawrie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Larry_%26_Lawrie)
-- 读取日期：2026-06-30-v2
+- 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-15T07:55:26Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/larry-lawrie-2026-06-30-v2.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/larry-lawrie-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

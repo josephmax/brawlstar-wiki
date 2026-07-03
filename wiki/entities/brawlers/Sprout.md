@@ -28,7 +28,7 @@ Sprout 是“墙后投掷 + 临时改图”的控制位。他的价值不在正�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30-v2
+    fandom: direct_raw_capture_2026-06-30
     plp: direct_raw_capture_2026-06-30
     user_notes: none
 

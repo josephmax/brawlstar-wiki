@@ -39,7 +39,7 @@ Colt 是标准远程压制型英雄，强项在于连续输出、拆障碍和用
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-29"
     user_notes: "none"
 

@@ -4,10 +4,10 @@
 
 - 标题：Charlie
 - 来源：[Charlie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Charlie)
-- 读取日期：2026-06-30-v2
+- 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-05-20T12:09:57Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/charlie-2026-06-30-v2.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/charlie-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

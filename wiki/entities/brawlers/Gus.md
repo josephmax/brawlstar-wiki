@@ -40,7 +40,7 @@ bp_brawler_profile:
   profile_status: bp_ready
   review_gate: reviewed_with_sources_map_hooks_and_matchup_edges
   source_quality:
-    fandom: "[[sources/Fandom-Gus|Fandom-Gus]] direct_raw_capture_2026-06-30-v2"
+    fandom: "[[sources/Fandom-Gus|Fandom-Gus]] direct_raw_capture_2026-06-30"
     plp: "[[sources/PLP-Gus|PLP-Gus]] direct_raw_capture_2026-06-30"
     user_notes: "none"
 

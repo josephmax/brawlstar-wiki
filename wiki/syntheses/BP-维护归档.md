@@ -35,7 +35,7 @@
 ## 后续维护规则
 
 - 新增英雄或大批量重建时，不恢复旧任务页；直接按 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 执行。
-- 质量检查继续通过 `tools/audit_bp_profile_quality.py` 运行；需要落盘时生成 `outputs/bp-profile-quality-audit.md`，不写入 `wiki/syntheses/`。
+- 质量检查继续通过 `skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_bp_profile_quality.py` 运行；需要落盘时生成 `outputs/bp-profile-quality-audit.md`，不写入 `wiki/syntheses/`。
 - 如果未来实现 `bp compile`，编译产物应写到运行输出或 debug artifact，不写回长期 `wiki/syntheses/` 手写索引页。
 
 ## 关联页面

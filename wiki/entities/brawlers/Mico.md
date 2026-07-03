@@ -44,7 +44,7 @@ Mico 是一个非常纯粹的高机动刺客，核心不在站桩输出，而在
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-29"
     user_notes: "none"
 

@@ -8,7 +8,7 @@
 - [[syntheses/Brawl-Stars-模式机制综述|Brawl Stars 模式机制综述]]
 - [[syntheses/Brawl-Stars-英雄定位综述|Brawl Stars 英雄定位综述]]
 
-## BP Runtime
+## BP Methodology
 
 - [[syntheses/Ban-Pick-问题拆分|Ban Pick 问题拆分]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
@@ -16,9 +16,15 @@
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+
+## BP Skill Runtime
+
 - BP skills:
+- `skills/brawl-stars-bp-knowledge-maintenance/`：维护者 / BP 知识维护 skill，负责 LLM-wiki intake、source ingest、英雄/地图建模、审计和运行时边界治理。
 - `skills/run-brawl-stars-bp/`：裁判 / run-bp 编排 skill，负责同步 ban、顺序 pick、策略偏好、回合指标和统一 match report。
-- `skills/brawl-stars-bp-slot-decision/`：选手 / 单手 BP 决策 skill，负责基于地图、阵容、强度语境和策略偏好输出 ban / pick 决策。
+- `skills/brawl-stars-bp-slot-decision/`：选手 / 单手 BP 决策 skill，负责 `compile` / `decide` 分治。
+- `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md`：编译期规则，只读取 `wiki/entities/` 与 strength profile。
+- `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`：运行时决策规则，只消费 `runtime_bp_index` 与当前 BP 状态。
 
 ## BP Maintenance
 

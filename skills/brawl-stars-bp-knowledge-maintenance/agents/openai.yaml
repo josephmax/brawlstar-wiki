@@ -1,0 +1,7 @@
+interface:
+  display_name: "Brawl Stars BP Knowledge Maintenance"
+  short_description: "Maintain BP wiki knowledge for runtime use."
+  default_prompt: "Use $brawl-stars-bp-knowledge-maintenance to ingest, model, audit, or repair Brawl Stars BP knowledge in this vault."
+
+policy:
+  allow_implicit_invocation: true

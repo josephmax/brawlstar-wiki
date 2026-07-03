@@ -22,7 +22,7 @@ Hank 是靠蓄力水泡制造路线恐惧的坦克。满蓄 3 秒后水泡可以
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"

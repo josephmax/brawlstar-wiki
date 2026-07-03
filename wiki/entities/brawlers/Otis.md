@@ -34,7 +34,7 @@ Otis 是靠远程输出和禁言 Super 改写对手操作空间的 Mythic Contro
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30-v2
+    fandom: direct_raw_capture_2026-06-30
     plp: direct_raw_capture_2026-06-29
     user_notes: none
 

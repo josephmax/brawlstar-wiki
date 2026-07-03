@@ -4,10 +4,10 @@
 
 - 标题：Alli
 - 来源：[Alli | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Alli)
-- 读取日期：2026-06-30-v2
+- 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-15T10:08:30Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/alli-2026-06-30-v2.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/alli-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

@@ -22,7 +22,7 @@ Mortis 是典型资源型刺客：攻击即位移，Coiled Snake 缩短长 dash 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"

@@ -40,7 +40,7 @@ Sam 是靠拳套投掷与回收打出节奏变化的近战刺客。和 `Mortis` 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-30"
     user_notes: "none"
 

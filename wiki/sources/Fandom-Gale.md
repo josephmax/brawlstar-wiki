@@ -4,10 +4,10 @@
 
 - 标题：Gale
 - 来源：[Gale | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gale)
-- 读取日期：2026-06-30-v2
+- 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-15T08:04:05Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/gale-2026-06-30-v2.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/gale-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

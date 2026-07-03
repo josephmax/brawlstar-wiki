@@ -28,7 +28,7 @@ Nani 是高上限远程爆发和远程 Peep 威慑英雄。她适合在开阔地
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30-v2
+    fandom: direct_raw_capture_2026-06-30
     plp: direct_raw_capture_2026-06-30
     user_notes: none
 

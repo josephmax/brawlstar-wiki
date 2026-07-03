@@ -40,7 +40,7 @@ Poco 是典型的治疗支援英雄，核心不是打出最高伤害，而是让
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-30"
     user_notes: "none"
 

@@ -6,18 +6,18 @@
 - Source 2 URL: https://powerleagueprodigy.com/sitemap.xml
 - Capture date: 2026-06-29
 - Capture boundary: roster/category membership and PLP guide URL availability only; individual hero details are stored in per-hero raw captures.
-- Fandom roster count: 105
+- Fandom roster count: 104
 - PLP brawler guide URL count from sitemap: 104
 - Local entity count before this manifest: 72
-- Local missing entity count: 33
+- Local missing entity count: 32
 
 ## Missing Local Entity Pages
 
-Alli, Berry, Bolt, Buzz, Buzz Lightyear, Damian, Draco, Edgar, Finx, Gale, Gigi, Glowy, Griff, Grom, Hank, Jae-yong, Juju, Kaze, Kenji, Kit, Larry & Lawrie, Lumi, Meeple, Mina, Moe, Najia, Ollie, Pierce, R-T, Sirius, Starr Nova, Trunk, Ziggy
+Alli, Berry, Bolt, Buzz, Damian, Draco, Edgar, Finx, Gale, Gigi, Glowy, Griff, Grom, Hank, Jae-yong, Juju, Kaze, Kenji, Kit, Larry & Lawrie, Lumi, Meeple, Mina, Moe, Najia, Ollie, Pierce, R-T, Sirius, Starr Nova, Trunk, Ziggy
 
 ## PLP URL Gaps
 
-Buzz Lightyear
+None
 
 ## Manifest Rows
 
@@ -40,7 +40,6 @@ Buzz Lightyear
 | Bull | https://brawlstars.fandom.com/wiki/Bull | https://powerleagueprodigy.com/bull | exists | provisional_backfill | missing | exists | missing | none |
 | Buster | https://brawlstars.fandom.com/wiki/Buster | https://powerleagueprodigy.com/buster | exists | provisional_backfill | missing | exists | missing | none |
 | Buzz | https://brawlstars.fandom.com/wiki/Buzz | https://powerleagueprodigy.com/buzz | missing | missing | missing | missing | missing | none |
-| Buzz Lightyear | https://brawlstars.fandom.com/wiki/Buzz_Lightyear | no_page_found | missing | missing | no_page_found | missing | missing | none |
 | Byron | https://brawlstars.fandom.com/wiki/Byron | https://powerleagueprodigy.com/byron | exists | provisional_backfill | missing | exists | missing | none |
 | Carl | https://brawlstars.fandom.com/wiki/Carl | https://powerleagueprodigy.com/carl | exists | provisional_backfill | missing | exists | missing | none |
 | Charlie | https://brawlstars.fandom.com/wiki/Charlie | https://powerleagueprodigy.com/charlie | exists | provisional_backfill | missing | exists | missing | none |

@@ -38,7 +38,7 @@ Angelo 是一个靠蓄力远射和毒伤持续压制敌人的远程英雄，和 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30-v2"
+    fandom: "direct_raw_capture_2026-06-30"
     plp: "direct_raw_capture_2026-06-29"
     user_notes: "none"
 

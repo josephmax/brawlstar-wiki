@@ -11,14 +11,43 @@
 
 ## Infobox Fields
 
-- Name1: Larry & Lawrie Controllers|Campaign1=Gaming|Rarity1=Rare
-- Name2: Glitch|Campaign2=Ranked|Campaign2_2=CyberBrawl|Rarity2=Epic
-- Name3: Magic Lamp|Campaign3=Dark Sands|Rarity3=Legendary
-- TrueSkins: yes
-- NameP1: Angel|CampaignP1=Brawl Pass|CampaignP1_2=Angels vs. Demons|RarityP1=Epic
-- NameP2: Radiant|CampaignP2=Brawl Pass|CampaignP2_2=Angels vs. Demons|RarityP2=Epic
-- NameP3: Dark Angel|CampaignP3=Brawl Pass|CampaignP3_2=Angels vs. Demons|RarityP3=Epic}} ===Pins=== {| class="article-table" style="width: 100%;" ! colspan="12" |Larry & Lawrie |- ! Skin ! colspan="11" |Pins {{Pin Table}} {{Pin Table|Glitch|Special}} {{Pin Table|Angel|Special}} {{Pin Table|Radiant|Special}} {{Pin Table|Dark Angel|Special}} {{Pin Table|Magic Lamp}} |} ===Sprays=== {| class="article-table" style="width: 100%; text-align: center;" colspan="5" |-
-- {{Spray|Type: Magic Lamp Larry & Lawrie|Rarity=Common}} | | |} ===Profile Icons=== {| class="article-table" style="width: 100%; text-align: center;" colspan="5" |- |{{Pfp|Larry & Lawrie1}} |{{Pfp|Larry & Lawrie2}} |{{Pfp|Larry & Lawrie3}} |{{Pfp|Larry & Lawrie4}} |{{Pfp|Glitch Larry & Lawrie}} |- |{{Pfp|Angel Larry & Lawrie}} |{{Pfp|Magic Lamp Larry & Lawrie}} |} {{Navigation}} [[ru:Ларри и Лори]] [[pl:Larry i Lawrie]]
+- Title: I am the law!
+- PrestigeTitle: Obey or Pay!
+- Rarity: Epic
+- Class: Artillery
+- MovementSpeed: 770 (Fast)<br>924 (with Hypercharge)<br> 3000 (with Order: Fall Back)
+- VoiceActor: Martin Schjøler
+- HealthLabel: Health
+- Health: 3000
+- AttackRange: 7.33 (Long)
+- Reload: 2.2 seconds (Very Slow)
+- Attack: 700
+- AttackLabel: Damage per explosion
+- SuperRange: 5
+- AttackSpread:
+- SuperSuperCharge: 2.7%
+- SuperMinion: Lawrie
+- SuperMinionRange: 6.67 (Normal)
+- SuperReload: 1.8 seconds (Normal)
+- SuperMovementSpeed: 770 (Fast)<br>3000 (with Order: Fall Back)
+- SuperLabel: Lawrie Health
+- Super: 3000
+- SuperLabel2: Lawrie Damage
+- Super2: 150
+- SuperBullets: 8 (Lawrie)
+- AttackSpeed: 2000
+- SuperSpread: 25° (Lawrie; first wave)<br>41.7° (Lawrie; second wave)
+- SuperSpeed: 1196<br>3400 (Lawrie)
+- Gadget1Name: Order: Swap
+- Gadget1Cooldown: 12 seconds
+- Gadget2Name: Order: Fall Back
+- Gadget2Cooldown: 17 seconds
+- Previous: Pearl
+- Next: Angelo
+- AttackSuperCharge: 12.6%
+- AttackHyperchargeCharge: 4.9%
+- SuperHyperchargeCharge: 1.05%
+- HyperchargeMultiplier: 39%
 
 ## Selected Wikitext Excerpts
 
@@ -77,8 +106,8 @@ When activated, Larry spawns a second Lawrie that has 2000 more health. This Law
 
 ### Tips / Other
 
-*To maximize damage, try aiming ahead of an enemy. This is because Larry's attack explodes twice, so this increases you chances of the attack damaging the enemy twice. 
-*Aiming ahead is also beneficial as Larry's projectile speed is rather slow, so aiming ahead will increase your chances of hitting the enemy. 
-*Try spawning Lawrie closer to the enemy, or, if possible, in a bush. This will prevent the enemy from destroying him as easily or quickly, which will allow you to maximize his damage potential. 
+*To maximize damage, try aiming ahead of an enemy. This is because Larry's attack explodes twice, so this increases you chances of the attack damaging the enemy twice.
+*Aiming ahead is also beneficial as Larry's projectile speed is rather slow, so aiming ahead will increase your chances of hitting the enemy.
+*Try spawning Lawrie closer to the enemy, or, if possible, in a bush. This will prevent the enemy from destroying him as easily or quickly, which will allow you to maximize his damage potential.
 *Sometimes, players will mistake Lawrie for the player (in a similar manner to [[Leon]]'s Clone Projector Gadget), which can distract them and/or cause them to waste ammo.
 *Lawrie can act as a meat shield, especially if paired with the Protocol: Protect Star Power.

@@ -22,7 +22,7 @@ Edgar 的核心不是“刺客克制后排”，而是用自动充能 Super 和 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Edgar|Fandom-Edgar]] direct_raw_capture_2026-06-30-v2"
+    fandom: "[[sources/Fandom-Edgar|Fandom-Edgar]] direct_raw_capture_2026-06-30"
     plp: "[[sources/PLP-Edgar|PLP-Edgar]] direct_raw_capture_2026-06-30"
     user_notes: "本地 BP 规则要求按高水平对局处理短手路线和控制反制"
 
