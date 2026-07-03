@@ -136,6 +136,10 @@ def test_player_skill_contract() -> None:
         "proactive_threat_candidate",
         "route_endpoint_payoff",
         "do_not_demote_tank_assassin_for_style_alone",
+        "runtime_index_precheck",
+        "scripts/runtime_index_precheck.py",
+        "runtime_index_key",
+        "runtime_index_compile_failed",
     ]
     for term in required_terms:
         assert term in text, term
@@ -156,16 +160,21 @@ def test_player_skill_contract() -> None:
         "brawler_cards",
         "map_brawler_edges",
         "draft_edges",
+        "default_current_version_unknown",
+        "User-supplied strength compile",
     ]:
         assert term in compile_ref, term
 
     for term in [
         "decide_input",
+        "runtime_index_precheck",
+        "scripts/runtime_index_precheck.py",
         "slot_policy",
         "hard_gate_result",
         "candidate_eval",
         "balanced_threat_probe",
         "bp_recommendation",
+        "runtime_index_compile_failed",
     ]:
         assert term in decide_ref, term
 
@@ -184,6 +193,7 @@ def test_maintenance_skill_contract() -> None:
 
     for term in [
         "LLM-wiki intake gate",
+        "Minimal Request Handling",
         "$markdown-llm-wiki",
         "https://github.com/josephmax/skills/tree/main/skills/markdown-llm-wiki",
         "raw/",

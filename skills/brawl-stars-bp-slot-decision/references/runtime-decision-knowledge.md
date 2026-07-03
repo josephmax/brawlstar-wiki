@@ -18,11 +18,67 @@ decide_input:
   strategy_bias: conservative | balanced | aggressive | high_variance
 ```
 
-If the index is missing, stale, or does not cover the selected map / mode / pool, stop and request compile. Do not patch the answer with memory.
+If the index is missing, stale, or does not cover the selected map / mode / pool, run `runtime_index_precheck` before normal decision work. Do not patch the answer with memory.
+
+## runtime_index_precheck
+
+`decide` must have a validated `runtime_bp_index` before ranking candidates.
+
+Use the bundled script for the file-level coordination step:
+
+```bash
+python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
+  --repo . \
+  --index-key "<runtime_index_key>" \
+  --json
+```
+
+The script returns one of three operational states:
+
+- `ready`: a validated index exists; read `index_path`.
+- `compile_required`: this process owns `lock_path`; run `compile`, write `index_path`, then release the lock.
+- `runtime_index_compile_failed`: bounded wait and stale-lock recovery failed; stop.
+
+1. Build `runtime_index_key` from patch id, map pool id, available brawler pool, and strength profile hash. If the caller supplied a full `runtime_bp_index`, validate its manifest against the current request.
+2. Look for a matching index under `outputs/runtime-bp-index/` or the caller-provided path.
+3. If a valid index exists, continue to the Decision Pipeline.
+4. If no valid index exists, try to create `<runtime_index_key>.lock` with:
+
+```yaml
+state: compiling
+owner:
+started_at:
+compile_input_hash:
+attempt: 1
+```
+
+5. If lock creation succeeds, run `compile`. When it succeeds, write the index, then release the lock.
+6. If the lock already exists, another process is compiling. Poll for the index instead of compiling again.
+7. Poll at most 12 times. If the index appears and validates, continue. If it does not appear, check lock age.
+8. If the lock is older than 10 minutes, treat it as stale. One process may replace it and retry compile once.
+9. If retry also fails or the lock cannot be safely recovered, stop with:
+
+```yaml
+uncertainty:
+  failure: runtime_index_compile_failed
+  reason: missing_or_stale_runtime_bp_index_after_bounded_wait
+```
+
+Never wait forever. Never read maintainer discussion pages or memory-only tier lists to bypass the failed compile.
+
+After a successful compile owned by this process, release the lock with:
+
+```bash
+python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
+  --repo . \
+  --index-key "<runtime_index_key>" \
+  --release-lock \
+  --json
+```
 
 ## Decision Pipeline
 
-1. Read `runtime_bp_index.manifest` and verify map, mode, pool, patch, and strength profile.
+1. Run `runtime_index_precheck`, then read `runtime_bp_index.manifest` and verify map, mode, pool, patch, and strength profile.
 2. Build `mode_objective_profile` from `map_duties`.
 3. Build `map_factor_summary`: objective contract, hard gates, terrain state plan, slot pressure, false-positive filters.
 4. Update `draft_state`: picks, bans, revealed plans, role gaps, protected picks, exposed picks.

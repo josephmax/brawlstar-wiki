@@ -29,6 +29,10 @@ Then load only the relevant reference below.
 - For quality gates, script use, and contract tests, read `references/audit-and-validation.md`.
 - For separating maintenance knowledge from `runtime_bp_index`, read `references/runtime-boundary.md`.
 
+## Minimal Request Handling
+
+A caller only needs to name the target brawler or map, such as "update Brock BP knowledge" or "update Center Stage map BP knowledge." Do not ask the caller to restate source checks, source summary updates, stable entity writes, audits, or log updates; those are this skill's internal workflow. Treat extra caller text only as an optional focus, not as a required checklist.
+
 ## Core Boundary
 
 This skill may read `raw/`, `wiki/sources/`, `wiki/syntheses/`, `wiki/entities/`, `skills/`, and `outputs/` when doing maintenance.
@@ -56,6 +60,7 @@ Use `--dry-run` when a script offers it before large writes. Treat script output
 ## Completion Checklist
 
 - Stable facts live in `wiki/entities/brawlers/` or `wiki/entities/maps/`, not in temporary syntheses pages.
+- Non-BP concept pages and broad synthesis pages are handled by the general wiki workflow, not as this skill's primary outputs.
 - Source summaries explain what each source can and cannot prove.
 - Version strength and short-lived meta stay in source/audit/log layers unless they change a stable capability, map hook, matchup condition, or slot rule.
 - Audits and generated runtime indexes go to `outputs/` or caller-provided paths.

@@ -9,9 +9,11 @@ Use this reference when adding or refreshing Fandom, Power League Prodigy, roste
 3. Preserve raw material in `raw/` or confirm an existing raw capture.
 4. Create or update a document-scoped page in `wiki/sources/`.
 5. State `usable_for` and `not_usable_for`.
-6. Update affected stable brawler/map/concept pages only when the source proves stable facts.
+6. Update affected stable brawler or map pages only when the source proves BP-consumable facts.
 7. Update `wiki/index.md` if navigation changes.
 8. Append `wiki/log.md`.
+
+If a source is mainly about resources, account systems, broad mode explanations, or other non-BP concepts, route that work through the general wiki workflow instead of this BP maintenance skill. This skill may read concept or synthesis pages for context, but they are not its primary write targets.
 
 ## Artifact Policy
 

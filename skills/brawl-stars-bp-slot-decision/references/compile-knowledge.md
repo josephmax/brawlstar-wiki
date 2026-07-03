@@ -22,6 +22,34 @@ Forbidden inputs:
 
 If the needed map pool or strength profile is missing, compile a partial index and mark the gap in `manifest.missing_inputs`.
 
+## Compile Modes
+
+### Default current-version compile
+
+Use this when the caller does not provide a strength profile.
+
+```yaml
+strength_profile:
+  profile_id: default_current_version_unknown
+  owner: runtime_default
+  scope: global
+  entries: []
+```
+
+The compiler still reads stable map and brawler facts, but all strength visibility remains explicit unknown/default. Do not infer S/A/B tiers from memory, old reports, or maintainer synthesis pages.
+
+### User-supplied strength compile
+
+This mode is reserved for caller-provided current-version judgment. Treat user entries as a separate strength layer that can change priority, proof thresholds, and ban pressure. It must not rewrite:
+
+- map structure
+- hero capability facts
+- matchup mechanisms
+- map hooks
+- stable failure modes
+
+When user strength input is partial, compile the missing heroes as unknown and record the coverage gap in `manifest.missing_inputs`.
+
 ## compile_input
 
 ```yaml

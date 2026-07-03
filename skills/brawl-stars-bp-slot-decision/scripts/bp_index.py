@@ -132,7 +132,7 @@ def build_payload(args: argparse.Namespace) -> dict:
         ],
         "reminders": [
             "Read matched pages before deciding; this script only retrieves candidates.",
-            "If no compiled runtime_bp_index is provided, run compile before decide.",
+            "Before decide, run runtime_index_precheck; it may return ready, compile_required, or runtime_index_compile_failed.",
             "Do not use coarse map tags as direct scoring signals.",
         ],
     }

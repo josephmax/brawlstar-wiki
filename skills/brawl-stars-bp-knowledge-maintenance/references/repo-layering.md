@@ -19,7 +19,7 @@ Do not skip the first gate because a BP conclusion seems obvious.
 | --- | --- | --- | --- |
 | Raw source | `raw/` | Immutable captures, screenshots, source exports, user notes | Read for ingest; write only for explicit capture/cleanup |
 | Source summary | `wiki/sources/` | Single-source summaries, boundaries, provenance | Create/update before stable facts |
-| Stable facts | `wiki/entities/brawlers/`, `wiki/entities/maps/`, selected `wiki/concepts/` | Runtime-consumable facts | Primary output layer |
+| Stable BP facts | `wiki/entities/brawlers/`, `wiki/entities/maps/` | Runtime-consumable brawler and map facts | Primary output layer |
 | Maintainer synthesis | `wiki/syntheses/` | Methodology, architecture, audit interpretation | Read for maintenance; not runtime input |
 | Skill rules | `skills/*/SKILL.md`, `skills/*/references/` | Executable agent instructions | Update when rules become operational |
 | Outputs | `outputs/` | Audits, generated runtime indexes, temporary reports | Write generated artifacts here |
@@ -33,6 +33,8 @@ A claim may move upward only when its consumer is clear:
 - Stable map structure or BP factor -> `wiki/entities/maps/`.
 - Process or schema rule -> this skill's references, then contract tests if runtime-critical.
 - Session-specific index -> `runtime_bp_index` in `outputs/`, not a hand-written wiki page.
+
+Non-BP concepts, resource systems, and broad synthesis pages belong to the general wiki workflow, not this BP maintenance skill's primary output path.
 
 ## Forbidden Collapses
 

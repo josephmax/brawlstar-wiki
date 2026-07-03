@@ -48,7 +48,22 @@ Read:
 - The compiled `runtime_bp_index`
 - Current ban/pick state, side, slot, available pool, and `strategy_bias`
 
-If no `runtime_bp_index` exists, run `compile` first or state that the decision is incomplete. Do not silently fall back to maintainer discussion pages.
+Before deciding, run `runtime_index_precheck`. If no usable `runtime_bp_index` exists, acquire the compile lock and run a default `compile`; if another process is compiling the same index, poll with a bounded retry budget. Do not silently fall back to maintainer discussion pages.
+
+Use the bundled precheck script for file/lock coordination:
+
+```bash
+python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
+  --repo . \
+  --index-key "<runtime_index_key>" \
+  --json
+```
+
+Interpret the status:
+
+- `ready`: read `index_path` and continue `decide`.
+- `compile_required`: this process owns `lock_path`; run `compile`, write `index_path`, then release the lock.
+- `runtime_index_compile_failed`: stop and return failure instead of waiting forever or answering from memory.
 
 ## Input Contract
 
@@ -68,6 +83,18 @@ compile_input:
     read_stable_entities_only: true
 ```
 
+Default compile is allowed when no strength profile is supplied:
+
+```yaml
+strength_profile:
+  profile_id: default_current_version_unknown
+  owner: runtime_default
+  scope: global
+  entries: []
+```
+
+This means "use stable wiki facts and mark strength as unknown", not "invent a tier list from memory". User-supplied strength profiles are accepted as a separate strength layer; using them to rewrite stable hero or map facts is forbidden.
+
 ```yaml
 decide_input:
   runtime_bp_index:
@@ -83,6 +110,38 @@ decide_input:
 ```
 
 If `map`, `mode`, or slot is missing, state the assumption. Ask only when the missing field changes the decision.
+
+## Runtime Index Precheck
+
+`decide` must not start from free-form wiki reads. It first checks whether the requested map, mode, pool, patch, and strength profile are covered by a compiled runtime index.
+
+Recommended index state files live under `outputs/runtime-bp-index/`:
+
+```text
+<runtime_index_key>.json
+<runtime_index_key>.lock
+```
+
+The `runtime_index_key` should be derived from patch id, map pool id, available brawler pool, and strength profile hash. A supplied explicit `runtime_bp_index` can bypass file lookup if its manifest matches the current request.
+
+Precheck behavior:
+
+1. If a matching index exists and passes manifest validation, use it.
+2. If no matching index exists, create `<runtime_index_key>.lock` with `state: compiling`, owner, and timestamp, then run `compile`.
+3. If the lock already exists, do not start another compile. Poll for the matching index.
+4. Poll at most 12 times, with a short delay between attempts. If the index appears and validates, continue `decide`.
+5. If the lock is stale for more than 10 minutes, one process may replace it and retry compile once.
+6. If bounded polling and stale-lock recovery fail, return `runtime_index_compile_failed` and stop. Do not answer from memory.
+
+After a successful compile owned by this process, release the lock:
+
+```bash
+python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
+  --repo . \
+  --index-key "<runtime_index_key>" \
+  --release-lock \
+  --json
+```
 
 ## Compile Summary
 
