@@ -1,0 +1,43 @@
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/repo-layering.md
+  s_faaa644f3cc185::t_a968ae90e83e19 22,37-38
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/source-ingest.md
+  s_faaa644f3cc185::t_8eeb9f84d38bc3 12,16-17
+brawlstar/skills/brawl-stars-bp-slot-decision/SKILL.md
+  s_faaa644f3cc185::t_ed9df4d921f6a6 51-66,86-97,114-145
+brawlstar/skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md
+  s_faaa644f3cc185::t_ad9c8d1deb8993 25-52
+brawlstar/skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md
+  s_faaa644f3cc185::t_a3c3b6ef84e8c4 21-77,81
+brawlstar/skills/brawl-stars-bp-slot-decision/scripts/bp_index.py
+  s_09cb5960baa894::t_ce51331efe352d 135
+brawlstar/skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py
+  s_faaa644f3cc185::t_16237803017f11 1-321
+brawlstar/skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py
+  s_faaa644f3cc185::t_eba2e8c979124e 4,6,14,32-35,42,45,82-155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "05d36af398d9c2b900551648ae2292d1196fbe6a",
+  "prompts": {},
+  "sessions": {
+    "s_09cb5960baa894": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f277d-d047-7980-bac0-84c5aef8b65a",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_faaa644f3cc185": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f271d-0135-7d13-886c-3a9f41b36813",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
