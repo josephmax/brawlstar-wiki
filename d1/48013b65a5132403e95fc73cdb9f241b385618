@@ -1,0 +1,31 @@
+brawlstar/wiki/index.md
+  s_6ae84a7daaf315::t_7951411d18e787 18
+brawlstar/wiki/log.md
+  s_6ae84a7daaf315::t_c2ea174e02a0fc 724-729
+brawlstar/wiki/syntheses/BP-strength-profile-tierlist-maker调研.md
+  s_6ae84a7daaf315::t_719ffe721500f4 1-173
+brawlstar/wiki/syntheses/assets/tierlist-maker-research/metacoretroll-brawlers-api-export.json
+  s_6ae84a7daaf315::t_de9a48b5c82bf7 1-1388
+brawlstar/wiki/syntheses/assets/tierlist-maker-research/metacoretroll-community-tier-list-export.json
+  s_6ae84a7daaf315::t_02aa8dcf1fcc09 1-312
+brawlstar/wiki/syntheses/assets/tierlist-maker-research/tierlistmaker-online-brawlstars-full-image-export.json
+  s_6ae84a7daaf315::t_ecddec6cf95f17 1-616
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "d148013b65a5132403e95fc73cdb9f241b385618",
+  "prompts": {},
+  "sessions": {
+    "s_6ae84a7daaf315": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f276b-3dc2-7e21-b12a-13ff0e9f95ab",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
