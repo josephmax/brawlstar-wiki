@@ -30,6 +30,8 @@ Hero BP maintenance uses two default source families:
 
 Fandom and PLP are complementary. PLP does not replace Fandom for mechanics, stats, attack/Super behavior, or stable ability facts. Fandom does not replace PLP for competitive build, mode-fit, matchup, or slot-note candidates.
 
+For patch/version ingest, use the Fandom Version History or official release note as the affected-brawler index, then capture/read each affected Fandom brawler page for current mechanics, stats, and History details; do not treat the version page alone as the complete per-brawler evidence.
+
 Use these scripts for repeatable hero source work:
 
 ```bash

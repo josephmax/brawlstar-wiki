@@ -15,6 +15,8 @@ Read `references/match-report-schema.md` before writing a match report or prompt
 
 ## Required Inputs
 
+Before normalizing match config or relaying ban/pick state, resolve user-facing brawler names through `wiki/concepts/英雄名称归一化.md`; do not copy or maintain a local alias table. Ambiguous names from that page require confirmation rather than judge-side repair.
+
 Normalize each match:
 
 ```yaml

@@ -727,3 +727,20 @@
 - 新增 [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]，记录用户侧强度输入工具的调研目标、候选站点、验证结论和 adapter 路线。
 - 将 `TierListMaker.online` 完整 Brawl Stars 带图标 JSON / 截图、`MetaCoreTroll` brawler API 导出和 community tier list 导出复制到 `wiki/syntheses/assets/tierlist-maker-research/`，避免依赖被 `.gitignore` 忽略的 `outputs/` 临时目录。
 - 结论：未找到完全开箱满足“Brawl Stars 内置数据 + 自由制作 tier list + 原生 JSON 导出”的第三方站点；推荐用 `TierListMaker.online` 作为 UI 底座，并通过轻量 adapter 完成 roster 预填、JSON 导出和 `strength_profile` 转换。
+
+## [2026-07-06] skill | 明确 patch ingest 的 Fandom 取证顺序
+
+- 更新 `skills/brawl-stars-bp-knowledge-maintenance/references/source-ingest.md`：版本总页 / 官方 release note 只作为受影响英雄索引；逐英雄机制、数值和 History 细节必须读取对应 Fandom 英雄页。
+
+## [2026-07-06] ingest | 补充 Backyard Bowl 地图 BP 知识
+
+- 新增 `raw/sources/fandom/maps/backyard-bowl-2026-07-06.md`，保存 Fandom `Backyard Bowl` 地图页 raw capture。
+- 新增 [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]，记录来源范围、可用边界和 BP 建模要点。
+- 新增 [[entities/maps/Backyard Bowl|Backyard Bowl]] 地图实体页，沉淀开阔球路、球门前可破障碍、小草墙入口、门前 choke 防守和投掷 false-positive 过滤。
+- 更新 [[index|Wiki Index]]，登记 Backyard Bowl 的来源页和地图实体页。
+
+## [2026-07-06] governance | 新增英雄名称归一化概念页
+
+- 新增 [[concepts/英雄名称归一化|英雄名称归一化]]，用单一 fenced YAML 映射维护中文俗称、emoji、平台写法到 brawler canonical name 的归一化规则。
+- 更新 `AGENTS.md` 和三个 BP skills 的入口说明，要求用户输入、外部榜单、ban/pick 文本中的英雄称谓先归一化到 `wiki/entities/brawlers/*.md`。
+- 移除临时 `tools/strength-profile-editor/data/brawler-aliases.json`，避免别名表在工具层和 wiki 层重复维护。

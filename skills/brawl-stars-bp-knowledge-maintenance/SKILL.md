@@ -16,7 +16,8 @@ Before any maintenance task, apply the `LLM-wiki intake gate` from the companion
 3. Create or update `wiki/sources/` before changing stable facts.
 4. Preserve provenance, uncertainty, and source boundaries.
 5. Update `wiki/index.md` only when navigation changes.
-6. Append `wiki/log.md` for ingest, important maintenance, audits, and cleanup.
+6. Normalize brawler names from user notes, external tier lists, or community slang through `wiki/concepts/英雄名称归一化.md` before writing source summaries, entity updates, or runtime inputs.
+7. Append `wiki/log.md` for ingest, important maintenance, audits, and cleanup.
 
 Then load only the relevant reference below.
 

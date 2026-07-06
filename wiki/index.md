@@ -46,6 +46,7 @@
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
+- [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]
 
 - 英雄来源（104 个 BP-active）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]
@@ -209,6 +210,8 @@
 
 ## Concepts
 
+- BP 输入与命名规范：
+- [[concepts/英雄名称归一化|英雄名称归一化]]
 - 核心玩法模式：
 - [[concepts/Gem Grab|Gem Grab]]
 - [[concepts/Brawl Ball|Brawl Ball]]
@@ -355,6 +358,7 @@
 - [[entities/brawlers/Ziggy|Ziggy]]
 
 - 地图：
+- [[entities/maps/Backyard Bowl|Backyard Bowl]]
 - [[entities/maps/Belle's Rock|Belle's Rock]]
 - [[entities/maps/Bridge Too Far|Bridge Too Far]]
 - [[entities/maps/Center Stage|Center Stage]]

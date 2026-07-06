@@ -62,7 +62,7 @@ outputs/
 | `raw/sources/roster/` | 英雄集合 manifest 和来源覆盖清单 | 决定 BP-active 英雄集合的输入 |
 | `raw/sources/supercell/` | Supercell 官方资料或公告 raw capture | 优先级高，但仍先进入 source 摘要 |
 | `wiki/sources/` | 单篇来源摘要、解释、provenance 和可用范围 | ingest 必先更新；不替代 raw |
-| `wiki/concepts/` | 模式、货币、机制、规则等抽象概念 | 保存稳定规则事实，不放临时 meta |
+| `wiki/concepts/` | 模式、货币、机制、规则等抽象概念 | 保存稳定规则事实，不放临时 meta；`英雄名称归一化` 是跨 skill 的称谓归一化原语 |
 | `wiki/entities/brawlers/` | 单英雄稳定事实和当前 BP 建模字段 | 不保存版本历史、批处理进度或临时强度覆盖 |
 | `wiki/entities/maps/` | 单地图稳定结构和 BP 可消费地图因素 | 不保存当前强势英雄或 season-only 状态 |
 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论和归档 | 不是 BP runtime 依赖；执行规则采纳后复制进 skill references |
@@ -91,6 +91,10 @@ outputs/
 - BP skill 执行时禁止临场读取 `wiki/syntheses/` 来补规则、候选或版本判断；否则 syntheses 会从维护层滑回运行时依赖，破坏奥卡姆剃刀原则。
 - 稳定事实从 `wiki/entities/` 进入 `compile`，强度理解从用户 / 裁判 / 外部 profile 进入 `compile`，二者共同生成 `runtime_bp_index`。
 - `decide` 只消费 `runtime_bp_index` 和 skill 自身运行时规则；如果索引缺失或覆盖不足，先重新 `compile`，不要绕回 wiki syntheses。
+
+### 英雄名称归一化规则
+
+凡是解析用户输入、外部榜单、ban/pick 文本、`strength_profile`、候选池或报告中的英雄称谓，先读取 `wiki/concepts/英雄名称归一化.md` 的 fenced YAML 映射，归一化到 `wiki/entities/brawlers/*.md` 的 canonical name。canonical name 自身默认合法；`aliases` 自动映射；`ambiguous` 不自动归一，需结合上下文或请求用户确认。禁止在 skill、工具或输出中复制维护第二份别名表。
 
 ## Brawl Stars 分类约定
 

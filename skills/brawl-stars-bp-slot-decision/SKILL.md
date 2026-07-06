@@ -24,6 +24,7 @@ Read:
 - Relevant map pages under `wiki/entities/maps/`
 - Relevant brawler pages under `wiki/entities/brawlers/`
 - User, judge, or external `strength_profile` supplied for this session
+- `wiki/concepts/英雄名称归一化.md` when user, judge, or external inputs contain brawler aliases, emoji, community nicknames, or non-canonical names
 
 Output:
 
@@ -68,6 +69,8 @@ Interpret the status:
 ## Input Contract
 
 Normalize requests into one of these objects:
+
+Before filling these objects, normalize brawler names through `wiki/concepts/英雄名称归一化.md`: canonical brawler page names pass through; `aliases` map automatically; `ambiguous` entries require user or judge confirmation instead of silent resolution.
 
 ```yaml
 compile_input:
