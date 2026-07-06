@@ -1,0 +1,35 @@
+brawlstar/raw/sources/fandom/maps/backyard-bowl-2026-07-06.md
+  s_a9e7cc628643e6::t_b840e7aa64d9af 1-71
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/source-ingest.md
+  s_6ae84a7daaf315::t_fa19286f78da52 33-34
+"brawlstar/wiki/entities/maps/Backyard Bowl.md"
+  s_a9e7cc628643e6::t_a46deba88a6637 1-130
+brawlstar/wiki/sources/Fandom-Backyard-Bowl.md
+  s_a9e7cc628643e6::t_fd728bb91f9e36 1-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "b8ac5e4b13e12a537052bedd15c1da9f6c8cca80",
+  "prompts": {},
+  "sessions": {
+    "s_6ae84a7daaf315": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f276b-3dc2-7e21-b12a-13ff0e9f95ab",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_a9e7cc628643e6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f358e-596e-7110-a602-324efffe09b4",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
