@@ -1,0 +1,21 @@
+brawlstar/AGENTS.md
+  s_a9e7cc628643e6::t_ce24c8ef99dda8 170-179,185-186,231-232
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "19d3fda0027d06f57b276920916cadbf60429cde",
+  "prompts": {},
+  "sessions": {
+    "s_a9e7cc628643e6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f358e-596e-7110-a602-324efffe09b4",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
