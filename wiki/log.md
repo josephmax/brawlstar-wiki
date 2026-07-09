@@ -744,3 +744,99 @@
 - 新增 [[concepts/英雄名称归一化|英雄名称归一化]]，用单一 fenced YAML 映射维护中文俗称、emoji、平台写法到 brawler canonical name 的归一化规则。
 - 更新 `AGENTS.md` 和三个 BP skills 的入口说明，要求用户输入、外部榜单、ban/pick 文本中的英雄称谓先归一化到 `wiki/entities/brawlers/*.md`。
 - 移除临时 `tools/strength-profile-editor/data/brawler-aliases.json`，避免别名表在工具层和 wiki 层重复维护。
+
+## [2026-07-06] ingest | 入库第一版通用版本强度先验并落地 BP compile
+
+- 新增 `raw/inbox/ikaoss11-july-2026-tier-list-screenshot-transcription.md` 和 [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]，保存 iKaoss11 July 2026 tier list 截图转录后的 104 英雄全局强度 profile。
+- 将该 profile 复制为 `skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json`，作为第一版默认通用版本强度先验；后续地图强度需要显式维护，不能由 global 排名推断地图适配性。
+- 新增 `skills/brawl-stars-bp-slot-decision/scripts/compile_runtime_index.py`，把稳定地图/英雄事实与 strength profile 编译为 `runtime_bp_index`，并保留同档左强于右的 `tier_rank` / `total_rank` / `ordered_score`。
+
+## [2026-07-07] skill | 将 BP compile 产物收敛为 thin runtime index
+
+- 调整 `compile_runtime_index.py`：主产物以 `map_pool_signature`、`capability_index` 和 `evidence_refs` 为核心，用于 BP runtime 快速路由。
+- 厚的 `brawler_cards`、`map_brawler_edges`、`draft_edges` 改为可选 `--debug-output` 调试产物，不进入默认 decide 路径。
+- 在 `tests/test_compile_runtime_index.py` 中增加体积门槛：单图 thin index 小于 100KB，当前全地图池小于 300KB。
+- 移除主产物中的 `strength_layers`、`effective_scope` 和 `scope_key`；runtime 不把 scope 选择过程暴露为决策依据。
+
+## [2026-07-07] skill | 新增 BP runtime index 小窗口查询工具
+
+- 新增 `query_runtime_index.py` 和 `hydrate_runtime_evidence.py`，让 BP decide 通过候选短名单与少量证据片段消费 `runtime_bp_index`，避免模型全量读取 JSON。
+- 两个工具都会输出 `retrieval_log`，记录召回片段数和返回 payload KB，便于评估 JSON 是否可以继续加厚。
+- 更新 `brawl-stars-bp-slot-decision` 的 decide 文档与契约测试，要求流程为 `runtime_index_precheck` -> `query_runtime_index.py` -> `hydrate_runtime_evidence.py` -> `candidate_eval`。
+
+## [2026-07-07] skill | 将 BP runtime index 升级为 v2 工具消费结构
+
+- 将 `compile_runtime_index.py` 的主产物升级为 `runtime-v2`：每张地图包含 `map_context`、短名单 `candidate_projection` 和覆盖全英雄的 `candidate_index`。
+- 新增全局 `brawler_runtime_cards`、`matchup_index` 和 `audit_summary`，供 `query_runtime_index.py` / `hydrate_runtime_evidence.py` 按需召回，不要求模型全量读取 JSON。
+- 删除默认主产物中的 `capability_index`，避免保留未被消费的宽泛倒排表；详细 raw 提取结果仍只进入可选 `--debug-output`。
+- 重新生成 `outputs/runtime-bp-index/default-tierlist-all-maps-thin.json`，文件名沿用历史，内容形态为 `runtime-v2`。
+
+## [2026-07-07] skill | 接通 BP runtime tools 到本地对局流程
+
+- 新增 `decide_with_runtime_index.py`，把单手 pick / ban 决策固定为 `query_runtime_index.py` 召回候选短名单、`hydrate_runtime_evidence.py` 补证据，再输出 `bp_slot_decision`。
+- 新增 `run_local_bp_match.py`，按 ban、蓝 1、红 2-3、蓝 4-5、红 6 的固定顺序调用单手决策脚本，并复用 match report renderer 输出本地 BP 报告。
+- 更新 `brawl-stars-bp-slot-decision` 与 `run-brawl-stars-bp` 的 skill 文档和契约测试，要求 runtime 决策只通过工具小窗口消费编译产物，不临场全量读取 runtime JSON 或 wiki syntheses。
+
+## [2026-07-07] skill | 为本地 BP 对局新增独立决策审计日志
+
+- `decide_with_runtime_index.py` 在 `bp_slot_decision` 中附带 `decision_trace`，记录输入状态、候选短名单、过滤项、选择规则、选中英雄、地图上下文和 hydrated evidence。
+- `run_local_bp_match.py` 新增 `--decision-log-output`，把每个 ban / pick slot 的工具召回量、候选排序、强度 rank/score、地图 fit、hooks、对位命中和入选理由渲染到独立 Markdown 日志。
+- 保持原 match report 不变；报告面向对局阅读，decision log 面向维护者审计决策质量和权重问题。
+
+## [2026-07-07] skill | 修正 compile 中强度输入和地图适配权重
+
+- 调整 `compile_runtime_index.py` 的 `candidate_fit`：`mode_contract_hit` 只表示模式资格，不能把全局 S/A 英雄单独抬成地图 `strong`；`strong`、`early_pick` 和 `ban_pressure` 必须先有 `active_hook_ids` 或 `matched_capabilities` 这类具体地图信号。
+- 新增回归测试，固定 `Damian` 在 `Backyard Bowl` 不应因全局 S 档 + Brawl Ball 模式契约进入 `strong`、`early_pick` 或 `ban_pressure`。
+- 新增 `tools/strength-profile-editor/scripts/generate_map_strength_profile.py`，基于修正后的 runtime index 生成 27 张 Ranked 地图完整 `map` strength_profile 底稿。
+- 重新生成 `outputs/runtime-bp-index/default-tierlist-all-maps-thin.json` 和 `outputs/strength-profiles/ikaoss11-ranked-map-adapted-preview.json`，供后续人工审计和逐图细调。
+
+## [2026-07-07] skill | 增加后手 counter 条件抬升并压缩 runtime 字段
+
+- 调整 `compile_runtime_index.py`：候选索引拆分 `map_floor_fit`、`mode_contract_fit`、`slot_eligibility`、`conditional_lift` 和 `failure_gates`，避免把版本强度输入误解释为地图强势。
+- 调整 `decide_with_runtime_index.py`：候选先按地图 / 模式适配、slot 资格、敌方已选对位、失败门槛排序，强度分只作为次级 tie-breaker；`enemy_targets_answered_by_candidate` 只在 response / late pick 且敌方阵容有多个可回答目标时触发。
+- 将候选索引中的重复 `risk_ids` 移除，`conditional_lift` 压缩为触发器字符串数组，保持全地图 runtime index 小于 3MB 体积门槛。
+
+## [2026-07-07] skill | 引入可调强度权重和中文 BP 日志
+
+- `decide_with_runtime_index.py` 新增 `--strength-weight`，按 `final=(1-weight)*职责分+weight*强度分` 归一化混合排序；`0` 表示忽略强度只看职责 / 地图 / 对位 / 风险，`1` 表示纯强度优先，默认基准值为 `0.4`。
+- `compile_runtime_index.py` 不再用 tier 升级 `fit`、`map_floor_fit` 或 `slot_eligibility`；强度只保留为地图候选的独立 rank/score，并由 runtime 权重决定影响程度。
+- `run_local_bp_match.py` 将 `seed` 接入每手决策的可复现 `decision_noise`，避免同输入同 bias 总是生成完全一致标准答案；同时对战报告和独立决策审计日志改为中文格式。
+- 重新生成 `outputs/runtime-bp-index/default-tierlist-all-maps-thin.json`、`outputs/runtime-bp-index/user-tuned-1783418598989.json` 和 `outputs/runtime-bp-index/safe-zone-default.json`。
+
+## [2026-07-07] skill | 修复后手 counter 在 runtime 决策中被弱化的问题
+
+- `query_runtime_index.py` / `runtime_index_tools.py` 在敌方已选可见时，为 `answers_enemy_picks` 候选预留召回窗口，避免低强度但能回答敌方核心的候选在 `top_n` 截断前消失。
+- `decide_with_runtime_index.py` 在 `strength_weight < 1` 的 response / late pick 中先覆盖可回答的敌方已选目标，再用混合分补位；双 pick 不再允许两个候选只回答同一个敌方目标而漏掉另一个有合法 answer 的目标。
+- 新增回归测试覆盖 Safe Zone 回答 Byron 的 counter 召回，以及 `Byron + Colette` 已暴露时 paired response 必须覆盖两个不同敌方目标。
+
+## [2026-07-08] skill | 重构 BP runtime 查询面为能力 brief 优先
+
+- `compile_runtime_index.py` 的 `candidate_projection` 不再按强度前排截断，而是保留每个合法 slot 的全部具体地图能力候选；默认全地图产物约 4.05MB。
+- `query_runtime_index.py` 将 `judgment_brief` 拆成主候选 `candidate_judgments` 和例外探针 `counter_watchlist`，并在 brief 中直接暴露 `ability_gate`，避免纯 counter-only 候选混入主候选。
+- `decide_with_runtime_index.py` 将 slot eligibility 后置到 counter 条件之后，允许弱地图但多目标成立的后手 counter 进入可讨论层；blind ban 新增 `ban_selection_windows`，在近似同分目的桶内用 side/seed 稳定轮换。
+- `decide_with_runtime_index.py` 修正 paired pick 的 counter 覆盖规则：只有 `counter_answer` 的候选不再强制占用第二个补位槽，避免 Backyard Bowl 中 Ash / Pam 这类只为覆盖敌方目标而牺牲阵容计划的组合。
+- 新增 PLP 对位覆盖审计脚本，生成 `outputs/plp-matchup-coverage-audit.md`；PLP-only 关系只作为 `needs_mechanism_review` 种子，不直接进入 runtime 对位边。
+
+## [2026-07-08] skill | 分离 BP 报告摘要与决策审计细节
+
+- `decide_with_runtime_index.py` 为入选候选和 top decision 增加 `report_summary`、`priority_factors`、`risk_summary`、`build_summary`，让选手侧输出人类报告可读的一句话摘要和少量高权重因素。
+- `render_match_report.py` / `run_local_bp_match.py` 改为在对战报告中只展示短摘要、关键因素、主要风险和构筑提示；`construct_direction`、`why_now`、能力缺口、候选短名单和分数细节继续只进入 `.decision-log.md`。
+- 更新 `run-brawl-stars-bp` 与 `brawl-stars-bp-slot-decision` 规则：局中可见状态只传 picks / bans / unavailable pool，不向下一位选手暴露前手报告摘要或审计理由。
+
+## [2026-07-08] skill | 将 BP 对局报告改为中文概括与角色配装说明
+
+- `decide_with_runtime_index.py` 的报告摘要层不再输出原始 hook / failure / build id，而是把能力证据归纳为金库输出、长线压制、开墙改地形、续航守线、反突保护等中文概念。
+- `render_match_report.py` 删除重复禁用提示、草稿流程、本地推演不确定性和裁判备注；对局报告只保留双方 ban 位、选择摘要、关键因素、主要风险、构筑提示、最终阵容职责与配装说明。
+- `side_summary` 根据每个入选英雄的 `report_summary` 和 `build_summary` 生成最终陈述中的“角色职责与配装”，把星辉 / 小工具 / 装备方向放到赛后总结而不是局中状态。
+
+## [2026-07-08] skill | 为 BP 决策审计日志增加回合级可读解释
+
+- `run_local_bp_match.py` 在每个 ban/pick 回合的 `.decision-log.md` 中新增“回合概要”“Skill 调用过程”“工具调用摘要”“工具入参”“工具出参摘要”“召回信息解释”“工具原始出参”。
+- 审计日志的前置解释层使用 `report_summary`、`priority_factors`、`risk_summary`、`build_summary` 生成中文概括，避免读者必须直接解析内部能力短语和下划线字段。
+- 原始工具返回、候选包、候选短名单、能力缺口和内部分数字段仍保留在后续审计段，便于复查具体召回与排序证据。
+
+## [2026-07-08] skill | 将 BP 本地决策从混合分改为分层裁决
+
+- `decide_with_runtime_index.py` 不再生成或暴露 `decision_score` / ability-role-strength 混合分，改为输出 `adjudication.final_bucket`、`status`、`strength_use` 和分层证据。
+- 强度只在同一裁决层内作为 tie-break；`early_pick` 以及没有 active counter value 的 `response_pick` 中，命中进场 / 控制 / 无退路 / 目标转化误判风险的路线型候选会降为 `early_exposure_watch`。
+- `run_local_bp_match.py` 的独立审计日志改为展示裁决层、裁决状态和强度用途；重新跑了 Bridge Too Far、Backyard Bowl、Ring of Fire 三张图的本地 BP 报告和 decision log。

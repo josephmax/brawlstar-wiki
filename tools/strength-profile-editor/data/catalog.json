@@ -1,0 +1,1386 @@
+{
+  "schema": "brawlstar.strength_profile.catalog.v1",
+  "source": {
+    "brawlers": "wiki/entities/brawlers/*.md",
+    "aliases": "wiki/concepts/英雄名称归一化.md",
+    "maps": "wiki/entities/maps/*.md",
+    "images": [
+      "tools/strength-profile-editor/data/brawlapi-brawler-images.json",
+      "wiki/syntheses/assets/tierlist-maker-research/*.json"
+    ]
+  },
+  "tiers": [
+    "S",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "modes": [
+    "Gem Grab",
+    "Brawl Ball",
+    "Heist",
+    "Hot Zone",
+    "Knockout",
+    "Bounty",
+    "Showdown"
+  ],
+  "maps": [
+    {
+      "name": "Double Swoosh",
+      "mode": "Gem Grab"
+    },
+    {
+      "name": "Gem Fort",
+      "mode": "Gem Grab"
+    },
+    {
+      "name": "Hard Rock Mine",
+      "mode": "Gem Grab"
+    },
+    {
+      "name": "Undermine",
+      "mode": "Gem Grab"
+    },
+    {
+      "name": "Backyard Bowl",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Center Stage",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Pinball Dreams",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Sneaky Fields",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Triple Dribble",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Bridge Too Far",
+      "mode": "Heist"
+    },
+    {
+      "name": "Hot Potato",
+      "mode": "Heist"
+    },
+    {
+      "name": "Kaboom Canyon",
+      "mode": "Heist"
+    },
+    {
+      "name": "Pit Stop",
+      "mode": "Heist"
+    },
+    {
+      "name": "Safe Zone",
+      "mode": "Heist"
+    },
+    {
+      "name": "Safe(r) Zone",
+      "mode": "Heist"
+    },
+    {
+      "name": "Dueling Beetles",
+      "mode": "Hot Zone"
+    },
+    {
+      "name": "Open Business",
+      "mode": "Hot Zone"
+    },
+    {
+      "name": "Parallel Plays",
+      "mode": "Hot Zone"
+    },
+    {
+      "name": "Ring of Fire",
+      "mode": "Hot Zone"
+    },
+    {
+      "name": "Belle's Rock",
+      "mode": "Knockout"
+    },
+    {
+      "name": "Flaring Phoenix",
+      "mode": "Knockout"
+    },
+    {
+      "name": "New Horizons",
+      "mode": "Knockout"
+    },
+    {
+      "name": "Out in the Open",
+      "mode": "Knockout"
+    },
+    {
+      "name": "Dry Season",
+      "mode": "Bounty"
+    },
+    {
+      "name": "Hideout",
+      "mode": "Bounty"
+    },
+    {
+      "name": "Layer Cake",
+      "mode": "Bounty"
+    },
+    {
+      "name": "Shooting Star",
+      "mode": "Bounty"
+    }
+  ],
+  "brawlers": [
+    {
+      "name": "8-Bit",
+      "aliases": [
+        "8比特",
+        "老八",
+        "🕹️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000027.png"
+    },
+    {
+      "name": "Alli",
+      "aliases": [
+        "鳄莉",
+        "鳄鱼",
+        "🐊"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000095.png"
+    },
+    {
+      "name": "Amber",
+      "aliases": [
+        "琥珀",
+        "🔥"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000040.png"
+    },
+    {
+      "name": "Angelo",
+      "aliases": [
+        "安吉洛"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000079.png"
+    },
+    {
+      "name": "Ash",
+      "aliases": [
+        "阿拾",
+        "🧹",
+        "🗑️",
+        "垃圾桶"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000051.png"
+    },
+    {
+      "name": "Barley",
+      "aliases": [
+        "巴利",
+        "酒保",
+        "🍾"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000006.png"
+    },
+    {
+      "name": "Bea",
+      "aliases": [
+        "贝亚",
+        "🐝",
+        "蜜蜂"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000029.png"
+    },
+    {
+      "name": "Belle",
+      "aliases": [
+        "贝尔"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000046.png"
+    },
+    {
+      "name": "Berry",
+      "aliases": [
+        "贝瑞",
+        "🍦"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000082.png"
+    },
+    {
+      "name": "Bibi",
+      "aliases": [
+        "比比",
+        "⚾"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000026.png"
+    },
+    {
+      "name": "Bo",
+      "aliases": [
+        "阿渤",
+        "🏹"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000014.png"
+    },
+    {
+      "name": "Bolt",
+      "aliases": [
+        "张雪峰"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000106.png"
+    },
+    {
+      "name": "Bonnie",
+      "aliases": [
+        "邦妮"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000058.png"
+    },
+    {
+      "name": "Brock",
+      "aliases": [
+        "布洛克"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000003.png"
+    },
+    {
+      "name": "Bull",
+      "aliases": [
+        "公牛",
+        "🐂"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000002.png"
+    },
+    {
+      "name": "Buster",
+      "aliases": [
+        "巴斯特",
+        "🎥"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000062.png"
+    },
+    {
+      "name": "Buzz",
+      "aliases": [
+        "巴兹",
+        "🦖"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000049.png"
+    },
+    {
+      "name": "Byron",
+      "aliases": [
+        "拜伦",
+        "🧪"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000042.png"
+    },
+    {
+      "name": "Carl",
+      "aliases": [
+        "卡尔",
+        "⛏️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000025.png"
+    },
+    {
+      "name": "Charlie",
+      "aliases": [
+        "查莉",
+        "查理",
+        "🕷️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000074.png"
+    },
+    {
+      "name": "Chester",
+      "aliases": [
+        "切斯特",
+        "小丑",
+        "消愁",
+        "🤡"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000063.png"
+    },
+    {
+      "name": "Chuck",
+      "aliases": [
+        "查克",
+        "🚂"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000073.png"
+    },
+    {
+      "name": "Clancy",
+      "aliases": [
+        "克兰西",
+        "龙虾",
+        "🦞"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000083.png"
+    },
+    {
+      "name": "Colette",
+      "aliases": [
+        "科莱特"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000039.png"
+    },
+    {
+      "name": "Colt",
+      "aliases": [
+        "柯尔特",
+        "孤儿特"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000001.png"
+    },
+    {
+      "name": "Cordelius",
+      "aliases": [
+        "科迪琉斯",
+        "kd64",
+        "64",
+        "蘑菇",
+        "🍄"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000070.png"
+    },
+    {
+      "name": "Crow",
+      "aliases": [
+        "黑鸦",
+        "乌鸦",
+        "🐦‍⬛"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000012.png"
+    },
+    {
+      "name": "Damian",
+      "aliases": [
+        "达米安"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000104.png"
+    },
+    {
+      "name": "Darryl",
+      "aliases": [
+        "达里尔",
+        "🛢️",
+        "桶子",
+        "滚筒"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000018.png"
+    },
+    {
+      "name": "Doug",
+      "aliases": [
+        "道格",
+        "热狗",
+        "🌭",
+        "刀哥",
+        "引进",
+        "引金"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000071.png"
+    },
+    {
+      "name": "Draco",
+      "aliases": [
+        "德拉科",
+        "🐉",
+        "龙"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000080.png"
+    },
+    {
+      "name": "Dynamike",
+      "aliases": [
+        "爆破麦克",
+        "麦克",
+        "炸弹人",
+        "🧨"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000009.png"
+    },
+    {
+      "name": "Edgar",
+      "aliases": [
+        "艾德加",
+        "506",
+        "🧣"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000043.png"
+    },
+    {
+      "name": "El Primo",
+      "aliases": [
+        "普利莫",
+        "拳王",
+        "943",
+        "修胎",
+        "橡皮人",
+        "荒野勒布朗"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000010.png"
+    },
+    {
+      "name": "Emz",
+      "aliases": [
+        "艾魅",
+        "喷雾"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000030.png"
+    },
+    {
+      "name": "Eve",
+      "aliases": [
+        "伊芙",
+        "🥚",
+        "外星人",
+        "👽"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000056.png"
+    },
+    {
+      "name": "Fang",
+      "aliases": [
+        "阿方",
+        "🦶",
+        "方"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000054.png"
+    },
+    {
+      "name": "Finx",
+      "aliases": [
+        "芬克斯"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000092.png"
+    },
+    {
+      "name": "Frank",
+      "aliases": [
+        "弗兰肯",
+        "大锤"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000020.png"
+    },
+    {
+      "name": "Gale",
+      "aliases": [
+        "盖尔",
+        "格尔"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000035.png"
+    },
+    {
+      "name": "Gene",
+      "aliases": [
+        "吉恩",
+        "灯神",
+        "🧞"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000021.png"
+    },
+    {
+      "name": "Gigi",
+      "aliases": [
+        "吉吉",
+        "GG",
+        "琪琪"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000100.png"
+    },
+    {
+      "name": "Glowy",
+      "aliases": [
+        "格洛薇",
+        "Clowbert"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000101.png"
+    },
+    {
+      "name": "Gray",
+      "aliases": [
+        "格雷"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000064.png"
+    },
+    {
+      "name": "Griff",
+      "aliases": [
+        "格里夫",
+        "撒币"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000050.png"
+    },
+    {
+      "name": "Grom",
+      "aliases": [
+        "格罗姆"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000048.png"
+    },
+    {
+      "name": "Gus",
+      "aliases": [
+        "格斯",
+        "🎈"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000061.png"
+    },
+    {
+      "name": "Hank",
+      "aliases": [
+        "汉克",
+        "🦐"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000069.png"
+    },
+    {
+      "name": "Jacky",
+      "aliases": [
+        "雅琪",
+        "牢琪"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000034.png"
+    },
+    {
+      "name": "Jae-yong",
+      "aliases": [
+        "Jae-Yong",
+        "Jae Yong",
+        "载勇"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000093.png"
+    },
+    {
+      "name": "Janet",
+      "aliases": [
+        "珍妮特",
+        "牢珍"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000057.png"
+    },
+    {
+      "name": "Jessie",
+      "aliases": [
+        "杰西"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000007.png"
+    },
+    {
+      "name": "Juju",
+      "aliases": [],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000087.png"
+    },
+    {
+      "name": "Kaze",
+      "aliases": [
+        "风机",
+        "风姬",
+        "小风"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000094.png"
+    },
+    {
+      "name": "Kenji",
+      "aliases": [
+        "肯吉",
+        "🍣",
+        "🥷",
+        "健次"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000085.png"
+    },
+    {
+      "name": "Kit",
+      "aliases": [
+        "猫咪",
+        "猫",
+        "键帽",
+        "🐱"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000076.png"
+    },
+    {
+      "name": "Larry & Lawrie",
+      "aliases": [
+        "拉里和劳里",
+        "拉里劳里",
+        "双子",
+        "Twins",
+        "LarryLawrie",
+        "Larry Lawrie",
+        "LL",
+        "👮"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000077.png"
+    },
+    {
+      "name": "Leon",
+      "aliases": [
+        "里昂",
+        "🦎"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000023.png"
+    },
+    {
+      "name": "Lily",
+      "aliases": [
+        "莉莉",
+        "🌸"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000081.png"
+    },
+    {
+      "name": "Lola",
+      "aliases": [
+        "萝拉",
+        "💃"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000053.png"
+    },
+    {
+      "name": "Lou",
+      "aliases": [
+        "卢",
+        "🧊",
+        "小罗"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000041.png"
+    },
+    {
+      "name": "Lumi",
+      "aliases": [
+        "露米"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000091.png"
+    },
+    {
+      "name": "Maisie",
+      "aliases": [
+        "梅茜",
+        "麦茜"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000068.png"
+    },
+    {
+      "name": "Mandy",
+      "aliases": [
+        "曼迪",
+        "🍬"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000065.png"
+    },
+    {
+      "name": "Max",
+      "aliases": [
+        "麦克斯"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000032.png"
+    },
+    {
+      "name": "Meeple",
+      "aliases": [
+        "米普尔",
+        "🎲",
+        "秘宝"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000089.png"
+    },
+    {
+      "name": "Meg",
+      "aliases": [
+        "梅格",
+        "梅亩",
+        "梅/",
+        "梅%",
+        "🤖"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000052.png"
+    },
+    {
+      "name": "Melodie",
+      "aliases": [
+        "麦乐迪",
+        "梅洛蒂",
+        "🎵"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000078.png"
+    },
+    {
+      "name": "Mico",
+      "aliases": [
+        "米科",
+        "吗喽"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000075.png"
+    },
+    {
+      "name": "Mina",
+      "aliases": [
+        "米娜"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000097.png"
+    },
+    {
+      "name": "Moe",
+      "aliases": [
+        "莫伊",
+        "键鼠",
+        "老鼠",
+        "🐭"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000084.png"
+    },
+    {
+      "name": "Mortis",
+      "aliases": [
+        "莫提斯",
+        "铲子",
+        "⚰️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000011.png"
+    },
+    {
+      "name": "Mr. P",
+      "aliases": [
+        "P先生",
+        "Mr P",
+        "牢P",
+        "企鹅",
+        "🐧"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000031.png"
+    },
+    {
+      "name": "Najia",
+      "aliases": [
+        "娜迦",
+        "🐍"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000103.png"
+    },
+    {
+      "name": "Nani",
+      "aliases": [
+        "纳妮",
+        "👁️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000036.png"
+    },
+    {
+      "name": "Nita",
+      "aliases": [
+        "妮塔",
+        "🐻"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000008.png"
+    },
+    {
+      "name": "Ollie",
+      "aliases": [
+        "奥利"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000090.png"
+    },
+    {
+      "name": "Otis",
+      "aliases": [
+        "奥蒂斯",
+        "🐙"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000059.png"
+    },
+    {
+      "name": "Pam",
+      "aliases": [
+        "帕姆"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000016.png"
+    },
+    {
+      "name": "Pearl",
+      "aliases": [
+        "佩尔",
+        "🍪"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000072.png"
+    },
+    {
+      "name": "Penny",
+      "aliases": [
+        "潘妮",
+        "🏴‍☠️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000019.png"
+    },
+    {
+      "name": "Pierce",
+      "aliases": [
+        "皮尔斯",
+        "p24",
+        "P24"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000099.png"
+    },
+    {
+      "name": "Piper",
+      "aliases": [
+        "佩佩",
+        "派珀",
+        "牢佩",
+        "☂️"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000015.png"
+    },
+    {
+      "name": "Poco",
+      "aliases": [
+        "波克",
+        "🎸"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000013.png"
+    },
+    {
+      "name": "R-T",
+      "aliases": [
+        "RT",
+        "R T",
+        "📹"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000066.png"
+    },
+    {
+      "name": "Rico",
+      "aliases": [
+        "瑞科",
+        "弹球"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000004.png"
+    },
+    {
+      "name": "Rosa",
+      "aliases": [
+        "罗莎",
+        "🌹"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000024.png"
+    },
+    {
+      "name": "Ruffs",
+      "aliases": [
+        "拉夫斯",
+        "拉夫上校",
+        "上校",
+        "🐶",
+        "狗子",
+        "狗"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000044.png"
+    },
+    {
+      "name": "Sam",
+      "aliases": [
+        "山姆"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000060.png"
+    },
+    {
+      "name": "Sandy",
+      "aliases": [
+        "沙迪",
+        "😴"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000028.png"
+    },
+    {
+      "name": "Shade",
+      "aliases": [
+        "谢德"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000086.png"
+    },
+    {
+      "name": "Shelly",
+      "aliases": [
+        "雪莉",
+        "🐚"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000000.png"
+    },
+    {
+      "name": "Sirius",
+      "aliases": [],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000102.png"
+    },
+    {
+      "name": "Spike",
+      "aliases": [
+        "斯派克",
+        "仙人掌",
+        "🌵"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000005.png"
+    },
+    {
+      "name": "Sprout",
+      "aliases": [
+        "芽芽",
+        "斯普劳特",
+        "🌱"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000037.png"
+    },
+    {
+      "name": "Squeak",
+      "aliases": [
+        "史魁克",
+        "史奎克",
+        "口水怪"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000047.png"
+    },
+    {
+      "name": "Starr Nova",
+      "aliases": [
+        "⭐"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000105.png"
+    },
+    {
+      "name": "Stu",
+      "aliases": [
+        "斯图"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000045.png"
+    },
+    {
+      "name": "Surge",
+      "aliases": [
+        "瑟奇",
+        "奔腾",
+        "瑟爹",
+        "🥤"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000038.png"
+    },
+    {
+      "name": "Tara",
+      "aliases": [
+        "塔拉",
+        "🔮"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000017.png"
+    },
+    {
+      "name": "Tick",
+      "aliases": [
+        "迪克"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000022.png"
+    },
+    {
+      "name": "Trunk",
+      "aliases": [
+        "特朗克",
+        "🪵",
+        "桩",
+        "滚木",
+        "树桩"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000096.png"
+    },
+    {
+      "name": "Willow",
+      "aliases": [
+        "薇洛",
+        "🐸"
+      ],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000067.png"
+    },
+    {
+      "name": "Ziggy",
+      "aliases": [],
+      "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000098.png"
+    }
+  ],
+  "alias_index": {
+    "8-Bit": "8-Bit",
+    "8比特": "8-Bit",
+    "老八": "8-Bit",
+    "🕹️": "8-Bit",
+    "Alli": "Alli",
+    "鳄莉": "Alli",
+    "鳄鱼": "Alli",
+    "🐊": "Alli",
+    "Amber": "Amber",
+    "琥珀": "Amber",
+    "🔥": "Amber",
+    "Angelo": "Angelo",
+    "安吉洛": "Angelo",
+    "Ash": "Ash",
+    "阿拾": "Ash",
+    "🧹": "Ash",
+    "🗑️": "Ash",
+    "垃圾桶": "Ash",
+    "Barley": "Barley",
+    "巴利": "Barley",
+    "酒保": "Barley",
+    "🍾": "Barley",
+    "Bea": "Bea",
+    "贝亚": "Bea",
+    "🐝": "Bea",
+    "蜜蜂": "Bea",
+    "Belle": "Belle",
+    "贝尔": "Belle",
+    "Berry": "Berry",
+    "贝瑞": "Berry",
+    "🍦": "Berry",
+    "Bibi": "Bibi",
+    "比比": "Bibi",
+    "⚾": "Bibi",
+    "Bo": "Bo",
+    "阿渤": "Bo",
+    "🏹": "Bo",
+    "Bolt": "Bolt",
+    "张雪峰": "Bolt",
+    "Bonnie": "Bonnie",
+    "邦妮": "Bonnie",
+    "Brock": "Brock",
+    "布洛克": "Brock",
+    "Bull": "Bull",
+    "公牛": "Bull",
+    "🐂": "Bull",
+    "Buster": "Buster",
+    "巴斯特": "Buster",
+    "🎥": "Buster",
+    "Buzz": "Buzz",
+    "巴兹": "Buzz",
+    "🦖": "Buzz",
+    "Byron": "Byron",
+    "拜伦": "Byron",
+    "🧪": "Byron",
+    "Carl": "Carl",
+    "卡尔": "Carl",
+    "⛏️": "Carl",
+    "Charlie": "Charlie",
+    "查莉": "Charlie",
+    "查理": "Charlie",
+    "🕷️": "Charlie",
+    "Chester": "Chester",
+    "切斯特": "Chester",
+    "小丑": "Chester",
+    "消愁": "Chester",
+    "🤡": "Chester",
+    "Chuck": "Chuck",
+    "查克": "Chuck",
+    "🚂": "Chuck",
+    "Clancy": "Clancy",
+    "克兰西": "Clancy",
+    "龙虾": "Clancy",
+    "🦞": "Clancy",
+    "Colette": "Colette",
+    "科莱特": "Colette",
+    "Colt": "Colt",
+    "柯尔特": "Colt",
+    "孤儿特": "Colt",
+    "Cordelius": "Cordelius",
+    "科迪琉斯": "Cordelius",
+    "kd64": "Cordelius",
+    "64": "Cordelius",
+    "蘑菇": "Cordelius",
+    "🍄": "Cordelius",
+    "Crow": "Crow",
+    "黑鸦": "Crow",
+    "乌鸦": "Crow",
+    "🐦‍⬛": "Crow",
+    "Damian": "Damian",
+    "达米安": "Damian",
+    "Darryl": "Darryl",
+    "达里尔": "Darryl",
+    "🛢️": "Darryl",
+    "桶子": "Darryl",
+    "滚筒": "Darryl",
+    "Doug": "Doug",
+    "道格": "Doug",
+    "热狗": "Doug",
+    "🌭": "Doug",
+    "刀哥": "Doug",
+    "引进": "Doug",
+    "引金": "Doug",
+    "Draco": "Draco",
+    "德拉科": "Draco",
+    "🐉": "Draco",
+    "龙": "Draco",
+    "Dynamike": "Dynamike",
+    "爆破麦克": "Dynamike",
+    "麦克": "Dynamike",
+    "炸弹人": "Dynamike",
+    "🧨": "Dynamike",
+    "Edgar": "Edgar",
+    "艾德加": "Edgar",
+    "506": "Edgar",
+    "🧣": "Edgar",
+    "El Primo": "El Primo",
+    "普利莫": "El Primo",
+    "拳王": "El Primo",
+    "943": "El Primo",
+    "修胎": "El Primo",
+    "橡皮人": "El Primo",
+    "荒野勒布朗": "El Primo",
+    "Emz": "Emz",
+    "艾魅": "Emz",
+    "喷雾": "Emz",
+    "Eve": "Eve",
+    "伊芙": "Eve",
+    "🥚": "Eve",
+    "外星人": "Eve",
+    "👽": "Eve",
+    "Fang": "Fang",
+    "阿方": "Fang",
+    "🦶": "Fang",
+    "方": "Fang",
+    "Finx": "Finx",
+    "芬克斯": "Finx",
+    "Frank": "Frank",
+    "弗兰肯": "Frank",
+    "大锤": "Frank",
+    "Gale": "Gale",
+    "盖尔": "Gale",
+    "格尔": "Gale",
+    "Gene": "Gene",
+    "吉恩": "Gene",
+    "灯神": "Gene",
+    "🧞": "Gene",
+    "Gigi": "Gigi",
+    "吉吉": "Gigi",
+    "GG": "Gigi",
+    "琪琪": "Gigi",
+    "Glowy": "Glowy",
+    "格洛薇": "Glowy",
+    "Clowbert": "Glowy",
+    "Gray": "Gray",
+    "格雷": "Gray",
+    "Griff": "Griff",
+    "格里夫": "Griff",
+    "撒币": "Griff",
+    "Grom": "Grom",
+    "格罗姆": "Grom",
+    "Gus": "Gus",
+    "格斯": "Gus",
+    "🎈": "Gus",
+    "Hank": "Hank",
+    "汉克": "Hank",
+    "🦐": "Hank",
+    "Jacky": "Jacky",
+    "雅琪": "Jacky",
+    "牢琪": "Jacky",
+    "Jae-yong": "Jae-yong",
+    "Jae-Yong": "Jae-yong",
+    "Jae Yong": "Jae-yong",
+    "载勇": "Jae-yong",
+    "Janet": "Janet",
+    "珍妮特": "Janet",
+    "牢珍": "Janet",
+    "Jessie": "Jessie",
+    "杰西": "Jessie",
+    "Juju": "Juju",
+    "Kaze": "Kaze",
+    "风机": "Kaze",
+    "风姬": "Kaze",
+    "小风": "Kaze",
+    "Kenji": "Kenji",
+    "肯吉": "Kenji",
+    "🍣": "Kenji",
+    "🥷": "Kenji",
+    "健次": "Kenji",
+    "Kit": "Kit",
+    "猫咪": "Kit",
+    "猫": "Kit",
+    "键帽": "Kit",
+    "🐱": "Kit",
+    "Larry & Lawrie": "Larry & Lawrie",
+    "拉里和劳里": "Larry & Lawrie",
+    "拉里劳里": "Larry & Lawrie",
+    "双子": "Larry & Lawrie",
+    "Twins": "Larry & Lawrie",
+    "LarryLawrie": "Larry & Lawrie",
+    "Larry Lawrie": "Larry & Lawrie",
+    "LL": "Larry & Lawrie",
+    "👮": "Larry & Lawrie",
+    "Leon": "Leon",
+    "里昂": "Leon",
+    "🦎": "Leon",
+    "Lily": "Lily",
+    "莉莉": "Lily",
+    "🌸": "Lily",
+    "Lola": "Lola",
+    "萝拉": "Lola",
+    "💃": "Lola",
+    "Lou": "Lou",
+    "卢": "Lou",
+    "🧊": "Lou",
+    "小罗": "Lou",
+    "Lumi": "Lumi",
+    "露米": "Lumi",
+    "Maisie": "Maisie",
+    "梅茜": "Maisie",
+    "麦茜": "Maisie",
+    "Mandy": "Mandy",
+    "曼迪": "Mandy",
+    "🍬": "Mandy",
+    "Max": "Max",
+    "麦克斯": "Max",
+    "Meeple": "Meeple",
+    "米普尔": "Meeple",
+    "🎲": "Meeple",
+    "秘宝": "Meeple",
+    "Meg": "Meg",
+    "梅格": "Meg",
+    "梅亩": "Meg",
+    "梅/": "Meg",
+    "梅%": "Meg",
+    "🤖": "Meg",
+    "Melodie": "Melodie",
+    "麦乐迪": "Melodie",
+    "梅洛蒂": "Melodie",
+    "🎵": "Melodie",
+    "Mico": "Mico",
+    "米科": "Mico",
+    "吗喽": "Mico",
+    "Mina": "Mina",
+    "米娜": "Mina",
+    "Moe": "Moe",
+    "莫伊": "Moe",
+    "键鼠": "Moe",
+    "老鼠": "Moe",
+    "🐭": "Moe",
+    "Mortis": "Mortis",
+    "莫提斯": "Mortis",
+    "铲子": "Mortis",
+    "⚰️": "Mortis",
+    "Mr. P": "Mr. P",
+    "P先生": "Mr. P",
+    "Mr P": "Mr. P",
+    "牢P": "Mr. P",
+    "企鹅": "Mr. P",
+    "🐧": "Mr. P",
+    "Najia": "Najia",
+    "娜迦": "Najia",
+    "🐍": "Najia",
+    "Nani": "Nani",
+    "纳妮": "Nani",
+    "👁️": "Nani",
+    "Nita": "Nita",
+    "妮塔": "Nita",
+    "🐻": "Nita",
+    "Ollie": "Ollie",
+    "奥利": "Ollie",
+    "Otis": "Otis",
+    "奥蒂斯": "Otis",
+    "🐙": "Otis",
+    "Pam": "Pam",
+    "帕姆": "Pam",
+    "Pearl": "Pearl",
+    "佩尔": "Pearl",
+    "🍪": "Pearl",
+    "Penny": "Penny",
+    "潘妮": "Penny",
+    "🏴‍☠️": "Penny",
+    "Pierce": "Pierce",
+    "皮尔斯": "Pierce",
+    "p24": "Pierce",
+    "P24": "Pierce",
+    "Piper": "Piper",
+    "佩佩": "Piper",
+    "派珀": "Piper",
+    "牢佩": "Piper",
+    "☂️": "Piper",
+    "Poco": "Poco",
+    "波克": "Poco",
+    "🎸": "Poco",
+    "R-T": "R-T",
+    "RT": "R-T",
+    "R T": "R-T",
+    "📹": "R-T",
+    "Rico": "Rico",
+    "瑞科": "Rico",
+    "弹球": "Rico",
+    "Rosa": "Rosa",
+    "罗莎": "Rosa",
+    "🌹": "Rosa",
+    "Ruffs": "Ruffs",
+    "拉夫斯": "Ruffs",
+    "拉夫上校": "Ruffs",
+    "上校": "Ruffs",
+    "🐶": "Ruffs",
+    "狗子": "Ruffs",
+    "狗": "Ruffs",
+    "Sam": "Sam",
+    "山姆": "Sam",
+    "Sandy": "Sandy",
+    "沙迪": "Sandy",
+    "😴": "Sandy",
+    "Shade": "Shade",
+    "谢德": "Shade",
+    "Shelly": "Shelly",
+    "雪莉": "Shelly",
+    "🐚": "Shelly",
+    "Sirius": "Sirius",
+    "Spike": "Spike",
+    "斯派克": "Spike",
+    "仙人掌": "Spike",
+    "🌵": "Spike",
+    "Sprout": "Sprout",
+    "芽芽": "Sprout",
+    "斯普劳特": "Sprout",
+    "🌱": "Sprout",
+    "Squeak": "Squeak",
+    "史魁克": "Squeak",
+    "史奎克": "Squeak",
+    "口水怪": "Squeak",
+    "Starr Nova": "Starr Nova",
+    "⭐": "Starr Nova",
+    "Stu": "Stu",
+    "斯图": "Stu",
+    "Surge": "Surge",
+    "瑟奇": "Surge",
+    "奔腾": "Surge",
+    "瑟爹": "Surge",
+    "🥤": "Surge",
+    "Tara": "Tara",
+    "塔拉": "Tara",
+    "🔮": "Tara",
+    "Tick": "Tick",
+    "迪克": "Tick",
+    "Trunk": "Trunk",
+    "特朗克": "Trunk",
+    "🪵": "Trunk",
+    "桩": "Trunk",
+    "滚木": "Trunk",
+    "树桩": "Trunk",
+    "Willow": "Willow",
+    "薇洛": "Willow",
+    "🐸": "Willow",
+    "Ziggy": "Ziggy"
+  },
+  "ambiguous": {
+    "猴子": [
+      "Brock",
+      "Mico"
+    ],
+    "🐒": [
+      "Brock",
+      "Mico"
+    ]
+  }
+}

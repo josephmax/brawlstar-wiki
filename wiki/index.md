@@ -47,6 +47,7 @@
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 - [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]
+- [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]
 
 - 英雄来源（104 个 BP-active）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]

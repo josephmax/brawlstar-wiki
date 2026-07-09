@@ -1,0 +1,27 @@
+{
+  "schema": "brawlstar.strength_profile.v1",
+  "profile_id": "ikaoss11-july-2026-screenshot",
+  "patch_id": "season-52-2026-07-05",
+  "source": {
+    "kind": "adopted-default-global-strength",
+    "creator": "iKaoss11",
+    "url": "https://www.youtube.com/watch?v=dYE3tTni8Gk",
+    "wiki_source": "wiki/sources/iKaoss11-July-2026-Strength-Profile.md"
+  },
+  "tier_order": ["S", "A", "B", "C", "D", "E"],
+  "profiles": {
+    "global": {
+      "scope": "global",
+      "tiers": {
+        "S": ["Brock", "8-Bit", "Meg", "Max", "Surge", "Damian", "Starr Nova", "Crow", "Ruffs", "Pierce"],
+        "A": ["Poco", "Glowy", "Emz", "Stu", "Griff", "Colette", "Belle", "Byron", "Pearl", "Meeple", "Moe", "Lumi", "Finx", "Chester", "Sandy", "Gale", "Kaze", "Berry", "Charlie", "Edgar"],
+        "B": ["Otis", "Rico", "Colt", "Angelo", "Leon", "Barley", "Nita", "Bibi", "Kenji", "Piper", "Nani", "Lola", "Shade", "Mortis", "Gene", "Lou", "Buzz", "R-T", "Willow", "Lily", "Jae-yong", "Najia", "Kit", "Penny"],
+        "C": ["Fang", "Cordelius", "Spike", "Gus", "Amber", "Sirius", "Draco", "Gray", "Janet", "Larry & Lawrie", "Bea", "Carl", "Trunk", "Bull", "Darryl", "Ash", "Bo", "Maisie", "Juju", "Ziggy", "Squeak", "Eve", "Buster", "Melodie", "Ollie", "Alli", "Mina"],
+        "D": ["Pam", "Tara", "Gigi", "Clancy", "Mr. P", "Hank", "Frank", "Dynamike", "Tick", "Sprout", "Shelly", "Jessie", "Bonnie", "Doug"],
+        "E": ["Mandy", "El Primo", "Rosa", "Jacky", "Grom", "Sam", "Bolt", "Chuck", "Mico"]
+      }
+    },
+    "modes": {},
+    "maps": {}
+  }
+}

@@ -15,7 +15,7 @@ from typing import Any
 
 
 DEFAULT_INDEX_DIR = "outputs/runtime-bp-index"
-DEFAULT_STRENGTH_PROFILE_ID = "default_current_version_unknown"
+DEFAULT_STRENGTH_PROFILE_ID = "ikaoss11-july-2026-screenshot"
 
 
 def utc_now() -> datetime:
@@ -151,6 +151,10 @@ def make_lock_payload(
         "owner": args.owner or default_owner(),
         "started_at": iso_now(),
         "compile_input_hash": compile_input_hash,
+        "patch_id": args.patch_id or "default-current",
+        "map_pool_id": args.map_pool_id or "current-ranked",
+        "strength_profile_id": args.strength_profile_id or DEFAULT_STRENGTH_PROFILE_ID,
+        "strength_profile_hash": args.strength_profile_hash or "unknown",
         "attempt": attempt,
     }
 

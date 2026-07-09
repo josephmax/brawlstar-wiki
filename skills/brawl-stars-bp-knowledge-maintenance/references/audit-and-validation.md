@@ -10,6 +10,7 @@ The BP maintenance skill owns the workflow for these repo scripts:
 - `scripts/ingest_brawler_sources.py`
 - `scripts/ingest_brawler_bp_profiles.py`
 - `scripts/audit_bp_profile_quality.py`
+- `scripts/audit_plp_matchup_coverage.py`
 - `scripts/test_bp_skill_contract.py`
 
 They live inside `skills/brawl-stars-bp-knowledge-maintenance/scripts/`. Do not recreate a repository-level helper directory for these BP maintenance scripts.
@@ -26,6 +27,7 @@ Expected write targets:
 | `scripts/ingest_brawler_sources.py` | `wiki/sources/Fandom-*`, `wiki/sources/PLP-*` | canonical source summary |
 | `scripts/ingest_brawler_bp_profiles.py` | `wiki/entities/brawlers/` | canonical brawler entity draft/profile |
 | `scripts/audit_bp_profile_quality.py --write` | `outputs/bp-profile-quality-audit.md` | generated audit report |
+| `scripts/audit_plp_matchup_coverage.py --write` | `outputs/plp-matchup-coverage-audit.md` | generated audit report |
 | `scripts/test_bp_skill_contract.py` | stdout only | validation output |
 
 Canonical knowledge writes belong in `raw/` or `wiki/` as listed above. Generated audit reports and runtime indexes go to `outputs/`.
@@ -45,6 +47,18 @@ python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_bp_profile_qua
 ```
 
 The report belongs in `outputs/bp-profile-quality-audit.md`, not `wiki/syntheses/`.
+
+## PLP Matchup Coverage Audit
+
+Run this after changing PLP ingest, brawler matchup fields, or runtime matchup compilation:
+
+```bash
+python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_plp_matchup_coverage.py \
+  --runtime-index outputs/runtime-bp-index/default-tierlist-all-maps-thin.json \
+  --write
+```
+
+The report belongs in `outputs/plp-matchup-coverage-audit.md`. PLP-only rows are `conditional_matchup_seed` candidates. They must not be copied into runtime as hard matchup edges until a maintainer adds mechanism, `active_when`, `fails_when`, map/mode conditions, and `bp_use` to the relevant brawler entity page.
 
 Audit blockers include:
 

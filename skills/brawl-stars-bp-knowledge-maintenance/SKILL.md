@@ -52,11 +52,14 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/ingest_brawler_sources.py`
 - `scripts/ingest_brawler_bp_profiles.py`
 - `scripts/audit_bp_profile_quality.py`
+- `scripts/audit_plp_matchup_coverage.py`
 - `scripts/test_bp_skill_contract.py`
 
 Use `--dry-run` when a script offers it before large writes. Treat script output as a maintenance aid, not proof that a brawler or map is strategically correct.
 
 `scripts/capture_brawler_sources.py` is the repeatable hero source capture script. Its `--sites` parameter accepts `fandom`, `plp`, or both; map Fandom raw capture is handled through the map ingest flow in `references/source-ingest.md`.
+
+`scripts/audit_plp_matchup_coverage.py` compares PLP raw `countersThese` / `counteredBy` pairs with a compiled `runtime_bp_index.matchup_index`. It writes generated reports to `outputs/` and treats PLP-only pairs as review seeds, not runtime matchup edges. Promote a seed only by adding mechanism, `active_when`, `fails_when`, and `bp_use` to the relevant brawler entity page.
 
 ## Completion Checklist
 

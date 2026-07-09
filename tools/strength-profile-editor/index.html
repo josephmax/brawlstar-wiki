@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brawl Stars Strength Profile Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Strength Profile Editor</h1>
+          <div class="context-line">
+            当前编辑：<strong id="contextLabel">通用强度</strong>
+            <span id="coverageLabel">作用域独立：地图 / 模式 / 通用</span>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button id="importFileButton" type="button">导入</button>
+          <input id="importFileInput" type="file" accept="application/json,.json" hidden />
+          <button id="copyButton" type="button">复制 JSON</button>
+          <button id="exportButton" type="button">导出 JSON</button>
+        </div>
+      </header>
+
+      <section class="scope-panel" aria-label="strength scope">
+        <div class="scope-tabs" role="tablist" aria-label="strength scope">
+          <button class="scope-tab is-active" type="button" data-scope="global">通用强度</button>
+          <button class="scope-tab" type="button" data-scope="mode">模式强度</button>
+          <button class="scope-tab" type="button" data-scope="map">地图强度</button>
+        </div>
+        <label class="field">
+          <span>Mode</span>
+          <select id="modeSelect"></select>
+        </label>
+        <label class="field">
+          <span>Map</span>
+          <select id="mapSelect"></select>
+        </label>
+        <label class="field patch-field">
+          <span>Patch</span>
+          <input id="patchInput" value="current" />
+        </label>
+        <button id="clearScopeButton" class="secondary-action" type="button">清空当前层</button>
+      </section>
+
+      <main class="workspace">
+        <aside class="panel roster-panel">
+          <div class="panel-title">未分配英雄</div>
+          <input id="searchInput" class="search-input" placeholder="搜索英雄 / 别名 / emoji" />
+          <div id="searchStatus" class="search-status"></div>
+          <div id="poolDropzone" class="drop-zone pool-zone" data-zone="pool"></div>
+        </aside>
+
+        <section id="tierBoard" class="tier-board" aria-label="tier board"></section>
+
+        <aside class="panel output-panel">
+          <div class="panel-title">当前层强度</div>
+          <div id="effectiveSource" class="effective-source">-</div>
+          <div id="exportStatus" class="export-status"></div>
+          <textarea id="jsonInput" class="json-input" placeholder="粘贴 strength_profile 或 TierListMaker JSON"></textarea>
+          <button id="importTextButton" type="button">导入粘贴内容</button>
+          <pre id="jsonPreview" class="json-preview"></pre>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

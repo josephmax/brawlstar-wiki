@@ -13,6 +13,8 @@ JUDGE_RENDERER = ROOT / "skills" / "run-brawl-stars-bp" / "scripts" / "render_ma
 PLAYER_SKILL = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "SKILL.md"
 PLAYER_COMPILE_REF = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "references" / "compile-knowledge.md"
 PLAYER_DECIDE_REF = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "references" / "runtime-decision-knowledge.md"
+PLAYER_FACT_QUERY_SCRIPT = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "scripts" / "query_runtime_facts.py"
+PLAYER_FACT_HYDRATE_SCRIPT = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "scripts" / "hydrate_runtime_facts.py"
 MAINTENANCE_SKILL = ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "SKILL.md"
 AGENTS = ROOT / "AGENTS.md"
 MAINTENANCE_REFS = [
@@ -30,6 +32,7 @@ MAINTENANCE_SCRIPTS = [
     MAINTENANCE_SCRIPT_DIR / "ingest_brawler_sources.py",
     MAINTENANCE_SCRIPT_DIR / "ingest_brawler_bp_profiles.py",
     MAINTENANCE_SCRIPT_DIR / "audit_bp_profile_quality.py",
+    MAINTENANCE_SCRIPT_DIR / "audit_plp_matchup_coverage.py",
     MAINTENANCE_SCRIPT_DIR / "test_bp_skill_contract.py",
 ]
 
@@ -57,15 +60,31 @@ def test_judge_skill_contract() -> None:
         "human_readable_report",
         "randomize_strategy_bias",
         "state_handoff_to_next_turn",
+        "query_runtime_facts.py",
+        "hydrate_runtime_facts.py",
+        "neutral fact-tool calls",
+        "decision_audit_narrative",
+        "ban位压力查询前12个热门英雄",
+        "召回规模",
+        "完整阵容",
+        "post_draft_review",
+        "final_draft_review",
+        "cannot change picks",
+        "side_asymmetric_ban_strategy",
+        "first_pick_initiative",
+        "last_counter_leverage",
+        "decision_effort_policy",
+        "low=24",
+        "high=32",
     ]
     for term in required_terms:
         assert term in text or term in schema, term
 
     for section in [
-        "Match Summary",
-        "Draft Timeline",
-        "Player Final Statements",
-        "Execution Metadata",
+        "对局摘要",
+        "选择时间线",
+        "玩家最终陈述",
+        "执行元数据",
     ]:
         assert section in schema, section
 
@@ -91,9 +110,12 @@ def test_judge_report_renderer_contract() -> None:
         "REPORT_TEMPLATE",
         "render_match_report",
         "strategy_bias",
-        "Draft Timeline",
-        "Player Final Statements",
-        "state_handoff_to_next_turn",
+        "对局摘要",
+        "选择时间线",
+        "玩家最终陈述",
+        "角色职责与配装",
+        "report_summary",
+        "build_summary",
     ]
     for term in required_terms:
         assert term in renderer, term
@@ -123,8 +145,22 @@ def test_player_skill_contract() -> None:
         "wiki/entities/maps/",
         "wiki/entities/brawlers/",
         "strength_context",
-        "meta_pressure",
-        "overpowered_or_t0_exception",
+        "tool-consumable runtime index",
+        "strength_weight",
+        "工具只做事实召回",
+        "include-id",
+        "exclude-id",
+        "relation-target",
+        "--bucket",
+        "map_pool_signature",
+        "candidate_index",
+        "brawler_runtime_cards",
+        "matchup_index",
+        "audit_summary",
+        "evidence_refs",
+        "mode_contract_fit",
+        "matched capabilities",
+        "stable map hooks and matched capabilities",
         "strategy_bias",
         "conservative",
         "balanced",
@@ -138,8 +174,32 @@ def test_player_skill_contract() -> None:
         "do_not_demote_tank_assassin_for_style_alone",
         "runtime_index_precheck",
         "scripts/runtime_index_precheck.py",
+        "scripts/query_runtime_facts.py",
+        "scripts/hydrate_runtime_facts.py",
         "runtime_index_key",
         "runtime_index_compile_failed",
+        "--summary",
+        "entity_window",
+        "strength_tier",
+        "strength_rank",
+        "retrieval_audit",
+        "payload_kb",
+        "fragments_returned",
+        "turn_decision_trace",
+        "final_draft_review",
+        "role_build_plan",
+        "decision_effort_policy",
+        "low=24",
+        "high=32",
+        "side_asymmetric_ban_strategy",
+        "first_pick_initiative",
+        "last_counter_leverage",
+        "protect_first_pick",
+        "deny_blue_safe_opener",
+        "preserve_red6_counter_pool",
+        "ban_overlap_risk",
+        "opener_safety",
+        "last_pick_counterability",
     ]
     for term in required_terms:
         assert term in text, term
@@ -156,12 +216,18 @@ def test_player_skill_contract() -> None:
     for term in [
         "compile_input",
         "strength_profile",
-        "map_duties",
-        "brawler_cards",
-        "map_brawler_edges",
-        "draft_edges",
+        "strength_weight",
+        "map_pool_signature",
+        "candidate_index",
+        "brawler_runtime_cards",
+        "matchup_index",
+        "audit_summary",
+        "evidence_refs",
+        "debug traces",
         "default_current_version_unknown",
         "User-supplied strength compile",
+        "`mode_contract_hit` is only evidence that the brawler page has a contract for this mode",
+        "`early_pick`, `response_pick`, `late_pick`, and `ban_pressure` projections require concrete map fit first",
     ]:
         assert term in compile_ref, term
 
@@ -169,18 +235,52 @@ def test_player_skill_contract() -> None:
         "decide_input",
         "runtime_index_precheck",
         "scripts/runtime_index_precheck.py",
-        "slot_policy",
-        "hard_gate_result",
+        "query_runtime_facts.py",
+        "hydrate_runtime_facts.py",
+        "Neutral Fact Tools",
+        "--summary",
+        "entity_window",
+        "strength_tier",
+        "strength_rank",
+        "--bucket",
         "candidate_eval",
-        "balanced_threat_probe",
         "bp_recommendation",
         "runtime_index_compile_failed",
+        "retrieval_audit",
+        "payload_kb",
+        "fragments_returned",
+        "turn_decision_trace",
+        "final_draft_review",
+        "role_build_plan",
+        "decision_effort_policy",
+        "low=24",
+        "high=32",
+        "side_asymmetric_ban_strategy",
+        "first_pick_initiative",
+        "last_counter_leverage",
+        "protect_first_pick",
+        "deny_blue_safe_opener",
+        "preserve_red6_counter_pool",
+        "ban_overlap_risk",
+        "opener_safety",
+        "last_pick_counterability",
     ]:
         assert term in decide_ref, term
 
     forbidden_runtime_path = "wiki/syntheses/"
-    for artifact in [text, compile_ref, decide_ref]:
+    fact_query_script = read(PLAYER_FACT_QUERY_SCRIPT)
+    fact_hydrate_script = read(PLAYER_FACT_HYDRATE_SCRIPT)
+    for removed in [
+        ROOT / "skills" / "brawl-stars-bp-slot-decision" / "scripts" / "query_runtime_index.py",
+        ROOT / "skills" / "brawl-stars-bp-slot-decision" / "scripts" / "hydrate_runtime_evidence.py",
+        ROOT / "skills" / "brawl-stars-bp-slot-decision" / "scripts" / "decide_with_runtime_index.py",
+    ]:
+        assert not removed.exists(), f"removed decision-shaped tool still exists: {removed.relative_to(ROOT)}"
+    for artifact in [text, compile_ref, decide_ref, fact_query_script, fact_hydrate_script]:
         assert forbidden_runtime_path not in artifact, forbidden_runtime_path
+        assert "strength_prior" not in artifact, "strength_prior"
+        for retired_effort in ["max=80", "high=50", "medium=12", "low=5"]:
+            assert retired_effort not in artifact, retired_effort
 
 
 def test_maintenance_skill_contract() -> None:
@@ -222,6 +322,7 @@ def test_maintenance_skill_contract() -> None:
         "scripts/capture_brawler_sources.py",
         "scripts/ingest_brawler_sources.py",
         "scripts/ingest_brawler_bp_profiles.py",
+        "scripts/audit_plp_matchup_coverage.py",
         "scripts/test_bp_skill_contract.py",
     ]:
         assert term in governance_text, term
