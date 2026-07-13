@@ -1,0 +1,35 @@
+brawlstar/AGENTS.md
+  s_67aa091fa58788::t_7309ba80749df9 35-36,46,67,72,119-120
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/agents/openai.yaml
+  s_67aa091fa58788::t_924aa0f5b68c62 3-4
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/repo-layering.md
+  s_67aa091fa58788::t_b194d27b1490fb 23,33
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/runtime-boundary.md
+  s_67aa091fa58788::t_749dc2ba841b87 27-28
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/source-ingest.md
+  s_67aa091fa58788::t_4c1628c481b9d0 3,69-74
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/analyze_esports_event.py
+  s_67aa091fa58788::t_3444efccf97e37 1-42
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_tournament_observations.py
+  s_67aa091fa58788::t_e6acb171078c22 1-125
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/capture_liquipedia_event.py
+  s_67aa091fa58788::t_f2b743386caef7 1-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "480ed2e87d4fcd396cd6e65d4c9ca47e7d8c6e67",
+  "prompts": {},
+  "sessions": {
+    "s_67aa091fa58788": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f4b5c-0dc4-79c3-bb4a-8130a346ab81",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
