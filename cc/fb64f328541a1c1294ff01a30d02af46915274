@@ -1,0 +1,139 @@
+brawlstar/raw/sources/fandom/heroes/8-bit-2026-07-10.md
+  s_67aa091fa58788::t_96de2240445d55 1-156
+brawlstar/raw/sources/fandom/heroes/bonnie-2026-07-10.md
+  s_67aa091fa58788::t_6685ff4688e37e 1-123
+brawlstar/raw/sources/fandom/heroes/brock-2026-07-10.md
+  s_67aa091fa58788::t_5c0b800ccea1a1 1-139
+brawlstar/raw/sources/fandom/heroes/colette-2026-07-10.md
+  s_67aa091fa58788::t_9218972cdf1c63 1-127
+brawlstar/raw/sources/fandom/heroes/crow-2026-07-10.md
+  s_67aa091fa58788::t_d77f2411288a17 1-151
+brawlstar/raw/sources/fandom/heroes/jacky-2026-07-10.md
+  s_67aa091fa58788::t_e45fbadb90d24d 1-129
+brawlstar/raw/sources/fandom/heroes/jessie-2026-07-10.md
+  s_67aa091fa58788::t_35106a0945e8fd 1-128
+brawlstar/raw/sources/fandom/heroes/max-2026-07-10.md
+  s_67aa091fa58788::t_6e5c908bf79dfc 1-122
+brawlstar/raw/sources/fandom/heroes/meg-2026-07-10.md
+  s_67aa091fa58788::t_4fc6507f2506f7 1-134
+brawlstar/raw/sources/fandom/heroes/nori-2026-07-11.md
+  s_67aa091fa58788::t_5f85d195620fd4 1-104
+brawlstar/raw/sources/fandom/heroes/starr-nova-2026-07-10.md
+  s_67aa091fa58788::t_3babd6a6d9caf5 1-107
+brawlstar/raw/sources/fandom/heroes/surge-2026-07-10.md
+  s_67aa091fa58788::t_435160a860a4f3 1-128
+brawlstar/raw/sources/fandom/heroes/wendy-2026-07-11.md
+  s_67aa091fa58788::t_3da2adf404a3e7 1-96
+brawlstar/raw/sources/fandom/systems/maintenance-july-8-2026-2026-07-10.md
+  s_67aa091fa58788::t_73069ece63fba1 1-70
+brawlstar/raw/sources/pl-prodigy/brawlers/8bit-2026-07-11.md
+  s_67aa091fa58788::t_49e169ce36d9a0 1-315
+brawlstar/raw/sources/pl-prodigy/brawlers/brock-2026-07-11.md
+  s_67aa091fa58788::t_17200b4b190b26 1-270
+brawlstar/raw/sources/pl-prodigy/brawlers/max-2026-07-11.md
+  s_67aa091fa58788::t_0a699454b4034a 1-268
+brawlstar/raw/sources/pl-prodigy/site-audit-2026-07-10.md
+  s_67aa091fa58788::t_4571ed3ca51b35 1-42
+brawlstar/raw/sources/roster/brawlers-roster-audit-2026-07-10.md
+  s_67aa091fa58788::t_688e323d7490a3 1-34
+brawlstar/raw/sources/supercell/wendy-announcement-june-2026-2026-07-11.md
+  s_67aa091fa58788::t_38c600e84f59ea 1-26
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/SKILL.md
+  s_67aa091fa58788::t_9fa168db10d635 64-65
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/audit-and-validation.md
+  s_67aa091fa58788::t_1dbbc1badb1882 63-64
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_plp_matchup_coverage.py
+  s_67aa091fa58788::t_c94ef3dec81150 20,48-61,94,174-175,206
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/test_bp_skill_contract.py
+  s_67aa091fa58788::t_ac670645a10809 326
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/test_plp_matchup_coverage.py
+  s_67aa091fa58788::t_ccb31c0fce6e0e 2,29-36,38-62,103
+brawlstar/wiki/entities/brawlers/8-Bit.md
+  s_67aa091fa58788::t_c7e1be4900c84a 25-26,35-36,38,48,57,71-73,75-77,80,83-85,188-191,195,198-202,205-209,212-216,219-222
+brawlstar/wiki/entities/brawlers/Bonnie.md
+  s_67aa091fa58788::t_0f3bcd691cad91 25
+brawlstar/wiki/entities/brawlers/Brock.md
+  s_67aa091fa58788::t_a22f5c55054f5d 38-39,62,65-66,75
+brawlstar/wiki/entities/brawlers/Colette.md
+  s_67aa091fa58788::t_15e53ad31ebd07 25,50,59,76
+brawlstar/wiki/entities/brawlers/Crow.md
+  s_67aa091fa58788::t_e9200f2a2d4552 42,50,53
+brawlstar/wiki/entities/brawlers/Jacky.md
+  s_67aa091fa58788::t_50cd60ed41ac49 25
+brawlstar/wiki/entities/brawlers/Jessie.md
+  s_67aa091fa58788::t_c47cc59fa806de 25
+brawlstar/wiki/entities/brawlers/Max.md
+  s_67aa091fa58788::t_892de6330c51ae 48-49,68,75-76,78-79,84,86,90-92,95,98,101-102,104-105
+brawlstar/wiki/entities/brawlers/Meg.md
+  s_67aa091fa58788::t_0dde95d5fe7096 25,42,48-50,56-57,62,65,72-73,75-76,78-82,95,161
+"brawlstar/wiki/entities/brawlers/Starr Nova.md"
+  s_67aa091fa58788::t_4e008ff0e9b76f 25,39,48,60
+brawlstar/wiki/entities/brawlers/Surge.md
+  s_67aa091fa58788::t_a62e19d8e17de8 12-13,18,31,58-59,62,70,87,94,99,101,120,147,170,183,185
+brawlstar/wiki/index.md
+  s_67aa091fa58788::t_63e0dc9909e85d 18-19,47,49-50,56-58,261-262
+brawlstar/wiki/log.md
+  s_67aa091fa58788::t_c044d51e11d5b1 843-886
+brawlstar/wiki/sources/Brawler-Roster.md
+  s_67aa091fa58788::t_f63ac0129edcc2 1-47
+brawlstar/wiki/sources/Fandom-8-Bit.md
+  s_67aa091fa58788::t_ca4a417b775e17 7-8,10,23,26
+brawlstar/wiki/sources/Fandom-Bonnie.md
+  s_67aa091fa58788::t_94f84f1cc228e7 7-8,10,23,27
+brawlstar/wiki/sources/Fandom-Brock.md
+  s_67aa091fa58788::t_dc1a967a7cb2fb 7-8,10,25-26
+brawlstar/wiki/sources/Fandom-Colette.md
+  s_67aa091fa58788::t_4cc4fa9bbf18b3 7-8,10
+brawlstar/wiki/sources/Fandom-Crow.md
+  s_67aa091fa58788::t_8c22e6de6da8cd 7-8,10,23-24,26-27
+brawlstar/wiki/sources/Fandom-Jacky.md
+  s_67aa091fa58788::t_421e3161fb5067 7-8,10,23-24
+brawlstar/wiki/sources/Fandom-Jessie.md
+  s_67aa091fa58788::t_e1d71c59365493 7-8,10
+brawlstar/wiki/sources/Fandom-Maintenance-July-8-2026.md
+  s_67aa091fa58788::t_f6e0198d293c67 1-60
+brawlstar/wiki/sources/Fandom-Max.md
+  s_67aa091fa58788::t_e15950cd65ce3e 7-8,10,41
+brawlstar/wiki/sources/Fandom-Meg.md
+  s_67aa091fa58788::t_06007172c9f3fd 7-8,10,23
+brawlstar/wiki/sources/Fandom-Nori.md
+  s_67aa091fa58788::t_1718076aeebda9 1-60
+brawlstar/wiki/sources/Fandom-Release-Notes-June-2026.md
+  s_67aa091fa58788::t_50cd5385de8cc2 30,44-48
+brawlstar/wiki/sources/Fandom-Starr-Nova.md
+  s_67aa091fa58788::t_48316084d563b4 7-8,10,23-24,27
+brawlstar/wiki/sources/Fandom-Surge.md
+  s_67aa091fa58788::t_c07237846803e3 7-8,10,23,26,28
+brawlstar/wiki/sources/Fandom-Wendy.md
+  s_67aa091fa58788::t_6a317159899586 1-61
+brawlstar/wiki/sources/PLP-8-Bit.md
+  s_67aa091fa58788::t_f0381ada81afe1 7-8,20-22,29-30
+brawlstar/wiki/sources/PLP-Brock.md
+  s_67aa091fa58788::t_4ef976132c9d6c 7-8,22
+brawlstar/wiki/sources/PLP-Max.md
+  s_67aa091fa58788::t_d7c71fff45eb48 7-8,20
+brawlstar/wiki/sources/Power-League-Prodigy-站点与抽检.md
+  s_67aa091fa58788::t_0e0091ba6c829d 8-9,11-12,37-50,72,85,98
+brawlstar/wiki/sources/Supercell-Wendy-Announcement-June-2026.md
+  s_67aa091fa58788::t_202d548fb6d63c 1,5-38,41-44
+brawlstar/wiki/sources/iKaoss11-July-2026-Strength-Profile.md
+  s_67aa091fa58788::t_cae03b5a7a50e6 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ccfb64f328541a1c1294ff01a30d02af46915274",
+  "prompts": {},
+  "sessions": {
+    "s_67aa091fa58788": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f4b5c-0dc4-79c3-bb4a-8130a346ab81",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
