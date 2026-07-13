@@ -11,6 +11,11 @@ The BP maintenance skill owns the workflow for these repo scripts:
 - `scripts/ingest_brawler_bp_profiles.py`
 - `scripts/audit_bp_profile_quality.py`
 - `scripts/audit_plp_matchup_coverage.py`
+- `scripts/capture_liquipedia_event.py`
+- `scripts/ingest_liquipedia_event.py`
+- `scripts/analyze_esports_event.py`
+- `scripts/audit_tournament_observations.py`
+- `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
 
 They live inside `skills/brawl-stars-bp-knowledge-maintenance/scripts/`. Do not recreate a repository-level helper directory for these BP maintenance scripts.
@@ -28,6 +33,11 @@ Expected write targets:
 | `scripts/ingest_brawler_bp_profiles.py` | `wiki/entities/brawlers/` | canonical brawler entity draft/profile |
 | `scripts/audit_bp_profile_quality.py --write` | `outputs/bp-profile-quality-audit.md` | generated audit report |
 | `scripts/audit_plp_matchup_coverage.py --write` | `outputs/plp-matchup-coverage-audit.md` | generated audit report |
+| `scripts/capture_liquipedia_event.py` | `raw/sources/liquipedia/events/` | canonical raw capture |
+| `scripts/ingest_liquipedia_event.py` | `wiki/sources/Liquipedia-*`, `wiki/entities/events/` | canonical source summary and event entity |
+| `scripts/analyze_esports_event.py --output` | `outputs/esports/*.json` | generated tournament observation profile |
+| `scripts/audit_tournament_observations.py --output` | `outputs/esports/*.md` | generated review-seed report |
+| `scripts/test_liquipedia_event.py` | stdout only | parser and July event regression tests |
 | `scripts/test_bp_skill_contract.py` | stdout only | validation output |
 
 Canonical knowledge writes belong in `raw/` or `wiki/` as listed above. Generated audit reports and runtime indexes go to `outputs/`.
@@ -74,6 +84,10 @@ Audit blockers include:
 - `source_traceability_gap`
 
 The audit checks structure and obvious placeholders. It does not prove strategic correctness.
+
+## Tournament Observation Audit
+
+Run `scripts/audit_tournament_observations.py` after generating `tournament_observation_profile.v1`. Missing event maps or brawlers are maintenance coverage gaps. Optional runtime-index weak-fit rows are VOD/draft-context review seeds only; the audit must not edit entities, syntheses, strength tiers, or runtime indexes.
 
 ## Contract Test
 

@@ -1,6 +1,6 @@
 ---
 name: brawl-stars-bp-knowledge-maintenance
-description: "Use when maintaining this vault's Brawl Stars BP knowledge: ingesting raw/source materials, creating or repairing brawler BP profiles, modeling maps, running BP profile audits, updating maintenance references, or preparing stable facts for runtime BP skills."
+description: "Use when maintaining this vault's Brawl Stars BP knowledge: ingesting raw/source materials and esports events, creating or repairing brawler BP profiles, modeling maps, generating neutral tournament observations, running audits, updating maintenance references, or preparing stable facts for runtime BP skills."
 ---
 
 # Brawl Stars BP Knowledge Maintenance
@@ -29,6 +29,7 @@ Then load only the relevant reference below.
 - For `wiki/entities/maps/` and `map_bp_factor` work, read `references/map-modeling.md`.
 - For quality gates, script use, and contract tests, read `references/audit-and-validation.md`.
 - For separating maintenance knowledge from `runtime_bp_index`, read `references/runtime-boundary.md`.
+- For Liquipedia event capture, series/set semantics, tournament observation profiles, and their BP promotion gate, read `references/esports-event-ingest.md`.
 
 ## Minimal Request Handling
 
@@ -53,6 +54,11 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/ingest_brawler_bp_profiles.py`
 - `scripts/audit_bp_profile_quality.py`
 - `scripts/audit_plp_matchup_coverage.py`
+- `scripts/capture_liquipedia_event.py`
+- `scripts/ingest_liquipedia_event.py`
+- `scripts/analyze_esports_event.py`
+- `scripts/audit_tournament_observations.py`
+- `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
 
 Use `--dry-run` when a script offers it before large writes. Treat script output as a maintenance aid, not proof that a brawler or map is strategically correct.
@@ -62,6 +68,8 @@ Use `--dry-run` when a script offers it before large writes. Treat script output
 `scripts/audit_plp_matchup_coverage.py` compares PLP raw `countersThese` / `counteredBy` pairs with a compiled `runtime_bp_index.matchup_index`. It writes generated reports to `outputs/` and treats PLP-only pairs as review seeds, not runtime matchup edges. Promote a seed only by adding mechanism, `active_when`, `fails_when`, and `bp_use` to the relevant brawler entity page.
 
 For current-coverage audits, it reads the latest direct raw per Brawler. Older dated captures remain immutable history but must not be unioned into the current PLP matchup set.
+
+The Liquipedia event scripts preserve revision-specific event raw, create source/event pages, generate `tournament_observation_profile.v1`, and emit review seeds. Tournament observations are descriptive evidence and must not auto-generate a strength tier, stable matchup edge, map fit, or runtime recommendation.
 
 ## Completion Checklist
 

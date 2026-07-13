@@ -41,6 +41,10 @@
 
 ## Sources
 
+- 赛事来源：
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|Liquipedia：BSC 2026 July EMEA Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|Liquipedia：BSC 2026 July South America Monthly Finals]]
+
 - 站点与 manifest：
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
@@ -257,6 +261,10 @@
 - [[concepts/Club Games|Club Games]]
 
 ## Entities
+
+- 赛事：
+- [[entities/events/Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|BSC 2026 July EMEA Monthly Finals]]
+- [[entities/events/Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|BSC 2026 July South America Monthly Finals]]
 
 - 英雄（游戏已发布 105 个；本地稳定运行层 104 个 `bp_ready`，Nori 为 active 但竞技来源 / strength / profile 待闭环）：
 - 当前缺口：`Nori`（2026-07-09 开放早期解锁；Fandom direct raw 已 ingest，PLP guide、strength 与 reviewed profile 待补），见 [[sources/Brawler-Roster|Brawler Roster]]。

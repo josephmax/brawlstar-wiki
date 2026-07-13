@@ -884,3 +884,11 @@
 - 修复 `audit_plp_matchup_coverage.py`：每位英雄只读取最新 dated direct raw，旧抓取继续作为历史 provenance，不再与当前 matchup 集合合并；新增回归测试并同步维护 skill / audit reference。
 - 2026-07-11 增量核对：Fandom category API 仍为 107 个页面，过滤 future Wendy 与已移除 Buzz Lightyear 后 released roster 仍为 105；Supercell 当前 release notes 仅有 `Maintenance - July 8`；PLP sitemap 仍无 Nori / Wendy guide，Blog 最新日期仍为 2026-06-30。
 - 最终验证：`audit_bp_profile_quality.py` 为 104 / 104 `bp_ready`、零 blocker；临时 runtime index 编译为 104 人、零 missing input、Nori / Wendy 均未混入；PLP audit 为 104 个最新页面 / 107 个历史 raw 文件；`test_plp_matchup_coverage.py`、`test_bp_skill_contract.py` 与 `git diff --check` 全部通过。
+
+## [2026-07-13] ingest | 落地 Liquipedia 赛事摄取与 BSC 7 月双赛区实战观察
+
+- 扩展 `skills/brawl-stars-bp-knowledge-maintenance/`，新增 Liquipedia MediaWiki API capture、纯解析、赛事 source/entity ingest、`tournament_observation_profile.v1` 与知识缺口审计；将 API 限流、User-Agent、gzip、CC BY-SA attribution、series/set/game、global/local ban 和 first-pick 语义写入 `references/esports-event-ingest.md`。
+- 新增 EMEA revision `263360` 与 South America revision `263153` 两份不可变 raw capture，并建立对应 [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|EMEA 来源页]]、[[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|南美来源页]]和赛事实体。
+- EMEA 记录 7 场实际 series / 24 个实际 set，FUT Esports 夺冠；南美记录 6 场实际 series + 1 场弃权 / 24 个实际 set，RED Canids 夺冠。`winner=skip` 与弃权均未进入 played-set 分母。
+- 生成但不纳入 git 的 observation profile 与 gap audit：当前稳定地图层缺 `Crystal Arcade`、`Goldarm Gulch`、`Pinhole Punt` 三张赛事地图；另有 17 条重复实战选用与现有 compiled `map_floor_fit` 不一致的 VOD / draft-context review seeds。
+- 明确赛事观察不得自动生成 strength tier、稳定地图 fit、hard gate、slot eligibility、对位边或 runtime 推荐；只有经过机制与录像复核的结论才能更新稳定英雄 / 地图事实，版本强度解释仍需单独维护者评审。

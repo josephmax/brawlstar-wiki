@@ -24,6 +24,8 @@ Runtime slot decision may read:
 - supplied strength profile
 - compiled `runtime_bp_index`
 
+`tournament_observation_profile.v1` is a maintainer output in Phase 1, not an allowed runtime input. Tournament observations must not auto-generate strength tiers, hard gates, map fit, slot eligibility, or matchup edges. A separately reviewed maintainer interpretation may later be supplied through the existing strength-profile boundary.
+
 ## Rule Promotion
 
 If a maintainer conclusion becomes an operational runtime rule:

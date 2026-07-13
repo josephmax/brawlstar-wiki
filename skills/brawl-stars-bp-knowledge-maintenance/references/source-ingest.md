@@ -1,6 +1,6 @@
 # Source Ingest
 
-Use this reference when adding or refreshing Fandom, Power League Prodigy, roster, patch, user-note, map, or mode sources.
+Use this reference when adding or refreshing Fandom, Power League Prodigy, roster, patch, user-note, map, mode, or competitive-event sources.
 
 ## Standard Flow
 
@@ -66,3 +66,9 @@ After the source summary exists, update `wiki/entities/maps/<Map Name>.md` only 
 Same-source raw may cover older raw only when the new capture fully contains the old capture's relevant evidence, or the old file is a correction-stage duplicate. Otherwise keep both captures.
 
 Keep separate sources when they provide different evidence fields, different time points, different page states, or different source perspectives. For hero ingest, Fandom and PLP are normally kept together because their evidence roles are different. For map ingest, a Ranked map pool capture and an individual map page capture are kept together unless one demonstrably fully covers the other's map set and fields.
+
+## Liquipedia Event Ingest
+
+For Liquipedia API limits, series/set parsing, `tournament_observation_profile.v1`, event entities, and the promotion gate into stable BP knowledge, read `references/esports-event-ingest.md`.
+
+Event capture writes canonical raw under `raw/sources/liquipedia/events/`; ingest writes a document-scoped `wiki/sources/Liquipedia-*` page and a trackable `wiki/entities/events/` page. Generated observations and gap audits belong under `outputs/esports/`. They must not auto-generate brawler tiers or direct runtime recommendations.

@@ -20,6 +20,7 @@ Do not skip the first gate because a BP conclusion seems obvious.
 | Raw source | `raw/` | Immutable captures, screenshots, source exports, user notes | Read for ingest; write only for explicit capture/cleanup |
 | Source summary | `wiki/sources/` | Single-source summaries, boundaries, provenance | Create/update before stable facts |
 | Stable BP facts | `wiki/entities/brawlers/`, `wiki/entities/maps/` | Runtime-consumable brawler and map facts | Primary output layer |
+| Event facts | `wiki/entities/events/` | Tournament identity, results, played sets, and map/mode occurrence | Maintenance evidence only; not a runtime input |
 | Maintainer synthesis | `wiki/syntheses/` | Methodology, architecture, audit interpretation | Read for maintenance; not runtime input |
 | Skill rules | `skills/*/SKILL.md`, `skills/*/references/` | Executable agent instructions | Update when rules become operational |
 | Outputs | `outputs/` | Audits, generated runtime indexes, temporary reports | Write generated artifacts here |
@@ -29,6 +30,7 @@ Do not skip the first gate because a BP conclusion seems obvious.
 A claim may move upward only when its consumer is clear:
 
 - Source observation -> `wiki/sources/`.
+- Trackable event result -> `wiki/entities/events/` after its source summary exists.
 - Stable brawler ability -> `wiki/entities/brawlers/`.
 - Stable map structure or BP factor -> `wiki/entities/maps/`.
 - Process or schema rule -> this skill's references, then contract tests if runtime-critical.

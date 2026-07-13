@@ -24,6 +24,7 @@ MAINTENANCE_REFS = [
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "map-modeling.md",
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "audit-and-validation.md",
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "runtime-boundary.md",
+    ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "esports-event-ingest.md",
 ]
 MAINTENANCE_AGENT = ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "agents" / "openai.yaml"
 MAINTENANCE_SCRIPT_DIR = ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "scripts"
@@ -33,6 +34,11 @@ MAINTENANCE_SCRIPTS = [
     MAINTENANCE_SCRIPT_DIR / "ingest_brawler_bp_profiles.py",
     MAINTENANCE_SCRIPT_DIR / "audit_bp_profile_quality.py",
     MAINTENANCE_SCRIPT_DIR / "audit_plp_matchup_coverage.py",
+    MAINTENANCE_SCRIPT_DIR / "capture_liquipedia_event.py",
+    MAINTENANCE_SCRIPT_DIR / "ingest_liquipedia_event.py",
+    MAINTENANCE_SCRIPT_DIR / "analyze_esports_event.py",
+    MAINTENANCE_SCRIPT_DIR / "audit_tournament_observations.py",
+    MAINTENANCE_SCRIPT_DIR / "test_liquipedia_event.py",
     MAINTENANCE_SCRIPT_DIR / "test_bp_skill_contract.py",
 ]
 
@@ -323,6 +329,16 @@ def test_maintenance_skill_contract() -> None:
         "scripts/ingest_brawler_sources.py",
         "scripts/ingest_brawler_bp_profiles.py",
         "scripts/audit_plp_matchup_coverage.py",
+        "Liquipedia",
+        "raw/sources/liquipedia/events/",
+        "wiki/entities/events/",
+        "tournament_observation_profile.v1",
+        "scripts/capture_liquipedia_event.py",
+        "scripts/ingest_liquipedia_event.py",
+        "scripts/analyze_esports_event.py",
+        "scripts/audit_tournament_observations.py",
+        "scripts/test_liquipedia_event.py",
+        "must not auto-generate",
         "latest direct raw per Brawler",
         "scripts/test_bp_skill_contract.py",
     ]:
@@ -334,6 +350,7 @@ def test_maintenance_skill_contract() -> None:
         "map-modeling.md",
         "audit-and-validation.md",
         "runtime-boundary.md",
+        "esports-event-ingest.md",
     ]:
         assert term in text, term
 

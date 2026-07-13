@@ -32,6 +32,8 @@ raw/
       brawlers/
     roster/
     supercell/
+    liquipedia/
+      events/
   assets/                  # optional
 wiki/
   index.md
@@ -41,6 +43,7 @@ wiki/
   entities/
     brawlers/
     maps/
+    events/
   syntheses/
 skills/
   brawl-stars-bp-knowledge-maintenance/
@@ -61,10 +64,12 @@ outputs/
 | `raw/sources/pl-prodigy/brawlers/` | Power League Prodigy 英雄竞技 guide raw capture | 与 Fandom 英雄 raw 互补，不能互相覆盖 |
 | `raw/sources/roster/` | 英雄集合 manifest 和来源覆盖清单 | 决定 BP-active 英雄集合的输入 |
 | `raw/sources/supercell/` | Supercell 官方资料或公告 raw capture | 优先级高，但仍先进入 source 摘要 |
+| `raw/sources/liquipedia/events/` | Liquipedia 赛事页面的 revision-specific MediaWiki raw capture | 仅通过 API 抓取；保留完整 wikitext、revision、许可归属和解析 JSON |
 | `wiki/sources/` | 单篇来源摘要、解释、provenance 和可用范围 | ingest 必先更新；不替代 raw |
 | `wiki/concepts/` | 模式、货币、机制、规则等抽象概念 | 保存稳定规则事实，不放临时 meta；`英雄名称归一化` 是跨 skill 的称谓归一化原语 |
 | `wiki/entities/brawlers/` | 单英雄稳定事实和当前 BP 建模字段 | 不保存版本历史、批处理进度或临时强度覆盖 |
 | `wiki/entities/maps/` | 单地图稳定结构和 BP 可消费地图因素 | 不保存当前强势英雄或 season-only 状态 |
+| `wiki/entities/events/` | 单项赛事的身份、赛区、赛制、结果和已进行 set 等事实 | 赛事频率不直接提升为英雄强度或 runtime 规则 |
 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论和归档 | 不是 BP runtime 依赖；执行规则采纳后复制进 skill references |
 | `skills/*/` | 可执行 agent skill、references、scripts 和契约测试 | 运行时或维护规则以这里为准；大段 wiki 讨论不能替代 skill 规则 |
 | `outputs/` | 审计报告、模拟报告、`runtime_bp_index`、临时交付物 | 已 gitignore；不写回长期 wiki |
@@ -110,6 +115,8 @@ outputs/
   - 官方公告、Fandom 条目、攻略原稿、人物/模式介绍页
 - `wiki/syntheses/`：跨来源整合后的专题结论
   - meta 分析、模式对比、新手成长路线、版本演化、资源系统总览
+
+赛事来源先写入 `raw/sources/liquipedia/events/` 和 `wiki/sources/`，可持续追踪的赛事事实进入 `wiki/entities/events/`。逐 set 选用、ban 和结果聚合生成 `outputs/esports/` 下的 `tournament_observation_profile.v1`；它只用于描述与知识缺口审计，不得自动生成 strength tier、稳定对位边、地图 fit 或 BP runtime 推荐。
 
 如果一个词既像实体又像概念，按下面的优先级决定：
 
