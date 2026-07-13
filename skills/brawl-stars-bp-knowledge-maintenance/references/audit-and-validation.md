@@ -60,6 +60,8 @@ python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_plp_matchup_co
 
 The report belongs in `outputs/plp-matchup-coverage-audit.md`. PLP-only rows are `conditional_matchup_seed` candidates. They must not be copied into runtime as hard matchup edges until a maintainer adds mechanism, `active_when`, `fails_when`, map/mode conditions, and `bp_use` to the relevant brawler entity page.
 
+The audit selects the latest direct raw per Brawler by dated filename. Historical captures stay in `raw/` for provenance, but current coverage must not merge superseded matchup lists with the latest guide state. The summary reports both current `plp_raw_pages` and total historical `plp_raw_files`.
+
 Audit blockers include:
 
 - `auto_placeholder`

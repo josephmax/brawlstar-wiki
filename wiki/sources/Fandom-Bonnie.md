@@ -4,10 +4,10 @@
 
 - 标题：Bonnie
 - 来源：[Bonnie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Bonnie)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T08:03:16Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-08T14:46:01Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/bonnie-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/bonnie-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,11 +20,11 @@
 
 - 稀有度: Epic
 - 官方定位: Marksman
-- 移动速度: 620 (Clyde; Slow)<br>744 (Clyde; with Hypercharge)<br>806 (with Sugar Rush)<br>930 (with Sugar Rush and Hypercharge)<br>0–1833 (with Super)<br>0–2500 (with Super and Black Powder)<br>820 (Bonnie; Very Fast)<br>1025 (Bonnie; with Hypercharge)<br>2000 (with Crash Test)
+- 移动速度: 620 (Clyde; Slow)<br>744 (Clyde; with Hypercharge)<br>806 (with Sugar Rush)<br>930 (with Sugar Rush and Hypercharge)<br>820 (Bonnie; Very Fast)<br>1025 (Bonnie; with Hypercharge)<br>2000 (with Crash Test)
 - 生命值: 5000
 - 攻击距离: 9 (Clyde; Long)<br> 5 (Bonnie; Normal)
 - 装填: 1 second (Clyde; Very Fast)<br>0.769 seconds (with Sugar Rush)<br>2 seconds (Bonnie; Slow)
-- 普攻数值: 1120
+- 普攻数值: 1220
 - Super 距离: 7.33 (Long)<br>10 (with Black Powder)
 - Super 数值: 1000
 - Gadgets: Sugar Rush, Crash Test

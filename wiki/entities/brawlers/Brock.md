@@ -35,8 +35,8 @@ Brock 是远程炮击和拆墙开图的代表英雄。和 `Colt` 相比，他更
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-06-30
-    plp: direct_raw_capture_2026-06-29
+    fandom: direct_raw_capture_2026-07-10
+    plp: direct_raw_capture_2026-07-11
     user_notes: none
 
   capability_vector:
@@ -59,20 +59,20 @@ bp_brawler_profile:
     terrain_destruction: high
 
   build_switches:
-    - build: Rocket Laces / More Rockets / Shield + Reload
+    - build: Rocket Laces / More Rockets / Damage + Shield
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       changes_capabilities:
-        - 提高反突进自保和装填稳定性
-        - 增强 Super 覆盖和持续轰炸压力
+        - Rocket Laces 提高反突进自保和重定位能力
+        - More Rockets 增强 Super 覆盖，Damage + Shield 更偏向爆发阈值与低血容错
       enables:
         - long_range_pressure
         - anti_aggro_escape
         - safer_first_pick_on_open_or_heist_maps
       mitigates_failure_modes:
         - low_health_ambush
-        - reload_vulnerability
       poor_when:
         - draft 需要精确开关键墙而不是保命
+        - 对局需要 Reload Gear 支撑持续压制，当前 build 的装填空窗会更明显
       bp_use: 默认竞技 build 候选，不直接等于最终推荐
     - build: Rocket Fuel wall-break variant
       source: "[[sources/Fandom-Brock|Fandom-Brock]]"

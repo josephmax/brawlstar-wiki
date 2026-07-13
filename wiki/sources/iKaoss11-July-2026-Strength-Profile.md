@@ -23,7 +23,7 @@
 - `Twins` 归一为 `Larry & Lawrie`。
 - `MisterP` 归一为 `Mr. P`。
 - `Clowbert` 归一为 `Glowy`。
-- 截图中的 `Wendy`、`Nori` 暂不进入当前 104 英雄 BP-active catalog。
+- 2026-07-06 转录时 `Wendy`、`Nori` 都未进入当时的 104 英雄 catalog。2026-07-10 roster 复核后，`Nori` 已是第 105 位已发布英雄，但本转录没有保留其 tier 位置，因此仍不把 Nori 写入这份 104-entry strength payload；运行时只能视为 `active_but_strength_unknown`。`Wendy` 仍为 future-only。
 - 截图中的 `F` 档暂并入当前 schema 的 `E` 档。
 
 ## strength_profile

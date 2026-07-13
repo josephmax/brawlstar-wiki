@@ -15,6 +15,8 @@
 - [[syntheses/条件化对位模型|条件化对位模型]]
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
 - [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]
+- [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]
+- [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 
@@ -42,14 +44,18 @@
 - 站点与 manifest：
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
-- [[sources/Brawler-Roster-2026-06-29|Brawler Roster 2026-06-29]]
+- [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
+- [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
+- [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement（future-only）]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 - [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]
 - [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]
 
-- 英雄来源（104 个 BP-active）：
+- 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]]（Fandom direct raw 已闭环；PLP guide、strength 与 reviewed profile 待补）。
+- 未来英雄来源：[[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]（仍为 `FutureUpdate`，不进入 released roster 或 runtime）。
+- 英雄来源（本地已闭环的 104 个 BP-ready 英雄）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]
 - [[sources/Fandom-Alli|Fandom 来源摘要: Alli]] / [[sources/PLP-Alli|PLP 来源摘要: Alli]]
 - [[sources/Fandom-Amber|Fandom 来源摘要: Amber]] / [[sources/PLP-Amber|PLP 来源摘要: Amber]]
@@ -252,7 +258,8 @@
 
 ## Entities
 
-- 英雄（104 个 BP-active；均含 `bp_brawler_profile`，当前 104 个 `bp_ready` / 0 个 draft）：
+- 英雄（游戏已发布 105 个；本地稳定运行层 104 个 `bp_ready`，Nori 为 active 但竞技来源 / strength / profile 待闭环）：
+- 当前缺口：`Nori`（2026-07-09 开放早期解锁；Fandom direct raw 已 ingest，PLP guide、strength 与 reviewed profile 待补），见 [[sources/Brawler-Roster|Brawler Roster]]。
 - [[entities/brawlers/8-Bit|8-Bit]]
 - [[entities/brawlers/Alli|Alli]]
 - [[entities/brawlers/Amber|Amber]]

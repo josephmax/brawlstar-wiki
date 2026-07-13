@@ -323,6 +323,7 @@ def test_maintenance_skill_contract() -> None:
         "scripts/ingest_brawler_sources.py",
         "scripts/ingest_brawler_bp_profiles.py",
         "scripts/audit_plp_matchup_coverage.py",
+        "latest direct raw per Brawler",
         "scripts/test_bp_skill_contract.py",
     ]:
         assert term in governance_text, term

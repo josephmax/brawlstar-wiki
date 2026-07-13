@@ -4,8 +4,8 @@
 
 - 标题：Best build for Max | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Max | Power League Prodigy](https://powerleagueprodigy.com/max)
-- 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/max-2026-06-29.md]]
+- 读取日期：2026-07-11
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/max-2026-07-11.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z
@@ -17,7 +17,7 @@
 
 ## 结构化字段摘要
 
-- 推荐 Gadget: `Phase Shifter`
+- 推荐 Gadget: `Sneaky Sneakers`
 - 推荐 Star Power: `Super Charged`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Gem Grab, Brawl Ball, Bounty, Knockout

@@ -4,10 +4,10 @@
 
 - 标题：Starr Nova
 - 来源：[Starr Nova | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Starr_Nova)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-26T17:59:03Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-09T22:06:51Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/starr-nova-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/starr-nova-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,11 +20,11 @@
 
 - 稀有度: Mythic
 - 官方定位: Assassin
-- 移动速度: 820 (Very Fast)<br>2300 (Super dash)<br>1025 (with Super)
-- 生命值: 3700
+- 移动速度: 820 (Very Fast)<br>2300 (Super dash)<br>1025 (with Super)<br>924 (with Hypercharge)
+- 生命值: 4000
 - 攻击距离: 5.67 (Normal)
 - 装填: 1.4 seconds (Fast)
-- 普攻数值: 540
+- 普攻数值: 480
 - Super 距离: 4.33 (dash; Short)<br>3.67 (Sword Mode; Short)
 - Super 数值: 300
 - Gadgets: Floaty Time, Shining Starr of Friendship and Justice

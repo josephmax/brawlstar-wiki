@@ -27,6 +27,7 @@
 
 ## 关键内容
 
+- 新英雄预告：`Nori`、`Wendy`。截至 2026-07-11，`Nori` 已于 7 月 9 日开放 Training Cave 与早期解锁并补齐 [[sources/Fandom-Nori|Fandom direct source]]；`Wendy` 仍为 future-only，见 [[sources/Fandom-Wendy|Fandom future page]] 与 [[sources/Supercell-Wendy-Announcement-June-2026|Supercell announcement]]。发布状态以 [[sources/Brawler-Roster|Brawler Roster]] 为准。
 - 新 Buffies / rework：`Rico`、`Brock`、`8-Bit`、`Meg`、`Max`、`Surge`。
 - 普通平衡变化：`Piper`、`Mandy`、`Gale`、`Tara`、`Shelly`、`Dynamike`、`Larry & Lawrie`、`Sprout`、`Barley`、`Juju`、`Gray`、`Starr Nova`、`Buzz`、`Lou`、`Carl`、`Pearl`、`R-T` 等加强；`Mortis`、`Colette`、`Crow`、`Leon`、`Chester`、`Edgar`、`Mina`、`Ruffs`、`Meeple`、`Shade`、`Lumi`、`Najia`、`Pierce`、`Bolt` 等削弱；`Spike`、`Griff`、`Damian` 有 mixed changes。
 - `Brawl Arena Only` 变化单独标注；默认不进入 Ranked BP 结论。
@@ -40,6 +41,11 @@
 
 ## 关联页面
 
+- [[sources/Brawler-Roster|Brawler Roster]]
+- [[sources/Fandom-Nori|Fandom 来源摘要: Nori]]
+- [[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]
+- [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement]]
+- [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
 - [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]
 - [[syntheses/条件化对位模型|条件化对位模型]]
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]

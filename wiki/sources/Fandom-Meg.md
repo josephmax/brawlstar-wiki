@@ -4,10 +4,10 @@
 
 - 标题：Meg
 - 来源：[Meg | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Meg)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-13T07:08:15Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-08T20:29:08Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/meg-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/meg-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Legendary
 - 官方定位: Tank
-- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>720 (Mecha; Normal)<br>864 (Mecha; with Hypercharge)
+- 移动速度: 820 (Very Fast)<br>984 (with Force Field and Star Buffie)<br>1148 (with Force Field, Star Buffie, and Hypercharge)<br>984 (with Hypercharge)<br>720 (Mecha; Normal)<br>864 (Mecha; with Hypercharge)
 - 生命值: 2400
 - 攻击距离: 9 (Long)<br>7.33 (Mecha; Long)
 - 装填: 1.3 seconds (Very Fast)<br>0.845 seconds (with Toolbox)<br>1.1 seconds (Mecha; Very Fast)<br>0.715 seconds (Mecha; with Toolbox)

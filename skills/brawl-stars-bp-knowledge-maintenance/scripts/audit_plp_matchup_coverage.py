@@ -17,6 +17,7 @@ from typing import Any
 
 
 DEFAULT_OUTPUT = "outputs/plp-matchup-coverage-audit.md"
+DATED_CAPTURE_RE = re.compile(r"^(?P<slug>.+)-(?P<date>\d{4}-\d{2}-\d{2})$")
 
 
 def normalize_key(value: str) -> str:
@@ -42,6 +43,20 @@ def read_json_blocks(path: Path) -> list[dict[str, Any]]:
         if isinstance(value, dict):
             result.append(value)
     return result
+
+
+def latest_plp_raw_paths(raw_dir: Path) -> list[Path]:
+    """Return only the newest dated raw capture for each PLP guide slug."""
+    selected: dict[str, tuple[str, Path]] = {}
+    for path in sorted(raw_dir.glob("*.md")):
+        match = DATED_CAPTURE_RE.match(path.stem)
+        slug = match.group("slug") if match else path.stem
+        capture_date = match.group("date") if match else ""
+        current = selected.get(slug)
+        candidate = (capture_date, path)
+        if current is None or (candidate[0], candidate[1].name) > (current[0], current[1].name):
+            selected[slug] = candidate
+    return [selected[slug][1] for slug in sorted(selected)]
 
 
 def load_runtime_index(path: Path) -> dict[str, Any]:
@@ -76,7 +91,7 @@ def canonical_name(raw: Any, lookup: dict[str, str]) -> str | None:
 
 def plp_matchup_pairs(repo: Path, raw_dir: Path, lookup: dict[str, str]) -> list[dict[str, Any]]:
     pairs: list[dict[str, Any]] = []
-    for path in sorted(raw_dir.glob("*.md")):
+    for path in latest_plp_raw_paths(raw_dir):
         blocks = read_json_blocks(path)
         if not blocks:
             continue
@@ -156,7 +171,8 @@ def coverage_payload(repo: Path, runtime_index: Path, raw_dir: Path) -> dict[str
     return {
         "plp_matchup_coverage": {
             "summary": {
-                "plp_raw_pages": len(list(raw_dir.glob("*.md"))),
+                "plp_raw_pages": len(latest_plp_raw_paths(raw_dir)),
+                "plp_raw_files": len(list(raw_dir.glob("*.md"))),
                 "plp_pairs": len(plp_pair_keys),
                 "compiled_pairs": len(compiled_pairs),
                 "overlap_pairs": len(overlap),
@@ -187,6 +203,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     ]
     for key in (
         "plp_raw_pages",
+        "plp_raw_files",
         "plp_pairs",
         "compiled_pairs",
         "overlap_pairs",

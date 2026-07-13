@@ -61,6 +61,8 @@ Use `--dry-run` when a script offers it before large writes. Treat script output
 
 `scripts/audit_plp_matchup_coverage.py` compares PLP raw `countersThese` / `counteredBy` pairs with a compiled `runtime_bp_index.matchup_index`. It writes generated reports to `outputs/` and treats PLP-only pairs as review seeds, not runtime matchup edges. Promote a seed only by adding mechanism, `active_when`, `fails_when`, and `bp_use` to the relevant brawler entity page.
 
+For current-coverage audits, it reads the latest direct raw per Brawler. Older dated captures remain immutable history but must not be unioned into the current PLP matchup set.
+
 ## Completion Checklist
 
 - Stable facts live in `wiki/entities/brawlers/` or `wiki/entities/maps/`, not in temporary syntheses pages.

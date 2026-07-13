@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import subprocess
 import sys
 import tempfile
@@ -25,7 +26,40 @@ DEFAULT_PROFILE = (
 AUDIT_SCRIPT = SCRIPT_DIR / "audit_plp_matchup_coverage.py"
 
 
+def load_audit_module():
+    spec = importlib.util.spec_from_file_location("audit_plp_matchup_coverage", AUDIT_SCRIPT)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
+
+
 class PLPMatchupCoverageAuditTest(unittest.TestCase):
+    def test_latest_capture_per_brawler_excludes_superseded_matchups(self):
+        audit = load_audit_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            raw_dir = Path(tmp)
+            older = raw_dir / "8bit-2026-06-30.md"
+            newer = raw_dir / "8bit-2026-07-11.md"
+            older.write_text(
+                '# Direct Raw Capture: PLP 8-Bit\n\n```json\n'
+                '{"name":"8-Bit","countersThese":[{"name":"Colt"}],"counteredBy":[]}\n'
+                '```\n',
+                encoding="utf-8",
+            )
+            newer.write_text(
+                '# Direct Raw Capture: PLP 8-Bit\n\n```json\n'
+                '{"name":"8-Bit","countersThese":[{"name":"Poco"}],"counteredBy":[]}\n'
+                '```\n',
+                encoding="utf-8",
+            )
+            lookup = audit.name_lookup({"8-Bit", "Colt", "Poco"})
+            pairs = audit.plp_matchup_pairs(REPO_ROOT, raw_dir, lookup)
+
+        self.assertEqual(1, len(pairs))
+        self.assertEqual("Poco", pairs[0]["target"])
+        self.assertTrue(pairs[0]["plp_source_ref"].endswith("8bit-2026-07-11.md"))
+
     def test_reports_plp_pairs_missing_from_compiled_matchup_index(self):
         with tempfile.TemporaryDirectory() as tmp:
             index_path = Path(tmp) / "safe-zone-index.json"
@@ -66,6 +100,7 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
 
         summary = payload["summary"]
         self.assertEqual(104, summary["plp_raw_pages"])
+        self.assertGreaterEqual(summary["plp_raw_files"], summary["plp_raw_pages"])
         self.assertGreater(summary["plp_pairs"], 1000)
         self.assertGreater(summary["compiled_pairs"], 1000)
         self.assertGreater(summary["overlap_pairs"], 1000)

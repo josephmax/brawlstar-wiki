@@ -4,8 +4,8 @@
 
 - 标题：Best build for Brock | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Brock | Power League Prodigy](https://powerleagueprodigy.com/brock)
-- 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/brock-2026-06-29.md]]
+- 读取日期：2026-07-11
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/brock-2026-07-11.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z
@@ -19,7 +19,7 @@
 
 - 推荐 Gadget: `Rocket Laces`
 - 推荐 Star Power: `More Rockets`
-- 推荐 Gears: Shield, Reload
+- 推荐 Gears: Damage, Shield
 - 推荐 Modes: Heist, Bounty, Knockout
 - Notes: GADGET 1 INTO AGGRO
 - Avoid: none observed

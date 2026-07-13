@@ -22,8 +22,8 @@
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-10"
+    plp: "direct_raw_capture_2026-07-11"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
       - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
@@ -32,10 +32,10 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "very_long; 10 格射程，适合低承诺长线压制"
     projectile_reliability: "medium; 六束激光有小散布且 0.8 秒卸弹，满射程打高速目标会失准"
-    burst: "high_if_full_clip_or_extra_credits_connects; 但 Extra Credits 卸弹更慢，主要用于静态目标"
-    sustained_dps: "high; 普通装填 1.5 秒，Reload Gear 和 Damage Booster 会显著放大队伍火力"
+    burst: "high_if_full_clip_or_extra_credits_connects; Extra Credits 是可主动瞄准、可与普攻并行的 18 束额外射击，适合静态目标或多目标弹射窗口"
+    sustained_dps: "high; 普通装填 1.35 秒，Reload Gear 和 Damage Booster 会显著放大队伍火力"
     objective_damage: "high; Heist lane 和静态目标是主要转换点"
-    mobility: "low_base_medium_near_booster; 基础 580 very slow，Plugged In 在炮台 7 格内提升到 720"
+    mobility: "low_base_medium_near_booster; 基础 580 very slow，Plugged In 在炮台 7 格内提供 25% 加速至 725"
     survivability: "medium_high_body_low_escape; 5200 HP 可抗线，但离开炮台或被贴脸后撤退差"
     engage: "low; Cheat Cartridge 可从炮台位移到敌侧或撤退点，但不是稳定开团"
     disengage: "medium_if_booster_anchor_exists; Cheat Cartridge 可回炮台，炮台也可临时挡弹"
@@ -45,7 +45,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: "low; 只能把炮台丢过墙后用 Cheat Cartridge 接近，不能持续隔墙输出"
     area_control: "high_when_booster_lives; Damage Booster 让一片区域成为队伍火力锚点"
     scouting_or_vision: "conditional; Hypercharged turret 可探草和打断潜伏，但不是常规视野工具"
-    team_support: "high; Damage Booster 对友方伤害和治疗攻击都有增益"
+    team_support: "high; Damage Booster 增益友方伤害和治疗攻击；Plugged In Buffie 给队友 15% 加速，Boosted Booster Buffie 每 5 秒生成可回 1 ammo 的弹药夹"
     spawnable_or_pet: "high; Damage Booster 是核心炮台/锚点"
     crowd_control: "low"
     source_trace:
@@ -54,7 +54,7 @@ bp_brawler_profile:
 
   build_switches:
     - build: "Cheat Cartridge / Plugged In / Damage, Reload"
-      source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
+      source: "[[sources/Fandom-8-Bit|Fandom-8-Bit]]"
       changes_capabilities:
         - "Cheat Cartridge 把炮台变成撤退点或突袭锚点，修复极慢移速的第一层风险"
         - "Plugged In 让 8-Bit 围绕炮台时从静态炮塔变成可重新站位的阵地核"
@@ -68,20 +68,21 @@ bp_brawler_profile:
         - "booster_position_commitment"
       best_when: "地图给 8-Bit 一个能被队友保护的炮台点，且敌方缺低成本投掷/穿墙清点"
       poor_when: "敌方能通过墙后投掷、跳跃刺客或超远程精确火力绕过 Booster 区域"
-      bp_use: "default_plp_stationary_dps_build"
-    - build: "Extra Credits / Boosted Booster / Damage, Reload"
-      source: "[[sources/Fandom-8-Bit|Fandom-8-Bit]]"
+      bp_use: "mobility_and_escape_variant_when_booster_anchor_is_safe"
+    - build: "Extra Credits / Boosted Booster / Damage, Health"
+      source: "[[sources/PLP-8-Bit|PLP-8-Bit]] / [[sources/Fandom-8-Bit|Fandom-8-Bit]]"
       changes_capabilities:
-        - "把单次攻击改成 18 束激光，配合 Booster 可对金库或 Boss 型静态目标爆发"
-        - "Boosted Booster 把增伤半径扩大到 5 格并把增伤提高到 50%"
+        - "主动发射可独立瞄准、可与普攻并行的 18 束额外激光；Buffie 命中后可向附近目标弹射，每次弹射保留 60% 伤害"
+        - "Boosted Booster 把增伤半径扩大到 5 格、把增伤提高到 50%，Buffie 每 5 秒生成持续 8 秒并回复 1 ammo 的弹药夹"
+        - "当前 PLP 以 Health Gear 替代 Reload Gear，偏向提高慢速阵地核的持续站场，而不是继续堆装填"
       enables:
         - "Heist/Siege 式静态目标爆发"
-        - "团队围绕炮台的更大范围火力网"
+        - "团队围绕炮台的更大范围火力网和弹药资源循环"
       mitigates_failure_modes:
         - "team_cannot_stay_inside_small_booster_radius"
-      best_when: "敌方难以贴脸且目标是静态安全输出"
-      poor_when: "敌方高速进场或需要频繁位移；Extra Credits 卸弹期间很容易被惩罚"
-      bp_use: "static_objective_or_team_buff_variant"
+      best_when: "敌方难以贴脸，且有静态目标、抱团目标或队友能围绕炮台拾取弹药夹"
+      poor_when: "敌方高速进场、投掷清炮台或需要频繁位移；选择 Extra Credits 也会放弃 Cheat Cartridge 的撤退锚点"
+      bp_use: "current_plp_default_static_objective_and_team_resource_build"
 
   map_feature_hooks:
     - id: "heist_long_lane_booster_safe_dps"
@@ -184,41 +185,41 @@ bp_brawler_profile:
       exposed_by: "Fandom notes slight spread, slow unload speed, and poor peak-range accuracy"
       mitigation: "优先打中短手/静态目标，或让队友控制路线后再输出"
       bp_use: "candidate_eval.projectile_reliability_filter"
-    - id: "extra_credits_lockout"
-      active_when: "8-Bit 使用 Extra Credits 对移动目标或被刺客威胁时"
-      exposed_by: "Fandom notes Extra Credits takes three times as long and aim cannot be adjusted"
-      mitigation: "只对金库/静态目标使用，或坚持 Cheat Cartridge build"
+    - id: "extra_credits_targeting_and_escape_tradeoff"
+      active_when: "8-Bit 选择 Extra Credits 对高速目标输出，或当前 draft 需要 Cheat Cartridge 提供撤退时"
+      exposed_by: "Fandom current mechanics: Extra Credits is an independently aimed 18-laser shot; Buffie bounce retains 60% damage, and the build excludes Cheat Cartridge"
+      mitigation: "优先打静态、被控或抱团目标；若刺客进场和撤退锚点更重要则改用 Cheat Cartridge"
       bp_use: "build_switch_warning"
 
   conditional_matchups:
-    - target: ["El Primo", "Darryl", "Frank", "Hank", "Draco"]
+    - target: ["Poco", "Jae-Yong", "Hank", "Rosa"]
       direction: "subject_favored"
       source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
-      mechanism: "高血量前排必须穿越 8-Bit 的长线和 Booster 增伤区，接近前会被持续 DPS 消耗"
-      active_when: "地图开阔、草墙接近路线被清，且 8-Bit 有 Booster 或队友 peel"
-      fails_when: "目标用跳跃/滚入/墙草直接贴脸，或队友无法阻止二段进场"
-      bp_use: "anti_frontline_on_open_lane"
-    - target: ["Poco", "Jae-Yong", "Meg"]
+      mechanism: "Booster 增伤、长线持续火力和当前 Health build 能压迫低爆发支援或必须正面推进的身体"
+      active_when: "战斗是开阔 front-to-back objective fight，8-Bit 有安全炮台点与队友视野/保护"
+      fails_when: "目标阵容有投掷或刺客先清炮台，或草墙让前排跳过远程消耗阶段"
+      bp_use: "response_into_low_burst_sustain_or_frontline_shell"
+    - target: ["Fang", "Cordelius", "Kit"]
       direction: "subject_favored"
       source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
-      mechanism: "Booster 增伤和高持续火力能压过低爆发支援或目标区身体的续航节奏"
-      active_when: "战斗是 front-to-back objective fight，8-Bit 队伍有视野和炮台保护"
-      fails_when: "支援壳体配上投掷/刺客，或 Meg 机甲/队友先清掉 Booster"
-      bp_use: "response_into_low_burst_sustain_shell"
-    - target: ["Colt", "Colette", "Bo", "Barley", "Lumi"]
+      mechanism: "8-Bit 的高单轮伤害、炮台身体与队友 peel 能惩罚需要提交进场资源的刺客"
+      active_when: "接近路线开阔、8-Bit 保持满弹药，且队友有击退/控制阻止第二段贴脸"
+      fails_when: "Fang/Cordelius/Kit 从墙草或资源优势直接贴脸，或 8-Bit 放弃 Cheat Cartridge 后没有撤退路线"
+      bp_use: "conditional_anti_commitment_response_not_blind_counter"
+    - target: ["Sprout", "Damian", "Maisie", "R-T", "Brock"]
       direction: "target_favored"
       source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
-      mechanism: "多弹道/百分比伤害/地雷视野/投掷或区域控制能打慢速 8-Bit，并低成本清炮台"
-      active_when: "他们有长线、墙后口袋或目标区位置，8-Bit 必须暴露走位"
-      fails_when: "8-Bit 的队伍先开墙、清口袋，并让炮台在射程外安全站住"
-      bp_use: "must_answer_range_or_booster_clear"
-    - target: ["Edgar", "Sandy", "Bibi"]
+      mechanism: "墙后控制、超长线或高可靠弹道能利用 8-Bit 的慢移速，并从安全角度清炮台或持续逼位"
+      active_when: "地图提供墙后口袋或长直线，8-Bit 必须暴露走位才能守住目标"
+      fails_when: "队伍先开墙/清口袋并把炮台放到敌方射程外，或目标缺少持续清点角度"
+      bp_use: "must_answer_range_and_booster_clear"
+    - target: ["Bolt", "Ash", "Buster"]
       direction: "target_favored"
       source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
-      mechanism: "跳跃、隐蔽/草丛、击退和高速贴脸能绕过长线，惩罚 8-Bit 慢卸弹和慢移速"
-      active_when: "地图给草墙接近或最后手确认 8-Bit 缺 peel"
-      fails_when: "接近路线开阔、8-Bit 留 Cheat Cartridge，且队友有控制/反刺客"
-      bp_use: "avoid_without_peel_or_grass_control"
+      mechanism: "高身体、加速接触或推进掩护能吃住第一轮火力并把战斗压到 8-Bit 不擅长的近身距离"
+      active_when: "地图有直线冲锋、草墙接近或目标区必须正面站住，且 8-Bit 缺少可靠 peel"
+      fails_when: "路线完全开阔、8-Bit 满弹药且有控制队友，或 Cheat Cartridge 提供安全撤退锚点"
+      bp_use: "avoid_body_or_contact_pressure_without_peel"
 
   slot_notes:
     slot_1: "只在 Heist 长线或可保护炮台的 Gem/Hot Zone 图早手；否则会暴露慢速和炮台清点弱点"

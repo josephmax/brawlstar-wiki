@@ -4,8 +4,8 @@
 
 - 标题：Best build for 8-Bit | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[8-Bit | Power League Prodigy](https://powerleagueprodigy.com/8bit)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/8bit-2026-06-30.md]]
+- 读取日期：2026-07-11
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/8bit-2026-07-11.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z
@@ -17,17 +17,17 @@
 
 ## 结构化字段摘要
 
-- 推荐 Gadget: `Cheat Cartridge`
-- 推荐 Star Power: `Plugged In`
-- 推荐 Gears: Damage, Reload
+- 推荐 Gadget: `Extra Credits`
+- 推荐 Star Power: `Boosted Booster`
+- 推荐 Gears: Damage, Health
 - 推荐 Modes: Heist, Bounty, Gem Grab
 - Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `El Primo`, `Poco`, `Jae-Yong`, `Darryl`, `Frank`, `Meg`, `Hank`, `Draco`
-- counteredBy: `Colt`, `Colette`, `Edgar`, `Sandy`, `Bo`, `Bibi`, `Barley`, `Lumi`
+- countersThese: `Poco`, `Jae-Yong`, `Fang`, `Hank`, `Glowy`, `Rosa`, `Cordelius`, `Kit`
+- counteredBy: `Bolt`, `Sprout`, `Damian`, `Maisie`, `Ash`, `R-T`, `Brock`, `Buster`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

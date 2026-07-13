@@ -4,10 +4,10 @@
 
 - 标题：8-Bit
 - 来源：[8-Bit | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/8-Bit)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-17T09:17:51Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-08T14:47:34Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/8-bit-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/8-bit-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,10 +20,10 @@
 
 - 稀有度: Super Rare
 - 官方定位: Damage Dealer
-- 移动速度: 580 (Very Slow)<br>700 (with Hypercharge)<br>720 (with Plugged In)<br>871 (with Plugged In and Hypercharge)
+- 移动速度: 580 (Very Slow)<br>700 (with Hypercharge)<br>725 (with Plugged In)<br>876 (with Plugged In and Hypercharge)
 - 生命值: 5200
 - 攻击距离: 10 (Very Long)
-- 装填: 1.5 seconds (Normal)<br>1.275 seconds (with Reload Gear)
+- 装填: 1.35 seconds (Very Fast)<br>0.1 seconds (while Hyper Buffie is active)
 - 普攻数值: 340
 - Super 距离: 5
 - Super 数值: 2800

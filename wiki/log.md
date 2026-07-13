@@ -840,3 +840,47 @@
 - `decide_with_runtime_index.py` 不再生成或暴露 `decision_score` / ability-role-strength 混合分，改为输出 `adjudication.final_bucket`、`status`、`strength_use` 和分层证据。
 - 强度只在同一裁决层内作为 tie-break；`early_pick` 以及没有 active counter value 的 `response_pick` 中，命中进场 / 控制 / 无退路 / 目标转化误判风险的路线型候选会降为 `early_exposure_watch`。
 - `run_local_bp_match.py` 的独立审计日志改为展示裁决层、裁决状态和强度用途；重新跑了 Bridge Too Far、Backyard Bowl、Ring of Fire 三张图的本地 BP 报告和 decision log。
+
+## [2026-07-10] synthesis | 复盘 BP 知识压缩与决策质量演进
+
+- 新增 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]，整理从全量 wiki 阅读、手写索引、compile/runtime index、小窗口工具到中立事实召回 + LLM 条件化裁决的架构演进。
+- 记录强度 fallback 污染地图适配、混合分制造标准答案、`mode_contract_fit` 粗化模式职责、counter 先丢失后被过度硬化、ban 只封强度榜和报告不可审计等主要质量下降及其修正。
+- 明确当前恢复质量所依赖的三条原则：能力模型与目标职责先行；synergy/counter 只形成条件偏好；中间层只召回事实、不替模型决策。
+- 修正 [[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]] 的旧 `pending_implementation` 状态，将迁移步骤更新为当前已落地的 compile、precheck、query、hydrate 和中立事实召回边界。
+- 更新 [[index|Wiki Index]]，将该复盘接入 BP Methodology。
+
+## [2026-07-10] design | 启动 BP 下一阶段迭代方向 grilling
+
+- 新增 [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录]]，作为持续更新的非运行时设计讨论页。
+- 将模糊的“BP 质量”拆为事实可靠性、目标有效性、阵容整体性、对位利用、计划连续性、版本强度利用和可审计性，明确这些维度不能重新合成单一总分。
+- 记录四个候选方向：质量评估闭环、底层知识清洗、选手推理流程和批量运行性能；当前待确认主张是先建立非唯一答案的固定场景 A/B 盲审闭环。
+- 记录用户对下一阶段的两条新方向：以地图、队友和对手关系的全面利用提高 BP 质量；读取用户账号英雄数据并在召回侧遮罩不可执行候选。
+- 对照当前代码确认：英雄—地图和英雄—对手已有一等关系，英雄—队友仍主要由 LLM 从能力事实临时推断；账号侧已有 `candidate_pool`、`known_player_constraints` 和 `exclude-id` 接口，但尚无账号读取与拥有/资源/熟练度分层。
+- 将“关系边数量”收窄为待确认的“决策相关关系覆盖”，并提出显式英雄特有关系 + 通用能力派生关系的混合模型；将评估闭环调整为伴随关系迭代的验证底座，而非独占产品里程碑。
+- 根据用户纠偏，明确当前评价对象是 ban / pick 决策质量，不是 Fandom / PLP ground truth 的数据建设质量；撤回以数据供给和场景召回为主的评价表述。
+- 将单手决策表示为 map/objective/ally/enemy/exposure/failure 关系组合，提出 `decision_relation_depth`、`decision_relation_breadth`、`considered_relation_coverage`、`non_dominated_selection_rate` 和 `hard_failure_rate`。
+- 提出用 Pareto 偏序而不是混合总分量化决策：代码识别被其他 serious candidate 全面支配的明显劣选，LLM 只处理前沿内部价值方向不同的真实策略取舍。
+- 更新 [[index|Wiki Index]]，将讨论页接入 BP Methodology。
+
+## [2026-07-10] ingest | 复核第 105 位英雄与 7 月 8 日平衡调整
+
+- 新增 `raw/sources/roster/brawlers-roster-audit-2026-07-10.md`，复核 Fandom 当前已有 105 位正式英雄：Nori 已于 2026-07-09 开放训练场与提前获取，Wendy 仍为未来更新；PLP guide sitemap 仍只有 104 位英雄。
+- 将旧日期化 roster 来源摘要收敛为稳定 canonical 页面 [[sources/Brawler-Roster|Brawler Roster]]，同步更新 [[index|Wiki Index]]；本地仍维持 104 个已闭环 `bp_ready` 英雄，Nori 记录为 `active_but_strength_unknown`，不在来源和强度输入补齐前直接生成 BP-ready 实体。
+- 新增 `raw/sources/fandom/systems/maintenance-july-8-2026-2026-07-10.md` 与 [[sources/Fandom-Maintenance-July-8-2026|Fandom Maintenance - July 8, 2026]]，整理 Jacky、Bonnie、Jessie、8-Bit、Surge、Brock、Meg、Crow、Colette、Starr Nova、Max 的平衡调整及与官方 release notes 的冲突。
+- 重抓上述 11 位英雄的 Fandom direct raw，并刷新对应 Fandom 来源摘要；对 8-Bit、Surge、Meg、Max、Colette、Crow、Starr Nova 内联更新有稳定语义影响的构筑或能力字段，其余英雄仅更新 provenance，不把纯数值变化误写成新的能力类型。
+- 修正 [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]] 的 roster 边界：其 2026-07-06 输入仍为 104 人；Nori 此后进入正式 roster，但没有保留下来的档位 / 分数，因此强度仍未知；Wendy 继续排除。
+- 新增 `raw/sources/pl-prodigy/site-audit-2026-07-10.md` 并更新 [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]：复核发现 8-Bit、Brock、Max 的推荐构筑发生变化，且 67 / 104 份动态 matchup 列表变化；但 sitemap / payload 时间戳无法证明变化发生于 7 月，因此只 ingest 站点审计，没有覆盖 per-Brawler canonical PLP 来源摘要，也没有把动态 matchup 直接提升为稳定对位边。
+- 保留来源冲突：Starr Nova 超级技能充能次数、Surge 超充削弱覆盖、Brock 击退描述、Colette Buffie 名称等只在来源层记录，未写入稳定事实层。
+- 运行 `audit_bp_profile_quality.py`：104 / 104 个本地英雄保持 `bp_ready`、零 blocker；运行 `test_bp_skill_contract.py` 通过，`git diff --check` 无格式错误。
+
+## [2026-07-11] ingest | 补齐 Nori Fandom 原始页与三份 PLP canonical guide
+
+- 使用维护脚本新增 `raw/sources/fandom/heroes/nori-2026-07-11.md` 与 [[sources/Fandom-Nori|Fandom-Nori]]，确认 Nori 的双形态攻击、钩墙 / 钩人位移、鱼资源、Super 范围 / 伤害成长、治疗 / 定身 Gadget 与两项 Star Power 机制。
+- PLP 仍没有 Nori guide，现有 strength profile 也没有保留 Nori 档位；因此未绕过脚本的双源保护生成 Nori 实体或 `bp_ready` profile，runtime 默认池继续保持 104 人。
+- 新增 `raw/sources/pl-prodigy/brawlers/8bit-2026-07-11.md`、`brock-2026-07-11.md`、`max-2026-07-11.md`，刷新 [[sources/PLP-8-Bit|PLP-8-Bit]]、[[sources/PLP-Brock|PLP-Brock]]、[[sources/PLP-Max|PLP-Max]]。
+- 内联更新三个稳定英雄页的 PLP provenance 与 build：8-Bit 当前为 Extra Credits / Boosted Booster / Damage + Health，Brock 为 Rocket Laces / More Rockets / Damage + Shield，Max 为 Sneaky Sneakers / Super Charged / Shield + Damage；8-Bit 的动态 matchup 只在补足机制、成立条件和失效条件后更新。
+- 更新 [[sources/Brawler-Roster|Brawler Roster]]、[[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]] 与 [[index|Wiki Index]]，将 Nori 缺口从“缺 direct raw”收窄为“缺竞技来源 / strength / reviewed profile”。
+- 新增 `raw/sources/fandom/heroes/wendy-2026-07-11.md`、`raw/sources/supercell/wendy-announcement-june-2026-2026-07-11.md`、[[sources/Fandom-Wendy|Fandom-Wendy]] 与 [[sources/Supercell-Wendy-Announcement-June-2026|Supercell Wendy Announcement]]；确认 Wendy 仍为 `FutureUpdate`，并保留普攻伤害、自身护盾、Gadget 冷却三项预发布冲突，不创建英雄实体或 runtime 候选。
+- 修复 `audit_plp_matchup_coverage.py`：每位英雄只读取最新 dated direct raw，旧抓取继续作为历史 provenance，不再与当前 matchup 集合合并；新增回归测试并同步维护 skill / audit reference。
+- 2026-07-11 增量核对：Fandom category API 仍为 107 个页面，过滤 future Wendy 与已移除 Buzz Lightyear 后 released roster 仍为 105；Supercell 当前 release notes 仅有 `Maintenance - July 8`；PLP sitemap 仍无 Nori / Wendy guide，Blog 最新日期仍为 2026-06-30。
+- 最终验证：`audit_bp_profile_quality.py` 为 104 / 104 `bp_ready`、零 blocker；临时 runtime index 编译为 104 人、零 missing input、Nori / Wendy 均未混入；PLP audit 为 104 个最新页面 / 107 个历史 raw 文件；`test_plp_matchup_coverage.py`、`test_bp_skill_contract.py` 与 `git diff --check` 全部通过。

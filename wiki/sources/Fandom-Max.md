@@ -4,10 +4,10 @@
 
 - 标题：Max
 - 来源：[Max | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Max)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-19T19:36:08Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-10T07:34:40Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/max-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/max-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -38,6 +38,7 @@
 ## 抓取覆盖
 
 - Lead excerpt
+- Trait
 - Attack: Faster Blaster
 - Super: Let's Go!
 - Gadgets / Phase Shifter

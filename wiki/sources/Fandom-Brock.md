@@ -4,10 +4,10 @@
 
 - 标题：Brock
 - 来源：[Brock | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Brock)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-28T19:38:05Z
+- 读取日期：2026-07-10
+- Fandom 页面最后编辑：2026-07-09T02:34:45Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-07-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -22,8 +22,8 @@
 - 官方定位: Marksman
 - 移动速度: 720 (Normal)<br>864 (with Hypercharge)
 - 生命值: 3000
-- 攻击距离: 9 (Long)
-- 装填: 2.1 seconds (Slow)<br>1.785 seconds (with Reload Gear)
+- 攻击距离: 9 (Long)<br>11 (with Rocket No. 4 and Buffie)
+- 装填: 1.95 seconds (Slow)
 - 普攻数值: 1160
 - Super 距离: 8.33 (Long)
 - Super 数值: 1040

@@ -22,7 +22,7 @@ Meg 的 BP 价值是形态节奏：本体很脆但移动快、射程长，机甲
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-10"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -39,42 +39,47 @@ bp_brawler_profile:
     survivability: "stateful_high_if_mecha; 本体 2400 HP 很脆，机甲 3700 HP 加 Jolting Volts 提高站场"
     engage: "medium; 通过机甲身体和范围 swing 推进，不靠瞬间位移"
     disengage: "low_after_mecha_break; 机甲破后本体易被追死"
-    anti_aggro: "medium_high_in_mecha; 宽弹幕、swing、Heavy Metal 爆炸/击退可阻止近身推进"
+    anti_aggro: "medium_high_in_mecha; 宽弹幕、swing 和进入机甲时的范围伤害/击退可阻止近身推进，Heavy Metal 通过 swing 命中回血维持机甲"
     anti_tank: "medium; 机甲持续火力可磨前排，但怕高爆发贴脸和控制链"
     wall_break: "none"
     throw_or_wall_bypass: "none"
     area_control: "high_in_mecha; 宽弹幕和 swing 能守入口、热区和球门"
     scouting_or_vision: "low"
-    team_support: "conditional; Toolbox 可提供范围 reload buff，但 PLP 默认不是核心 build"
-    spawnable_or_pet: "conditional; Toolbox turret 作为团队 reload anchor"
-    crowd_control: "conditional; Heavy Metal 在机甲破坏时击退，Mecha swing 提供近身驱赶"
+    team_support: "conditional; Jolting Volts Buffie 可同时治疗机甲与附近队友，Heavy Metal Buffie 可从被 Super 命中的敌人偷取 ammo"
+    spawnable_or_pet: "none; Toolbox 不再部署 reload turret，而是弹射当前机甲并开始回充 Super"
+    crowd_control: "conditional; 进入机甲时会范围伤害并击退，Hypercharge 还会短暂减速附近敌人；Heavy Metal 本身不再提供击退"
 
   build_switches:
     - build: "Jolting Volts / Heavy Metal / Shield, Damage"
       source: "[[sources/PLP-Meg|PLP-Meg]]"
       changes_capabilities:
-        - "提高机甲 uptime，并在机甲被毁时用爆炸/击退保护本体或阻止突进"
+        - "Jolting Volts 延长机甲 uptime；Buffie 还会治疗附近队友并把持续时间从 5 秒延长到 6 秒"
+        - "Heavy Metal 让 Mecha Super 每命中一个敌人回复 1200 生命；Buffie 还会从每个被命中的敌人偷取 1 ammo"
       enables:
         - "Hot Zone/Brawl Ball 的目标区身体"
         - "Heist 的机甲期 safe 压力"
         - "Gem Grab 中线控场"
+        - "目标区团队治疗和前排 ammo 压制"
       mitigates_failure_modes:
-        - "base_form_collapse_after_mecha_destroyed"
         - "mecha_uptime_taxed_by_poke"
+        - "mecha_ammo_pressure_during_objective_fight"
       best_when: "地图奖励站点、守入口或持续目标压力"
       poor_when: "敌方能用墙后投掷、召唤物或高爆发近身持续打断机甲循环"
       bp_use: "default_plp_mecha_control_build"
     - build: "Toolbox / Force Field or Heavy Metal / Shield, Damage"
       source: "[[sources/Fandom-Meg|Fandom-Meg]]"
       changes_capabilities:
-        - "把 Meg 从纯机甲身体改成团队 reload anchor"
+        - "Toolbox 让 Meg 主动弹出并向前发射机甲，沿途和爆炸时造成伤害，随后在 6 秒内回充 Super"
+        - "Force Field 在离开机甲后提供 40% 护盾；Buffie 在护盾期间再提供 20% 移速"
       enables:
-        - "Heist/Hot Zone 中给队友提高持续输出或守区效率"
+        - "把即将失效的机甲转成直线伤害并计划性重进机甲"
+        - "Heist/Hot Zone 中的短暂离甲换位和第二轮机甲压力"
       mitigates_failure_modes:
-        - "team_lacks_sustained_fire"
-      best_when: "队友能安全围绕 turret 输出，敌方缺低成本清炮台"
-      poor_when: "地图需要 Meg 自己持续抗线，或敌方投掷能轻松清 Toolbox"
-      bp_use: "team_reload_variant"
+        - "base_form_collapse_after_mecha_destroyed"
+        - "bad_mecha_position_without_reset"
+      best_when: "机甲可沿明确路线命中目标，且 Meg 能靠护盾/队友覆盖度过 6 秒回充窗口"
+      poor_when: "敌方能在本体期立即爆发收割，或弹射路线没有目标且会无意义放弃机甲身体"
+      bp_use: "planned_mecha_reset_variant"
 
   map_feature_hooks:
     - id: "hot_zone_mecha_mid_body_control"
@@ -87,7 +92,7 @@ bp_brawler_profile:
       bp_use: "Hot Zone 中心身体核心"
     - id: "brawl_ball_mecha_goal_defense_and_push_body"
       map_feature_type: "goal_entry_pressure_and_anti_aggro"
-      uses_feature_by: "机甲在球门前抗伤、用 swing/Heavy Metal 阻断持球突进，同时作为推进身体给 scorer 开路"
+      uses_feature_by: "机甲在球门前抗伤并用 swing 守门；进入机甲时的范围伤害/击退可打断持球推进，Heavy Metal 则用命中回血和偷 ammo 维持防线"
       objective_conversion: "把人数/血量优势转成持球推进或防守清球"
       active_when: "队伍有破门、得分手或控人，Meg 负责站住球门区域"
       fails_if: "敌方用投掷/召唤物绕过机甲，或机甲破后本体被连续击杀导致防线断层"
@@ -153,7 +158,7 @@ bp_brawler_profile:
     - id: "base_form_collapse_after_mecha_destroyed"
       active_when: "机甲被打掉后，本体 2400 HP 被追击"
       exposed_by: "stateful HP and no hard escape"
-      mitigation: "Heavy Metal/Force Field、队友 peel、避免本体携带关键目标"
+      mitigation: "Force Field、提前用 Toolbox 计划性弹射并选择安全回充路线、队友 peel、避免本体携带关键目标"
       bp_use: "avoid_as_sole_carrier_or_last_body"
     - id: "thrower_spawnable_or_close_swarm_tax"
       active_when: "敌方用 Nita、Larry & Lawrie、Damian、Lumi 或墙后投掷持续消耗机甲"
