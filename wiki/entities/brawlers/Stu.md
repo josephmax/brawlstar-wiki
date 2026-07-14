@@ -108,6 +108,7 @@ bp_brawler_profile:
         - Open Business
         - Hard Rock Mine
         - Center Stage
+        - Crystal Arcade
       bp_use: required_capabilities.mobile_lane_pressure
     - map_feature_type: "wall_break_transform"
       uses_feature_by: "Breakthrough can destroy obstacles during Super"
@@ -243,3 +244,9 @@ bp_brawler_profile:
     slot_4_5: "用于修补机动、开墙或反突进；注意不要把墙开给敌方长线。"
     slot_6: "当敌方缺硬控、缺召唤物且后排暴露时，Stu 可作为高操作惩罚位。"
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Stu|Fandom 来源摘要: Stu]]
+- [[sources/PLP-Stu|PLP 来源摘要: Stu]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]

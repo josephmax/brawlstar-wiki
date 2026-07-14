@@ -1,8 +1,8 @@
 # BP 运行时索引编译架构
 
-状态日期：2026-07-02。性质：`runtime_architecture_decision_pending_implementation`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
+状态日期：2026-07-10。性质：`runtime_architecture_implemented`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
 
-本页记录 BP skill 的下一阶段架构方向：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实和用户 / 社区 / 选手的强度理解编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。
+本页记录 BP skill 的 compile-first 架构决策：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实和用户 / 社区 / 选手的强度理解编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。该架构已经落地；当前可执行 contract 以 `skills/brawl-stars-bp-slot-decision/` 为准，质量演进与踩坑见 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]。
 
 ## 核心结论
 
@@ -177,14 +177,14 @@ decision_input:
 ## 迁移步骤
 
 1. 已将两个旧 Markdown 索引从 BP Runtime 入口移除并删除源文件。
-2. 在 `skills/brawl-stars-bp-slot-decision/` 中新增 `compile` 子命令或等价流程，生成 `runtime_bp_index`。
-3. 将 `decide-ban` 与 `decide-slot` 改为优先消费 `runtime_bp_index`。
-4. 在 compile 尚未落地时，skill 只能从英雄页、地图页、模式页和 Season 地图池即时派生候选，不能回退到已删除的手写索引。
-5. 若仍需要人类审计，旧索引的等价内容只能作为脚本生成的 debug artifact 输出，不再作为长期 wiki 页面维护。
+2. 已在 `skills/brawl-stars-bp-slot-decision/` 中落地 `compile` 流程，生成 `runtime_bp_index`。
+3. `decide` 已改为通过 precheck、query 和 hydrate 小窗口消费 `runtime_bp_index`，不全量读取 JSON。
+4. 事实查询工具已收窄为中立召回；当前 draft 解释、候选比较和最终 ban/pick 由 LLM 负责。
+5. 人类审计所需的厚数据继续作为 debug artifact 或独立 decision log 输出，不作为长期 wiki 页面维护。
 
-## 查询期临时规则
+## 历史过渡规则（已失效）
 
-在 compile 子命令落地前，BP 查询必须按以下口径运行：
+以下规则只记录 compile 落地前的过渡状态，当前 runtime 不再使用：
 
 - 事实源仍是英雄页和地图页。
 - 没有 `runtime_bp_index` 时，直接从英雄页的 `conditional_matchups`、`map_feature_hooks`、`objective_contracts`、`failure_modes` 和地图页的 `map_bp_factors` 派生候选。

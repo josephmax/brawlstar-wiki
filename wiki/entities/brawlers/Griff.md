@@ -125,6 +125,7 @@ bp_brawler_profile:
         - Hard Rock Mine
         - Gem Fort
         - Double Swoosh
+        - Crystal Arcade
       bp_use: map_bp_factors.midrange_anti_body_carrier_protection
 
   objective_contracts:
@@ -238,3 +239,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Griff|Fandom 来源摘要: Griff]]
 - [[sources/PLP-Griff|PLP 来源摘要: Griff]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]

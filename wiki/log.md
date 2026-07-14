@@ -892,3 +892,11 @@
 - EMEA 记录 7 场实际 series / 24 个实际 set，FUT Esports 夺冠；南美记录 6 场实际 series + 1 场弃权 / 24 个实际 set，RED Canids 夺冠。`winner=skip` 与弃权均未进入 played-set 分母。
 - 生成但不纳入 git 的 observation profile 与 gap audit：当前稳定地图层缺 `Crystal Arcade`、`Goldarm Gulch`、`Pinhole Punt` 三张赛事地图；另有 17 条重复实战选用与现有 compiled `map_floor_fit` 不一致的 VOD / draft-context review seeds。
 - 明确赛事观察不得自动生成 strength tier、稳定地图 fit、hard gate、slot eligibility、对位边或 runtime 推荐；只有经过机制与录像复核的结论才能更新稳定英雄 / 地图事实，版本强度解释仍需单独维护者评审。
+
+## [2026-07-14] ingest | 补齐三张赛事地图并提升可解释的 map-fit
+
+- 新增 `Crystal Arcade`、`Goldarm Gulch`、`Pinhole Punt` 三份 Fandom revision-specific raw capture，建立 [[sources/Fandom-BSC-July-2026-Observed-Map-Pages|联合来源摘要]] 与三个 `bp_map_profile_v2` 稳定地图实体，补齐中央墙 / 侧草 / carrier 撤退、Knockout 墙袋 / 毒圈退出、Brawl Ball 草环 / 窄门转换等 BP 职责。
+- 新增 [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 三张补充地图的适配复核]]，联合 EMEA / South America 的逐 set 观察与稳定地图结构，不以 pick 频率或 set 胜场自动生成强度。
+- 将机制、目标转化和失效条件可解释的五条关系内联到稳定英雄页：Crystal Arcade 的 Griff、Stu、Pearl、Meeple，以及 Goldarm Gulch 的 Charlie；只激活条件化 map hook，不改变全局 strength tier。
+- Glowy / Crystal Arcade（2 picks、0 set wins）与 Damian / Goldarm Gulch（2 picks、0 set wins）继续保留为 review seeds；Pinhole Punt 的每位英雄只有 1 个 set，未复制单场阵容为稳定英雄特例。
+- 重新编译 `outputs/runtime-bp-index/bsc-2026-july-three-ingested-maps.json`：3 张地图、104 个 BP-active 英雄、零 missing input；知识缺口审计从地图 ingest 后的 7 条收敛为上述 2 条刻意保留的弱证据。

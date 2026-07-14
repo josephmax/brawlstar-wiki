@@ -140,6 +140,7 @@ bp_brawler_profile:
         - Hard Rock Mine
         - Gem Fort
         - Double Swoosh
+        - Crystal Arcade
       bp_use: map_bp_factors.mine_rule_area_and_carrier_escape
 
   objective_contracts:
@@ -256,3 +257,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Meeple|Fandom 来源摘要: Meeple]]
 - [[sources/PLP-Meeple|PLP 来源摘要: Meeple]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]

@@ -144,6 +144,15 @@ bp_brawler_profile:
         - Ring of Fire
         - Open Business
       bp_use: candidate_eval.zone_entry_control_not_primary_body
+    - map_feature_type: "knockout_cocoon_first_pick_and_spider_route_tax"
+      uses_feature_by: "Cocoon 暂时移除墙袋或侧草中的关键目标，Spiders 则探草、挡单发弹道并迫使长手先交弹药"
+      route_or_position: "中央小墙窄口、两侧长草出口、出生墙袋前的 collapse 线"
+      objective_conversion: "把侧路线权转成短暂人数差，在毒圈前完成第一杀或迫使孤立后排离开保护位"
+      active_when: "队友能在 Cocoon 期间压住另外两人，并在目标释放后补足击杀伤害；Spiders 不会被范围伤害免费清除"
+      fails_if: "敌方 splash 同时清蜘蛛和 Cocoon，Charlie 一方没有 follow-up，或毒圈前仍未建立侧路线权"
+      example_maps:
+        - Goldarm Gulch
+      bp_use: candidate_eval.knockout_isolation_with_side_lane_followup
 
   objective_contracts:
     - mode: "Gem Grab"
@@ -193,6 +202,18 @@ bp_brawler_profile:
         - safe DPS teammate
         - lane winner who can enter while defender is cocooned
       false_positive: "PLP lists Heist, but Charlie is a utility enabler there rather than a primary safe-damage pick."
+    - mode: "Knockout"
+      can_fulfill:
+        - key_target_cocoon_isolation
+        - spider_bush_scout_and_ammo_tax
+        - anti_dive_super_cancel
+      cannot_fulfill:
+        - primary_long_range_pick_damage
+        - solo_collapse_without_followup
+      needs_teammate_support:
+        - side_lane_pressure_or_long_range_followup
+        - splash_answer_or_finish_damage_after_cocoon
+      false_positive: "Cocoon 只创造暂时人数差；队伍不能压住其余两人或补足释放后的伤害时，不等于获得首杀。"
 
   failure_modes:
     - id: "single_ammo_yoyo_cycle_loss"
@@ -261,3 +282,9 @@ bp_brawler_profile:
     slot_4_5: "repairs drafts that need carrier disarm or anti-aggro while leaving a teammate slot for damage conversion."
     slot_6: "punishes enemy comps that rely on one unrecoverable carrier/scorer/engager and lack thrower or splash counterplay."
 ```
+
+## 关联页面
+
+- [[sources/Fandom-Charlie|Fandom 来源摘要: Charlie]]
+- [[sources/PLP-Charlie|PLP 来源摘要: Charlie]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]

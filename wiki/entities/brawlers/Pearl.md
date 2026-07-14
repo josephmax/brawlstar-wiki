@@ -109,6 +109,7 @@ bp_brawler_profile:
         - "[[entities/maps/Gem Fort|Gem Fort]]"
         - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
         - "[[entities/maps/Double Swoosh|Double Swoosh]]"
+        - "[[entities/maps/Crystal Arcade|Crystal Arcade]]"
       bp_use: "candidate_eval.gem_mid_heat_anchor"
     - id: "brawl_ball_super_goal_wallbreak"
       map_feature_type: "goal_wall_break_and_knockback"
@@ -234,3 +235,4 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Pearl|Fandom 来源摘要: Pearl]]
 - [[sources/PLP-Pearl|PLP 来源摘要: Pearl]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]

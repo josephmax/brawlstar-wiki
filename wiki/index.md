@@ -44,6 +44,7 @@
 - 赛事来源：
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|Liquipedia：BSC 2026 July EMEA Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|Liquipedia：BSC 2026 July South America Monthly Finals]]
+- [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 三张补充地图的适配复核]]
 
 - 站点与 manifest：
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
@@ -55,6 +56,7 @@
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
 - [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]
+- [[sources/Fandom-BSC-July-2026-Observed-Map-Pages|Fandom 来源摘要: BSC 2026 July 三张补充地图页]]
 - [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]
 
 - 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]]（Fandom direct raw 已闭环；PLP guide、strength 与 reviewed profile 待补）。
@@ -378,11 +380,13 @@
 - [[entities/maps/Belle's Rock|Belle's Rock]]
 - [[entities/maps/Bridge Too Far|Bridge Too Far]]
 - [[entities/maps/Center Stage|Center Stage]]
+- [[entities/maps/Crystal Arcade|Crystal Arcade]]
 - [[entities/maps/Double Swoosh|Double Swoosh]]
 - [[entities/maps/Dry Season|Dry Season]]
 - [[entities/maps/Dueling Beetles|Dueling Beetles]]
 - [[entities/maps/Flaring Phoenix|Flaring Phoenix]]
 - [[entities/maps/Gem Fort|Gem Fort]]
+- [[entities/maps/Goldarm Gulch|Goldarm Gulch]]
 - [[entities/maps/Hard Rock Mine|Hard Rock Mine]]
 - [[entities/maps/Hideout|Hideout]]
 - [[entities/maps/Hot Potato|Hot Potato]]
@@ -393,6 +397,7 @@
 - [[entities/maps/Out in the Open|Out in the Open]]
 - [[entities/maps/Parallel Plays|Parallel Plays]]
 - [[entities/maps/Pinball Dreams|Pinball Dreams]]
+- [[entities/maps/Pinhole Punt|Pinhole Punt]]
 - [[entities/maps/Pit Stop|Pit Stop]]
 - [[entities/maps/Ring of Fire|Ring of Fire]]
 - [[entities/maps/Safe Zone|Safe Zone]]

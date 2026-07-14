@@ -188,6 +188,45 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertNotIn("Moe", projected_names)
         self.assertNotIn("Emz", projected_names)
 
+    def test_july_event_map_fit_review_promotes_only_mechanism_backed_hooks(self):
+        crystal_index = run_compile_for_map(
+            "Crystal Arcade",
+            "--strength-profile",
+            str(DEFAULT_PROFILE),
+        )
+        crystal = crystal_index["map_pool_signature"]["Crystal Arcade"]
+        expected_hooks = {
+            "Griff": "gem_mid_super_area_and_anti_body",
+            "Stu": "dash_chain_lane_pressure",
+            "Pearl": "gem_heat_shield_mid_anchor",
+            "Meeple": "gem_mid_rule_area_carrier_pressure",
+        }
+        for brawler, hook_id in expected_hooks.items():
+            candidate = crystal["candidate_index"][brawler]
+            self.assertEqual("strong", candidate["map_floor_fit"])
+            self.assertIn(hook_id, candidate["active_hook_ids"])
+
+        glowy = crystal["candidate_index"]["Glowy"]
+        self.assertEqual("weak", glowy["map_floor_fit"])
+        self.assertEqual([], glowy.get("active_hook_ids") or [])
+
+        goldarm_index = run_compile_for_map(
+            "Goldarm Gulch",
+            "--strength-profile",
+            str(DEFAULT_PROFILE),
+        )
+        goldarm = goldarm_index["map_pool_signature"]["Goldarm Gulch"]
+        charlie = goldarm["candidate_index"]["Charlie"]
+        self.assertEqual("strong", charlie["map_floor_fit"])
+        self.assertIn(
+            "knockout_cocoon_first_pick_and_spider_route_tax",
+            charlie["active_hook_ids"],
+        )
+
+        damian = goldarm["candidate_index"]["Damian"]
+        self.assertEqual("weak", damian["map_floor_fit"])
+        self.assertEqual([], damian.get("active_hook_ids") or [])
+
     def test_projection_window_preserves_ability_diversity_before_strength_rank_cutoff(self):
         index = run_compile_for_map("Bridge Too Far", "--strength-profile", str(DEFAULT_PROFILE))
         bridge = index["map_pool_signature"]["Bridge Too Far"]
@@ -291,7 +330,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         )
         index = json.loads(result.stdout)["runtime_bp_index"]
 
-        self.assertEqual(27, len(index["map_pool_signature"]))
+        self.assertEqual(30, len(index["map_pool_signature"]))
         self.assertLess(len(result.stdout.encode("utf-8")), 5_000_000)
 
 
