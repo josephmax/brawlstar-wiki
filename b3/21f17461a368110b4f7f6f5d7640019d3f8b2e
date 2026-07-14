@@ -1,0 +1,73 @@
+brawlstar/raw/sources/fandom/maps/crystal-arcade-2026-07-14.md
+  s_67aa091fa58788::t_44645bb51831e8 1-38
+brawlstar/raw/sources/fandom/maps/goldarm-gulch-2026-07-14.md
+  s_67aa091fa58788::t_97c2ca07e8c553 1-32
+brawlstar/raw/sources/fandom/maps/pinhole-punt-2026-07-14.md
+  s_67aa091fa58788::t_d5a3bc826723c4 1-31
+brawlstar/skills/brawl-stars-bp-slot-decision/tests/test_compile_runtime_index.py
+  s_67aa091fa58788::t_c78201daacae1c 191-229,333
+brawlstar/wiki/entities/brawlers/Charlie.md
+  s_67aa091fa58788::t_9aec34cb070ebe 147-155,205-216,285-290
+brawlstar/wiki/entities/brawlers/Griff.md
+  s_67aa091fa58788::t_d25b7266123176 128,242
+brawlstar/wiki/entities/brawlers/Meeple.md
+  s_67aa091fa58788::t_865b823fac3669 143,260
+brawlstar/wiki/entities/brawlers/Pearl.md
+  s_67aa091fa58788::t_5f1a3cfacb8b3f 112,238
+brawlstar/wiki/entities/brawlers/Stu.md
+  s_67aa091fa58788::t_173e19062900ac 111,247-252
+"brawlstar/wiki/entities/maps/Crystal Arcade.md"
+  s_67aa091fa58788::t_7aefd9f1f00dba 1-109
+"brawlstar/wiki/entities/maps/Goldarm Gulch.md"
+  s_67aa091fa58788::t_71cdc82a528807 1-109
+"brawlstar/wiki/entities/maps/Pinhole Punt.md"
+  s_67aa091fa58788::t_3d22e1f1b00307 1-109
+brawlstar/wiki/index.md
+  s_67aa091fa58788::t_d899f057f88562 47,59,383,389,400
+brawlstar/wiki/log.md
+  s_67aa091fa58788::t_ed3942c2f75255 895-902
+brawlstar/wiki/sources/BSC-2026-July-Observed-Map-Fit-Review.md
+  s_67aa091fa58788::t_e1201800cd45f5 1-61
+brawlstar/wiki/sources/Fandom-BSC-July-2026-Observed-Map-Pages.md
+  s_67aa091fa58788::t_d6c4ca18393c13 1-53
+brawlstar/wiki/syntheses/BP-下一阶段迭代方向决策记录.md
+  s_5eaca4d4b29164::t_162c76345c7554 1-273
+brawlstar/wiki/syntheses/BP-知识压缩与决策质量演进复盘.md
+  s_6ae84a7daaf315::t_c5a5c3f0699d65 1-263
+brawlstar/wiki/syntheses/BP-运行时索引编译架构.md
+  s_6ae84a7daaf315::t_3810f662ebc7c3 3,5,180-183,185,187
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b321f17461a368110b4f7f6f5d7640019d3f8b2e",
+  "prompts": {},
+  "sessions": {
+    "s_5eaca4d4b29164": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f4b5e-5812-7e90-afd5-f0cee47131f8",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_67aa091fa58788": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f4b5c-0dc4-79c3-bb4a-8130a346ab81",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_6ae84a7daaf315": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f276b-3dc2-7e21-b12a-13ff0e9f95ab",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
