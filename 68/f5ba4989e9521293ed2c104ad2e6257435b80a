@@ -1,0 +1,25 @@
+ai-agent/meta/index.md
+  s_97b3aea5e635f0::t_05a7449060a3b6 6,16-17,44,50,193-210
+ai-agent/meta/log.md
+  s_97b3aea5e635f0::t_f067c2138a7853 3,25
+meta/index.md
+  s_97b3aea5e635f0::t_a9c0d2925b87ae 6,33,41,49,59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "68f5ba4989e9521293ed2c104ad2e6257435b80a",
+  "prompts": {},
+  "sessions": {
+    "s_97b3aea5e635f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e88bb1db-a3e7-43d0-a014-07267632f831",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
