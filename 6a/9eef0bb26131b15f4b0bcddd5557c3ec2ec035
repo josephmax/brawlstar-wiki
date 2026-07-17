@@ -1,0 +1,265 @@
+brawlstar/AGENTS.md
+  s_67aa091fa58788::t_60016b2e229e68 70,121-122,206,208,212
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/SKILL.md
+  s_67aa091fa58788::t_f088049a6500d7 33,62-63,77-78,86
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/agents/openai.yaml
+  s_67aa091fa58788::t_7a0f47ddc9322a 3-4
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/audit-and-validation.md
+  s_67aa091fa58788::t_45d87736505c32 18-19,42-43,96-110,132
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/brawler-modeling.md
+  s_67aa091fa58788::t_657150da6c6ef3 9,19-22,33,64-66
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/runtime-boundary.md
+  s_67aa091fa58788::t_23007439e41eda 29-30,63
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/references/source-ingest.md
+  s_67aa091fa58788::t_332f003c84ea18 35-38
+brawlstar/skills/brawl-stars-bp-knowledge-maintenance/scripts/test_bp_skill_contract.py
+  s_67aa091fa58788::t_cbe035f24ca66c 28,42-43,240-242,346-351,366
+brawlstar/skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md
+  s_67aa091fa58788::t_fc1dd6e6a50e02 137-138
+brawlstar/wiki/entities/brawlers/8-Bit.md
+  s_67aa091fa58788::t_747dff415cc5b1 25,47-48,90,93-94,193-197
+brawlstar/wiki/entities/brawlers/Barley.md
+  s_610abfa402476f::t_8b38cc7f67c7e7 25,34,46,90,116,192-193
+brawlstar/wiki/entities/brawlers/Bibi.md
+  s_67aa091fa58788::t_e564e705d7a5b2 55,237-291
+brawlstar/wiki/entities/brawlers/Bolt.md
+  s_67aa091fa58788::t_3ac4f43ed748a6 25,50,61,66,119-120,180-181,214,235-268
+brawlstar/wiki/entities/brawlers/Bonnie.md
+  s_e8b63d6caaea13::t_dde480ad9379fa 25,35,237-279
+brawlstar/wiki/entities/brawlers/Brock.md
+  s_88f679f5197d1b::t_254ea978202f72 38,43,48,51-52,54,56,58,65-68,71-72,78,83-84,89,94,96-108,133-143,145,169,176,181,204-213,246-249
+brawlstar/wiki/entities/brawlers/Buzz.md
+  s_610abfa402476f::t_23bf5f88b3fd25 25,36,40,112,179
+brawlstar/wiki/entities/brawlers/Carl.md
+  s_67aa091fa58788::t_e8d303f7aa776b 25,246-251
+brawlstar/wiki/entities/brawlers/Chester.md
+  s_67aa091fa58788::t_043964caeba89d 25,33,54,195,239-244
+brawlstar/wiki/entities/brawlers/Colette.md
+  s_e8b63d6caaea13::t_76d2d2b3a40f0a 25,36,39,59,75,93,181-185,248-297
+brawlstar/wiki/entities/brawlers/Crow.md
+  s_e8b63d6caaea13::t_e837cf4d29372d 42,53,60,128,290-331
+brawlstar/wiki/entities/brawlers/Damian.md
+  s_67aa091fa58788::t_37b194e7911527 17,25,43,46-48,84,106,110,157,163,176-177,179,212,228-233
+brawlstar/wiki/entities/brawlers/Dynamike.md
+  s_610abfa402476f::t_47086855fcca70 25,33,82,106,200
+brawlstar/wiki/entities/brawlers/Edgar.md
+  s_67aa091fa58788::t_887752c0a7a34a 25,35,55,68-80,188-189
+brawlstar/wiki/entities/brawlers/Gale.md
+  s_67aa091fa58788::t_b7634818879ef1 25,35,61,103,185,234-239
+brawlstar/wiki/entities/brawlers/Gray.md
+  s_e8b63d6caaea13::t_3c07ded2ee4f38 17,31,38,47,77,128,130-131,192-196,239-244
+brawlstar/wiki/entities/brawlers/Griff.md
+  s_dd26ab6b3c7e84::t_a1a32b355c9ee1 17,25,31-32,54,68,71-72,78,182,184
+brawlstar/wiki/entities/brawlers/Jacky.md
+  s_e8b63d6caaea13::t_b2786e0c637db9 25,36,227-271
+brawlstar/wiki/entities/brawlers/Jessie.md
+  s_610abfa402476f::t_98c5421f0ba852 17,25,34,130,180-182
+brawlstar/wiki/entities/brawlers/Juju.md
+  s_610abfa402476f::t_c449e734caba97 17,25,46,55,119,191
+brawlstar/wiki/entities/brawlers/Kaze.md
+  s_67aa091fa58788::t_289df7ebfdea09 243-272
+"brawlstar/wiki/entities/brawlers/Larry & Lawrie.md"
+  s_610abfa402476f::t_4b62f7aa4c5bf3 17,25,32,36,46,82,168
+brawlstar/wiki/entities/brawlers/Leon.md
+  s_610abfa402476f::t_846fae5905fc68 31,42,51,54,61,97-98,192-196
+brawlstar/wiki/entities/brawlers/Lou.md
+  s_67aa091fa58788::t_cfc970eedc8efe 17,25,34,107,173-174,176,212
+brawlstar/wiki/entities/brawlers/Lumi.md
+  s_dd26ab6b3c7e84::t_5cab92de0ae923 25,46,59,104-105,156
+brawlstar/wiki/entities/brawlers/Mandy.md
+  s_e8b63d6caaea13::t_f4e2454a59f89c 25,35,39,76-87,153,212-256
+brawlstar/wiki/entities/brawlers/Max.md
+  s_67aa091fa58788::t_6a10a23be2aea8 48,59-62,68,78-79,84-86,92,97-99,102,109,114,117-118,126,129-130,138,149-171,179,186,190,234,237,241-245,265,296-338
+brawlstar/wiki/entities/brawlers/Meeple.md
+  s_610abfa402476f::t_72ca029f33271a 25,38,71,113,211
+brawlstar/wiki/entities/brawlers/Meg.md
+  s_67aa091fa58788::t_6891c956af7a87 17,25,42,50,57,66,68,88,91,96,99,122,127,130,135,174-178,200,211,213,221-261
+brawlstar/wiki/entities/brawlers/Mina.md
+  s_610abfa402476f::t_e31a373b1e8cbb 17,25,55,84-85,164
+brawlstar/wiki/entities/brawlers/Mortis.md
+  s_610abfa402476f::t_834249b10050b4 25,35,55,150
+brawlstar/wiki/entities/brawlers/Najia.md
+  s_dd26ab6b3c7e84::t_3b6bbb9ad48513 25,43,46,180-184
+brawlstar/wiki/entities/brawlers/Pearl.md
+  s_67aa091fa58788::t_9695ebc1f9cbad 17,25,36,39,60,90,103,163,177,179,239-271
+brawlstar/wiki/entities/brawlers/Pierce.md
+  s_dd26ab6b3c7e84::t_fa359f9cae59ed 25,54,70,105,183
+brawlstar/wiki/entities/brawlers/Piper.md
+  s_e8b63d6caaea13::t_16a6bf2e73313a 31,38,201-235
+brawlstar/wiki/entities/brawlers/R-T.md
+  s_e833142a022336::t_a5b5f6af49300f 17,25,32-33,39-40,43,54,81,83,91-92,182,211,219-291
+brawlstar/wiki/entities/brawlers/Rico.md
+  s_67aa091fa58788::t_2e0312289436bb 29,34,42,47-65,69,73,75-78,81-82,84-85,87-90,93-95,97-98,102,104-106,122-127,129-131,133-140,143,163,169-170,174,180,182,212,224-228,230-232,235,245-247,261-268,281-284
+brawlstar/wiki/entities/brawlers/Ruffs.md
+  s_610abfa402476f::t_0d448ca667efe1 32,52,208-212
+brawlstar/wiki/entities/brawlers/Shade.md
+  s_dd26ab6b3c7e84::t_4d160ed01339cf 41
+brawlstar/wiki/entities/brawlers/Shelly.md
+  s_610abfa402476f::t_3344563adcf7ee 25,38,50,59,76,193,195
+brawlstar/wiki/entities/brawlers/Spike.md
+  s_dd26ab6b3c7e84::t_bf717cc993c155 30,38,41,71,85,163-167
+brawlstar/wiki/entities/brawlers/Sprout.md
+  s_e8b63d6caaea13::t_ba5dbe55b10ee7 31,38-39,88,99,110,219-224
+"brawlstar/wiki/entities/brawlers/Starr Nova.md"
+  s_67aa091fa58788::t_f68965239800b0 25,35,39,48,60,190,244-288
+brawlstar/wiki/entities/brawlers/Surge.md
+  s_67aa091fa58788::t_736b74ed822e4d 12,23,31,36-37,41,58,62-63,67-68,71,102-103,113-114,142,144,163,165,168-174,183-184,186,189,195,207-209,214-216,220-221
+brawlstar/wiki/entities/brawlers/Tara.md
+  s_67aa091fa58788::t_e1520619bbecb1 12,32,40,185-186
+brawlstar/wiki/index.md
+  s_67aa091fa58788::t_6d353ab7ac4f57 22,41,57-59
+brawlstar/wiki/log.md
+  s_67aa091fa58788::t_132b0aa6c62dd8 903-939
+brawlstar/wiki/sources/Fandom-8-Bit.md
+  s_67aa091fa58788::t_2014117366a06a 7-8,10
+brawlstar/wiki/sources/Fandom-Barley.md
+  s_67aa091fa58788::t_179a127354d85c 7-8,10
+brawlstar/wiki/sources/Fandom-Bolt.md
+  s_67aa091fa58788::t_f4c970da9fe531 7-8,10,24,27,29,41-42,49
+brawlstar/wiki/sources/Fandom-Bonnie.md
+  s_67aa091fa58788::t_5361215bc00213 7,10
+brawlstar/wiki/sources/Fandom-Brock.md
+  s_67aa091fa58788::t_67d693f8201ea6 7-8,10,52
+brawlstar/wiki/sources/Fandom-Buzz.md
+  s_67aa091fa58788::t_549fb37fb4ed83 7-8,10
+brawlstar/wiki/sources/Fandom-Carl.md
+  s_67aa091fa58788::t_bc2bdd67aa3226 7-8,10,27
+brawlstar/wiki/sources/Fandom-Chester.md
+  s_67aa091fa58788::t_ce5b7d9f7f38a0 7-8,10,26,29
+brawlstar/wiki/sources/Fandom-Colette.md
+  s_67aa091fa58788::t_42a519e47e5ed1 7-8,10
+brawlstar/wiki/sources/Fandom-Crow.md
+  s_67aa091fa58788::t_01a03a2a11f661 7-8,10
+brawlstar/wiki/sources/Fandom-Damian.md
+  s_67aa091fa58788::t_92e91a4c9cd959 7-8,10,29
+brawlstar/wiki/sources/Fandom-Dynamike.md
+  s_67aa091fa58788::t_daca4d031a11f5 7-8,10,23,26
+brawlstar/wiki/sources/Fandom-Edgar.md
+  s_67aa091fa58788::t_f19359d614dd7a 7-8,10,23
+brawlstar/wiki/sources/Fandom-Gale.md
+  s_67aa091fa58788::t_936df93e8cdf8c 7-8,10,29
+brawlstar/wiki/sources/Fandom-Gray.md
+  s_67aa091fa58788::t_b462cf7aedd9c6 7-8,10,27
+brawlstar/wiki/sources/Fandom-Griff.md
+  s_67aa091fa58788::t_32392e9aec2e6b 7-8,10
+brawlstar/wiki/sources/Fandom-Jacky.md
+  s_67aa091fa58788::t_6a8a3d75ecfb24 7,10
+brawlstar/wiki/sources/Fandom-Jessie.md
+  s_67aa091fa58788::t_d547c57761ce23 7,10
+brawlstar/wiki/sources/Fandom-Juju.md
+  s_67aa091fa58788::t_d06c21ae07f169 7-8,10,29
+brawlstar/wiki/sources/Fandom-Larry-Lawrie.md
+  s_67aa091fa58788::t_67f32fc8da3cdd 7-8,10,29
+brawlstar/wiki/sources/Fandom-Leon.md
+  s_67aa091fa58788::t_e933db49cc7ffc 7-8,10
+brawlstar/wiki/sources/Fandom-Lou.md
+  s_67aa091fa58788::t_34ddb31bc907a3 7-8,10
+brawlstar/wiki/sources/Fandom-Lumi.md
+  s_67aa091fa58788::t_f6aa428cc05823 7-8,10
+brawlstar/wiki/sources/Fandom-Maintenance-July-8-2026.md
+  s_e833142a022336::t_4183ec9a378b3b 24-51
+brawlstar/wiki/sources/Fandom-Mandy.md
+  s_67aa091fa58788::t_d245828a384f1f 7-8,10,27
+brawlstar/wiki/sources/Fandom-Max.md
+  s_67aa091fa58788::t_e3707567dc4672 7-8,10
+brawlstar/wiki/sources/Fandom-Meeple.md
+  s_67aa091fa58788::t_879ba12898bd50 7-8,10
+brawlstar/wiki/sources/Fandom-Meg.md
+  s_67aa091fa58788::t_56fe3cc4d9be90 7-8,10
+brawlstar/wiki/sources/Fandom-Mina.md
+  s_67aa091fa58788::t_4358247c5b391b 7-8,10
+brawlstar/wiki/sources/Fandom-Mortis.md
+  s_67aa091fa58788::t_98c95e915317a4 7-8,10
+brawlstar/wiki/sources/Fandom-Najia.md
+  s_67aa091fa58788::t_56e623e7c3ef9c 7-8,10
+brawlstar/wiki/sources/Fandom-Pearl.md
+  s_67aa091fa58788::t_b5676b53f93ba4 7-8,10,23
+brawlstar/wiki/sources/Fandom-Pierce.md
+  s_67aa091fa58788::t_65ac865e89974e 7-8,10
+brawlstar/wiki/sources/Fandom-Piper.md
+  s_67aa091fa58788::t_c8fd2e6313eab7 7-8,10,23-24,27
+brawlstar/wiki/sources/Fandom-Power-Points.md
+  s_67aa091fa58788::t_0ef21c0dd3ac1a 7,9-10,22,34
+brawlstar/wiki/sources/Fandom-R-T.md
+  s_67aa091fa58788::t_42c777513aa91a 7-8,10
+brawlstar/wiki/sources/Fandom-Release-Notes-June-2026.md
+  s_67aa091fa58788::t_9dd03bcd7dfbae 28-78
+brawlstar/wiki/sources/Fandom-Rico.md
+  s_67aa091fa58788::t_0ce13048b84e7d 7-8,10,23,26
+brawlstar/wiki/sources/Fandom-Ruffs.md
+  s_67aa091fa58788::t_bceb3827f7e61e 7-8,10
+brawlstar/wiki/sources/Fandom-Shade.md
+  s_67aa091fa58788::t_3456d5c4919f26 7-8,10
+brawlstar/wiki/sources/Fandom-Shelly.md
+  s_67aa091fa58788::t_eee79deed4b4b7 7-8,10
+brawlstar/wiki/sources/Fandom-Spike.md
+  s_67aa091fa58788::t_b597766d4d2d48 7-8,10,27
+brawlstar/wiki/sources/Fandom-Sprout.md
+  s_67aa091fa58788::t_a571bfb05bf78c 7-8,10,26-27
+brawlstar/wiki/sources/Fandom-Starr-Nova.md
+  s_67aa091fa58788::t_81b01ac75beb62 7-8,10
+brawlstar/wiki/sources/Fandom-Surge.md
+  s_67aa091fa58788::t_f3453da225cca0 7-8,10,28
+brawlstar/wiki/sources/Fandom-Tara.md
+  s_67aa091fa58788::t_5d81dfe0fb7d1a 7-8,10,26
+brawlstar/wiki/syntheses/条件化对位模型.md
+  s_67aa091fa58788::t_2adefa1a44c204 178
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6a9eef0bb26131b15f4b0bcddd5557c3ec2ec035",
+  "prompts": {},
+  "sessions": {
+    "s_610abfa402476f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6f1c-669f-7ca3-8e1b-3028a9cd50f3",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_67aa091fa58788": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f4b5c-0dc4-79c3-bb4a-8130a346ab81",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_88f679f5197d1b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6f1c-47b2-76e0-8090-a06e5a5e9ea5",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_dd26ab6b3c7e84": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6f1c-93cb-7951-969c-51b692c0bf5f",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_e833142a022336": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6f8e-edb7-75b3-8491-3d00d28831f0",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    },
+    "s_e8b63d6caaea13": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f6f79-4c50-7c81-813b-8e4e3ae1cb39",
+        "model": "unknown"
+      },
+      "human_author": "Joseph <zhangzhejing@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
