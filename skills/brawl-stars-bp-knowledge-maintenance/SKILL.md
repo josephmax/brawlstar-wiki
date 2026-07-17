@@ -30,6 +30,7 @@ Then load only the relevant reference below.
 - For quality gates, script use, and contract tests, read `references/audit-and-validation.md`.
 - For separating maintenance knowledge from `runtime_bp_index`, read `references/runtime-boundary.md`.
 - For Liquipedia event capture, series/set semantics, tournament observation profiles, and their BP promotion gate, read `references/esports-event-ingest.md`.
+- For health/damage/defense changes, Power Level normalization, kill-threshold diffs, and build-pressure review seeds, read `references/balance-breakpoint-audit.md`.
 
 ## Minimal Request Handling
 
@@ -58,6 +59,8 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/ingest_liquipedia_event.py`
 - `scripts/analyze_esports_event.py`
 - `scripts/audit_tournament_observations.py`
+- `scripts/audit_balance_breakpoints.py`
+- `scripts/test_balance_breakpoints.py`
 - `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
 
@@ -71,6 +74,8 @@ For current-coverage audits, it reads the latest direct raw per Brawler. Older d
 
 The Liquipedia event scripts preserve revision-specific event raw, create source/event pages, generate `tournament_observation_profile.v1`, and emit review seeds. Tournament observations are descriptive evidence and must not auto-generate a strength tier, stable matchup edge, map fit, or runtime recommendation.
 
+`scripts/audit_balance_breakpoints.py` compiles `balance_breakpoint_manifest.v1`, latest roster health, and reviewed `combat_breakpoint_profile` blocks into `balance_breakpoint_audit.v1`. It applies the project `damage_reduction_stack_rule`, normalizes standard values to Power Level 11, and writes only generated artifacts under `outputs/balance-breakpoints/`. Breakpoint transitions and Shield-gear build pressure must not auto-generate strength, matchup, map-fit, or runtime rules; promote only through the review gate in `references/balance-breakpoint-audit.md`.
+
 ## Completion Checklist
 
 - Stable facts live in `wiki/entities/brawlers/` or `wiki/entities/maps/`, not in temporary syntheses pages.
@@ -78,4 +83,5 @@ The Liquipedia event scripts preserve revision-specific event raw, create source
 - Source summaries explain what each source can and cannot prove.
 - Version strength and short-lived meta stay in source/audit/log layers unless they change a stable capability, map hook, matchup condition, or slot rule.
 - Audits and generated runtime indexes go to `outputs/` or caller-provided paths.
+- Every patch with health, discrete damage, barrier, or damage-reduction changes has a source manifest and a breakpoint coverage audit; exclusions remain explicit.
 - `scripts/test_bp_skill_contract.py` passes after changing BP skills, references, or maintenance boundaries.

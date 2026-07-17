@@ -4,10 +4,10 @@
 
 - 标题：Mandy
 - 来源：[Mandy | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mandy)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-20T12:09:20Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-08T14:45:18Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/mandy-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/mandy-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -24,7 +24,7 @@
 - 生命值: 3000
 - 攻击距离: 9 (Long)<br> 12 (Focused)
 - 装填: 1.5 seconds (Normal)
-- 普攻数值: 1300
+- 普攻数值: 1400
 - Super 距离: 40 (Very Long)
 - Super 数值: 2500
 - Gadgets: Caramelize, Cookie Crumbs

@@ -4,10 +4,10 @@
 
 - 标题：Buzz
 - 来源：[Buzz | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Buzz)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-20T12:10:04Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-01T21:39:54Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/buzz-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/buzz-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

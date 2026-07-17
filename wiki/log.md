@@ -900,3 +900,40 @@
 - 将机制、目标转化和失效条件可解释的五条关系内联到稳定英雄页：Crystal Arcade 的 Griff、Stu、Pearl、Meeple，以及 Goldarm Gulch 的 Charlie；只激活条件化 map hook，不改变全局 strength tier。
 - Glowy / Crystal Arcade（2 picks、0 set wins）与 Damian / Goldarm Gulch（2 picks、0 set wins）继续保留为 review seeds；Pinhole Punt 的每位英雄只有 1 个 set，未复制单场阵容为稳定英雄特例。
 - 重新编译 `outputs/runtime-bp-index/bsc-2026-july-three-ingested-maps.json`：3 张地图、104 个 BP-active 英雄、零 missing input；知识缺口审计从地图 ingest 后的 7 条收敛为上述 2 条刻意保留的弱证据。
+
+## [2026-07-15] run | 用新裁判 skill 随机开 3 把排位 BP 模拟
+
+- 用户更新 `skills/run-brawl-stars-bp`（裁判）与 `skills/brawl-stars-bp-slot-decision`（选手）skill 后，按新 skill 随机开 3 把排位 BP 模拟。地图与双方 strategy_bias 随机分配：Shooting Star（Bounty）蓝 conservative vs 红 aggressive；Double Swoosh（Gem Grab）蓝 conservative vs 红 balanced；Ring of Fire（Hot Zone）蓝 high_variance vs 红 conservative。
+- 裁判只做中立记录与流程 cue：每场用 8 个真实 player subagent（蓝/红 ban、blue1、red2-3、blue4-5、red6、双方终评），选手读 `brawl-stars-bp-slot-decision` 的 decide 流程，只通过中性事实工具 `query_runtime_facts.py` / `hydrate_runtime_facts.py` 自主决策；裁判不读地图/英雄/对位页形成 BP 判断，不评价 pick 好坏，不给出 favored side。
+- 直接复用已编译的 `outputs/runtime-bp-index/user-tuned-1783418598989.json`（patch season-52-2026-07-05，覆盖 27 图 / 104 英雄，strength_profile user-tuned），未重新 compile。
+- 本环境无跨轮 subagent 复用能力：每个 turn 用独立 player subagent + 完整可见状态（裁判只传公开 picks/bans/unavailable pool，不传他方隐藏推理），这一点在每份报告的执行元数据里如实标注。
+- 逐局完整报告写入 `outputs/bp-simulations/match-shooting-star.md`、`match-double-swoosh.md`、`match-ring-of-fire.md`；按 2026-07-01 cleanup 约定逐局报告为临时运行产物，不进 wiki syntheses，关键结论如需沉淀再单独提炼。
+- 三场阵容：Shooting Star 蓝 Brock/Nani/Colt vs 红 Piper/8-Bit/Angelo（长线狙击镜像）；Double Swoosh 蓝 Meg/Charlie/Sandy vs 红 Meeple/Surge/Najia（机甲+茧+沙暴 vs 规则区+阶段控线+越墙毒区）；Ring of Fire 蓝 Poco/Max/Griff vs 红 Damian/Emz/Berry（续航+探草+清点 vs 突进+喷雾+续航锚）。
+
+## [2026-07-17] ingest | 全量复核 43 名受平衡调整影响英雄的稳定 BP 模型
+
+- 按 2026 年 6 月底版本更新与 7 月 8 日维护的去重并集，逐页扫描 43 名直接受改动英雄；判断顺序以补丁改动逻辑、当前 Fandom 机制和既有 PLP 竞技资料为主，月赛选用只作事实佐证，不从出场率、胜负或样本频率推导 strength tier。
+- 为 43 人各新增一份不可变的 `raw/sources/fandom/heroes/*-2026-07-17.md` 抓取件，并将对应 43 个 `wiki/sources/Fandom-*.md` 摘要切到当前 raw provenance；未覆盖或删除历史 raw。
+- 38 人的当前机制足以改变稳定能力字段、资源门槛、地图 hook、failure mode、条件对位或 slot 任务：Surge、Meg、Rico、Brock、8-Bit、Max、Jessie、Mandy、Gale、Tara、Shelly、Dynamike、Larry & Lawrie、Sprout、Barley、Juju、Gray、Starr Nova、Buzz、Lou、Pearl、R-T、Mortis、Colette、Crow、Leon、Chester、Edgar、Mina、Ruffs、Meeple、Lumi、Najia、Pierce、Bolt、Spike、Griff、Damian。
+- Piper、Carl、Jacky、Bonnie、Shade 记为 `no_change_after_review`：本轮数值 breakpoint 或 Hypercharge 频率变化没有改变其稳定职责、地图成立条件、条件对位或 slot 任务，因此只刷新来源复核标记，不把纯数值变化硬写成能力类型变化。
+- 关键纠偏包括：Surge 的 Stage 0 为 680、Stage 1 为 820，Serve Ice Cold 让开局直接持有满 Super，首个门槛是安全使用而不是先充能；Meg 的 Mecha swing / Heavy Metal 是受 2.703% 单枚命中充能约束的低频资源；Lou 的约 0.4 格弹体降低窄口命中门槛，但 0.7 秒卸弹和 Frost 衰减仍保留；Rico、Brock、8-Bit、Max 的 rework 机制已直接重写到当前能力与地图适配层。
+- 本轮没有编辑或生成任何 strength profile、tier、玩家偏好结论，也没有重新编译 `runtime_bp_index`；强度输入继续保留给玩家，runtime 等玩家确认强度层后再编译。
+- 验证：43/43 英雄页、43/43 source summary、43/43 新 raw 均带 2026-07-17 provenance；全库 104 个 `bp_ready` profile 审计为 0 blockers，BP skill contract 通过，`git diff --check` 通过。
+
+## [2026-07-17] skill+ingest | 落地平衡补丁伤害—生存断点审计
+
+- 新增用户维护规则 raw/source、[[concepts/伤害与生存断点|伤害与生存断点]] 概念页与 maintainer `references/balance-breakpoint-audit.md`，将 Power Level 换算、满值 Shield gear `+900`、不同合法减伤加法叠加、精确分数 EHP、死亡等号与舍入复核固化为可执行语义；Power Points 数值成长来源如实标为 search-result excerpt capture，不冒充 direct export。
+- 在六月末与 7 月 8 日 patch source 页面加入 `balance_breakpoint_manifest.v1`，使用 `type + change_class` 区分可计算 damage packet / target state / defense modifier 与 DoT、多段 cycle、召唤物、时间轴、来源冲突等排除项；Crow 连续伤害链按 P1 `320 -> 420 -> 380` 回放，而不是只从当前值反推历史。
+- 新增 `combat_breakpoint_profile` 作为英雄页第二个、维护期专用 JSON 块；当前共 20 个 combat profile，覆盖 15 个带伤害包的页面和 7 个带 10 项专属防御 modifier 的页面。Bibi 的两项 20% 条件减伤、Pearl Heat Shield、Mandy Hard Candy、Colette Mass Tax、Jacky Hard Hat、Meg Force Field、R-T 分体减伤等均保留成立条件与合法叠加关系；R-T 腿部默认 29% 与 Recording 替换为 50%，不生成不存在的 0% 减伤状态。
+- 新增 `audit_balance_breakpoints.py` 与 10 项回归测试。基础血量索引覆盖 roster 104 / 104，并额外纳入已发布但尚未进入 BP runtime 的 Nori，合计 105 个目标；当前物化 109 个目标形态、242 个条件生存状态、17 个已复核伤害包，其中 10 个允许按相同包重复计算。伤害、血量、减伤都校验补丁链连续性和 latest-after 与当前稳定输入的一致性。
+- 本次联合回放生成 `outputs/balance-breakpoints/2026-june-july-balance-breakpoints.{json,md}`：1162 条整数命中数变化、493 条构筑压力变化、18 条带英雄 / 变更 ID / 原因的显式排除，且没有 current-after mismatch。基础形态三包内斩杀覆盖中，Gray `38 -> 63`、Mandy `68 -> 81`、Piper 最大距离 `92 -> 98`、Sprout `24 -> 33`、Carl `0 -> 2`、Bonnie Clyde `33 -> 49`；这些计数是唯一英雄分母，不重复计算护盾或多形态。
+- 高价值卡线包括：Crow P11 血量 `6000 -> 5600` 后，Bibi P11 完整挥棒 `2800` 从 3 次变 2 次，满值 Shield gear 仍维持 3 次；Mandy 对 Barley / Bea / Crow、Gray 对 Nani / Tick、Bonnie 对 Meg / Tick，以及 Piper 最大距离对一批中血量英雄也出现 3 次变 2 次与 Shield 维持旧线的构筑压力。
+- 只把机制、成立条件、失效条件与既有 BP 消费字段都明确的确定性事实内联到 Bibi、Pearl、Mandy、Colette、Jacky、Crow、Piper、Gray、Bonnie、Sprout 的当前能力字段；断点产物没有自动生成 strength tier、稳定 map fit、无条件对位边、slot eligibility 或 runtime 推荐，Nori 也没有因此进入 BP-active 集合。
+- 验证：断点测试 10 / 10、BP skill contract、104 个 BP profile 质量审计、maintainer skill quick validation、Python syntax 与 `git diff --check` 均通过；独立首次使用者前向复跑通过且联合输出确定性一致。
+
+## [2026-07-17] synthesis | 沉淀六月至七月断点双向加强评估
+
+- 新增 [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]，按105个基础目标整理 Carl、Gray、Bonnie、Mandy、Piper、Sprout 的全部 `n→n-1` 当前净断点，并将 Gray 对 Jacky 的六月 `5→4` 与七月反转 `4→5` 合并为无净收益。
+- 攻击方按唯一基础目标覆盖排序为 Carl 54、Gray 38、Bonnie 23、Mandy 22、Piper 17、Sprout 17；同时保留 `3→2`、更高发数和精确等号复核行，避免重新把三发阈值误当成全部变化。
+- 受击方将纯 `target_health` 与同补丁 `damage_packet + target_health` 联合结果分开；任一已复核合法状态的唯一攻击包覆盖为 Jacky 4、Starr Nova 3、Piper 1，裸本体则为 Starr Nova 2、Jacky/Piper 各1。
+- 更新 [[index|Wiki Index]] 接入 BP Archive；本页保持 maintainer synthesis / non-runtime 边界，不生成 strength tier、稳定对位边、地图适配或 BP 推荐。

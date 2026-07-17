@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板是 3500 HP、三发细弹需要命中，Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤会让 Lou 难以稳定叠满。
+Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚约 0.4 格宽的雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；扩大后的弹体降低了窄口和目标区内连续命中的门槛，但仍需多次命中。Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板仍是 3500 HP、0.7 秒三连发可能被高速横移拆散，且 Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤仍会打断叠层。
 
 ## BP 建模
 
@@ -22,7 +22,7 @@ Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -31,7 +31,7 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: "very_long_control; 普攻 9.33 格，Super 7.67 格越墙投放"
-    projectile_reliability: "medium; 3 枚细弹 0.7 秒卸弹，命中移动目标需要路线限制"
+    projectile_reliability: "medium_to_medium_high_on_constrained_routes; 3 枚约 0.4 格宽弹体在窄口较易连续命中，但 0.7 秒卸弹仍会被高速横移拆散"
     burst: "low; 击杀依赖 Frost stun 后队友/后续命中"
     sustained_dps: "medium; 1.1 秒 very fast reload，但单枚伤害低"
     objective_damage: "low; 主要控区/控球/控 carrier，不是 Heist race"
@@ -104,7 +104,7 @@ bp_brawler_profile:
       route_or_position: "中路球权、球门前三格、球落点和侧草推进口"
       objective_conversion: "打断持球、延迟拾球、或冻结守门人创造射门窗口"
       active_when: "敌方持球或守门必须通过 Lou 的射线/冰面"
-      fails_if: "球门未打开且队伍无 scorer，或敌方机动目标反复躲开三枚细弹"
+      fails_if: "球门未打开且队伍无 scorer，或敌方机动目标在 0.7 秒卸弹间横移拆散三枚命中"
       example_maps:
         - "[[entities/maps/Center Stage|Center Stage]]"
         - "[[entities/maps/Sneaky Fields|Sneaky Fields]]"
@@ -170,10 +170,10 @@ bp_brawler_profile:
       false_positive: "Frost 控制 carrier 后必须有队友接宝/补伤害"
 
   failure_modes:
-    - id: "thin_projectiles_and_frost_decay"
-      active_when: "Lou 间断命中，敌方 2.5 秒后让 Frost 开始衰减"
+    - id: "narrow_burst_and_frost_decay"
+      active_when: "敌方高速横移拆散 Lou 的三连发，导致间断命中，并在 2.5 秒后让 Frost 开始衰减"
       exposed_by: "[[sources/Fandom-Lou|Fandom-Lou]] Frost meter and projectile details"
-      mitigation: "选择 choke/zone 路线，铺 Super 后再用 Cryo Syrup/普攻补满"
+      mitigation: "约 0.4 格弹体在 choke/zone 路线较易连续命中，但仍需铺 Super 后再用 Cryo Syrup/普攻补满"
       bp_use: "projectile_reliability_gate"
     - id: "cryo_syrup_requires_enemy_inside_super"
       active_when: "Lou 没有 Super 区内目标却指望 Gadget 直接冻人"
@@ -209,7 +209,7 @@ bp_brawler_profile:
     - target: ["Stu", "Max", "Bea", "Griff"]
       direction: "target_favored"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
-      mechanism: "机动、长线 burst 或高 DPS 让 Lou 难以连续命中细弹并维持 Frost"
+      mechanism: "机动、长线 burst 或高 DPS 仍能在 0.7 秒三连发间横移，阻止 Lou 连续命中并维持 Frost"
       active_when: "地图开阔，目标可从冰面外打 Lou 或快速换线"
       fails_when: "目标被迫进 Hot Zone/choke，或队友 slow/控制先限制移动"
       bp_use: "avoid_open_lane_without_cover"

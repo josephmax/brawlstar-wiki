@@ -4,10 +4,10 @@
 
 - 标题：8-Bit
 - 来源：[8-Bit | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/8-Bit)
-- 读取日期：2026-07-10
-- Fandom 页面最后编辑：2026-07-08T14:47:34Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-17T05:58:07Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/8-bit-2026-07-10.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/8-bit-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

@@ -22,7 +22,7 @@ Gale 的 BP 价值来自低门槛的路线控制：8.33 格宽普攻负责扫草
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long_control; 普攻 8.33 格，Super 10 格并可穿障碍"
     projectile_reliability: "high_for_area_sweep_medium_for_focus_kill; 6 个雪弹宽线易扫草/多人，但正常体型近距离最多约 4 发命中"
-    burst: "medium_with_blustery_wall_stun; 需要 Super 推墙 1.25 秒 stun 后接普攻"
+    burst: "medium_with_super_or_blustery_wall_stun; Super 本身已有 800 基础伤害，推墙 1.25 秒 stun 后可继续接普攻，但仍不是独立爆发核心"
     sustained_dps: "medium; 1.2 秒 very fast reload 支撑持续压线，但单发伤害低"
     objective_damage: "low_to_medium; Heist 只能靠近距离多雪弹或 Spring Ejector 送队友，不是主 race"
     mobility: "team_route_tool; Spring Ejector 6 格弹板提供转点/返场/进库路径"
@@ -58,7 +58,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "Twister 把 5 秒入口封锁加入 Gadget 资源，用来挡 Buzz/Fang/Darryl/Bull/Colette 等位移路线"
         - "Freezing Snow 让每次普攻命中附带 0.5 秒 slow，提升压区和防突进稳定性"
-        - "Shield gear 给中血控制位更多站线容错，Damage gear 提高推墙后的击杀确认"
+        - "Shield gear 给中血控制位更多站线容错，Damage gear 配合 800 基础伤害 Super 提高推离或推墙后的击杀确认"
       enables:
         - "Hot Zone 单区入口封锁"
         - "Brawl Ball 持球人缴械与门前剥离"
@@ -100,7 +100,7 @@ bp_brawler_profile:
       bp_use: "map_bp_factors.hot_zone_entry_tax"
     - id: "brawl_ball_super_disarm_and_goal_peel"
       map_feature_type: "ball_carrier_knockback"
-      uses_feature_by: "Super 推走持球者并影响掉球位置，Twister 阻止短手/抓钩直接穿门"
+      uses_feature_by: "Super 以 800 基础伤害推走持球者并影响掉球位置，Twister 阻止短手/抓钩直接穿门"
       route_or_position: "中路球权、球门前三格、侧草推进线和 overtime 直线推进路"
       objective_conversion: "打断持球推进、清守门人，或把球/奖杯从 carrier 身上剥离"
       active_when: "Gale 有 Super 或 Twister，队友能接住掉球或补击杀"
@@ -182,7 +182,7 @@ bp_brawler_profile:
     - id: "wide_attack_low_single_target_damage"
       active_when: "需要 Gale 单杀高血量目标或近距离爆发"
       exposed_by: "Fandom attack spread and close-range snowball hit count"
-      mitigation: "把 Gale 作为控制/peel 位，另补 burst 或 objective DPS"
+      mitigation: "800 基础伤害 Super 可补一段确认，但仍把 Gale 作为控制/peel 位，另补 burst 或 objective DPS"
       bp_use: "role_gap_filter"
     - id: "spring_pad_landing_trap"
       active_when: "弹板落点被敌方预控，或敌方也能利用弹板"
@@ -231,3 +231,9 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Gale|Fandom 来源摘要: Gale]]
 - [[sources/PLP-Gale|PLP 来源摘要: Gale]]
+
+## 战斗断点输入
+
+```json
+{"combat_breakpoint_profile":{"schema":"brawler_breakpoint_profile.v1","brawler":"Gale","target_states":[{"id":"body","entity_class":"brawler_body","roster_target":true,"health":{"amount":4000,"at_power_level":1,"scaling":"standard"},"source_ref":"[[sources/Fandom-Gale|Fandom-Gale]]"}],"damage_packets":[{"id":"super.one_wind_impact","ability_kind":"super","packet_unit":"impact","delivery_variant":"impact","repeat_model":"resource_gated","damage":{"amount":800,"at_power_level":1,"scaling":"standard"},"active_when":"一次 Super 风命中；Hypercharge 双风命中数另算","source_conflict_status":"none","source_ref":"[[sources/Fandom-Gale|Fandom-Gale]]"}],"defense_modifiers":[]}}
+```

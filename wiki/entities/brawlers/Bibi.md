@@ -52,7 +52,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_if_target_stays_close; 0.8s reload is strong, but range and wind-up limit uptime"
     objective_damage: "conditional_heist; bat damage and bouncing Super matter only after Bibi reaches safe or wall angle"
     mobility: "medium_high_with_Home_Run; Home Run star power gives speed while the bar is charged"
-    survivability: "medium_high; 5000 health, Vitamin Booster healing, Shield gear, and optional Batting Stance help approach"
+    survivability: "medium_high; Power 11 本体 10000 HP，Batting Stance 20% 减伤为 12500 EHP；若 20% Star Buffie 同时生效，按本库加法规则为 50000/3 EHP，满 Shield gear 组合为 54500/3；这些都受 Home Run bar、Super 命中后 5 秒和满盾时点限制"
     engage: "high_on_grass_or_ball_lane; speed and knockback let Bibi force defenders backward"
     disengage: "medium; knockback and Vitamin Booster buy retreat time but do not solve open-lane kiting"
     anti_aggro: "high_in_closed_lane; Home Run knockback can interrupt tanks, dashes, or scoring attempts"
@@ -233,4 +233,59 @@ bp_brawler_profile:
     slot_2_3: "works when the team wants early ball pressure and can still reserve answers to anti-tank or silence."
     slot_4_5: "best as a route repair pick after seeing enemy low-control lanes or a Heist/Brawl Ball access gap."
     slot_6: "strong punish into drafts without knockback, silence, reliable reveal, or long-range lane control."
+```
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Bibi",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 5000, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Bibi|Fandom-Bibi]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.full_connect",
+        "ability_kind": "main_attack",
+        "packet_unit": "ammo",
+        "delivery_variant": "full_connect",
+        "repeat_model": "identical",
+        "damage": {"amount": 1400, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "完整挥棒命中同一英雄目标",
+        "source_conflict_status": "none",
+        "source_ref": "[[sources/Fandom-Bibi|Fandom-Bibi]]"
+      }
+    ],
+    "defense_modifiers": [
+      {
+        "id": "batting_stance",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.20},
+        "active_when": "Home Run bar 已满",
+        "sequence_validity": "Bibi 挥出带击退的 Home Run 攻击后结束",
+        "source_ref": "[[sources/Fandom-Bibi|Fandom-Bibi]]"
+      },
+      {
+        "id": "star_buffie_post_super",
+        "source_kind": "star_buffie",
+        "loadout_group": "star_buffie",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.20},
+        "active_when": "Super 命中英雄后的 5 秒内",
+        "sequence_validity": "可与 Batting Stance 同时成立；持续时间不会因多次命中叠层",
+        "source_ref": "[[sources/Fandom-Bibi|Fandom-Bibi]]"
+      }
+    ]
+  }
+}
 ```

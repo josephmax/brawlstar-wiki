@@ -22,7 +22,7 @@ Edgar 的核心不是“刺客克制后排”，而是用自动充能 Super 和 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Edgar|Fandom-Edgar]] direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "[[sources/PLP-Edgar|PLP-Edgar]] direct_raw_capture_2026-06-30"
     user_notes: "本地 BP 规则要求按高水平对局处理短手路线和控制反制"
 
@@ -32,7 +32,7 @@ bp_brawler_profile:
     burst: "高；极快装填和 unload，Hard Landing 可补落地范围伤害"
     sustained_dps: "高但只在贴脸持续接触时成立；safe 或坦克目标可被快速打穿"
     objective_damage: "条件性高；Heist 只有在能接触金库并存活数秒时成立"
-    mobility: "Super 可跳过障碍并短暂免伤，落地后加速；Let's Fly 可抓人或墙体形成第二段位移"
+    mobility: "Super 可跳过障碍并短暂免伤，落地后加速；Let's Fly 可抓人或墙体形成第二段位移，但冷却 18 秒"
     survivability: "低基础血量加普攻回血；Hardcore/Shield gear 可提高第一次承伤，但不能解决控制链"
     engage: "强制跳入单点目标，适合惩罚无 peel 后排、投掷、低弹药高伤目标"
     disengage: "有限；进场 Super 用掉后主要靠击杀、回血、速度和 Let's Fly 第二段撤出"
@@ -52,7 +52,7 @@ bp_brawler_profile:
     - build: "Let's Fly / Hard Landing / Shield + Damage"
       source: "[[sources/PLP-Edgar|PLP-Edgar]] + [[sources/Fandom-Edgar|Fandom-Edgar]]"
       changes_capabilities:
-        - "Let's Fly 把 Edgar 从等待自动 Super 的单进场点变成双跳进出或更远距离追击"
+        - "Let's Fly 把 Edgar 从等待自动 Super 的单进场点变成双跳进出或更远距离追击，但 18 秒冷却意味着每波只能把它预算为一次关键位移"
         - "Hard Landing 增加落地斩杀线，适合打投掷、远程和低血量目标"
         - "Shield/Damage 提升第一次贴脸承伤和残局爆发"
       enables:
@@ -65,6 +65,19 @@ bp_brawler_profile:
       best_when: "敌方缺击退、沉默、硬控或反突进，且地图有墙/草/球权/目标让 Edgar 的进场能转成得分、击杀或目标伤害"
       poor_when: "敌方仍有 Shelly/Gale/Otis/Surge/Maisie/R-T 这类低成本反进场，或地图是 Dry Season / Bridge Too Far 这类长线明确路线"
       bp_use: "后手惩罚、slot_6 高上限、Brawl Ball scorer pressure、anti-thrower route pick"
+    - build: "Hardcore / Fisticuffs / Shield + Damage"
+      source: "[[sources/Fandom-Edgar|Fandom-Edgar]]"
+      changes_capabilities:
+        - "Fisticuffs 把每拳回复从伤害的 35% 提高到 45.5%；Buffie 击杀回复为最大生命的 20%"
+        - "Hardcore 提供递减护盾，适合把第一次接触转成长一点的贴身交换"
+      enables:
+        - "repeated_close_contact_sustain"
+        - "takedown_reset_if_kill_is_confirmed"
+      mitigates_failure_modes:
+        - "one_way_dive_no_exit"
+      best_when: "Edgar 已有可靠进场路线，胜负取决于贴身持续交换而非第二段跳跃"
+      poor_when: "敌方用击退/沉默直接断开接触，或任务必须靠 Let's Fly 进出"
+      bp_use: "sustain_variant_not_a_route_solution"
 
   map_feature_hooks:
     - id: "brawl_ball_jump_score_window"
@@ -172,8 +185,8 @@ bp_brawler_profile:
       bp_use: "map_hard_gate"
     - id: "one_way_dive_no_exit"
       active_when: "Super 用于进场后无法击杀或被多人集火"
-      exposed_by: "Super 是主要进出资源；Let's Fly 不能替代所有撤退路线"
-      mitigation: "保留第二段位移或只打低弹药孤立目标"
+      exposed_by: "Super 是主要进出资源；Let's Fly 冷却 18 秒，不能替代每一波撤退路线"
+      mitigation: "确认 Let's Fly 已转好再预算第二段位移，或只打低弹药孤立目标"
       bp_use: "candidate_eval.must_avoid"
     - id: "objective_access_false_positive"
       active_when: "Heist 水域/障碍看似可越过，但过后打不到库或站不住"

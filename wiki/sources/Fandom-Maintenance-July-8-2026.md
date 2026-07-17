@@ -21,10 +21,34 @@
 - Nerf：`8-Bit`、`Surge`、`Brock`、`Meg`、`Crow`、`Colette`、`Starr Nova`、`Max`。
 - 已按维护 skill 补抓并刷新上述 11 位英雄的 2026-07-10 Fandom direct raw 与 canonical Fandom source summary。
 
-### 只保留在来源 / 强度层
+## 断点审计 Manifest
 
-- `Jacky` 血量、`Bonnie` 普攻伤害、`Jessie` 弹速、`Crow` 普攻伤害、`Starr Nova` 普攻伤害与充能补偿，当前主要改变数值容错或 breakpoint；没有足够证据证明稳定职责、地图 hook 或条件化对位发生翻转。
-- 这些条目可进入 strength profile 或版本观察，但不能直接写成永久 BP 定性。
+```json
+{
+  "balance_patch_manifest": {
+    "schema": "balance_breakpoint_manifest.v1",
+    "patch_id": "2026-07-08-maintenance",
+    "effective_order": 2,
+    "effective_at": "2026-07-08",
+    "scope": ["ranked", "power_level_11_normalized"],
+    "source_refs": ["[[sources/Fandom-Maintenance-July-8-2026|Maintenance - July 8, 2026]]"],
+    "changes": [
+      {"id": "jacky_body_health", "type": "target_state", "change_class": "breakpoint_supported", "brawler": "Jacky", "state_id": "body", "stat": "health", "old": 5000, "new": 5200, "power_level": 1},
+      {"id": "bonnie_clyde_main", "type": "damage_packet", "change_class": "breakpoint_supported", "brawler": "Bonnie", "packet_id": "main.clyde_impact", "old_damage": 1120, "new_damage": 1220, "power_level": 1, "packet_unit": "impact", "repeat_model": "identical", "active_when": "Clyde 形态单发命中；Bonnie 形态三枚 grenade 未改"},
+      {"id": "8bit_extra_credits_bounce", "type": "other", "change_class": "unsupported_mechanic", "brawler": "8-Bit", "reason": "75%->60% 是后续目标弹射倍率，不是首目标固定伤害包；需 18 beam 与目标链模型"},
+      {"id": "surge_buffied_hyper_second_shot", "type": "other", "change_class": "unsupported_mechanic", "brawler": "Surge", "reason": "70%->50% 是 Hypercharge+Buffie 第二发相对倍率，需与当前第一发和弹道组合"},
+      {"id": "surge_hyper_radial_projectile", "type": "damage_packet", "change_class": "breakpoint_supported", "brawler": "Surge", "packet_id": "hyper.super_radial_projectile", "old_damage": 1000, "new_damage": 800, "power_level": 1, "packet_unit": "projectile_impact", "repeat_model": "one_off", "active_when": "Hypercharge Super 落地的单枚径向 projectile 命中"},
+      {"id": "crow_one_dagger", "type": "damage_packet", "change_class": "breakpoint_supported", "brawler": "Crow", "packet_id": "main.one_dagger_direct", "old_damage": 420, "new_damage": 380, "power_level": 1, "packet_unit": "dagger_impact", "repeat_model": "identical", "active_when": "一枚匕首直接命中，不含毒 tick、Carrion Crow 与全三枚命中假设"},
+      {"id": "starr_nova_main_projectile", "type": "damage_packet", "change_class": "breakpoint_supported", "brawler": "Starr Nova", "packet_id": "main.one_projectile", "old_damage": 540, "new_damage": 480, "power_level": 1, "packet_unit": "projectile_impact", "repeat_model": "identical", "active_when": "普通形态一枚 projectile 命中；每 ammo 两枚，未假设全中"}
+    ]
+  }
+}
+```
+
+### 数值断点层，不自动提升为 BP 结论
+
+- `Jacky` 血量、`Bonnie` 普攻伤害、`Crow` 普攻伤害和 `Starr Nova` 普攻伤害进入上方 `balance_breakpoint_manifest.v1`，由断点脚本比较前后离散击杀线；`Jessie` 弹速和充能补偿不属于静态伤害—生存公式。
+- 这些条目可以进入当前 `combat_breakpoint_profile` 与生成审计，但不能仅凭跨线自动写成永久 BP 强度、地图适配或无条件对位。
 
 ### 需要复核稳定 BP 字段
 

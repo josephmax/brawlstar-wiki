@@ -22,7 +22,7 @@ Mortis 是典型资源型刺客：攻击即位移，Coiled Snake 缩短长 dash 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "short_dash; 2.67 格基础 dash，长 dash 4.67 格，Super 10 格穿墙"
     projectile_reliability: "high_for_contact_low_for_open_poke; 接触后可靠，但必须把自己送进危险半径"
-    burst: "medium_high_with_combo_spinner; 3 ammo + Combo Spinner + Super 可收低中血"
+    burst: "medium_high_with_combo_spinner; 3 ammo + Combo Spinner + Super 可收低中血，但 Combo Spinner 是 18 秒资源，Buffie 仅对半血以下目标提高 30% 伤害"
     sustained_dps: "low; 2.4 秒极慢装填，失败进场后断 ammo"
     objective_damage: "low; Fandom 明确不适合 Heist/special target"
     mobility: "very_high; 普攻 dash、长 dash、Creature of the Night 越障/过水"
@@ -52,7 +52,7 @@ bp_brawler_profile:
     - build: "Combo Spinner / Coiled Snake / Shield, Damage"
       source: "[[sources/PLP-Mortis|PLP-Mortis]]"
       changes_capabilities:
-        - "Combo Spinner 不耗 ammo 补击杀阈值"
+        - "Combo Spinner 不耗 ammo 补击杀阈值；当前冷却 18 秒，Buffie 仅对半血以下目标增加 30% 伤害，不能当作每次进场都有的第四发"
         - "Coiled Snake 将长 dash 充能从 4.5 秒降到 2.5 秒"
       enables:
         - "Gem carrier 暗杀或撤退"
@@ -147,7 +147,7 @@ bp_brawler_profile:
     - id: "ammo_exhaustion_after_entry"
       active_when: "Mortis 用三 dash 进场但未击杀"
       exposed_by: "2.4 秒极慢 reload"
-      mitigation: "保留一段撤退、带 Combo Spinner、等低血确认"
+      mitigation: "保留一段撤退；若依赖 Combo Spinner，先确认其 18 秒冷却已转好且目标已进入可靠斩杀线"
       bp_use: "resource_gate"
     - id: "missed_super_no_heal"
       active_when: "Super 未命中 Brawler 或只打非 Brawler"

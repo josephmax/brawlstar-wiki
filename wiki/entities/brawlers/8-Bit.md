@@ -22,7 +22,7 @@
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-10"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-07-11"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -44,8 +44,8 @@ bp_brawler_profile:
     wall_break: "none"
     throw_or_wall_bypass: "low; 只能把炮台丢过墙后用 Cheat Cartridge 接近，不能持续隔墙输出"
     area_control: "high_when_booster_lives; Damage Booster 让一片区域成为队伍火力锚点"
-    scouting_or_vision: "conditional; Hypercharged turret 可探草和打断潜伏，但不是常规视野工具"
-    team_support: "high; Damage Booster 增益友方伤害和治疗攻击；Plugged In Buffie 给队友 15% 加速，Boosted Booster Buffie 每 5 秒生成可回 1 ammo 的弹药夹"
+    scouting_or_vision: "conditional; 仅 Hypercharged turret 可探草和打断潜伏；当前普攻每束只充 2.52% Hypercharge，约需 7 次六束全命中普攻，不能把它当作常规视野工具"
+    team_support: "high; Damage Booster 增益友方伤害和治疗攻击；Plugged In Buffie 给队友 15% 加速，Boosted Booster Buffie 每 5 秒生成一个存在 8 秒、只回 1 ammo 的周期弹药夹"
     spawnable_or_pet: "high; Damage Booster 是核心炮台/锚点"
     crowd_control: "low"
     source_trace:
@@ -87,11 +87,11 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "heist_long_lane_booster_safe_dps"
       map_feature_type: "long_range_safe_damage"
-      uses_feature_by: "10 格射程、Reload/Damage gear 和 Booster 增伤让 8-Bit 能在赢线后持续打库"
+      uses_feature_by: "10 格射程、Reload/Damage gear 和 Booster 增伤让 8-Bit 能在赢线后持续打库；Boosted Booster 构筑可用 5 秒周期弹药夹支持固定阵地"
       route_or_position: "三路 Heist lane、远程打库角度、或金库入口前的炮台保护位"
       objective_conversion: "把 lane win 转成持续 safe DPS，并用炮台增伤队友的 race"
-      active_when: "炮台能放在墙后或安全半场，敌方短手没有低成本接近路线"
-      fails_if: "投掷/穿墙/召唤物清炮台，或敌方远程 race 不需要进入 8-Bit 火力区"
+      active_when: "炮台能放在墙后或安全半场，敌方短手没有低成本接近路线；若依赖弹药夹，队友还要能留在炮台阵地拾取"
+      fails_if: "投掷/穿墙/召唤物清炮台，敌方远程 race 不需要进入 8-Bit 火力区，或阵容转线太快无法吃到 5 秒周期资源"
       example_maps:
         - "[[entities/maps/Bridge Too Far|Bridge Too Far]]"
         - "[[entities/maps/Kaboom Canyon|Kaboom Canyon]]"
@@ -190,6 +190,11 @@ bp_brawler_profile:
       exposed_by: "Fandom current mechanics: Extra Credits is an independently aimed 18-laser shot; Buffie bounce retains 60% damage, and the build excludes Cheat Cartridge"
       mitigation: "优先打静态、被控或抱团目标；若刺客进场和撤退锚点更重要则改用 Cheat Cartridge"
       bp_use: "build_switch_warning"
+    - id: "boosted_booster_ammo_is_periodic_not_continuous"
+      active_when: "BP 计划把 Boosted Booster 当成持续全队装填，或队友需要离开炮台区转线/追击"
+      exposed_by: "[[sources/Fandom-8-Bit|Fandom-8-Bit]] current five-second spawn interval and eight-second clip lifetime"
+      mitigation: "只在可保持固定阵地的 Heist/Gem/Hot Zone 路线计入该资源，并按每次 1 ammo 管理拾取人"
+      bp_use: "team_resource_timing_and_formation_check"
 
   conditional_matchups:
     - target: ["Poco", "Jae-Yong", "Hank", "Rosa"]

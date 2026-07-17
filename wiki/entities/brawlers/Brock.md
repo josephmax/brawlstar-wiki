@@ -35,58 +35,77 @@ Brock 是远程炮击和拆墙开图的代表英雄。和 `Colt` 相比，他更
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-07-10
+    fandom: direct_raw_capture_2026-07-17
     plp: direct_raw_capture_2026-07-11
     user_notes: none
 
   capability_vector:
-    effective_range: long
+    effective_range: "long; Rocket No. 4 Buffie 每 6 秒让下一发额外射程 2 格，不是持续射程"
     projectile_reliability: medium; 火箭弹速慢，需要预判，打固定目标更稳定
     burst: high_when_ammo_or_super_available
     sustained_dps: medium; 慢装填，需要 Reload Gear 或弹药管理
     objective_damage: high_in_heist_when_safe_angle_exists
-    mobility: conditional_escape_or_reposition_with_Rocket_Laces
+    mobility: "conditional_high_with_aimable_Rocket_Laces; 可瞄准跳跃最高 4 格并越墙/水，命中敌方的 Buffie 还提供 2 秒 30% 加速"
     survivability: low_base_health; Shield Gear 可缓解但不能替代保护
     engage: low
-    disengage: medium_with_Rocket_Laces
-    anti_aggro: conditional; Rocket Laces 可击退/跳走，但不是稳定硬控
+    disengage: "medium_high_with_Rocket_Laces; 起跳和落地两端均有击退/伤害，但状态效果与持续伤害仍会保留"
+    anti_aggro: "conditional; 可瞄准 Rocket Laces 以双端击退跨墙脱离，但有 20 秒冷却且不是持续硬控"
     anti_tank: medium_if_range_kept
-    wall_break: high; Super 与 Rocket Fuel 都能改图
+    wall_break: "high; 跟随 Brock 移动轨迹的 Super 可大面积改图，Rocket Fuel 提供单发精确开墙"
     throw_or_wall_bypass: medium; Super 可越墙轰炸
-    area_control: medium_high; 溅射、火焰地面和 Super 逼位
+    area_control: "medium_high; 溅射、火焰地面、跟随移动的 Super 与 Rocket Fuel Buffie 分裂火箭共同逼位"
     scouting_or_vision: low
-    team_support: terrain_transform_and_long_range_pressure
+    team_support: "terrain_transform_long_range_pressure_and_conditional_double_knockback"
     terrain_destruction: high
 
   build_switches:
     - build: Rocket Laces / More Rockets / Damage + Shield
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       changes_capabilities:
-        - Rocket Laces 提高反突进自保和重定位能力
-        - More Rockets 增强 Super 覆盖，Damage + Shield 更偏向爆发阈值与低血容错
+        - "Rocket Laces 可瞄准跳最高 4 格、越墙/水，在起跳与落地的 2 格圆内击退并造成伤害"
+        - "Rocket Laces Buffie 命中英雄后再获得 2 秒 30% 加速，能把一次自保转成二次重定位"
+        - "More Rockets 增加 Super 火箭并压缩发射间隔；Buffie 让 Brock 施放 Super 时提速 30%"
+        - "Damage + Shield 更偏向爆发阈值与低血容错"
       enables:
         - long_range_pressure
-        - anti_aggro_escape
-        - safer_first_pick_on_open_or_heist_maps
+        - anti_aggro_escape_or_obstacle_crossing
+        - moving_super_channel_reposition
       mitigates_failure_modes:
         - low_health_ambush
       poor_when:
         - draft 需要精确开关键墙而不是保命
         - 对局需要 Reload Gear 支撑持续压制，当前 build 的装填空窗会更明显
+        - "在 Super 施放中使用 Rocket Laces 会直接取消剩余轰炸，不能把两个窗口无成本叠加"
       bp_use: 默认竞技 build 候选，不直接等于最终推荐
     - build: Rocket Fuel wall-break variant
       source: "[[sources/Fandom-Brock|Fandom-Brock]]"
       changes_capabilities:
-        - 提供可控开墙，不必先攒 Super
+        - "发射一枚更快、更宽的大火箭，不必先攒 Super 就能精确打开关键墙体"
+        - "该火箭不带地面火，且伤害低于普攻；Buffie 爆炸后再分成 4 枚 75% 伤害小火箭"
       enables:
         - wall_break_transform
         - goal_barrier_opening
         - safe_angle_creation
+        - post_break_area_punish
       mitigates_failure_modes:
         - 被投掷或墙体掩护低成本卡住
       poor_when:
         - 开墙会让敌方远程或突进更受益
+        - "敌方召唤物/身体能提前挡下大火箭，使预定墙体未被打开"
       bp_use: 地图状态需要主动改图时的 build requirement
+    - build: "Rocket No. 4 long-sightline cadence variant"
+      source: "[[sources/Fandom-Brock|Fandom-Brock]]"
+      changes_capabilities:
+        - "弹药上限从 3 变 4，但装填速度不变，打空后全回满的时间更长"
+        - "Buffie 每 6 秒充好一次，仅让下一发多 2 格射程；这是可储存的单发对线资源，不是持续 11 格射程"
+      enables:
+        - intermittent_range_advantage
+        - four_ammo_burst_or_round_start_hold
+      mitigates_failure_modes:
+        - relative_range_shortfall_into_marksmen
+      best_when: "Bounty/Knockout 长线节奏允许保留充能发，且一发超距离消耗能改变站位"
+      poor_when: "对局要求持续快速清线，或敌方高机动使充能发也不稳定"
+      bp_use: "candidate_eval.intermittent_extra_range_not_baseline_range"
 
   map_feature_hooks:
     - map_feature_type: heist_remote_safe_angle
@@ -111,8 +130,19 @@ bp_brawler_profile:
         - Layer Cake
         - Gem Fort
       bp_use: terrain_state_plan.transform
+    - map_feature_type: charged_extra_range_long_sightline
+      uses_feature_by: "Rocket No. 4 Buffie 在 6 秒节奏后储存一发额外 2 格射程火箭"
+      objective_conversion: "在 Bounty/Knockout 开局、回合重置或卡位期先逼退长手，为后续普通射程换血抢位"
+      active_when: "长直线有可预判目标，Brock 能保留该发而不被迫先清路"
+      fails_if: "需要持续输出、高机动目标躲掉充能发，或把单发射程误当整个对线期的常驻射程"
+      example_maps:
+        - Shooting Star
+        - Dry Season
+        - Out in the Open
+        - Safe Zone
+      bp_use: "map_factor_fit.intermittent_range_cadence"
     - map_feature_type: brawl_ball_goal_wallbreak_and_defender_zone
-      uses_feature_by: Rocket Fuel 或 Super 打开球门/防守墙，并用溅射和火焰逼退门前防守
+      uses_feature_by: Rocket Fuel 或 Super 打开球门/防守墙，用溅射/分裂火箭逼位，或用 Rocket Laces 起跳+落地击退阻断持球线
       objective_conversion: 把一次线权或击杀转成射门窗口
       active_when: 队友有 scorer / tank pressure / pass route 可以立刻吃到破门收益
       fails_if: 我方没有得分手，或开墙后敌方远程/突进更容易反打
@@ -136,17 +166,19 @@ bp_brawler_profile:
     - mode: Bounty_or_Knockout
       can_fulfill:
         - long_range_chip
+        - intermittent_11_tile_range_opening_with_Rocket_No_4_Buffie
         - wall_break_snowball
         - force_split_with_super
       cannot_fulfill:
         - reliable_close_range_duel
       needs_teammate_support:
         - bush_check_or_peel
-      false_positive: 长线图若敌方有高机动接近和队友保护不足，Brock 会变成暴露点
+      false_positive: "Rocket No. 4 的 11 格只是每 6 秒一发；长线图若敌方有高机动接近和队友保护不足，Brock 仍会变成暴露点"
     - mode: Brawl Ball
       can_fulfill:
         - break_goal_wall
         - create_scoring_window
+        - conditional_takeoff_and_landing_knockback_defense
       cannot_fulfill:
         - primary_ball_carrier
       needs_teammate_support:
@@ -169,6 +201,16 @@ bp_brawler_profile:
       exposed_by: BP 地图建模与决策规范
       mitigation: 只开关键墙，并确认 follow-up
       bp_use: terrain_state_plan_check
+    - id: charged_range_is_intermittent
+      active_when: "候选评估把 Rocket No. 4 Buffie 的单发 11 格射程当成持续对线能力，或 Brock 被迫先清线消耗充能发"
+      exposed_by: "[[sources/Fandom-Brock|Fandom-Brock]] current six-second charge-bar mechanic"
+      mitigation: "只把充能发算作开局/卡位资源，并按 9 格基础射程审计其余时间"
+      bp_use: "range_false_positive_filter"
+    - id: super_channel_commitment_and_laces_cancel
+      active_when: "Brock 施放 Super 期间无法攻击/装填，被击退、拉、眩晕或主动用 Rocket Laces 时剩余轰炸被取消"
+      exposed_by: "[[sources/Fandom-Brock|Fandom-Brock]] current Rocket Rain and Rocket Laces interaction"
+      mitigation: "先逼掉控制，用 More Rockets Buffie 移速调整轨迹，不要无计划地叠加 Laces"
+      bp_use: "super_resource_commitment_check"
 
   conditional_matchup_seeds:
     - target: 8-Bit_or_Pam_or_Nita_or_Hank
@@ -201,10 +243,10 @@ bp_brawler_profile:
       bp_use: false_positive_filter_for_named_counter_edges
 
   slot_notes:
-    slot_1: 只在地图/模式基本面很强且敌方低成本反制面窄时可先手；Heist 长线图优先级更高。
-    slot_2_3: 可作为回答低机动前排或建立远程开墙计划的一手，但需要搭配 anti-aggro。
-    slot_4_5: 适合修复己方缺远程/开墙的问题，同时检查别把刺客 last pick 口子留给敌方。
-    slot_6: 如果敌方三人缺高机动和远程答案，可作为惩罚性长线/打库选择。
+    slot_1: "只在 Heist 长线或选择性开墙能立即转化时先手；不得用 Rocket No. 4 的单发 11 格虚构持续射程优势。"
+    slot_2_3: "可建立远程开墙或跟随式 Super 逼位计划；需要 anti-aggro，也要预先决定 Laces 是保命还是为 Super 转位。"
+    slot_4_5: "适合修复己方缺远程/开墙的问题；若选 Rocket No. 4，需确认 6 秒充能节奏真能换到目标位。"
+    slot_6: "敌方缺高机动和远程答案时，可用打库、精确开墙或单发超距离消耗惩罚；不能把 Laces 当无限击退。"
 ```
 
 ## 关联页面

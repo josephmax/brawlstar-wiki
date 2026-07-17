@@ -4,10 +4,10 @@
 
 - 标题：Surge
 - 来源：[Surge | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Surge)
-- 读取日期：2026-07-10
-- Fandom 页面最后编辑：2026-07-08T19:49:41Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-16T17:02:55Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/surge-2026-07-10.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/surge-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -25,7 +25,7 @@
 - 攻击距离: 6.67 (Normal)<br>8.67 (stage 2+; Long)<br>10.67 (stage 4; with Hypercharge)
 - 装填: 2 seconds (Slow)<br>1.4 seconds (Fast; with Power Surge and Gadget Buffie)
 - 普攻数值: 1180
-- Super 距离: 3.33 (Short)<br>6.67 (with Hypercharge)
+- Super 距离: 3.33 (Short)<br>5.33 (with Hypercharge)
 - Super 数值: 1000
 - Gadgets: Power Surge, Power Shield
 

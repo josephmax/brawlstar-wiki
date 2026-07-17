@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Meg 的 BP 价值是形态节奏：本体很脆但移动快、射程长，机甲形态提供身体、宽弹幕和近身 swing 控制。她适合需要“站住中线/热区/球门前”的地图，也能在 Heist 用机甲期打出可观 safe 压力。风险在于变身 1 秒窗口可被打断，机甲破掉后本体容易被收割，且召唤物、墙后压制和高爆发近战会把她的形态循环打断。
+Meg 的 BP 价值是形态节奏：本体很脆但移动快、射程长，机甲形态提供身体、宽弹幕和有资源门槛的近身 swing。她适合需要“站住中线/热区/球门前”的地图，也能在 Heist 用机甲期打出可观 safe 压力。风险在于变身 1 秒窗口可被打断，机甲破掉后本体容易被收割；机甲普攻每枚命中只提供 2.703% Super 充能，不能把 Heavy Metal 回血、偷 ammo 或 swing 驱赶当作每轮目标战都有的循环。
 
 ## BP 建模
 
@@ -22,7 +22,7 @@ Meg 的 BP 价值是形态节奏：本体很脆但移动快、射程长，机甲
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-10"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -39,7 +39,7 @@ bp_brawler_profile:
     survivability: "stateful_high_if_mecha; 本体 2400 HP 很脆，机甲 3700 HP 加 Jolting Volts 提高站场"
     engage: "medium; 通过机甲身体和范围 swing 推进，不靠瞬间位移"
     disengage: "low_after_mecha_break; 机甲破后本体易被追死"
-    anti_aggro: "medium_high_in_mecha; 宽弹幕、swing 和进入机甲时的范围伤害/击退可阻止近身推进，Heavy Metal 通过 swing 命中回血维持机甲"
+    anti_aggro: "medium_high_in_mecha; 宽弹幕和进机甲时的范围伤害/击退提供稳定防线；Mecha Super swing、Heavy Metal 回血和偷 ammo 受每枚命中 2.703% Super 充能约束，是低频资源"
     anti_tank: "medium; 机甲持续火力可磨前排，但怕高爆发贴脸和控制链"
     wall_break: "none"
     throw_or_wall_bypass: "none"
@@ -47,14 +47,14 @@ bp_brawler_profile:
     scouting_or_vision: "low"
     team_support: "conditional; Jolting Volts Buffie 可同时治疗机甲与附近队友，Heavy Metal Buffie 可从被 Super 命中的敌人偷取 ammo"
     spawnable_or_pet: "none; Toolbox 不再部署 reload turret，而是弹射当前机甲并开始回充 Super"
-    crowd_control: "conditional; 进入机甲时会范围伤害并击退，Hypercharge 还会短暂减速附近敌人；Heavy Metal 本身不再提供击退"
+    crowd_control: "conditional; 进入机甲时会范围伤害并击退，充能后的 Mecha Super swing 可驱赶近身，Hypercharge 还会短暂减速附近敌人；不能假设每轮目标战都有 swing"
 
   build_switches:
     - build: "Jolting Volts / Heavy Metal / Shield, Damage"
       source: "[[sources/PLP-Meg|PLP-Meg]]"
       changes_capabilities:
         - "Jolting Volts 延长机甲 uptime；Buffie 还会治疗附近队友并把持续时间从 5 秒延长到 6 秒"
-        - "Heavy Metal 让 Mecha Super 每命中一个敌人回复 1200 生命；Buffie 还会从每个被命中的敌人偷取 1 ammo"
+        - "Heavy Metal 让 Mecha Super 每命中一个敌人回复 1200 生命；Buffie 还会从每个被命中的敌人偷取 1 ammo，但机甲普攻每枚命中只充 2.703% Super，这属于需要预先积累的关键目标战资源"
       enables:
         - "Hot Zone/Brawl Ball 的目标区身体"
         - "Heist 的机甲期 safe 压力"
@@ -63,8 +63,9 @@ bp_brawler_profile:
       mitigates_failure_modes:
         - "mecha_uptime_taxed_by_poke"
         - "mecha_ammo_pressure_during_objective_fight"
+        - "slow_mecha_super_cycle"
       best_when: "地图奖励站点、守入口或持续目标压力"
-      poor_when: "敌方能用墙后投掷、召唤物或高爆发近身持续打断机甲循环"
+      poor_when: "敌方能用墙后投掷、召唤物或高爆发近身持续打断机甲循环，或 BP 计划依赖每轮目标战重复获得 Mecha Super"
       bp_use: "default_plp_mecha_control_build"
     - build: "Toolbox / Force Field or Heavy Metal / Shield, Damage"
       source: "[[sources/Fandom-Meg|Fandom-Meg]]"
@@ -84,18 +85,18 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "hot_zone_mecha_mid_body_control"
       map_feature_type: "single_zone_body_and_entry_control"
-      uses_feature_by: "机甲身体站圈，宽弹幕和 swing 守入口，Jolting Volts 延长站圈时间"
+      uses_feature_by: "机甲身体站圈、宽弹幕守入口，Jolting Volts 延长站圈时间；已充好的 swing 用于关键清圈而不是默认反复驱赶"
       objective_conversion: "Hot Zone 单圈图中把站住中心转成持续计分"
       active_when: "入口清晰、敌方必须穿过 choke 进圈，队友能帮 Meg 清投掷/召唤物"
-      fails_if: "敌方墙后投掷或召唤物反复消耗机甲，或变身窗口被打断"
+      fails_if: "敌方墙后投掷或召唤物反复消耗机甲、变身窗口被打断，或阵容把低频 swing 误当作每轮都有的清圈资源"
       example_maps: ["[[entities/maps/Dueling Beetles|Dueling Beetles]]", "[[entities/maps/Ring of Fire|Ring of Fire]]", "[[entities/maps/Open Business|Open Business]]", "[[entities/maps/Parallel Plays|Parallel Plays]]"]
       bp_use: "Hot Zone 中心身体核心"
     - id: "brawl_ball_mecha_goal_defense_and_push_body"
       map_feature_type: "goal_entry_pressure_and_anti_aggro"
-      uses_feature_by: "机甲在球门前抗伤并用 swing 守门；进入机甲时的范围伤害/击退可打断持球推进，Heavy Metal 则用命中回血和偷 ammo 维持防线"
+      uses_feature_by: "机甲在球门前抗伤并用宽弹幕守门；进入机甲时的范围伤害/击退可打断持球推进，已充好的 swing 配合 Heavy Metal 回血/偷 ammo 只用于关键接触"
       objective_conversion: "把人数/血量优势转成持球推进或防守清球"
       active_when: "队伍有破门、得分手或控人，Meg 负责站住球门区域"
-      fails_if: "敌方用投掷/召唤物绕过机甲，或机甲破后本体被连续击杀导致防线断层"
+      fails_if: "敌方用投掷/召唤物绕过机甲、机甲破后本体被连续击杀，或连续推进要求 Meg 在未重新充好 swing 时反复缴械持球人"
       example_maps: ["[[entities/maps/Center Stage|Center Stage]]", "[[entities/maps/Sneaky Fields|Sneaky Fields]]", "[[entities/maps/Triple Dribble|Triple Dribble]]", "[[entities/maps/Pinball Dreams|Pinball Dreams]]"]
       bp_use: "足球前排/防守核心；仍需 scoring tool"
     - id: "heist_mecha_safe_lane_uptime"
@@ -118,20 +119,20 @@ bp_brawler_profile:
   objective_contracts:
     - mode: "Hot Zone"
       can_fulfill:
-        - "机甲站圈、守入口、用范围 swing 清进圈"
+        - "机甲站圈、用宽弹幕守入口，并把已充好的范围 swing 用于关键清圈"
       cannot_fulfill:
         - "独自处理墙后投掷/炮台体系"
       needs_teammate_support:
         - "清投掷、开墙、治疗或区域控制"
-      false_positive: "Meg 能站圈，但若机甲循环被断，计分能力会瞬间下降"
+      false_positive: "Meg 能站圈，但机甲循环被断或 BP 高估低频 swing 的清圈次数时，计分能力会迅速下降"
     - mode: "Brawl Ball"
       can_fulfill:
-        - "球门防守、前排推进、吸收火力"
+        - "球门防守、前排推进、吸收火力，以及有资源时的一次 swing 清球"
       cannot_fulfill:
         - "单独破门或稳定 carry 进球"
       needs_teammate_support:
         - "scorer、破门/强控、清投掷"
-      false_positive: "有身体不等于有得分路径"
+      false_positive: "有身体不等于有得分路径；有 Mecha Super 机制也不等于每轮防守都有 swing"
     - mode: "Heist"
       can_fulfill:
         - "机甲上线后边路压制和 safe DPS"
@@ -170,6 +171,11 @@ bp_brawler_profile:
       exposed_by: "base form low HP and low damage"
       mitigation: "靠掩体、队友压线或选择中短线目标图"
       bp_use: "avoid_if_mecha_access_is_unreliable"
+    - id: "slow_mecha_super_cycle"
+      active_when: "BP 计划依赖 Mecha Super 反复 swing、Heavy Metal 回血或 Buffie 偷 ammo，但机甲普攻每枚命中只充 2.703% Super，下一次 swing 无法在目标战前稳定上线"
+      exposed_by: "[[sources/Fandom-Meg|Fandom-Meg]] 当前 Mecha attack Super charge rate"
+      mitigation: "把已充好的 swing 留给持球、站圈或贴脸关键窗口，用 Jolting Volts/队友控制维持其余时间，不把重复 swing 计入阵容基本面"
+      bp_use: "resource_availability_and_repeat_control_check"
 
   conditional_matchups:
     - target: ["Nani", "Piper", "Byron", "Glowy"]
@@ -191,7 +197,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Meg|PLP-Meg]]"
       mechanism: "高近身爆发、草丛接近或贴脸连击能绕过 Meg 的中距离压制，并在机甲破后收本体"
       active_when: "草墙路线或球门/zone 入口让目标能贴到 Meg"
-      fails_when: "Meg 有 Heavy Metal、队友控制和开阔视野提前消耗"
+      fails_when: "Meg 已有充好的 swing/Heavy Metal 资源、队友控制和开阔视野提前消耗"
       bp_use: "requires_peel_and_grass_control"
     - target: ["Nita", "Larry & Lawrie", "Damian", "Lumi", "Sirius"]
       direction: "target_favored"
@@ -202,9 +208,9 @@ bp_brawler_profile:
       bp_use: "do_not_pick_without_clear_plan"
 
   slot_notes:
-    slot_1: "Hot Zone 或 Brawl Ball 中线/球门图可早手，但要准备回答投掷与召唤物"
+    slot_1: "Hot Zone 或 Brawl Ball 中线/球门图可早手，但要准备回答投掷与召唤物，并且不能把低频 Mecha Super 当作每轮目标战的固定控制"
     slot_2_3: "适合建立目标区身体核心，让后续补开墙、清草、得分或 safe DPS"
-    slot_4_5: "看到敌方缺反前排、缺墙后消耗时价值更稳"
+    slot_4_5: "看到敌方缺反前排、缺墙后消耗时价值更稳；若阵容需要重复缴械/清圈，还要另补稳定控制"
     slot_6: "惩罚脆长手或低爆发支援阵容，但不能修补队伍缺开墙/缺清召唤物的问题"
 ```
 
@@ -212,3 +218,44 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Meg|Fandom 来源摘要: Meg]]
 - [[sources/PLP-Meg|PLP 来源摘要: Meg]]
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Meg",
+    "target_states": [
+      {
+        "id": "meg",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 2400, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Meg|Fandom-Meg]]"
+      },
+      {
+        "id": "mecha",
+        "entity_class": "brawler_alternate_form",
+        "roster_target": false,
+        "health": {"amount": 3700, "at_power_level": 1, "scaling": "standard"},
+        "state_rule": "独立形态血池，不与 Meg 本体相加",
+        "source_ref": "[[sources/Fandom-Meg|Fandom-Meg]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": [
+      {
+        "id": "force_field_post_mecha",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": ["meg"],
+        "effect": {"type": "damage_reduction", "ratio": 0.40},
+        "active_when": "Mecha 被摧毁后的 5 秒，且 Meg 尚未再次进入 Mecha",
+        "sequence_validity": "只保护脱甲后的 Meg，不保护 Mecha",
+        "source_ref": "[[sources/Fandom-Meg|Fandom-Meg]]"
+      }
+    ]
+  }
+}
+```

@@ -4,10 +4,10 @@
 
 - 标题：Damian
 - 来源：[Damian | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Damian)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-14T21:12:16Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-16T19:46:50Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/damian-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/damian-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -26,7 +26,7 @@
 - 装填: 1.2 seconds (Fast)
 - 普攻数值: 700
 - Super 距离: 6 (Normal)
-- Super 数值: 600
+- Super 数值: 800
 - Gadgets: Spiritual Healing, Wall of Sound
 
 ## BP 建模可抽取信号

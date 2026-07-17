@@ -4,10 +4,10 @@
 
 - 标题：Mortis
 - 来源：[Mortis | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mortis)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-13T18:20:54Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-08T07:23:33Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/mortis-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/mortis-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

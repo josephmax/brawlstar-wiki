@@ -4,10 +4,10 @@
 
 - 标题：Larry & Lawrie
 - 来源：[Larry & Lawrie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Larry_%26_Lawrie)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T07:55:26Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-05T02:24:01Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/larry-lawrie-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/larry-lawrie-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -26,7 +26,7 @@
 - 装填: 2.2 seconds (Very Slow)
 - 普攻数值: 700
 - Super 距离: 5
-- Super 数值: 3000
+- Super 数值: 3300
 - Gadgets: Order: Swap, Order: Fall Back
 
 ## BP 建模可抽取信号

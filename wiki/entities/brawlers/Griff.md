@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Griff 的 BP 价值来自近中距离高额输出、Super 宽扇形压制和 `Piggy Bank` 的延迟破墙/击退。他的普攻名义上是长射程，但三波硬币完整卸完需要约 1 秒，远端很容易只打出部分伤害；真正强势的是敌方身体、坦克或目标位必须进入中近距离时，Griff 可以用普攻+Super 快速清人。Fandom 明确提示 Griff 在 Heist、Brawl Ball、Hot Zone 都能利用 Piggy Bank 和 Super 转目标，但也强调他在长距离对抗中受慢 unload 限制。
+Griff 的 BP 价值来自近中距离高额输出、Super 宽扇形压制和 `Piggy Bank` 的延迟破墙/击退。他的基础普攻三波硬币完整卸完需要约 1 秒，远端很容易只打出部分伤害；`Keep the Change` 则在相同卸载时间加入第四波并扩大散布，显著提高近身反突进与固定目标爆发，但仍不会把他变成纯狙击手。Fandom 明确提示 Griff 在 Heist、Brawl Ball、Hot Zone 都能利用 Piggy Bank 和 Super 转目标，但也强调他在长距离对抗中受命中完整度限制。
 
 ## BP 建模资料
 
@@ -22,14 +22,14 @@ Griff 的 BP 价值来自近中距离高额输出、Super 宽扇形压制和 `Pi
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Griff|Fandom-Griff]]"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "[[sources/PLP-Griff|PLP-Griff]]"
     user_notes: none
 
   capability_vector:
     effective_range: long_nominal_but_best_mid_close
-    projectile_reliability: medium; 普攻三波卸载慢，远端不稳定，近身多硬币命中很强
-    burst: very_high_at_close_or_with_super
+    projectile_reliability: medium; 基础三波约 1 秒，远端不稳定；Keep the Change 在同一时间内发出四波并扩大散布，近身更可靠但远端仍非狙击
+    burst: very_high_at_close_or_with_super_or_Keep_the_Change_fourth_salvo
     sustained_dps: medium_high_if_target_stays_in_range
     objective_damage: high_heist_if_lane_win_or_safe_access
     mobility: low
@@ -51,7 +51,7 @@ bp_brawler_profile:
     - build: "Piggy Bank / Business Resilience / Shield, Damage"
       source: "[[sources/PLP-Griff|PLP-Griff]]"
       changes_capabilities:
-        - "Piggy Bank 2.5 秒延迟后破墙、击退并造成范围伤害，适合门墙、safe 墙和敌方 cover"
+        - "Piggy Bank 2.5 秒延迟后在基础半径 2.67 格内破墙、击退并造成范围伤害；Buffie 完全充能后最多扩大到约 3.33 格，必须贴近具体门墙、safe 墙或 cover 放置"
         - "Business Resilience 每 2 秒回复缺失生命的一部分，让 Griff 能在目标位持续换血"
         - "Shield/Damage 提高中近距离反打容错和斩杀线"
       enables:
@@ -65,16 +65,17 @@ bp_brawler_profile:
       best_when: "敌方必须进入中近距离目标线，或地图有关键墙体可用 Piggy Bank 转换"
       poor_when: "敌方在极远开阔长线风筝，或 Piggy Bank 破墙后对面远程更受益"
       bp_use: default_wallbreak_anti_body_build
-    - build: "Coin Shower zone or fixed-target variant"
+    - build: "Coin Shower / Keep the Change zone, fixed-target or anti-aggro variant"
       source: "[[sources/Fandom-Griff|Fandom-Griff]]"
       changes_capabilities:
-        - "Coin Shower 在目标区域持续 5 秒造成伤害，Buffie 下半径逐渐扩大"
+        - "Coin Shower 冷却 15 秒，在目标区域持续 6 秒造成伤害，Buffie 下半径逐渐扩大"
+        - "Keep the Change 在与基础三波相同的卸载时间内发出第四波，并把攻击散布扩大 50%，强化近身反突进和固定目标 burst"
       enables:
         - "Hot Zone zone clear"
         - "Heist fixed defender or safe-area pressure"
       mitigates_failure_modes:
         - "direct_line_blocked"
-      best_when: "地图目标点固定且不需要 Piggy Bank 破墙"
+      best_when: "地图目标点固定、不需要 Piggy Bank 破墙，或敌方必须进入 Griff 的近中距离让第四波稳定转化"
       poor_when: "比赛胜负取决于开关键墙或击退突进者"
       bp_use: fixed_area_control_variant
 
@@ -178,9 +179,9 @@ bp_brawler_profile:
 
   failure_modes:
     - id: slow_unload_long_range_tax
-      active_when: "敌方在远端开阔长线换血，Griff 三波硬币难以完整命中"
+      active_when: "敌方在远端开阔长线换血，Griff 基础三波或 Keep the Change 四波都难以完整命中"
       exposed_by: "[[sources/Fandom-Griff|Fandom-Griff]] slow unload and long-range struggle"
-      mitigation: "选择中近距离目标图，或通过墙/草/队友压线缩短距离"
+      mitigation: "选择中近距离目标图，或通过墙/草/队友压线缩短距离；Keep the Change 只改善同一卸载窗口的近身覆盖，不消除远程命中税"
       bp_use: false_positive_filter.nominal_range_not_true_sniper
     - id: piggy_bank_delay_or_overbreak
       active_when: "Piggy Bank 2.5 秒延迟被躲开，或破墙让敌方长手/突进获得更好路线"

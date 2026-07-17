@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Larry & Lawrie 的 BP 价值来自两层压力：Larry 用长程越墙 Ticket Dispenser 打双段爆炸封路，Lawrie 作为近中距离召唤物追击、挡枪、骗弹药，并通过 `Protocol: Assist` 给 Larry 回弹。PLP 推荐 `Order: Fall Back / Protocol: Assist`，这意味着 Lawrie 存活且在 8 格内是核心门槛；没有 Lawrie，Larry 只是慢弹道、慢装填的投掷手。Fandom 同时提醒，面对范围伤害近战或能快速清 Lawrie 的突进时，需要保持双人距离，否则 Lawrie 可能被一起打掉。
+Larry & Lawrie 的 BP 价值来自两层压力：Larry 用长程越墙 Ticket Dispenser 打双段爆炸封路，3300 基础生命的 Lawrie 以每枚 200 基础伤害的近中距离散射追击、挡枪、骗弹药，并通过 `Protocol: Assist` 给 Larry 回弹。PLP 推荐 `Order: Fall Back / Protocol: Assist`，这意味着 Lawrie 存活且在 8 格内是核心门槛；没有 Lawrie，Larry 只是慢弹道、慢装填的投掷手。Fandom 同时提醒，面对范围伤害近战或能快速清 Lawrie 的突进时，需要保持双人距离，否则 Lawrie 可能被一起打掉。
 
 ## BP 建模资料
 
@@ -22,18 +22,18 @@ Larry & Lawrie 的 BP 价值来自两层压力：Larry 用长程越墙 Ticket Di
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Larry-Lawrie|Fandom-Larry-Lawrie]]"
+    fandom: direct_raw_capture_2026-07-17
     plp: "[[sources/PLP-Larry-Lawrie|PLP-Larry-Lawrie]]"
     user_notes: none
 
   capability_vector:
     effective_range: long_thrower; 7.33 格越墙投掷
     projectile_reliability: medium_on_chokes_low_vs_fast_open_movement
-    burst: medium_high_if_both_ticket_explosions_or_Lawrie_close_wave_hit
+    burst: medium_high_if_both_ticket_explosions_or_Lawrie_close_wave_hit; Lawrie 每枚 200 基础伤害，贴近时两段散射可形成明确击杀压力
     sustained_dps: conditional_on_Protocol_Assist_and_Lawrie_hits
     objective_damage: low_medium; 以控区/清人转目标为主
     mobility: medium_with_Order_Fall_Back_swap_if_path_clear
-    survivability: medium_low; 3000 HP plus Lawrie body and Fall Back heal
+    survivability: medium_low; Larry 3000 HP，Lawrie 3300 HP body 与 Fall Back 双方 25% 治疗共同提供资源层容错
     engage: medium_with_Lawrie_spawn_pressure
     disengage: medium_high_with_Fall_Back_if_not_blocked_by_wall_or_water
     anti_aggro: conditional; Protect variant or Lawrie body can help, area melee is dangerous
@@ -43,7 +43,7 @@ bp_brawler_profile:
     area_control: high_with_double_explosion_and_Lawrie
     scouting_or_vision: medium; Lawrie seeks enemies including bushes
     team_support: spawnable_body_ammo_tax_and_area_denial
-    spawnable_or_pet: Lawrie_and_Hypercharge_extra_Lawrie
+    spawnable_or_pet: Lawrie_3300_HP_body_and_Hypercharge_extra_Lawrie
     crowd_control: route_denial_not_hard_cc
     terrain_destruction: none
 
@@ -79,7 +79,7 @@ bp_brawler_profile:
 
   map_feature_hooks:
     - map_feature_type: hot_zone_double_burst_lawrie_area_control
-      uses_feature_by: "双段投掷覆盖 zone entrance，Lawrie 逼敌方花弹药或绕路"
+      uses_feature_by: "双段投掷覆盖 zone entrance，3300 基础生命 Lawrie 以强化散射逼敌方花弹药或绕路"
       route_or_position: "zone entrance、wall-adjacent zone edge、grass mouth、re-entry choke"
       objective_conversion: "延迟回区、清站区边缘、让队友获得 zone time"
       active_when: "墙体保护 Larry，Lawrie 可在 8 格内命中以触发 Assist"
@@ -165,7 +165,7 @@ bp_brawler_profile:
     - id: slow_projectile_and_reload_without_lawrie
       active_when: "Lawrie 死亡、离开 8 格或打不到人，Protocol: Assist 无法回弹"
       exposed_by: "[[sources/Fandom-Larry-Lawrie|Fandom-Larry-Lawrie]] attack and Assist mechanics"
-      mitigation: "把 Lawrie 存活与距离写入候选门槛，不把 Larry 单体当高持续输出"
+      mitigation: "3300 基础生命提高 Lawrie 首轮存活率，但仍把其存活与 8 格距离写入候选门槛，不把 Larry 单体当高持续输出"
       bp_use: resource_tracking.lawrie_alive_and_in_range
     - id: area_melee_hits_both_twins
       active_when: "范围近战或链式突进同时打到 Larry 和 Lawrie，导致 Protect/Assist 资源反噬"

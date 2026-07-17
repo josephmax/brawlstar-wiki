@@ -4,10 +4,10 @@
 
 - 标题：Edgar
 - 来源：[Edgar | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Edgar)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-22T07:02:23Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-05T03:21:11Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/edgar-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/edgar-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Assassin
-- 移动速度: 820 (Very Fast)<br>0–2333 (with Super)<br>1020 (after Super)<br>984 (with Hypercharge)<br>1184 (after Super with Hypercharge)
+- 移动速度: 820 (Very Fast)<br>1020 (after Super)<br>984 (with Hypercharge)<br>1184 (after Super with Hypercharge)
 - 生命值: 3700
 - 攻击距离: 2 (Short)<br>4 (additional projectiles; with Hyper Buffie)
 - 装填: 0.7 seconds (Very Fast)<br>0.467 seconds (with Hypercharge)

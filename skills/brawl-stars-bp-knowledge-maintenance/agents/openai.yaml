@@ -1,7 +1,7 @@
 interface:
   display_name: "Brawl Stars BP Knowledge Maintenance"
-  short_description: "Maintain BP wiki and esports evidence."
-  default_prompt: "Use $brawl-stars-bp-knowledge-maintenance to ingest, model, audit, or repair Brawl Stars BP knowledge and competitive-event evidence in this vault."
+  short_description: "Maintain BP wiki, breakpoints, and esports evidence."
+  default_prompt: "Use $brawl-stars-bp-knowledge-maintenance to ingest, model, audit, or repair Brawl Stars BP knowledge, balance breakpoints, and competitive-event evidence in this vault."
 
 policy:
   allow_implicit_invocation: true

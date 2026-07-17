@@ -15,6 +15,8 @@ The BP maintenance skill owns the workflow for these repo scripts:
 - `scripts/ingest_liquipedia_event.py`
 - `scripts/analyze_esports_event.py`
 - `scripts/audit_tournament_observations.py`
+- `scripts/audit_balance_breakpoints.py`
+- `scripts/test_balance_breakpoints.py`
 - `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
 
@@ -37,6 +39,8 @@ Expected write targets:
 | `scripts/ingest_liquipedia_event.py` | `wiki/sources/Liquipedia-*`, `wiki/entities/events/` | canonical source summary and event entity |
 | `scripts/analyze_esports_event.py --output` | `outputs/esports/*.json` | generated tournament observation profile |
 | `scripts/audit_tournament_observations.py --output` | `outputs/esports/*.md` | generated review-seed report |
+| `scripts/audit_balance_breakpoints.py --output --report` | `outputs/balance-breakpoints/*.json`, `outputs/balance-breakpoints/*.md` | generated numeric breakpoint audit |
+| `scripts/test_balance_breakpoints.py` | stdout only | arithmetic, stacking, patch-ledger, and policy regression tests |
 | `scripts/test_liquipedia_event.py` | stdout only | parser and July event regression tests |
 | `scripts/test_bp_skill_contract.py` | stdout only | validation output |
 
@@ -89,6 +93,21 @@ The audit checks structure and obvious placeholders. It does not prove strategic
 
 Run `scripts/audit_tournament_observations.py` after generating `tournament_observation_profile.v1`. Missing event maps or brawlers are maintenance coverage gaps. Optional runtime-index weak-fit rows are VOD/draft-context review seeds only; the audit must not edit entities, syntheses, strength tiers, or runtime indexes.
 
+## Balance Breakpoint Audit
+
+Run `scripts/test_balance_breakpoints.py`, then `scripts/audit_balance_breakpoints.py` for each source manifest that changes health, discrete damage, barriers, or damage reduction. The JSON output uses `balance_breakpoint_audit.v1` and belongs under `outputs/balance-breakpoints/`.
+
+Inspect at least:
+
+- roster target coverage and alternate-form exclusions
+- reviewed attacker-packet coverage for reverse HP/defense audits
+- Power Level normalization and the unscaled `+900` Shield gear value
+- patch-ledger continuity and current-after consistency
+- source conflicts, temporal defenses, summons, deployables, cycles, and DoT exclusions
+- integer `pair_deltas` and defense-option `build_pressure_deltas`
+
+A damage change can be complete against all indexed target states while an HP change remains incomplete against the attacker roster. The report must state that asymmetry and must not say “no other matchups changed” when packet coverage is partial. The audit must not auto-generate tier, favored matchup, pick priority, map fit, or runtime rules.
+
 ## Contract Test
 
 Run:
@@ -110,5 +129,6 @@ If changing skill references, update the contract test first, watch it fail, the
 
 - `scripts/test_bp_skill_contract.py` passes.
 - Relevant audits are clean or blockers are explicitly logged.
+- Breakpoint coverage distinguishes full target-health coverage from partial reviewed-packet coverage.
 - Index/log changes are made only when durable navigation or maintenance state changed.
 - Generated outputs remain in `outputs/`.

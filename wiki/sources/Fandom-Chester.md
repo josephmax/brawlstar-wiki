@@ -4,10 +4,10 @@
 
 - 标题：Chester
 - 来源：[Chester | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chester)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-28T15:51:20Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-05T03:17:46Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/chester-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/chester-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -23,10 +23,10 @@
 - 移动速度: 770 (Fast)<br>920 (with Candy Beans)<br>955 (with Hypercharge)<br>1105 (with Candy Beans and Hypercharge)
 - 生命值: 3800
 - 攻击距离: 8.33 (Long)
-- 装填: 1.9 seconds (Normal)<br>0.633 seconds (with Candy Beans)
+- 装填: 1.9 seconds (Normal)<br>0.76 seconds (with Candy Beans)
 - 普攻数值: 670
 - Super 距离: 6.33 (Normal)
-- Super 数值: 1880
+- Super 数值: 1600
 - Gadgets: Spicy Dice, Candy Beans
 
 ## BP 建模可抽取信号

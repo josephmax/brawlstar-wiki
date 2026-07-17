@@ -19,6 +19,7 @@
 - [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+- [[concepts/伤害与生存断点|伤害与生存断点]]
 
 ## BP Skill Runtime
 
@@ -37,6 +38,7 @@
 ## BP Archive
 
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
+- [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
 ## Sources
@@ -52,6 +54,9 @@
 - [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
+- [[sources/User-Note-Balance-Breakpoint-Audit|用户维护规则：平衡调整伤害—生存断点审计]]
+- [[sources/Fandom-Power-Points|Fandom 来源摘要: Power Points / Power Level 数值成长]]
+- [[sources/Power-League-Prodigy-Shield-Gear|Power League Prodigy 来源摘要: Shield Gear]]
 - [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement（future-only）]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]

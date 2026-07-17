@@ -4,10 +4,10 @@
 
 - 标题：Shelly
 - 来源：[Shelly | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Shelly)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-14T21:02:15Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-12T18:20:33Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/shelly-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/shelly-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

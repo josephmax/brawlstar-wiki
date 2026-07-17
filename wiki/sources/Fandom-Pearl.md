@@ -4,10 +4,10 @@
 
 - 标题：Pearl
 - 来源：[Pearl | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pearl)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-11T08:58:20Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-03T04:16:15Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/pearl-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/pearl-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Damage Dealer
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 670 (Slow)<br>804 (with Hypercharge)
 - 生命值: 4300
 - 攻击距离: 9 (Long)
 - 装填: 1.5 seconds (Normal)

@@ -22,7 +22,7 @@ Barley 是典型低血投掷控场英雄。普攻落地后形成 2 格 puddle，
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -31,7 +31,7 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: "long_thrower; 普攻 7.33 格，Super 9.33 格越墙覆盖"
-    projectile_reliability: "medium_on_fixed_routes_low_vs_open_dash; 瓶子落地慢，近距离落更快"
+    projectile_reliability: "medium_on_fixed_routes_low_vs_open_dash; 普攻瓶仍慢且近投更快，Super 弹速 1700、Hyper Super 2300 缩短远端大范围铺地的反应窗口"
     burst: "medium_if_target_stays_in_puddle; 普攻可两跳，多 puddle 叠加，但不是即时爆发"
     sustained_dps: "medium_area; 2 秒 reload，依赖落点和路线限制"
     objective_damage: "high_heist_if_super_on_safe; safe 可吃普攻两跳和 Super 多跳，Extra Noxious 强化"
@@ -43,7 +43,7 @@ bp_brawler_profile:
     anti_tank: "medium; 多跳地面伤害和 slow 能逼坦克绕路，贴脸仍危险"
     wall_break: "none"
     throw_or_wall_bypass: "very_high; 普攻和 Super 都可越墙"
-    area_control: "very_high; puddle 堆叠、Super 大面积封路"
+    area_control: "very_high; puddle 堆叠、Super 大面积封路，较快 Super 弹速让远端 choke/目标区更快进入覆盖状态"
     scouting_or_vision: "low_medium; 可用瓶子/slow 检草，但无真实 reveal"
     team_support: "medium; Medical Use 自保，Herbal Tonic 可治疗队友但会打断 Super"
     spawnable_or_pet: "none"
@@ -87,7 +87,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "hot_zone_wall_puddle_choke_control"
       map_feature_type: "protected_thrower_pocket_zone_choke"
-      uses_feature_by: "墙后连续普攻和 Super 覆盖区口，逼敌方绕路或离区"
+      uses_feature_by: "墙后连续普攻，并用 1700 弹速 Super 更快覆盖区口，逼敌方绕路或离区"
       route_or_position: "Hot Zone 区口、墙后投掷 pocket、敌方回区 chokepoint"
       objective_conversion: "延迟回区、清站区边缘、保护己方 body 站区"
       active_when: "墙体未被打开，Barley 可安全预铺区口并保留 Sticky Syrup"
@@ -113,7 +113,7 @@ bp_brawler_profile:
       bp_use: "slot_task.goal_defense_and_anti_aggro"
     - id: "heist_extra_noxious_super_safe_burst"
       map_feature_type: "fixed_safe_thrower_burst"
-      uses_feature_by: "Super 五瓶覆盖 safe，固定目标可吃满多跳；Extra Noxious 增加每跳伤害"
+      uses_feature_by: "1700 弹速 Super 五瓶更快覆盖 safe，固定目标可吃满多跳；Extra Noxious 增加每跳伤害"
       route_or_position: "safe 前墙、safe 侧投掷角、lane win 后安全投 Super 位置"
       objective_conversion: "把一次 lane win 转换成高额 safe 伤害，同时封防守路线"
       active_when: "Barley 能在不被打断/近身的情况下完整释放 Super"
@@ -189,8 +189,8 @@ bp_brawler_profile:
       bp_use: "super_window_gate"
     - id: "slow_projectile_autoaim_miss"
       active_when: "敌方高速移动或开阔绕路，Barley 自动瞄准只能打一跳甚至落空"
-      exposed_by: "Fandom notes slow projectile, closer throws land sooner, auto-aim often misses"
-      mitigation: "预判 chokepoint 而非追着移动目标乱投，配控制或站位限制"
+      exposed_by: "Fandom notes main-attack projectile is slow, closer throws land sooner, and auto-aim often misses"
+      mitigation: "预判 chokepoint 而非追着移动目标乱投，配控制或站位限制；Super 提速只改善大面积铺地，不修复普攻追高速目标"
       bp_use: "projectile_reliability_gate"
 
   conditional_matchups:

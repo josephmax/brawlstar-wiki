@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Pearl 是依靠 Heat 条把伤害逐步抬高的长射程 Damage Dealer。Heat 9 秒充满，最高让普攻和 Super 获得 75% 伤害加成；普攻射出 6 枚散射 cookies，远距离单点不稳定，但高 Heat 近距离爆发很高。Super `Let Out Some Steam` 在 0.3 秒延迟后释放 3.33 格爆炸，伤害、击退并摧毁掩体，但延迟中被 stun / pull / knockback 会取消。PLP 默认 `Overcooked / Heat Shield / Shield, Damage, Health`，把 Pearl 建模为能在 Gem Grab / Knockout 持 Heat 站线、用高热爆发惩罚贴脸的中后期输出。
+Pearl 是依靠 Heat 条把伤害逐步抬高的长射程 Damage Dealer。Heat 9 秒充满，最高让普攻和 Super 获得 75% 伤害加成；普攻射出 6 枚散射 cookies，每枚只消耗相当于 0.38 秒蓄热，完整一轮消耗约 2.28 秒 Heat，因此满热状态可支持连续多轮开火。远距离单点仍不稳定，但高 Heat 近距离爆发很高。Super `Let Out Some Steam` 在 0.3 秒延迟后释放 3.33 格爆炸，伤害、击退并摧毁掩体，但延迟中被 stun / pull / knockback 会取消。PLP 默认 `Overcooked / Heat Shield / Shield, Damage, Health`，把 Pearl 建模为能在 Gem Grab / Knockout 持 Heat 站线、用高热爆发惩罚贴脸的中后期输出。
 
 ## BP 建模
 
@@ -22,7 +22,7 @@ Pearl 是依靠 Heat 条把伤害逐步抬高的长射程 Damage Dealer。Heat 9
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -33,10 +33,10 @@ bp_brawler_profile:
     effective_range: "long_spread; 普攻 9 格，6 枚散射 cookies"
     projectile_reliability: "medium_low_at_max_range; 宽散射打移动单体不稳定，近距离或窄路更可靠"
     burst: "high_when_heat_charged; Heat 最高 +75% 伤害，Super 近距离爆发和击退"
-    sustained_dps: "medium; 1.5 秒 reload，但每次普攻会消耗 Heat"
+    sustained_dps: "medium_high_during_stored_heat_window; 1.5 秒 reload，每枚 cookie 消耗 0.38 秒蓄热、完整一轮约 2.28 秒，连续高热输出窗口更长但仍会逐弹降温"
     objective_damage: "medium; 可用高 Heat 打固定目标，但不是稳定远程 safe DPS"
     mobility: "low; 无位移"
-    survivability: "medium_high_with_heat_shield; 4300 HP，Heat >80% 时 Heat Shield 减伤 20%"
+    survivability: "medium_high_with_heat_shield; Power 11 本体 8600 HP，Heat >80% 的 20% Heat Shield 对应 10750 EHP，叠满 Shield gear 为 11875；一旦 Heat 降到 80% 或以下即失效"
     engage: "medium_short_range_super; 依赖目标进入 3.33 格 Super 半径"
     disengage: "medium_high_if_super_ready; Super 击退近身目标并可破墙"
     anti_aggro: "high_with_heat_and_super; 高 Heat、击退和 Overcooked 惩罚刺客/坦克贴脸"
@@ -57,7 +57,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Pearl|PLP-Pearl]]"
       changes_capabilities:
         - "Overcooked 让下一发 6 枚 cookies 命中后附带 4 跳 DoT，伤害随 cookie 当前伤害变化"
-        - "Heat Shield 在 Heat 超过 80% 时降低 20% 受到伤害，强化持线和近身反打"
+        - "Heat Shield 在 Heat 超过 80% 时降低 20% 受到伤害；较低的逐弹 Heat 消耗延后降温，但完整开火仍会使护盾在弹幕过程中失效"
         - "Shield/Health gear 把 Pearl 的高 Heat 等待期变得更安全"
       enables:
         - "Knockout 持 Heat 威慑"
@@ -87,7 +87,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "knockout_heat_hold_long_lane"
       map_feature_type: "round_timer_heat_threat"
-      uses_feature_by: "Pearl 可在回合前段蓄 Heat，后段用高热普攻/Overcooked 威胁第一击杀"
+      uses_feature_by: "Pearl 可在回合前段蓄 Heat，后段利用每轮约 2.28 秒 Heat 消耗连续打出高热普攻/Overcooked，威胁第一击杀"
       route_or_position: "Knockout 长线、墙边转角、回合末收缩前的中线"
       objective_conversion: "保护血量优势、逼退低血目标、或在回合末用高热爆发收割"
       active_when: "Pearl 有掩体/队友保护能等 Heat，敌方必须探头或进入固定线"
@@ -100,7 +100,7 @@ bp_brawler_profile:
       bp_use: "slot_task.round_timer_damage_threat"
     - id: "gem_heat_shield_mid_anchor"
       map_feature_type: "gem_mid_heat_anchor"
-      uses_feature_by: "Heat Shield 和高热普攻让 Pearl 在矿区附近有反打和护身能力"
+      uses_feature_by: "Heat Shield 和消耗更慢的高热普攻让 Pearl 在矿区附近有更长的反打序列和护身能力"
       route_or_position: "宝石矿中线、侧墙入口、carrier 退线"
       objective_conversion: "用高热威慑突进者、保护 carrier、或在矿区争夺中开墙"
       active_when: "矿区节奏允许 Pearl 保持 Heat，队伍有视野/前排避免被先手控制"
@@ -160,7 +160,7 @@ bp_brawler_profile:
         - "远距持续扫草"
       needs_teammate_support:
         - "主 carrier、草区控制、投掷/长手答案"
-      false_positive: "高热威慑强，但 Heat 掉完后短时间内只是普通散射长手"
+      false_positive: "较低 Heat 消耗延长威慑，但 Heat 掉完后短时间内仍只是普通散射长手"
     - mode: "Brawl Ball"
       can_fulfill:
         - "Super 破门前墙"
@@ -174,9 +174,9 @@ bp_brawler_profile:
 
   failure_modes:
     - id: "heat_wasted_by_unplanned_ammo"
-      active_when: "Pearl 为试探或扫草频繁开火，Heat 被每枚 cookie 消耗"
+      active_when: "Pearl 为试探或扫草频繁开火，Heat 仍按每枚 cookie 相当于 0.38 秒蓄热逐步消耗"
       exposed_by: "[[sources/Fandom-Pearl|Fandom-Pearl]] Heat bar and attack details"
-      mitigation: "只在有目标收益的线位开火，围绕回合/目标计时保存高 Heat"
+      mitigation: "较低消耗允许更长连射，但不等于无限高热；仍只在有目标收益的线位开火，围绕回合/目标计时保存 Heat"
       bp_use: "resource_timing_gate"
     - id: "super_delay_cancelled"
       active_when: "Pearl 在 0.3 秒 Super 延迟中被 stun、pull 或 knockback"
@@ -236,3 +236,36 @@ bp_brawler_profile:
 - [[sources/Fandom-Pearl|Fandom 来源摘要: Pearl]]
 - [[sources/PLP-Pearl|PLP 来源摘要: Pearl]]
 - [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 地图适配复核]]
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Pearl",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 4300, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Pearl|Fandom-Pearl]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": [
+      {
+        "id": "heat_shield",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.20},
+        "active_when": "Heat 高于 80%",
+        "sequence_validity": "Heat 降到 80% 或以下即失效",
+        "source_ref": "[[sources/Fandom-Pearl|Fandom-Pearl]]"
+      }
+    ]
+  }
+}
+```

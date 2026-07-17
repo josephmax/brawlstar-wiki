@@ -22,7 +22,7 @@ Mandy 的 BP 价值来自 12 格 Focus 射程、In My Sights 的弹速修正、C
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -32,11 +32,11 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "very_long; 9 格基础射程，站定 0.45 秒后 Focus 到 12 格，Super 40 格穿墙直线"
     projectile_reliability: "medium_high_with_in_my_sights; Focus 弹速星徽提高命中，未专注或被迫移动时可靠性下降"
-    burst: "high_pick_burst; Sugar Ray 2500 直线伤害可跨屏收割或逼退低血"
+    burst: "high_pick_burst; Power 11 普攻单发 2800，未带盾/减伤的基础血量 <=5600 为两发线、<=8400 为三发线；Sugar Ray 直线伤害可跨屏收割或逼退低血"
     sustained_dps: "medium; 1.5 秒装填和单发节奏，适合稳定换血而非近距离持续战"
     objective_damage: "conditional_heist_lane; Safe Zone 等直线角度可用 Super 打 safe，但不是 PLP 主模式"
     mobility: "low; 专注和 Super 都要求站位纪律"
-    survivability: "low_medium; 3000 HP 依赖距离、Shield gear、Hard Candy 或队友 peel"
+    survivability: "low_medium_conditional; Power 11 本体 6000 HP，Hard Candy Focus 状态按 50% 减伤为 12000 EHP，叠满 Shield gear 为 13800；移动会立刻失去 Focus 与该承伤线"
     engage: "low; 主要通过射程先手压线，不主动进场"
     disengage: "low_medium; Caramelize 可拖接近，但没有位移"
     anti_aggro: "low; 贴脸后只能靠 slow、队友和提前击杀"
@@ -73,6 +73,18 @@ bp_brawler_profile:
       best_when: "敌方需要经过开阔窄口接近，且我方已有穿墙/收割手段"
       poor_when: "敌方主要躲在墙后，Mandy 需要 Cookie Crumbs 打掩体后目标"
       bp_use: "anti_approach_variant"
+    - build: "Cookie Crumbs or Caramelize / Hard Candy / Shield"
+      source: "[[sources/Fandom-Mandy|Fandom-Mandy]]"
+      changes_capabilities:
+        - "Hard Candy 在 Mandy 保持 Focus 时提供 50% shield，把可预判的单线换血变成更耐久的静态长线锚点"
+        - "放弃 In My Sights 会失去 Focus 弹速修正，因此耐久提升不等于命中可靠性提升"
+      enables:
+        - "在固定长线或回合末 choke 中持有 Focus 并承受一次远程换血"
+      mitigates_failure_modes:
+        - "focused_immobility_dive_window"
+      best_when: "敌方压力来自可预判的单线远程伤害，Mandy 能在安全掩体后保持 Focus"
+      poor_when: "敌方用投掷、侧角、持续区域伤害或 dive 强迫 Mandy 移动，护盾会随 Focus 一起消失"
+      bp_use: "conditional_focus_hold_variant_not_default_projectile_build"
 
   map_feature_hooks:
     - id: "bounty_open_sightline_star_pick"
@@ -138,7 +150,7 @@ bp_brawler_profile:
     - id: "focused_immobility_dive_window"
       active_when: "Mandy 为了 12 格射程站定，敌方用 dash、jump、侧草或水域 off-angle 接近"
       exposed_by: "Focus requires standing still; low HP"
-      mitigation: "保留 Caramelize、队友 peel、选择开阔可视路线"
+      mitigation: "保留 Caramelize、队友 peel、选择开阔可视路线；Hard Candy 的 50% Focus shield 只缓解可预判换血，不能解决被迫移动或贴脸"
       bp_use: "check_enemy_engage_before_pick"
     - id: "super_cancelled_by_cc"
       active_when: "敌方有 stun、pull、knockback 或快速贴身打断 0.75 秒前摇"
@@ -197,3 +209,48 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
 - [[sources/PLP-Mandy|PLP 来源摘要: Mandy]]
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Mandy",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 3000, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {"amount": 1400, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "单枚普攻命中；Focused 只改变射程，不改变此伤害",
+        "source_conflict_status": "none",
+        "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
+      }
+    ],
+    "defense_modifiers": [
+      {
+        "id": "hard_candy",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.50},
+        "active_when": "Mandy 保持 Focus",
+        "sequence_validity": "开始移动并失去 Focus 时立即失效",
+        "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
+      }
+    ]
+  }
+}
+```

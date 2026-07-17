@@ -22,7 +22,7 @@ Jacky 的 BP 价值来自短距离圆形即时伤害、隔墙打人、Pneumatic 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-Jacky|Fandom-Jacky]] direct_raw_capture_2026-07-10"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "[[sources/PLP-Jacky|PLP-Jacky]] direct_raw_capture_2026-06-30"
     user_notes: "按高水平 BP 处理：Jacky 必须证明接近路线、墙体利用和目标转化，不按低分局硬冲评估"
 
@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: "中；装填 1.8 秒较慢，打完一轮后需要撤出或等弹药"
     objective_damage: "低到中；主要不是 Heist safe DPS，而是足球/热区目标控制"
     mobility: "Pneumatic Booster 提供 4 秒 25% 加速，可用于接近、追击、撤退和抢目标"
-    survivability: "高血量，Hardy Hard Hat 20% 减伤，Trait 受击充 Super"
+    survivability: "Power 11 本体 10400 HP；Hardy Hard Hat 20% 减伤对应 13000 EHP，叠满 Shield gear 为 14125；Trait 受击充 Super"
     engage: "依赖草墙、墙后压迫、加速和敌方目标位置"
     disengage: "Pneumatic Booster 可撤退，但被 slow/knockback 后撤退质量下降"
     anti_aggro: "强；圆形即时伤害和 Counter Crush 惩罚 Mortis/Edgar 等贴身刺客"
@@ -224,3 +224,48 @@ bp_brawler_profile:
 - [[sources/Fandom-Jacky|Fandom 来源摘要: Jacky]]
 - [[sources/PLP-Jacky|PLP 来源摘要: Jacky]]
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Jacky",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 5200, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Jacky|Fandom-Jacky]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.full_connect",
+        "ability_kind": "main_attack",
+        "packet_unit": "ammo",
+        "delivery_variant": "full_connect",
+        "repeat_model": "identical",
+        "damage": {"amount": 1240, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "Groundbreaker 范围内单次完整命中",
+        "source_conflict_status": "none",
+        "source_ref": "[[sources/Fandom-Jacky|Fandom-Jacky]]"
+      }
+    ],
+    "defense_modifiers": [
+      {
+        "id": "hardy_hard_hat",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.20},
+        "active_when": "装备 Hardy Hard Hat；整场被动生效",
+        "sequence_validity": "常驻，直到构筑改变",
+        "source_ref": "[[sources/Fandom-Jacky|Fandom-Jacky]]"
+      }
+    ]
+  }
+}
+```

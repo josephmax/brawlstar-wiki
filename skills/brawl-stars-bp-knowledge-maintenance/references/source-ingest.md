@@ -32,6 +32,10 @@ Fandom and PLP are complementary. PLP does not replace Fandom for mechanics, sta
 
 For patch/version ingest, use the Fandom Version History or official release note as the affected-brawler index, then capture/read each affected Fandom brawler page for current mechanics, stats, and History details; do not treat the version page alone as the complete per-brawler evidence.
 
+When a patch changes brawler health, a discrete damage packet, flat barrier, or damage-reduction ratio, its source summary must also contain a fenced JSON `balance_patch_manifest` with schema `balance_breakpoint_manifest.v1`. Record `type` (`damage_packet`, `target_state`, or `defense_modifier`), `change_class: breakpoint_supported`, the source Power Level, packet unit, form/distance/build condition, repeat model, and before/after value. Keep reload, projectile speed, healing, summons, time-dependent effects, reworks, and unresolved conflicts as rows with `type: other` plus explicit `change_class` (`non_breakpoint`, `temporal_survival_excluded`, `unsupported_mechanic`, or `source_conflict`) instead of silently dropping them or forcing them into simple damage division. Read `references/balance-breakpoint-audit.md` before writing the manifest.
+
+Patch manifests are a version ledger in `wiki/sources/`; current reviewed inputs belong in `combat_breakpoint_profile`, and generated pairwise results belong in `outputs/balance-breakpoints/`. Consecutive old/new changes to one packet must remain continuous, including chains such as Crow `320 -> 420 -> 380`.
+
 Use these scripts for repeatable hero source work:
 
 ```bash

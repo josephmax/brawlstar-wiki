@@ -22,7 +22,7 @@ Lumi 的 BP 价值来自两段式弹药循环：前两次攻击把 morning star 
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-07-17"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -43,7 +43,7 @@ bp_brawler_profile:
     anti_tank: "medium; root/slow 能拖坦，但他们仍可攻击"
     wall_break: "none"
     throw_or_wall_bypass: "high_recall_and_super; 召回锤可穿墙，Super 爆炸可穿墙但不破墙"
-    area_control: "high; Grim and Frostbitten 2.33 格冰面，Hit the Lights/42% Burnt 火区，Super 三段区域"
+    area_control: "high_but_local; Grim and Frostbitten 生成半径 2 格、持续 3 秒冰面，Hit the Lights/42% Burnt 提供火区，Super 提供三段区域"
     scouting_or_vision: "medium; 火/冰区域限制草口和逃路"
     team_support: "medium; root/slow 为队友创造命中窗口"
     spawnable_or_pet: "mace_state; 锤子落点是后续区域/召回几何核心"
@@ -56,7 +56,7 @@ bp_brawler_profile:
     - build: "Grim and Frostbitten / Half-Time / Shield, Damage"
       source: "[[sources/PLP-Lumi|PLP-Lumi]]"
       changes_capabilities:
-        - "Grim and Frostbitten 在锤子/本体位置生成 3.9 秒冰面，半径 2.33 格，用于卡区口和防跳脸"
+        - "Grim and Frostbitten 在锤子/本体位置生成持续 3 秒、半径 2 格的冰面，用于卡单一区口和防一次跳脸；不能按宽区长期封锁计算"
         - "Half-Time 让召回锤命中 slow 30% 持续 1 秒，提高回收命中和队友跟伤"
         - "Shield/Damage 提高低血量远程的站线与爆发确认"
       enables:
@@ -101,8 +101,8 @@ bp_brawler_profile:
       uses_feature_by: "Grim and Frostbitten 在区口或锤子落点铺冰，Super 第三段 root 区内目标"
       route_or_position: "单区入口、区边墙、敌方回区必经线"
       objective_conversion: "延迟敌方进区并为队友击杀 root/slow 目标"
-      active_when: "区口半径可被锤子冰面覆盖，己方能站区"
-      fails_if: "敌方从冰面外远程清区，或 root 后仍用攻击反杀"
+      active_when: "单一区口可被半径 2 格、持续 3 秒的锤子冰面覆盖，且己方能立即利用这段时间站区或跟伤"
+      fails_if: "入口宽于冰面覆盖、敌方等 3 秒后再进，或从冰面外远程清区/root 后仍用攻击反杀"
       example_maps:
         - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
         - "[[entities/maps/Ring of Fire|Ring of Fire]]"
@@ -153,7 +153,7 @@ bp_brawler_profile:
         - "root 后阻止敌方攻击"
       needs_teammate_support:
         - "前排、射门位、击杀跟进"
-      false_positive: "root 阻止移动但不阻止攻击，不能当作 stun 使用"
+      false_positive: "root 阻止移动但不阻止攻击；Grim and Frostbitten 也只有半径 2 格、持续 3 秒，不能当作整圈长期封锁"
     - mode: "Heist"
       can_fulfill:
         - "固定 safe 的前掷/召回/Super burst"

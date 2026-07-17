@@ -134,6 +134,8 @@ From brawler pages, extract:
 - `conditional_matchups`
 - `slot_notes`
 
+Only the first `bp_brawler_profile` YAML block is a runtime compile input. Ignore any later `combat_breakpoint_profile` block and never read `balance_breakpoint_audit.v1` or `outputs/balance-breakpoints/` directly. A maintainer must first promote a validated numerical consequence into one of the stable qualitative fields above.
+
 Do not convert coarse labels directly into decisions. `open`, `wall density`, `water`, and similar tags must become route, position, target payoff, failure condition, or slot task before they enter the index.
 
 ## runtime_bp_index

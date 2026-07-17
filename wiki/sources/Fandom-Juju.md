@@ -4,10 +4,10 @@
 
 - 标题：Juju
 - 来源：[Juju | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Juju)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-14T21:20:12Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-04T01:32:46Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/juju-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/juju-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -26,7 +26,7 @@
 - 装填: 1.6 seconds (Normal)<br>2 seconds (while Voodoo Chile is active)
 - 普攻数值: 800
 - Super 距离: 5 (Normal)
-- Super 数值: 3600
+- Super 数值: 4000
 - Gadgets: Voodoo Chile, Elementalist
 
 ## BP 建模可抽取信号

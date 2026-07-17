@@ -4,10 +4,10 @@
 
 - 标题：Brock
 - 来源：[Brock | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Brock)
-- 读取日期：2026-07-10
-- Fandom 页面最后编辑：2026-07-09T02:34:45Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-16T21:25:22Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-07-10.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -49,6 +49,7 @@
 - Tips / Recommended Build
 - Tips / Strategies
 - Tips / Other
+- Cosmetics / Portraits
 
 ## 与本地 wiki 的意义
 

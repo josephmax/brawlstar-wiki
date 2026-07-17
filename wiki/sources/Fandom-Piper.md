@@ -4,10 +4,10 @@
 
 - 标题：Piper
 - 来源：[Piper | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Piper)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T07:53:22Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-05T00:43:09Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/piper-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/piper-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,11 +20,11 @@
 
 - 稀有度: Epic
 - 官方定位: Marksman
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>0–1300 (with Super)<br>0–2167 (with Hypercharged Super)
-- 生命值: 2500
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 生命值: 2800
 - 攻击距离: 10 (Very Long)<br>11.67 (with Homemade Recipe)
 - 装填: 2.3 seconds (Very Slow)
-- 普攻数值: 340
+- 普攻数值: 360
 - Super 距离: 8.67 (Long)
 - Super 数值: 900
 - Gadgets: Auto Aimer, Homemade Recipe

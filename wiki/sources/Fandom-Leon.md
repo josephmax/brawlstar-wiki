@@ -4,10 +4,10 @@
 
 - 标题：Leon
 - 来源：[Leon | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Leon)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-04-26T16:04:51Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-01T17:16:54Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/leon-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/leon-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

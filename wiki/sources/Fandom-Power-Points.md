@@ -4,8 +4,10 @@
 
 - 标题：Power Points
 - 来源：[Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Power_Points)
-- 读取日期：2026-04-06
+- 读取日期：2026-07-17（补抓数值成长语义）
 - 分类：Gameplay / Items
+- 上游 raw：[[../../raw/sources/fandom/gameplay/power-points-2026-07-17|Power Points stat scaling search-result excerpt capture]]
+- source_quality：search_result_excerpt_capture_for_stat_scaling；不是 direct page export，旧内容曾为 provisional backfill
 
 ## 页面核心内容
 
@@ -17,6 +19,7 @@
 - 更高等级需要更多 Power Points 与 Coins
 - 页面列出了从 Power Level 2 到 11 的升级需求
 - 页面还说明了不同战力组件的解锁门槛，例如 Gadget、Gear、Star Power、Hypercharge
+- 每个 Power Level 相对 Power Level 1 线性增加 10% 本体血量与伤害，因此 Power Level 11 的这两类标量是 infobox 基准值的 2 倍
 
 ## 与其他系统的关系
 
@@ -28,6 +31,7 @@
 
 - `Power Points` 应作为 `concepts/` 中的成长资源处理
 - `Power Level` 是后续应独立整理的关联概念
+- Ranked 断点审计必须先把 Fandom / patch 的 Power Level 1 标量统一换算到 Power Level 11，再叠加 `+900` 这类绝对 Gear 数值
 - 该页适合在后续扩展到“英雄成长系统”专题时再进一步综合
 
 ## 本次摄取结论

@@ -4,10 +4,10 @@
 
 - 标题：Griff
 - 来源：[Griff | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Griff)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-22T05:05:34Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-16T11:17:36Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/griff-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/griff-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

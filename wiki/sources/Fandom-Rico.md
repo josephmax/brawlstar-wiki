@@ -4,10 +4,10 @@
 
 - 标题：Rico
 - 来源：[Rico | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Rico)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T07:46:02Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-16T19:51:58Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/rico-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/rico-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,10 +20,10 @@
 
 - 稀有度: Super Rare
 - 官方定位: Damage Dealer
-- 移动速度: 720 (Normal)<br>863 (with Hypercharge)<br>970 (with Robo Retreat)<br>1157 (with Robo Retreat and Hypercharge)
+- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>972 (with Robo Retreat)<br>1157 (with Robo Retreat and Hypercharge)
 - 生命值: 3000
 - 攻击距离: 9.67 (Very Long)
-- 装填: 1.2 seconds (Very Fast)<br>1.02 seconds (with Reload Gear)
+- 装填: 1.1 seconds (Very Fast)
 - 普攻数值: 300
 - Super 距离: 13.33 (Very Long)
 - Super 数值: 360

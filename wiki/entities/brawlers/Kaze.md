@@ -240,3 +240,33 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Kaze|Fandom 来源摘要: Kaze]]
 - [[sources/PLP-Kaze|PLP 来源摘要: Kaze]]
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Kaze",
+    "target_states": [
+      {
+        "id": "geisha_aspect",
+        "entity_class": "brawler_body",
+        "roster_target": false,
+        "health": {"amount": 4100, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Kaze|Fandom-Kaze]]"
+      },
+      {
+        "id": "ninja_aspect",
+        "entity_class": "brawler_alternate_form",
+        "roster_target": true,
+        "health": {"amount": 4100, "at_power_level": 1, "scaling": "standard"},
+        "state_rule": "形态切换不增加第二条可连续消耗的血池",
+        "source_ref": "[[sources/Fandom-Kaze|Fandom-Kaze]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": []
+  }
+}
+```

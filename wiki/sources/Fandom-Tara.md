@@ -4,10 +4,10 @@
 
 - 标题：Tara
 - 来源：[Tara | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Tara)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-04-29T15:48:04Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-09T11:42:54Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/tara-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/tara-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -23,7 +23,7 @@
 - 移动速度: 720 (Normal)<br>864 (with Hypercharge)
 - 生命值: 3300
 - 攻击距离: 8 (Long)
-- 装填: 2 seconds (Slow)
+- 装填: 1.8 seconds (Slow)
 - 普攻数值: 480
 - Super 距离: 6.67 (Normal)
 - Super 数值: 800

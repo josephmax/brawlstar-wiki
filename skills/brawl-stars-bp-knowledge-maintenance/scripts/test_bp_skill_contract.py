@@ -25,6 +25,7 @@ MAINTENANCE_REFS = [
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "audit-and-validation.md",
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "runtime-boundary.md",
     ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "esports-event-ingest.md",
+    ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "references" / "balance-breakpoint-audit.md",
 ]
 MAINTENANCE_AGENT = ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "agents" / "openai.yaml"
 MAINTENANCE_SCRIPT_DIR = ROOT / "skills" / "brawl-stars-bp-knowledge-maintenance" / "scripts"
@@ -38,6 +39,8 @@ MAINTENANCE_SCRIPTS = [
     MAINTENANCE_SCRIPT_DIR / "ingest_liquipedia_event.py",
     MAINTENANCE_SCRIPT_DIR / "analyze_esports_event.py",
     MAINTENANCE_SCRIPT_DIR / "audit_tournament_observations.py",
+    MAINTENANCE_SCRIPT_DIR / "audit_balance_breakpoints.py",
+    MAINTENANCE_SCRIPT_DIR / "test_balance_breakpoints.py",
     MAINTENANCE_SCRIPT_DIR / "test_liquipedia_event.py",
     MAINTENANCE_SCRIPT_DIR / "test_bp_skill_contract.py",
 ]
@@ -234,6 +237,9 @@ def test_player_skill_contract() -> None:
         "User-supplied strength compile",
         "`mode_contract_hit` is only evidence that the brawler page has a contract for this mode",
         "`early_pick`, `response_pick`, `late_pick`, and `ban_pressure` projections require concrete map fit first",
+        "Only the first `bp_brawler_profile` YAML block is a runtime compile input",
+        "Ignore any later `combat_breakpoint_profile` block",
+        "outputs/balance-breakpoints/",
     ]:
         assert term in compile_ref, term
 
@@ -337,6 +343,12 @@ def test_maintenance_skill_contract() -> None:
         "scripts/ingest_liquipedia_event.py",
         "scripts/analyze_esports_event.py",
         "scripts/audit_tournament_observations.py",
+        "combat_breakpoint_profile",
+        "balance_breakpoint_manifest.v1",
+        "balance_breakpoint_audit.v1",
+        "scripts/audit_balance_breakpoints.py",
+        "damage_reduction_stack_rule",
+        "must not auto-generate",
         "scripts/test_liquipedia_event.py",
         "must not auto-generate",
         "latest direct raw per Brawler",
@@ -351,6 +363,7 @@ def test_maintenance_skill_contract() -> None:
         "audit-and-validation.md",
         "runtime-boundary.md",
         "esports-event-ingest.md",
+        "balance-breakpoint-audit.md",
     ]:
         assert term in text, term
 

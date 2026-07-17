@@ -4,10 +4,10 @@
 
 - 标题：Starr Nova
 - 来源：[Starr Nova | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Starr_Nova)
-- 读取日期：2026-07-10
-- Fandom 页面最后编辑：2026-07-09T22:06:51Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-11T21:56:09Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/starr-nova-2026-07-10.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/starr-nova-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

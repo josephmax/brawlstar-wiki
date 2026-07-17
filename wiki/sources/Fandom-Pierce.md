@@ -4,10 +4,10 @@
 
 - 标题：Pierce
 - 来源：[Pierce | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pierce)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-14T21:15:24Z
+- 读取日期：2026-07-17
+- Fandom 页面最后编辑：2026-07-02T22:36:51Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/pierce-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/pierce-2026-07-17.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

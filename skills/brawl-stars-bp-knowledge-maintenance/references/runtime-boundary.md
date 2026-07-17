@@ -26,6 +26,8 @@ Runtime slot decision may read:
 
 `tournament_observation_profile.v1` is a maintainer output in Phase 1, not an allowed runtime input. Tournament observations must not auto-generate strength tiers, hard gates, map fit, slot eligibility, or matchup edges. A separately reviewed maintainer interpretation may later be supplied through the existing strength-profile boundary.
 
+`combat_breakpoint_profile` and `balance_breakpoint_audit.v1` are also maintainer-only inputs/outputs in v1. Runtime compile reads the first `bp_brawler_profile` block and must ignore the second combat block and every `outputs/balance-breakpoints/` report. A numeric transition reaches runtime only after a maintainer validates its packet/form/build/map assumptions and rewrites the durable qualitative consequence into an existing `build_switches`, `failure_modes`, `conditional_matchups`, or `map_feature_hooks` field.
+
 ## Rule Promotion
 
 If a maintainer conclusion becomes an operational runtime rule:
@@ -58,3 +60,4 @@ Write generated indexes to `outputs/` or a caller-provided path. Do not write ha
 - A map page stores current strong heroes instead of route/objective facts.
 - A source summary becomes the only copy of raw evidence.
 - An audit report becomes a long-term synthesis page.
+- Runtime reads a pairwise breakpoint matrix or treats a Shield-gear pressure seed as an automatic matchup edge.
