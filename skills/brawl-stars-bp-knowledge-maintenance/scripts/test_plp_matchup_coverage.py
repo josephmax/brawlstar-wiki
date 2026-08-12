@@ -99,7 +99,7 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
             payload = json.loads(result.stdout)["plp_matchup_coverage"]
 
         summary = payload["summary"]
-        self.assertEqual(104, summary["plp_raw_pages"])
+        self.assertEqual(105, summary["plp_raw_pages"])
         self.assertGreaterEqual(summary["plp_raw_files"], summary["plp_raw_pages"])
         self.assertGreater(summary["plp_pairs"], 1000)
         self.assertGreater(summary["compiled_pairs"], 1000)

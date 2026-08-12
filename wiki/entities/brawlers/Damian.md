@@ -22,7 +22,7 @@ Damian 是高血、短手、靠受伤充能和进场资源打目标的坦克。�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "[[sources/PLP-Damian|PLP-Damian]]"
     user_notes: none
 
@@ -43,10 +43,14 @@ bp_brawler_profile:
     area_control: high_but_consumable_during_mosh_pit; each speaker breaks after one inside launch
     scouting_or_vision: low
     team_support: Spiritual_Healing_pickup_and_Wall_of_Sound_route_block
-    spawnable_or_pet: temporary_segmented_speaker_boundary; each inside bounce consumes the touched speaker
+    spawnable_or_pet: temporary_segmented_speaker_boundary; each speaker has 1500 HP and each inside bounce consumes the touched speaker
     crowd_control: empowered_knockback_mosh_pit_single_use_segment_launch_and_Crowdkill_wall_stun
     terrain_creation: Wall_of_Sound_and_consumable_mosh_pit_speaker_boundary
     terrain_destruction: none
+    source_trace:
+      - "[[sources/Fandom-Damian|Fandom-Damian]]"
+      - "[[sources/PLP-Damian|PLP-Damian]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Spiritual Healing / Vulgar Display Of Punch / Health, Damage"
@@ -229,5 +233,64 @@ bp_brawler_profile:
 ## 战斗断点输入
 
 ```json
-{"combat_breakpoint_profile":{"schema":"brawler_breakpoint_profile.v1","brawler":"Damian","target_states":[{"id":"body","entity_class":"brawler_body","roster_target":true,"health":{"amount":5600,"at_power_level":1,"scaling":"standard"},"source_ref":"[[sources/Fandom-Damian|Fandom-Damian]]"}],"damage_packets":[{"id":"super.speaker_inner_collision","ability_kind":"super","packet_unit":"collision","delivery_variant":"impact","repeat_model":"one_off","damage":{"amount":800,"at_power_level":1,"scaling":"standard"},"active_when":"目标从圈内碰到 speaker，speaker 随后破碎","source_conflict_status":"none","source_ref":"[[sources/Fandom-Damian|Fandom-Damian]]"}],"defense_modifiers":[]}}
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Damian",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 5600, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Damian|Fandom-Damian]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.fire_punch",
+        "ability_kind": "main_attack",
+        "packet_unit": "empowered_punch_impact",
+        "delivery_variant": "resource_ready",
+        "repeat_model": "resource_gated",
+        "damage": {"amount": 800, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "强化攻击已充满并直接命中；不含后续 explosion",
+        "excluded_modifiers": ["damage_gear", "hypercharge"],
+        "source_conflict_status": "none_for_current_infobox_and_official_patch",
+        "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+      },
+      {
+        "id": "main.explosion",
+        "ability_kind": "main_attack",
+        "packet_unit": "explosion_impact",
+        "delivery_variant": "marked_target_resolution",
+        "repeat_model": "resource_gated",
+        "damage": {"amount": 400, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "强化攻击标记后的 explosion 命中；P1 400 对应官方 P11 800",
+        "excluded_modifiers": ["chain_target_count", "damage_gear", "hypercharge"],
+        "source_conflict_status": "none_for_current_infobox_and_official_patch",
+        "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+      },
+      {
+        "id": "super.speaker_inner_collision",
+        "ability_kind": "super",
+        "packet_unit": "collision",
+        "delivery_variant": "impact",
+        "repeat_model": "one_off",
+        "damage": {"amount": 400, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "目标从圈内碰到 speaker，speaker 随后破碎",
+        "excluded_modifiers": ["multiple_speakers", "hypercharge_fire"],
+        "source_conflict_status": "official_and_infobox_400_fandom_quote_stale_at_800",
+        "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": [
+      {
+        "id": "mosh_pit_speaker_health",
+        "reason": "temporary spawnable health 1500; excluded from roster target states"
+      }
+    ]
+  }
+}
 ```

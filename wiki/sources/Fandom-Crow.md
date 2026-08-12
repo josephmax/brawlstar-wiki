@@ -4,10 +4,10 @@
 
 - 标题：Crow
 - 来源：[Crow | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Crow)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-16T13:04:38Z
+- 读取日期：2026-08-10
+- Fandom 页面最后编辑：2026-08-04T11:00:12Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/crow-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/crow-2026-08-10.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -24,7 +24,7 @@
 - 生命值: 2800
 - 攻击距离: 8.67 (Long)
 - 装填: 1.6 seconds (Normal)
-- 普攻数值: 380
+- 普攻数值: 320
 - Super 距离: 8.67 (Long)
 - Super 数值: 320
 - Gadgets: Instapoison, Slowing Toxin

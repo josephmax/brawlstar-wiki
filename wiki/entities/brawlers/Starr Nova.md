@@ -22,7 +22,7 @@ Starr Nova 是速度极快、射击卸弹极快的 Assassin / harasser。普通�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -33,10 +33,10 @@ bp_brawler_profile:
     effective_range: "mid_piercing; 普通攻击 5.67 格，两段高速穿透 sparkles"
     projectile_reliability: "high_in_range; Fandom 称 projectile speed 极快，几乎难躲"
     burst: "medium_high_in_sword_form; 剑形态以 1100 基础伤害瞬时宽弧命中，Power Level 变体可叠伤害"
-    sustained_dps: "medium; 1.4 秒 fast reload，但普通形态单发伤害中等"
+    sustained_dps: "medium_low_after_reload_nerf; 1.6 秒 normal reload，普通形态单发伤害中等"
     objective_damage: "situational_heist; PLP 标 Heist，但需要安全接近或扰乱防守"
     mobility: "very_high; 820 基础移速，Super dash，剑形态 +25% speed"
-    survivability: "medium_with_sword_lifesteal; 4000 HP，剑形态 1100 基础伤害同时按命中伤害自疗 30%，提高单目标拉扯但不足以承受多人集火"
+    survivability: "medium_low_with_sword_lifesteal; 3700 HP，剑形态 1100 基础伤害同时按命中伤害自疗 30%，提高单目标拉扯但不足以承受多人集火"
     engage: "high_if_route_protected; Super dash 或 Shining Starr teleport 可接近后排"
     disengage: "high_with_super_or_floaty; Super 可逃离，Floaty Time 可跨障碍撤退"
     anti_aggro: "medium; 高速 strafe 可绕刺客，但被 burst/outrange 会倒"
@@ -46,11 +46,12 @@ bp_brawler_profile:
     area_control: "low_medium; 更多是移动扰乱，不是稳定区域封锁"
     scouting_or_vision: "medium_bush_check; 极速普通攻击可扫草"
     team_support: "medium_with_mystical; Mystical Starr Technique 让普通攻击命中队友按伤害 40% 治疗，并少量推进 Super 循环"
-    spawnable_or_pet: "floaty_crystal; 3000 HP 晶体，最高 10 秒并逐秒衰减"
+    spawnable_or_pet: "floaty_crystal; 3000 HP 晶体，最高 7 秒并加速衰减"
     crowd_control: "none_direct; 依赖路线压力和目标扰乱"
     source_trace:
       - "[[sources/Fandom-Starr-Nova|Fandom-Starr-Nova]]"
       - "[[sources/PLP-Starr-Nova|PLP-Starr-Nova]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Floaty Time / Mystical Starr Technique / Shield, Damage"
@@ -73,7 +74,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Starr-Nova|Fandom-Starr-Nova]]"
       changes_capabilities:
         - "Shining Starr projectile 可伤敌/治疗队友，并在命中前二次使用瞬移到 projectile"
-        - "Power Level: Maximum! 让剑形态命中目标后每次 +5% 剑伤害，最高 +30%"
+        - "Power Level: Maximum! 让剑形态命中目标后每次 +4% 剑伤害，最高 +20%"
       enables:
         - "背后奇袭/重定位"
         - "剑形态多目标收割"
@@ -187,7 +188,7 @@ bp_brawler_profile:
     - id: "sword_form_not_crowd_dive"
       active_when: "计划让 Starr Nova 冲入多名敌人中心靠吸血硬打"
       exposed_by: "Fandom tips warn healing is weaker than Edgar/Mortis/Kenji and crowd dives fail"
-      mitigation: "4000 HP 与 1100 基础剑伤提高单目标续航，但不改变多人集火门槛；仍用她骚扰、收割或扰乱后排，由队友提供 burst/控制"
+      mitigation: "3700 HP 与 1100 基础剑伤只支持单目标拉扯，不能承担多人集火；仍用她骚扰、收割或扰乱后排，由队友提供 burst/控制"
       bp_use: "anti_tank_and_crowd_false_positive"
     - id: "floaty_disables_ally_actions"
       active_when: "Floaty Time 放在重要目标点或 choke，队友飞行时不能攻击/用技能"
@@ -254,7 +255,7 @@ bp_brawler_profile:
         "id": "body",
         "entity_class": "brawler_body",
         "roster_target": true,
-        "health": {"amount": 4000, "at_power_level": 1, "scaling": "standard"},
+        "health": {"amount": 3700, "at_power_level": 1, "scaling": "standard"},
         "source_ref": "[[sources/Fandom-Starr-Nova|Fandom-Starr-Nova]]"
       }
     ],

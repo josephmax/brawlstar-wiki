@@ -45,7 +45,7 @@ Max 是速度型支援，她的核心价值是让整队更快地进、退、追�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "direct_raw_capture_2026-07-11"
     user_notes: "none"
 
@@ -70,6 +70,7 @@ bp_brawler_profile:
     source_trace:
       - "[[sources/Fandom-Max|Fandom-Max]]"
       - "[[sources/PLP-Max|PLP-Max]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Sneaky Sneakers / Super Charged / Shield, Damage"
@@ -94,7 +95,7 @@ bp_brawler_profile:
     - build: "Phase Shifter / Run n' Gun mobility variant"
       source: "[[sources/Fandom-Max|Fandom-Max]]"
       changes_capabilities:
-        - "Phase Shifter 可瞄准 dash 3.33 格并在 0.5 秒内免疫伤害；Buffie 在首段后 3 秒内给第二次 dash"
+        - "Phase Shifter 可瞄准 dash 3.33 格并在 0.5 秒内免疫伤害；Buffie 在首段后 2 秒内给第二次 dash"
         - "两段 dash 都不能穿墙/水，也不清除现有状态，眩晕和击退仍可施加"
         - "Run n' Gun 在移动时提高装填；Buffie 每次普攻命中还给 Max 1 秒 20% 加速"
       enables:

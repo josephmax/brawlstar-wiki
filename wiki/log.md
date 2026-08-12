@@ -937,3 +937,35 @@
 - 攻击方按唯一基础目标覆盖排序为 Carl 54、Gray 38、Bonnie 23、Mandy 22、Piper 17、Sprout 17；同时保留 `3→2`、更高发数和精确等号复核行，避免重新把三发阈值误当成全部变化。
 - 受击方将纯 `target_health` 与同补丁 `damage_packet + target_health` 联合结果分开；任一已复核合法状态的唯一攻击包覆盖为 Jacky 4、Starr Nova 3、Piper 1，裸本体则为 Starr Nova 2、Jacky/Piper 各1。
 - 更新 [[index|Wiki Index]] 接入 BP Archive；本页保持 maintainer synthesis / non-runtime 边界，不生成 strength tier、稳定对位边、地图适配或 BP 推荐。
+
+## [2026-07-21] ingest+synthesis | 补齐 BSC 7 月东亚与北美月赛并更新坦度实战修正
+
+- 通过 Liquipedia MediaWiki API 新增东亚 revision `264095` 与北美 revision `264554` 两份不可变 raw capture，并建立对应来源摘要与赛事实体。
+- 东亚记录 7 场实际 series / 26 个实际 set，ZETA DIVISION 夺冠；北美记录 7 场实际 series / 24 个实际 set，Team Elektros 夺冠。
+- 将 EMEA、South America、East Asia 和 North America 重建为 27 场已进行 series / 98 个已进行 set 的 `tournament_observation_profile.v1`，并生成新的知识缺口审计；产物保留在 gitignored `outputs/esports/`。
+- 更新 [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]：坦度加强的四赛区实战修正为 Piper > Starr Nova > Jacky。Piper 的 7 个选用 set 中有 1 个对到 Gray，但双方同补丁前后都是 3 发；Starr Nova 的 4 次选用与 Jacky 的 0 次选用均未直接实现已索引纯 HP 跨线。
+- 保留口径边界：选用 / ban 只作实战相关性修正，不归因补丁、不生成 strength tier、稳定 map fit、对位边或 runtime 推荐；同 set 对手也不等于实际对线。
+
+## [2026-08-10] ingest | 更新 8 月 4 日平衡调整与断点账本
+
+- 新增 Supercell 官方 direct raw `raw/sources/supercell/maintenance-august-4-2026-2026-08-10.md` 与 [[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]，完整整理 8 位常规英雄削弱、22 位英雄的 23 项 NanoPower 活动调整与 7 项 bug fix；更新 [[index|Wiki Index]] 导航。
+- 强制刷新 Crow、Griff、Starr Nova、Damian、Max、Bolt、8-Bit、Surge 的 2026-08-10 Fandom direct raw 和 canonical Fandom source summary；历史 raw 保持不变。
+- 将当前稳定语义内联回 8 位英雄页：Crow 单匕首 P1 `320`；Starr Nova P1 `3700 HP`、`1.6s` 装填、叠伤 4% / 20%；Damian 强化拳 P1 `800`、爆炸 P1 `400`、speaker bounce P1 `400`；Bolt Overdrive 官方 30% 减伤；另同步 Griff 半径/散布、Max 双 dash 2 秒窗口、8-Bit 18 秒 Extra Credits / 10% 队友加速、Surge 470 unload / 1 ammo refund 的资源语义。
+- 在 `balance_breakpoint_manifest.v1` 中建立第 3 段补丁链；6 项变化进入可计算层（Crow 1 个 damage packet、Damian 3 个 damage packet、Starr Nova 1 个 target state、Bolt 1 个 defense modifier），其余 reload、charge、spawnable、临时活动能力、时序叠层与来源冲突均显式排除。
+- 保留三项关键冲突：Crow Slowing Toxin 官方 `800 -> 600` 与 Fandom structured fields 未闭合；Bolt Fandom 说明仍写 40% 而官方已是 30%；Damian Fandom Super quote 仍写 800 而官方与 infobox 已是 400。
+- 生成 gitignored `outputs/balance-breakpoints/2026-june-august-balance-breakpoints.{json,md}`：105 个 active targets、244 个条件生存状态、19 个已复核伤害包；联合回放 1442 条整数命中数变化、605 条构筑压力变化与 34 条显式排除。8 月补丁自身对应 267 条整数变化、108 条构筑压力变化，且没有补丁链或 current-after mismatch。
+- 验证：断点测试 10 / 10、104 / 104 `bp_ready` 且零 blocker、BP skill contract 与 `git diff --check` 全部通过；本轮没有生成 strength tier、稳定 map fit、无条件对位边、slot eligibility 或 runtime 推荐。
+
+## [2026-08-11] ingest | 补齐 Nori 双源闭环并对齐 105 英雄口径
+
+- 运行时复核发现 PLP 已上线 Nori guide（`https://powerleagueprodigy.com/nori` 在 2026-07-11 仍为 404，2026-08-11 已为有效页面，含完整 build/matchup/mode 结构）；因此走正常双源路径，不再需要单源例外机制。
+- 新增 `raw/sources/roster/brawlers-roster-2026-08-11.md` 作为含 Nori 的新基线 manifest（105 行，Nori 行的 Fandom + PLP URL 均有效）；基线 `brawlers-roster-2026-06-29.md` 保持只读。
+- 通过维护脚本抓取 `raw/sources/pl-prodigy/brawlers/nori-2026-08-11.md`（PLP direct raw，含 Gadget/SP/Gears/Modes/8 counters/8 countered_by 完整 payload）。
+- 生成 [[sources/PLP-Nori|PLP 来源摘要: Nori]]；补全 [[sources/Fandom-Nori|Fandom 来源摘要: Nori]] 的"页面核心字段"，加入双形态第二伤（Dash/Ranged 720）、Super 成长公式（每鱼 +5% 半径 / +4% 伤害，空命中也消耗）、SuperSuperCharge 9-36%、Gadget 数值与 CD、两项 Star Power、鱼资源系统、充能机制限制，以及 Gadget 数值在 Fandom Infobox vs Quote vs PLP 之间的口径冲突；回灌 2026-08-04 维护笔记的 3 条 Nori bug fix。
+- 新建 [[entities/brawlers/Nori|Nori]] 实体页并升级为 `profile_status: bp_ready`：基于 Fandom 双形态机制 + PLP 竞技信号 + 8/4 补丁 fix，写入完整 capability_vector、2 个 build_switches、3 条 map_feature_hooks（Hot Zone 成长水坑清区 / Heist 成长 Super 打库 / hook 跳墙刺杀）、4 个 objective_contracts、4 条 failure_modes、2 组 conditional_matchups（覆盖 PLP 的 8 counters + 8 countered_by）和四档 slot_notes。
+- 更新 [[index|Wiki Index]]：第 105 位英雄口径从"104 bp_ready + Nori 缺口"改为"105 bp_ready"；Nori 加入英雄列表和来源清单。
+- 更新 [[sources/Brawler-Roster|Brawler Roster]]：数量口径表 PLP guide coverage 从 104 升到 105、本地 bp_ready 实体从 104 升到 105、roster ingest 缺口从 1 降到 0；新增 2026-08-11 基线 raw 指针。
+- 更新 [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]：Nori 描述从 `active_but_strength_unknown` 更新为"已有 bp_ready 实体页但 strength 档位仍缺，runtime tier=unknown"。
+- 更新 `test_plp_matchup_coverage.py` 的 PLP raw 页数断言从 104 到 105（Nori 已进入 PLP 覆盖范围）。
+- 保留的审计缺口：Nori 缺 strength profile 档位（iKaoss11 July 输入早于 Nori 发布），runtime compile 时 tier=unknown；补齐玩家 strength 输入后即可进 runtime 池排序。本轮未重新 compile runtime index。
+- 验证：质量审计 105 / 105 `bp_ready` 且零 blocker、BP skill contract、断点测试 10 / 10、PLP matchup coverage 2 / 2、`git diff --check` 全部通过。

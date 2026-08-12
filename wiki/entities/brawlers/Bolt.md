@@ -22,7 +22,7 @@ Bolt 的 BP 价值来自“移动蓄速 -> 接触伤害 -> Overdrive 护盾与�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "direct_raw_capture_2026-06-30"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_if_contact_loop_available; 需要持续贴到目标，不适合纯远程消耗"
     objective_damage: "low_medium; 对 safe/zone 的价值来自进场路线和干扰，不是稳定远程 DPS"
     mobility: "stateful_high; 初始 540 very slow，前进 3.5 秒可蓄满速度，Overdrive 加速蓄速"
-    survivability: "high_during_overdrive_or_oil_change; 5400 HP，Super 40% 减伤，Oil Change 速度越高盾越厚"
+    survivability: "high_during_overdrive_or_oil_change; 5000 HP，Super 30% 减伤，Oil Change 速度越高盾越厚"
     engage: "high_if_route_clear; 满速、Bouncy Ball 或 Overdrive 能强行接触目标"
     disengage: "medium; Overdrive 燃烧轨迹和 Bouncy Ball 可脱离，但停转会丢速度"
     anti_aggro: "medium_high; Toss Up/轨迹/接触伤害能惩罚追击者，但怕硬控"
@@ -52,6 +52,7 @@ bp_brawler_profile:
     source_trace:
       - "[[sources/Fandom-Bolt|Fandom-Bolt]]"
       - "[[sources/PLP-Bolt|PLP-Bolt]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Bouncy Ball / Unstoppaball / Health, Damage"
@@ -113,7 +114,7 @@ bp_brawler_profile:
       bp_use: "terrain_state_plan.bouncy_ball_transform"
     - id: "hot_zone_overdrive_trail_entry_tax"
       map_feature_type: "zone_entry_trail_denial"
-      uses_feature_by: "Overdrive 4 秒 40% 减伤并留下燃烧轨迹，能在入口或圈边切断追击路线"
+      uses_feature_by: "Overdrive 4 秒 30% 减伤并留下燃烧轨迹，能在入口或圈边切断追击路线"
       route_or_position: "单圈入口、zone 边缘绕圈路线、或墙边必须穿过的 choke"
       objective_conversion: "让敌方进圈路径付出燃烧/位移成本，为队友站圈争取时间"
       active_when: "Bolt 已有 Super，队友能站圈，敌方必须穿越他的轨迹进入目标，且第一秒后的 CC 路线已经被队友清空或骗掉"
@@ -262,7 +263,18 @@ bp_brawler_profile:
         "source_ref": "[[sources/Fandom-Bolt|Fandom-Bolt]]"
       }
     ],
-    "defense_modifiers": []
+    "defense_modifiers": [
+      {
+        "id": "overdrive_damage_reduction",
+        "source_kind": "super",
+        "loadout_group": "super_state",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.30},
+        "active_when": "Overdrive 的 4 秒持续时间内",
+        "sequence_validity": "仅在 Super 生效期间；不与未开启 Overdrive 的 body 状态混用",
+        "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+      }
+    ]
   }
 }
 ```

@@ -39,7 +39,7 @@ Crow 是最典型的毒伤消耗型刺客。和 `Leon` 比，他不依赖隐身�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "direct_raw_capture_2026-06-30"
     user_notes: "none"
 
@@ -67,6 +67,7 @@ bp_brawler_profile:
     source_trace:
       - "[[sources/Fandom-Crow|Fandom-Crow]]"
       - "[[sources/PLP-Crow|PLP-Crow]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Instapoison / Carrion Crow / Shield, Damage"
@@ -311,7 +312,7 @@ bp_brawler_profile:
         "packet_unit": "dagger_impact",
         "delivery_variant": "impact",
         "repeat_model": "identical",
-        "damage": {"amount": 380, "at_power_level": 1, "scaling": "standard"},
+        "damage": {"amount": 320, "at_power_level": 1, "scaling": "standard"},
         "active_when": "一枚匕首的直接命中伤害；不含毒 tick，亦不把三枚匕首假设为全中",
         "excluded_modifiers": ["poison", "carrion_crow", "hypercharge_return", "damage_gear"],
         "source_conflict_status": "none_for_direct_dagger",

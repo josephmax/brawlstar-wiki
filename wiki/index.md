@@ -46,6 +46,8 @@
 - 赛事来源：
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|Liquipedia：BSC 2026 July EMEA Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|Liquipedia：BSC 2026 July South America Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|Liquipedia：BSC 2026 July East Asia Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-North-America-Monthly-Finals|Liquipedia：BSC 2026 July North America Monthly Finals]]
 - [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 三张补充地图的适配复核]]
 
 - 站点与 manifest：
@@ -54,6 +56,7 @@
 - [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
+- [[sources/Supercell-Maintenance-August-4-2026|Supercell 来源摘要: Maintenance - August 4, 2026]]
 - [[sources/User-Note-Balance-Breakpoint-Audit|用户维护规则：平衡调整伤害—生存断点审计]]
 - [[sources/Fandom-Power-Points|Fandom 来源摘要: Power Points / Power Level 数值成长]]
 - [[sources/Power-League-Prodigy-Shield-Gear|Power League Prodigy 来源摘要: Shield Gear]]
@@ -64,7 +67,7 @@
 - [[sources/Fandom-BSC-July-2026-Observed-Map-Pages|Fandom 来源摘要: BSC 2026 July 三张补充地图页]]
 - [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]
 
-- 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]]（Fandom direct raw 已闭环；PLP guide、strength 与 reviewed profile 待补）。
+- 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]] / [[sources/PLP-Nori|PLP 来源摘要: Nori]]（双源已闭环，bp_ready profile 已建；strength profile 档位待补）。
 - 未来英雄来源：[[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]（仍为 `FutureUpdate`，不进入 released roster 或 runtime）。
 - 英雄来源（本地已闭环的 104 个 BP-ready 英雄）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]
@@ -272,9 +275,11 @@
 - 赛事：
 - [[entities/events/Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|BSC 2026 July EMEA Monthly Finals]]
 - [[entities/events/Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|BSC 2026 July South America Monthly Finals]]
+- [[entities/events/Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|BSC 2026 July East Asia Monthly Finals]]
+- [[entities/events/Brawl-Stars-Championship-2026-July-North-America-Monthly-Finals|BSC 2026 July North America Monthly Finals]]
 
-- 英雄（游戏已发布 105 个；本地稳定运行层 104 个 `bp_ready`，Nori 为 active 但竞技来源 / strength / profile 待闭环）：
-- 当前缺口：`Nori`（2026-07-09 开放早期解锁；Fandom direct raw 已 ingest，PLP guide、strength 与 reviewed profile 待补），见 [[sources/Brawler-Roster|Brawler Roster]]。
+- 英雄（游戏已发布 105 个；本地稳定运行层 105 个 `bp_ready`。Nori 缺口已闭环：Fandom + PLP 双源 + bp_ready profile；strength profile 档位仍缺，runtime tier=unknown）：
+- 当前缺口：无结构缺口。`Nori` 的 strength profile 档位待补（iKaoss11 July 输入早于 Nori 发布），见 [[sources/Brawler-Roster|Brawler Roster]]。
 - [[entities/brawlers/8-Bit|8-Bit]]
 - [[entities/brawlers/Alli|Alli]]
 - [[entities/brawlers/Amber|Amber]]
@@ -351,6 +356,7 @@
 - [[entities/brawlers/Najia|Najia]]
 - [[entities/brawlers/Nani|Nani]]
 - [[entities/brawlers/Nita|Nita]]
+- [[entities/brawlers/Nori|Nori]]
 - [[entities/brawlers/Ollie|Ollie]]
 - [[entities/brawlers/Otis|Otis]]
 - [[entities/brawlers/Pam|Pam]]

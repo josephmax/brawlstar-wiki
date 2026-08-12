@@ -28,14 +28,14 @@ Surge 的 BP 价值来自“默认配装下立即取得速度阶段”“继续�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-07-17
+    fandom: direct_raw_capture_2026-08-10
     plp: direct_raw_capture_2026-06-30
     user_notes: none
 
   capability_vector:
     effective_range: mid_at_stage0_or_stage1_long_after_stage2; Serve Ice Cold 解决首个速度阶段但不会提前给 8.67 格射程
     projectile_reliability: medium_at_stage0_or_stage1_high_after_stage2; 开局可立即取得 820 移速改善走位，真正的长线和分裂压力仍依赖第二次升级
-    burst: high_with_three_ammo_or_split_hits
+    burst: high_with_three_ammo_or_split_hits_but_slower_470ms_unload
     sustained_dps: medium_low_reload; 装填慢但单轮爆发高
     objective_damage: low_medium; 不是 Heist 主 race
     mobility: high_after_opening_Super_with_Serve_Ice_Cold; Stage 0 为 680，默认开局满 Super 可立即进入 820 移速的 Stage 1
@@ -50,6 +50,10 @@ bp_brawler_profile:
     scouting_or_vision: low
     team_support: low
     crowd_control: knockback_on_Super_landing
+    source_trace:
+      - "[[sources/Fandom-Surge|Fandom-Surge]]"
+      - "[[sources/PLP-Surge|PLP-Surge]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: Power Surge / Serve Ice Cold / Shield + Damage
@@ -72,7 +76,7 @@ bp_brawler_profile:
     - build: Power Shield into assassins_or_tanks
       source: "[[sources/PLP-Surge|PLP-Surge]] / [[sources/Fandom-Surge|Fandom-Surge]]"
       changes_capabilities:
-        - 下一次受击减伤并补 2 ammo，显著提升近身反杀窗口
+        - 下一次受击减伤并补 1 ammo，仍能提高近身反杀容错，但不再一次补回大半弹仓
       enables:
         - anti_assassin_duel
         - anti_tank_ammo_refund

@@ -22,7 +22,7 @@
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "direct_raw_capture_2026-07-11"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
@@ -45,12 +45,13 @@ bp_brawler_profile:
     throw_or_wall_bypass: "low; 只能把炮台丢过墙后用 Cheat Cartridge 接近，不能持续隔墙输出"
     area_control: "high_when_booster_lives; Damage Booster 让一片区域成为队伍火力锚点"
     scouting_or_vision: "conditional; 仅 Hypercharged turret 可探草和打断潜伏；当前普攻每束只充 2.52% Hypercharge，约需 7 次六束全命中普攻，不能把它当作常规视野工具"
-    team_support: "high; Damage Booster 增益友方伤害和治疗攻击；Plugged In Buffie 给队友 15% 加速，Boosted Booster Buffie 每 5 秒生成一个存在 8 秒、只回 1 ammo 的周期弹药夹"
+    team_support: "high; Damage Booster 增益友方伤害和治疗攻击；Plugged In Buffie 给队友 10% 加速，Boosted Booster Buffie 每 5 秒生成一个存在 8 秒、只回 1 ammo 的周期弹药夹"
     spawnable_or_pet: "high; Damage Booster 是核心炮台/锚点"
     crowd_control: "low"
     source_trace:
       - "[[sources/Fandom-8-Bit|Fandom-8-Bit]]"
       - "[[sources/PLP-8-Bit|PLP-8-Bit]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Cheat Cartridge / Plugged In / Damage, Reload"
@@ -72,7 +73,7 @@ bp_brawler_profile:
     - build: "Extra Credits / Boosted Booster / Damage, Health"
       source: "[[sources/PLP-8-Bit|PLP-8-Bit]] / [[sources/Fandom-8-Bit|Fandom-8-Bit]]"
       changes_capabilities:
-        - "主动发射可独立瞄准、可与普攻并行的 18 束额外激光；Buffie 命中后可向附近目标弹射，每次弹射保留 60% 伤害"
+        - "主动发射可独立瞄准、可与普攻并行的 18 束额外激光；冷却 18 秒；Buffie 命中后可向附近目标弹射，每次弹射保留 60% 伤害"
         - "Boosted Booster 把增伤半径扩大到 5 格、把增伤提高到 50%，Buffie 每 5 秒生成持续 8 秒并回复 1 ammo 的弹药夹"
         - "当前 PLP 以 Health Gear 替代 Reload Gear，偏向提高慢速阵地核的持续站场，而不是继续堆装填"
       enables:

@@ -22,13 +22,13 @@ Griff 的 BP 价值来自近中距离高额输出、Super 宽扇形压制和 `Pi
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-17"
+    fandom: "direct_raw_capture_2026-08-10"
     plp: "[[sources/PLP-Griff|PLP-Griff]]"
     user_notes: none
 
   capability_vector:
     effective_range: long_nominal_but_best_mid_close
-    projectile_reliability: medium; 基础三波约 1 秒，远端不稳定；Keep the Change 在同一时间内发出四波并扩大散布，近身更可靠但远端仍非狙击
+    projectile_reliability: medium; 基础三波约 1 秒，远端不稳定；Keep the Change 在同一时间内发出四波，8 月维护又把散布提高 55%，更偏近身覆盖而非远端精度
     burst: very_high_at_close_or_with_super_or_Keep_the_Change_fourth_salvo
     sustained_dps: medium_high_if_target_stays_in_range
     objective_damage: high_heist_if_lane_win_or_safe_access
@@ -46,12 +46,16 @@ bp_brawler_profile:
     spawnable_or_pet: Piggy_Bank_temporary_destructible_gadget
     crowd_control: Piggy_Bank_knockback
     terrain_destruction: Piggy_Bank_wall_break
+    source_trace:
+      - "[[sources/Fandom-Griff|Fandom-Griff]]"
+      - "[[sources/PLP-Griff|PLP-Griff]]"
+      - "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
 
   build_switches:
     - build: "Piggy Bank / Business Resilience / Shield, Damage"
       source: "[[sources/PLP-Griff|PLP-Griff]]"
       changes_capabilities:
-        - "Piggy Bank 2.5 秒延迟后在基础半径 2.67 格内破墙、击退并造成范围伤害；Buffie 完全充能后最多扩大到约 3.33 格，必须贴近具体门墙、safe 墙或 cover 放置"
+        - "Piggy Bank 2.5 秒延迟后破墙、击退并造成范围伤害；8 月维护缩小基础爆炸半径，Buffie 满充 bonus radius 提高到 30%，因此仍需更贴近具体门墙、safe 墙或 cover 放置"
         - "Business Resilience 每 2 秒回复缺失生命的一部分，让 Griff 能在目标位持续换血"
         - "Shield/Damage 提高中近距离反打容错和斩杀线"
       enables:
@@ -69,7 +73,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Griff|Fandom-Griff]]"
       changes_capabilities:
         - "Coin Shower 冷却 15 秒，在目标区域持续 6 秒造成伤害，Buffie 下半径逐渐扩大"
-        - "Keep the Change 在与基础三波相同的卸载时间内发出第四波，并把攻击散布扩大 50%，强化近身反突进和固定目标 burst"
+        - "Keep the Change 在与基础三波相同的卸载时间内发出第四波；8 月维护把既有散布再提高 55%，强化近身反突进和固定目标覆盖，同时进一步增加远端完整命中税"
       enables:
         - "Hot Zone zone clear"
         - "Heist fixed defender or safe-area pressure"
