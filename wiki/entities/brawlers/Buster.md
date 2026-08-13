@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "medium_low; 1.8s reload and damage falloff make him a space/support pick more than a pure damage carry"
     objective_damage: "low; PLP modes are Bounty, Knockout, and Brawl Ball rather than Heist safe race"
     mobility: low
-    survivability: "high_if_barrier_faces_damage; 5000 health, Super shield, Kevlar Vest, and optional Utility Belt support team pushes"
+    survivability: "high_if_barrier_faces_damage; Power 11 10000 health, Super shield, Kevlar Vest, and optional Utility Belt support team pushes"
     engage: "medium_high_with_slo_mo; pull converts a mid-range cone hit into close contact or ball-carrier disarm"
     disengage: "medium; barrier can cover retreat from projectiles but slows Buster and cancels if he attacks"
     anti_aggro: "medium; Slo-Mo pull and cone punish direct entry, but melee/area effects can bypass barrier"
@@ -175,6 +175,43 @@ bp_brawler_profile:
         - dedicated scorer or ball carrier
         - wallbreak/control if the goal is closed
       false_positive: "Fandom notes Buster cannot carry the ball during Super, so draft him as escort/disarm rather than the carrier during screen timing."
+    - mode: "Gem Grab"
+      can_fulfill:
+        - mine_choke_screen_protecting_carrier_or_countdown
+        - slo_mo_pull_on_enemy_carrier_retreat
+        - grouped_push_lane_crossing_with_barrier
+      cannot_fulfill:
+        - safe_late_countdown_gem_carrier_during_super
+        - mid_mine_control_without_projectile_enemy
+      needs_teammate_support:
+        - dedicated carrier and mine controller
+        - thrower or wallbreak answer when the enemy bypasses the barrier
+      false_positive: "Buster can screen a gem push, but he cannot hold gems during Super and offers little when the enemy damage is lobbed or melee rather than projectile lanes."
+    - mode: "Heist"
+      can_fulfill:
+        - defender_screen_against_projectile_safe_dps
+        - choke_pull_confirmation_on_enemy_entry
+        - grouped_push_lane_support_if_safe_lane_is_projectile
+      cannot_fulfill:
+        - safe_damage_dps_lane
+        - safe_race_dps
+        - anti_control_self_protection_when_defenders_use_lobbed_or_area_damage
+      needs_teammate_support:
+        - primary safe damage dealer (Colt, Brock, etc.)
+        - answer to thrower, percent-damage, or melee defender that ignores the barrier
+      false_positive: "Buster's barrier does not race safes; PLP does not list Heist, and his low objective damage plus lobbed-bypass failure mean he only fits as a defensive screen into projectile-heavy safe plans."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - zone_entry_screen_protecting_teammates_from_projectile_lanes
+        - choke_pull_displacement_on_clustered_zone_entries
+        - late_zone_stand_cover_with_barrier
+      cannot_fulfill:
+        - stand_in_zone_under_thrower_or_area_pressure
+        - solo_zone_clear_without_teammate_damage
+      needs_teammate_support:
+        - zone body or damage dealer who shoots behind the screen
+        - thrower or wall-pocket answer
+      false_positive: "The barrier protects projectile lanes into a zone, but it does not hold zone time against lobbed, area, or melee zone pressure, so Buster is a screen support rather than a zone body."
 
   failure_modes:
     - id: "artillery_and_area_bypass_barrier"

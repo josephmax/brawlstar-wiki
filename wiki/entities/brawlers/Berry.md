@@ -163,6 +163,45 @@ bp_brawler_profile:
         - "actual_carrier_or_mid_body"
         - "vision_or_bush_control"
       false_positive: "Berry 支援矿区很强，但低血和慢 reload 不适合无保护拿宝石"
+    - mode: Brawl Ball
+      can_fulfill:
+        - "Friendship_knockback_peel_for_ball_carrier"
+        - "puddle_heal_for_pushing_scorer"
+        - "short_super_dash_to_rescue_or_clear_route"
+      cannot_fulfill:
+        - "primary_scorer"
+        - "goal_defense_body"
+        - "open_lane_long_range_duel"
+      needs_teammate_support:
+        - "scorer_and_wallbreak"
+        - "anti_dive_peel"
+      false_positive: "Friendship peel helps a carrier, but Berry's low HP and slow reload make him a support, not a ball handler."
+    - mode: Bounty
+      can_fulfill:
+        - "wall_pocket_poke_with_healing_reduction"
+        - "countdown_heal_anchor_for_retreat"
+        - "puddle_pressure_on_static_marksman"
+      cannot_fulfill:
+        - "open_long_lane_pick_pressure"
+        - "safe_star_lead_against_burst"
+        - "bush_check_without_risk"
+      needs_teammate_support:
+        - "long_range_pressure"
+        - "anti_thrower_or_anti_dive"
+      false_positive: "Berry's poke is mid-range and conditional; he cannot contest true Bounty long sightlines alone."
+    - mode: Knockout
+      can_fulfill:
+        - "puddle_zone_edge_pressure"
+        - "Friendship_knockback_anti_engage"
+        - "heal_sustain_for_ally_during_poke"
+      cannot_fulfill:
+        - "first_pick_burst"
+        - "pursuit_of_fleeing_target"
+        - "wall_crossing_engage"
+      needs_teammate_support:
+        - "reliable_first_pick_dps"
+        - "anti_dive_peel"
+      false_positive: "Berry adds sustain and chip pressure, but Knockout's first-kill format demands burst Berry cannot provide."
 
   failure_modes:
     - id: very_slow_reload_without_puddle
@@ -177,7 +216,7 @@ bp_brawler_profile:
       bp_use: false_positive_filter.mobility_not_terrain_bypass
     - id: low_health_dive_pressure
       active_when: "刺客、高速身体或长手投掷直接接触 Berry，而 Friendship 或队友 peel 不可用"
-      exposed_by: "2600 HP and PLP target_favored list"
+      exposed_by: "Power 11 5200 HP and PLP target_favored list"
       mitigation: "保留 knockback，选墙后支援位，或用队友控制覆盖侧路"
       bp_use: draft_requires_peel
     - id: puddle_no_stack_and_low_conversion

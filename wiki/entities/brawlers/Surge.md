@@ -158,15 +158,47 @@ bp_brawler_profile:
         - grass_control_or_ball_carrier
         - scorer_followup
       false_positive: 能反前排不等于能进球，阵容仍需破门或持球转换
-    - mode: Bounty_or_Knockout
+    - mode: "Bounty"
       can_fulfill:
-        - situational_last_pick_anti_assassin_or_tank
+        - "条件化 last pick 反刺客/坦克（Super 击退 + Power Shield 反打）"
+        - "Stage 2 射程后的中距离星压"
       cannot_fulfill:
-        - stable_open_sniper_basic
+        - "Dry Season/Shooting Star 类开阔长线稳定首发权"
+        - "Stage 1 阶段的稳定 sniper 对枪"
       needs_teammate_support:
-        - stage2_range_setup
-        - cover_against_long_range
-      false_positive: 开阔长线图不要把立即取得速度阶段误当成已经取得射程阶段；Stage 1 仍可能在第二次升级前被消耗
+        - "Stage 2 射程铺垫、长线掩体、视野"
+      false_positive: "开阔长线图不要把立即取得速度阶段误当成已经取得射程阶段；Stage 1 的 6.67 格仍可能在第二次升级前被 outrange"
+    - mode: "Knockout"
+      can_fulfill:
+        - "条件化 last pick 反单一路线刺客/坦克"
+        - "Serve Ice Cold 复位自带满 Super 的回合重启节奏"
+        - "Super 击退/Power Shield 反 first contact"
+      cannot_fulfill:
+        - "稳定首发开火权和开阔长线首发权"
+        - "草墙接触图的视野与先手"
+      needs_teammate_support:
+        - "Stage 2 射程铺垫、先手 chip、视野"
+      false_positive: "复位满 Super 必须先花掉才恢复速度阶段；不要同时把满 Super 计算为速度升级和可保留的反突资源"
+    - mode: "Heist"
+      can_fulfill:
+        - "近身爆发和 Power Shield 反入库坦克的防守"
+        - "Super 击退保护 safe lane 队友"
+      cannot_fulfill:
+        - "稳定 safe race（objective_damage 低，不是主 DPS）"
+        - "长线 safe angle"
+      needs_teammate_support:
+        - "主 safe DPS、开线、远程 race 组件"
+      false_positive: "Surge 不是 Heist race 候选；Stage 1 射程和低 objective_damage 让他只能做防守和反入库"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Stage 2 射程后的中区 anti-aggro 和分裂压制"
+        - "Super 击退推离站区 body 并 Power Shield 反突进"
+      cannot_fulfill:
+        - "主站区 body（低血、低持续 DPS）"
+        - "Stage 1 阶段的稳定 zone clear"
+      needs_teammate_support:
+        - "实际站区 body、持续 zone clear、Stage 2 铺垫"
+      false_positive: "击退反突不等于控区；Surge 站不住区，Stage 1 射程不足以稳定覆盖宽区入口"
 
   failure_modes:
     - id: opening_super_commitment

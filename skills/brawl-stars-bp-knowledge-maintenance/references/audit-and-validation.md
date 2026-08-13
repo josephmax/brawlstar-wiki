@@ -79,15 +79,16 @@ The audit selects the latest direct raw per Brawler by dated filename. Historica
 Audit blockers include:
 
 - `auto_placeholder`
+- `missing_profile`
+- `missing_map_hooks`
 - `missing_mechanism`
 - `missing_map_route_or_objective`
 - `missing_failure_modes`
 - `missing_slot_specificity`
-- `unreviewed_matchup_candidate`
-- `unreviewed_build_delta`
+- `incomplete_ranked_mode_coverage`
 - `source_traceability_gap`
 
-The audit checks structure and obvious placeholders. It does not prove strategic correctness.
+The audit checks structure and obvious placeholders. It does not prove strategic correctness. The `incomplete_ranked_mode_coverage` blocker verifies that every `bp_ready` profile has an `objective_contract` for each of the six Ranked modes (Gem Grab, Brawl Ball, Heist, Bounty, Hot Zone, Knockout); a negative or false-positive contract counts as valid coverage.
 
 ## Tournament Observation Audit
 

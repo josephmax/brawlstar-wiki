@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "cycle_dependent; 1.6s reload with busters and 0.9s without, but losing busters lowers punch damage until retrieval"
     objective_damage: "conditional_heist_entry; PLP lists Heist, but Sam needs lane win or side access before safe damage matters"
     mobility: "high_after_throw; Super throw grants a short speed boost and starts charged at spawn for early Brawl Ball tempo"
-    survivability: "high_when_cycle_intact; 5700 health plus Hearty Recovery on pickup supports repeated wall-loop trades"
+    survivability: "high_when_cycle_intact; Power 11 11400 health plus Hearty Recovery on pickup supports repeated wall-loop trades"
     engage: "high_on_choke_or_ball_route; Magnetic Field pull or Pulse Repellent knockback converts close entry into contact"
     disengage: "medium; speed after throw and heal on pickup help reset, but separated busters leave Sam weaker"
     anti_aggro: "medium; knockback/pull can disrupt a carrier or diver if busters are placed on the route"
@@ -175,6 +175,40 @@ bp_brawler_profile:
         - ranged safe DPS or wall pressure
         - lane control that lets Sam reach pickup range
       false_positive: "Draft Sam for Heist only when the map offers entry and recovery, not as a remote safe-damage pick."
+    - mode: "Bounty"
+      can_fulfill:
+        - bush_or_wall_ambush_on_forced_positions
+        - choke_pull_on_low_health_targets
+      cannot_fulfill:
+        - open_long_lane_pressure
+        - safe_star_pressure_at_range
+      needs_teammate_support:
+        - long-range carry who creates chip damage
+        - vision or control that funnels targets into pull radius
+      false_positive: "3-tile attack range means Sam cannot contest open Bounty lanes; kills require targets forced into his recoverable buster path."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - magnetic_field_pull_off_zone_standers
+        - grounded_buster_zone_entrance_pressure
+        - repeat_entry_with_hearty_recovery
+      cannot_fulfill:
+        - solo_zone_body_against_area_control
+        - thrower_pocket_clear
+      needs_teammate_support:
+        - zone_body
+        - follow_up_damage_after_pull
+      false_positive: "Pull without follow-up only trades position; Sam is not a stable zone holder against throwers or area control."
+    - mode: "Knockout"
+      can_fulfill:
+        - choke_or_bush_first_kill_ambush
+        - pull_isolated_target_into_team_damage
+      cannot_fulfill:
+        - open_lane_first_pick_at_range
+        - fighting_while_busters_separated
+      needs_teammate_support:
+        - follow_up_burst_after_pull
+        - lane_holders_while_Sam_flanks
+      false_positive: "A lost entry is a lost round; starting Super tempo only pays when enemies are compressed into recoverable buster paths."
 
   failure_modes:
     - id: "busters_unreachable_or_water_trap"

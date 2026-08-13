@@ -160,6 +160,44 @@ bp_brawler_profile:
       needs_teammate_support:
         - "稳定 mid、探草和远程补伤害"
       false_positive: "Frank 通常不是宝石位；更适合站前排和控 choke"
+    - mode: "Heist"
+      can_fulfill:
+        - "Super_wallbreak_to_open_safe_route"
+        - "stun_window_on_safe_defenders_to_enable_teammate_race"
+        - "short_contact_safe_damage_if_jump_lands_uninterrupted"
+      cannot_fulfill:
+        - "low_commitment_sustained_safe_DPS"
+        - "reliable_safe_race_in_open_three_lane_maps"
+        - "self_defense_while_charging_attack_on_the_safe"
+      needs_teammate_support:
+        - "primary sustained safe DPS dealer to convert his stun/wallbreak"
+        - "interrupt tracking so Frank's Super is not canceled mid-charge"
+      false_positive: "Frank 的高血量读起来像 safe-race 坦克，但攻击/Super 前摇期间 immobile，在 Bridge Too Far、Hot Potato、Kaboom Canyon、Pit Stop、Safe Zone、Safe(r) Zone 这些竞速图会被打断或被远程在 charge 期间处理；他只在墙后充能后用 Super 破墙+眩晕转换窗口时成立。"
+    - mode: "Bounty"
+      can_fulfill:
+        - "conditional_bush_ambush_on_overextended_short_range_star_hunter"
+        - "Super_stun_confirm_on_a_pinned_target_after_teammate_setup"
+      cannot_fulfill:
+        - "long_range_safe_star_pressure_on_Dry_Season_Hideout_Layer_Cake_Shooting_Star"
+        - "stable_poke_trade_into_sniper_core"
+        - "safe_output_while_immobile_during_attack_windup"
+      needs_teammate_support:
+        - "long_range marksman to hold the open sightline"
+        - "interrupt peel so Frank's charge is not canceled"
+      false_positive: "Frank 不是 Bounty 英雄；在长线图他的前摇会让他在 Piper/Mandy/Nani 的射程内罚站，PLP 也不推荐，仅在极少数墙草接近图能作为反短手或抓星奇兵。"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Super_stun_first_kill_confirm_after_teammate_creates_a_pick"
+        - "choke_body_denial_on_walled_first_kill_routes"
+        - "Irresistible_Attraction_pull_to_finish_a_low_health_target"
+      cannot_fulfill:
+        - "first_kill_in_open_sightline_duel"
+        - "safe_output_during_attack_charge_windup"
+        - "survive_unprotected_into_percent_damage_or_stun_cores"
+      needs_teammate_support:
+        - "first-kill threat or control to set up the stun window"
+        - "Active Noise Canceling timing or interrupt peel so the Super lands"
+      false_positive: "Knockout 奖励安全首杀；Frank 只在 Belle's Rock、Out in the Open 这类有墙/窄口限制斜走的图作为后手 stun 转换器，Flaring Phoenix、New Horizons 等开放图会在前摇期间被打断或被远程消耗。"
 
   failure_modes:
     - id: "attack_or_super_cancelled"

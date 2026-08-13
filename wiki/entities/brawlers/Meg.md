@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "high_in_mecha; 机甲 1.1 秒装填和多弹幕适合持续压目标区，本体输出较低"
     objective_damage: "high_when_mecha_online; Heist 和目标区推进依赖机甲 uptime"
     mobility: "stateful; 本体 very fast，机甲 normal，整体不是突进位"
-    survivability: "stateful_high_if_mecha; 本体 2400 HP 很脆，机甲 3700 HP 加 Jolting Volts 提高站场"
+    survivability: "stateful_high_if_mecha; 本体 Power 11 4800 HP 很脆，机甲 Power 11 7400 HP 加 Jolting Volts 提高站场"
     engage: "medium; 通过机甲身体和范围 swing 推进，不靠瞬间位移"
     disengage: "low_after_mecha_break; 机甲破后本体易被追死"
     anti_aggro: "medium_high_in_mecha; 宽弹幕和进机甲时的范围伤害/击退提供稳定防线；Mecha Super swing、Heavy Metal 回血和偷 ammo 受每枚命中 2.703% Super 充能约束，是低频资源"
@@ -149,6 +149,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "独立载宝位、探草和反投掷"
       false_positive: "中线身体强不代表载宝安全"
+    - mode: "Bounty"
+      can_fulfill:
+        - "机甲上线后用宽弹幕压住 Layer Cake / Hideout 类图的拥挤入口或墙后口袋"
+        - "机甲身体逼退脆长手，制造拿星空间"
+      cannot_fulfill:
+        - "在 Dry Season / Shooting Star 类极开阔图替代稳定长线"
+        - "本体期安全拿星或保命"
+      needs_teammate_support:
+        - "长线压血或掩护，帮 Meg 安全充 Super"
+        - "视野/探草，避免本体被狙击先消耗"
+      false_positive: "Meg 本体 Power 11 4800 HP 很脆；Bounty 死亡成本高，本体期被风筝会直接送星，机甲身体只在墙草/入口图成立"
+    - mode: "Knockout"
+      can_fulfill:
+        - "机甲身体在 Belle's Rock / Flaring Phoenix 类墙图锁住空间和入口"
+        - "进入机甲时的范围击退打断敌方推进，已充好的 swing 用于关键 collapse"
+      cannot_fulfill:
+        - "本体期独立开团或承担第一击杀"
+        - "追击高速后排或处理 Out in the Open 类极开阔长线"
+      needs_teammate_support:
+        - "长线/远程压血，避免 Meg 本体被先消耗"
+        - "控制和 peel，保护 1 秒变身窗口不被打断"
+      false_positive: "Knockout 每死不可复活；Meg 本体脆且变身有 1 秒延迟，敌方保留爆发/控制时硬上机甲会把本体送进不可恢复的劣势"
 
   failure_modes:
     - id: "mecha_transform_cancel_window"
@@ -157,7 +179,7 @@ bp_brawler_profile:
       mitigation: "在墙后、安全血量或队友控线后变身"
       bp_use: "resource_timing_check"
     - id: "base_form_collapse_after_mecha_destroyed"
-      active_when: "机甲被打掉后，本体 2400 HP 被追击"
+      active_when: "机甲被打掉后，本体 Power 11 4800 HP 被追击"
       exposed_by: "stateful HP and no hard escape"
       mitigation: "Force Field、提前用 Toolbox 计划性弹射并选择安全回充路线、队友 peel、避免本体携带关键目标"
       bp_use: "avoid_as_sole_carrier_or_last_body"

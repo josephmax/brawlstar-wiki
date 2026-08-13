@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Mr. P 的 BP 价值来自“弹跳骚扰 + porters 持续耗弹”。主攻 7 格，触达最大距离或碰障碍后再弹 3.33 格并造成 1.5 格 splash，因此能像伪投掷一样打单格墙后或逼长手走位；Super 的 home base 持续召唤 porter 追敌，配合 `Service Bell / Revolving Door / Pet Power` 把 Bounty/Knockout 的 long lane 变成对手不断花 ammo 清宠的消耗局。风险是本体 3700 HP、爆发低，porters 会被穿透/弹射/范围伤害反利用，PLP 还显式标记 Avoid: GIGI。
+Mr. P 的 BP 价值来自“弹跳骚扰 + porters 持续耗弹”。主攻 7 格，触达最大距离或碰障碍后再弹 3.33 格并造成 1.5 格 splash，因此能像伪投掷一样打单格墙后或逼长手走位；Super 的 home base 持续召唤 porter 追敌，配合 `Service Bell / Revolving Door / Pet Power` 把 Bounty/Knockout 的 long lane 变成对手不断花 ammo 清宠的消耗局。风险是本体 Power 11 本体 7400 HP、爆发低，porters 会被穿透/弹射/范围伤害反利用，PLP 还显式标记 Avoid: GIGI。
 
 ## BP 建模
 
@@ -136,27 +136,93 @@ bp_brawler_profile:
       bp_use: "candidate_eval.spawnable_cover_endgame"
 
   objective_contracts:
-    - mode: "Bounty/Knockout"
+    - mode: "Gem Grab"
       can_fulfill:
-        - "porter ammo tax"
-        - "星差/回合领先保护"
-        - "墙后二段 poke"
+        - "porter ammo tax on mine defenders and bush scouts"
+        - "single-wall bounce poke on Gem Fort center wall or Hard Rock Mine corridor"
+        - "porter meatshield for low-health carrier retreat"
       cannot_fulfill:
-        - "硬 anti-dive"
-        - "快速爆发收割"
+        - "primary gem carrier into long range focus"
+        - "reliable mid body against tanks or percent damage"
+        - "thrower pocket clear"
       needs_teammate_support:
-        - "反刺客、投掷处理、长线击杀"
-      false_positive: "Mr. P 会拖慢对手，不会自动赢星差；队伍仍要有击杀来源"
-    - mode: "Gem/Ball"
+        - "durable carrier or mid body"
+        - "burst or anti-tank DPS to convert porter tax into kills"
+        - "anti-dive peel against Buzz/Edgar/Mortis/Fang"
+      false_positive: "Porters 能消耗和探草，但 Crystal Arcade/Double Swoosh 的矿区几何和草丛让 Mr. P 无法独自担任 carrier 或 mid body； pierce/thrower 会清掉 base"
+    - mode: "Brawl Ball"
       can_fulfill:
-        - "草口 scout 和 ammo tax"
-        - "低血撤退肉盾"
+        - "porter scouting on center grass and ball lane entries"
+        - "single-wall bounce poke to force defenders off goal line"
+        - "porter meatshield to block non-piercing shots during push"
       cannot_fulfill:
-        - "主 carrier/scorer"
-        - "站区/破门"
+        - "primary ball carrier or scorer"
+        - "reliable wallbreak goal opening"
+        - "hard anti-dive against fast assassins"
       needs_teammate_support:
-        - "目标执行者、前排、爆发"
-      false_positive: "Fandom 支持探草，但 PLP 主模式是 Bounty/Knockout，其他模式应当作变体"
+        - "scorer and ball handler"
+        - "wallbreak or knockback teammate"
+        - "anti-dive peel"
+      false_positive: "Mr. P 能在 Center Stage/Sneaky Fields 草口探草和消耗，但 PLP 主模式是 Bounty/Knockout；破门和得分必须由队友执行"
+    - mode: "Heist"
+      can_fulfill:
+        - "bounce lane poke to win isolated lane against short-range defender"
+        - "porter body block on non-piercing safe DPS projectile"
+        - "porter scouting on center grass approach"
+      cannot_fulfill:
+        - "primary safe race damage"
+        - "stable standing safe DPS under dive"
+        - "wallbreak to open safe angle"
+      needs_teammate_support:
+        - "real safe DPS core"
+        - "lane winner that converts porter pressure into safe access"
+        - "anti-thrower or anti-dive cover"
+      false_positive: "Mr. P 的 Heist 价值是 lane poke 和消耗，不是 safe race；把他当主 safe DPS 是陷阱，且 pierce/bounce 敌方会反利用 porter 打队友或 safe"
+    - mode: "Bounty"
+      can_fulfill:
+        - "porter ammo tax on fragile long-range star lane"
+        - "single-wall bounce poke to displace wall-adjacent sniper"
+        - "bush scouting to reveal flank and deny hidden star steals"
+        - "星差/回合领先保护 via porter meatshield and base cover"
+      cannot_fulfill:
+        - "hard anti-dive"
+        - "fast burst star pickup or cleanup"
+        - "stable star holder under focus"
+      needs_teammate_support:
+        - "burst or long-range kill source to convert porter tax into stars"
+        - "anti-dive peel against Buzz/Edgar/Mortis/Fang"
+        - "thrower or spawnable clear"
+      false_positive: "Mr. P 会拖慢对手，不会自动赢星差；Shooting Star/Dry Season 长线里 pierce/thrower 会清 base，队伍仍要有击杀来源"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "porter ammo tax on zoners holding zone edge"
+        - "single-wall bounce poke on zone-adjacent cover or pocket"
+        - "porter scouting on zone center grass"
+        - "porter meatshield to block non-piercing zone entry projectiles"
+      cannot_fulfill:
+        - "primary zone body or standing zone time"
+        - "reliable zone clear against thrower or spawnable pressure"
+        - "hard anti-tank into grouped zone entry"
+      needs_teammate_support:
+        - "durable zone holder"
+        - "area clear or wallbreak against pocket throwers"
+        - "anti-dive peel"
+      false_positive: "Porters 能在 Dueling Beetles/Open Business/Parallel Plays 边线消耗和探草，但 Mr. P 7400 HP 和低爆发让他无法站圈； pierce/bounce 敌方会反利用 porter"
+    - mode: "Knockout"
+      can_fulfill:
+        - "porter ammo tax to force long-range defender to spend reload"
+        - "single-wall bounce poke on Belle's Rock or Layer Cake pocket"
+        - "porter meatshield to protect low-health teammate or round lead in last seconds"
+        - "bush scouting on choke routes"
+      cannot_fulfill:
+        - "hard anti-dive"
+        - "fast burst first pick"
+        - "safe open lane trade into superior sniper mirror"
+      needs_teammate_support:
+        - "burst to confirm porter-tax window into first pick"
+        - "anti-dive peel on multi-angle maps"
+        - "thrower or spawnable clear before porter cycle breaks"
+      false_positive: "Mr. P 会拖慢 Knockout 节奏并保护回合领先，但 Belle's Rock/Flaring Phoenix 的多角度突进和 pierce/thrower 会清 base 直接切本体"
 
   failure_modes:
     - id: "pierce_bounce_or_thrower_punishes_porters"

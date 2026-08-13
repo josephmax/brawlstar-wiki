@@ -182,6 +182,34 @@ bp_brawler_profile:
         - followup_damage
         - anti_dive_or_wallbreak
       false_positive: "If Belle cannot keep range before gas closes, her low mobility becomes exposed"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - long_range_mine_poke
+        - Nest_Egg_choke_tax_at_mine_entrance
+        - Spotter_mark_on_carrier_or_bodyguard
+      cannot_fulfill:
+        - safe_primary_carrier_due_to_low_health
+        - bush_sweep_without_vision_source
+        - solo_anti_thrower_if_walls_intact
+      needs_teammate_support:
+        - durable_carrier
+        - bush_control_or_thrower_answer
+        - body_to stand_mine_after_mark_pick
+      false_positive: "Belle's long poke helps the mine lane, but her low health and lack of bush tools make her a risky early pick on bush-heavy maps like Hard Rock Mine or Gem Fort."
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - long_range_lane_pressure_to_pin_defenders
+        - Nest_Egg_flank_tax_on_ball_route
+        - Spotter_mark_on_carrier_for_focus_drop
+      cannot_fulfill:
+        - primary_scorer_due_to_low_mobility
+        - reliable_wallbreak_goal_opening
+        - close_range_ball_contest_against_dive
+      needs_teammate_support:
+        - scorer_and_wallbreak
+        - anti_dive_peel
+        - ball tempo control
+      false_positive: "Belle can pressure lanes and mark a carrier, but she has no scoring tools or escape; on ball routes that force her near the goal she becomes a liability."
 
   failure_modes:
     - id: "no_escape_into_aggro"

@@ -56,7 +56,7 @@ bp_brawler_profile:
     sustained_dps: "high_in_1v1_window; very fast reload becomes faster in Shadow Realm, but range and health limit front-to-back fighting"
     objective_damage: "low_medium; PLP lists Heist, but value is isolating defenders or using Shadow Realm travel toward safe/zone, not primary safe DPS"
     mobility: "high_with_Replanting_and_Shadow_Realm; Replanting jumps 3 tiles and can cross walls/water, while Super grants speed in the realm"
-    survivability: "medium_low_outside_realm; 3500 health is fragile, but Replanting, Shadow Realm escape, and Mushroom Kingdom healing can create reset windows"
+    survivability: "medium_low_outside_realm; Power 11 7000 health is fragile, but Replanting, Shadow Realm escape, and Mushroom Kingdom healing can create reset windows"
     engage: "very_high_as_single_target_isolation; Super removes one target from the normal fight and blocks Super/Gadget/Hypercharge usage"
     disengage: "high_with_realm_or_jump; Super can escape, Replanting crosses terrain, and Mushroom Kingdom can heal during the realm"
     anti_aggro: "very_high_if_resource_ready; Poison Mushroom and Super stop attack/Super/Gadget windows from divers, scorers, and tanks"
@@ -199,11 +199,39 @@ bp_brawler_profile:
         - durable zone holder
         - wallbreak/dive answer if enemy controls pocket from outside Cordelius range
       false_positive: "Cordelius is an entry denial and isolation tool; he still needs someone to occupy the zone."
+    - mode: "Bounty"
+      can_fulfill:
+        - shadow_realm_isolation_of_one_star_holder
+        - replanting_or_poison_mushroom_anti_aggro_to_protect_backline
+        - spider_or_mushroom_burst_on_close_overextended_target
+      cannot_fulfill:
+        - stable_long_range_star_poke_due_to_5_33_tile_main_attack
+        - solo_star_accumulation_without_follow_up
+        - reliable_open_lane_pressure_against_multiple_snipers
+      needs_teammate_support:
+        - long_range_damage_to_convert_isolation
+        - peel_or_cover_to_close_distance
+        - normal_map_control_while_cordelius_is_in_realm
+      false_positive: "Bounty rewards low-risk star farming; on open maps like Dry Season or Shooting Star, Cordelius' short range and low health mean he cannot approach without cover, and Shadow Realm isolation leaves his team 2v2."
+    - mode: "Knockout"
+      can_fulfill:
+        - shadow_realm_removal_of_first_engager_or_carrier
+        - replanting_route_gate_punish_through_walls
+        - poison_mushroom_action_lock_on_close_target
+      cannot_fulfill:
+        - open_lane_long_range_duel
+        - guaranteed_first_pick_without_route
+        - solo_collapse_if_team_loses_2v2
+      needs_teammate_support:
+        - long_range_followup_or_anti_thrower
+        - normal_map_hold_during_realm_absence
+        - cover_or_flank_to_reach_trait_radius
+      false_positive: "Knockout death is unrecoverable; Cordelius' Shadow Realm removes himself too, so if his team cannot win the 2v2 or if enemies outrange him on open maps like Flaring Phoenix, the isolation backfires."
 
   failure_modes:
     - id: "middling_range_and_low_health_open_lane"
       active_when: "map is open, enemy can kite outside 5.33-tile main attack range, or Cordelius must lead a charge without cover"
-      exposed_by: "[[sources/Fandom-Cordelius|Fandom-Cordelius]] attack range, 3500 health, and tips warning he struggles as a leading offensive Brawler"
+      exposed_by: "[[sources/Fandom-Cordelius|Fandom-Cordelius]] attack range, Power 11 7000 health, and tips warning he struggles as a leading offensive Brawler"
       mitigation: "draft him as a response pick on constrained routes, with Replanting angles, or behind teammate lane pressure"
       bp_use: avoid_first_pick_on_open_range_maps
     - id: "team_exposed_while_in_shadow_realm"

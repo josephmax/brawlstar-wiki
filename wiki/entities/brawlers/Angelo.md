@@ -171,6 +171,46 @@ bp_brawler_profile:
         - anti_thrower_or_summon_answer
         - peel_if_enemy_has_dive
       false_positive: "If gas or walls remove retreat space, Angelo's charge cycle becomes fragile"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - mid_lane_pressure_with_charged_arrow
+        - water_angle_safe_poke
+        - countdown_pick_threat_on_carrier
+      cannot_fulfill:
+        - safe_primary_gem_carrier
+        - bush_sweep_or_constant_vision
+        - anti_dive_without_teammate
+      needs_teammate_support:
+        - reliable_carrier
+        - vision_or_bush_control
+        - wallbreak_or_summon_clear
+      false_positive: "Long arrow can hold mine approaches, but charge cycle and lack of reveal make Angelo a poor solo carrier."
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - long_lane_pressure_on_defenders
+        - water_or_jump_off_angle_for_pass_route
+        - healing_reduction_on_ball_carrier
+      cannot_fulfill:
+        - primary_scorer
+        - goal_defense_body
+        - safe_ball_hold_while_charging
+      needs_teammate_support:
+        - scorer_and_wallbreak
+        - anti_aggro_peel
+      false_positive: "Water access does not create a goal route unless a scorer and wallbreak are already drafted."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - zone_edge_poke_pressure
+        - water_angle_offensive_positioning
+        - Super_poison_cloud_small_zone_denial
+      cannot_fulfill:
+        - zone_body_holding
+        - bush_clearing_inside_zone
+        - persistent_thrower_clear
+      needs_teammate_support:
+        - durable_zone_holder
+        - anti_thrower_or_anti_dive
+      false_positive: "Poison cloud adds pressure but cannot convert to zone time without a body brawler standing in."
 
   failure_modes:
     - id: "charge_cycle_interrupted"

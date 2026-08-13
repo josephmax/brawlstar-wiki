@@ -149,6 +149,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - thrower_answer_or_wallbreak
       false_positive: 被投掷隔墙清圈时，Otis 可能站不住圈
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "Super mute 封锁 carrier 或守宝者操作"
+        - "Ink Refills 持续压矿区撤退线"
+        - "Phat Splatter 覆盖矿区草丛暴露 carrier"
+      cannot_fulfill:
+        - "稳定主 carrier 承担倒计时"
+        - "独自处理多角度投掷矿区封锁"
+      needs_teammate_support:
+        - "主 carrier、收割被 mute 目标、反投掷"
+      false_positive: "mute 命中后若队友无法补伤害/控 carrier，Otis 的封锁无法转成掉宝"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Super mute 封锁保星后排或长手操作"
+        - "Ink Refills 在长线持续压低血目标"
+        - "Phat Splatter 暴露墙后保星位"
+      cannot_fulfill:
+        - "纯开阔长线对狙"
+        - "早手承担保星主线"
+      needs_teammate_support:
+        - "长手保星、收割 mute 目标、反刺客 peel"
+      false_positive: "Otis 的 mute 是单点封锁；Bounty 开阔图 mute 错目标或无 followup 等于浪费 Super"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Super mute 封锁首杀候选或回末站桩者"
+        - "Dormant Star choke blocker 封缩圈路线"
+        - "Ink Refills 持续压回末低血"
+      cannot_fulfill:
+        - "独自守住被强开的侧路"
+        - "纯长线对枪首杀"
+      needs_teammate_support:
+        - "视野、补伤、逼敌方经过 choke 或暴露核心目标"
+      false_positive: "mute 在单命模式是高收益高风险；miss 或 mute 非核心目标会让回合陷入被动"
 
   failure_modes:
     - id: mute_misses_or_no_followup

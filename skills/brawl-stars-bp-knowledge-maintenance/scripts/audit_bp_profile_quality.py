@@ -31,6 +31,25 @@ AUTO_PLACEHOLDERS = [
     "requires map/mode/build validation",
 ]
 
+# The six Ranked modes are hardcoded: map pools rotate per season, but the
+# mode set itself is stable.  A bp_ready profile must have an
+# ``objective_contract`` for each — a negative/false_positive contract counts
+# as valid coverage.  Missing contracts produce silent false negatives in
+# compile (fit=weak with no way to tell “unmodelled” from “evaluated weak”).
+RANKED_MODES = [
+    "Gem Grab",
+    "Brawl Ball",
+    "Heist",
+    "Bounty",
+    "Hot Zone",
+    "Knockout",
+]
+
+
+def _normalize_mode_key(mode: str) -> str:
+    """Lowercase, strip, collapse separators — mirrors compile's normalize_key."""
+    return re.sub(r"[\s\-_&]+", "", mode.strip().lower())
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -98,6 +117,23 @@ def audit_file(path: Path) -> dict[str, object]:
                 "blocker_type": "missing_map_route_or_objective",
                 "evidence": "empty example_maps or map hook not tied to concrete maps",
                 "required_fix": "connect hooks to concrete Ranked maps or explicitly mark not reviewed",
+            })
+        # Ranked mode coverage: every Ranked mode must have at least one
+        # objective_contract entry.  A negative/false_positive contract is
+        # valid coverage — the requirement is that the evaluation exists.
+        contracts_text = section(profile, "objective_contracts")
+        covered_modes = set()
+        for match in re.finditer(r'mode:\s*["\']?([^"\'\n]+)', contracts_text):
+            covered_modes.add(_normalize_mode_key(match.group(1)))
+        missing_modes = [
+            rm for rm in RANKED_MODES
+            if _normalize_mode_key(rm) not in covered_modes
+        ]
+        if missing_modes:
+            blockers.append({
+                "blocker_type": "incomplete_ranked_mode_coverage",
+                "evidence": f"missing objective_contracts for modes: {', '.join(missing_modes)}",
+                "required_fix": "add objective_contract for each Ranked mode; a negative/false_positive contract is valid coverage",
             })
         if "mechanism:" not in profile:
             blockers.append({

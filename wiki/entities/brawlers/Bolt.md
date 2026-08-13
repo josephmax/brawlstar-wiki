@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_if_contact_loop_available; 需要持续贴到目标，不适合纯远程消耗"
     objective_damage: "low_medium; 对 safe/zone 的价值来自进场路线和干扰，不是稳定远程 DPS"
     mobility: "stateful_high; 初始 540 very slow，前进 3.5 秒可蓄满速度，Overdrive 加速蓄速"
-    survivability: "high_during_overdrive_or_oil_change; 5000 HP，Super 30% 减伤，Oil Change 速度越高盾越厚"
+    survivability: "high_during_overdrive_or_oil_change; Power 11 本体 10000 HP，Super 30% 减伤，Oil Change 速度越高盾越厚"
     engage: "high_if_route_clear; 满速、Bouncy Ball 或 Overdrive 能强行接触目标"
     disengage: "medium; Overdrive 燃烧轨迹和 Bouncy Ball 可脱离，但停转会丢速度"
     anti_aggro: "medium_high; Toss Up/轨迹/接触伤害能惩罚追击者，但怕硬控"
@@ -169,6 +169,41 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站圈身体、治疗/清投掷、反控制"
       false_positive: "Bolt 能冲圈但不等于能站住；他更像扰乱入口的路线手"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "速度进场抢宝石或逼退 carrier"
+        - "Bouncy Ball 越墙切断 carrier 撤退"
+        - "Overdrive 轨迹封锁矿区入口"
+      cannot_fulfill:
+        - "安全长期 carrier"
+        - "无路线时低风险拿宝石"
+        - "对抗高速机动绕路目标"
+      needs_teammate_support:
+        - "稳定 carrier、远程基本面、反控制"
+      false_positive: "Bolt 的接触伤害可逼退 carrier，但失速后无远程输出；矿区几何和 CC 仍是硬门槛"
+    - mode: "Heist"
+      can_fulfill:
+        - "Bouncy Ball 接触 safe 或打固定目标"
+        - "Overdrive 轨迹封锁防守路线"
+        - "速度进场打乱 safe 防守站位"
+      cannot_fulfill:
+        - "稳定远程打库 race"
+        - "无路线时低承诺接触 safe"
+      needs_teammate_support:
+        - "主 safe DPS、开线、反控制"
+      false_positive: "Bolt 的 Heist 价值依赖 Bouncy Ball 能接触 safe，不是稳定 race；多数图他不是主打库核心"
+    - mode: "Knockout"
+      can_fulfill:
+        - "开阔路线接触惩罚孤立长手"
+        - "Overdrive 轨迹保护领先后撤"
+        - "Bouncy Ball 越墙收残血"
+      cannot_fulfill:
+        - "稳定远程首发 pick"
+        - "对抗持有 CC 的阵容"
+        - "急转弯或多次变向路线"
+      needs_teammate_support:
+        - "远程基本面、反控制、开墙"
+      false_positive: "Bolt 能在开阔图惩罚无 CC 阵容，但 Knockout 的远程交叉火力和缩圈几何常切断他的速度路线"
 
   failure_modes:
     - id: "momentum_loss_from_walls_water_or_turns"

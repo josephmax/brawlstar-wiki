@@ -187,6 +187,17 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站圈身体、治疗或范围控制"
       false_positive: "Ring of Fire 类图先问草控/探草；Leon 不能替代区域控制"
+    - mode: "Heist"
+      can_fulfill:
+        - "隐身绕过防线摸 safe 或迫使多人回防"
+        - "用 Lollipop Drop 在敌方金库侧制造短时间牵制锚点"
+      cannot_fulfill:
+        - "稳定主 race DPS"
+        - "远程低承诺持续打库"
+      needs_teammate_support:
+        - "主 safe DPS 核心承担金库输出"
+        - "边路线权或开墙，让 Leon 能接近金库侧"
+      false_positive: "Safe Zone / Safe(r) Zone / Hot Potato 的草带和墙角给了绕后机会，但 Leon 只有 4800 HP（Power 11）、装填 1.9 秒且非穿透；敌方有基地清理、召唤物探路或近身爆发守门时，一次摸库不能转换成稳定 race"
 
   failure_modes:
     - id: "lollipop_anchor_is_fragile"

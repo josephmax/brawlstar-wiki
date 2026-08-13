@@ -171,6 +171,38 @@ bp_brawler_profile:
       needs_teammate_support:
         - "lane pressure、炮台保护、race DPS"
       false_positive: "Heist 价值取决于桶位和炮台存活，不是无条件打库强度"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "散射惩罚球路 body block 和门前聚堆"
+        - "桶挡射门线并触发散射"
+        - "Master Blaster 击退持球者或守门人"
+      cannot_fulfill:
+        - "持球推进或主 scorer（无位移）"
+        - "破门和快速回防"
+      needs_teammate_support:
+        - "scorer、控球身体和破门/开墙"
+      false_positive: "炮台能控中场，但本体无位移、回防慢；桶/炮台会被 splash 或穿透低成本清除"
+    - mode: "Bounty"
+      can_fulfill:
+        - "远距 poke 和散射压制墙边/草口固定站位"
+        - "炮台越墙压制固定线路"
+      cannot_fulfill:
+        - "稳定单点击杀或开阔对狙"
+        - "被刺客近身后的即时自保"
+      needs_teammate_support:
+        - "长线爆发收割和视野"
+      false_positive: "射程数字长，但主弹伤害低、装填 2 秒慢、炮弹落点可躲；PLP 推荐模式不含 Bounty"
+    - mode: "Knockout"
+      can_fulfill:
+        - "末圈炮台火区压制"
+        - "桶封窄口"
+        - "散射惩罚聚堆站位"
+      cannot_fulfill:
+        - "1v1 残局的稳定输出（慢装填、低单体伤害）"
+        - "无 Super 时的反突进"
+      needs_teammate_support:
+        - "近身 peel 和 first-kill 输出"
+      false_positive: "回合约战人数少，炮台易被先拆；越墙优势不等于人数劣势下能翻"
 
   failure_modes:
     - id: "slow_reload_and_single_target_low_pressure"

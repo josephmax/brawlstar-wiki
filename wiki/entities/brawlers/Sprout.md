@@ -118,18 +118,47 @@ bp_brawler_profile:
       bp_use: map_bp_factors.mine_access_denial
 
   objective_contracts:
-    - mode: Knockout_or_Bounty
+    - mode: "Knockout"
       can_fulfill:
-        - wall_pocket_pressure
-        - choke_lock
-        - retreat_after_lead
+        - "墙后口袋投掷压缩空间"
+        - "Hedge 封单一 choke 制造第一减员窗口"
+        - "领先后的撤退路线封锁"
       cannot_fulfill:
-        - open_map_marksman_duel
-        - self_peel_against_route_assassin
+        - "开阔图 marksman 对枪"
+        - "self-peel 对抗多路线刺客"
       needs_teammate_support:
-        - anti_aggro_or_wallbreak_ban
-        - followup_damage_when_enemy_is_forced_through_choke
-      false_positive: 墙多不等于 Sprout 必强；若敌方能开墙或跳脸，Sprout 口袋会变成陷阱
+        - "anti-aggro/开墙 ban、被锁 choke 后的跟伤"
+      false_positive: "墙多不等于 Sprout 必强；敌方能开墙或跳脸时口袋变陷阱，且 7000 HP 无位移本体脆"
+    - mode: "Bounty"
+      can_fulfill:
+        - "墙后投掷保星、压缩固定射线后排站位"
+        - "Hedge 切撤退路线拿星差"
+      cannot_fulfill:
+        - "Dry Season/Shooting Star 类开阔长线对枪首发权"
+        - "self-peel 对抗突进/跳跃"
+      needs_teammate_support:
+        - "anti-aggro/开墙 ban、视野、跟伤"
+      false_positive: "Sprout 是投掷不是狙击；开阔 Bounty 图上 Seed Bomb 空中延迟和低伤害让他输首发权"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "Hedge 阻断中心入口或 carrier 追击路线"
+        - "1.5 秒装填 Seed Bomb 持续压矿区入口"
+      cannot_fulfill:
+        - "主 carrier（低血、低伤害、无位移）"
+        - "开墙后被多路线绕开后的 mine 控制"
+      needs_teammate_support:
+        - "carrier、侧草控制、开墙/投掷答案"
+      false_positive: "封路不等于控矿；墙体被开/被绕时 Sprout 口袋价值清零，carrier 职责仍需队友"
+    - mode: "Heist"
+      can_fulfill:
+        - "防守端 Hedge 封入库路线、拖延敌方 race"
+        - "墙后投掷支援 safe lane 远程队友"
+      cannot_fulfill:
+        - "稳定 safe race（objective_damage 低，不是主 DPS）"
+        - "无保护入库爆发"
+      needs_teammate_support:
+        - "主 safe DPS、开线、反坦克"
+      false_positive: "Sprout 不是 Heist race 候选；Fandom 明确 safe 伤害低，只能做防守封路和支援 chip"
     - mode: Brawl Ball
       can_fulfill:
         - goal_block

@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_in_range; 1 秒装填，贴身可持续输出"
     objective_damage: "low_medium; 不是 Heist 核心，但能在 Ball/Zone/Gem 用身体转目标"
     mobility: "medium; 770 fast，Speed gear/草丛和 Hypercharge 加速改善接近"
-    survivability: "very_high_with_super_or_bush; 5400 HP，Super 70% 减伤，Plant Life 草中回血"
+    survivability: "very_high_with_super_or_bush; Power 11 本体 10800 HP，Super 70% 减伤，Plant Life 草中回血"
     engage: "medium_high_with_grass; Grow Light/草图/Speed gear 给接近路线"
     disengage: "medium; 草中回血和 Super 可撤，但无 dash"
     anti_aggro: "high_in_close_contact; 护盾和更长近战范围可反打多数刺客，Edgar 等例外要保持距离"
@@ -135,14 +135,40 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开墙、治疗、反投掷或远程压制"
       false_positive: "只会站住不等于能进圈；入口被控时仍需要队友打开"
-    - mode: "Bounty/Knockout"
+    - mode: "Heist"
       can_fulfill:
-        - "极少数草墙后手惩罚"
+        - "Super 减伤窗口内贴 safe 近战输出"
+        - "Grow Light 制造进攻草线和接近路线"
+        - "高血量身体防守己方 safe"
       cannot_fulfill:
-        - "常规开阔长线"
+        - "远程 safe race（3.67 格短手）"
+        - "穿越被水或开阔 separation 的 lane"
       needs_teammate_support:
+        - "远程 race DPS 补伤害"
+        - "开墙或拉扯防守，为接近创造窗口"
+      false_positive: "护盾不能让她免于 anti-tank 防守反打；先赢 lane 才有贴 safe 的机会"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草图侧路伏击低血长手"
+        - "草墙后手惩罚"
+      cannot_fulfill:
+        - "常规开阔长线对枪"
+        - "稳定 star pressure"
+      needs_teammate_support:
+        - "长线主输出"
+        - "敌方缺控制和破草时才有路线价值"
+      false_positive: "Fandom 明确指出 Rosa 在 Bounty 常被长手压制；射程短板在长线图被放大"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草墙窄口后手伏击"
+        - "Super 减伤下的近身残局互殴"
+      cannot_fulfill:
+        - "开阔图先手接近"
+        - "对抗保持距离的长手"
+      needs_teammate_support:
+        - "长线输出和控线队友"
         - "硬路线和对方缺控制"
-      false_positive: "Fandom 明确指出 Rosa 在 Bounty/Knockout 常被长手压制"
+      false_positive: "Fandom 明确指出 Rosa 在 Knockout 常被长手压制；4 秒护盾弥补不了接近问题"
 
   failure_modes:
     - id: "open_lane_no_approach"

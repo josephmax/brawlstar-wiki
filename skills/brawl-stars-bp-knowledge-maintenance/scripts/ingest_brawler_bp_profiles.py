@@ -296,7 +296,28 @@ def objective_contracts(modes: list[str], cap: dict[str, str]) -> list[dict[str,
             "needs_teammate_support": ["cover failure modes and convert source candidate into map objective"],
             "false_positive": "PLP mode fit is a seed; do not treat as unconditional map fit",
         })
+    # Generate needs_review stub contracts for Ranked modes that PLP did not
+    # recommend.  This makes the coverage gap visible on the draft page instead
+    # of silently leaving entire modes unmodelled.  These stubs trip the
+    # auto_placeholder blocker, so they must be replaced before bp_ready.
+    ranked_modes = ["Gem Grab", "Brawl Ball", "Heist", "Bounty", "Hot Zone", "Knockout"]
+    covered = {_normalize_mode_key(m) for m in modes}
+    for rm in ranked_modes:
+        if _normalize_mode_key(rm) not in covered:
+            out.append({
+                "mode": rm,
+                "can_fulfill": ["not_inferred_from_source; requires independent mechanism+map evaluation"],
+                "cannot_fulfill": ["unknown; not yet evaluated against Ranked map pool"],
+                "needs_teammate_support": ["unknown"],
+                "false_positive": "PLP did not recommend this mode; capability-vs-map evaluation pending",
+            })
     return out
+
+
+def _normalize_mode_key(mode: str) -> str:
+    """Lowercase, strip, collapse separators — mirrors compile's normalize_key."""
+    import re
+    return re.sub(r"[\s\-_&]+", "", mode.strip().lower())
 
 
 def failure_modes(cap: dict[str, str]) -> list[dict[str, str]]:

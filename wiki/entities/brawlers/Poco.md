@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; normal reload and low attack damage, but repeated pierce charges Super quickly in grouped fights"
     objective_damage: "low; PLP recommended modes are Brawl Ball and Hot Zone, where healing and cleanse matter more than direct objective DPS"
     mobility: low
-    survivability: "team_dependent_high; 4000 health backed by Super heal, Tuning Fork option, Da Capo attack healing, and Hypercharge overheal shield"
+    survivability: "team_dependent_high; Power 11 8000 health backed by Super heal, Tuning Fork option, Da Capo attack healing, and Hypercharge overheal shield"
     engage: "supportive; enables tank or scorer pushes rather than initiating alone"
     disengage: "medium; instant long Super heal can reset retreat or save carrier/scorer"
     anti_aggro: "medium_with_team; wide cone and healing buy time, but Poco lacks hard CC"
@@ -176,6 +176,42 @@ bp_brawler_profile:
         - stable gem carrier
         - side-lane damage or control
       false_positive: "Fandom mentions control modes such as Gem Grab for Protective Tunes, but PLP does not list Gem Grab as a main mode; use only as conditional support fit."
+    - mode: "Heist"
+      can_fulfill:
+        - sustain_for_lane_winners
+        - close_range_wide_cone_safe_chip
+        - defensive_heal_reset_for_safe_guards
+      cannot_fulfill:
+        - safe_race_dps
+        - ranged_safe_access_or_wallbreak
+      needs_teammate_support:
+        - primary ranged safe damage dealer
+        - lane pressure that lets Poco hold or approach the safe edge
+      false_positive: "Healing does not convert into safe damage; Poco's low objective damage loses pure race matchups and PLP does not list Heist as a main mode."
+    - mode: "Bounty"
+      can_fulfill:
+        - wide_cone_bush_check
+        - heal_reset_after_poke_trades
+        - cleanse_against_status_control
+      cannot_fulfill:
+        - reliable_long_range_kills
+        - safe_star_pressure_against_true_snipers
+      needs_teammate_support:
+        - long-range damage carry
+        - anti-assassin peel while Poco holds mid-range
+      false_positive: "Wide spread pokes grouped targets, but low damage does not secure kills or stars on open Bounty lanes."
+    - mode: "Knockout"
+      can_fulfill:
+        - post_trade_heal_reset_within_round
+        - cleanse_against_control_comps
+        - wide_cone_bush_check
+      cannot_fulfill:
+        - first_pick_creation
+        - burst_self_defense
+      needs_teammate_support:
+        - damage carry who converts healed uptime into eliminations
+        - peel against divers
+      false_positive: "Sustain cannot undo a single burst elimination; round resets shrink heal value if the team loses the damage race."
 
   failure_modes:
     - id: "low_damage_no_carry"

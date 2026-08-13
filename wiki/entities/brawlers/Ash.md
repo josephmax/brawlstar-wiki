@@ -171,6 +171,45 @@ bp_brawler_profile:
         - area clear or thrower answer
         - sustain or peel against anti-tank
       false_positive: "High health alone fails if enemies can clear zone from behind walls or maintain anti-tank fire."
+    - mode: "Heist"
+      can_fulfill:
+        - safe_hitter_lane_disruption_with_rage_rats
+        - defender_route_blockade
+        - post_lanewin_body_pressure_on_safe
+      cannot_fulfill:
+        - stable_remote_safe_DPS
+        - water_or_wall_crossing_entry
+        - safe_race_without_rage
+      needs_teammate_support:
+        - primary_safe_DPS
+        - lane_control_to_reach_safe
+      false_positive: "Ash's short range means he mainly disrupts defenders and forces retreats; he is not a stable safe race brawler."
+    - mode: "Bounty"
+      can_fulfill:
+        - choke_body_pressure_after_rage
+        - rat_ammo_tax_on_low_health_targets
+        - anti_pursuit_with_piercing_swing
+      cannot_fulfill:
+        - open_long_lane_trade
+        - safe_star_lead_against_burst_or_marksman
+        - bush_check_without_risk
+      needs_teammate_support:
+        - long_range_pressure
+        - vision_or_control_to_compress_range
+      false_positive: "Ash is not a Bounty marksman; on open maps like Shooting Star he is easily kited before Rage converts."
+    - mode: "Knockout"
+      can_fulfill:
+        - choke_contact_punish_after_rage
+        - rat_pressure_on_final_ring_defenders
+        - close_range_duel_after_cover_entry
+      cannot_fulfill:
+        - open_sightline_first_pick_pressure
+        - safe_output_against_long_range
+        - reliable_retreat_without_rage_speed
+      needs_teammate_support:
+        - wallbreak_or_control_to_force_contact
+        - peel_if_dive_forces_rage_cancel
+      false_positive: "Knockout's first-kill format is hostile to Ash's charge-up cycle; he only fits maps with grass/wall choke funnels."
 
   failure_modes:
     - id: "low_rage_short_range"

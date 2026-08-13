@@ -183,6 +183,31 @@ bp_brawler_profile:
         - real safe damage
         - lane winner that benefits from invisibility
       false_positive: "Fandom notes Heist utility, but Sandy's low damage makes him a support pick, not a race anchor."
+    - mode: "Bounty"
+      can_fulfill:
+        - wide_pierce_tag_on_grouped_enemy
+        - Sandstorm_compressed_sightline_to_cross_into_fragile_long_range
+        - Sweet_Dreams_pick_window_on_first_defender_to_peek
+        - Rude_Sands_bush_reveal_and_anti_heal_on_star_lane
+      cannot_fulfill:
+        - solo_burst_finish_on_tagged_target
+        - pure_open_sniper_duel_on_Dry_Season_or_Shooting_Star
+      needs_teammate_support:
+        - damage_finisher_to_convert_tags_and_stuns_into_kills
+        - long_range_partner_to_anchor_star_lane_while_Sandy_cycles_Super
+      false_positive: "Sandy 在 Hideout/Layer Cake 的墙草图能用 Sandstorm 切断长线，但 Dry Season/Shooting Star 纯开阔镜像里他中程被压、低伤害拿不到 finish"
+    - mode: "Knockout"
+      can_fulfill:
+        - Sweet_Dreams_first_pick_stun_window
+        - Sandstorm_team_collapse_cover_on_choke_or_late_ring
+        - Rude_Sands_reveal_to_deny_bush_flank
+      cannot_fulfill:
+        - frontline_duel_against_burst_or_tank
+        - solo_first_blood_without_team_focus
+      needs_teammate_support:
+        - burst_to_confirm_stun_or_tag
+        - peel_or_anti_dive_when_Super_is_down
+      false_positive: "Sweet Dreams 给窗口不等于 Sandy 能独自拿击杀；Belle's Rock/Flaring Phoenix 的多角度突进会暴露他低血和缺 burst 的弱点"
 
   failure_modes:
     - id: "low_damage_no_finish"

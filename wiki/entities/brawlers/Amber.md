@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "high_if_ammo_managed; 40 flame ammo 长时间压线，空弹后恢复慢"
     objective_damage: "medium_high_with_fire_starters_or_dancing_flames; Heist 可用持续火线和固定目标 gadget"
     mobility: "medium_with_fire_starters; 默认 720 移速，gadget 3 秒 +100 speed 并铺燃油"
-    survivability: "medium_low; 3400 HP，依靠距离、燃油墙和 Shield gear"
+    survivability: "medium_low; Power 11 本体 6800 HP，依靠距离、燃油墙和 Shield gear"
     engage: "medium; 通过燃油封路逼近，不是硬开团"
     disengage: "medium_with_fire_wall; 点燃燃油和 Fire Starters 可阻止追击路线"
     anti_aggro: "medium; 燃油墙/Dancing Flames 能惩罚刺客，但近身无 stun/knockback"
@@ -184,6 +184,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区 body、anti-dive、远程补伤"
       false_positive: "燃油是区域威胁，不是硬控；高机动英雄可能直接越过"
+    - mode: "Bounty"
+      can_fulfill:
+        - "中长距持续火线逼退后排"
+        - "燃油封退线阻止敌方拿星"
+        - "草丛清除和 Vision reveal"
+      cannot_fulfill:
+        - "极长线与 Piper/Belle/Brock 对狙"
+        - "无墙体掩护时被 outrange 消耗"
+        - "单发硬控打断敌方突进"
+      needs_teammate_support:
+        - "长线补伤、peel 防 dive、稳定远程 anchor"
+      false_positive: "Amber 的 8.33 格火流在极开阔 Bounty 图会被更长狙击压制；她需要草/墙接近线或队友长线保护，不是默认 Bounty 长手"
+    - mode: "Knockout"
+      can_fulfill:
+        - "燃油封路线压缩敌方缩圈空间"
+        - "持续火线惩罚固定路线后排"
+        - "Dancing Flames 防突脸"
+      cannot_fulfill:
+        - "与极长手对狙"
+        - "空弹后的即时自救"
+        - "首杀 burst 保证"
+      needs_teammate_support:
+        - "长线 anchor、peel、首杀 follow-up"
+      false_positive: "Knockout 死亡成本极高，Amber 缺硬控和即时位移，在缩圈前被长手压低或被刺客绕过燃油时会直接掉点"
 
   failure_modes:
     - id: "ammo_empty_after_overcommit"

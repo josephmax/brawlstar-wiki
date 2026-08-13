@@ -18,7 +18,8 @@
 - [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]
 - [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
-- [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
+- [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]（当前赛季，featured = Gem Grab）
+- [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[concepts/伤害与生存断点|伤害与生存断点]]
 
 ## BP Skill Runtime
@@ -432,6 +433,7 @@
 - [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
 - [[syntheses/BP-维护归档|BP 维护归档]]
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
+- [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
@@ -441,4 +443,4 @@
 - `wiki/sources/` 保存来源摘要，`wiki/concepts/` 保存机制与规则，`wiki/entities/brawlers/` 与 `wiki/entities/maps/` 保存英雄、地图等可追踪对象，`wiki/syntheses/` 保存跨来源专题结论。
 - 查询时优先从本页进入相关页面，再沿页面底部的关联链接追溯来源。
 - 页面分类、命名和来源接入规则以 `AGENTS.md` 为准。
-- BP 维护者讨论 / wiki 查询优先进入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]，再读 [[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]、地图、模式、英雄和来源页补证据；批量维护和缺口排查再读 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 与 [[syntheses/BP-维护归档|BP 维护归档]]。BP skill 执行不读取 syntheses，按 skill 内 `compile` / `decide` references 与 `runtime_bp_index` 分治。
+- BP 维护者讨论 / wiki 查询优先进入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]，再读 [[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]、地图、模式、英雄和来源页补证据；批量维护和缺口排查再读 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 与 [[syntheses/BP-维护归档|BP 维护归档]]。BP skill 执行不读取 syntheses，按 skill 内 `compile` / `decide` references 与 `runtime_bp_index` 分治。

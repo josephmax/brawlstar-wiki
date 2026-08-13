@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒装填，蓄力压线胜过爆发击杀"
     objective_damage: "low; 主要服务 Gem Grab carrier 和视野，不是 Heist race"
     mobility: "high_with_super_or_backstage; Super 6 秒高速飞行，Backstage Pass 可后跳越墙/水"
-    survivability: "high_during_air_low_on_ground; 地面 3400 HP，空中免疫绝大多数伤害"
+    survivability: "high_during_air_low_on_ground; 地面 Power 11 6800 HP，空中免疫绝大多数伤害"
     engage: "low_to_medium; 靠长线 poke 和 Super 转点，不主动贴脸开战"
     disengage: "very_high_with_super; carrying gems 时可用 Super 躲 15 秒倒计时追击"
     anti_aggro: "medium_with_backstage_or_air; Backstage Pass 可躲快卸弹，Super 可脱离接触"
@@ -165,6 +165,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区前排和区内持续输出"
       false_positive: "Fandom 明确 Super 期间不能占 Hot Zone，因此不能把空中免伤计入踩区能力"
+    - mode: "Heist"
+      can_fulfill:
+        - "长线蓄力 poke 压制敌方 safe 防守者"
+        - "Drop The Bass 阻断回血和揭草，扰乱回防"
+        - "Super 飞越障碍转点或脱离追击"
+      cannot_fulfill:
+        - "稳定 safe race DPS"
+        - "近身 safe 入侵处理"
+      needs_teammate_support:
+        - "主 safe DPS（远程/thrower）、反坦、peel"
+      false_positive: "Janet 的 objective_damage 很低；她的 Heist 价值是 poke 和信息，不是 race 输出"
+    - mode: "Bounty"
+      can_fulfill:
+        - "蓄力长线 poke 和星差压制"
+        - "Drop The Bass 揭草阻断低血复位"
+        - "Super 空中脱离追击保命"
+      cannot_fulfill:
+        - "高爆发首杀"
+        - "稳定狙击长手 mirror"
+      needs_teammate_support:
+        - "高爆发首杀火力、反坦、peel"
+      false_positive: "Janet 能长线 poke，但爆发低；把她当主 star pressure 会输给真正狙击手"
+    - mode: "Knockout"
+      can_fulfill:
+        - "蓄力长线 poke 和残局位移"
+        - "Drop The Bass 揭草给队友首杀信息"
+        - "Super 空中保命或转点"
+      cannot_fulfill:
+        - "首杀爆发"
+        - "独立处理突进刺客"
+      needs_teammate_support:
+        - "首杀火力、反突进 peel、探草确认"
+      false_positive: "Janet 的 Knockout 价值是安全长线和信息，不是首杀；蓄力时间在缩圈阶段会暴露她"
 
   failure_modes:
     - id: "super_cannot_reload_heal_or_hold_zone"
@@ -206,7 +239,7 @@ bp_brawler_profile:
     - target: ["Leon", "Bibi", "Edgar", "Rosa", "Bull"]
       direction: "target_favored"
       source: "[[sources/PLP-Janet|PLP-Janet]]"
-      mechanism: "高速贴脸和高血量近战会惩罚 Janet 地面 3400 HP、低爆发和蓄力时间"
+      mechanism: "高速贴脸和高血量近战会惩罚 Janet 地面 Power 11 6800 HP、低爆发和蓄力时间"
       active_when: "他们能从草口/墙后接触 Janet，且 Janet 没有 Backstage Pass 或 Super"
       fails_when: "speaker/vision 提前暴露路线，Backstage Pass 后跳成功，或队友 peel 及时"
       bp_use: "avoid_without_anti_aggro_variant"

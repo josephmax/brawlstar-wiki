@@ -169,6 +169,30 @@ bp_brawler_profile:
         - zone_holder
         - area_or_sustain_to_keep_zone_after_Moe_clears
       false_positive: Moe 清点后如果无人站圈，Hot Zone 收益会断档
+    - mode: Bounty
+      can_fulfill:
+        - split_rock_poke_and_bush_check_from_safe_range
+        - driller_underground_flank_to_delete_an_isolated_backline_star_holder
+        - retreat_route_split_rock_pressure_after_taking_lead
+      cannot_fulfill:
+        - instant_pick_against_high_mobility_or_fast_dodge_targets
+        - safe_star_holder_retreat_without_peel
+      needs_teammate_support:
+        - long_range_or_vision_to_lock_down_open_lanes
+        - peel_after_driller_exit_or_follow_up_burst
+      false_positive: Moe split rocks need a split point and prediction; on Dry Season / Shooting Star open Bounty maps a fast-dodging sniper can deny chip, and his underground flank only pays off if the surfaced target is unprotected and Moe has ammo
+    - mode: Knockout
+      can_fulfill:
+        - driller_underground_route_to_punish_wall_backline_on_Belle's_Rock_or_Layer_Cake
+        - surfacing_knockback_to_break_a_clump_or_disarm_a_defender
+        - Rat_Race_route_break_to_open_a_static_thrower_pocket
+      cannot_fulfill:
+        - reliable_first_pick_into_multi_angle_mobility
+        - safe_open_lane_pressure_on_Out_in_the_Open_without_ammo_plan
+      needs_teammate_support:
+        - follow_up_burst_to_convert_surfacing_knockback_into_a_kill
+        - control_or_anti_CC_to_cover_driller_exit_window
+      false_positive: Knockout deaths are permanent; Moe's short Driller window and exit-ammo gate mean a surfaced Moe with no ammo and no escape just feeds a pick, so the underground route only works when the target is unprotected and Moe has a follow-up plan
 
   failure_modes:
     - id: super_exit_ammo_gate

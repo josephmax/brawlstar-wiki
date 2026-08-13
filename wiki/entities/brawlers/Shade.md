@@ -182,6 +182,30 @@ bp_brawler_profile:
         - zone_body_or_heal
         - anti_thrower
       false_positive: "Shade cannot solo hold a zone if enemies can hit the wall anchor safely"
+    - mode: "Bounty"
+      can_fulfill:
+        - wall_phase_pick_on_fragile_wall_dependent_backline
+        - through_wall_pressure_on_star_lane_anchor
+        - Radius_trait_charge_from_hidden_enemy_near_wall
+      cannot_fulfill:
+        - pure_open_approach_on_Dry_Season_or_Shooting_Star
+        - safe_star_lead_body_without_Super
+      needs_teammate_support:
+        - mid_range_damage_to_convert_his_pressure_into_kills
+        - anti_thrower_answer_if_enemy_can_still_hit_Shade_through_wall
+      false_positive: "Hideout/Layer Cake 的墙草图能用穿墙进场，但 Dry Season/Shooting Star 纯开阔无接近路线，Shade 早手会变成送星"
+    - mode: "Knockout"
+      can_fulfill:
+        - route_based_pick_into_thrower_or_wall_pocket_backline
+        - through_wall_first_blood_if_Super_charges_before_being_kited
+        - water_or_wall_phase_flank_on_isolated_target
+      cannot_fulfill:
+        - blind_engage_into_closed_choke_with_peel
+        - safe_late_ring_body_without_Super_duration
+      needs_teammate_support:
+        - burst_to_confirm_his_entry
+        - wall_state_protection_or_alternate_route_if_main_wall_is_opened
+      false_positive: "Belle's Rock/Flaring Phoenix 的多角度和敌方 peel 会让 Super 结束时 Shade 卡在墙里或人群中；刺客反投掷不是无条件成立"
 
   failure_modes:
     - id: "super_ends_in_bad_position"

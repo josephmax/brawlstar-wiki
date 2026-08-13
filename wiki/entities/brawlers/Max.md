@@ -222,6 +222,32 @@ bp_brawler_profile:
         - teammate_with_burst_or_control
         - anti_CC
       false_positive: "If gas closes into hard control, Max speed may only delay the loss"
+    - mode: "Heist"
+      can_fulfill:
+        - lane_tempo_and_cross_lane_rotation
+        - anchor_based_ammo_reset_and_team_heal_near_lane
+        - shielded_team_push_to_help_a_real_safe_DPS_reach_safe
+      cannot_fulfill:
+        - primary_safe_race_DPS
+        - wall_break_to_open_safe
+        - objective_backstab_or_invasion
+      needs_teammate_support:
+        - real_safe_damage_core
+        - wallbreak_or_invasion_to_open_objective_access
+      false_positive: "Max's objective damage is lane pressure, not safe race; on Hot Potato / Pit Stop / Safe Zone she only helps a real safe DPS deliver damage and cannot convert tempo into vault HP by herself"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - team_speed_zone_rotation_and_collapse
+        - shielded_zone_push_with_Super_Charged_Buffie
+        - return_anchor_ammo_reset_and_team_heal_at_zone_edge
+        - hyper_close_formation_super_resource_for_repeated_zone_fights
+      cannot_fulfill:
+        - durable_zone_body
+        - hard_area_denial_or_zone_clear
+      needs_teammate_support:
+        - zone_holder_or_tank
+        - area_control_or_thrower_answer
+      false_positive: "Max speed and return heal help a team that already has a zone body; on Dueling Beetles / Ring of Fire / Open Business she cannot stand zone or clear it alone, so speed without a body just rotates without scoring"
 
   failure_modes:
     - id: "speed_without_conversion"

@@ -178,6 +178,42 @@ bp_brawler_profile:
         - primary_safe_race
         - lane_control_to_keep_shadows_on_safe
       false_positive: Support From Beyond 打库只在 safe 附近没有敌人吸引影子时成立
+    - mode: Bounty
+      can_fulfill:
+        - grouped_target_punish_with_Gravity
+        - psychic_enhancer_bush_reveal
+        - shadow_block_against_single_projectile_snipers
+      cannot_fulfill:
+        - stable_long_range_star_pressure
+        - open_lane_duel_against_true_snipers
+      needs_teammate_support:
+        - follow_up_damage_after_pull
+        - long_range_cover_while_charging_Super
+      false_positive: 三张穿透卡不等于稳定长线；没有 Super 的 Tara 只是慢装填中距离位，开阔 Bounty 图会被真长手压制
+    - mode: Hot Zone
+      can_fulfill:
+        - gravity_pull_multiple_zone_standers
+        - shadow_zone_pressure
+        - pull_plus_area_followup_combo
+      cannot_fulfill:
+        - solo_zone_body
+        - sustained_zone_time_alone
+      needs_teammate_support:
+        - zone_body
+        - area_damage_followup_after_pull
+      false_positive: Gravity 只创造团战转换窗口；没有队友接范围伤害时，Tara 自己站不出区时
+    - mode: Knockout
+      can_fulfill:
+        - choke_teamfight_pull_for_first_kill
+        - shadows_block_single_target_snipers
+        - psychic_enhancer_anti_ambush
+      cannot_fulfill:
+        - open_lane_range_duel
+        - self_peel_without_Super
+      needs_teammate_support:
+        - follow_up_burst_after_Gravity
+        - lane_holders
+      false_positive: 回合制淘汰让每次交 Super 都很贵；没充好 Gravity 时她的威胁窗口很低
 
   failure_modes:
     - id: no_super_low_threat_window

@@ -183,6 +183,66 @@ bp_brawler_profile:
         - actual_objective_body_or_safe_DPS
         - thrower_or_dive_answer
       false_positive: PLP 全模式适配不能理解为无条件强；Ruffs 必须有队友把 buff 转成目标收益
+    - mode: Gem Grab
+      can_fulfill:
+        - buff_gem_carrier_or_mid_body_with_supply_drop
+        - bounce_wall_lane_pressure_on_corridor_maps
+        - Take_Cover_sandbag_to_tax_non_piercing_mine_defenders
+      cannot_fulfill:
+        - primary_gem_carrier_at_low_base_health
+        - reliable_anti_thrower_without_Air_Superiority_route
+      needs_teammate_support:
+        - durable_carrier_or_mid_body_that_can_use_buff
+        - thrower_or_dive_answer
+      false_positive: Ruffs 的补给和弹墙支援只在队友能吃到 buff 并转成矿区控制时才有价值；Hard Rock Mine/Gem Fort 的草丛和投掷会绕过沙包
+    - mode: Heist
+      can_fulfill:
+        - buff_primary_safe_DPS_or_defender_with_supply_drop
+        - Air_Superiority_selective_wallbreak_to_open_safe_angle
+        - bounce_wall_lane_support_to_win_isolated_lane
+      cannot_fulfill:
+        - primary_safe_race_DPS_alone
+        - stable_standing_safe_DPS_under_dive
+      needs_teammate_support:
+        - real_safe_DPS_core_that_converts_buff_into_vault_damage
+        - lane_body_or_anti_assassin_cover
+      false_positive: Bridge Too Far/Kaboom Canyon/Hot Potato 中 Ruffs 是 buff + 开墙支援，不是单独 race；把他当主 safe DPS 是陷阱
+    - mode: Bounty
+      can_fulfill:
+        - buff_low_health_long_lane_core_to_survive_one_or_two_shots
+        - Take_Cover_sniper_tax_against_single_shot_long_range
+        - bounce_wall_pressure_on_walled_star_lanes
+      cannot_fulfill:
+        - solo_open_lane_hard_carry_without_teammate_conversion
+        - reliable_anti_thrower_or_anti_dive
+      needs_teammate_support:
+        - long_lane_core_that_can_use_supply_drop
+        - anti_thrower_vision_or_anti_dive_peel
+      false_positive: Ruffs 低血，补给包价值必须转给能赢星差的队友；Shooting Star/Dry Season 纯开阔镜像里他不是独立长线 pick
+    - mode: Hot Zone
+      can_fulfill:
+        - buff_zone_body_or_zoner_with_supply_drop
+        - Air_Superiority_wallbreak_on_zone_adjacent_pocket_or_thrower_cover
+        - Take_Cover_sandbag_to_tax_zone_entry_projectiles
+      cannot_fulfill:
+        - primary_zone_body
+        - reliable_zone_clear_against_thrower_or_spawnable_pressure
+      needs_teammate_support:
+        - durable_zone_holder_that_converts_buff_into_zone_time
+        - area_clear_or_anti_thrower
+      false_positive: Ruffs 能在 Dueling Beetles/Open Business/Parallel Plays 边线 buff 和开墙，但低血让他无法站圈，zone time 必须由队友提供
+    - mode: Knockout
+      can_fulfill:
+        - buff_low_health_teammates_for_survival_buffer_with_Field_Promotion_or_supply_drop
+        - Air_Superiority_or_supply_drop_knockback_to_displace_choke_stand
+        - Take_Cover_to_tax_single_shot_sniper_lanes
+      cannot_fulfill:
+        - solo_open_lane_pick_or_burst
+        - reliable_anti_dive_or_anti_thrower
+      needs_teammate_support:
+        - burst_or_long_range_teammate_to_convert_buff_into_first_pick
+        - anti_dive_or_anti_thrower_on_multi_angle_maps
+      false_positive: Field Promotion 和补给在慢节奏 Knockout 有生存价值，但 Belle's Rock/Flaring Phoenix 的多角度突进和投掷会绕过沙包压低血 Ruffs
 
   failure_modes:
     - id: low_health_and_sandbag_bypass

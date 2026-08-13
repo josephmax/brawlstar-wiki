@@ -143,17 +143,30 @@ bp_brawler_profile:
         - zone_holder
         - ranged_or_burst_followup
       false_positive: 毒区赶人后必须有人站圈
-    - mode: Bounty_or_Knockout
+    - mode: Bounty
       can_fulfill:
-        - wall_arc_pressure
-        - retreat_route_poison
-        - grouped_target_control
+        - wall_arc_poison_pressure_from_safe_angle
+        - retreat_route_poison_to_punish_star_holders_or_chasers
+        - grouped_target_zone_denial_with_puddles_and_snakes
       cannot_fulfill:
         - instant_pick_vs_high_mobility
+        - safe_star_holder_under_assassin_dive
       needs_teammate_support:
-        - peel
-        - finishing_damage
-      false_positive: 慢弹道在纯开阔高速对局里容易被躲
+        - peel_against_dive
+        - finishing_damage_to_convert_poison
+      false_positive: Najia's slow projectile needs fixed entrances or grouped routes; on Dry Season / Shooting Star open Bounty maps a fast-dodging sniper can deny chip, and her low burst means poison alone does not secure a star without a finisher
+    - mode: Knockout
+      can_fulfill:
+        - wall_arc_poison_control_on_Belle's_Rock_or_New_Horizons
+        - locked_space_denial_with_puddles_and_snakes_before_gas_close
+        - retreat_route_poison_to_protect_a_lead
+      cannot_fulfill:
+        - instant_pick_vs_high_mobility
+        - self_defense_into_close_burst_dive
+      needs_teammate_support:
+        - peel_against_assassin_dive
+        - burst_to_convert_poison_or_forced_walk_into_a_kill
+      false_positive: Knockout deaths are permanent; Najia's low burst and weak self-defense mean an Edgar/Sam/Chuck dive kills her before poison converts, and slow projectiles whiff against multi-angle mobility on open maps like Out in the Open
     - mode: Heist
       can_fulfill:
         - auxiliary_safe_pressure

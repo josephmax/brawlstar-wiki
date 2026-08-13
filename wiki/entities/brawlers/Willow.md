@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; 2 秒 slow reload，靠毒伤和控位"
     objective_damage: "low; 主要控人/控区，不是 Heist race"
     mobility: "low; Dive 是无敌停滞，不是位移"
-    survivability: "low_without_dive; 3300 HP，Hex 控人时自己仍会被第三方威胁"
+    survivability: "low_without_dive; Power 11 6600 HP，Hex 控人时自己仍会被第三方威胁"
     engage: "medium_with_hex; 命中 Hex 后可把目标拉近/赶走/移出目标点"
     disengage: "high_with_dive_or_hex; Dive 2 秒无敌，Hex 可让追击者走开"
     anti_aggro: "medium_high_if_hex_hits; 心控能打断突进路线，但 miss 后很脆"
@@ -58,7 +58,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "Dive 让 Willow 2 秒无法行动但免疫直接伤害，DoT/debuff 仍可作用"
         - "Obsession 让 Hex 目标获得 +240 flat speed，实际持续 3 秒"
-        - "Shield/Damage gear 缓解 3300 HP 和 DoT 输出不足"
+        - "Shield/Damage gear 缓解 Power 11 6600 HP 和 DoT 输出不足"
       enables:
         - "Hex 后快速拖走 carrier/scorer/body"
         - "危险窗口保命"
@@ -169,6 +169,46 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区者、burst、反刺客"
       false_positive: "毒伤慢且 reload 慢，必须和队友站区/伤害结合"
+    - mode: "Heist"
+      can_fulfill:
+        - "墙后毒区封防守路线"
+        - "Hex 拖走破墙者或 carrier"
+      cannot_fulfill:
+        - "safe_race_objective_damage"
+        - "稳定自走金库伤害"
+        - "正面对抗突进防守"
+      needs_teammate_support:
+        - "dedicated_safe_damage_carry"
+        - "anti_wallbreak"
+      false_positive: "capability_vector objective_damage 为 low；Hex 会先回满目标血量，对 race 无正向价值，Willow 只能控人不是输出"
+    - mode: "Bounty"
+      can_fulfill:
+        - "墙后毒区压制星点退线"
+        - "Hex 制造 first pick 窗口"
+        - "草区 reveal 与 chip"
+      cannot_fulfill:
+        - "safe_long_range_star_pressure"
+        - "稳定保住 star lead"
+        - "正面对抗高机动刺客"
+      needs_teammate_support:
+        - "safe_duelist_or_star_holder"
+        - "burst_to_pressure_Hex_target_below_30"
+        - "peel_for_Willow_body"
+      false_positive: "Hex 在 Bounty 上会把目标回满血；没有队友 burst 配合时，控到脆皮只是帮他重置血量而不是制造 star"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Hex 制造 first pick 或拉脆皮出掩体"
+        - "墙后毒区封退线"
+        - "Dive 在末圈保命拖回合"
+      cannot_fulfill:
+        - "safe_first_pick_without_setup"
+        - "稳定 round 主导"
+        - "正面对抗突进者"
+      needs_teammate_support:
+        - "first_pick_burst_to_break_Hex_below_30"
+        - "safe_output_or_round_win_condition"
+        - "peel_when_Willow_vulnerable_during_Hex"
+      false_positive: "Knockout 靠 safe output 和 first kill；Willow 控制是窗口制造者，满血 Hex 目标需队友在 4 秒内压到 30% 才能转化为 round 优势"
 
   failure_modes:
     - id: "willow_vulnerable_during_hex"
@@ -188,7 +228,7 @@ bp_brawler_profile:
       bp_use: "survival_false_positive_filter"
     - id: "slow_thrower_reload_under_dive_pressure"
       active_when: "Mortis、Mico、Melodie、Stu、Lily、Moe、Gray、Sam 等从侧翼压 Willow"
-      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored signals and 3300 HP"
+      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored signals and Power 11 6600 HP"
       mitigation: "补视野/peel，选墙后投掷角，避免无防守侧路"
       bp_use: "draft_requires_peel"
 

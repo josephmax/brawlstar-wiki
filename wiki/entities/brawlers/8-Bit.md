@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "high; 普通装填 1.35 秒，Reload Gear 和 Damage Booster 会显著放大队伍火力"
     objective_damage: "high; Heist lane 和静态目标是主要转换点"
     mobility: "low_base_medium_near_booster; 基础 580 very slow，Plugged In 在炮台 7 格内提供 25% 加速至 725"
-    survivability: "medium_high_body_low_escape; 5200 HP 可抗线，但离开炮台或被贴脸后撤退差"
+    survivability: "medium_high_body_low_escape; Power 11 本体 10400 HP 可抗线，但离开炮台或被贴脸后撤退差"
     engage: "low; Cheat Cartridge 可从炮台位移到敌侧或撤退点，但不是稳定开团"
     disengage: "medium_if_booster_anchor_exists; Cheat Cartridge 可回炮台，炮台也可临时挡弹"
     anti_aggro: "conditional; 开阔线和高 DPS 可提前融化前排，近墙/草贴脸会失效"
@@ -169,6 +169,41 @@ bp_brawler_profile:
       needs_teammate_support:
         - "反刺客、开墙或投掷答案"
       false_positive: "Bounty 长线只在敌方无法绕过炮台时成立"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "Booster 增伤持球者/队友推进"
+        - "长线中路压制防守方"
+        - "Cheat Cartridge 在进攻时提供位移或回炮台锚点"
+      cannot_fulfill:
+        - "独自破门或射门"
+        - "无墙开阔图守门"
+        - "持球高速变向推进"
+      needs_teammate_support:
+        - "真正 scorer、破门、反刺客 peel"
+      false_positive: "8-Bit 能支援球权，但慢移速和炮台暴露让他不适合作为推进核心"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "圈外火力锚点"
+        - "Booster 增伤站圈队友"
+        - "Boosted Booster 弹药夹支援固定阵地"
+      cannot_fulfill:
+        - "独自站圈 body"
+        - "处理被开墙后的投掷口袋"
+      needs_teammate_support:
+        - "真实站圈身体、墙体保护、反投掷"
+      false_positive: "Hot Zone 推荐需要 protected booster 点；没站圈身体时火力锚点只变成空转"
+    - mode: "Knockout"
+      can_fulfill:
+        - "长线低承诺消耗"
+        - "炮台临时掩体挡 projectile"
+        - "Extra Credits 对静态/抱团目标爆发"
+      cannot_fulfill:
+        - "追击最后手"
+        - "无 peel 对抗刺客贴脸"
+        - "快速撤离缩圈"
+      needs_teammate_support:
+        - "反刺客、反投掷、视野或开墙"
+      false_positive: "Knockout 长线只在没有刺客绕墙时成立；慢移速让残局撤离困难"
 
   failure_modes:
     - id: "slow_rotation_and_assassin_entry"

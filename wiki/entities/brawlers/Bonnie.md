@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_in_clyde; Clyde 1 秒装填，Sugar Rush 降到 0.769 秒；Bonnie 形态 2 秒慢装填"
     objective_damage: "high_if_super_reaches_safe; Fandom notes Super + 三 ammo 可对 safe/IKE 打出大窗口"
     mobility: "stateful; Clyde slow，Sugar Rush 补速；Bonnie 形态 very fast，Super 可飞越障碍"
-    survivability: "stateful; Clyde 5000 HP 厚，Bonnie 形态 3100 HP 且短射程"
+    survivability: "stateful; Clyde Power 11 10000 HP 厚，Bonnie 形态 Power 11 6200 HP 且短射程"
     engage: "high_with_star_launcher; 可越墙/水飞入，但落点承诺大"
     disengage: "medium_if_clyde_super_available; Bonnie 形态 Super 可回 Clyde 并治疗，但会被控制取消"
     anti_aggro: "medium; Clyde 高血量长线先消耗，Bonnie 形态可反杀短手，但怕硬控和爆发"
@@ -85,7 +85,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "bounty_knockout_clyde_long_lane_pressure"
       map_feature_type: "long_sightline_stateful_marksman"
-      uses_feature_by: "Clyde 9 格单发、5000 HP 和 Sugar Rush 让 Bonnie 能先用长线换血充 Super"
+      uses_feature_by: "Clyde 9 格单发、Power 11 10000 HP 和 Sugar Rush 让 Bonnie 能先用长线换血充 Super"
       route_or_position: "Bounty/Knockout 长线、少墙中路、或可安全蓄 Super 的边线"
       objective_conversion: "低承诺拿星/压空间，并保留 Star Launcher 收割或撤退威胁"
       active_when: "敌方无法用更长线或投掷持续逼 Bonnie 移位"
@@ -170,6 +170,42 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开墙/反投掷、落点夹击、保命支援"
       false_positive: "Star Launcher 能进场不等于能活着回来；落点控制是核心过滤器"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "Clyde 长线压矿区防守"
+        - "Star Launcher 越墙打 carrier 撤退线"
+        - "压低目标后跳入确认 gem drop"
+      cannot_fulfill:
+        - "安全长期 carrier"
+        - "Bonnie 形态无 Super 时正面拿宝石"
+        - "对抗草丛刺客无 peel"
+      needs_teammate_support:
+        - "稳定 carrier、反刺客、落点夹击"
+      false_positive: "Bonnie 有跳入威胁，但跳入后短射程低血量让她不适合作为矿区长期 carrier"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "Clyde 长线压制防守方"
+        - "Star Launcher 越墙收球或清门前防守"
+        - "迫使防守交控制腾出射门窗口"
+      cannot_fulfill:
+        - "持续持球推进"
+        - "Bonnie 形态正面射门"
+        - "落点被控制守住时稳定存活"
+      needs_teammate_support:
+        - "真正 scorer、破门、反刺客"
+      false_positive: "Star Launcher 能开球路，但跳入后短射程让她不是 scorer；必须配真正射门手"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Clyde 长线清圈边"
+        - "Star Launcher 越墙清站区或收残血"
+        - "高血量 Clyde 短窗口抗线"
+      cannot_fulfill:
+        - "长时间站圈 body"
+        - "Bonnie 形态正面站区"
+        - "对抗墙后投掷持续清圈"
+      needs_teammate_support:
+        - "站圈身体、反投掷、落点保护"
+      false_positive: "Bonnie 有长线和跳入，但 Hot Zone 需要持续站圈；她的形态切换承诺与站区时间冲突"
 
   failure_modes:
     - id: "clyde_slow_lane_tax"

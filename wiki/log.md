@@ -969,3 +969,187 @@
 - 更新 `test_plp_matchup_coverage.py` 的 PLP raw 页数断言从 104 到 105（Nori 已进入 PLP 覆盖范围）。
 - 保留的审计缺口：Nori 缺 strength profile 档位（iKaoss11 July 输入早于 Nori 发布），runtime compile 时 tier=unknown；补齐玩家 strength 输入后即可进 runtime 池排序。本轮未重新 compile runtime index。
 - 验证：质量审计 105 / 105 `bp_ready` 且零 blocker、BP skill contract、断点测试 10 / 10、PLP matchup coverage 2 / 2、`git diff --check` 全部通过。
+
+## [2026-08-12] ingest+synthesis | 新建 Ranked Season 47 地图池索引并标记 Season 46 过期
+
+- 经浏览器直读 Fandom Ranked 页（`https://brawlstars.fandom.com/wiki/Ranked`，"Active maps (Season 47)" 表）确认当前赛季为 Season 47（2026-07-16 起，2026-08-20 换 Season 48），featured 模式从 Season 46 的 Heist 切换为 Gem Grab；Trial Brawlers 表锚点 `#47 | July 16, 2026 | Berry, Tara, Meg | Gem Grab`、`#48 | August 20, 2026 | Trunk, Willow, Kaze | Brawl Ball`。
+- 新增 [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]：记录当前 6 模式 28 张图完整池（Gem Grab 6、Heist 6、Bounty 4、Brawl Ball 4、Hot Zone 4、Knockout 4）与 S46→S47 差异表。
+- 与 Season 46 的差异：featured 机制是在原有基数上额外增加图，不从别的模式抢图；因此 Gem Grab 从 4 张扩到 6 张（新增 Crystal Arcade、Rustic Arcade，原 4 张全部保留），其余五个模式图数和图名完全不变。Heist 降回常规仍保持 6 张，无图被移除。
+- 在 [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]] 顶部加过期标注，指向 S47 索引；S46 页保留作历史索引。
+- 更新 [[index|Wiki Index]]：BP Methodology 区、Syntheses 区和 BP 维护者导航行接入 S47 索引。
+- 待 ingest 缺口：`Rustic Arcade` 为 Season 47 Gem Grab featured 新增图，仓库尚无 `raw/sources/fandom/maps/` raw capture、source 摘要或地图实体页（Fandom 页有效 `https://brawlstars.fandom.com/wiki/Rustic_Arcade`，地图图 `Rustic_Arcade-Map.png` revision `20260225223748`）；S47 索引已标注待 ingest，本轮不凭空建模。
+- 保留口径边界：本页只作为赛季轮换索引，不生成 strength tier、稳定 map fit、无条件对位边或 runtime 推荐；Rustic Arcade 的稳定 map_profile 需按正常地图 ingest 流程补齐 raw + source 后才能进入 BP 稳定层。
+
+## [2026-08-13] governance+fix | 全排位模式适配性完备性治理
+
+### 背景
+
+运行 BP 预跑（Crystal Arcade / Gem Grab / Nori S 档末）时发现 Nori 的 compile `fit=weak` 是假阴性：根因是 Nori 实体页只有 PLP 推荐模式（Hot Zone/Heist/Bounty/Brawl Ball）的 `objective_contract` 和 `map_feature_hooks`，缺 Gem Grab 和 Knockout。系统性扫描确认 105/105 bp_ready 英雄全部缺至少一个排位模式的 contract（平均缺 2.3 个，Knockout 79 人缺、Bounty 62 人缺、Gem Grab 28 人缺），compile 对所有缺 contract 的模式一律输出 `fit=weak`，无法区分"数据缺口"和"真实弱"。
+
+### 改动（4 文件）
+
+1. `scripts/audit_bp_profile_quality.py`：新增 `RANKED_MODES` 常量（6 个硬编码排位模式）和 `incomplete_ranked_mode_coverage` blocker。审计提取每个英雄的 `objective_contracts` 模式集合，对比 6 个排位模式，缺失的报 blocker；负向/false_positive contract 计为有效覆盖。新 blocker 对所有 status 检查，但在 `bp_ready` 判定中是硬门槛。
+2. `references/brawler-modeling.md`：`bp_ready` 门槛新增"必须对全部排位模式有 `objective_contract`"要求；Modeling Flow 步骤 3-4 补充"PLP 推荐是反向验证不是评估范围来源，每个排位模式都要独立评估"。
+3. `references/audit-and-validation.md`：blocker 列表同步加入 `incomplete_ranked_mode_coverage`、`missing_profile`、`missing_map_hooks`（脚本产出但文档缺失），移除 `unreviewed_matchup_candidate`、`unreviewed_build_delta`（文档列出但脚本不产出）。
+4. `scripts/ingest_brawler_bp_profiles.py`：`objective_contracts()` 函数末尾新增逻辑——为 PLP 未推荐但属于排位池的模式生成 `needs_review` 占位 contract（`not_inferred_from_source` 标记），使缺口在 draft 页面可见而非隐形；占位 contract 会触发 `auto_placeholder` blocker，保证升级 bp_ready 前被替换。
+
+### 止氪验证（Nori）
+
+给 [[entities/brawlers/Nori|Nori]] 补建 `gem_grab_hook_dive_and_zone_control` map_feature_hook（hook 追 gem carrier + root 断倒计时 + 水坑封矿，example_maps 指 Crystal Arcade/Double Swoosh/Hard Rock Mine）和 Gem Grab + Knockout 两个 `objective_contract`。重新 compile Crystal Arcade 后 Nori 的 `fit` 从 `weak` 升到 `strong`，`map_floor_fit=strong`、`active_hook_ids=['gem_grab_hook_dive_and_zone_control']`、`matched_capabilities=['grass_flank']`、四个 projection bucket 全激活、`slot_eligibility` 全 true。审计确认 Nori 成为 105 英雄中唯一 6 模式全覆盖且零 blocker 的英雄。
+
+### 设计原则
+
+完备性是 compile 入口的先决条件，不带入 runtime：compile 产物的 `fit` 保持 strong/weak 二值（都是已评估的），runtime 永远不会遇到"未评估"。6 个排位模式硬编码（地图池动态由 compile 按图逐张评估，不在审计范围）。PLP 推荐是反向验证不是评估范围来源。
+
+### 不改动的地方
+
+`compile_runtime_index.py`、`compile-knowledge.md`、`runtime-decision-knowledge.md` 不改动——compile 忠实执行实体页事实的设计是正确的；现有规则（`mode_contract_hit` 只是证据不是 eligibility）不变。
+
+### 验证
+
+审计脚本 Python 编译通过、105 英雄全部检出 `incomplete_ranked_mode_coverage` blocker（分布：缺 1 模式 2 人、缺 2 模式 33 人、缺 3 模式 51 人、缺 4 模式 13 人、缺 5 模式 4 人、缺 6 模式 2 人）；契约测试 `bp skill contract ok`；Nori compile fit 升级确认。
+
+### 后续（不在本轮）
+
+105 英雄的模式覆盖缺口（约 250 个 contract）补齐是批量维护任务，审计脚本输出已生成精确工单；按 Season 47 featured 模式（Gem Grab 28 人缺口）优先分批补。
+
+## [2026-08-13] fix+governance | Power Level 11 统一口径：方法论 + 脏数据清洗
+
+### 背景
+
+讨论 Nori 强度时发现其 `capability_vector.survivability` 写的"3800 血"是 Power Level 1 裸值（Fandom infobox 基准），而 Ranked 实际在 Power Level 11 下血量应为 7600（Level 1 × 2.0，规则见 [[concepts/伤害与生存断点|伤害与生存断点]]：`multiplier(power) = 1 + 0.10 * (power - 1)`，`multiplier(11) = 2.0`）。系统性扫描确认这是全库问题：58 个英雄、77 处 BP 评价字段（`survivability`、`failure_modes.exposed_by`、`objective_contracts.cannot_fulfill`、`build_switches` 等）使用了 Power Level 1 裸血量，只有 6 个英雄（Bibi、Colette、Crow、Jacky、Mandy、Pearl）正确标注了 Power 11。`burst` 字段的伤害数值无此问题（已统一用 Power 11）。`combat_breakpoint_profile` JSON 块的 `at_power_level: 1` 是断点审计的原始记录、不是 BP 评价字段，不在清洗范围。
+
+### 方法论改动
+
+1. `references/brawler-modeling.md`：`bp_ready` 门槛新增一条——所有 BP 评价字段（`capability_vector`、`objective_contracts`、`failure_modes`、`map_feature_hooks`、`build_switches`、`conditional_matchups`、`slot_notes`）的血量/伤害/EHP 数值必须是 Power Level 11 口径（Fandom infobox 值乘 2.0），首次出现标注"Power 11"；`combat_breakpoint_profile` JSON 块的 `at_power_level: 1` 原始记录豁免。`Common Mistakes` 新增一条——禁止在 BP 评价字段引用 Power Level 1 裸值，Power Level 是养成产物不是 BP 因素。
+2. `wiki/concepts/伤害与生存断点.md` 第 11 行规则扩展适用范围声明：不仅断点审计用 Power 11，英雄页全部 BP 评价字段也必须用 Power 11。
+
+### 脏数据清洗
+
+批量清洗 58 个英雄 77 处 Power Level 1 裸血量 → Power Level 11（×2.0 并标注"Power 11"）。覆盖 `capability_vector.survivability`（56 处）和 `failure_modes.exposed_by` / `objective_contracts.cannot_fulfill` / `build_switches.changes_capabilities` / `conditional_matchups.mechanism`（21 处）。多形态英雄（Bonnie: Clyde 5000→10000 + Bonnie 形态 3100→6200；Meg: 本体 2400→4800 + 机甲 3700→7400；Larry & Lawrie: Larry 3000→6000 + Lawrie 3300→6600）两套形态血量同时修正。残留检查确认零 Power 1 本体血量裸值。
+
+### 验证
+
+审计脚本 Python 编译通过；残留 grep 零结果（排除召唤物/炮台/装备值等非本体血量）；契约测试 `bp skill contract ok`；Nori 重新 compile Crystal Arcade 确认 `fit: strong` 不受影响。
+
+## [2026-08-13] maintenance | 补齐 8 英雄缺失模式 objective_contract
+
+### 变更
+
+按模式覆盖缺口工单为 8 个英雄页补充缺失的 `objective_contract`（插入在 `objective_contracts` 末尾、`failure_modes:` 之前），每条含 `mode` / `can_fulfill` / `cannot_fulfill` / `needs_teammate_support` / `false_positive`，基于各页已有 mechanics、failure_modes 与 map_feature_hooks 写诚实契约（含负向契约）：
+
+- [[entities/brawlers/Penny|Penny]]：Brawl Ball、Bounty、Knockout
+- [[entities/brawlers/Poco|Poco]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Rosa|Rosa]]：Heist、Bounty、Knockout；原合并的 `Bounty/Knockout` 薄契约拆为两条独立 per-mode 契约（保留原负向结论并展开），与全库 one-entry-per-mode 约定一致
+- [[entities/brawlers/Sam|Sam]]：Bounty、Hot Zone、Knockout
+- [[entities/brawlers/Shelly|Shelly]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Squeak|Squeak]]：Gem Grab、Brawl Ball、Heist
+- [[entities/brawlers/Stu|Stu]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Tara|Tara]]：Bounty、Hot Zone、Knockout
+
+### 验证
+
+脚本校验 8 页 fenced YAML 全部可解析，8 英雄目标模式全部存在，所有 contract（新旧）五字段齐全。
+
+## [2026-08-13] maintenance | 补齐 7 英雄缺失模式 objective_contract
+
+### 变更
+
+延续 [[#2026-08-13 maintenance 补齐 8 英雄缺失模式 objective_contract|上一轮]] 的模式覆盖缺口治理，为 7 个英雄页补充缺失的 `objective_contract`（插入在 `objective_contracts` 末尾、`failure_modes:` 之前），每条含 `mode` / `can_fulfill` / `cannot_fulfill` / `needs_teammate_support` / `false_positive`，基于各页已有 mechanics、failure_modes 与 map_feature_hooks 写诚实契约（含负向契约），HP 统一按 Power 11 口径：
+
+- [[entities/brawlers/Bea|Bea]]：Gem Grab、Heist、Bounty、Knockout
+- [[entities/brawlers/Bibi|Bibi]]：Gem Grab、Bounty、Hot Zone、Knockout
+- [[entities/brawlers/Brock|Brock]]：Gem Grab、Bounty、Hot Zone、Knockout（保留原 `Bounty_or_Knockout` 合并条目作为 Rocket No. 4 节奏上下文）
+- [[entities/brawlers/Gene|Gene]]：Heist、Bounty、Hot Zone、Knockout（保留原 `Bounty_or_Knockout` 合并条目）
+- [[entities/brawlers/Glowy|Glowy]]：Gem Grab、Heist、Bounty、Knockout（保留原 `Bounty_or_Knockout` 合并条目）
+- [[entities/brawlers/Kit|Kit]]：Brawl Ball、Heist、Bounty、Hot Zone（保留原 `Brawl Ball_or_Hot Zone` 合并条目作为 Cheeseburger 变体上下文）
+- [[entities/brawlers/Lola|Lola]]：Gem Grab、Bounty、Hot Zone、Knockout（保留原 `Bounty/Knockout` 合并条目）
+
+### 设计说明
+
+新增条目按全库 one-entry-per-mode 约定写成独立 per-mode 契约；对已有合并条目（`Bounty_or_Knockout`、`Brawl Ball_or_Hot Zone`、`Bounty/Knockout`）采取保留策略，因其承载了独特 build/gadget 上下文（如 Kit 的 Cheeseburger 变体说明、Brock 的 Rocket No. 4 间歇射程警告），删除会丢失信息。若后续治理决定全库清理合并条目，可统一合并并迁移上下文到独立条目的 `false_positive` 或 `needs_teammate_support`。
+
+### 验证
+
+逐页 Edit 后确认插入位置正确（`failure_modes:` 之前）；YAML 缩进与各页既有 `objective_contracts` 一致（4 空格基线 + 每 mode 列表项 4 空格）；五字段齐全；HP 描述全部用 Power 11 口径（Bea 5600、Kit 6200、Lola 8000 等）。
+
+## [2026-08-13] maintenance | 补齐 8 英雄缺失模式 objective_contract（第三批 Busters–Dougs）
+
+### 变更
+
+延续 [[#2026-08-13 maintenance 补齐 7 英雄缺失模式 objective_contract|上一轮]] 的模式覆盖缺口治理，为 8 个英雄页补充缺失的 `objective_contract`（插入在 `objective_contracts` 末尾、`failure_modes:` 之前），每条含 `mode` / `can_fulfill` / `cannot_fulfill` / `needs_teammate_support` / `false_positive`，基于各页已有 mechanics、failure_modes、map_feature_hooks 与相关地图实体页（Dry Season、Hideout、Belle's Rock 等）写诚实契约（含负向契约），HP 统一按 Power 11 口径：
+
+- [[entities/brawlers/Buster|Buster]]：Gem Grab、Heist、Hot Zone
+- [[entities/brawlers/Buzz|Buzz]]：Bounty、Hot Zone、Knockout
+- [[entities/brawlers/Chuck|Chuck]]：Brawl Ball、Bounty、Knockout
+- [[entities/brawlers/Clancy|Clancy]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Colt|Colt]]：Bounty、Hot Zone、Knockout
+- [[entities/brawlers/Damian|Damian]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Darryl|Darryl]]：Gem Grab、Bounty、Hot Zone
+- [[entities/brawlers/Doug|Doug]]：Heist、Bounty、Hot Zone
+
+### 契约设计说明
+
+- 短手英雄（Buzz 刺客、Damian 短手坦、Darryl 滚桶坦、Doug 3.33 格支援）的 Bounty/Heist/Hot Zone 契约多为强负向：开放长线图（如 Dry Season、Bridge Too Far）风筝短手，故标为高风险 last-pick 而非稳定 source；Bounty/Knockout 死亡不可恢复使进场落点被守即送头。
+- Chuck 的 Brawl Ball/Bounty/Knockout 契约强调 route-based 且 setup-dependent，PLP 只推荐 Heist，故非常规 lane pick。
+- Colt 的 Bounty/Hot Zone/Knockout 契约为正向：长线 + 开墙 + tracking burst 匹配开放图，但仍标注 mobility/flank 会打断 tracking window 的失败条件。
+- Clancy 的 Heist/Bounty/Knockout 契约强调 Stage 1 ramp 弱势与 7600 Power 11 低血聚焦风险，PLP 推荐模式不含这三项。
+- Buster 的 Heist 契约明确 barrier 不能 race safe、lobbed/area 绕过 screen，PLP 不列 Heist，仅作 projectile-safe plan 的防御屏。
+
+### 验证
+
+`audit_bp_profile_quality.py`：8 英雄全部 `bp_ready_structural_gate_passed`（0 blocker）；逐页 fenced YAML 全部可解析（`yaml.safe_load` 通过），8 英雄各 6 个 Ranked 模式齐全，所有 contract（新旧）五字段齐全。库内残留 `incomplete_ranked_mode_coverage` 的 12 个英雄（Bonnie、El Primo、Eve、Frank、Gale、Gray、Grom、Kaze、Kenji、Larry & Lawrie、Mr. P、Ollie）为本任务范围外的既有缺口，未改动。
+
+## [2026-08-13] maintenance | 补齐 8 英雄缺失模式 objective_contract（第四批 Hank–Larry & Lawrie）
+
+### 变更
+
+延续前三批的模式覆盖缺口治理，为 8 个英雄页补充缺失的 `objective_contract`（插入在 `objective_contracts` 末尾、`failure_modes:` 之前），每条含 `mode` / `can_fulfill` / `cannot_fulfill` / `needs_teammate_support` / `false_positive`，基于各页已有 mechanics、failure_modes 与 map_feature_hooks 写诚实契约（含负向契约），HP 统一按 Power 11 口径：
+
+- [[entities/brawlers/Hank|Hank]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Jacky|Jacky]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Janet|Janet]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Jessie|Jessie]]：Brawl Ball、Bounty、Knockout
+- [[entities/brawlers/Kenji|Kenji]]：Heist、Bounty、Knockout
+- [[entities/brawlers/Larry & Lawrie|Larry & Lawrie]]：Heist、Bounty、Knockout
+
+### 与前批合并条目处理策略的差异（重要）
+
+前批（第二批 Bea–Lola）对已有合并条目（`Bounty_or_Knockout`、`Brawl Ball_or_Hot Zone`、`Bounty/Knockout`）采取**保留**策略。本轮对两个含合并条目的英雄采取**拆分替换**策略：
+
+- [[entities/brawlers/Juju|Juju]]：原 `Bounty_or_Knockout` 合并条目拆分为独立 `Bounty` 与 `Knockout`，并新增 `Gem Grab` 条目；合并条目被删除。
+- [[entities/brawlers/Kaze|Kaze]]：原 `Bounty/Knockout/Heist` 三合一合并条目拆分为独立 `Heist`、`Bounty`、`Knockout`；合并条目被删除。
+
+选择拆分而非保留的理由：Juju / Kaze 的合并条目仅是模式名拼接的占位，未承载独特 build/gadget 上下文（不像 Kit 的 Cheeseburger 变体说明或 Brock 的 Rocket No. 4 警告），拆分后信息无损且符合 one-entry-per-mode 约定。这一策略差异已记录在此，若后续全库治理决定统一为保留策略，需要把这两个英雄的独立条目重新合并并迁移到合并形式。
+
+### 契约设计说明
+
+- Heist 契约统一按"objective_damage 是近身/窗口型，不是稳定 race"建模；坦克/刺客/投掷型英雄均明确 `cannot_fulfill` 远程 safe race，并把主 DPS 列入 `needs_teammate_support`。
+- Bounty / Knockout 契约区分"星差/首杀压力"与"首杀爆发"：长线 poke 型（Janet、Jessie）列为可提供 poke/信息但 `cannot_fulfill` 高爆发首杀；短手进场型（Hank、Jacky、Kaze、Kenji、Larry & Lawrie）明确 `cannot_fulfill` 开阔图正面输出，价值绑定到草墙/窄口/进场路线。
+- `false_positive` 均指向该英雄最易被高估的能力（如 Hank 的身体≠进球、Janet 的空中免伤≠race 输出、Larry & Lawrie 的控区≠Larry 本体输出、Kaze/Kenji 的 mark/中心命中延迟）。
+
+### 验证
+
+逐页 Edit 后用 Python 脚本 `yaml.safe_load` 解析全部 8 页 fenced YAML，确认：8 英雄各含 6 个 Ranked 模式独立条目（无残留合并条目），所有 contract（新旧）五字段齐全，YAML 缩进与各页既有 `objective_contracts` 一致（4 空格基线）。
+
+## [2026-08-13] batch-complete | 全排位模式适配性 contract 全量补齐完成
+
+### 背景
+
+承接同日 `incomplete_ranked_mode_coverage` 审计 blocker 上线，对全库 105 个英雄的 `objective_contracts` 执行全量补齐。起始状态：104/105 英雄缺至少一个排位模式的 contract，总缺口 303 个。
+
+### 执行
+
+分三批 14 组并行 agent 完成，共补齐约 303 个 `objective_contract`：
+- 第一批（缺 1-2 模式）：34 英雄，约 67 contract
+- 第二批（缺 3 模式）：51 英雄，约 153 contract
+- 第三批（缺 4-6 模式）：19 英雄，约 83 contract（含 Mr. P 和 Ollie 从 0 补全部 6 模式）
+
+每个 contract 基于英雄 `capability_vector`、`failure_modes`、`map_feature_hooks` 和地图 `required_capabilities` 独立评估产出，不依赖 PLP 推荐结论（PLP 推荐仅作反向验证）。负向/false_positive contract 计为有效覆盖。所有血量引用 Power 11 口径。部分英雄的历史合并条目（如 `Bounty_or_Knockout`）被拆分为独立模式条目。
+
+### 最终验证
+
+- 审计脚本：**105/105 英雄全部 6 模式覆盖，零 `incomplete_ranked_mode_coverage` blocker，105 个英雄零 blocker**
+- 契约测试：`bp skill contract ok`
+- Crystal Arcade compile：`mode_contract_hit=True: 105/105`，fit 分布 strong 47 / weak 58（均为已评估结论，不再有数据缺口造成的假 weak）
+

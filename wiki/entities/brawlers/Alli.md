@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; dash reload 慢，草/水跳跃 reload 更慢，PLP reload Star Power 缓解 enraged 窗口"
     objective_damage: "medium_high_heist_window; Super 强化攻击对 safe 等固定目标吃满上限，但需要进场路线"
     mobility: "high_on_water_or_bush_routes; 可走水面，草/水普攻变跳跃并短暂无敌"
-    survivability: "medium_with_jump_and_stalker; 3900 HP，需要跳跃免伤、隐身和击杀刷新压力"
+    survivability: "medium_with_jump_and_stalker; Power 11 本体 7800 HP，需要跳跃免伤、隐身和击杀刷新压力"
     engage: "high_conditional; 低血 enrage、草/水跳跃和 Stalker 可开后排"
     disengage: "medium; 跳跃可躲一轮爆发，但跳跃路线经常单向且 reload 慢"
     anti_aggro: "medium; 可用跳跃躲 Edgar/Kenji 等近身爆发，但被 body 压住时缺稳定硬控"
@@ -182,6 +182,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区 body、压血来源、反控制"
       false_positive: "Alli 是清理和进场工具，不是稳定区控本体"
+    - mode: "Bounty"
+      can_fulfill:
+        - "惩罚半血以下后排并打断拿星节奏"
+        - "草/水侧路隐身进场收残血"
+        - "enrage 追踪暴露的撤退线"
+      cannot_fulfill:
+        - "开阔长线稳定拿星"
+        - "对满血长手进行持续压制"
+        - "无接近路线时的星来源"
+      needs_teammate_support:
+        - "长线压血、视野、反 body peel"
+      false_positive: "Dry Season/Shooting Star 等极开阔 Bounty 图不奖励短程刺客；Alli 只在敌方后排脆且缺 peel 时作最后手惩罚，不是常规星来源"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草/水路线惩罚无保护后排"
+        - "Stalker 隐身创造首杀窗口"
+        - "收低血目标压缩敌方缩圈空间"
+      cannot_fulfill:
+        - "纯开阔长线对狙"
+        - "首手稳定开团"
+        - "被 peel 或 hard gate 守住的接近路线"
+      needs_teammate_support:
+        - "长线 poke 压血、反投掷/反 body、缩圈前控制敌方走位"
+      false_positive: "Knockout 死亡不可恢复，Alli 的 4 格隐身警告和单向跳跃路线让她在没有明确路线和敌方资源已交时进场风险极高"
 
   failure_modes:
     - id: "enrage_depends_on_low_hp_visible_target"

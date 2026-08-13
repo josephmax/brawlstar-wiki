@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: medium; Candy Beans 在 5 秒内随机提供 20% damage、2.5x reload、150 移速或每秒 420 治疗之一，效果不可指定且冷却 15 秒
     objective_damage: low_medium; 主要靠击杀和清人转目标，不是 Heist race 核心
     mobility: low_base; Candy_Beans_speed_buff_is_random
-    survivability: medium; 3800 HP，加随机 Strong Mint 或 Candy Beans heal 可短窗续航
+    survivability: medium; Power 11 本体 7600 HP，加随机 Strong Mint 或 Candy Beans heal 可短窗续航
     engage: medium_if_speed_or_stun_super_available
     disengage: medium_with_Candy_Popper_knockback_or_Jawbreaker_stun
     anti_aggro: high_when_sequence_and_super_are_ready
@@ -169,9 +169,33 @@ bp_brawler_profile:
       cannot_fulfill:
         - "pure_open_sniper_mirror"
       needs_teammate_support:
-        - "cover_to_close_distance"
-        - "long_range_teammate_or_wall_control"
+        - cover_to_close_distance
+        - long_range_teammate_or_wall_control
       false_positive: "Fandom 说 Knockout 可行，条件是能接触到中距离，而非开阔图硬对狙"
+    - mode: Heist
+      can_fulfill:
+        - "Candy Popper 偶发破墙打库窗口"
+        - "多铃近身爆发清守库者"
+        - "随机 Super 短窗辅助 safe 接触"
+      cannot_fulfill:
+        - "稳定远程 safe race"
+        - "无路线时的固定目标持续输出"
+        - "保证每次都有 wallbreak 或 burst Super"
+      needs_teammate_support:
+        - "真正 safe DPS、开路、反控制"
+      false_positive: "Chester 的 Heist 价值依赖随机抽到 Candy Popper 或合适 Super，不是稳定 race 核心；把他当主打库手会因 RNG 失败"
+    - mode: Bounty
+      can_fulfill:
+        - "多铃近身爆发惩罚无 peel 后排"
+        - "随机 Super (stun/knockback) 创造拿星窗口"
+        - "草/墙路线反切残血"
+      cannot_fulfill:
+        - "开阔长线与 Piper/Belle 对狙"
+        - "无接近路线时的稳定拿星"
+        - "保证匹配到当前局面需要的 Super"
+      needs_teammate_support:
+        - "长线 anchor、压血、反 body peel"
+      false_positive: "Dry Season、Shooting Star 等极开阔 Bounty 图惩罚中近距离爆发英雄；Chester 只在敌方后排脆且缺 peel 时作最后手惩罚，随机 Super 也无法保证对狙价值"
 
   failure_modes:
     - id: random_super_variance

@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒 reload，Fast Forward 可瞬间回满弹药"
     objective_damage: "medium_close_range; 可打 safe/目标但需要贴近，不是远程 race"
     mobility: "medium_with_fast_forward; 2.67 格 dash 并回满弹，16 秒 cooldown，不能穿墙/水"
-    survivability: "medium_with_band_aid; 3900 HP，Band-Aid 充满后低于 40% 回 30% 生命"
+    survivability: "medium_with_band_aid; Power 11 本体 7800 HP，Band-Aid 充满后低于 40% 回 30% 生命"
     engage: "medium; 草丛/墙边/Fast Forward 进场"
     disengage: "high_with_super; Super 击退、破墙，Shell Shock 变体 slow"
     anti_aggro: "very_high_if_super_ready; Super 击退/打断并可取消多个敌方 Super wind-up"
@@ -172,6 +172,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 carrier、长手控矿、投掷处理"
       false_positive: "Gem 图如果没有草/短线，Shelly 的有效射程会暴露"
+    - mode: "Heist"
+      can_fulfill:
+        - "贴 safe 近身多弹 burst"
+        - "Super 破 safe 侧墙打开进攻角"
+        - "防守时击退突进者保护己方 safe"
+      cannot_fulfill:
+        - "远程 safe race"
+        - "无接近路线时的持续 safe 输出"
+      needs_teammate_support:
+        - "远程 race 补伤"
+        - "接近掩护或控线"
+      false_positive: "objective_damage 只在近身多弹命中时成立；开阔或分离 lane 的 Heist 图里 Shelly 难以接近 safe"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草口/墙边伏击低血目标"
+        - "Super 反突进自保"
+      cannot_fulfill:
+        - "开阔长线稳定输出"
+        - "安全 star pressure"
+      needs_teammate_support:
+        - "长线主输出和视野"
+      false_positive: "标称射程 7.67 格但高伤需要近身多弹命中；不能把 Shelly 当 Bounty 长手"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草口伏击 first kill"
+        - "Super 击退/打断保命"
+        - "近身 1v1 强度"
+      cannot_fulfill:
+        - "开阔对狙"
+        - "处理持续 poke 和投掷"
+      needs_teammate_support:
+        - "长线队友和投掷处理"
+      false_positive: "被先手消耗或多角度压制时，Band-Aid 和 Super 都可能来不及触发"
 
   failure_modes:
     - id: "low_damage_at_range"

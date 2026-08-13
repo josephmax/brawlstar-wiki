@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "stateful; ammo 回到手才刷新，墙边/Power Throw 显著提高循环"
     objective_damage: "high_conditional; Heist 靠墙边快速回旋和 Heat Ejector/Super 打库"
     mobility: "medium_high_with_resources; Flying Hook 3000 速度拉到最远点，可过水/绳索；Super 速度翻倍"
-    survivability: "medium; 4200 HP，Protective Pirouette 在 Super 中减伤 35%"
+    survivability: "medium; Power 11 本体 8400 HP，Protective Pirouette 在 Super 中减伤 35%"
     engage: "medium_high_with_flying_hook_or_super; 但需要确认敌方控制已交"
     disengage: "medium; Flying Hook 和 Super 可逃离或转点"
     anti_aggro: "conditional; Heat Ejector 路径和 Super 可惩罚追击，但怕打断"
@@ -179,6 +179,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开墙/反投掷、peel、长线补伤"
       false_positive: "Super 追人若被打断会直接送星"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Heat Ejector 封区口火路"
+        - "中距离回旋镐压进圈者"
+        - "Super 短窗口清残血站区者"
+      cannot_fulfill:
+        - "长期单人站圈"
+        - "无墙角时持续 zone DPS"
+        - "被多重控制打断 Super 后的即时自救"
+      needs_teammate_support:
+        - "站圈 body、反投掷、稳定远程补伤"
+      false_positive: "Carl 的回旋镐依赖墙角快速循环，区口被打开或没有可依靠墙体时，单弹药节奏会被打断，控区收益不稳定"
+    - mode: "Knockout"
+      can_fulfill:
+        - "长线回旋镐消耗"
+        - "Hook 惩罚无保护后排"
+        - "Super 收低血目标或缩圈时制造 burst"
+      cannot_fulfill:
+        - "无打断检查的强行 Super 贴脸"
+        - "纯开阔长线对狙"
+        - "被 stun/knockback 打断后的进场"
+      needs_teammate_support:
+        - "长线 anchor、反投掷/反 body、peel"
+      false_positive: "Knockout 死亡不可恢复，Carl 的 Super 会被 stun/knockback/silence 中断；在没有确认敌方控制已交或缺乏路线时进场会直接送点"
 
   failure_modes:
     - id: "super_interrupt_by_control"

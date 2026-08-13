@@ -176,6 +176,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 carrier、探草、清召唤物"
       false_positive: "Super 抢宝是应急工具，不应当作默认 carrier 计划"
+    - mode: "Bounty"
+      can_fulfill:
+        - "对高血量后排稳定削血"
+        - "Push It 把目标推到队友射线"
+        - "Na-ah! 拉近创造收割窗口"
+      cannot_fulfill:
+        - "低血目标收割 (最低伤害地板)"
+        - "开阔长线与狙击对 poke"
+        - "无 Super 时的稳定拿星"
+      needs_teammate_support:
+        - "长线 anchor、收割手、探草"
+      false_positive: "Colette 的百分比伤害对低血 Bounty 目标接近最低伤害地板，无法稳定收尾；Dry Season 等极开阔图还会被更长狙击 outrange"
+    - mode: "Knockout"
+      can_fulfill:
+        - "对高血量前排稳定削血制造首杀窗口"
+        - "Push It 推开/打断敌方开团"
+        - "Super 往返收低血目标压缩缩圈空间"
+      cannot_fulfill:
+        - "纯开阔长线对狙"
+        - "Super 冲入 burst/CC 链时的自保"
+        - "低血目标的即时收割"
+      needs_teammate_support:
+        - "长线 anchor、收割手、反 burst/CC"
+      false_positive: "Knockout 死亡不可恢复，Colette 的 Super 路径会被 Bull/Edgar/Shelly/Buzz 等 burst 守住；在没有确认敌方 burst/CC 已交时冲入会直接送点"
 
   failure_modes:
     - id: "super_cycle_is_not_a_fixed_four_hits"

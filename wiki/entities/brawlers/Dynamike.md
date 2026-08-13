@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: medium_high_if_pocket_holds; 1.4 秒 fast reload 缩短连续封口与打固定目标的弹药空窗，但命中仍依赖预判和路线限制
     objective_damage: high_heist_if_wall_pocket_reaches_safe
     mobility: low_base; Dyna_Jump_is_high_skill_route_tool
-    survivability: low; 3000 HP，依赖墙体、Satchel、Dyna-Jump 或队友 peel
+    survivability: low; Power 11 本体 6000 HP，依赖墙体、Satchel、Dyna-Jump 或队友 peel
     engage: medium_with_Satchel_or_Super_knockback
     disengage: medium_with_Satchel_stun_or_Dyna_Jump_if_mastered
     anti_aggro: conditional_high_when_Satchel_available
@@ -163,6 +163,45 @@ bp_brawler_profile:
         - "actual_zone_holder"
         - "vision_or_anti_aggro"
       false_positive: "他能清圈但不能替代站圈身体"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "mine_choke_bomb_prewave_and_satchel_stun"
+        - "wall_pocket_side_lane_pressure"
+        - "gem_carrier_retreat_cover_with_Super_knockback"
+      cannot_fulfill:
+        - "stable_open_mid_gem_control"
+        - "reliable_gem_carrier_under_mobility_dive"
+        - "fast_reposition_on_triple_lane_split_maps"
+      needs_teammate_support:
+        - "实际 gem carrier 和稳定 mid"
+        - "anti-dive peel when Satchel is on cooldown"
+      false_positive: "Dynamike 能封矿区入口，但在 Crystal Arcade、Undermine 这类开放或三分裂矿区图，1 秒引信和 6000 HP 让他无法独自控矿或持宝，必须靠队友载体和反突进。"
+    - mode: "Bounty"
+      can_fulfill:
+        - "wall_edge_delayed_bomb_punish_on_peek"
+        - "Satchel_stun_confirm_on_overextending_star_target"
+        - "bush_check_with_bombs"
+      cannot_fulfill:
+        - "long_range_safe_star_pressure_on_Dry_Season_or_Shooting_Star"
+        - "reliable_poke_into_mobile_sniper_core"
+        - "self_peel_once_dive_closes_distance"
+      needs_teammate_support:
+        - "long_range partner to hold the open sightline"
+        - "anti-assassin peel when Satchel is unavailable"
+      false_positive: "PLP 不推荐 Bounty；在 Hideout、Layer Cake 这类长线图 Dynamike 的延迟引信会被 Piper/Mandy/Nani 等纯狙免费压制，墙边 punish 只在敌人必须 peek 固定路线时成立。"
+    - mode: "Knockout"
+      can_fulfill:
+        - "late_round_choke_bomb_and_Satchel_stun_confirm"
+        - "Super_knockback_into_wall_or_teammate_focus"
+        - "prewave_on_predictable_retreat_route"
+      cannot_fulfill:
+        - "first_kill_in_open_sightline_duel"
+        - "stable_output_while_mobile_dasher_closes"
+        - "survive_unprotected_assassin_first_contact"
+      needs_teammate_support:
+        - "anti-dive bodyguard so Dynamike is not first-contacted"
+        - "first-kill threat to convert Satchel windows"
+      false_positive: "Knockout 奖励安全首杀；Dynamike 只在 Belle's Rock、Out in the Open 这类有墙/窄口限制斜走的地图里作为回合末 choke punish，Flaring Phoenix、New Horizons 等开放图会被高速突进先处理。"
 
   failure_modes:
     - id: delayed_fuse_into_mobility
@@ -172,7 +211,7 @@ bp_brawler_profile:
       bp_use: projectile_reliability_gate
     - id: low_health_assassin_pressure
       active_when: "刺客从草/墙角贴脸，Dynamike 无 Satchel、Super 或 Dyna-Jump 逃生"
-      exposed_by: "3000 HP and PLP target_favored list"
+      exposed_by: "Power 11 6000 HP and PLP target_favored list"
       mitigation: "保留 Satchel，队友 peel，避免无视野侧路单站"
       bp_use: draft_requires_peel_or_route_lock
     - id: wallbreak_self_exposure

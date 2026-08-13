@@ -172,6 +172,42 @@ bp_brawler_profile:
         - zone_body_or_thrower_clear
         - protection_for_Speed_Zone
       false_positive: "Stu can contest zone repeatedly but may not hold it alone"
+    - mode: "Heist"
+      can_fulfill:
+        - dash_chain_side_lane_entry
+        - optional_breakthrough_wall_opening_near_safe
+        - short_window_poke_chip
+      cannot_fulfill:
+        - sustained_safe_race_dps
+        - water_or_barrier_separated_lane_pressure
+      needs_teammate_support:
+        - primary ranged safe damage
+        - lane_control_so_first_projectile_lands
+      false_positive: "Low-medium objective damage means Stu does not win the race alone; entry value depends on lane wins and dash uptime."
+    - mode: "Bounty"
+      can_fulfill:
+        - dash_dodge_against_skillshots
+        - poke_and_reset_pressure
+        - chase_low_health_targets
+      cannot_fulfill:
+        - out_ranging_true_snipers
+        - hard_bush_vision
+      needs_teammate_support:
+        - long_range_carry
+        - vision_or_control_forcing_hittable_lanes
+      false_positive: "Mobility looks like Bounty fit, but without landing the first projectile Stu has no Super and no lane pressure."
+    - mode: "Knockout"
+      can_fulfill:
+        - first_kill_chase_on_low_targets
+        - dash_escape_and_reset
+        - speed_zone_collapse_tempo
+      cannot_fulfill:
+        - solo_open_lane_holding_against_long_range
+        - surviving_hard_cc_chains
+      needs_teammate_support:
+        - follow_up_damage
+        - lane_holders_while_Stu_flanks
+      false_positive: "Elimination rounds punish a lost entry; a missed first projectile leaves Stu without Super at the defensive moment."
 
   failure_modes:
     - id: "dash_chain_requires_hit"

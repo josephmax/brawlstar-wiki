@@ -155,6 +155,42 @@ bp_brawler_profile:
         - thrower_or_range_to_clear_enemies_outside_ant_area
         - anti_control_against_silence_or_knockback
       false_positive: 如果敌方能一直从区域外清 Trunk，坦度不会转化成计分
+    - mode: Heist
+      can_fulfill:
+        - safe_entry_body_with_ants_speed
+        - shallow_wall_pocket_thrower_pressure
+      cannot_fulfill:
+        - safe_race_objective_damage
+        - open_lane_crossing_into_safe
+        - reliable_dps_on_safe
+      needs_teammate_support:
+        - dedicated_safe_damage_carry
+        - anti_wallbreak_or_lane_control
+      false_positive: capability_vector 明确 objective_damage 为 low_direct_heist_value；Trunk 的身体价值只在窄入口图帮队友开路，不能独自跑金库
+    - mode: Bounty
+      can_fulfill:
+        - bush_route_check_with_Colony_Scouts
+        - short_contact_body_pressure_on_occupied_lanes
+      cannot_fulfill:
+        - safe_long_range_star_pressure
+        - open_lane_duelist_output
+        - reliable_star_advantage_hold
+      needs_teammate_support:
+        - long_range_duelist_to_hold_star_lead
+        - vision_and_peel_for_Trunk_advancing
+      false_positive: Bounty 长线图（Dry Season/Shooting Star/Layer Cake/Hideout）让短手 Trunk 无法安全施压星点，body 价值无法转化成 star lead
+    - mode: Knockout
+      can_fulfill:
+        - endpoint_guard_after_first_pick_window
+        - wall_edge_or_short_contact_collpase_setup
+      cannot_fulfill:
+        - safe_first_pick_output
+        - open_lane_positioning
+        - reliable_round_win_condition_without_setup
+      needs_teammate_support:
+        - first_pick_or_safe_damage_carry
+        - anti_thrower_and_long_range
+      false_positive: Knockout 讲究 safe output 和 first kill；Trunk 没有即时安全输出，只能作为后手身体收尾，不是 round 主导者
 
   failure_modes:
     - id: short_range_open_lane

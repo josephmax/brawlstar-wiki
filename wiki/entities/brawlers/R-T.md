@@ -152,6 +152,29 @@ bp_brawler_profile:
         - real_zone_holder
         - area_clear_after_R-T_marks
       false_positive: 腿不计入站圈，不能把分体当双单位占点
+    - mode: Brawl Ball
+      can_fulfill:
+        - mark_focus_on_ball_carrier_or_defender
+        - split_head_one_touch_ball_pressure_or_water_route
+        - anti_dive_door_guard_with_split_1240_pulse
+      cannot_fulfill:
+        - primary_scorer
+        - reliable_ball_carry_with_split_legs_alive
+      needs_teammate_support:
+        - scorer_or_wallbreak
+        - leg_safety_cover_when_split_used_near_goal
+      false_positive: 分体头能短时间碰球，但腿静止会被敌方远程清掉并带走 R-T，不能当成稳定球路
+    - mode: Heist
+      can_fulfill:
+        - mark_amplification_on_safe_defender
+        - split_anti_entry_pulse_on_safe_lane
+      cannot_fulfill:
+        - primary_safe_race
+        - stable_direct_safe_DPS
+      needs_teammate_support:
+        - real_safe_DPS_or_wallbreak
+        - anti_thrower_or_dive_to_keep_split_legs_alive
+      false_positive: R-T 的直接 safe 价值很低；分体腿在敌方基地附近是免费目标，不应按 race 核心评估
 
   failure_modes:
     - id: split_legs_unprotected

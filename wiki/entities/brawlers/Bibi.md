@@ -166,6 +166,53 @@ bp_brawler_profile:
         - lane control or wall pressure that lets Bibi reach safe
         - ranged DPS if the map becomes open
       false_positive: "Bibi's Heist value is access-gated; do not compare her to stable ranged safe DPS."
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "草路接近抢矿或抓 carrier"
+        - "Home Run knockback 打断倒计时或保护矿区"
+        - "Vitamin Booster 维持近身站点换血"
+      cannot_fulfill:
+        - "稳定 gem carrier（5600 HP 已存在但短手无远程威胁）"
+        - "独自处理多墙袋/草区投掷"
+      needs_teammate_support:
+        - "远程压线或视野保护矿区"
+        - "carrier 或后排保护"
+      false_positive: "knockback 可保护 gem 节奏，但也会把敌方 carrier 推向安全撤退；Bibi 适合路线保护，不是稳定持宝"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草路 flank 压短手长手"
+        - "Home Run knockback 防被近身并惩罚进位"
+      cannot_fulfill:
+        - "稳定长线对枪（3.67 格短手弧挥）"
+        - "处理开阔无草的长线（Dry Season/Shooting Star）"
+      needs_teammate_support:
+        - "长线输出或狙击掩护"
+        - "视野或开墙暴露目标"
+      false_positive: "击退在长线 Bounty 图上很弱；只有 Hideout/Layer Cake 这类多墙多草的 Bounty 图上 Bibi 才能转化为星差，开阔图会变成暴露点"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "草路进区近身压退 body"
+        - "Home Run knockback 清区或阻止站圈"
+        - "Extra Sticky slow 配合站点"
+      cannot_fulfill:
+        - "稳定区口长线对枪"
+        - "独自站圈承伤面对多远程"
+      needs_teammate_support:
+        - "zone body 或 ranged DPS"
+        - "草区保护或反投掷"
+      false_positive: "Bibi 短手在 Dueling Beetles/Open Business 这类开放区口图上承伤压力大；只有草或墙接近区口时她才有进区价值"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草路或侧路近身 pickoff"
+        - "Home Run knockback 防突进或开收头窗口"
+        - "弹墙 Super 制造额外命中"
+      cannot_fulfill:
+        - "first-kill 主动开团（无远程无突进）"
+        - "处理无草开放长线"
+      needs_teammate_support:
+        - "长线输出或控制保护"
+        - "视野或开墙"
+      false_positive: "Bibi 的 KO 价值高度依赖草路和侧切；Flaring Phoenix/New Horizons 这类开阔图上她很难接近，不是默认 KO pick"
 
   failure_modes:
     - id: "windup_and_short_range_kiting"

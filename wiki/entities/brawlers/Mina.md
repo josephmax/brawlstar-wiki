@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high; 1.4 秒快装填，但连段断裂会回到低伤第一段"
     objective_damage: "medium_high_conditional_heist; 第三段和快速连段能打库，但要赢线接触目标"
     mobility: "high_but_directional; 每次攻击按移动方向 dash，站定可不 dash"
-    survivability: "medium; 3600 HP，Zum Zum Zum 第三段回血，Windmill 保护关键前摇"
+    survivability: "medium; Power 11 本体 7200 HP，Zum Zum Zum 第三段回血，Windmill 保护关键前摇"
     engage: "medium_high; dash + Super 可压 marksman 或切失位目标"
     disengage: "medium; dash 可撤，但错误面向会送到近战面前"
     anti_aggro: "medium_high_with_super; Super 击飞/Blown Away root 可阻止刺客贴近"
@@ -143,14 +143,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站圈身体或区域控制"
       false_positive: "击飞期间免疫地面伤害，队友跟伤时机要等落地"
-    - mode: "Bounty/Knockout"
+    - mode: "Bounty"
       can_fulfill:
-        - "用 Windmill 抢线和 Super/root 打关键 pick"
+        - "用 Windmill 抢 Shooting Star / Out in the Open 类开阔 lane，dash 避弹并推进"
+        - "Super/root 在 Layer Cake / Hideout 类墙图锁定关键 pick"
       cannot_fulfill:
-        - "在完全开阔远程图替代极长线"
+        - "在纯极开阔高速图替代稳定极长线主狙"
+        - "拿星后无掩护时安全撤退"
       needs_teammate_support:
         - "补长线、视野或开墙"
-      false_positive: "Mina 有 8 格第一段，但核心伤害更靠中短线接触"
+        - "跟伤或保护 Mina 连段资源"
+      false_positive: "Mina 第一段有 8 格，但核心伤害靠中短线接触和 Super 命中；Dry Season / Shooting Star 这类极开阔图把她当稳定长线会暴露她连段和前摇的脆弱性"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Super 击飞/root 在 Flaring Phoenix / Belle's Rock 窄口抢第一击杀"
+        - "Windmill 反投射物 + dash 在 Out in the Open 类开阔图 dodge 并 collapse"
+      cannot_fulfill:
+        - "先手无脑贴脸开团（点脸 Super 价值下降）"
+        - "独立处理抱团或多目标集火"
+      needs_teammate_support:
+        - "跟伤把击飞/root 转成击杀确认"
+        - "视野和 peel，避免错误方向 dash 送进近战"
+      false_positive: "Knockout 每死不可复活；Mina 错误方向 dash 会直接送进高爆发近战，Super 点脸不产生有效拉扯，敌方保留控制/反突进时不能早手"
 
   failure_modes:
     - id: "combo_timer_or_ammo_break"

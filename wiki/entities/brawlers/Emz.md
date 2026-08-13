@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "medium area pressure with 2s reload; ammo must be preserved for entry denial"
     objective_damage: "conditional Heist pressure only when modifier or map forces safe defenders into spray range; not a primary safe DPS profile"
     mobility: "low; no dash, so position must be pre-held"
-    survivability: "medium through Hype healing when Super hits enemies; base 3900 health is punishable if she is outranged"
+    survivability: "medium through Hype healing when Super hits enemies; Power 11 base 7800 health is punishable if she is outranged"
     engage: "medium as zone-entry slow and walking cloud; not a hard dive tool"
     disengage: "high against close entry with Friendzoner knockback plus Super slow"
     anti_aggro: "high when she holds Friendzoner or Super and the diver must cross spray range"
@@ -172,6 +172,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "body or wallbreak teammate when enemies attack from behind cover"
       false_positive: "zone control is strong only if Emz reaches the zone edge before being outranged"
+    - mode: "Bounty"
+      can_fulfill:
+        - "midrange chip against grouped or walking targets"
+        - "anti-dive peel to protect a star-holding teammate"
+      cannot_fulfill:
+        - "stable long-range star farming on open lanes"
+        - "safe star hold when outranged"
+      needs_teammate_support:
+        - "long-range anchor to hold stars and open lanes"
+        - "wallbreak or lane partner if enemy uses thrower pockets"
+      false_positive: "Emz's 6.67 spray collapses on Dry Season / Shooting Star style open maps; Bounty value depends on enemy walking into spray range, not on nominal range."
+    - mode: "Knockout"
+      can_fulfill:
+        - "Friendzoner peel and Super slow to deny a single-lane engage"
+        - "midrange punish against grouped pushes through a choke"
+      cannot_fulfill:
+        - "deep thrower pocket answer from safety"
+        - "frontline anchor into burst or multi-angle engage"
+      needs_teammate_support:
+        - "teammate that converts slowed targets into a pick"
+        - "wallbreak or marksman to open thrower-controlled lanes"
+      false_positive: "Emz stops a visible single entry, but Belle's Rock style wall pockets and Out in the Open long lanes let throwers and snipers outspace her before any spray connects."
 
   failure_modes:
     - id: "point_blank_deadzone_after_peel_spent"

@@ -157,6 +157,54 @@ bp_brawler_profile:
         - scorer
         - wallbreak_or_hard_displacement
       false_positive: 恐惧只是窗口，不能替代射门路径
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "治疗牵线维持 carrier 或前排站点"
+        - "Super 恐惧/减速阻止敌方抢矿或退守 carrier"
+        - "Biotic Ecosystem 双牵线放大矿区换血"
+      cannot_fulfill:
+        - "独自守矿或 carrier（sustained_dps medium_if_tether_maintained，无位移无 burst）"
+        - "处理多墙袋视线阻断"
+      needs_teammate_support:
+        - "carrier 或前排 body"
+        - "草区侦测和反突进"
+      false_positive: "Glowy 的矿区价值是放大队友站点，不是自己接管 carrier；Hard Rock Mine/Gem Fort 这类墙多图上牵线视线会反复断开，需要队友主动站在牵线半径内"
+    - mode: "Heist"
+      can_fulfill:
+        - "治疗牵线维持队友 safe 压力"
+        - "Super 恐惧阻止敌方进库推进"
+        - "伤害牵线 poke 压退回防"
+      cannot_fulfill:
+        - "稳定 safe DPS（objective_damage: low_direct_heist_value）"
+        - "近身破墙或贴库爆发"
+      needs_teammate_support:
+        - "专门 safe DPS 或破墙角色"
+        - "拉住牵线的队友站位"
+      false_positive: "Glowy 的 Heist 价值是支援，不是打库；Bridge Too Far/Pit Stop 这类图她只做治疗和控制，不能替代远程 safe DPS"
+    - mode: "Bounty"
+      can_fulfill:
+        - "中长线牵线维持对线换血"
+        - "Super 恐惧保护星差或反突进"
+        - "伤害 debuff 或队友 buff 放大长线核心"
+      cannot_fulfill:
+        - "primary long range pick damage"
+        - "硬扛纯长狙 outrange"
+      needs_teammate_support:
+        - "marksman 或 burst 转化牵线优势"
+        - "墙控或视野答案"
+      false_positive: "Glowy 适合支援长线核心；Dry Season/Shooting Star 这类纯狙击图上若牵线距离不足，她会被 Piper/Mandy 压出价值区"
+    - mode: "Knockout"
+      can_fulfill:
+        - "牵线维持回合对线"
+        - "Super 恐惧保护 HP lead 或反突进"
+        - "Biotic Ecosystem 团战 swing"
+      cannot_fulfill:
+        - "主动 first kill（burst low_medium）"
+        - "独自处理多突进"
+      needs_teammate_support:
+        - "爆发或长线核心转化支援"
+        - "反突进掩护"
+      false_positive: "Glowy 适合保护回合领先和反突进；Belle's Rock/New Horizons 这类图若无爆发队友，恐惧窗口无法转化为人头优势"
 
   failure_modes:
     - id: line_of_sight_or_range_break

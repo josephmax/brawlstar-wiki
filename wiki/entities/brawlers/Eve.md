@@ -166,6 +166,45 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开墙/反突进/补斩杀"
       false_positive: "如果水域不影响中心空间，Eve 只是低血长手，优先级下降"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "long_range_mine_pressure_from_water_or_safe_angle"
+        - "hatchling_tax_on_gem_carrier_or_chaser"
+        - "water_route_side_lane_denial_against_short_range"
+      cannot_fulfill:
+        - "reliable_gem_carrier_due_to_6200_HP_and_slow_unload"
+        - "stable_open_mid_duel_into_sniper_or_AoE_clear_cores"
+        - "fast_reposition_on_triple_lane_split_without_water"
+      needs_teammate_support:
+        - "stable gem carrier"
+        - "peel against dashers that cross water or close the distance"
+      false_positive: "Eve 的 9.33 格射程看似适合控矿，但 6200 HP 和慢 unload 让她不能持宝或在 Hard Rock Mine、Undermine 这类无水开放矿区独控；她只在 Gem Fort、Double Swoosh 等水域能影响矿区路线时成立。"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "long_range_lane_pressure_from_water_angle"
+        - "hatchling_harass_on_ball_carrier_or_goal_defender"
+        - "Gotta_Go_escape_or_reset_after_dangerous_pass_route"
+      cannot_fulfill:
+        - "ball_carrier_or_primary_scorer"
+        - "goal_defender_against_high_mobility_scorers"
+        - "stable_midfield_body_without_water_or_peel"
+      needs_teammate_support:
+        - "scorer and ball-carrier finisher"
+        - "peel so dashers do not close on Eve during the slow unload"
+      false_positive: "Eve 没有 PLP 推荐足球；在 Center Stage、Sneaky Fields、Triple Dribble、Pinball Dreams 这类球门结构图，她的低血和慢 unload 让她既不能持球也不能守门，只在水域或长线能压制球路时作为边线骚扰成立。"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "long_range_zone_pressure_and_hatchling_clear_tax"
+        - "water_angle_zone_denial_against_short_range_entries"
+        - "Gotta_Go_reposition_between_zones_or_after_a_push"
+      cannot_fulfill:
+        - "durable_zone_body_due_to_low_health"
+        - "stand_and_deny_against_AoE_or_sniper_cores"
+        - "solo_hold_a_contested_zone_without_peel"
+      needs_teammate_support:
+        - "actual zone holder / tank body"
+        - "AoE or sniper answer that can clear zone-contesting threats"
+      false_positive: "Eve 能从圈外施压，但不能在 Dueling Beetles、Open Business、Parallel Plays、Ring of Fire 站圈；如果水域不影响热区入口或敌方有范围清 hatchling 的工具，她的热区价值只剩长线消耗。"
 
   failure_modes:
     - id: "slow_unload_into_dive"
@@ -185,7 +224,7 @@ bp_brawler_profile:
       bp_use: "candidate_eval.spawnable_value"
     - id: "low_health_long_range_mirror"
       active_when: "敌方长线命中更稳定且可以越过 hatchling 直接打 Eve"
-      exposed_by: "Eve 血量 3100，长线对枪容错低"
+      exposed_by: "Eve Power 11 血量 6200，长线对枪容错低"
       mitigation: "利用水域角度和队友火力交叉，而不是纯正面对狙"
       bp_use: "must_avoid_against_sniper_core"
 

@@ -159,6 +159,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "稳定 mid、探草和远程补伤害"
       false_positive: "加速抢宝石不是稳定持宝石方案；Jacky 更适合侧压和反切"
+    - mode: "Heist"
+      can_fulfill:
+        - "隔墙打贴 safe 的防守者或入侵者"
+        - "Pneumatic Booster 突进配合三发清掉守 safe 的低中血目标"
+        - "Rebuild 维持 safe 附近掩体接近路线"
+      cannot_fulfill:
+        - "稳定远程 safe race"
+        - "正面 outmatch 更强坦克或反坦防守"
+      needs_teammate_support:
+        - "主 safe DPS（远程/thrower）、开墙、反反坦"
+      false_positive: "Jacky 的 objective_damage 偏目标控制而非 race；把她当主 safe 输出会输给远程 race 队"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草墙侧路压迫低中血长手"
+        - "隔墙打草后/墙后站位"
+        - "Super 拉人打断高星差撤退"
+      cannot_fulfill:
+        - "长线星差保护"
+        - "开阔图对枪"
+      needs_teammate_support:
+        - "长手主输出、探草、反长手 mirror"
+      false_positive: "Jacky 短射程在 Bounty 长线图很难接近；没有草墙路线时她的身体优势换不到星差"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草墙入口隔墙打贴脸目标"
+        - "Super 拉人制造首杀或反打窗口"
+        - "Counter Crush 惩罚贴身刺客"
+      cannot_fulfill:
+        - "远距离首杀输出"
+        - "开阔长线安全输出"
+      needs_teammate_support:
+        - "长手首杀火力、探草、反长手 mirror"
+      false_positive: "Jacky 在 Knockout 必须证明接近路线；草墙被清或长手风筝时她无法参与首杀交换"
 
   failure_modes:
     - id: "open_map_outranged"

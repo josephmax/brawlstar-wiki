@@ -172,6 +172,42 @@ bp_brawler_profile:
         - mid_control
         - scouting_or_trap_control
       false_positive: "Colt can win side lane yet still fail if mid has no carrier safety"
+    - mode: "Bounty"
+      can_fulfill:
+        - long_sightline_star_pressure_on_open_maps
+        - thin_cover_break_to_widen_long_range_advantage
+        - punish_slow_or_linear_movement_with_tracking_burst
+      cannot_fulfill:
+        - safe_star_pressure_into_stutter_step_mobility_or_multi_angle_flank
+        - bush_vision_or_assassin_route_answer
+      needs_teammate_support:
+        - anti-dive peel for assassins using wall or grass routes
+        - control or vision if the map has central bush pockets
+      false_positive: "Colt's tracking burst is a strong Bounty tool on open maps like Dry Season, but stutter-step mobility or multi-angle pressure breaks his tracking window, so he is not an unconditional star source."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - long_range_zone_pressure_from_outside_stand_range
+        - wallbreak_to_open_thrower_pocket_or_zone_approach
+        - speedloader_slow_to_confirm_zone_entry_kills
+      cannot_fulfill:
+        - zone_body_or_zone_time_at_close_range
+        - stand_in_zone_under_thrower_or_area_pressure
+      needs_teammate_support:
+        - zone body teammate to accumulate zone time
+        - anti-dive protection at the zone edge
+      false_positive: "Colt can pressure and open a zone from range, but his low health makes him a poor zone body, so he is a long-range support rather than a stand controller."
+    - mode: "Knockout"
+      can_fulfill:
+        - long_range_lane_control_and_first_pick_pressure
+        - wallbreak_to_open_thrower_pocket_or_sniper_angle
+        - speedloader_burst_confirm_on_overextended_target
+      cannot_fulfill:
+        - safe_lane_into_mobility_or_multi_angle_dive
+        - body_block_against_assassin_route_engage
+      needs_teammate_support:
+        - anti-dive peel for assassins using wall or grass routes
+        - control or vision over central cover
+      false_positive: "Colt is a strong Knockout lane pick on open maps, but Knockout deaths are unrecoverable, so a tracking failure or a flanking dive turns his commit into a loss rather than a low-risk poke."
 
   failure_modes:
     - id: "tracking_fails_into_mobility_or_cover"

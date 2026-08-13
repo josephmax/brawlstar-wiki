@@ -171,6 +171,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "scorer、控球、破墙后长线利用"
       false_positive: "Brawl Ball 是机制变体，不是 PLP 默认适配；需要明确门墙收益"
+    - mode: "Heist"
+      can_fulfill:
+        - "高 Heat 多弹打固定 safe 伤害"
+        - "Super 破防守墙和击退入库 aggro"
+        - "Overcooked DoT 压 safe 旁防守位"
+      cannot_fulfill:
+        - "稳定远程 safe DPS race"
+        - "独自承担入库或防守主线"
+      needs_teammate_support:
+        - "主 race/防守 DPS、炮台/投掷清除保护、反长线"
+      false_positive: "Pearl 的 Heist 价值依赖蓄 Heat 窗口和 safe 旁安全站位；被投掷/长手压低后无法维持高热 race"
+    - mode: "Bounty"
+      can_fulfill:
+        - "高 Heat 惩罚贴脸刺客后的第一轮交火"
+        - "Heat Shield 持线保护血量优势"
+        - "Overcooked DoT 压墙后保星位"
+      cannot_fulfill:
+        - "完全开阔长线对狙"
+        - "早手承担保星主线"
+      needs_teammate_support:
+        - "长手保星、反刺客 peel、视野"
+      false_positive: "Pearl 蓄 Heat 需要时间和掩体；Bounty 开阔图她在进入高热价值前就会被长手压低"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "高 Heat 多弹压制进区突进者"
+        - "Super 击退并清区口掩体"
+        - "Heat Shield 维持站区续航"
+      cannot_fulfill:
+        - "独自踩区长期站圈身体"
+        - "稳定清投掷 pocket"
+      needs_teammate_support:
+        - "站区 body、投掷处理、反长线"
+      false_positive: "Pearl 能压进区者但不能独自站圈；Heat 掉完后短时间内只是普通散射长手"
 
   failure_modes:
     - id: "heat_wasted_by_unplanned_ammo"

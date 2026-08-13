@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_at_melee; 0.8 秒装填但只有 2 ammo，长时间站撸仍怕高身体"
     objective_damage: "conditional_heist; Vanish 可绕过防线摸 safe，但缺少稳定远程打库"
     mobility: "very_high_when_resources_ready; Vanish、Super teleport、Repot 和 Hypercharge 共同提供突袭角度"
-    survivability: "medium_resource_based; 4200 HP 加 Vanish 逃生，gadget 用掉后容错急降"
+    survivability: "medium_resource_based; Power 11 本体 8400 HP 加 Vanish 逃生，gadget 用掉后容错急降"
     engage: "high_conditional; 需要 trait 充能、草墙路线或 Repot 落点"
     disengage: "medium_high_with_vanish; 没有 Vanish 时短手撤退差"
     anti_aggro: "low_medium; 可用 Vanish 躲技能，但不适合正面接高爆发近战"
@@ -155,6 +155,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "边路线权、清基地和 safe DPS 补充"
       false_positive: "一次摸库不能替代整局 race DPS"
+    - mode: "Bounty"
+      can_fulfill:
+        - "trait 侦测草内高星目标，Vanish 贴身后删除孤立后排"
+        - "墙角/草带最后手惩罚无 peel 的远程"
+      cannot_fulfill:
+        - "在 Dry Season / Shooting Star 类极开阔图替代稳定长线"
+        - "无掩护时正面拿星并保命撤退"
+      needs_teammate_support:
+        - "长线压血和逼出探测技能"
+        - "保护 Lily 隐身路线和撤退出口"
+      false_positive: "Lily 主攻击只有 2 格；Layer Cake / Hideout 这类墙草图只有在墙草提供接近路线且敌方无近战反切时才考虑，不能套用'刺客克狙击'"
+    - mode: "Knockout"
+      can_fulfill:
+        - "最后手切掉无保护的远程/投掷口袋"
+        - "Repot 越墙惩罚 Belle's Rock / Layer Cake 类墙后静态站位"
+      cannot_fulfill:
+        - "先手开团或吃控制"
+        - "在 Out in the Open 类极开阔图稳定接近"
+      needs_teammate_support:
+        - "先压低目标血量或逼出反刺客资源"
+        - "保留 peel 防止 Lily Vanish 进场后无出口"
+      false_positive: "Knockout 每死不可复活；Lily Vanish 持续 3 秒且 Super 未命中无传送收益，敌方抱团或保留 Bull/Chester/Nita 类反切时会送头"
 
   failure_modes:
     - id: "vanish_cooldown_overextension"

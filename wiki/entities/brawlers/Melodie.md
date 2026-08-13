@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒装填，音符持续 8 秒，资源断档后输出下降"
     objective_damage: "high_conditional_heist; 三段 dash 可快速接触 safe，但要先有音符和生存窗口"
     mobility: "very_high_with_super; 三段 5.33 格 dash 可分次用于进场、追击、得分或撤退"
-    survivability: "medium_resource_based; 3800 HP，Interlude 根据音符提供衰减护盾，护盾时效短"
+    survivability: "medium_resource_based; Power 11 本体 7600 HP，Interlude 根据音符提供衰减护盾，护盾时效短"
     engage: "high_when_notes_and_super_ready; 需要先叠音符再 dash 进场"
     disengage: "medium_high_with_remaining_dash; Super 未用完时可撤，三段用尽后危险"
     anti_aggro: "medium; 可先 dash 避开区域 Super 再回身，但怕硬控和近战爆发"
@@ -138,6 +138,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "视野、补伤和反控制"
       false_positive: "Bounty 中失败进场会直接送星"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "三段 dash 追击 carrier 或快速拾宝撤离"
+        - "叠音符后切掉矿区支援或守宝者"
+        - "剩余 dash 帮 carrier 退线或反切追兵"
+      cannot_fulfill:
+        - "稳定主 carrier 承担倒计时压力"
+        - "无资源时正面控矿"
+      needs_teammate_support:
+        - "主 carrier、矿区控线、反近战保护"
+      false_positive: "Melodie 能摸 carrier 但进场失败会让队伍短时 2v3；矿区失败进场直接送宝石"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "三段 dash 切掉圈外投掷/低血支援"
+        - "叠音符后清圈旁守区者帮助队友进圈"
+        - "剩余 dash 撤离或追击逃区目标"
+      cannot_fulfill:
+        - "作为唯一 zone body 长期站圈"
+        - "无资源时抗区域控制"
+      needs_teammate_support:
+        - "站圈前排、区域控制、反控制保护"
+      false_positive: "Melodie 清人后没人站圈，Hot Zone 仍不计分；她的 zone 价值是清场而非踩区"
+    - mode: "Knockout"
+      can_fulfill:
+        - "最后手惩罚无 peel 的孤立后排"
+        - "zig-zag dash 躲线性普攻后切低血目标"
+        - "三段 dash 在缩圈前完成不可复活击杀"
+      cannot_fulfill:
+        - "早手进开阔长线送击杀"
+        - "独自承担保星或控线主线"
+      needs_teammate_support:
+        - "视野、补伤、反控制、逼敌方暴露 peel"
+      false_positive: "Knockout 是单命模式，Melodie 失败进场直接送回合；必须有目标、路线和资源"
 
   failure_modes:
     - id: "notes_not_stacked_before_entry"

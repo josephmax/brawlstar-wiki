@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_to_medium; 1.8 秒 reload，Super 后还会消耗 ammo"
     objective_damage: "low"
     mobility: "high_with_resources; Fast 基础，Regulate 可越墙/水跳，Super dash 加速但不穿墙水"
-    survivability: "high_with_renegade; 5400 HP，Renegade 3000 衰减盾，Regulate 空中免疫非 DoT/status"
+    survivability: "high_with_renegade; Power 11 本体 10800 HP，Renegade 3000 衰减盾，Regulate 空中免疫非 DoT/status"
     engage: "high_if_control_not_interrupted; Super/Regulate/All Eyez on Me 均可 hypnotize"
     disengage: "medium; Regulate 可跳走，Super 更偏进场"
     anti_aggro: "medium_high; hypnotize 阻止敌人攻击/技能，但需要命中和队友跟进"
@@ -134,27 +134,90 @@ bp_brawler_profile:
       bp_use: "candidate_eval.carrier_peel_control_tank"
 
   objective_contracts:
-    - mode: "Bounty/Knockout"
+    - mode: "Gem Grab"
       can_fulfill:
-        - "闭图开团和首杀控制"
-        - "星差 bodyguard"
-        - "Regulate 越墙接触"
+        - "carrier peel via Hypnotize pulling chasers off carrier retreat line"
+        - "Regulate wall/water jump to contest mine-side grass or disrupt mid body"
+        - "high-health body to soak mine pressure while teammates regroup"
       cannot_fulfill:
-        - "独立长线击杀"
-        - "无 follow-up 时 solo carry"
+        - "primary gem carrier with low damage and ammo-consuming Super"
+        - "reliable mid body against percent damage (Colette) or sustain"
+        - "thrower pocket or spawnable clear"
       needs_teammate_support:
-        - "爆发/长手跟伤、反百分比、清控制"
-      false_positive: "Ollie 控住人不等于击杀；低伤害要求队友立即跟进"
-    - mode: "Brawl Ball/Gem Grab"
+        - "burst or long-range damage to convert Hypnotize into kills"
+        - "actual carrier"
+        - "anti-percent or anti-sustain answer"
+      false_positive: "Ollie 高血和 Hypnotize 能 peel carrier，但低伤害让他无法独自控矿或收割；Gem Fort/Hard Rock Mine 的远程和投掷会绕过他打后排"
+    - mode: "Brawl Ball"
       can_fulfill:
-        - "带球/守门控制窗口"
-        - "carrier peel"
+        - "Hypnotize window to walk ball in or freeze goalkeeper"
+        - "All Eyez on Me post-shot block on defender"
+        - "Regulate wall/water jump for unexpected scoring angle"
       cannot_fulfill:
-        - "稳定破门"
-        - "安全主 carrier"
+        - "reliable wallbreak goal opening"
+        - "primary ball carrier into knockback or burst"
+        - "goal defense against long-range or thrower pressure"
       needs_teammate_support:
-        - "射门/破墙、carrier、补伤害"
-      false_positive: "Super 会消耗 ammo，且本体伤害低，不能把 Ollie 当主要输出"
+        - "scorer or wallbreak teammate"
+        - "burst to confirm Hypnotize window into score"
+        - "anti-dive or anti-control to protect Super dash"
+      false_positive: "Hypnotize 给进球窗口不等于进球；Center Stage/Sneaky Fields/Triple Dribble 的 goal geometry 闭合时 Ollie 低伤害无法清守门，Super dash 被取消会丢窗口"
+    - mode: "Heist"
+      can_fulfill:
+        - "Regulate or Hypnotize to disrupt enemy safe DPS or defender"
+        - "high-health body to soak lane pressure while real safe DPS delivers"
+        - "Hypnotize anti-heal window on safe-defender reset"
+      cannot_fulfill:
+        - "primary safe race damage at low DPS"
+        - "wallbreak to open safe angle"
+        - "stable standing safe DPS under focus"
+      needs_teammate_support:
+        - "real safe DPS core"
+        - "lane winner that converts Ollie control into safe access"
+        - "anti-percent (Colette) answer"
+      false_positive: "Ollie 的 Heist 价值是控制和吃伤害，不是 safe race；Bridge Too Far/Kaboom Canyon/Hot Potato 中把他当主 safe DPS 是陷阱"
+    - mode: "Bounty"
+      can_fulfill:
+        - "星差 bodyguard via Hypnotize denying enemy assassin or long-range follow-up"
+        - "Regulate wall jump to create engage angle on wall-adjacent sniper"
+        - "high-health body to absorb chip while star lead teammate resets"
+      cannot_fulfill:
+        - "independent long-range kill or star pickup"
+        - "solo carry without follow-up damage"
+        - "stable star holder on open maps against superior snipers"
+      needs_teammate_support:
+        - "burst or long-range finisher to convert Hypnotize into kill"
+        - "anti-percent or anti-sustain"
+        - "vision or control clear on closed-map routes"
+      false_positive: "Ollie 控住人不等于击杀；Shooting Star/Dry Season 纯开阔镜像里他中程被压、低伤拿不到 finish；Layer Cake/Layer Cake 墙草图更适合他"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Hypnotize to deny grouped zone entry or pull zoners off circle"
+        - "high-health zone body with Renegade shield to hold contested zone edge"
+        - "Regulate wall jump to contest zone-adjacent grass or pocket"
+      cannot_fulfill:
+        - "reliable zone clear against thrower or spawnable pressure"
+        - "primary zone time into percent damage (Colette) or sustained focus"
+        - "solo zone hold without damage follow-up"
+      needs_teammate_support:
+        - "durable zone holder or area clear"
+        - "burst to convert Hypnotize into zone re-take"
+        - "anti-percent or anti-sustain"
+      false_positive: "Ollie 高血和 Hypnotize 能短暂站圈，但 Dueling Beetles/Open Business/Parallel Plays 的 thrower 和 spawnable 会绕过控制；低伤害让他无法清理 zone"
+    - mode: "Knockout"
+      can_fulfill:
+        - "闭图开团和首杀控制 via Regulate wall jump into Hypnotize"
+        - "Hypnotize bodyguard to protect star lead or low-health teammate"
+        - "high-health body to absorb first pick attempt"
+      cannot_fulfill:
+        - "independent long-range first pick"
+        - "solo carry without follow-up damage"
+        - "safe open lane trade against superior snipers"
+      needs_teammate_support:
+        - "burst or long-range damage to confirm Hypnotize into first pick"
+        - "anti-percent (Colette) or anti-control to protect Super dash"
+        - "anti-sustain (Poco/Sandy) answer"
+      false_positive: "Ollie 控住人不等于击杀；Belle's Rock/Flaring Phoenix/New Horizons 的多角度突进和 Colette/Poco/Sandy 会消耗他，Super dash 被取消会丢窗口"
 
   failure_modes:
     - id: "super_cancelled_during_dash"

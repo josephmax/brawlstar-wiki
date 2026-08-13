@@ -50,7 +50,7 @@ bp_brawler_profile:
     sustained_dps: "ramp_dependent; 2s reload is slow, but Pumping Up reloads all ammo on takedown and Stage upgrades multiply shot count"
     objective_damage: "conditional; Fandom notes Stage 3 Super can heavily damage safe, but PLP's recommended modes are Gem Grab, Brawl Ball, and Hot Zone"
     mobility: "medium_after_stage_3; normal speed early, +100 speed at Stage 3, and Tactical Retreat offers a short dash/reload variant"
-    survivability: "medium_low; 3800 health and Shield/Speed gear help, but early Clancy is punishable before tokens"
+    survivability: "medium_low; Power 11 7600 health and Shield/Speed gear help, but early Clancy is punishable before tokens"
     engage: "medium; he prefers farming hits and punishing forced entries rather than starting fights from nothing"
     disengage: "medium_with_tactical_retreat_variant; default build relies more on speed and damage pressure"
     anti_aggro: "high_after_super_or_stage_2; Snappy Shooting plus Super can rapidly farm tanks/assassins into Stage 3"
@@ -174,6 +174,44 @@ bp_brawler_profile:
         - zone body or control partner for opening seconds
         - thrower/wall-pocket answer
       false_positive: "If the team loses the zone before Clancy ramps, Stage 3 upside may arrive too late."
+    - mode: "Heist"
+      can_fulfill:
+        - conditional_stage_3_super_safe_damage
+        - anti_entry_damage_on_defender_or_attacker_route
+      cannot_fulfill:
+        - stable_safe_dps_lane
+        - safe_race_dps_before_token_ramp
+        - safe_during_enemy_control_or_poison_focus
+      needs_teammate_support:
+        - lane stabilizer that buys the ramp window
+        - protection from CC, poison, or burst that targets Clancy before Stage 2
+      false_positive: "Fandom notes Stage 3 Super can hit safe, but PLP's recommended modes exclude Heist; Clancy's slow ramp and 7600 Power 11 health make him a poor safe race pick against early aggro or control."
+    - mode: "Bounty"
+      can_fulfill:
+        - mid_lane_token_farm_when_enemies_contest_a_shared_sightline
+        - late_star_pressure_after_stage_2_widening
+        - punish_overextended_close_route_target
+      cannot_fulfill:
+        - safe_star_pressure_on_extreme_open_maps_before_ramp
+        - stable_lane_control_against_outranging_marksman
+        - survive_focus_fire_at_7600_power_11_health
+      needs_teammate_support:
+        - marksman or long-range teammate to hold the open sightline during ramp
+        - peel against mobile assassins and control that deny his line
+      false_positive: "Bounty rewards low-risk star pressure; Clancy's Stage 1 is nearly useless and his line can be denied by mobility, poison, or control, so he is a risky Bounty pick rather than a safe star source."
+    - mode: "Knockout"
+      can_fulfill:
+        - mid_lane_token_farm_into_stage_3_cone_pressure
+        - punish_forced_entry_on_overextended_close_route_target
+        - late_round_anti_body_clear_after_stage_3
+      cannot_fulfill:
+        - safe_first_pick_into_open_or_control_heavy_comps
+        - stable_long_range_lane_control_before_ramp
+        - survive_unprotected_focus_fire
+      needs_teammate_support:
+        - lane partner or control that forces predictable contact into his cone
+        - peel during the early Stage 1 window
+      false_positive: "Knockout deaths are unrecoverable; Clancy's ramp window is a liability before Stage 2, and open maps or control comps can deny his line, so he should not be treated as a stable Knockout carry."
 
   failure_modes:
     - id: "early_stage_1_pressure_deficit"

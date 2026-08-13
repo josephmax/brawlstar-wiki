@@ -124,18 +124,46 @@ bp_brawler_profile:
       bp_use: candidate_eval.heist_close_burst_with_access_check
 
   objective_contracts:
-    - mode: Hot Zone_or_Gem Grab
+    - mode: "Gem Grab"
       can_fulfill:
-        - route_slow_and_area_denial
-        - anti_body_burst
-        - carrier_or_zone_retreat_cut
+        - "Curveball 控矿和 carrier 退线 slow"
+        - "Super 切 carrier 撤退路线并保护倒计时拾宝"
       cannot_fulfill:
-        - pure_long_range_anchor
-        - wallbreak_to_open_thrower_pocket
+        - "纯远程 mine anchor"
+        - "开墙处理投掷口袋"
       needs_teammate_support:
-        - thrower_or_long_range_answer
-        - actual_zone_body_or_carrier
-      false_positive: Spike 控区强，但被隔墙压制时不能单独站点
+        - "carrier、开墙/投掷答案"
+      false_positive: "Spike 控区强，但被隔墙投掷压制时不能单独守住 mine"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Super 区口 slow 和路线封锁"
+        - "anti-body 多段尖刺爆发"
+      cannot_fulfill:
+        - "纯长线 zone anchor"
+        - "开墙打开 thrower pocket"
+      needs_teammate_support:
+        - "实际站区 body、投掷/长线答案"
+      false_positive: "Super 控区强，但需要约 4 发直接命中充能；区被清/未充好时不构成基础控制"
+    - mode: "Bounty"
+      can_fulfill:
+        - "中距离多段尖刺压制固定射线后排"
+        - "Super slow 惩罚前排 peek 制造星差窗口"
+      cannot_fulfill:
+        - "Dry Season/Shooting Star 类纯长线对枪首发权"
+        - "草丛视野与稳定星压"
+      needs_teammate_support:
+        - "长线/视野、反机动 peel"
+      false_positive: "Spike 不是纯长手；面对最大射程 sniper 会被 outrange，中距离命中不等于稳定星压"
+    - mode: "Knockout"
+      can_fulfill:
+        - "choke/草口 Super slow 创造第一减员窗口"
+        - "贴近多段爆发收割被 slow 的目标"
+      cannot_fulfill:
+        - "稳定首发开火权"
+        - "处理跳跃/位移绕过 Super 区的目标"
+      needs_teammate_support:
+        - "先手 chip、硬控/视野、反机动 peel"
+      false_positive: "Super slow 区会被跳跃/dash 绕过；多路线开阔 KO 图上 Spike 不是稳定 first pick"
     - mode: Brawl Ball
       can_fulfill:
         - anti_tank_goal_defense

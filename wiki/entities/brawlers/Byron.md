@@ -117,31 +117,58 @@ bp_brawler_profile:
       bp_use: candidate_eval.heist_support_not_primary_dps
 
   objective_contracts:
-    - mode: Bounty_or_Knockout
+    - mode: "Bounty"
       can_fulfill:
-        - long_range_heal_support
-        - low_commitment_chip
-        - star_or_round_lead_sustain
+        - "长线治疗支援维持脆皮后排站线和星压"
+        - "低承诺远程 chip 和 Malaise 削弱敌方回复"
+        - "领先后的血量 swing 保星"
       cannot_fulfill:
-        - solo_first_pick_without_teammate_damage
-        - close_range_self_peel
+        - "无队友伤害时的 solo 首发击杀"
+        - "近身 self-peel"
       needs_teammate_support:
-        - reliable_damage_carry
-        - anti_thrower_or_anti_dive
-      false_positive: 队友不能利用治疗继续站线时，Byron 只是低血量长手
-    - mode: Hot Zone_or_Gem Grab
+        - "可靠伤害 carry、反投掷/反 dive"
+      false_positive: "队友不能利用治疗继续站线时，Byron 只是低血量长手；治疗不等于星差来源"
+    - mode: "Knockout"
       can_fulfill:
-        - sustain_objective_body
-        - punish_heal_or_tank_reentry_with_Malaise
-        - support_carrier_or_zone_anchor
+        - "长线治疗支援保血量领先和回合节奏"
+        - "Malaise 反治疗拖慢敌方回复循环"
       cannot_fulfill:
-        - primary_zone_body
-        - reliable_bush_scout
+        - "首发开火权或独立 first kill"
+        - "草丛视野与近身自保"
       needs_teammate_support:
-        - body_on_objective
-        - bush_or_wall_control
-      false_positive: 没有站点身体时，治疗价值无法转成分数
-    - mode: Heist
+        - "可靠伤害 carry、反投掷/反 dive、视野"
+      false_positive: "Byron 是支援不是 carry；无前排吃治疗时血量 swing 无法转成回合胜利"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "目标区边缘给站区身体续航"
+        - "Malaise 削弱敌方重进场回复"
+      cannot_fulfill:
+        - "主站区 body"
+        - "稳定 bush scout 和草丛视野"
+      needs_teammate_support:
+        - "实际站区 body、草墙控制、反 dive"
+      false_positive: "没有站点身体时治疗无法转成 zone time；三远程不站点时 Byron 价值清零"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "carrier 和矿区前排的长线续航"
+        - "Malaise 反敌方重进场回复保护倒计时拾宝"
+      cannot_fulfill:
+        - "主 carrier（低血、无位移、怕贴脸）"
+        - "草丛视野与稳定 mine 控制"
+      needs_teammate_support:
+        - "carrier、实际控矿 body、草墙控制"
+      false_positive: "治疗不等于控矿；Byron 站不住矿，无前排时只是低血后排"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "长线治疗维持持球/守门前排血量"
+        - "Malaise 反治疗拖慢敌方门前回复循环"
+      cannot_fulfill:
+        - "持球推进或破门 scorer"
+        - "近身 self-peel 和球路 body"
+      needs_teammate_support:
+        - "scorer、持球者、稳定前排、反 dive"
+      false_positive: "Byron 是支援不是进球组件；治疗维持不等于破门窗口，球权转换仍需队友"
+    - mode: "Heist"
       can_fulfill:
         - support_safe_lane_winner
         - anti_body_defense_near_safe

@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_if_safe; 1.3 秒 very fast reload，但需要持续站线"
     objective_damage: "situational_heist_variant; Mama's Squeeze 可对 safe 做持续伤害，但非 PLP 默认模式"
     mobility: "low; 无位移"
-    survivability: "high_with_station; 5000 HP + 炮台持续治疗 + Mama's Hug 命中回血"
+    survivability: "high_with_station; Power 11 本体 10000 HP + 炮台持续治疗 + Mama's Hug 命中回血"
     engage: "low; 主要守阵地和推进，不主动开团"
     disengage: "medium; 炮台 quick-fire 可挡伤，Scrapsucker 可剥夺突进者弹药"
     anti_aggro: "medium_high_with_resources; 弹药剥夺和治疗能拖刺客/坦克，但贴脸高爆发仍危险"
@@ -171,6 +171,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "lane win、炮台保护、race DPS"
       false_positive: "Heist 价值来自特定炮台位和 Star Power 变体，不等于默认 PLP 模式适配"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "炮台治疗维持守门和门前站线"
+        - "Scrapsucker 剥夺带球突进者弹药"
+        - "Pulse Modulator 紧急救守门人"
+      cannot_fulfill:
+        - "主 scorer 或破墙"
+        - "无炮台时长期抗 burst"
+      needs_teammate_support:
+        - "scorer、破门、控球、反突进"
+      false_positive: "Pam 能守门但不能进球；炮台被投掷/弹射清掉后只是宽散射中速输出"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Mama's Hug 命中回血维持长线保星续航"
+        - "Scrapsucker 剥夺对狙长手弹药"
+        - "宽散射扫草暴露保星位"
+      cannot_fulfill:
+        - "远距离稳定单点收割"
+        - "处理多路分散后排"
+      needs_teammate_support:
+        - "长手收割、反刺客 peel、不分散三线"
+      false_positive: "Pam 的治疗需要队友留在半径内；Bounty 开阔图分散站位会让续航失效"
+    - mode: "Knockout"
+      can_fulfill:
+        - "炮台治疗维持回末站线"
+        - "Scrapsucker 剥夺回末突进者弹药"
+        - "宽散射压回末低血站位"
+      cannot_fulfill:
+        - "纯长线对枪首杀"
+        - "独自守住被强开的侧路"
+      needs_teammate_support:
+        - "长手补伤、反刺客、收割被剥弹药目标"
+      false_positive: "炮台被低成本清掉后 Pam 在单命模式只是脆皮中速输出；分散站位会让她失去半径续航"
 
   failure_modes:
     - id: "spread_inaccuracy_at_range"

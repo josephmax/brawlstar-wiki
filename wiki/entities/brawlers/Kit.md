@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: low_medium_alone; conditional_high_with_good_teammate_carrier
     objective_damage: low; objective value comes from sustain, pick, and route pressure
     mobility: high_with_super_jump_and_detach_dash
-    survivability: low_alone_3100_hp; invulnerable_while_attached_to_ally
+    survivability: low_alone_6200_hp; invulnerable_while_attached_to_ally
     engage: high_on_isolated_enemy_or_ally_carrier
     disengage: medium_with_super_detach_or_cardboard_box
     anti_aggro: conditional_with_jump_stun_or_tank_attach
@@ -161,6 +161,54 @@ bp_brawler_profile:
         - "tank_or_scorer_carrier"
         - "anti_knockback_or_anti_control"
       false_positive: "该分支高度依赖队友载体，PLP 默认模式并不把它列为主推荐"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "附身 scorer 或坦克推进并提供越墙 yarn 输出"
+        - "Cardboard Box 隐身抓孤立持球者或守门人"
+        - "Cheeseburger 大治疗维持 carrier 推进"
+      cannot_fulfill:
+        - "primary scorer（常态短手 6200 HP）"
+        - "独自处理抱团防守或多控制"
+      needs_teammate_support:
+        - "scorer 或 tank carrier"
+        - "反控制保护附身目标"
+      false_positive: "Kit 适合附身保护推进，不是自己带球射门；Center Stage/Sneaky Fields 这类图若无可靠载体，他的附身和单抓都无法转化进球"
+    - mode: "Heist"
+      can_fulfill:
+        - "附身 safe DPS 队友提供治疗和越墙输出"
+        - "Cardboard Box 隐身抓孤立防守者制造减员"
+        - "Cheeseburger 维持打库队友存活"
+      cannot_fulfill:
+        - "稳定 safe DPS（objective_damage: low）"
+        - "近身破墙或贴库爆发"
+      needs_teammate_support:
+        - "专门 safe DPS 或破墙角色"
+        - "反控制保护附身目标"
+      false_positive: "Kit 的 Heist 价值是附身放大打库队友，不是自己打库；Bridge Too Far/Pit Stop 这类图若无 safe DPS 队友，他的附身无法替代输出缺口"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Cardboard Box 隐身抓孤立长手/投掷"
+        - "附身长线队友提供治疗和越墙 yarn 输出"
+        - "Super jump stun 收头孤立低血目标"
+      cannot_fulfill:
+        - "硬扛纯长狙 outrange（常态短手）"
+        - "处理抱团或反跳资源"
+      needs_teammate_support:
+        - "爆发 follow-up 抓孤立目标"
+        - "长线核心或反狙击掩护"
+      false_positive: "Kit 适合抓孤立和附身支援，不是长线对枪；Dry Season/Shooting Star 这类纯长狙图上他常态短手会被压在射程外"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "附身 zone body 提供治疗和越墙输出"
+        - "Cardboard Box 隐身抓孤立站圈者"
+        - "Cheeseburger 维持 zone body 站圈"
+      cannot_fulfill:
+        - "独自站圈（常态短手 6200 HP）"
+        - "稳定处理多角度进区"
+      needs_teammate_support:
+        - "zone body 或前排"
+        - "反控制保护附身目标"
+      false_positive: "Kit 适合附身放大 zone body，不是自己站圈；Dueling Beetles/Open Business 这类图若无 zone body，他的附身和单抓都无法承住区口"
 
   failure_modes:
     - id: jump_on_grouped_enemy

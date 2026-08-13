@@ -166,6 +166,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 carrier、视野、反召唤物"
       false_positive: "Super 过墙击杀依赖中心命中，不应无条件当作 carrier counter"
+    - mode: "Heist"
+      can_fulfill:
+        - "dash 近身 safe 窗口爆发和吸血续战"
+        - "Super 越障碍投鱼打墙后 safe 防守者"
+        - "Hosomaki/Nigiri 顶住 safe 入侵者首波"
+      cannot_fulfill:
+        - "稳定远程 safe race DPS"
+        - "无路线正面进多控 safe 防守"
+      needs_teammate_support:
+        - "主 safe DPS（远程/thrower）、开墙、反硬控"
+      false_positive: "Kenji 的 objective_damage 偏近身窗口；把他当主 race 手会让 race 输给远程队，且 Super 回原位会被预瞄"
+    - mode: "Bounty"
+      can_fulfill:
+        - "dash/Super 越障碍标记收尾低血长手"
+        - "吸血续战在星差时保命"
+        - "Nigiri 减伤顶住长手开局换血"
+      cannot_fulfill:
+        - "稳定长线星差保护"
+        - "开阔图正面狙击 mirror"
+      needs_teammate_support:
+        - "长手搭档、反硬控 peel、探草"
+      false_positive: "Kenji 短手且 Super 中心可被非对角移动规避；敌方有保镖或分散时他的星差窗口不稳定"
+    - mode: "Knockout"
+      can_fulfill:
+        - "dash 压缩距离后 slash/吸血首杀"
+        - "Super 越障碍落点十字收尾低血目标"
+        - "Hyper pull 把敌人拉向 Super 中心确认首杀"
+      cannot_fulfill:
+        - "远距离首杀输出"
+        - "正面进多控/多 shotgun 阵容"
+      needs_teammate_support:
+        - "长手首杀火力、反硬控 peel、落点清控"
+      false_positive: "Kenji 的 Knockout 首杀依赖中心命中和进场；Super 回原位和短手让他的首 kill 不是无条件"
 
   failure_modes:
     - id: "super_center_can_be_dodged"

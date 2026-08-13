@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "high_if_landing_spread; 1.3 秒 very fast reload，Super 区内 projectile 获得 25% 伤害/充能提升"
     objective_damage: "conditional; Heist 依赖长线 projectile boost 和安全回溯，不是直接 safe burst"
     mobility: "medium_high; 770 fast，Back to the Finxture 提供 3 秒位置回溯"
-    survivability: "medium; 3700 HP，依赖回溯、射程和 Time Warp 降速来保命"
+    survivability: "medium; Power 11 本体 7400 HP，依赖回溯、射程和 Time Warp 降速来保命"
     engage: "medium; No Escape 可 2 秒控制但免伤，主要用于阻断路线而非集火"
     disengage: "high_with_back_to_the_finxture; 可诱敌后回到 3 秒前点位"
     anti_aggro: "conditional; 回溯能躲刺客第一跳，但 Time Warp 不影响很多自身位移攻击"
@@ -177,6 +177,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站圈身体、反坦/反刺客、投掷处理"
       false_positive: "Finx 在圈旁很有用，但圈内身体仍要别人承担"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Time Warp 改写长线 projectile duel，提高己方命中率并降低敌方"
+        - "Backtrack 诱敌后撤，保护星差和低风险换血"
+      cannot_fulfill:
+        - "硬反近身/自体位移刺客"
+        - "无 projectile 队友时的稳定拿星"
+      needs_teammate_support:
+        - "至少一名可利用 Time Warp 的 projectile 队友"
+        - "反突进或探草，处理绕过 projectile field 的进场"
+      false_positive: "Time Warp 只对 projectile 生效；Dry Season 上遇到非弹道突进/位移阵容时，长线优势会被直接绕过"
+    - mode: "Knockout"
+      can_fulfill:
+        - "No Escape stall 暂停持球/进圈动作，拖延缩圈前节奏"
+        - "Time Warp 让己方长线先手命中、敌方 projectile 难以还击"
+      cannot_fulfill:
+        - "无 projectile 队友时独立结束回合"
+        - "No Escape 后立刻集火被冻结目标（目标免伤）"
+      needs_teammate_support:
+        - "projectile 击杀确认位"
+        - "反近身保护，防止刺客绕过 Time Warp 直接贴脸"
+      false_positive: "No Escape 是暂停按钮不是爆发按钮；Belle's Rock 上把免伤当集火窗口会破坏我方换血节奏"
 
   failure_modes:
     - id: "time_warp_does_not_affect_self_projectile_engage"

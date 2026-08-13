@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_when_turret_survives; 本体 1.8 秒装填，炮台 0.3 秒攻击"
     objective_damage: "conditional_high_on_stationary_targets; Recoil Spring 适合 Heist safe/炮台/不会躲的目标"
     mobility: "low; 无位移"
-    survivability: "low_to_medium; 3300 HP，靠炮台挡弹和站位保护"
+    survivability: "low_to_medium; Power 11 本体 6600 HP，靠炮台挡弹和站位保护"
     engage: "low; 依赖对手进 chokepoint 或被 Spark Plug slow"
     disengage: "medium_with_turret_slow; Spark Plug 和炮台可拖追击"
     anti_aggro: "medium_high_if_turret_ready; 炮台挡路 + Spark Plug slow 能防重装/刺客"
@@ -169,6 +169,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开墙/护送炮台、远程 race、防 Penny 类反弹射"
       false_positive: "PLP 默认模式不含 Heist；Heist 只作为 Fandom 机制支持的 build 变体"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "球路炮台占线和弹射惩罚抱团守门"
+        - "Spark Plug slow 限制持球者/防守者位移"
+        - "Energize 维持炮台挡弹窗口"
+      cannot_fulfill:
+        - "稳定破门"
+        - "无炮台状态正面硬推"
+      needs_teammate_support:
+        - "scorer、破墙、反突进 peel"
+      false_positive: "Jessie 控球路强，但她本体不能进球；炮台被快速清掉时只剩慢弹长手"
+    - mode: "Bounty"
+      can_fulfill:
+        - "长线弹射 poke 压制抱团长手"
+        - "炮台越墙投放迫使静态长手转移火力"
+        - "弹射揭示草内/墙后站位"
+      cannot_fulfill:
+        - "高爆发首杀"
+        - "开阔图对高机动狙击手"
+      needs_teammate_support:
+        - "首杀火力、反突进 peel、探草"
+      false_positive: "Jessie 的弹射需要首发命中才有连锁价值；敌方分散站位时她的星差输出会很有限"
+    - mode: "Knockout"
+      can_fulfill:
+        - "炮台越墙占线和 Spark Plug slow 锁窄口"
+        - "弹射惩罚墙后/草内首杀路线并揭示站位"
+        - "Energize 续炮台维持占线窗口"
+      cannot_fulfill:
+        - "首杀爆发"
+        - "无炮台状态独立收尾"
+      needs_teammate_support:
+        - "首杀火力、反突进 peel、探草确认隐藏目标"
+      false_positive: "Jessie 的 Knockout 价值高度依赖炮台存活和 chokepoint；敌方分散或快速清炮台时她无法稳定参与首杀"
 
   failure_modes:
     - id: "scrappy_cleared_before_value"

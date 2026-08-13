@@ -170,6 +170,29 @@ bp_brawler_profile:
       needs_teammate_support:
         - "稳定 mid 和视野控制"
       false_positive: "高血量不等于适合拿宝石；Bull 更适合侧压和反切"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草丛伏击收残血后排"
+        - "Super 冲锋逼退脆皮长手"
+      cannot_fulfill:
+        - "开阔长线稳定拿星"
+        - "无接近路线时的正面接触"
+        - "对稳定远程 anchor 的持续压制"
+      needs_teammate_support:
+        - "探草、长线压血、稳定远程 anchor"
+      false_positive: "Dry Season、Shooting Star 等极开阔 Bounty 图几乎不奖励短手；Bull 只在敌方三远程极脆且缺 peel 时作最后手惩罚，不是常规 Bounty 选角"
+    - mode: "Knockout"
+      can_fulfill:
+        - "草/墙路线伏击首杀"
+        - "Super 破墙改变对位结构"
+        - "Stomper 停位收低血目标"
+      cannot_fulfill:
+        - "开阔长线对狙"
+        - "无路线时的正面接触"
+        - "稳定远程输出保证"
+      needs_teammate_support:
+        - "长线压血、反投掷、开路前的线权"
+      false_positive: "Knockout 死亡不可恢复，Bull 的冲锋路径可读且不免伤；在没有草/墙接近路线或敌方保留反坦控制时，进场就是送头"
 
   failure_modes:
     - id: "open_lane_kited"

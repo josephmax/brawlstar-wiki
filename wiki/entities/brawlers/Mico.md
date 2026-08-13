@@ -164,6 +164,46 @@ bp_brawler_profile:
         - lane_pressure_to_open_entry
         - anti_tank_or_control_answer
       false_positive: "Heist damage is only real if Mico can repeatedly access safe"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "跳跃穿墙切入矿区侧角或 carrier 退线制造减员"
+        - "空中无敌窗口回收/切断撤退路线"
+      cannot_fulfill:
+        - "主 carrier（低血、慢装填，持宝后极度脆弱）"
+        - "稳定 mine 控制或倒计时防守 body"
+      needs_teammate_support:
+        - "carrier、视野、稳定前线"
+      false_positive: "跳跃机动不等于宝石控制；carrier 死后掉宝，Mico 不是拾宝撤退的可靠人选"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "跳跃过墙切守门人/持球者"
+        - "空中无敌窗口带球过障碍或补传球路线"
+      cannot_fulfill:
+        - "稳定持球推进或破门 scorer"
+        - "持续球路对线和门前 body"
+      needs_teammate_support:
+        - "scorer、持球者、稳定前线"
+      false_positive: "跳跃不等于进球；落地后慢装填和低血让他极易在持球时被反打"
+    - mode: "Bounty"
+      can_fulfill:
+        - "跳跃切墙后/后排脆皮制造星差"
+        - "thrower pocket 答案（Hideout/Layer Cake 墙后长手）"
+      cannot_fulfill:
+        - "稳定长线对枪和首发开火权"
+        - "草丛视野与持续星压"
+      needs_teammate_support:
+        - "先手 chip/视野、反突进 peel、击杀确认"
+      false_positive: "跳跃进场拿星不等于稳定星压；落地无 ammo 或无 peel 时会被反杀掉星"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "跳跃切区内/区边后排"
+        - "空中无敌窗口过墙进入区口制造减员"
+      cannot_fulfill:
+        - "主站区 body 或长期控区"
+        - "稳定 zone clear（低持续 DPS、慢装填）"
+      needs_teammate_support:
+        - "站区 body、持续 zone clear、视野"
+      false_positive: "跳跃机动不等于 zone time；Mico 站不住区，单切后排后无法转化为控分"
 
   failure_modes:
     - id: "ammo_empty_after_entry"

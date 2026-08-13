@@ -180,6 +180,28 @@ bp_brawler_profile:
         - "zone_holder"
         - "range_or_thrower_answer"
       false_positive: "Griff 清区很强，但 Business Resilience 不是让他单人硬站三人火力"
+    - mode: Bounty
+      can_fulfill:
+        - "midrange_burst_punish_against_grouped_or_walking_targets"
+        - "Piggy_Bank_wallbreak_to_open_a_lane_or_deny_thin_cover"
+      cannot_fulfill:
+        - "stable_long_range_star_farming_into_open_snipers"
+        - "low_commitment_star_hold_after_gaining_a_lead"
+      needs_teammate_support:
+        - "true marksman to own the long lane and hold stars"
+        - "control or peel so Griff is not kited at max range"
+      false_positive: "Griff's nominal range hides a slow unload; on Dry Season or Shooting Star he loses the chip race to reliable snipers and should not be drafted as the star holder."
+    - mode: Knockout
+      can_fulfill:
+        - "midrange_burst_to_confirm_a_pick_after_teammate_chip"
+        - "Piggy_Bank_knockback_or_wallbreak_to_break_a_thrower_pocket"
+      cannot_fulfill:
+        - "safe_open_lane_trade_against_snipers"
+        - "reliable_engage_without_ammo_or_a_committed_target"
+      needs_teammate_support:
+        - "teammate burst or control to bring a target into Griff's close band"
+        - "anti-kite answer against Surge/Stu/Crow style mobility"
+      false_positive: "On Belle's Rock or Out in the Open, Griff's slow unload is taxed by kiters and throwers; he converts midrange contacts, he does not win the open first-kill duel."
 
   failure_modes:
     - id: slow_unload_long_range_tax

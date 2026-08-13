@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_low_after_reload_nerf; 1.6 秒 normal reload，普通形态单发伤害中等"
     objective_damage: "situational_heist; PLP 标 Heist，但需要安全接近或扰乱防守"
     mobility: "very_high; 820 基础移速，Super dash，剑形态 +25% speed"
-    survivability: "medium_low_with_sword_lifesteal; 3700 HP，剑形态 1100 基础伤害同时按命中伤害自疗 30%，提高单目标拉扯但不足以承受多人集火"
+    survivability: "medium_low_with_sword_lifesteal; Power 11 本体 7400 HP，剑形态 1100 基础伤害同时按命中伤害自疗 30%，提高单目标拉扯但不足以承受多人集火"
     engage: "high_if_route_protected; Super dash 或 Shining Starr teleport 可接近后排"
     disengage: "high_with_super_or_floaty; Super 可逃离，Floaty Time 可跨障碍撤退"
     anti_aggro: "medium; 高速 strafe 可绕刺客，但被 burst/outrange 会倒"
@@ -178,6 +178,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "race DPS、开路、 endpoint peel"
       false_positive: "PLP Heist 适配需要地图路线，不等于直接打库强"
+    - mode: "Bounty"
+      can_fulfill:
+        - last_pick_backline_harass_into_fragile_three_sniper_comp
+        - Super_dash_or_Shining_Starr_teleport_pick_on_isolated_long_range
+        - Mystical_poke_heal_to_sustain_star_lane_trade
+      cannot_fulfill:
+        - pure_open_approach_on_Dry_Season_or_Shooting_Star_against_outranging_snipers
+        - safe_star_lead_body_into_crowd_control
+      needs_teammate_support:
+        - long_range_partner_to_anchor_star_lane_while_she_harasses
+        - hard_control_to_confirm_picks_after_her_dash
+      false_positive: "Hideout/Layer Cake 的墙草水路让她能切后排，但 Dry Season/Shooting Star 纯开阔 5.67 格会被长手压死；她是高风险最后手，不是早手"
+    - mode: "Knockout"
+      can_fulfill:
+        - route_based_first_pick_on_isolated_target
+        - sword_form_clean_up_after_team_focus
+        - Floaty_or_teleport_flank_to_punish_no_peel_backline
+      cannot_fulfill:
+        - crowd_dive_into_multiple_enemies_via_sword_lifesteal
+        - safe_engage_into_hard_control_or_tank_anchor
+      needs_teammate_support:
+        - burst_to_confirm_her_dash_or_sword_hits
+        - peel_or_escape_cover_when_Super_is_cancelled
+      false_positive: "Belle's Rock/Flaring Phoenix 的多角度和敌方 peel 会让剑形态冲人群失败；Fandom 明确她的治疗不如 Edgar/Mortis/Kenji，不能按独立收割核心评估"
 
   failure_modes:
     - id: "super_dash_cancelled"
@@ -188,7 +212,7 @@ bp_brawler_profile:
     - id: "sword_form_not_crowd_dive"
       active_when: "计划让 Starr Nova 冲入多名敌人中心靠吸血硬打"
       exposed_by: "Fandom tips warn healing is weaker than Edgar/Mortis/Kenji and crowd dives fail"
-      mitigation: "3700 HP 与 1100 基础剑伤只支持单目标拉扯，不能承担多人集火；仍用她骚扰、收割或扰乱后排，由队友提供 burst/控制"
+      mitigation: "Power 11 7400 HP 与 1100 基础剑伤只支持单目标拉扯，不能承担多人集火；仍用她骚扰、收割或扰乱后排，由队友提供 burst/控制"
       bp_use: "anti_tank_and_crowd_false_positive"
     - id: "floaty_disables_ally_actions"
       active_when: "Floaty Time 放在重要目标点或 choke，队友飞行时不能攻击/用技能"

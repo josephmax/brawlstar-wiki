@@ -204,6 +204,30 @@ bp_brawler_profile:
         - wallbreak_answer_to_enemy_throwers
         - peel_or_scouting
       false_positive: "Closed-map value flips if enemy has easy wallbreak or deeper thrower pocket"
+    - mode: "Bounty"
+      can_fulfill:
+        - bounce_angle_star_lane_pressure
+        - punish_peeking_target_from_covered_wall
+        - temporary_vending_reveal_or_chip_on_star_lane
+      cannot_fulfill:
+        - pure_open_sniper_duel_on_Dry_Season_or_Shooting_Star
+        - safe_star_lead_body_into_dive
+      needs_teammate_support:
+        - wallbreak_answer_to_enemy_thrower_pockets
+        - peel_or_vision_against_speed_and_assassin_routes
+      false_positive: "Rico 的 Bounty 价值依赖耐久反弹墙；Hideout/Layer Cake 中路墙草可成立，但 Dry Season/Shooting Star 纯开阔镜像里他常被更稳定弹道的狙击手压过"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - zone_edge_bounce_denial
+        - vending_anchor_tax_on_entry_lane
+        - Bouncy_slow_on_zone_contester
+      cannot_fulfill:
+        - durable_zone_body_against_tank_or_splash
+        - solo_multi_zone_standing_duty
+      needs_teammate_support:
+        - real_zone_holder
+        - area_clear_or_sustain_after_Rico_denies_entry
+      false_positive: "反弹火力能压入口不等于能持续计分；Open Business/Dueling Beetles 的圈旁墙一旦被开，Rico 的 zone 价值会快速贬值"
 
   failure_modes:
     - id: "open_field_no_bounce_value"

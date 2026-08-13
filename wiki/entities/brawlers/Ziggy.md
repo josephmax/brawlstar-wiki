@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Ziggy 是用延迟落雷和超大移动风暴控制路线的 Controller。普攻 `Ta-da!` 可指定 7.33 格内任意区域，包括墙后目标点，0.75 秒后在 1.5 格半径内造成范围伤害；Super `Ziggy's Fantastical Storm` 在 0.2 秒后生成宽 10、射程 13.33 的移动电风暴，造成持续伤害，遇到敌人会减速前进从而延长停留。PLP 默认 `Electric Shuffle / Thunderstruck / Shield, Damage`，强化持续落雷和 Super slow。短板是 3200 HP、几乎没有即时防守，普攻和 Super 都需要预判路线；`Now You See Me...` 传送也要等下一次攻击落雷完成，不能当瞬间 escape。
+Ziggy 是用延迟落雷和超大移动风暴控制路线的 Controller。普攻 `Ta-da!` 可指定 7.33 格内任意区域，包括墙后目标点，0.75 秒后在 1.5 格半径内造成范围伤害；Super `Ziggy's Fantastical Storm` 在 0.2 秒后生成宽 10、射程 13.33 的移动电风暴，造成持续伤害，遇到敌人会减速前进从而延长停留。PLP 默认 `Electric Shuffle / Thunderstruck / Shield, Damage`，强化持续落雷和 Super slow。短板是 Power 11 本体 6400 HP、几乎没有即时防守，普攻和 Super 都需要预判路线；`Now You See Me...` 传送也要等下一次攻击落雷完成，不能当瞬间 escape。
 
 ## BP 建模
 
@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.8 秒 reload，Electric Shuffle 5 秒内每秒免费落雷"
     objective_damage: "medium_with_storm_or_shuffle; Heist 需固定路线/目标"
     mobility: "medium_with_teleport_variant; 默认无位移，Now You See Me 需等攻击完成后传送"
-    survivability: "low; 3200 HP，除传送变体外无逃生/防御"
+    survivability: "low; Power 11 6400 HP，除传送变体外无逃生/防御"
     engage: "low_medium; 用区域逼位而非身体进场"
     disengage: "low_default_medium_with_teleport; 传送有延迟且会被高爆发惩罚"
     anti_aggro: "medium_if_pre_aimed; 可预判身前/身后落雷和风暴路线，但无硬控"
@@ -58,7 +58,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "Electric Shuffle 5 秒内每秒对最近可见敌人召唤一次不耗弹药的落雷"
         - "Thunderstruck 让 Super 内敌人 slow 20% 持续 1 秒，并可多次触发"
-        - "Shield gear 缓解 3200 HP，Damage gear 提高落雷/风暴惩罚"
+        - "Shield gear 缓解 Power 11 6400 HP，Damage gear 提高落雷/风暴惩罚"
       enables:
         - "Hot Zone / Brawl Ball chokepoint slow"
         - "Bounty / Knockout 安全区压迫"
@@ -169,17 +169,49 @@ bp_brawler_profile:
       needs_teammate_support:
         - "scorer、守门/击退、反刺客"
       false_positive: "没有 knockback/stun，不能独自阻止已贴脸持球者"
-    - mode: "Bounty / Knockout"
+    - mode: "Heist"
+      can_fulfill:
+        - "墙后/金库固定路线风暴阻断"
+        - "落雷压制破墙者退线"
+        - "Electric Shuffle 持续惩罚固定目标"
+      cannot_fulfill:
+        - "safe_race_objective_damage"
+        - "稳定自走金库伤害"
+        - "正面对抗突进防守"
+      needs_teammate_support:
+        - "dedicated_safe_damage_carry"
+        - "anti_wallbreak_or_lane_control"
+      false_positive: "capability_vector objective_damage 为 medium 但需固定路线/目标；风暴/落雷不能独自完成 race，只能控线压制破墙者"
+    - mode: "Bounty"
       can_fulfill:
         - "退线区域压迫"
-        - "墙角 delayed pick"
+        - "墙后长线 delayed pick"
         - "Electric Shuffle 对可见目标追压"
+        - "长距离 storm 压星点退路"
       cannot_fulfill:
-        - "开阔对狙"
+        - "safe_long_range_star_pressure_as_hitscan"
+        - "稳定星点持有"
         - "无保护抗突进"
       needs_teammate_support:
-        - "视野、first pick damage、peel"
-      false_positive: "落雷不是 hitscan，不能把长射程当稳定 sniper"
+        - "safe_duelist_or_star_holder"
+        - "vision_and_peel"
+        - "first_pick_damage"
+      false_positive: "落雷不是 hitscan，0.75 秒延迟要求目标退线被限制；Bounty 长线图（Dry Season/Layer Cake/Hideout/Shooting Star）需 chokepoint 才能把延迟伤害转化为 star"
+    - mode: "Knockout"
+      can_fulfill:
+        - "墙角 delayed pick"
+        - "末圈退线区域压迫"
+        - "Super storm 封 round 收缩路径"
+        - "Electric Shuffle 追压可见低血目标"
+      cannot_fulfill:
+        - "safe_first_pick_without_setup"
+        - "稳定 round 主导"
+        - "无硬控阻止突进"
+      needs_teammate_support:
+        - "first_pick_damage"
+        - "peel_or_anti_dive"
+        - "视野和横移限制"
+      false_positive: "Knockout 靠 safe output 和 first kill；Ziggy 没有硬控，storm 可被横向脱离，只能作为窗口制造者，满血目标需队友输出才能转 round 优势"
 
   failure_modes:
     - id: "delayed_attack_autoaim_failure"

@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: low_medium; 2 秒 slow reload，依赖命中十字线
     objective_damage: high_on_fixed_safe_or_stationary_target_with_Radio_Check
     mobility: low_base; Foot_Patrol speed only while Super is charged
-    survivability: low; 3000 HP，贴脸后因落地慢很难自保
+    survivability: low; Power 11 本体 6000 HP，贴脸后因落地慢很难自保
     engage: low_medium_with_Super_knockback_combo
     disengage: low_medium; Super knockback or Foot Patrol spacing only after charge
     anti_aggro: low_without_distance; medium_if_Super_knockback_and_wall_cluster_limit_entry
@@ -162,6 +162,45 @@ bp_brawler_profile:
         - "anti_aggro_bodyguard"
         - "wallbreak_plan_if_enemy_pocket_is_safer"
       false_positive: "墙多有利，但深 pocket 被刺客或传送绕到身边时会反噬"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "cross_choke_control_on_walled_mine_entrance"
+        - "wall_pocket_side_lane_pressure_from_behind_cover"
+        - "Super_knockback_to_peel_gem_carrier_chaser"
+      cannot_fulfill:
+        - "stable_open_mid_mine_control_against_mobile_or_diagonal_cores"
+        - "reliable_gem_carrier_due_to_6000_HP_and_slow_reload"
+        - "fast_reposition_on_triple_lane_split_maps"
+      needs_teammate_support:
+        - "actual gem carrier and stable mid controller"
+        - "anti-dive peel so Grom is not first-contacted in his pocket"
+      false_positive: "Grom 的十字线对墙边矿区入口很强，但在 Crystal Arcade、Undermine、Hard Rock Mine 这类开放或宽入口矿区图，敌方斜走即可离开十字线，6000 HP 和 2 秒装填让他无法独控矿区；只在 Gem Fort、Double Swoosh 等墙体能锁住入口时成立。"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "cross_lane_pressure_from_behind_wall_on_ball_route"
+        - "Super_knockback_on_ball_carrier_or_goal_defender"
+        - "Watchtower_vision_on_side_grass_ball_route"
+      cannot_fulfill:
+        - "ball_carrier_or_primary_scorer"
+        - "reliable_goal_defender_against_high_mobility_scorers"
+        - "self_defense_once_a_diver_closes_distance"
+      needs_teammate_support:
+        - "scorer and ball-carrier finisher"
+        - "anti-dive bodyguard so Grom is not punished at his pocket"
+      false_positive: "Grom 没有 PLP 推荐足球；在 Center Stage、Pinball Dreams、Sneaky Fields、Triple Dribble 这些球门结构图，他的低血和落地慢让他既不能持球也不能守门，只在球路必须经过固定十字区时作为墙后压制成立。"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "cross_choke_control_on_walled_zone_entrance"
+        - "Radio_Check_burst_on_stationary_zone_holder"
+        - "Super_knockback_to_displace_standing_defenders"
+      cannot_fulfill:
+        - "durable_zone_body_due_to_low_health"
+        - "stand_and_deny_against_mobile_or_diagonal_entries"
+        - "solo_hold_a_wide_or_multi_entrance_zone"
+      needs_teammate_support:
+        - "actual zone holder / tank body"
+        - "anti-dive peel and AoE answer that can clear zone-contesting threats"
+      false_positive: "Grom 能从圈外用十字线封锁入口，但不能在 Dueling Beetles、Open Business、Parallel Plays、Ring of Fire 站圈；如果入口太宽让敌方斜走离开十字，或敌方有范围清 Watchtower / 直接 dive pocket 的工具，他的热区价值会失效。"
 
   failure_modes:
     - id: diagonal_dodge_cross_pattern

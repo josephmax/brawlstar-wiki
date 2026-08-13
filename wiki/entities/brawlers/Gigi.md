@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: "high_in_contact_window; very fast ammo-bar reload and accelerating spin frequency reward staying near the target"
     objective_damage: "low_medium; PLP modes favor kill pressure, space theft, and ball/gem tempo rather than safe or stationary DPS"
     mobility: "high; 35% speed while attacking, 7.33-tile Super teleport, and optional return within 3 seconds"
-    survivability: "medium_with_build; 4100 health, Shield gear, and A Helping Hand heal after initial teleport"
+    survivability: "medium_with_build; Power 11 8200 health, Shield gear, and A Helping Hand heal after initial teleport"
     engage: "high_when_route_and_super_exist; can enter over space after the 0.8-second teleport delay"
     disengage: "conditional; return teleporter can reset position, but only inside the 3-second Super window"
     anti_aggro: "medium; spin damage punishes close contact but loses to heavier burst or hard CC"
@@ -169,6 +169,28 @@ bp_brawler_profile:
         - teammate chip to make the teleport lethal
         - endpoint cover or reset route
       false_positive: "Knockout deaths are permanent; Gigi needs a route and a confirmed target, not just a target name."
+    - mode: "Heist"
+      can_fulfill:
+        - teleport_contact_safe_burst_after_lane_win
+        - defender_pickoff_to_open_a_safe_lane
+      cannot_fulfill:
+        - stable_safe_race_damage
+        - long_lane_safe_dps_without_a_route
+      needs_teammate_support:
+        - true safe DPS teammate that owns the race
+        - lane opener or control to let Gigi reach the safe
+      false_positive: "Gigi's short range and low objective damage make her a contact-burst pick, not a Heist safe DPS; drafting her as the primary race tool on Hot Potato or Bridge Too Far is a trap."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - teleport_into_zone_clump_for_a_clear_window
+        - wall_edge_pirouette_pressure_on_zone_entrance
+      cannot_fulfill:
+        - sustained_zone_body
+        - durable_thrower_pocket_removal
+      needs_teammate_support:
+        - zone holder that takes over after Gigi clears
+        - anti-CC or peel if enemies cover the teleport endpoint
+      false_positive: "Gigi can steal a clear window on Dueling Beetles or Ring of Fire, but without a teammate to occupy the circle she wins the dive and loses the score."
 
   failure_modes:
     - id: "open_long_range_no_route"

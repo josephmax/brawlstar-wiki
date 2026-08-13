@@ -184,6 +184,30 @@ bp_brawler_profile:
         - scorer or wallbreak
         - anti-burst protection when Bruce is down
       false_positive: "Nita helps create windows but does not by herself solve closed goal geometry."
+    - mode: "Bounty"
+      can_fulfill:
+        - pierce_punish_grouped_entries_on_Layer_Cake_or_Hideout
+        - bruce_thrown_over_wall_to_tax_a_backline_or_chase_a_star_holder
+        - bruce_bush_scouting_to_reveal_hidden_targets
+      cannot_fulfill:
+        - open_lane_sniper_duel_on_Dry_Season_or_Shooting_Star
+        - safe_star_holder_under_long_range_focus
+      needs_teammate_support:
+        - long_range_mid_cover_on_open_maps
+        - wallbreak_or_bush_clear_if_center_is_locked_by_throwers
+      false_positive: "Nita's attack range is only 6 tiles and her mobility is low; on pure open Bounty maps she gets outranged before charging Super, so Bruce pressure only matters when walls, chokepoints, or bushes let her actually reach a grouped lane."
+    - mode: "Knockout"
+      can_fulfill:
+        - bruce_thrown_over_wall_to_pressure_backline_on_Belle's_Rock_or_Flaring_Phoenix
+        - bear_paws_catch_window_in_a_narrow_choke_or_goal_pocket
+        - pierce_through_clumped_entries_to_lock_space_before_gas
+      cannot_fulfill:
+        - first_pick_into_open_long_range_on_Out_in_the_Open
+        - reliable_close_burst_answer_to_a_fast_diver_without_bruce
+      needs_teammate_support:
+        - long_range_cover_to_help_nita_charge_super_safely
+        - anti_thrower_or_anti_dive_to_keep_bruce_alive
+      false_positive: "Knockout deaths are permanent and Bruce can be burst down before value; if the enemy has splash/thrower/chain clear, Nita's Super feeds a pick instead of creating a catch window, so she is a late situational pick, not an open-map staple."
 
   failure_modes:
     - id: "bear_deleted_before_value"

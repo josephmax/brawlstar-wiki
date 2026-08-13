@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.7 秒装填，近中距离三箭全中伤害高"
     objective_damage: "conditional; Heist 依赖地雷/Tripwire 或赢线后持续箭矢"
     mobility: "normal; 无位移，依赖提前布雷和视野"
-    survivability: "medium; 3800 HP，靠控制区保护自己"
+    survivability: "medium; Power 11 本体 7600 HP，靠控制区保护自己"
     engage: "low_medium; 地雷逼位和眩晕能创造 engage，但不是即时突进"
     disengage: "medium; 地雷、击退/眩晕和视野可以保护撤退路线"
     anti_aggro: "high_if_route_predictable; 地雷和视野惩罚草路/入口推进"
@@ -169,6 +169,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "开线、安全布雷、反突进"
       false_positive: "Heist 价值取决于地雷是否能接触 safe 或路线，而不是只看普攻 DPS"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "门前/草带地雷封锁推进"
+        - "草丛视野税保护球权"
+        - "Tripwire 破门或开球路线"
+      cannot_fulfill:
+        - "独自破门和射门"
+        - "持球高速推进"
+      needs_teammate_support:
+        - "真正 scorer、破门、反刺客"
+      false_positive: "Bo 能封球路和开墙，但不是 scorer；球门几何和跟伤仍是硬门槛"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草丛视野和入口布雷"
+        - "长中距离三箭压线"
+        - "Snare A Bear 确认接触后的击杀窗口"
+      cannot_fulfill:
+        - "稳定远程对狙"
+        - "无队友跟伤时靠地雷完成击杀"
+      needs_teammate_support:
+        - "远程基本面对枪、爆发跟进、反投掷"
+      false_positive: "Bo 的 Bounty 价值来自视野和地雷确认链，不是普攻 DPS；开阔图上他不是主狙"
+    - mode: "Knockout"
+      can_fulfill:
+        - "入口地雷封锁首发接触"
+        - "草丛视野保护"
+        - "Snare A Bear 创造首杀窗口"
+      cannot_fulfill:
+        - "稳定首发 pick 压力"
+        - "对抗高速机动绕雷目标"
+      needs_teammate_support:
+        - "远程对枪、爆发确认、反投掷"
+      false_positive: "Bo 能控入口和草，但 Knockout 仍需要实际输出和首杀能力；他不是主狙"
 
   failure_modes:
     - id: "mobile_bypass_or_airborne_ignores_mine_route"

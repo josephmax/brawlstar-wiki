@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low; 2.4 秒极慢装填，失败进场后断 ammo"
     objective_damage: "low; Fandom 明确不适合 Heist/special target"
     mobility: "very_high; 普攻 dash、长 dash、Creature of the Night 越障/过水"
-    survivability: "medium_if_super_hits; 4000 HP，Super 命中多个目标可大量回血，miss 则无回复"
+    survivability: "medium_if_super_hits; Power 11 本体 8000 HP，Super 命中多个目标可大量回血，miss 则无回复"
     engage: "high_conditional; 需要长 dash、草墙路线或敌方低血"
     disengage: "medium; ammo/长 dash/Creature gadget 可撤，空 ammo 时很差"
     anti_aggro: "low_medium; 可 dodge 一些前摇，但怕近战爆发和控制"
@@ -142,6 +142,37 @@ bp_brawler_profile:
       needs_teammate_support:
         - "视野、路线或 enemy peel 已暴露"
       false_positive: "失败进场在单命模式/星数模式惩罚极大"
+    - mode: "Heist"
+      can_fulfill:
+        - "Super 穿墙收割入库 aggro 或防守位低血"
+        - "Creature of the Night 越障过水接触 safe 侧防守"
+      cannot_fulfill:
+        - "稳定 safe race DPS"
+        - "正面承担入库或防守主线"
+      needs_teammate_support:
+        - "主 race/防守 DPS、开墙、反近战"
+      false_positive: "Fandom 明确 Mortis 不适合 Heist/special target；他的 Heist 价值仅限条件突袭，不能当 race 核心"
+    - mode: "Bounty"
+      can_fulfill:
+        - "最后手惩罚孤立低血后排和投掷"
+        - "长 dash + Super 穿墙收割墙后保星位"
+      cannot_fulfill:
+        - "早手进开阔长线保星"
+        - "正面稳定对枪"
+      needs_teammate_support:
+        - "视野、路线、enemy peel 已暴露、反近战保护"
+      false_positive: "Bounty 中失败进场直接送星；Mortis 只在目标、路线、ammo 和撤退都成立时强"
+    - mode: "Knockout"
+      can_fulfill:
+        - "最后手切掉孤立投掷或低血后排"
+        - "Super 穿墙收割墙后回末站位"
+        - "Combo Spinner 补无 ammo 时的收割"
+      cannot_fulfill:
+        - "早手承担控线或保星主线"
+        - "正面打高血前排"
+      needs_teammate_support:
+        - "视野、补伤、反控制、敌方 peel 已暴露"
+      false_positive: "Knockout 单命模式下失败进场直接送回合；2.4 秒极慢装填让空 ammo 后几乎无法挽回"
 
   failure_modes:
     - id: "ammo_exhaustion_after_entry"

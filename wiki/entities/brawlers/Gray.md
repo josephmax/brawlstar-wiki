@@ -167,6 +167,45 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站圈身体、治疗或范围清圈"
       false_positive: "如果队友不能利用门，Gray 的热区价值只剩点射和偶发拉人"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "portal_route_to_speed_gem_carrier_in_or_out_of_mine"
+        - "Walking_Cane_pull_on_enemy_gem_carrier_or_chaser"
+        - "long_range_mine_poke_from_safe_angle"
+      cannot_fulfill:
+        - "reliable_gem_carrier_due_to_low_self_sustain"
+        - "stable_open_mid_duel_into_sniper_core"
+        - "solo_mine_control_without_a_carrier_to_support"
+      needs_teammate_support:
+        - "actual gem carrier who can use the portal"
+        - "mid controller and peel so Gray is not dived"
+      false_positive: "Gray 的宝石价值几乎完全来自传送门服务载体；在 Crystal Arcade、Double Swoosh、Hard Rock Mine、Undermine、Gem Fort 这些图，如果队伍没有能吃门收益的载体或 Gray 门口被蹲，他只剩点射和偶发拉人。"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "portal_to_route_a_scorer_past_defenders_or_goal_wall"
+        - "Walking_Cane_pull_on_ball_carrier_or_goal_defender"
+        - "Grand_Piano_conditional_wallbreak_on_goal_structure"
+      cannot_fulfill:
+        - "ball_carrier_or_primary_scorer"
+        - "reliable_goal_defender_against_high_mobility_scorers"
+        - "stable_midfield_body_or_solo_clear"
+      needs_teammate_support:
+        - "scorer who can take the portal route"
+        - "midfield body and peel so the portal exit is not camped"
+      false_positive: "Gray 没有 PLP 推荐足球；在 Center Stage、Pinball Dreams、Sneaky Fields、Triple Dribble 这些球门结构图，他的传球/拉人价值依赖队友执行，门口被高爆发蹲守时门会直接送人。"
+    - mode: "Heist"
+      can_fulfill:
+        - "portal_to_route_a_burst_teammate_into_safe_angle"
+        - "Walking_Cane_pull_on_a_safe_defender"
+        - "Grand_Piano_conditional_break_on_safe_wall_if_landing_is_safe"
+      cannot_fulfill:
+        - "sustained_safe_DPS_for_the_race"
+        - "reliable_solo_safe_access_without_a_teammate_to_teleport"
+        - "frontline_body_or_anti_dive_self_defense"
+      needs_teammate_support:
+        - "burst safe DPS dealer (Griff/Leon/Shelly/Buzz/Darryl/8-Bit) who uses the portal"
+        - "peel so Gray is not first-contacted at the portal exit"
+      false_positive: "Gray 的 Heist 价值来自把队友送进库，不是自己拆库；在 Bridge Too Far、Hot Potato、Kaboom Canyon、Pit Stop、Safe Zone、Safe(r) Zone 这些竞速图，如果没有能吃门收益的爆发队友或门口被守，他没有独立打库能力。"
 
   failure_modes:
     - id: "portal_exit_camped"

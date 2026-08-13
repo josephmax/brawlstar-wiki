@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_when_form_cycle_managed; geisha 1 秒装填，ninja 1.9 秒装填"
     objective_damage: "conditional; Heist 依赖近身/双刀和进库路线，不是远程安全 race"
     mobility: "very_high_in_geisha_and_super; geisha 基础 very fast，攻击 dash；ninja Super 高速 9 格"
-    survivability: "medium_with_gracious_host; 4100 HP，切回 geisha 可回复 30% 最大生命"
+    survivability: "medium_with_gracious_host; Power 11 本体 8200 HP，切回 geisha 可回复 30% 最大生命"
     engage: "high_with_speed_or_invisibility; Gracious Host speed、Hensojutsu invis、ninja Super 标记进场"
     disengage: "medium; geisha 高速和切形态回血能撤，但无硬免伤"
     anti_aggro: "medium; Fan Storm 遮蔽/弹药削减可打断进场，但贴脸坦克仍危险"
@@ -166,16 +166,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区前排、持续输出、反 thrower"
       false_positive: "Fan Storm 不是墙，敌方仍可用范围/投掷清区"
-    - mode: "Bounty/Knockout/Heist"
+    - mode: "Heist"
       can_fulfill:
-        - "风暴掩护穿线和残局收尾"
-        - "Heist 近身 safe 窗口或逼回防"
+        - "ninja 双刀/近身 safe 窗口爆发"
+        - "Fan Storm 遮蔽逼回防或制造 safe 入侵角度"
+        - "geisha 高速转线支援 safe 攻防"
       cannot_fulfill:
-        - "稳定远程星差保护"
-        - "无路线时主 safe DPS"
+        - "稳定远程 safe race DPS"
+        - "无路线时主 safe 输出"
       needs_teammate_support:
-        - "开路/长线火力、落点清控、目标 race 支援"
-      false_positive: "Kaze 的 Heist/Bounty 价值依赖进场路线和保命，不是纯面板输出"
+        - "主 safe DPS（远程/thrower）、开墙、反坦"
+      false_positive: "Kaze 的 Heist 价值依赖进场路线和近身窗口；她不能越墙/水，把她当主 race 手会输给远程队"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Fan Storm 遮蔽后 ninja mark 收尾低血长手"
+        - "geisha 高速/隐身接近惩罚孤立后排"
+        - "Hyper mark 即时伤害在星差时确认击杀"
+      cannot_fulfill:
+        - "稳定长线星差保护"
+        - "开阔图正面狙击 mirror"
+      needs_teammate_support:
+        - "长手搭档、反刺客 peel、探草"
+      false_positive: "Kaze 的 mark 有 2.5 秒延迟且短手；敌方有保镖或分散站位时她的星差窗口会被反打"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Fan Storm 切断视野后 ninja mark 首杀"
+        - "geisha 高速/隐身绕侧翼收尾低血目标"
+        - "风暴遮蔽保护队友穿线"
+      cannot_fulfill:
+        - "正面首杀爆发"
+        - "处理多坦多控守入口阵容"
+      needs_teammate_support:
+        - "长手首杀火力、反硬控 peel、落点清控"
+      false_positive: "Kaze 的 Knockout 价值依赖风暴遮蔽和进场形态切换；mark 延迟和不能越墙让她的首杀不是无条件"
 
   failure_modes:
     - id: "dash_does_not_cross_walls_or_water"

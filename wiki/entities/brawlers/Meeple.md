@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: conditional; base reload 1.7 秒，Rule Bending 区域可给自己和队友 +20% reload
     objective_damage: low_medium; 以控线/清防守/转化目标为主，不是 Heist race 核心
     mobility: low_base_conditional_high_only_during_Hypercharged_Super_area
-    survivability: low_medium; 3300 HP plus Shield gear, terrain rule zone, and Ragequit emergency peel
+    survivability: low_medium; Power 11 6600 HP plus Shield gear, terrain rule zone, and Ragequit emergency peel
     engage: medium_with_Mansions_trap_or_Ragequit_goal_stun
     disengage: medium_high_with_Ragequit_if_enemy_enters_5.33_radius
     anti_aggro: conditional; Ragequit is key into aggressive comps, otherwise low HP can be punished
@@ -54,7 +54,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "Mansions 让下一次攻击变为投掷，并生成 4 秒 6x6 dice wall 陷阱，命中区造成伤害并可打断攻击或 Super"
         - "Do Not Pass Go 在穿过障碍攻击时提高伤害和 Super charge，适合把 Critical Success 当作个人击杀区"
-        - "Shield/Damage 补 3300 HP 容错和低血爆发阈值"
+        - "Shield/Damage 补 Power 11 6600 HP 容错和低血爆发阈值"
       enables:
         - "wall_pierce_super_lane_control"
         - "trap_grouped_enemies_or_objective_route"
@@ -188,6 +188,39 @@ bp_brawler_profile:
         - "peel_against_assassins"
         - "teammates_that_use_rule_area_without_overclumping"
       false_positive: "Fandom 明确警告完全开阔图会被长手压制，必须有墙体/短线让 Super 改变价值"
+    - mode: "Heist"
+      can_fulfill:
+        - "Critical Success 穿墙区域改写防守墙收益，让己方投射物从安全角度打 safe"
+        - "Mansions dice wall 干扰入库 aggro 路线"
+        - "Do Not Pass Go 穿墙伤害补 safe DPS"
+      cannot_fulfill:
+        - "稳定远程 safe race"
+        - "独自正面承担入库或防守"
+      needs_teammate_support:
+        - "主 race DPS、开墙、反 aggro peel"
+      false_positive: "Meeple 的 Heist 价值完全依赖 Super 规则区改写墙体的位置；无 Super 时只是 7.67 格中速控线"
+    - mode: "Bounty"
+      can_fulfill:
+        - "短线+长线混合图中用穿墙规则区惩罚墙后保星位"
+        - "Mansions 陷阱打断聚集的保星/集火路线"
+        - "Ragequit 低血反突进 peel 或收割低血后排"
+      cannot_fulfill:
+        - "完全开阔图的长线对狙"
+        - "早手承担保星主线"
+      needs_teammate_support:
+        - "反刺客 peel、长线保星、不与 Mansions 困己方"
+      false_positive: "Bounty 中 Meeple 必须有墙体让 Super 改写收益；失败进场在单命星数模式惩罚极大"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Critical Success 穿墙区在缩圈前改写墙边回合线"
+        - "Mansions 陷阱困住回末聚集的敌人"
+        - "Ragequit 反突进或回合末低血收割"
+      cannot_fulfill:
+        - "纯开阔长线对枪"
+        - "独自守住被强开的侧路"
+      needs_teammate_support:
+        - "peel、视野、能利用规则区的投射物队友"
+      false_positive: "Knockout 缩圈前 Meeple 需要可预判的墙边路线；分散站位和纯长线对枪会让规则区失去目标"
 
   failure_modes:
     - id: open_map_sniper_outclassed
@@ -207,7 +240,7 @@ bp_brawler_profile:
       bp_use: team_synergy_hard_gate
     - id: low_health_aggro_dependency
       active_when: "Damian、Trunk、Rosa、Sandy、8-Bit、Ash、Mr. P、Draco 等能用身体、召唤、范围或控制压到 Meeple 本体"
-      exposed_by: "[[sources/PLP-Meeple|PLP-Meeple]] counteredBy list and 3300 HP Fandom stat"
+      exposed_by: "[[sources/PLP-Meeple|PLP-Meeple]] counteredBy list and Power 11 6600 HP"
       mitigation: "保留 5.33 格、20 秒冷却的 Ragequit，配 peel，或后手确认敌方无法从草/墙/多角度进入；Ragequit 未转好时不把 Meeple 计作自带反突进"
       bp_use: must_answer_aggro_or_resource_before_meeple
     - id: slow_reload_without_rule_value
@@ -227,7 +260,7 @@ bp_brawler_profile:
     - target: Damian_or_Trunk_or_Rosa_or_Sandy_or_8_Bit_or_Ash_or_Mr_P_or_Draco
       direction: target_favored
       source: "[[sources/PLP-Meeple|PLP-Meeple]]"
-      mechanism: "高身体、持续压制、召唤物、隐蔽/控制或推进资源会迫使 3300 HP Meeple 在 Super 转化前先处理生存问题"
+      mechanism: "高身体、持续压制、召唤物、隐蔽/控制或推进资源会迫使 Power 11 6600 HP Meeple 在 Super 转化前先处理生存问题"
       active_when: "地图给草/墙/身体推进路线，或目标能用召唤/炮台/增益压缩 Meeple 站位"
       fails_when: "Meeple 有 Ragequit 和队友 peel，且目标必须进入被 Super/Mansions 控制的单一路线"
       bp_use: must_answer_body_spawnable_or_aggro_before_meeple

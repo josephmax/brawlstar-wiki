@@ -172,6 +172,30 @@ bp_brawler_profile:
         - "zone_holder"
         - "peel_and_long_range_cover"
       false_positive: "Fandom 明确指出 Hot Zone 很吃条件；Tick 需要队友计分"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "mine_route_denial_on_ball_lane_and_goal_front"
+        - "head_knockback_on_carrier_or_defender"
+        - "Mine_Mania_temporary_choke_lock_on_goal_approach"
+      cannot_fulfill:
+        - "primary_scorer"
+        - "open_goal_defense_against_high_mobility_scorer"
+      needs_teammate_support:
+        - "scorer_or_wallbreak_to_convert_denial_into_goal"
+        - "peel_and_side_route_vision"
+      false_positive: "Tick 能封球路和门前不等于能进球或守门；Center Stage/Sneaky Fields 的高机动 scorer 会绕过地雷直接射门"
+    - mode: "Heist"
+      can_fulfill:
+        - "safe_lane_defense_with_minefield"
+        - "head_wall_break_or_carrier_disruption"
+        - "fixed_target_chip_after_lane_win"
+      cannot_fulfill:
+        - "primary_safe_race"
+        - "stable_direct_safe_DPS"
+      needs_teammate_support:
+        - "real_safe_DPS_or_wallbreak"
+        - "lane_control_so_Tick_can_hold_safe_pocket"
+      false_positive: "Tick 的直接 safe 价值很低；Heist race 速度远不如真正打库英雄，只能做防守或残局 chip，不能按 race 核心评估"
 
   failure_modes:
     - id: very_low_health_exposure

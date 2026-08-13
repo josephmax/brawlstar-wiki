@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; 1.5 秒装填和低基础伤害使他无法承担主 DPS 位"
     objective_damage: "low; 不作为 Heist 或纯拆目标英雄"
     mobility: "team_high; Work slipstream、切回 Work 的范围加速和 The Crowd Goes Mild 可让队伍抢点、撤退或追击"
-    survivability: "medium; 3700 HP 加自疗/加速可拉扯，但被近身隔离后很脆"
+    survivability: "medium; Power 11 本体 7400 HP 加自疗/加速可拉扯，但被近身隔离后很脆"
     engage: "team_speed_engage; 通过开局加速、Super 加速和草/通道穿透帮助队友先到位"
     disengage: "team_speed_or_heal_reset; Party 治疗、Work 加速和 slow gadget 可帮助队伍脱离第二波交火"
     anti_aggro: "medium; Time For a Slow Song 和 Work speed 能拖住刺客接近，但没有硬控或位移"
@@ -144,6 +144,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "破门、强控、位移 scorer 或能接速度的坦克"
       false_positive: "只有支援没有得分路径时，不应把他当足球核心"
+    - mode: "Heist"
+      can_fulfill:
+        - "用 Work 加速让队伍更早抢占 safe lane 或回防"
+        - "Party 治疗维持 safe DPS 队友的换血节奏"
+      cannot_fulfill:
+        - "直接 safe 或目标伤害"
+        - "独立守近身进库"
+      needs_teammate_support:
+        - "真正 safe DPS 承担 race"
+        - "开线/反投掷/反突进，让 Jae-yong 的加速与治疗转成打库窗口"
+      false_positive: "Jae-yong 的 objective_damage 极低；把他当 Heist race 手或独立守库者是陷阱，价值只在让 safe DPS 更早到位、更久续航"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Work 加速帮队伍抢先进圈并保护站圈身体撤退"
+        - "Party 治疗和 Weekend Warrior 收残血维持圈上人数差"
+      cannot_fulfill:
+        - "持续站圈身体"
+        - "清墙后投掷或独立翻 zone lock"
+      needs_teammate_support:
+        - "真正站圈身体和清场工具"
+        - "反突进或探草，防止刺客绕过支援贴脸"
+      false_positive: "加速和治疗不能替代圈内身体；Dueling Beetles / Ring of Fire 上没有站圈队友时，Jae-yong 只会变成低伤害远程"
 
   failure_modes:
     - id: "low_dps_support_shell"

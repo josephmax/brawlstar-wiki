@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒装填，弹药有限且需要命中"
     objective_damage: "medium_high_on_stationary_targets; Fandom 支持 Heist fixed safe burst，但 PLP 主推 Ball/Zone"
     mobility: "medium_with_disengage; Gadget dash 2.67 格并可 0.5 秒 stun 近敌，不能过墙/水"
-    survivability: "medium; 4000 HP，依赖推离/slow/Disengage"
+    survivability: "medium; Power 11 本体 8000 HP，依赖推离/slow/Disengage"
     engage: "medium; Super+Disengage 可主动贴近打 surprise shockwave"
     disengage: "high; Shockwave 推离、Tremors slow、Disengage dash"
     anti_aggro: "very_high; 反刺客/坦克进场是核心消费场景"
@@ -153,16 +153,46 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区 body、墙后处理、治疗"
       false_positive: "Maisie 清区强，但清完需要队友站住"
-    - mode: "Gem Grab/Heist"
+    - mode: "Gem Grab"
       can_fulfill:
-        - "carrier peel"
-        - "fixed safe damage variant"
+        - "长线矿区压制与 carrier peel"
+        - "Shockwave 推开突进/坦克保护 carrier 和倒计时撤退"
       cannot_fulfill:
         - "安全主 carrier"
-        - "无保护 solo race"
+        - "草墙接触里的稳定 mine 控制（无 reveal）"
       needs_teammate_support:
-        - "carrier、视野、反突进"
-      false_positive: "Heist 是 Fandom 机制支持的变体，不是 PLP 默认模式"
+        - "carrier、视野、反投掷"
+      false_positive: "主攻远距离初速慢易被横移躲；矿区无 choke 时 Shockwave peel 不一定接得上命中"
+    - mode: "Heist"
+      can_fulfill:
+        - "fixed safe 的长线直射 burst"
+        - "Super 防守推离入库者并 Tremors slow"
+      cannot_fulfill:
+        - "无保护 solo race"
+        - "稳定远程 race（Piper/Colt/Brock 类）"
+      needs_teammate_support:
+        - "防突进、开线、另一路 race"
+      false_positive: "Heist 是 Fandom 机制支持的变体，不是 PLP 默认模式；Finish Them 不作用于 safe，gadget burst 受限"
+    - mode: "Bounty"
+      can_fulfill:
+        - "长线高单发压固定射线后排"
+        - "Shockwave + Tremors 反突进保护脆皮后排站位"
+      cannot_fulfill:
+        - "Dry Season/Shooting Star 类纯长线对枪的稳定压制（慢初速被横移）"
+        - "草丛/隐蔽型 Bounty 的视野与首发权"
+      needs_teammate_support:
+        - "视野/探草、长线伤害跟进、反投掷"
+      false_positive: "单发伤害高不等于长线命中可靠；慢初速弹道在最大射程对枪中易输给 Piper/Nani/Belle"
+    - mode: "Knockout"
+      can_fulfill:
+        - "反突进 Super 推离 + Tremors slow 创造第一减员窗口"
+        - "Disengage 接近后 surprise shockwave"
+      cannot_fulfill:
+        - "稳定首发开火权（慢初速、Super 0.5 秒前摇）"
+        - "草墙接触图（Belle's Rock 草墙、New Horizons 侧草）的视野与先手"
+      needs_teammate_support:
+        - "先手 chip、视野、反投掷、硬控取消敌方前摇后的跟进"
+      false_positive: "Super 前摇会被 stun/pull/knockback 取消；开阔 KO 图反突进强不等于开局长线稳定"
 
   failure_modes:
     - id: "slow_start_projectile_dodged"

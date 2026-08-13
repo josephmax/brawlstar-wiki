@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Mandy 的 BP 价值来自 12 格 Focus 射程、In My Sights 的弹速修正、Cookie Crumbs 的墙后惩罚，以及 Sugar Ray 的超长直线收割。她适合把 Bounty/Knockout 的“先拿空间、逼对手分散、在窄线里一枪改局”做极致；弱点是专注需要站定，Super 可被打断，且 3000 HP 对刺客和高压长线都很脆。
+Mandy 的 BP 价值来自 12 格 Focus 射程、In My Sights 的弹速修正、Cookie Crumbs 的墙后惩罚，以及 Sugar Ray 的超长直线收割。她适合把 Bounty/Knockout 的“先拿空间、逼对手分散、在窄线里一枪改局”做极致；弱点是专注需要站定，Super 可被打断，且 Power 11 6000 HP 对刺客和高压长线都很脆。
 
 ## BP 建模
 
@@ -145,6 +145,39 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 safe DPS、侧路防突进"
       false_positive: "不能因为 Super 可打库就把 Mandy 当 Heist 核心"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "12 格 Focus 压矿区撤退线和 carrier 后撤"
+        - "Sugar Ray 直线收割 carrier 或支援串线"
+        - "Cookie Crumbs 穿墙补掉墙后复位目标"
+      cannot_fulfill:
+        - "主 carrier 承担倒计时压力"
+        - "独自处理多角度投掷或召唤物矿区封锁"
+      needs_teammate_support:
+        - "主 carrier、开墙、反投掷、反突进"
+      false_positive: "射程长不代表能处理投掷口袋和召唤物矿区压力；Mandy 站定时仍是脆皮"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "长线压守门人和门前站线者血量"
+        - "Sugar Ray 跨场收割直线守门或撤退"
+        - "Caramelize slow 拖慢带球突进"
+      cannot_fulfill:
+        - "主 scorer 或破墙"
+        - "独自承担侧路防强开"
+      needs_teammate_support:
+        - "破门、控人、scorer、反突进 peel"
+      false_positive: "Mandy 在 Brawl Ball 只能远程支援；专注站定让她对带球突进和传球路线很脆"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "长线压区外站区和回区路线"
+        - "Sugar Ray 直线威胁聚在一起的站区身体"
+        - "Caramelize slow 拖慢进区突进"
+      cannot_fulfill:
+        - "踩区站圈身体"
+        - "独自清投掷 pocket"
+      needs_teammate_support:
+        - "站区 body、投掷处理、反突进"
+      false_positive: "Mandy 能压区外但不能站区；没有站区队友时她的长线价值无法转成区时"
 
   failure_modes:
     - id: "focused_immobility_dive_window"

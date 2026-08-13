@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "medium with 1.5s reload; pressure is valuable because hits build spirit resources"
     objective_damage: "low direct safe/objective DPS; objective contribution is protection, carrier support, and pick conversion"
     mobility: "low; no dash or reposition tool"
-    survivability: "low self body at 3300 health, but high ally survivability through 2600 shield and knockback"
+    survivability: "low self body at Power 11 6600 health, but high ally survivability through 2600 shield and knockback"
     engage: "medium as support engage when shield and 25% Spirit Animal buff are placed on a mobile teammate"
     disengage: "high peel when Super shield and knockback are timed on the threatened ally"
     anti_aggro: "high as shield-plus-knockback resource against single dive or close engage"
@@ -175,6 +175,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "actual scorer, wallbreak, or displacement teammate"
       false_positive: "shielded push fails if no one can convert the goal route before shield decays"
+    - mode: "Heist"
+      can_fulfill:
+        - "shield and damage boost on the safe DPS during a race window"
+        - "knockback peel against a single tank safe-entry on defense"
+      cannot_fulfill:
+        - "direct safe or objective damage"
+        - "solo lane defense into ranged or thrower pressure"
+      needs_teammate_support:
+        - "true safe DPS that owns the race"
+        - "lane opener or anti-thrower answer"
+      false_positive: "Gus adds zero objective damage; on Hot Potato or Bridge Too Far his value is entirely shielding the safe hitter, and a draft that expects him to race or hold a lane alone fails."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "shield and heal sustain on the zone body or carrier"
+        - "knockback peel to deny a single zone entry"
+      cannot_fulfill:
+        - "sustained zone body role at 6600 health"
+        - "thrower pocket removal from safety"
+      needs_teammate_support:
+        - "durable zone holder that survives on the circle"
+        - "area clear or wallbreak against pocket control"
+      false_positive: "Gus keeps a zone teammate alive, but he cannot stand the circle himself; on Dueling Beetles or Ring of Fire the team still needs a real zone body."
 
   failure_modes:
     - id: "low_self_health_focus"

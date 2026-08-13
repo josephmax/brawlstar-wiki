@@ -207,6 +207,30 @@ bp_brawler_profile:
         - durable zone holder
         - area clear or wallbreak against pocket control
       false_positive: "Crow helps win the edge of the zone; he still needs teammates to occupy and clear the circle."
+    - mode: "Bounty"
+      can_fulfill:
+        - long_range_poison_poke_and_star_chip
+        - bush_reveal_for_low_risk_stars
+        - low_health_cleanup_after_teammate_pressure
+      cannot_fulfill:
+        - stable_high_star_holder_under_focus
+        - reliable_full_dagger_kill_confirm_on_open_lanes
+      needs_teammate_support:
+        - teammate to hold star lead and convert poisoned targets
+        - long-range or wallbreak answer if enemy has snipers or wall pockets
+      false_positive: "Poison tags and reveal can farm low-risk stars, but Crow's 5600 HP and low burst make him a poor star holder when enemies outrange him on open maps like Dry Season."
+    - mode: "Knockout"
+      can_fulfill:
+        - poison_chip_to_force_early_retreat_or_first_pick
+        - slowed_low_health_cleanup_after_Super_or_teammate_burst
+        - bush_reveal_around_choke_routes
+      cannot_fulfill:
+        - safe_open_lane_marksman_trade
+        - blind_initiation_without_target_below_half
+      needs_teammate_support:
+        - teammate burst or control to bring targets into Crow's cleanup window
+        - anti-aggro peel if enemy divers can bypass poison range
+      false_positive: "Crow can punish slowed or chipped targets, but Knockout deaths are permanent and his low health means a blind dive or open-lane trade against Belle's Rock snipers is a trap."
 
   failure_modes:
     - id: "low_health_pressure"

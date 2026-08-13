@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: conditional_on_Protocol_Assist_and_Lawrie_hits
     objective_damage: low_medium; 以控区/清人转目标为主
     mobility: medium_with_Order_Fall_Back_swap_if_path_clear
-    survivability: medium_low; Larry 3000 HP，Lawrie 3300 HP body 与 Fall Back 双方 25% 治疗共同提供资源层容错
+    survivability: medium_low; Larry Power 11 6000 HP，Lawrie Power 11 6600 HP body 与 Fall Back 双方 25% 治疗共同提供资源层容错
     engage: medium_with_Lawrie_spawn_pressure
     disengage: medium_high_with_Fall_Back_if_not_blocked_by_wall_or_water
     anti_aggro: conditional; Protect variant or Lawrie body can help, area melee is dangerous
@@ -160,6 +160,39 @@ bp_brawler_profile:
         - "carrier"
         - "peel_for_thrower_pocket"
       false_positive: "PLP 未列 Gem Grab 主推荐，进入 BP 时只能作为地图条件满足后的扩展"
+    - mode: "Heist"
+      can_fulfill:
+        - "越墙双段投掷压 safe 防守者或 defender route"
+        - "Lawrie 召唤物吃进 safe 弹药并追击入侵者"
+        - "Fall Back 换位回血维持 safe 攻防节奏"
+      cannot_fulfill:
+        - "稳定远程 safe race DPS"
+        - "正面 outmatch 突进型 safe 入侵者"
+      needs_teammate_support:
+        - "主 safe DPS（远程/thrower）、反突进 peel"
+      false_positive: "Larry & Lawrie 的 objective_damage 偏控区；把他们当主 race 手会输给远程队，且 Lawrie 死后 Larry 输出骤降"
+    - mode: "Bounty"
+      can_fulfill:
+        - "越墙双段投掷 poke 压制抱团长手"
+        - "Lawrie 搜草/追击迫使长手先处理召唤物"
+        - "弹道惩罚墙后口袋站位并揭草"
+      cannot_fulfill:
+        - "高爆发首杀"
+        - "开阔图对高机动狙击手"
+      needs_teammate_support:
+        - "首杀火力、反突进 peel、探草"
+      false_positive: "Larry & Lawrie 的投掷弹道慢，敌方分散站位时星差输出有限；Lawrie 被快速清掉后只剩慢弹投掷"
+    - mode: "Knockout"
+      can_fulfill:
+        - "墙袋双段投掷和 Lawrie ammo tax 锁窄口"
+        - "Fall Back 换位回血保护回合 HP lead"
+        - "Lawrie 搜草给队友首杀信息"
+      cannot_fulfill:
+        - "首杀爆发"
+        - "无炮台/无 Lawrie 状态独立收尾"
+      needs_teammate_support:
+        - "首杀火力、反突进 peel、探草确认隐藏目标"
+      false_positive: "Larry & Lawrie 的 Knockout 价值高度依赖 Lawrie 存活和墙袋；刺客越墙跳入或投掷镜像清 Larry 时他们无法稳定参与首杀"
 
   failure_modes:
     - id: slow_projectile_and_reload_without_lawrie

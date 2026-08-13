@@ -52,7 +52,7 @@ bp_brawler_profile:
     sustained_dps: "medium in repeated close trades with 1.5s reload; cannot project stable DPS across open lanes"
     objective_damage: "low direct objective DPS; objective value comes from revive, carrier protection, and push sustain"
     mobility: "Fast movement speed with no dash or jump; route must be supplied by grass, walls, or teammate pressure"
-    survivability: "high support body at 5200 health with Self Service self-heal and Second Serving revive; revived target has no invulnerability"
+    survivability: "high support body at Power 11 10400 health with Self Service self-heal and Second Serving revive; revived target has no invulnerability"
     engage: "low alone, high as support for a melee or assassin teammate who can enter while protected by revive"
     disengage: "medium through healing and revive reset; weak when enemy can wait out the hot dog or burst the revive location"
     anti_aggro: "medium against commit-heavy close threats when Doug holds ammo, Extra Mustard, or Super timing near the objective"
@@ -166,6 +166,42 @@ bp_brawler_profile:
         - "mid controller or long-range lane"
         - "bodyguard at revive location"
       false_positive: "no-drop carrier tech is timing-sensitive and should be treated as a late-game support contract"
+    - mode: "Heist"
+      can_fulfill:
+        - revive_reset_for_a_close_range_safe_attacker_or_entry_tank
+        - close_push_sustain_for_a_safe_route_attacker
+      cannot_fulfill:
+        - safe_dps_lane_at_3.33_tile_range
+        - objective_damage_or_safe_race_contribution
+        - reach_contact_on_open_safe_maps_without_dash
+      needs_teammate_support:
+        - primary safe damage dealer (Colt, Brock, etc.)
+        - close-range attacker or tank that converts the revive into another safe touch
+      false_positive: "Doug's revive can extend a safe attacker, but his 3.33-tile range and no dash mean he cannot race or pressure safes; PLP does not recommend Heist, and on open safe maps he is kited before reaching his revive target."
+    - mode: "Bounty"
+      can_fulfill:
+        - revive_reset_for_a_close_range_star_hunting_teammate
+        - close_sustain_during_objective_contact_with_grass_or_cover
+      cannot_fulfill:
+        - stable_star_pressure_on_open_sightline_maps
+        - safe_long_range_lane_control
+        - reach_contact_on_extreme_open_maps
+      needs_teammate_support:
+        - ranged star-pressure teammate to hold open sightlines
+        - a teammate taking first contact near cover for Second Serving
+      false_positive: "Bounty rewards low-risk star pressure; Doug's 3.33-tile range and no dash let marksman keep him out of range, and revive value collapses when the enemy can pre-aim the revive tile, so he is a poor Bounty fit."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - revive_reset_for_a_zone_body_or_close_objective_teammate
+        - close_sustain_during_zone_stand_with_cover_or_grass
+      cannot_fulfill:
+        - zone_body_at_3.33_tile_range_against_thrower_or_long_range_pressure
+        - stable_zone_time_without_a_close_teammate_to_protect
+        - reach_contact_on_open_zone_maps_without_dash
+      needs_teammate_support:
+        - zone body teammate that converts the revive into zone time
+        - range or thrower answer from outside the zone
+      false_positive: "Doug can revive a zone teammate, but his short range and no dash make him a poor zone body against lobbed or long-range pressure, so he is a support pick that needs a real zone holder, not a zone controller himself."
 
   failure_modes:
     - id: "short_range_open_map_trap"

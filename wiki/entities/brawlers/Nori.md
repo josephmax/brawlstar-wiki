@@ -40,7 +40,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 装填 0.1s（ammo-bar 充能型，满充 2s），tap 可连续挥杆但 hold 充能期不能回血"
     objective_damage: "medium_high; PLP 推荐 Heist，Super 成长巨鱼可打库，hook 可改路线接近金库"
     mobility: "very_high; Very Fast 820 基础，hook 拉墙位移，满充跳墙，His Mother's Son 命中后 984"
-    survivability: "medium_high; 3800 血，Sushi Snack 鱼换治疗，Super 落地后消失躲爆发，root 可断开团"
+    survivability: "medium_high; Power 11 本体 7600 血，Sushi Snack 鱼换治疗，Super 落地后消失躲爆发，root 可断开团"
     engage: "high; hook 突进 + root + Super 水坑区域接管"
     disengage: "medium; hook 拉墙后撤，Super 消失躲关键技能，但回点在坑中心"
     anti_aggro: "high; root 1.25s 断刺客/突进，Super 水坑封路线，tap AOE 清近身"
@@ -126,6 +126,18 @@ bp_brawler_profile:
         - "[[entities/maps/Layer Cake|Layer Cake]]"
         - "[[entities/maps/Hideout|Hideout]]"
       bp_use: "slot_task.wall_pocket_hook_assassination"
+    - id: "gem_grab_hook_dive_and_zone_control"
+      map_feature_type: "grass_flank"
+      uses_feature_by: "满充 hook 穿越侧草接近 gem carrier 或后排，root 锁定确认击杀或打断倒计时撤退，Super 水坑封矿区入口或 carrier 退线"
+      route_or_position: "侧草绕后路线、中央墙后 carrier 撤退线、矿区入口侧墙"
+      objective_conversion: "hook 追击 gem carrier 迫使掉宝，root 断倒计时撤退，水坑封矿让己方收宝"
+      active_when: "地图有侧草+中央墙结构（如 Crystal Arcade 四组 2x2 墙），敌方 carrier 缺位移或保镖"
+      fails_if: "敌方持续扫草、hook 充能期被硬控打断、或敌方长线在 Nori 接近前压血"
+      example_maps:
+        - "[[entities/maps/Crystal Arcade|Crystal Arcade]]"
+        - "[[entities/maps/Double Swoosh|Double Swoosh]]"
+        - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
+      bp_use: "candidate_eval.grass_flank_carrier_dive_with_root_and_zone"
 
   objective_contracts:
     - mode: "Hot Zone"
@@ -134,7 +146,7 @@ bp_brawler_profile:
         - "root 封进场"
         - "tap AOE 清近身站区者"
       cannot_fulfill:
-        - "长期主站区 body（3800 血不够扛持续 chip）"
+        - "长期主站区 body（Power 11 7600 血不够扛持续 chip）"
         - "处理区外 thrower/long range"
       needs_teammate_support:
         - "站区前排、区外长手、探草/反投掷"
@@ -172,6 +184,30 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 carrier、反控制、射门跟进"
       false_positive: "Nori 在球模式更适合断球和清守门人，不是主持球手"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "hook 追击 gem carrier 迫使掉宝"
+        - "root 断倒计时撤退或抢矿"
+        - "Super 水坑封矿区入口限制收宝路线"
+      cannot_fulfill:
+        - "长期稳定持宝石（充能期不能回血，Power 11 7600 血不够扛持续 chip）"
+        - "无视野情况下独立控中"
+      needs_teammate_support:
+        - "中路稳定火力和探草"
+        - "hook 进场后能接应撤退或补伤害"
+      false_positive: "Nori 的 Gem Grab 价值来自 hook+root 的 carrier 威胁和倒计时翻盘，不是稳定中路 body；草墙图有路线时成立，纯开阔长线图会被风筝"
+    - mode: "Knockout"
+      can_fulfill:
+        - "root 确认击杀残血目标"
+        - "hook 追击或越墙刺杀孤立后排"
+        - "Super 水坑封缩圈路线或掩护队友推进"
+      cannot_fulfill:
+        - "长线安全输出（射程虽长但弹道需充能预判）"
+        - "在敌方保留 peel 时先手进场"
+      needs_teammate_support:
+        - "长手压血创造 hook 确认窗口"
+        - "探草和反控制保护充能期"
+      false_positive: "Knockout 的 Nori 依赖 hook+root 链完成单次击杀确认，不是持续对枪；墙袋图有路线时成立，开阔图充能期易被长线爆发惩罚"
 
   failure_modes:
     - id: "charge_cannot_regen"

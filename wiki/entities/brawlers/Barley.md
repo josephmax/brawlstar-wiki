@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_area; 2 秒 reload，依赖落点和路线限制"
     objective_damage: "high_heist_if_super_on_safe; safe 可吃普攻两跳和 Super 多跳，Extra Noxious 强化"
     mobility: "low; 无位移"
-    survivability: "medium_low; 2700 HP，Medical Use/Shield 缓解但仍怕贴脸"
+    survivability: "medium_low; Power 11 本体 5400 HP，Medical Use/Shield 缓解但仍怕贴脸"
     engage: "low; 通过封路逼退，不主动开团"
     disengage: "medium_with_sticky_syrup; 自身周围 slow 可拖刺客/坦克"
     anti_aggro: "medium_high_if_gadget_available; Sticky Syrup 4 秒 slow 可防门前/草口突进"
@@ -170,11 +170,44 @@ bp_brawler_profile:
       needs_teammate_support:
         - "赢线、保护释放 Super、处理 wall break"
       false_positive: "Heist 变体需要 Extra Noxious 和安全投掷角，不是默认 PLP 主模式"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "墙后矿区 puddle 封路"
+        - "Super 覆盖 carrier 撤退路线"
+        - "Sticky Syrup 防矿口突进"
+      cannot_fulfill:
+        - "独立 carrier"
+        - "无墙开阔中路控制"
+      needs_teammate_support:
+        - "稳定 carrier、视野/扫草、反投掷"
+      false_positive: "Barley 能封锁矿区入口，但需要墙体保护；墙被打开后矿区封锁价值快速下降"
+    - mode: "Bounty"
+      can_fulfill:
+        - "墙后 puddle 压制固定站位长手"
+        - "Sticky Syrup 反草口突进"
+        - "Super 大范围清星区边缘"
+      cannot_fulfill:
+        - "开阔长线对狙"
+        - "无 peel 对抗高速刺客"
+      needs_teammate_support:
+        - "反投掷/反刺客、视野或开墙"
+      false_positive: "Barley 在 Bounty 的价值依赖墙角投掷位；开阔图上慢普攻会被长手持续压制"
+    - mode: "Knockout"
+      can_fulfill:
+        - "墙后 chokepoint 封路消耗"
+        - "Super 覆盖固定掩体后方目标"
+        - "Sticky Syrup 防残局突进"
+      cannot_fulfill:
+        - "稳定首发 pick 压力"
+        - "追击高速变向目标"
+      needs_teammate_support:
+        - "开墙/反投掷、视野、跟进爆发"
+      false_positive: "Barley 不是 Knockout 主狙；只在有墙后 pocket 且敌方缺位移时提供路线上税"
 
   failure_modes:
     - id: "low_health_dive_pressure"
       active_when: "Edgar、Mortis、Kenji、Sam、Ollie、Bolt 等从草/墙角贴 Barley"
-      exposed_by: "[[sources/PLP-Barley|PLP-Barley]] target_favored signals and 2700 HP"
+      exposed_by: "[[sources/PLP-Barley|PLP-Barley]] target_favored signals and Power 11 5400 HP"
       mitigation: "保留 Sticky Syrup，补队友 peel，不在无墙侧路单站"
       bp_use: "draft_requires_peel"
     - id: "thrower_pocket_opened"

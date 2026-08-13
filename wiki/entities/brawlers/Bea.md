@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; reload 0.9 秒但只有 1 ammo，不能持续泼射"
     objective_damage: "low_heist; 打 safe/召唤物不充能，目标伤害不稳定"
     mobility: "low; 无位移"
-    survivability: "low_medium; 2800 HP，Honeycomb 在 Supercharged 持有时给 30% shield"
+    survivability: "low_medium; Power 11 本体 5600 HP，Honeycomb 在 Supercharged 持有时给 30% shield"
     engage: "low; 靠长线压制和 slow 开窗口，不主动开团"
     disengage: "medium_with_super_or_honey_molasses; Super/Honey Molasses slow 可阻止追击"
     anti_aggro: "medium_high_if_slow_ready; slow 和高伤 Supercharged 惩罚坦克，但怕被先手贴脸"
@@ -161,6 +161,53 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区者、反刺客、草区侦测"
       false_positive: "Hot Zone 价值来自开阔射线；墙多或刺客侧路开放时需要换人或补保护"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "长线侧路压制矿区"
+        - "Super slow 阻止敌方抢矿或退守 carrier"
+        - "Supercharged 单发威胁压低 gem 站位"
+      cannot_fulfill:
+        - "稳定 gem carrier（低血 5600 HP、单 ammo、无位移）"
+        - "独自处理草内刺客"
+      needs_teammate_support:
+        - "carrier 或前排保护"
+        - "草区侦测和近身 peel"
+      false_positive: "Bea 的 slow 和 Supercharged 可保护矿区节奏，但她不能像坦克/支援那样长期持宝；逼退 gem 站位不等于自己接管 carrier"
+    - mode: "Heist"
+      can_fulfill:
+        - "长线 poke 安全压制敌方回防"
+        - "Super slow 阻止敌方进攻推进"
+      cannot_fulfill:
+        - "稳定 safe DPS（命中 safe/箱子/召唤物不充能）"
+        - "近身破墙或贴库爆发"
+      needs_teammate_support:
+        - "专门 safe DPS 或破墙/进库角色"
+        - "反刺客保护"
+      false_positive: "Supercharged 高伤容易被误读为 Heist 打库能力；普攻打 safe 不充能，目标伤害不稳定，Bea 不是 safe race 候选"
+    - mode: "Bounty"
+      can_fulfill:
+        - "长线 Supercharged 单发建立星差"
+        - "Super slow 保护星差或开收头窗口"
+        - "Rattled Hive 探草和墙后扫射"
+      cannot_fulfill:
+        - "硬扛刺客贴脸（低血无位移）"
+        - "处理多墙袋和深草路线"
+      needs_teammate_support:
+        - "视野/草区侦测"
+        - "近身保护"
+      false_positive: "长线命中上限高，但单 ammo miss 即断节奏；Dry Season/Hideout 这类图若敌方高速突进侧路开放，Bea 仍是暴露点"
+    - mode: "Knockout"
+      can_fulfill:
+        - "长线 Supercharged pickoff"
+        - "Super slow 阻止回防或保护回合"
+        - "Honey Molasses 控 chokepoint"
+      cannot_fulfill:
+        - "first-kill 主动开团"
+        - "独自处理多突进或传送"
+      needs_teammate_support:
+        - "前排或控制保护射线"
+        - "草区侦测"
+      false_positive: "Bea 适合安全输出和惩罚进位，不是主动 first kill 制造者；Belle's Rock/Flaring Phoenix 这类图需有保护者挡住侧切"
 
   failure_modes:
     - id: "one_ammo_low_health_no_escape"

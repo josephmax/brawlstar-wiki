@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; 2.1 秒 slow reload，强调布区而非连发"
     objective_damage: "situational_super_burst; Super 可对 safe/固定目标多 blob 命中"
     mobility: "low; 无位移"
-    survivability: "medium_low; 3800 HP，需要距离和队友覆盖近身"
+    survivability: "medium_low; Power 11 本体 7600 HP，需要距离和队友覆盖近身"
     engage: "low; 通过预铺区域逼退，不主动开团"
     disengage: "medium_with_residue_or_super; slow/reveal 区和 Super 封路能拖追击"
     anti_aggro: "medium_if_route_closed; 延迟爆炸对固定入口有效，但怕即时 burst"
@@ -169,6 +169,41 @@ bp_brawler_profile:
       needs_teammate_support:
         - "近身保护和击杀收尾"
       false_positive: "延迟伤害需要队友压住敌方走位才会转击杀"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "矿区延迟爆炸阻止收宝"
+        - "carrier 退线封路"
+        - "Residue 揭草/slow 侧草入口"
+      cannot_fulfill:
+        - "安全主 carrier"
+        - "即时打断突进"
+      needs_teammate_support:
+        - "近身 peel"
+        - "收宝主 carrier"
+      false_positive: "封路可被等待或绕路化解；矿区控制需要队友惩罚被逼位目标，且 PLP 推荐模式不含 Gem Grab"
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - "球路/门前延迟爆炸封路"
+        - "Super 多 blomb 覆盖持球路线"
+        - "Residue slow 入口"
+      cannot_fulfill:
+        - "即时解围（1.15 秒延迟）"
+        - "持球推进或 scorer"
+      needs_teammate_support:
+        - "门前即时 peel"
+        - "scorer"
+      false_positive: "Fandom Brawl Ball tips 明确延迟爆炸无法即时让持球者掉球；不能把 Squeak 当门前即时防守"
+    - mode: "Heist"
+      can_fulfill:
+        - "Super 落 safe 多 blob 集中伤害"
+        - "防守路线延迟爆炸拖回防"
+      cannot_fulfill:
+        - "持续 safe race DPS（2.1 秒慢装填）"
+        - "被贴脸时的即时自保"
+      needs_teammate_support:
+        - "主 race 输出"
+        - "近身保护"
+      false_positive: "Super burst 是周期性窗口而非稳定打库位；PLP 推荐模式不含 Heist"
 
   failure_modes:
     - id: "delayed_damage_no_immediate_stop"

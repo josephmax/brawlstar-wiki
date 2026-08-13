@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_by_autoaim_spam; 0.25 秒 reload 很快，但高爆发依赖蓄力"
     objective_damage: "medium; 能威胁近身目标和守门/守区，不是远程 race"
     mobility: "medium_with_its_gonna_blow; 满蓄 80% 后 +10% 速度"
-    survivability: "high_body_with_resource; 5200 HP，Barricade 3 秒 40% 减伤，Super 治疗 50% 已损生命"
+    survivability: "high_body_with_resource; Power 11 本体 10400 HP，Barricade 3 秒 40% 减伤，Super 治疗 50% 已损生命"
     engage: "medium; 靠墙体、满蓄移速和 Barricade 走入范围"
     disengage: "low_to_medium; 主要靠 Barricade 和 Super 治疗，缺直接位移"
     anti_aggro: "high_at_point_blank; 近身 Super 和满蓄爆发能惩罚刺客/坦克"
@@ -166,6 +166,38 @@ bp_brawler_profile:
       needs_teammate_support:
         - "独立 carrier、矿区长手、视野/探草"
       false_positive: "Hank 能保护撤退线，但不能替队伍提供持续矿区射程"
+    - mode: "Heist"
+      can_fulfill:
+        - "守自家 safe 时用身体和 Barricade 顶住近距离突进者"
+        - "在窄口/墙后蓄力威胁敌方 safe 入侵路线"
+        - "近身 Super 对贴近 safe 的进攻者打出多鱼雷爆发并回血"
+      cannot_fulfill:
+        - "远程 safe race DPS"
+        - "在开阔图持续对 safe 施压"
+      needs_teammate_support:
+        - "主 safe DPS（远程/thrower）、开墙、反远程压制"
+      false_positive: "Hank 的 objective_damage 是近身窗口型，不是稳定 safe race；把他当主攻手会让 race 输给远程队"
+    - mode: "Bounty"
+      can_fulfill:
+        - "墙后/草口蓄力威胁，惩罚靠近的低血长手"
+        - "身体护送高星差队友撤退"
+      cannot_fulfill:
+        - "长线星差保护"
+        - "开阔图对枪"
+      needs_teammate_support:
+        - "长手主输出、探草、反长手 mirror"
+      false_positive: "Hank 有身体不代表能在 Bounty 长线输出；蓄力可见且不能自然回血，纯开阔图会被风筝到无贡献"
+    - mode: "Knockout"
+      can_fulfill:
+        - "墙后蓄力封锁窄口或回撤线"
+        - "近身 Super 在缩圈/残局反打贴脸目标"
+        - "Barricade 顶住首波接触"
+      cannot_fulfill:
+        - "远距离首杀威胁"
+        - "无墙图安全输出"
+      needs_teammate_support:
+        - "长手首杀火力、探草、反 thrower"
+      false_positive: "Hank 的 Knockout 价值依赖墙体和敌方必须接近；开阔图或长手队会让他无法参与首杀交换"
 
   failure_modes:
     - id: "charge_cancelled_by_control"

@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: "high_while_dragon_ammo_bar_active; very fast reload, 50% ammo refund on Super, and auto-reloading dragon ammo bar"
     objective_damage: "medium; PLP modes emphasize Gem Grab, Brawl Ball, and Hot Zone body pressure rather than safe-race damage"
     mobility: "conditional_high; Dragon Solo grants 20% speed and Hypercharge extends both speed and range"
-    survivability: "very_high; 5600 health, 20% shield in Dragon Solo, Last Stand, and Shredding heal"
+    survivability: "very_high; Power 11 11200 health, 20% shield in Dragon Solo, Last Stand, and Shredding heal"
     engage: "high_with_Super_or_Last_Stand; can cross a choke after Super is active or use Last Stand to absorb a key focus window"
     disengage: "low_medium; Upper Cut can be an escape build, but PLP default gives up that hard interrupt for Last Stand"
     anti_aggro: "medium_high; high health, Last Stand, optional Upper Cut, and close cone damage punish direct entries"
@@ -156,6 +156,45 @@ bp_brawler_profile:
         - thrower clear, wallbreak, or anti-tank support
         - teammate damage once Draco forces defenders to move
       false_positive: "High survivability fails if the enemy can keep Draco out of the zone with CC or wall-protected damage."
+    - mode: "Heist"
+      can_fulfill:
+        - body_pressure_on_defender_returning_to_safe
+        - lane_hold_while_teammates_race
+        - conditional_close_safe_contact_after_dragon_form
+      cannot_fulfill:
+        - low_commitment_long_range_safe_DPS
+        - reliable_solo_safe_race_in_open_lane
+        - wallbreak_to_open_safe_route
+      needs_teammate_support:
+        - primary sustained safe DPS dealer
+        - wallbreak or thrower-clear to convert body pressure into safe access
+      false_positive: "11200 HP reads as a safe-race tank, but Lance Stab range 4 and no wallbreak mean Draco cannot crack a defended safe alone; he only wins if the map funnels defenders into his dragon cone while teammates do the real damage."
+    - mode: "Bounty"
+      can_fulfill:
+        - bush_check_with_Lance_Stab_apex
+        - conditional_anti_aggro_after_an_enemy_overcommits
+        - body_presence_to_discourage_short_range_star_hunters
+      cannot_fulfill:
+        - long_range_star_lane_pressure_on_Dry_Season_or_Shooting_Star
+        - safe_poke_trade_into_sniper_core
+        - early_star_carrier_protection_in_open_sightlines
+      needs_teammate_support:
+        - long_range_marksman to hold the open lane
+        - vision and peel so Draco is not kited before he reaches apex range
+      false_positive: "Draco is not a Bounty pick on long-range maps like Hideout or Layer Cake; without grass or a choke to close distance, sniper and thrower cores will farm him before his Super cycle starts."
+    - mode: "Knockout"
+      can_fulfill:
+        - choke_body_denial_on_walled_first_kill_routes
+        - dragon_cone_punish_after_teammate_forces_a_move
+        - Last_Stand_absorb_to_enable_teammate_finish
+      cannot_fulfill:
+        - first_kill_in_open_sightline_duel
+        - safe_long_range_output_while_waiting_for_a_pick
+        - self_sustain_into_persistent_dot_or_knockback_cores
+      needs_teammate_support:
+        - long_range or thrower to create the first-kill window
+        - anti-CC answer so the 0.5-second Super delay is not canceled
+      false_positive: "Knockout rewards safe output and first-kill conversion; Draco only fits when the map (Belle's Rock, Out in the Open chokes) lets him reach mid-close range after a teammate pick, not as a primary first-kill threat on open maps like Flaring Phoenix."
 
   failure_modes:
     - id: "open_long_range_kiting"

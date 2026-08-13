@@ -139,6 +139,66 @@ bp_brawler_profile:
         - dedicated_safe_dps_or_body
         - center_bush_control
       false_positive: Heist 中 Piper 不是纯 DPS 机器，更像赢线和远程角度组件
+    - mode: Gem Grab
+      can_fulfill:
+        - long_lane_poke_to_zone_enemies_off_mine
+        - max_range_pick_on_overextended_or_low_health_carrier
+        - super_escape_to_reset_lane_after_carrier_pressure
+      cannot_fulfill:
+        - primary_gem_carrier_into_long_range_focus
+        - sustained_mid_body_or_bush_hold
+      needs_teammate_support:
+        - durable_carrier_or_mid_body
+        - bush_vision_or_anti_thrower_clear
+      false_positive: Piper 能赢边线 poke，但 Crystal Arcade/Double Swoosh 的矿区中心几何和草丛让她难以转化为持续矿区控制
+    - mode: Brawl Ball
+      can_fulfill:
+        - long_lane_pick_to_force_defender_off_goal_line
+        - super_bomb_thin_wall_break_on_goal_or_midfield
+        - auto_aimer_anti_aggro_after_ball_fight
+      cannot_fulfill:
+        - ball_carrier_or_frontline_body
+        - reliable_close_range_duel_without_super_or_auto_aimer
+      needs_teammate_support:
+        - scorer_and_ball_handler
+        - anti_thrower_or_anti_tank_during_lane_pressure
+      false_positive: Piper 破墙和长线 pick 只在己方有得分后续时才有价值；慢装填让她在 ball fight 中价值有限
+    - mode: Bounty
+      can_fulfill:
+        - max_range_star_pick_on_fragile_long_range
+        - long_lane_star_lead_protection_with_super_escape
+        - Homemade_Recipe_bush_angle_burst
+      cannot_fulfill:
+        - stable_star_holder_under_dive_or_multi_angle_pressure
+        - thrower_pocket_or_spawnable_clear
+      needs_teammate_support:
+        - bush_check_and_anti_dive
+        - spawnable_or_thrower_clear_before_piper_commits_lane
+      false_positive: Dry Season/Shooting Star 极开阔基本面很强，但 Hideout/Layer Cake 的草墙和侧路让 Piper 单发长线被绕过
+    - mode: Hot Zone
+      can_fulfill:
+        - max_range_poke_to_push_zoners_off_edge
+        - super_bomb_wall_break_on_zone_adjacent_cover
+        - long_lane_pick_during_zone_fight_chaos
+      cannot_fulfill:
+        - zone_body_or_standing_zone_time
+        - reliable_zone_clear_against_grouped_entry
+      needs_teammate_support:
+        - durable_zone_holder
+        - area_clear_or_anti_thrower
+      false_positive: Piper 能在 Ring of Fire/Dueling Beetles 边线 poke，但 2800 HP 和慢装填让她无法站圈或清理 zone 入口
+    - mode: Knockout
+      can_fulfill:
+        - max_range_first_pick_on_overextended_target
+        - super_escape_to_reset_after_committing_or_under_dive
+        - auto_aimer_anti_aggro_window
+      cannot_fulfill:
+        - safe_open_lane_trade_into_superior_sniper_mirror
+        - blind_initiation_without_resource
+      needs_teammate_support:
+        - burst_to_confirm_long_lane_pressure
+        - anti_dive_on_Belle's_Rock_or_Flaring_Phoenix_multi_angle_maps
+      false_positive: Belle's Rock/Flaring Phoenix 的多角度突进会暴露 Piper 单发节奏；草丛和召唤物会让慢装填被低成本消耗
 
   failure_modes:
     - id: close_range_damage_drop

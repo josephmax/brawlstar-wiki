@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_high_at_point_blank; 1 秒装填，完整命中两轮五段 whistle 即可重新获得 Super，但必须持续贴身"
     objective_damage: "conditional; Heist 依赖抓 safe 后持续近身输出，不是远程 race"
     mobility: "high_with_super; Fast 基础移速，Super 4500 拉拽速度，可过水/穿越障碍路径"
-    survivability: "medium_high_body_low_during_travel; 5000 HP，但抓钩路上不免伤"
+    survivability: "medium_high_body_low_during_travel; Power 11 本体 10000 HP，但抓钩路上不免伤"
     engage: "high; Reserve Buoy 和墙/敌人抓钩提供强制接触，落地后两轮完整普攻可建立下一次 Super 循环；Hypercharge 以当前 30% multiplier 累积"
     disengage: "medium; Reserve Buoy 可逃离或抓墙，但无 stun 的 Gadget Super 用作逃生更安全"
     anti_aggro: "medium_high_with_stun; Tougher Torpedo 可提高近距离 stun，打断敌方进攻"
@@ -166,6 +166,44 @@ bp_brawler_profile:
       needs_teammate_support:
         - "另一路 race 压力、落点清控、反坦/反 burst"
       false_positive: "Buzz 的 Heist 是入侵窗口，不是无条件打库核心"
+    - mode: "Bounty"
+      can_fulfill:
+        - bush_route_assassination_on_overextended_support_or_marksman
+        - x_ray_shades_short_term_bush_reveal_for_star_hunt
+        - punish_low_peel_comp_from_wall_or_grass_lane
+      cannot_fulfill:
+        - stable_star_pressure_on_open_sightline_maps
+        - safe_long_range_lane_control
+        - engage_without_trait_charge_on_extreme_open_maps
+      needs_teammate_support:
+        - ranged star-pressure teammate who controls open sightlines
+        - vision or wallbreak that creates a route into the bush lane
+      false_positive: "Bounty maps like Dry Season are extremely open; Buzz cannot farm Trait or reach contact, so he is a high-risk late pick only when the enemy draft is fragile and a route exists."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - bush_route_assassination_on_zone_holder_or_support
+        - x_ray_shades_bush_reveal_before_zone_entry
+        - grapple_stun_punish_on_clustered_zone_entry
+      cannot_fulfill:
+        - stable_zone_body_or_zone_time
+        - zone_clear_against_thrower_or_area_pressure
+      needs_teammate_support:
+        - zone body or area-clear teammate
+        - sustain after Buzz spends a single engage
+      false_positive: "Buzz can score a pick near the zone, but he cannot hold zone time and dies if the entry is read; he is an assassin tool, not a zone controller."
+    - mode: "Knockout"
+      can_fulfill:
+        - bush_route_assassination_on_exposed_thrower_or_sniper
+        - reserve_buoy_tempo_engage_after_peel_is_known
+        - x_ray_shades_reveal_before_committing_to_a_route
+      cannot_fulfill:
+        - stable_long_range_lane_control
+        - safe_first_pick_into_open_or_control_heavy_comps
+        - engage_if_endpoint_is_camped_or_control_held
+      needs_teammate_support:
+        - ranged lane teammate to hold space before Buzz commits
+        - bait for hard control so the grapple endpoint is safe
+      false_positive: "Knockout deaths are unrecoverable; Buzz's grapple travel is not invulnerable, so an endpoint camped by control or close burst turns his engage into a giveaway rather than a first kill."
 
   failure_modes:
     - id: "grapple_interrupt_or_landing_burst"

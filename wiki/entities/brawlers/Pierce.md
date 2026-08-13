@@ -164,17 +164,30 @@ bp_brawler_profile:
         - zone_holder
         - area_clear_or_sustain
       false_positive: Pierce 在圈外打准不代表能持续计分
-    - mode: Bounty_or_Knockout
+    - mode: Bounty
       can_fulfill:
-        - long_range_pick_pressure
-        - Super_finish_window
-        - defensive_shell_cache
+        - long_range_star_pick_pressure
+        - last_ammo_slow_on_peeking_target
+        - Super_homing_star_lead_hold
+      cannot_fulfill:
+        - pure_open_sniper_mirror_when_shell_cycle_is_unsafe
+        - safe_star_lead_body_into_dive
+      needs_teammate_support:
+        - peel_against_speed_or_assassin_routes
+        - wallbreak_or_vision_to_force_enemy_off_thrower_pockets
+      false_positive: 射程长不等于 Bounty 稳拿星；Dry Season / Shooting Star 的纯开放镜像里他常被更稳定弹道和更低资源成本的狙击手压过
+    - mode: Knockout
+      can_fulfill:
+        - long_lane_first_pick_pressure
+        - Super_finish_window_after_shell_setup
+        - last_ammo_slow_to_force_collapse
       cannot_fulfill:
         - safe_close_duel_when_shells_are_gone
+        - solo_wall_pocket_clear_into_thrower
       needs_teammate_support:
-        - peel
-        - wallbreak_or_control_against_thrower_pockets
-      false_positive: 纯开放狙击镜像里要检查对面是否有更稳定弹道和更低资源成本
+        - peel_or_anti_dive_on_his_lane
+        - wallbreak_or_control_to_answer_thrower_pockets
+      false_positive: Belle's Rock / New Horizons 的墙袋和侧路会暴露他空弹和低血窗口，Super 1 秒延迟也容易被有 peel 的对手离开
 
   failure_modes:
     - id: shell_resource_tax

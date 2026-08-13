@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: medium; 1.6 秒 reload，Voodoo Chile active reload slows to 2 秒
     objective_damage: conditional_heist_thrower_pressure_not_primary_race
     mobility: high_on_water_with_trait_and_Elementalist_speed
-    survivability: low_medium; 3100 HP, Elementalist ground shield or bush invis can protect windows
+    survivability: low_medium; Power 11 本体 6200 HP, Elementalist ground shield or bush invis can protect windows
     engage: medium_with_bush_invis_or_water_speed
     disengage: medium_high_with_water_route_or_Elementalist
     anti_aggro: conditional_with_water_slow_or_Gris_Gris_body
@@ -162,17 +162,39 @@ bp_brawler_profile:
         - "zone_holder"
         - "vision_or_peel"
       false_positive: "Juju 是控入口/支援，不应被计作稳定站区身体"
-    - mode: "Bounty_or_Knockout"
+    - mode: "Gem Grab"
       can_fulfill:
-        - "wall_control"
-        - "spawnable_ammo_tax"
-        - "water_or_bush_angle"
+        - "水上/草区投掷角度压矿区入口"
+        - "Gris-Gris 召唤物追击 carrier 或吃进矿弹药"
+        - "草中射程/隐身保护 carrier 撤退线"
       cannot_fulfill:
-        - "open_sniper_mirror_without_terrain"
+        - "稳定主 carrier"
+        - "开阔中线正面控矿"
       needs_teammate_support:
-        - "peel_against_assassins"
-        - "range_partner_or_wallbreak"
-      false_positive: "Juju 需要地形元素；纯开放图缺草/水/墙袋时价值下降"
+        - "独立 carrier、稳定 mid、探草和反突进"
+      false_positive: "Juju 的矿区价值依赖水/草/墙袋地形转换；缺可用地形时她的投掷只是普通中距离输出"
+    - mode: "Bounty"
+      can_fulfill:
+        - "草中长射程投掷和隐身 peek 压制长手"
+        - "Gris-Gris 逼迫长手先处理召唤物再 peek"
+        - "投掷弧线惩罚墙后口袋站位"
+      cannot_fulfill:
+        - "开阔长线狙击 mirror"
+        - "无草/墙袋时的稳定星差输出"
+      needs_teammate_support:
+        - "反刺客 peel、长手搭档、探草确认"
+      false_positive: "Juju 的 Bounty 价值高度依赖草丛和墙袋；纯开阔图（如 Out in the Open 变体）她会被真狙击手风筝"
+    - mode: "Knockout"
+      can_fulfill:
+        - "墙袋投掷和 Gris-Gris 在残局制造 ammo tax"
+        - "水上 slow 或草中隐身惩罚回撤/缩圈路线"
+        - "Guarded Gris-Gris 在回合末锁低血撤退"
+      cannot_fulfill:
+        - "开阔图首杀输出"
+        - "无地形元素的稳定收尾"
+      needs_teammate_support:
+        - "首杀火力、反刺客 peel、探草"
+      false_positive: "Juju 需要水/草/墙袋把投掷转成首杀窗口；缺地形时她的 Knockout 价值显著下降"
 
   failure_modes:
     - id: terrain_dependency_mismatch
@@ -181,7 +203,7 @@ bp_brawler_profile:
       mitigation: "BP 时把水/草/地面位置写成具体路线，不用泛化标签"
       bp_use: map_factor_hard_gate
     - id: low_health_dive_pressure
-      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 3100 HP Juju"
+      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 Power 11 6200 HP Juju"
       exposed_by: "[[sources/PLP-Juju|PLP-Juju]] counteredBy list"
       mitigation: "保留 Elementalist 逃生，配队友 peel 或选择水/草安全角"
       bp_use: draft_requires_peel

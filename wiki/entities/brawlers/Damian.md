@@ -165,6 +165,44 @@ bp_brawler_profile:
         - "range_or_thrower_clear"
         - "sustain_or_followup"
       false_positive: "Damian 能站区和清区，但 Mosh Pit 每段内侧弹飞后会破碎；被远程不进圈消耗或要求反复困同一路线时价值会快速下降"
+    - mode: "Heist"
+      can_fulfill:
+        - super_jump_safe_entry_and_close_body_pressure
+        - enemy_entry_displacement_on_defender_or_attacker_route
+        - temporary_wall_route_block_on_safe_lane
+      cannot_fulfill:
+        - stable_safe_race_dps_at_2.67_tile_range
+        - survive_anti_tank_burst_or_control_at_the_landing
+        - safe_during_long_range_lane_before_super_charges
+      needs_teammate_support:
+        - primary safe damage dealer (Colt, Brock, etc.)
+        - answer to Colette, Bull, Clancy-style anti-tank waiting at the jump endpoint
+      false_positive: "Damian's jump can reach safe, but his 2.67-tile range and single-use Mosh Pit make him a poor safe race pick; PLP's recommended modes exclude Heist and his value collapses against endpoint camping."
+    - mode: "Bounty"
+      can_fulfill:
+        - conditional_jump_assassination_on_overextended_support_or_marksman
+        - mosh_pit_star_lead_protection_with_one_use_segment_boundary
+      cannot_fulfill:
+        - stable_star_pressure_on_open_sightline_maps
+        - safe_long_range_lane_control_before_super_charges
+        - survive_extreme_open_kiting_at_2.67_tile_range
+      needs_teammate_support:
+        - ranged star-pressure teammate to hold open sightlines
+        - bait for control so the jump endpoint is safe
+      false_positive: "Bounty maps like Dry Season are extremely open; Damian's 2.67-tile range and slow Super charge mean he cannot reach contact or farm stars reliably, so he is a high-risk late pick rather than a star source."
+    - mode: "Knockout"
+      can_fulfill:
+        - conditional_jump_assassination_on_exposed_thrower_or_sniper
+        - mosh_pit_one_use_segment_control_on_clustered_lane_entry
+        - wall_of_sound_temporary_route_block_on_choke
+      cannot_fulfill:
+        - safe_first_pick_into_open_or_control_heavy_comps
+        - stable_long_range_lane_control_before_super_charges
+        - survive_endpoint_anti_tank_burst_or_control
+      needs_teammate_support:
+        - ranged lane teammate to hold space and force predictable routes
+        - bait or ban for Clancy, Otis, Chester-style denial before the jump
+      false_positive: "Knockout deaths are unrecoverable and Damian's Mosh Pit boundary is single-use per speaker; a camped endpoint or read entry turns his jump into a giveaway rather than a first kill."
 
   failure_modes:
     - id: short_range_kited_before_super

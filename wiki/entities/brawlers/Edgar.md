@@ -171,6 +171,28 @@ bp_brawler_profile:
       needs_teammate_support:
         - "压血、消耗敌方控制、保留接应路线"
       false_positive: "Belle's Rock 类墙图也要确认入口没有被控；不能把刺客克投掷写成无条件"
+    - mode: "Bounty"
+      can_fulfill:
+        - "侧草/墙后路线突进击杀孤立后排或投掷"
+        - "把一次进场转成击杀确认，压制敌方 star holder"
+      cannot_fulfill:
+        - "长线稳定消耗或远程拿星"
+        - "持星撤退与保命"
+      needs_teammate_support:
+        - "长线输出或探草先压血、消耗敌方 peel"
+        - "进场失败后的接应或撤退掩护"
+      false_positive: "Dry Season / Shooting Star 等极开阔图短手接近成本过高；只有墙草给路线、敌方缺控制时才能作最后手惩罚"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "跳入站圈抱团打出一次清场窗口"
+        - "贴脸处理圈旁投掷/控制"
+      cannot_fulfill:
+        - "持续站圈身体"
+        - "无路线时正面粉碎 zone lock"
+      needs_teammate_support:
+        - "真正站圈身体在 Edgar 清场后接管"
+        - "anti-aggro 防止 Edgar 进圈后被集火"
+      false_positive: "Edgar 能进场清圈不等于能占圈；没有队友接管区域会赢击杀输计分"
 
   failure_modes:
     - id: "control_or_knockback_stops_entry"

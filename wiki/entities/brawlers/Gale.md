@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.2 秒 very fast reload 支撑持续压线，但单发伤害低"
     objective_damage: "low_to_medium; Heist 只能靠近距离多雪弹或 Spring Ejector 送队友，不是主 race"
     mobility: "team_route_tool; Spring Ejector 6 格弹板提供转点/返场/进库路径"
-    survivability: "medium; 4000 HP，靠推离、减速和 Twister 保距离"
+    survivability: "medium; Power 11 本体 8000 HP，靠推离、减速和 Twister 保距离"
     engage: "medium; 可用 Super 把敌人推入队友或墙，不是自带突进"
     disengage: "high; Super 推开、Twister 断路、Freezing Snow 减速"
     anti_aggro: "high; Super/Twister/slow 对刺客、坦克、抓钩和冲锋进场成本很低"
@@ -167,6 +167,45 @@ bp_brawler_profile:
       needs_teammate_support:
         - "站区 body、thrower/长手处理、实际击杀"
       false_positive: "Twister 只挡移动不挡射击；敌方能在外面打区时 Gale 需要队友补输出"
+    - mode: "Heist"
+      can_fulfill:
+        - "Spring_Ejector_rotation_to_speed_teammate_into_safe_angle"
+        - "Super_knockback_to_peel_safe_defenders_off_a_racing_teammate"
+        - "wide_snowball_slow_on_defender_return_route"
+      cannot_fulfill:
+        - "sustained_safe_DPS_for_the_race"
+        - "wallbreak_to_open_safe_route"
+        - "reliable_solo_safe_defense_against_burst_divers"
+      needs_teammate_support:
+        - "primary safe DPS dealer to actually race"
+        - "burst or wallbreak follow-up to convert his peel into damage"
+      false_positive: "Gale 没有破墙也没有稳定 safe 伤害；在 Bridge Too Far、Hot Potato、Kaboom Canyon、Pit Stop、Safe Zone、Safe(r) Zone 这些竞速图，他只能用弹板和 Super 给队友制造打库角度，不能独自承担 race。"
+    - mode: "Bounty"
+      can_fulfill:
+        - "wide_snowball_slow_and_bush_sweep_on_star_lane"
+        - "Super_knockback_to_displace_a_peeking_or_low_health_star_target"
+        - "Twister_route_denial_on_short_range_star_hunters"
+      cannot_fulfill:
+        - "long_range_safe_star_pressure_matching_Piper_Mandy_Bea_on_Dry_Season_Shooting_Star"
+        - "reliable_focus_kill_due_to_low_single_target_damage"
+        - "stable_poke_trade_into_pure_sniper_core"
+      needs_teammate_support:
+        - "long_range marksman or sniper to hold the open sightline"
+        - "burst finisher to convert his slow/knockback into a kill"
+      false_positive: "PLP 不推荐 Bounty；Gale 的宽线 slow 不是星差工具，在 Hideout、Layer Cake 这类长线图他的低单发伤害会让他在对枪中输给纯狙，只在有草/窄口让 Twister 和 Super 生效时作为反短手控制成立。"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Twister_and_Super_route_denial_on_walled_first_kill_routes"
+        - "Freezing_Snow_slow_to_enable_teammate_first_kill_pursuit"
+        - "Super_knockback_into_wall_or_teammate_focus_for_a_pick"
+      cannot_fulfill:
+        - "first_kill_in_open_sightline_duel"
+        - "reliable_focus_kill_by_himself"
+        - "stable_output_into_long_range_cores_on_open_maps"
+      needs_teammate_support:
+        - "first-kill threat or sniper to hold the sightline"
+        - "burst finisher to convert his control into a kill"
+      false_positive: "Knockout 奖励安全首杀；Gale 只在 Belle's Rock、Out in the Open 这类入口可被 Twister 覆盖的图作为路线控制支援，Flaring Phoenix、New Horizons 等开放图他的低单发伤害无法独立完成首杀或对枪。"
 
   failure_modes:
     - id: "twister_blocks_movement_not_damage"

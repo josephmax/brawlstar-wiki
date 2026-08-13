@@ -56,7 +56,7 @@ bp_brawler_profile:
     sustained_dps: "low_without_route; 2s reload and falloff make raw laning weaker than his post-cycle pressure"
     objective_damage: "very_high_if_heist_route_set; repeated post dashes can hit safe and retreat with 50% dash shield"
     mobility: "setup_dependent_very_high; auto-charging Super and Posts create repeated map-wide routes after setup"
-    survivability: "medium_high_on_dash; 4700 health plus 50% damage reduction while dashing, but endpoints can be camped"
+    survivability: "medium_high_on_dash; Power 11 9400 health plus 50% damage reduction while dashing, but endpoints can be camped"
     engage: "high_after_posts; dash route reaches backline, thrower pocket, safe, or carrier if endpoint is safe"
     disengage: "high_with_retreat_post; own-side Posts let Chuck escape after safe hit or gem pickup"
     anti_aggro: "medium; post landing knockback and dash damage help, but true melee can camp endpoint"
@@ -181,6 +181,44 @@ bp_brawler_profile:
         - zone body or area clear
         - anti-CC protection for dash endpoint
       false_positive: "Chuck can arrive quickly, but arrival is not zone control if enemies wait on the endpoint."
+    - mode: "Brawl Ball"
+      can_fulfill:
+        - midfield_route_dash_pressure_on_carrier_or_defender
+        - side_post_escape_for_ball_recovery
+        - endpoint_ammo_tax_with_tickets_please_on_goal_entry
+      cannot_fulfill:
+        - stable_wallbreak_goal_opening
+        - safe_carrier_role_during_route_setup
+        - scoring_geometry_resolution_without_scorer
+      needs_teammate_support:
+        - scorer and wallbreak/control if goal geometry is closed
+        - early lane pressure while Chuck places Posts
+      false_positive: "Chuck's route dash can disrupt a ball lane, but PLP recommends only Heist; he does not solve scoring or carrying and needs setup time that ball pace rarely grants."
+    - mode: "Bounty"
+      can_fulfill:
+        - post_route_poke_or_chase_on_overextended_target
+        - fast_rotation_back_to_lane_after_a_pick
+      cannot_fulfill:
+        - stable_star_pressure_on_open_sightline_maps
+        - safe_long_range_lane_control_before_route_setup
+        - engage_without_super_into_control_or_close_burst
+      needs_teammate_support:
+        - marksman or long-range teammate to control open sightlines
+        - lane protection during the setup window
+      false_positive: "Bounty maps reward low-commitment star pressure; Chuck's value is route-based and needs setup, so he is a weak Bounty fit that should not be drafted as a star source."
+    - mode: "Knockout"
+      can_fulfill:
+        - post_route_pick_confirmation_on_overextended_backline
+        - ghost_train_one_time_wall_bypass_into_pocket
+        - fast_reposition_after_a_pick
+      cannot_fulfill:
+        - safe_first_pick_into_open_or_control_heavy_comps
+        - stable_lane_control_before_route_setup
+        - engage_if_endpoint_is_camped_by_cc_or_close_burst
+      needs_teammate_support:
+        - ranged lane teammate to hold space and force predictable routes
+        - bait or ban for Charlie, Otis, Cordelius-style denial before Chuck commits
+      false_positive: "Knockout deaths are unrecoverable and endpoints can be camped; Chuck's route dash is a setup-dependent punish tool, not a stable lane pick, and first-picking him invites denial answers."
 
   failure_modes:
     - id: "setup_time_before_route_value"

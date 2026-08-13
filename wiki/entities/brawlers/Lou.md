@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚约 0.4 格宽的雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；扩大后的弹体降低了窄口和目标区内连续命中的门槛，但仍需多次命中。Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板仍是 3500 HP、0.7 秒三连发可能被高速横移拆散，且 Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤仍会打断叠层。
+Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚约 0.4 格宽的雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；扩大后的弹体降低了窄口和目标区内连续命中的门槛，但仍需多次命中。Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板仍是 Power 11 本体 7000 HP、0.7 秒三连发可能被高速横移拆散，且 Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤仍会打断叠层。
 
 ## BP 建模
 
@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.1 秒 very fast reload，但单枚伤害低"
     objective_damage: "low; 主要控区/控球/控 carrier，不是 Heist race"
     mobility: "low; 无位移"
-    survivability: "medium_with_ice_block; 3500 HP，Ice Block 可 1 秒无敌但不能动/攻击"
+    survivability: "medium_with_ice_block; Power 11 7000 HP，Ice Block 可 1 秒无敌但不能动/攻击"
     engage: "low_to_medium; 靠 Super 预铺目标点而非主动接触"
     disengage: "high_against_short_range; Frost、冰面和 Ice Block 可拖突进"
     anti_aggro: "high_if_frost_stacks; 眩晕、滑地、Hypothermia 输出削减惩罚坦克/刺客"
@@ -168,6 +168,38 @@ bp_brawler_profile:
       needs_teammate_support:
         - "主 carrier、长手输出、收割冰冻目标"
       false_positive: "Frost 控制 carrier 后必须有队友接宝/补伤害"
+    - mode: "Heist"
+      can_fulfill:
+        - "Super 越墙铺冰面拖延敌方入库 aggro 路线"
+        - "Cryo Syrup 在 Super 内快速冰冻入库者"
+      cannot_fulfill:
+        - "稳定远程 safe DPS race"
+        - "独自承担整局防守"
+      needs_teammate_support:
+        - "主 safe DPS、开墙、反长线 race"
+      false_positive: "Lou 的冰面只能拖延 aggro 接触，不能与快速 safe race 阵容抗衡"
+    - mode: "Bounty"
+      can_fulfill:
+        - "Hypothermia 削低血站线者输出"
+        - "Super 越墙铺冰惩罚直线撤退和保星位"
+        - "Cryo Syrup 快速冰冻孤立目标"
+      cannot_fulfill:
+        - "开阔长线对狙或远程稳定单点"
+        - "处理分散多路后排"
+      needs_teammate_support:
+        - "长手保星、反刺客、收割冰冻目标"
+      false_positive: "Frost 需要多次命中且 2.5 秒后衰减；Bounty 开阔图叠层比 Hot Zone 难"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Super 越墙铺冰面锁缩圈/窄口路线"
+        - "Cryo Syrup 或 Hyper Super 落点瞬冻完成不可复活击杀"
+        - "Hypothermia 削回合末站桩者输出"
+      cannot_fulfill:
+        - "远距离对枪首杀"
+        - "独自守住被强开的侧路"
+      needs_teammate_support:
+        - "视野、长线补伤、逼敌方进入冰面路线"
+      false_positive: "Lou 的 Knockout 价值依赖敌方必须经过可预判直线或窄口；分散站位会让冰面失去目标"
 
   failure_modes:
     - id: "narrow_burst_and_frost_decay"

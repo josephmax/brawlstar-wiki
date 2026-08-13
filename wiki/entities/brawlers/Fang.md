@@ -167,6 +167,29 @@ bp_brawler_profile:
       needs_teammate_support:
         - "清场后站圈的人"
       false_positive: "Fang 清圈不是占圈；没有队友站圈会赢击杀输计分"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "Super/Roundhouse 击杀或眩晕 gem carrier 后抢矿"
+        - "倒计时连跳收残血或切断撤退路线"
+        - "抱团护卫被连跳惩罚"
+      cannot_fulfill:
+        - "稳定中路身体或主 carrier"
+        - "无 Super 时正面控矿"
+      needs_teammate_support:
+        - "稳定中路火力和 carrier"
+        - "探草或开墙，让连跳目标形成链"
+      false_positive: "Fang 能杀人抢矿，不等于能控矿；没有 carrier 和中线接应时击杀无法转成倒计时优势"
+    - mode: "Heist"
+      can_fulfill:
+        - "击杀回防者后短窗口贴库爆发"
+        - "防守端用连跳/Roundhouse 拒近身进库"
+      cannot_fulfill:
+        - "稳定 safe race DPS"
+        - "隔水/长线独立打库"
+      needs_teammate_support:
+        - "真正 safe DPS 承担 race"
+        - "开线或控线让 Fang 接触金库"
+      false_positive: "Fang 的 objective_damage 低，把他当主 safe 手是陷阱；只在能进库数秒并存活时才有打库价值"
 
   failure_modes:
     - id: "super_controlled_during_travel"

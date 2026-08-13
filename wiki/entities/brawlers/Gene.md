@@ -164,6 +164,54 @@ bp_brawler_profile:
       needs_teammate_support:
         - scorer_or_wallbreak
       false_positive: 不能把 Gene 当作持球推进核心
+    - mode: "Heist"
+      can_fulfill:
+        - "Magic Hand 拉出躲墙防守者制造减员"
+        - "中长距离分裂弹 poke 压退回防"
+        - "Magic Puffs 治疗维持队友 safe 压力"
+      cannot_fulfill:
+        - "稳定 safe DPS（objective_damage: low）"
+        - "近身破墙或贴库爆发"
+      needs_teammate_support:
+        - "专门 safe DPS 或破墙/进库角色"
+        - "拉人后爆发 follow-up"
+      false_positive: "拉人和治疗是支援价值，不是 safe race 能力；Gene 不能替代 Colt/Brock 这类远程打库，Bridge Too Far/Pit Stop 这类图他只做控制支援"
+    - mode: "Bounty"
+      can_fulfill:
+        - "分裂弹长线 poke 建立星差"
+        - "Magic Hand 抓失位或高价值长手"
+        - "Vision Gear 探草和 Magic Puffs 治疗维持对线"
+      cannot_fulfill:
+        - "primary burst damage（low burst without pull followup）"
+        - "硬扛长狙 outrange"
+      needs_teammate_support:
+        - "拉人后爆发 follow-up"
+        - "反狙击或反突进掩护"
+      false_positive: "只有拉人威胁但没有 follow-up 时 Gene 不能单独完成减员；Dry Season/Shooting Star 这类纯长狙图上 Gene 容易被 Piper/Mandy 压出价值区"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "中距离牵线或分裂弹压制进区 body"
+        - "Magic Hand 拉出站圈者或阻止进区"
+        - "Magic Puffs 治疗维持己方 zone body"
+      cannot_fulfill:
+        - "独自站圈（sustained_dps low_medium）"
+        - "稳定处理多角度进区"
+      needs_teammate_support:
+        - "zone body 或前排"
+        - "拉人后爆发 follow-up"
+      false_positive: "Gene 的区口价值来自控制和治疗支援，不是站点；Dueling Beetles/Open Business 这类图若无 zone body，他的牵线会被多角度进区打断"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Magic Hand 抓孤立目标制造 first pick"
+        - "分裂弹长线 poke 保护回合"
+        - "VisionGear 和 Lamp Blowout 探草/防突进"
+      cannot_fulfill:
+        - "主动 burst 制造 first kill"
+        - "独自处理多突进或抱团阵型"
+      needs_teammate_support:
+        - "拉人后爆发 follow-up"
+        - "反突进或反狙击掩护"
+      false_positive: "Gene 的 KO 价值依赖拉人配合；Belle's Rock/New Horizons 这类图若无爆发队友接伤害，拉中后反被敌方前排/控制反打"
 
   failure_modes:
     - id: pull_without_followup

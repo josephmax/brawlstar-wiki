@@ -139,6 +139,66 @@ bp_brawler_profile:
         - lane_body_or_defender_clear
         - anti_assassin_cover
       false_positive: Heist 适配来自 Peep/爆发窗口，不是持续站桩打库
+    - mode: Gem Grab
+      can_fulfill:
+        - extreme_range_lane_poke_to_zone_enemies_off_mine
+        - peep_wallbreak_to_open_carrier_retreat_or_mid_access
+        - autofocus_pick_on_overextended_gem_carrier
+      cannot_fulfill:
+        - reliable_gem_carrier_at_2800_hp_under_focus
+        - sustained_mid_body_or_bush_hold_against_spawnables
+      needs_teammate_support:
+        - durable_carrier_or_mid_body
+        - anti_dive_and_spawnable_clear
+      false_positive: Nani 长线 poke 不等于矿区控制；2800 HP 让她在 Crystal Arcade/Double Swoosh 的矿区压力下几乎不能担任 carrier
+    - mode: Brawl Ball
+      can_fulfill:
+        - long_lane_pick_to_force_defender_off_goal_or_ball
+        - peep_wallbreak_on_thin_goal_wall_or_midfield
+        - return_to_sender_anti_aggro_window_after_pass
+      cannot_fulfill:
+        - ball_carrier_or_frontline_body
+        - reliable_close_range_duel_without_warpin_time_resource
+      needs_teammate_support:
+        - scorer_or_ball_handler
+        - peel_during_peep_control_or_close_range_pressure
+      false_positive: Peep 破墙只在己方有得分后续时才有价值；Nani 不能把 2800 HP 本体投入 ball fight
+    - mode: Bounty
+      can_fulfill:
+        - extreme_range_burst_pick_on_fragile_long_range
+        - peep_wallbreak_or_retarget_to_open_star_lane
+        - return_to_sender_sniper_mirror_answer
+      cannot_fulfill:
+        - stable_star_holder_under_dive_or_spawnable_focus
+        - reliable_kill_on_mobile_targets_at_convergence_range
+      needs_teammate_support:
+        - anti_dive_to_protect_peep_cast
+        - spawnable_or_body_clear_before_nani_commits_lane
+      false_positive: Dry Season/Hideout 纯开阔镜像里 Nani 是高上限 pick，但 Layer Cake/Shooting Star 的草墙和机动会让她收束命中不稳定
+    - mode: Hot Zone
+      can_fulfill:
+        - extreme_range_poke_to_push_zoners_off_edge
+        - peep_wallbreak_on_zone_adjacent_pocket_or_cover
+        - long_lane_pick_during_zone_fight_chaos
+      cannot_fulfill:
+        - zone_body_or_standing_zone_time
+        - reliable_zone_clear_against_spawnable_or_thrower_pressure
+      needs_teammate_support:
+        - durable_zone_holder
+        - area_clear_or_anti_thrower
+      false_positive: Nani 能在 Ring of Fire/Dueling Beetles 边线 poke，但 2800 HP 让她无法站圈，zone time 必须由队友提供
+    - mode: Knockout
+      can_fulfill:
+        - extreme_range_first_pick_on_overextended_target
+        - peep_wallbreak_to_open_choke_or_force_displacement
+        - return_to_sender_or_warpin_time_engage_window
+      cannot_fulfill:
+        - safe_open_lane_trade_into_superior_sniper_mirror
+        - blind_initiation_or_close_range_duel_without_resource
+      needs_teammate_support:
+        - burst_to_confirm_peep_pressure
+        - anti_dive_during_peep_control_on_Belle's_Rock_multi_angle_maps
+      false_positive: Belle's Rock/Flaring Phoenix 的多角度突进会暴露 Nani 本体；Peep 价值依赖本体有安全角落
 
   failure_modes:
     - id: super_body_vulnerable

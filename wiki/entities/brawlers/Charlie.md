@@ -56,7 +56,7 @@ bp_brawler_profile:
     sustained_dps: "cycle_dependent; close-range or wall-hit yo-yo returns faster, open-range misses leave Charlie with no ammo until return"
     objective_damage: "low; PLP lists Heist but Charlie's BP value there is defender removal or shot tanking, not stable safe DPS"
     mobility: "low; Hypercharge adds speed only during its window"
-    survivability: "medium; 3700 health, Shield gear, and Personal Space self-cocoon heal can buy time"
+    survivability: "medium; Power 11 7400 health, Shield gear, and Personal Space self-cocoon heal can buy time"
     engage: "control_engage; Cocoon removes one enemy from the fight and lets teammates close or score"
     disengage: "medium; Cocoon or Personal Space can stop a chase and create a heal/reset window"
     anti_aggro: "very_high_if_super_available; Cocoon cancels many incoming Supers and disarms ball or gem carriers"
@@ -214,6 +214,20 @@ bp_brawler_profile:
         - side_lane_pressure_or_long_range_followup
         - splash_answer_or_finish_damage_after_cocoon
       false_positive: "Cocoon 只创造暂时人数差；队伍不能压住其余两人或补足释放后的伤害时，不等于获得首杀。"
+    - mode: "Bounty"
+      can_fulfill:
+        - cocoon_isolation_to_remove_one_star_holder
+        - spider_bush_scout_and_shot_tank
+        - anti_aggro_super_cancel_to_protect_backline
+      cannot_fulfill:
+        - stable_long_range_star_poke_due_to_low_yo_yo_damage
+        - solo_star_accumulation_without_follow_up
+        - reliable_thrower_clear_if_walls_intact
+      needs_teammate_support:
+        - long_range_damage_to_convert_cocoon_pick
+        - anti_thrower_or_wallbreak
+        - peel_if_enemy_runs_multiple_dive
+      false_positive: "Charlie removes one target, but Bounty rewards low-risk star farming; her low damage and single-ammo cycle mean she cannot replace a real long-range anchor on open maps like Dry Season or Shooting Star."
 
   failure_modes:
     - id: "single_ammo_yoyo_cycle_loss"

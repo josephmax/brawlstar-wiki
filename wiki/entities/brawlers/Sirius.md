@@ -158,17 +158,32 @@ bp_brawler_profile:
         - zone_holder
         - area_or_sustain_followup
       false_positive: 影子拖时间不等于持续计分
-    - mode: Bounty_or_Knockout
+    - mode: Bounty
       can_fulfill:
-        - shadow_body_block
-        - low_commitment_space_control
-        - slow_or_shadow_pick_setup
+        - shadow_body_block_on_star_lane
+        - A_Starr_Is_Born_slow_pick_setup
+        - lobbed_Starr_Bomb_pressure_on_peeking_target
+        - low_commitment_star_lead_space_control
+      cannot_fulfill:
+        - pure_long_range_sniper_duel_on_Dry_Season_or_Shooting_Star
+        - solo_burst_finish_without_team_damage
+      needs_teammate_support:
+        - damage_to_convert_shadow_pressure_into_kills
+        - anti_thrower_or_anti_splash_to_keep_shadows_alive
+      false_positive: Hideout/Layer Cake 的墙草图能让影子叠出空间税，但 Dry Season/Shooting Star 纯开阔长线里低血本体常先被处理
+    - mode: Knockout
+      can_fulfill:
+        - shadow_body_block_on_round_lane
+        - low_commitment_round_space_control
+        - A_Starr_Is_Born_pick_setup_on_first_defender
+        - bush_shadow_stack_ambush_with_Master_of_Shadows_recall
       cannot_fulfill:
         - pure_long_range_sniper_duel
+        - safe_frontline_body_without_shadows_charged
       needs_teammate_support:
-        - damage_to_convert_shadow_pressure
-        - anti_thrower_or_anti_splash
-      false_positive: 在纯开阔长线里，低血本体可能比影子更先被处理
+        - burst_to_convert_slow_or_shadow_block_into_first_blood
+        - anti_thrower_or_anti_splash_before_shadow_economy_stabilizes
+      false_positive: Belle's Rock/New Horizons 的回合图里影子能买空间，但敌方 splash/pierce 会把影子变成范围收益，不能按独立 pick 核心评估
     - mode: Heist
       can_fulfill:
         - defender_ammo_tax

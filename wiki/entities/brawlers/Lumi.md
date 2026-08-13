@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "stateful; 不是普通 reload，必须管理 2 个锤子和召回节奏"
     objective_damage: "medium_high; Heist 可用双锤召回和 Super 打固定 safe"
     mobility: "low; 无位移，靠 slow/ice/root 自保"
-    survivability: "low_to_medium; 3500 HP，靠控场防突进"
+    survivability: "low_to_medium; Power 11 本体 7000 HP，靠控场防突进"
     engage: "medium; Super root 或 Grim and Frostbitten 限路后接回收"
     disengage: "medium_high_with_ice_or_root; 滑地、slow 和 root 能阻止短手追击"
     anti_aggro: "high_if_maces_held_close; 近墙短回收、冰面和 root 可反制跳脸"
@@ -144,16 +144,48 @@ bp_brawler_profile:
       needs_teammate_support:
         - "carrier、视野、反突进"
       false_positive: "Lumi 的穿墙来自召回路径，不是前掷或本体能穿墙"
-    - mode: "Brawl Ball/Hot Zone"
+    - mode: "Brawl Ball"
       can_fulfill:
-        - "区口/球路 slow 与 root"
+        - "球路 slow 与 Super root 停持球/守门"
+        - "门前/球落点召回穿墙伤害"
         - "反跳脸短回收"
       cannot_fulfill:
-        - "主 scorer 或站区 body"
-        - "root 后阻止敌方攻击"
+        - "主 scorer 或持球推进"
+        - "root 后阻止敌方攻击/射门"
       needs_teammate_support:
-        - "前排、射门位、击杀跟进"
-      false_positive: "root 阻止移动但不阻止攻击；Grim and Frostbitten 也只有半径 2 格、持续 3 秒，不能当作整圈长期封锁"
+        - "射门位、破墙、击杀跟进"
+      false_positive: "root 阻止移动但不阻止攻击；Super 前摇期间射门仍可发生，挡门不等于零封"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "单区口 Grim and Frostbitten 冰面与 Super root 延迟进区"
+        - "区边召回穿墙跟伤"
+      cannot_fulfill:
+        - "主站区 body 或长期封锁宽区"
+        - "root 后阻止区内目标攻击"
+      needs_teammate_support:
+        - "站区 body、墙后处理、击杀跟进"
+      false_positive: "Grim and Frostbitten 只有半径 2 格、持续 3 秒，不能当作整圈长期封锁；root 只阻止移动"
+    - mode: "Bounty"
+      can_fulfill:
+        - "穿墙召回惩罚墙后/撤退长手并 Half-Time slow"
+        - "Super root 锁定固定射线后排"
+      cannot_fulfill:
+        - "纯长线对枪稳定压制（Dry Season/Shooting Star 类长手 outrange）"
+        - "保证 root 后完成单杀"
+      needs_teammate_support:
+        - "长线伤害跟进、视野、反突进 peel"
+      false_positive: "锤子前掷 8 格且需预判；面对 Piper/Belle/Nani 的最大射程图，Lumi 不是天然 Bounty 中路"
+    - mode: "Knockout"
+      can_fulfill:
+        - "第一减员的 root + 召回收割"
+        - "Grim and Frostbitten 封单一接触路线"
+        - "穿墙回收打掩体后/撤退目标"
+      cannot_fulfill:
+        - "稳定首发开火权（前掷需预判、recall 有旅行时间）"
+        - "root 后阻止目标反击"
+      needs_teammate_support:
+        - "先手 chip/视野、击杀确认、反刺客 peel"
+      false_positive: "recall 几何依赖锤子落点与本体走位；多路线开阔 KO 图（Out in the Open/Flaring Phoenix）上回收路径易被横移绕开"
     - mode: "Heist"
       can_fulfill:
         - "固定 safe 的前掷/召回/Super burst"
@@ -181,7 +213,7 @@ bp_brawler_profile:
       bp_use: "timing_reliability_check"
     - id: "low_health_into_long_range_or_dot"
       active_when: "Lumi 被 Crow/Janet/Bea/Barley 等持续压线，无法站到召回角"
-      exposed_by: "3500 HP and PLP target_favored signals"
+      exposed_by: "Power 11 7000 HP and PLP target_favored signals"
       mitigation: "用墙角、Shield gear、队友 peel，不在开阔图无掩护早手"
       bp_use: "map_openness_filter"
 

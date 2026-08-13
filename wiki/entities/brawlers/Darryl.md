@@ -50,7 +50,7 @@ bp_brawler_profile:
     sustained_dps: "medium_before_roll_high_with_Rolling_Reload; 1.8s reload is ordinary, while Rolling Reload doubles reload speed for 5 seconds after Super"
     objective_damage: "high_if_heist_entry_connects; Recoiling Rotator and point-blank shells can damage safe, but he needs a route and Super timing"
     mobility: "high_resource_based; auto-charging double Barrel Roll gives two long, shielded entries and can cross water"
-    survivability: "high_during_entry; 5500 health, 50% roll shield, and Steel Hoops 25% post-roll shield let him absorb one engage window"
+    survivability: "high_during_entry; Power 11 11000 health, 50% roll shield, and Steel Hoops 25% post-roll shield let him absorb one engage window"
     engage: "high_route_based; roll knockback and Tar Barrel force contact when terrain narrows the entry"
     disengage: "medium_high; roll can escape or cross water, but spending both rolls removes pressure until auto-charge returns"
     anti_aggro: "medium_high; knockback, Tar Barrel slow, and shotgun burst punish divers if Darryl has roll or close spacing"
@@ -192,6 +192,44 @@ bp_brawler_profile:
         - wallbreak/scorer if goal geometry is closed
         - control teammate to stop counter-push after Darryl spends rolls
       false_positive: "Fandom supports Brawl Ball utility, but scoring depends on route and counter location rather than generic tank value."
+    - mode: "Gem Grab"
+      can_fulfill:
+        - roll_carrier_disruption_or_knockback_on_enemy_carrier
+        - grass_or_water_route_lane_pressure_after_super
+        - mine_body_pressure_when_contact_is_reachable
+      cannot_fulfill:
+        - safe_long_countdown_gem_carrier_at_shotgun_range
+        - stable_mid_mine_control_on_open_maps
+        - engage_before_super_charges_across_open_range
+      needs_teammate_support:
+        - dedicated carrier and mine controller
+        - lane control until Darryl's Super is ready
+      false_positive: "Darryl can roll into a carrier or mine fight, but shotgun range and auto-charge timing make him a poor stable carrier; on open gem maps he is a route-based engage pick, not a mine controller."
+    - mode: "Bounty"
+      can_fulfill:
+        - conditional_roll_assassination_on_overextended_low_peel_target
+        - wall_bounce_engage_from_side_choke_or_grass
+      cannot_fulfill:
+        - stable_star_pressure_on_open_sightline_maps
+        - safe_lane_before_super_across_open_range
+        - engage_into_endpoint_anti_tank_or_control
+      needs_teammate_support:
+        - ranged star-pressure teammate to hold open sightlines
+        - forced path or control so the roll endpoint is not camped
+      false_positive: "Bounty maps like Dry Season are extremely open; Darryl's short shotgun range and predictable roll landing let marksman kite and anti-tank answers camp him, so he is a high-risk late pick rather than a star source."
+    - mode: "Hot Zone"
+      can_fulfill:
+        - roll_entry_to_displace_zone_holder_or_defender
+        - tar_slow_contact_confirm_on_clustered_zone_entry
+        - temporary_zone_body_pressure_at_11000_power_11_health
+      cannot_fulfill:
+        - stable_zone_time_against_thrower_or_long_range_pressure
+        - survive_endpoint_anti_tank_burst_or_control
+        - hold_zone_after_both_rolls_are_spent
+      needs_teammate_support:
+        - zone body or area-clear teammate to accumulate zone time
+        - range or thrower answer from outside the zone
+      false_positive: "Darryl can roll into a zone for one contact, but he cannot hold zone time against lobbed or long-range pressure and his rolls are a spendable resource, so he is a route-based engage tool rather than a zone controller."
 
   failure_modes:
     - id: "roll_route_predictability_and_landing_camp"

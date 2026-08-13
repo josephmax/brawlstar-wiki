@@ -184,6 +184,54 @@ bp_brawler_profile:
       needs_teammate_support:
         - scorer_or_tank_pressure
       false_positive: 破门不等于能推进，必须有队友把窗口转成进球
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "长线 poke 压退矿区或 carrier"
+        - "Rocket Fuel 或 Super 打开关键墙扩大矿区视野"
+        - "Rocket Laces 越墙逃生或重定位"
+      cannot_fulfill:
+        - "稳定 gem carrier（低血无远程威胁）"
+        - "近身抓 carrier 或保护草区"
+      needs_teammate_support:
+        - "carrier 或前排"
+        - "近身保护和草区侦测"
+      false_positive: "长线压退敌方是矿区支援价值，不等于 Brock 能稳定守矿或带宝；Crystal Arcade/Double Swoosh 这类图开墙需评估是否反而帮助敌方远程"
+    - mode: "Bounty"
+      can_fulfill:
+        - "长线 poke 建立星差"
+        - "Rocket No. 4 间歇性 11 格超距开窗"
+        - "Super 逼位或分裂敌方阵型"
+      cannot_fulfill:
+        - "稳定近身 duel"
+        - "独自处理高机动突进"
+      needs_teammate_support:
+        - "草区侦测和近身 peel"
+        - "视野或开墙配合"
+      false_positive: "Rocket No. 4 的 11 格只是每 6 秒一发；Dry Season/Shooting Star 这类长线图上 Brock 仍是 9 格基础射程，且低血慢弹道容易被高速目标惩罚"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "长线 poke 压退进区 body"
+        - "Super 或 Rocket Fuel 改造区口墙体"
+        - "溅射和火焰地面控入口"
+      cannot_fulfill:
+        - "独自站圈承伤（低血）"
+        - "近身清理区口"
+      needs_teammate_support:
+        - "zone body 或前排"
+        - "反突进保护"
+      false_positive: "Brock 的区口价值来自长线 poke 和改图，不是稳定站圈；Open Business/Ring of Fire 这类图若无 zone body 支援，他会被反突进直接贴脸"
+    - mode: "Knockout"
+      can_fulfill:
+        - "长线 pickoff 和超距消耗"
+        - "Super 分裂或逼退敌方阵型"
+        - "选择性开墙暴露躲藏目标"
+      cannot_fulfill:
+        - "first-kill 主动开团"
+        - "独自处理多突进"
+      needs_teammate_support:
+        - "前排或控制保护"
+        - "草区侦测"
+      false_positive: "Brock 适合安全输出和惩罚进位；Belle's Rock/Flaring Phoenix/New Horizons 这类图若无 peel，慢弹道和低血会让他成为敌方突进首选目标"
 
   failure_modes:
     - id: slow_projectile_into_mobility

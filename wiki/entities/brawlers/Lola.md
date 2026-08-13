@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "high_when_ego_lives; 本体 1.7 秒装填，Ego 有独立 ammo/reload，可叠加火力"
     objective_damage: "high_conditional; Heist safe/固定目标可吃本体+Ego+Freeze Frame 保护"
     mobility: "low; Stunt Double 可与 Ego 换位，但默认 build 不带"
-    survivability: "medium; 4000 HP，Ego 可挡非穿透弹，Freeze Frame 让 Ego 4 秒 50% 减伤"
+    survivability: "medium; Power 11 本体 8000 HP，Ego 可挡非穿透弹，Freeze Frame 让 Ego 4 秒 50% 减伤"
     engage: "low; 主要压线和分身前压，不主动突进"
     disengage: "medium_with_stunt_double; 默认更依赖 Ego 挡弹和站位"
     anti_aggro: "medium; Ego 可挡弹/Spark? 非穿透攻击，但刺客绕过分身会威胁本体"
@@ -169,6 +169,54 @@ bp_brawler_profile:
       needs_teammate_support:
         - "反投掷/开墙、近身 peel、视野"
       false_positive: "双线火力需要可保护 Ego 的角度；被快速清掉时 Lola 只是普通长手"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "Ego 双线压制矿区或保护 carrier"
+        - "长线 poke 压退敌方抢矿"
+        - "Freeze Frame Ego 挡弹保护 gem 站点"
+      cannot_fulfill:
+        - "稳定 gem carrier（Ego 不能捡宝，本体低机动）"
+        - "处理草区刺客贴本体"
+      needs_teammate_support:
+        - "carrier 或前排"
+        - "反刺客和草区侦测"
+      false_positive: "Ego 能挡弹但不能捡宝；Crystal Arcade/Double Swoosh 这类图上 Lola 的矿区价值是双线压制，不是自己接管 carrier"
+    - mode: "Bounty"
+      can_fulfill:
+        - "长线 Ego 双线交叉火力建立星差"
+        - "Ego 探点和承伤保护本体"
+        - "Improvise 末发 +30% 提高命中上限"
+      cannot_fulfill:
+        - "硬控刺客（无 crowd control）"
+        - "处理深墙投掷口袋"
+      needs_teammate_support:
+        - "反投掷/开墙"
+        - "近身 peel 和视野"
+      false_positive: "双线火力需要可保护 Ego 的角度；Dry Season/Shooting Star 这类图若敌方有 Penny/Belle 等弹射清分身，Lola 会变成普通长手"
+    - mode: "Hot Zone"
+      can_fulfill:
+        - "Ego 双线压制区口或挡弹保护 zone body"
+        - "长线 poke 压退进区 body"
+        - "Freeze Frame Ego 硬吃区口火力"
+      cannot_fulfill:
+        - "独自站圈（Ego 不能占 Hot Zone）"
+        - "处理多突进贴本体"
+      needs_teammate_support:
+        - "zone body 或前排"
+        - "反刺客和反弹射/投掷"
+      false_positive: "Ego 不能占 Hot Zone；Dueling Beetles/Open Business 这类图若无 zone body，Lola 的区口价值只是压制，不是站点"
+    - mode: "Knockout"
+      can_fulfill:
+        - "长线 Ego 双线 pickoff 保护回合"
+        - "Ego 探点和承伤"
+        - "Stunt Double 变体撤退或进 base 制造侧后压力"
+      cannot_fulfill:
+        - "主动 first kill（engage: low）"
+        - "硬控刺客或多突进"
+      needs_teammate_support:
+        - "近身 peel"
+        - "反投掷/开墙和视野"
+      false_positive: "Lola 适合安全双线输出和惩罚进位；Belle's Rock/New Horizons 这类图若无 peel，低机动的本体会被绕过 Ego 直接突进"
 
   failure_modes:
     - id: "ego_cannot_hold_objectives"

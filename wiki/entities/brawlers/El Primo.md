@@ -158,6 +158,44 @@ bp_brawler_profile:
       needs_teammate_support:
         - "清场、治疗或范围火力"
       false_positive: "高血量前排没有反控保护，会被 slow/percent damage 当充能资源"
+    - mode: "Gem Grab"
+      can_fulfill:
+        - "side_lane_body_pressure_via_grass_or_choke"
+        - "Super_jump_to_displace_gem_carrier_or_chaser"
+        - "countdown_window_bodyguard_for_carrier_retreat"
+      cannot_fulfill:
+        - "stable_open_mid_mine_control"
+        - "reliable_gem_carrier_under_anti_tank_pressure"
+        - "long_range_mine_clear_or_poke"
+      needs_teammate_support:
+        - "stable gem carrier and mid controller"
+        - "anti-anti-tank answer for Colette/Otis/Clancy cores"
+      false_positive: "3 格拳击和可预判的 Super 轨迹让 Primo 在 Hard Rock Mine、Undermine、Crystal Arcade 等开放或长线矿区无法独控宝石；他只在 Double Swoosh、Gem Fort 这类有墙草接近路线时作为侧路 bodyguard 成立。"
+    - mode: "Bounty"
+      can_fulfill:
+        - "conditional_bush_ambush_on_overextended_short_range_star_hunter"
+        - "Super_jump_punish_on_a_low_health_or_peeking_target"
+      cannot_fulfill:
+        - "long_range_safe_star_pressure_on_Dry_Season_Hideout_Layer_Cake_Shooting_Star"
+        - "stable_poke_trade_into_sniper_core"
+        - "star_carrier_protection_in_open_sightlines"
+      needs_teammate_support:
+        - "long_range marksman to hold the sightline"
+        - "vision and peel so Primo can reach a target without being kited"
+      false_positive: "Primo 不是 Bounty 英雄；在长线图他没有安全输出手段，星差和长线压制完全依赖队友，仅在极少数有草/墙接近的图能作为反短手奇兵。"
+    - mode: "Knockout"
+      can_fulfill:
+        - "Super_jump_first_kill_on_a_pinned_or_low_health_target"
+        - "Suplex_interrupt_on_an_engaging_dasher_or_ball_carrier_equivalent"
+        - "choke_body_denial_after_teammate_creates_a_pick"
+      cannot_fulfill:
+        - "safe_output_while_waiting_for_first_kill_window"
+        - "duel_open_sightline_marksman"
+        - "self_sustain_into_anti_tank_or_silence_cores"
+      needs_teammate_support:
+        - "first-kill threat or control to set up the jump"
+        - "ban or peel for Colette/Otis/Maisie answers"
+      false_positive: "Knockout 奖励安全首杀；Primo 只在 Belle's Rock、Out in the Open 这类有墙/草能掩盖 Super 轨迹的图作为后手首kill转换器，Flaring Phoenix、New Horizons 等开放图会被长线在跳前消耗。"
 
   failure_modes:
     - id: "open_map_no_wall_route"
