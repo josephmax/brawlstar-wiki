@@ -54,6 +54,7 @@
 
 - 站点与 manifest：
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
+- [[sources/Brawl-Planet-站点与数据接口|Brawl Planet 站点与数据接口]]（环境信号 pick 层数据源，Legendary+）
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
 - [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]

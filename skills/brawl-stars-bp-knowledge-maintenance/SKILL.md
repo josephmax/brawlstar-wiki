@@ -30,6 +30,7 @@ Then load only the relevant reference below.
 - For quality gates, script use, and contract tests, read `references/audit-and-validation.md`.
 - For separating maintenance knowledge from `runtime_bp_index`, read `references/runtime-boundary.md`.
 - For Liquipedia event capture, series/set semantics, tournament observation profiles, and their BP promotion gate, read `references/esports-event-ingest.md`.
+- For the environment signal (Brawl Planet Legendary+ pick layer + monthly Liquipedia ban layer), read `references/environment-signal-ingest.md`.
 - For health/damage/defense changes, Power Level normalization, kill-threshold diffs, and build-pressure review seeds, read `references/balance-breakpoint-audit.md`.
 
 ## Minimal Request Handling

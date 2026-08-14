@@ -1246,3 +1246,9 @@
 
 - 完整环境信号 schema（pick 层 + ban 层合并、窗口差异标注）待确认；进 runtime 前需复核提升。
 - 8 月其余 3 赛区月赛页可探测后抓取。
+
+## [2026-08-14] ingest | Brawl Planet 抓取方法论与首次执行结果沉淀
+
+- 新增 `wiki/sources/Brawl-Planet-站点与数据接口.md`：站点与 GCS 静态 JSON 接口（`storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz` 等，`.gz` 为命名约定实为明文）、文件命名规律、数据结构（per-map `individual` 的 wr/ur/sr + match_count）、抓取方法论、首次执行结果（33 图/29 active/2,882,389 场/105 英雄全覆盖/Crystal Arcade 90,887 场）、边界（无 ban、10 周滚动窗口、不可 runtime 直消费）。
+- 新增 `skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md`：环境信号两层结构（pick=Brawl Planet Legendary+、ban=Liquipedia 月赛）、月度流程、字段口径、禁则（不写英雄页、不生成 tier、名称归一化、过滤 future 英雄）。
+- `skills/brawl-stars-bp-knowledge-maintenance/SKILL.md` 登记新 reference；`wiki/index.md` 加入来源页入口。
