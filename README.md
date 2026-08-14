@@ -1,6 +1,6 @@
 # Think Like a Pro Brawlstar Player
 
-这个仓库维护一套《荒野乱斗》BP 知识库和 3 个 agent skill。目标不是手写一份固定 tier list，而是让 agent 先形成当前版本理解，再像高水平选手一样按地图、模式、已 ban/pick、阵容职责和风险做 BP。
+这个仓库维护一套《荒野乱斗》BP 知识库和 3 个 agent skill。目标不是手写任何 tier list 或强度榜，而是让 agent 基于稳定事实（英雄能力、地图职责、条件化对位）像高水平选手一样按地图、模式、已 ban/pick、阵容职责和风险做 BP。环境信号（高分 pick rate）当前为空槽。
 
 ## 为什么要做这套东西
 
@@ -14,19 +14,19 @@
 - `brawl-stars-bp-slot-decision`：选手 BP。先 `compile` 生成版本理解，再用 `decide` 做单手 ban / pick 决策。
 - `run-brawl-stars-bp`：裁判。负责开局、同步 ban、按顺序 cue 双方选手、汇总人类可读报告。
 
-`tools/strength-profile-editor/` 是 `brawl-stars-bp-slot-decision compile` 的附带工具，用来输入你自己的版本强度理解。事实召回脚本和报告渲染器是 skill 内部实现，不是用户入口。
+`tools/strength-profile-editor/` 已从 runtime 消费路径退役（保留代码但不再被 compile 消费）；tier 编辑产物不得进入 runtime。事实召回脚本和报告渲染器是 skill 内部实现，不是用户入口。
 
 ## 如何使用
 
-### 1. 先生成版本理解
+### 1. 先生成运行时索引
 
-默认版本理解使用稳定 wiki 事实和已采纳的默认强度理解：
+默认索引只由稳定 wiki 事实编译，环境信号（高分 pick rate）当前为空槽：
 
 ```text
 使用 $brawl-stars-bp-slot-decision compile 当前版本理解。
 ```
 
-如果你想输入自己的版本理解，先打开本地编辑器：
+旧的 tier 编辑器已退役，不再作为 compile 输入。
 
 ```bash
 python3 -m http.server 4173
@@ -38,11 +38,7 @@ python3 -m http.server 4173
 http://localhost:4173/tools/strength-profile-editor/
 ```
 
-导出 JSON 后，把它贴给 `compile`：
-
-```text
-使用 $brawl-stars-bp-slot-decision compile，并使用我刚导出的强度理解。
-```
+（无强度输入路径。）
 
 ### 2. 做单手 BP 决策
 
@@ -60,7 +56,7 @@ http://localhost:4173/tools/strength-profile-editor/
 给我 2-4 个候选组合，说明首选、备选、各自解决什么问题、会暴露什么风险，以及对面最后一手最需要防什么。
 ```
 
-`decide` 会使用已经编译好的版本理解；如果缺少必要索引，skill 会自行补编译或明确失败，不会凭记忆或临时读维护讨论页补答案。
+`decide` 会使用已经编译好的运行时索引；如果缺少必要索引，skill 会自行补编译或明确失败，不会凭记忆、旧榜单或临时读维护讨论页补答案。
 
 ### 3. 开一局完整 BP
 
@@ -100,7 +96,7 @@ flowchart TD
   U["人类使用者"] --> M["维护入口<br/>$brawl-stars-bp-knowledge-maintenance"]
   U --> P["选手入口<br/>$brawl-stars-bp-slot-decision"]
   U --> J["裁判入口<br/>$run-brawl-stars-bp"]
-  U -.可选.-> E["Strength Profile Editor<br/>版本强度输入"]
+  U -.退役.-> E["Strength Profile Editor<br/>已退役，不进入 runtime"]
 
   R["raw/<br/>原始来源"] --> M
   S["wiki/sources/<br/>来源摘要"] --> M
@@ -108,10 +104,10 @@ flowchart TD
   M --> A["wiki/entities/maps/<br/>地图稳定事实"]
   M --> O["outputs/<br/>审计产物"]
 
-  E --> C["compile<br/>生成 runtime_bp_index"]
+  E -.不消费.-> C["compile<br/>生成 runtime_bp_index"]
   B --> C
   A --> C
-  D["默认 / 用户 strength_profile"] --> C
+  D["环境信号 high-rank pickrate<br/>当前空槽"] -.未来.-> C
   C --> I["outputs/runtime-bp-index/<br/>runtime_bp_index + lock"]
 
   I --> Q["中立事实召回<br/>query_runtime_facts / hydrate_runtime_facts"]
@@ -125,10 +121,10 @@ flowchart TD
 
 ## 运行边界
 
-- `compile` 读取稳定英雄 / 地图事实和 strength profile，生成 `runtime_bp_index`。
+- `compile` 读取稳定英雄 / 地图事实，生成 `runtime_bp_index`；环境信号（high-rank pickrate）当前为空槽，无强度/tier 输入。
 - `decide` 只通过 `query_runtime_facts.py` 和 `hydrate_runtime_facts.py` 召回中立事实，再由选手 skill 做 BP 判断。
 - `decide` 不读取 `wiki/syntheses/` 临时补规则、补强度或补候选。
-- strength profile 是版本强度层，只影响当前版本理解；不能反写成英雄或地图稳定事实。
+- 系统中不存在 strength / tier 概念；任何旧榜单或强度档案都不得作为 runtime 输入。
 - 裁判不判断谁 BP 更好，不给胜率，不修正选手逻辑，只记录流程和玩家提交内容。
 - 生成的 runtime index、审计和模拟报告默认放在 `outputs/`，不写回长期 wiki。
 
@@ -137,7 +133,7 @@ flowchart TD
 当前覆盖重点：
 
 - slot-decision runtime index、precheck、fact query / hydrate、compile 行为：21 个 unittest。
-- strength profile editor：catalog、map-strength profile、前端 profile core。
+- strength profile editor：已退役（保留代码，不消费）。
 - maintenance：BP skill contract、PLP matchup coverage audit。
 
 当前本地验证状态：上述测试 100% 通过。

@@ -1,6 +1,12 @@
 # Strength Profile Editor
 
-本工具是本地 `strength_profile` 输入端，用来编辑 Brawl Stars BP `compile` 前的三层强度理解：
+> [!warning] 已退役（2026-08-14）
+> BP 系统已移除 strength / tier 概念，环境信号固定为高分选手 pick(+ban) rate（当前为空槽）。
+> 本工具**保留代码但不进入任何 runtime 消费路径**：`compile` 不再接收 strength profile，
+> 本工具导出的 tier 产物与 `generate_map_strength_profile.py` 生成的底稿均不得作为 runtime 输入。
+> 历史价值：作为 tier 编辑器 UI 的参考实现。后续若需要高分 pickrate 数据导入工具，应另立新工具。
+
+本工具曾作为本地 `strength_profile` 输入端，用来编辑 Brawl Stars BP `compile` 前的三层强度理解：
 
 - 通用强度
 - 模式强度

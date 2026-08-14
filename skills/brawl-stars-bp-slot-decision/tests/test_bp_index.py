@@ -134,7 +134,7 @@ class BPSkillIndexTest(unittest.TestCase):
             self.assertEqual("compiling", lock_payload["state"])
             self.assertEqual("ranked-default", lock_payload["runtime_index_key"])
 
-    def test_runtime_index_precheck_default_strength_matches_adopted_profile(self):
+    def test_runtime_index_precheck_lock_records_empty_environment_slot(self):
         with tempfile.TemporaryDirectory() as tmp:
             result = subprocess.run(
                 [
@@ -157,7 +157,9 @@ class BPSkillIndexTest(unittest.TestCase):
             payload = json.loads(result.stdout)
             lock_payload = json.loads(Path(payload["lock_path"]).read_text(encoding="utf-8"))
 
-            self.assertEqual("ikaoss11-july-2026-screenshot", lock_payload["strength_profile_id"])
+            self.assertNotIn("strength_profile_id", lock_payload)
+            self.assertNotIn("strength_profile_hash", lock_payload)
+            self.assertEqual("empty", lock_payload["pickrate_status"])
 
     def test_runtime_index_precheck_fails_after_bounded_wait_on_active_lock(self):
         with tempfile.TemporaryDirectory() as tmp:

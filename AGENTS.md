@@ -94,12 +94,12 @@ outputs/
 - `wiki/syntheses/` 可以讨论 BP 方法论，但讨论结论不会自动进入 skill。
 - 只有当某条结论被明确采纳为执行规则时，才复制到 `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md` 或 `runtime-decision-knowledge.md`，并同步更新契约测试。
 - BP skill 执行时禁止临场读取 `wiki/syntheses/` 来补规则、候选或版本判断；否则 syntheses 会从维护层滑回运行时依赖，破坏奥卡姆剃刀原则。
-- 稳定事实从 `wiki/entities/` 进入 `compile`，强度理解从用户 / 裁判 / 外部 profile 进入 `compile`，二者共同生成 `runtime_bp_index`。
+- 稳定事实从 `wiki/entities/` 进入 `compile`，生成 `runtime_bp_index`。系统中不存在 strength / tier 概念；环境信号（high-rank pick rate）当前为空槽（`pickrate_status: empty`），禁止从记忆或旧榜单推断。
 - `decide` 只消费 `runtime_bp_index` 和 skill 自身运行时规则；如果索引缺失或覆盖不足，先重新 `compile`，不要绕回 wiki syntheses。
 
 ### 英雄名称归一化规则
 
-凡是解析用户输入、外部榜单、ban/pick 文本、`strength_profile`、候选池或报告中的英雄称谓，先读取 `wiki/concepts/英雄名称归一化.md` 的 fenced YAML 映射，归一化到 `wiki/entities/brawlers/*.md` 的 canonical name。canonical name 自身默认合法；`aliases` 自动映射；`ambiguous` 不自动归一，需结合上下文或请求用户确认。禁止在 skill、工具或输出中复制维护第二份别名表。
+凡是解析用户输入、外部榜单、ban/pick 文本、高分 pickrate 数据、候选池或报告中的英雄称谓，先读取 `wiki/concepts/英雄名称归一化.md` 的 fenced YAML 映射，归一化到 `wiki/entities/brawlers/*.md` 的 canonical name。canonical name 自身默认合法；`aliases` 自动映射；`ambiguous` 不自动归一，需结合上下文或请求用户确认。禁止在 skill、工具或输出中复制维护第二份别名表。
 
 ## Brawl Stars 分类约定
 
@@ -201,20 +201,20 @@ outputs/
 BP 推演、Ban Pick 建模、英雄克制关系、阵容评价和 draft 顺位相关问题分两类处理：
 
 - 维护者讨论 / wiki 查询：先读 `wiki/index.md`，再读相关 syntheses、来源页、地图页、英雄页，并把有长期价值的结论沉淀回 wiki。
-- BP skill 执行：不得把 `wiki/syntheses/` 作为运行时依赖。`brawl-stars-bp-slot-decision` 必须遵循自身 `compile` / `decide` 分治：`compile` 只读取 skill 内 `references/compile-knowledge.md`、`wiki/entities/maps/`、`wiki/entities/brawlers/` 与用户 / 裁判提供的强度输入，生成 `runtime_bp_index`；`decide` 只读取 skill 内 `references/runtime-decision-knowledge.md`、当前草稿状态和已生成的 `runtime_bp_index`。如果没有 runtime index，先编译或声明信息不足，不得临场改读 syntheses 来补决策。
+- BP skill 执行：不得把 `wiki/syntheses/` 作为运行时依赖。`brawl-stars-bp-slot-decision` 必须遵循自身 `compile` / `decide` 分治：`compile` 只读取 skill 内 `references/compile-knowledge.md`、`wiki/entities/maps/`、`wiki/entities/brawlers/`（环境信号空槽，无强度输入），生成 `runtime_bp_index`；`decide` 只读取 skill 内 `references/runtime-decision-knowledge.md`、当前草稿状态和已生成的 `runtime_bp_index`。如果没有 runtime index，先编译或声明信息不足，不得临场改读 syntheses 来补决策。
 
 执行全量英雄 BP 建模、补抓 Fandom/Power League Prodigy 英雄详情页、扩展英雄覆盖、地图 source ingest、平衡补丁断点审计、或批量升级 `wiki/entities/brawlers/` / `wiki/entities/maps/` 时，必须使用 `skills/brawl-stars-bp-knowledge-maintenance/`。先读该 skill 的 `SKILL.md`，再按任务读取 `references/source-ingest.md`、`brawler-modeling.md`、`map-modeling.md`、`balance-breakpoint-audit.md`、`audit-and-validation.md` 或 `runtime-boundary.md`。`wiki/syntheses/BP-英雄建模标准流程.md` 和 `wiki/syntheses/BP-维护归档.md` 只作为维护背景 / 历史归档，不是执行入口。该任务必须先读取 roster manifest，再按当前 BP-active 英雄集合分批保留 raw；已下架或无有效来源覆盖的 roster 行不进入 BP 英雄集合、PLP 缺口追踪、对位边或运行时编译索引。禁止直接批量生成 BP-ready 字段。
 
 英雄页治理：`wiki/entities/brawlers/` 只保存当前最新的 BP 建模结果和当前稳定数值输入，不保存版本记录、补丁来源、更新过程、历史状态、`版本覆盖`、`当前 BP 判断` 或类似覆盖层段落。第一份 `bp_brawler_profile` YAML 只含 runtime 可编译字段；可追加第二份 fenced JSON `combat_breakpoint_profile`，只保存经复核的当前 target states、离散 damage packets、专属 defense modifiers/variants 和明确 exclusion，由 maintainer 断点脚本消费，runtime 必须忽略。版本 / meta 资料如果足以改变 BP 模型，必须直接内联改写该英雄已有的 `capability_vector`、`build_switches`、`map_feature_hooks`、`objective_contracts`、`failure_modes`、`conditional_matchups` 或 `slot_notes` 等稳定字段；如果不能确定定性影响，只能留在来源页、审计页或日志，不能写进英雄页。
 
-地图知识必须分层治理：稳定地图结构写入 `wiki/entities/maps/` 下的单地图实体页；Ranked 赛季页面只作为地图池索引；版本强势英雄、新英雄和 meta 变化先写入来源页、审计页或日志。只有当它们改变能力类型、职责归类、硬门槛、对位成立条件、地图 hook 或 slot 策略时，才直接更新对应英雄页或地图页的稳定 BP 字段。运行时 BP 决策默认读取这些稳定页面，或读取由这些稳定页面和强度输入编译出的 `runtime_bp_index`；不要读取中央覆盖层，不临场叠加历史补丁记录，不要把临时版本强势反写成稳定地图事实。
+地图知识必须分层治理：稳定地图结构写入 `wiki/entities/maps/` 下的单地图实体页；Ranked 赛季页面只作为地图池索引；版本强势英雄、新英雄和 meta 变化先写入来源页、审计页或日志。只有当它们改变能力类型、职责归类、硬门槛、对位成立条件、地图 hook 或 slot 策略时，才直接更新对应英雄页或地图页的稳定 BP 字段。运行时 BP 决策默认读取这些稳定页面，或读取由这些稳定页面编译出的 `runtime_bp_index`；不要读取中央覆盖层，不临场叠加历史补丁记录，不要把临时版本强势反写成稳定地图事实。
 
 BP schema 字段必须有明确消费方。没有明确进入 `hard_gate`、`required_capabilities`、`map_bp_factors`、`candidate_eval`、breakpoint maintainer audit 或输出解释的字段，不应放入 Canonical Input。`combat_breakpoint_profile` 的明确消费方是 `scripts/audit_balance_breakpoints.py`，不是 runtime compiler。`summary_tags`、`high/medium/low` 这类粗粒度摘要不能作为 BP 判断信号；地图因素必须落到具体路线、位置、目标收益、失效条件和 slot 任务上。
 
 BP 维护文件职责：
 
 - `wiki/syntheses/条件化对位模型.md` 是长期维护 schema，定义 BP 推理对象和维护规则；不承载版本差分、补丁翻译、临时观察名单或批量 ingest 过程记录。
-- `wiki/syntheses/BP-运行时索引编译架构.md` 定义 BP skill 如何把稳定事实层和用户输入的版本强度理解编译为 `runtime_bp_index`；它是方法论页面，不是手写候选表。
+- `wiki/syntheses/BP-运行时索引编译架构.md` 定义 BP skill 如何把稳定事实层编译为 `runtime_bp_index`；环境信号（high-rank pick rate）为独立空槽，接入后不升级 fit/eligibility。它是方法论页面，不是手写候选表。
 - 旧的手写条件化对位边索引和英雄地图特征适配索引已在 2026-07-02 删除；它们的长期信息必须回到英雄页、地图页、模式页或编译产物中。
 - BP skill 的执行规则必须复制到 skill 自身 references；syntheses 只作为维护者讨论与 wiki 治理层，不能成为 skill 的渐进披露读取路径。
 - 编译 / ingest 过程中的原始候选、审计和交接内容只能放在来源页、审计页、任务计划、日志或临时工作文件；完成 ingest 后，不应出现在 BP DSL 入口或长期手写运行时索引中。

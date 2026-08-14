@@ -45,7 +45,6 @@ match_config:
   red_subagent_id:
   blue_strategy_bias: conservative | balanced | aggressive | high_variance | random
   red_strategy_bias: conservative | balanced | aggressive | high_variance | random
-  strength_weight: 0.0-1.0 # default 0.4
   ban_count_per_side: 3
   pick_order: [blue_slot1, red_slot2_3, blue_slot4_5, red_slot6]
   output_path:
@@ -68,7 +67,7 @@ For every simulated match, create exactly two match-scoped player subagents befo
 
 1. Read `references/match-report-schema.md` and the user-provided match list/config. Do not read map, brawler, matchup, or BP runtime pages to form your own BP opinion.
 2. Start `match_metrics`: wall-clock time, judge model, player model names if visible, and subagent ids.
-3. Spawn the match-scoped blue and red player subagents with fixed `strategy_bias`, strength context, runtime-index path, and default effort policy.
+3. Spawn the match-scoped blue and red player subagents with fixed `strategy_bias`, the runtime-index path, and default effort policy.
 4. Run `simultaneous_ban_phase` by prompting both match-scoped player subagents in parallel without revealing the other side's bans.
 5. Run pick turns in strict order on the same two player subagents: blue slot 1, red slots 2-3, blue slots 4-5, red slot 6.
 6. Run `post_draft_review` on the same two player subagents after all six picks are locked. This cannot change picks; it only confirms full-draft win condition, play pattern, risks, mitigation, and role/build plan.
@@ -104,7 +103,7 @@ Every player-agent prompt must include:
 - map, mode, side, global slot, current picks, own bans, enemy bans, unavailable pool
 - `strategy_bias`; style_bias_assigned_at_spawn, then left fixed for that player. The judge must choose this before the player sees the prompt.
 - `decision_effort_policy`: normal runtime effort has only `low=24` and `high=32`. The judge provides the slot baseline and the fixed `strategy_bias`; the player chooses the final effort or explicit per-hand `--limit` while keeping fact tools neutral.
-- any user-provided strength/meta context; otherwise tell the player to determine or mark `unknown` through its own BP skill process
+- any user-provided environment/meta context (high-rank pickrate data if supplied); otherwise the player relies on its own BP skill process and marks the environment slot as empty
 - the fixed output schema for this exact turn
 - required `turn_decision_trace`: decision style, map problem, visible state, query intent, retrieval audit, candidate comparison, selected reason, rejected options, and risk/build implication
 - metrics request: token usage only if visible; otherwise wall-clock time and failure state if available. Do not force null token tables into the final report.
@@ -149,7 +148,7 @@ Bias is a player prompt parameter, not a judge scoring rubric.
 | bias | Use when | Candidate preference |
 | --- | --- | --- |
 | `conservative` | robust baseline or ladder-safe drafts | stable duties, low exposure, flexible builds, fewer all-in tanks/assassins |
-| `balanced` | deterministic baseline or user-requested balanced simulation | map duties first, then matchup and strength context |
+| `balanced` | deterministic baseline or user-requested balanced simulation | map duties first, then matchup and comp context |
 | `aggressive` | pressure-testing answers | route-based engage, last-pick punish, tank/assassin if support and escape conditions exist |
 | `high_variance` | data diversity / stress tests | allows volatile picks when failure modes are explicit and not hard-gated |
 

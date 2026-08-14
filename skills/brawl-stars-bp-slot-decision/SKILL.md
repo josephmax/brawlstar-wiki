@@ -1,6 +1,6 @@
 ---
 name: brawl-stars-bp-slot-decision
-description: Use when compiling or using a Brawl Stars Ranked Ban Pick runtime index, deciding a specific draft slot, evaluating bans or picks, comparing candidates, or checking map fit, hard gates, counter-picks, strategy bias, and strength context from this vault.
+description: Use when compiling or using a Brawl Stars Ranked Ban Pick runtime index, deciding a specific draft slot, evaluating bans or picks, comparing candidates, or checking map fit, hard gates, counter-picks, and strategy bias from this vault.
 ---
 
 # Brawl Stars BP Slot Decision
@@ -9,7 +9,7 @@ description: Use when compiling or using a Brawl Stars Ranked Ban Pick runtime i
 
 This skill has two modes:
 
-- `compile`: read stable entity facts and strength input, then generate a `runtime_bp_index`.
+- `compile`: read stable entity facts, then generate a `runtime_bp_index`. There is no strength layer; the environment slot (high-rank pickrate) is currently empty.
 - `decide`: validate the compiled `runtime_bp_index`, query it through bundled tools, combine the returned fragments with current draft state and runtime decision rules, then return one ban or pick recommendation set.
 
 The skill must not use the wiki's synthesis/topic discussion layer as a runtime dependency. Those pages are maintainer workspace, not player-facing knowledge. The skill is self-contained through its own references and stable entity pages.
@@ -23,7 +23,6 @@ Read:
 - `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md`
 - Relevant map pages under `wiki/entities/maps/`
 - Relevant brawler pages under `wiki/entities/brawlers/`
-- User, judge, external, or adopted default `strength_profile`; the current adopted default is `skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json`
 - `wiki/concepts/英雄名称归一化.md` when user, judge, or external inputs contain brawler aliases, emoji, community nicknames, or non-canonical names
 
 Output:
@@ -100,7 +99,7 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py \
 - `--limit`: explicit override for returned entity fragments. Use only when the caller has a concrete reason to override `--effort`.
 - `--summary`: emit an agent-readable summary table for debugging, audit drafting, or manual comparison. Prefer this over ad hoc `python3 -c` JSON parsing when the caller only needs to inspect candidates.
 
-For JSON consumers, read candidates from `runtime_fact_query.fact_window`. Each row includes scalar `strength_tier`, scalar `strength_rank`, `relation_count`, and `runtime_card_counts` so callers do not need to sort or compare nested dictionaries such as `strength`.
+For JSON consumers, read candidates from `runtime_fact_query.fact_window`. Each row includes map fit evidence, map hook IDs, matched capabilities, failure gates, build IDs, `runtime_card_counts`, and `relation_count` so callers do not need to sort or compare nested dictionaries. There is no strength or tier field anywhere in the fact window.
 
 Hydrate details only for the few entities the LLM wants to inspect more deeply:
 
@@ -113,9 +112,9 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/hydrate_runtime_facts.py \
   --json
 ```
 
-Hydration JSON keeps `entities` as a dictionary keyed by brawler for backward compatibility, and also returns `entity_window` as a list for safe iteration. Each hydrated entity includes scalar `strength_tier`, scalar `strength_rank`, `relation_count`, `runtime_card_counts`, `retrieval_bucket_hits`, `candidate_map_fit`, and `evidence_ref`. Use `--summary` when the caller wants a readable entity audit without writing parsing code.
+Hydration JSON keeps `entities` as a dictionary keyed by brawler for backward compatibility, and also returns `entity_window` as a list for safe iteration. Each hydrated entity includes `relation_count`, `runtime_card_counts`, `retrieval_bucket_hits`, `candidate_map_fit`, and `evidence_ref`. Use `--summary` when the caller wants a readable entity audit without writing parsing code.
 
-`--strength-weight` is LLM-side reasoning context, not a tool parameter: `0` means ignore strength while comparing recalled facts; `1` means treat map-scoped strength as the main tie-breaker inside the already recalled fact window; the default baseline is `0.4`. Strength never expands the fact window by itself.
+There is no `--strength-weight` in this system: the environment slot (high-rank pickrate) is empty, and map fit / matchup / failure evidence is the entire basis for candidate comparison.
 
 ## Input Contract
 
@@ -128,26 +127,11 @@ compile_input:
   patch_id:
   map_pool:
   available_brawlers:
-  strength_profile:
-    profile_id:
-    owner:
-    scope: global | mode | map | custom
-    entries:
   source_policy:
     read_stable_entities_only: true
 ```
 
-Default compile uses the adopted default strength profile:
-
-```yaml
-strength_profile:
-  profile_id: ikaoss11-july-2026-screenshot
-  owner: runtime_default
-  scope: global
-  path: skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json
-```
-
-This means "use stable wiki facts plus the adopted version-strength input". User-supplied strength profiles are accepted as a separate strength layer and may replace this default for a session; using any strength profile to rewrite stable hero or map facts is forbidden. Runtime exposes only map-scoped candidate strength from `map_pool_signature[*].candidate_index`; it does not expose a top-level strength table. An explicit empty profile still means "mark strength as unknown".
+Compile never takes a strength profile. The environment slot (high-rank pickrate) is empty by default; `manifest.pickrate_status` records `"empty"`. If a pickrate data source is integrated later, it enters as an independent evidence layer with provenance and still cannot change map fit or eligibility.
 
 ```yaml
 decide_input:
@@ -162,14 +146,13 @@ decide_input:
   candidate_pool:
   known_player_constraints:
   strategy_bias: conservative | balanced | aggressive | high_variance
-  strength_weight: 0.0-1.0 # default 0.4
 ```
 
 If `map`, `mode`, or slot is missing, state the assumption. Ask only when the missing field changes the decision.
 
 ## Runtime Index Precheck
 
-`decide` must not start from free-form wiki reads. It first checks whether the requested map, mode, pool, patch, and strength profile are covered by a compiled runtime index.
+`decide` must not start from free-form wiki reads. It first checks whether the requested map, mode, pool, and patch are covered by a compiled runtime index.
 
 Recommended index state files live under `outputs/runtime-bp-index/`:
 
@@ -178,7 +161,7 @@ Recommended index state files live under `outputs/runtime-bp-index/`:
 <runtime_index_key>.lock
 ```
 
-The `runtime_index_key` should be derived from patch id, map pool id, available brawler pool, and strength profile hash. A supplied explicit `runtime_bp_index` can bypass file lookup if its manifest matches the current request.
+The `runtime_index_key` should be derived from patch id, map pool id, available brawler pool, and environment slot status (`pickrate_status`). A supplied explicit `runtime_bp_index` can bypass file lookup if its manifest matches the current request.
 
 Precheck behavior:
 
@@ -203,19 +186,19 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
 
 `compile` converts stable facts into a tool-consumable runtime index:
 
-- `map_pool_signature`: per-map `map_context`, per-slot map-evidence `candidate_projection`, and full-map `candidate_index` covering every available brawler. `candidate_projection` preserves all concrete map candidates for each legal slot instead of cutting at the strength front-rank. `candidate_index` is the only runtime strength surface: each map candidate carries map-scoped `tier` and `rank`.
+- `map_pool_signature`: per-map `map_context`, per-slot map-evidence `candidate_projection`, and full-map `candidate_index` covering every available brawler. `candidate_projection` preserves all concrete map candidates for each legal slot; there is no strength ranking to cut against. `candidate_index` carries only map-evidence fields: `fit`, `map_floor_fit`, `mode_contract_fit`, `recall_channels`, `slot_eligibility`, `conditional_lift`, `failure_gates`, and `required_build_ids`.
 - `brawler_runtime_cards`: global brawler capability, build, map hook, objective, failure, and slot-note fragments stored once for hydration.
 - `matchup_index`: conditional matchup edges keyed by brawler for draft-state filtering.
 - `evidence_refs`: source refs for map and brawler pages so detailed explanations can hydrate only the final shortlist.
 - `audit_summary`: compact coverage and size summary for human review.
 
-Strength matters only as a separate evidence layer. Compile must not use tier or mode mentions to upgrade `fit`, `map_floor_fit`, or `slot_eligibility`; those fields come from stable map hooks and matched capabilities. `mode_contract_fit` is evidence-only, not playability. `candidate_index` keeps `map_floor_fit`, `mode_contract_fit`, `recall_channels`, `slot_eligibility`, `conditional_lift`, and `failure_gates` separate so runtime fact tools can expose map fit, mode evidence, relation windows, and failure risks without deciding what wins.
+Compile must not use any tier or environment mention to upgrade `fit`, `map_floor_fit`, or `slot_eligibility`; those fields come from stable map hooks and matched capabilities. `mode_contract_fit` is evidence-only, not playability. `candidate_index` keeps `map_floor_fit`, `mode_contract_fit`, `recall_channels`, `slot_eligibility`, `conditional_lift`, and `failure_gates` separate so runtime fact tools can expose map fit, mode evidence, relation windows, and failure risks without deciding what wins.
 
-The compiled index may be richer than the prompt window, but decide must consume it through `query_runtime_facts.py` and `hydrate_runtime_facts.py`. Use `--debug-output` only for compile debugging. Unknown strength remains explicit uncertainty, not a license to invent tiers.
+The compiled index may be richer than the prompt window, but decide must consume it through `query_runtime_facts.py` and `hydrate_runtime_facts.py`. Use `--debug-output` only for compile debugging. The empty environment slot remains explicit uncertainty, not a license to invent tiers or meta claims.
 
 ## Decide Summary
 
-`decide` uses `query_runtime_facts.py` for the neutral map/entity fact window and `hydrate_runtime_facts.py` for the final few entities, then the LLM produces `candidate_eval`, `turn_decision_trace`, and `bp_recommendation`. The model should reason from returned facts, conditional relations, map hooks, objective contracts, failure modes, and strength evidence. The tools must not choose candidates, label answers, or produce a team plan.
+`decide` uses `query_runtime_facts.py` for the neutral map/entity fact window and `hydrate_runtime_facts.py` for the final few entities, then the LLM produces `candidate_eval`, `turn_decision_trace`, and `bp_recommendation`. The model should reason from returned facts, conditional relations, map hooks, objective contracts, and failure modes. The tools must not choose candidates, label answers, or produce a team plan.
 
 For ban turns, the LLM must add `side_asymmetric_ban_strategy` before finalizing bans. Blue bans reason from `first_pick_initiative`: protect_first_pick, preserve flexible opener/fog value, and avoid `ban_overlap_risk` from generic map-power mirroring. Red bans reason from `last_counter_leverage`: `deny_blue_safe_opener`, preserve_red6_counter_pool, force blue slot-1 exposure, and evaluate `last_pick_counterability`. Both sides still query only neutral facts; side, purpose, `opener_safety`, and counter exposure are LLM interpretations, not tool outputs.
 
@@ -254,10 +237,10 @@ Ordering logic:
 1. Hard gates beat everything.
 2. Mode objective and map duty coverage beat isolated matchup comfort.
 3. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
-4. Evidence-backed `overpowered_or_t0_exception` can become a hard gate when cheap reliable answers are unavailable.
+4. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
 5. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
 6. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
-7. Map-scoped strength rank is controlled by the LLM's `strength_weight` reasoning. It never expands the fact window by itself.
+7. There is no strength ranking or tier in this system; the environment slot (high-rank pickrate) is empty, so no candidate ordering comes from it.
 8. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
 9. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
 
@@ -313,7 +296,6 @@ candidate_eval:
   evidence_used:
   map_duties_covered:
   relation_edges_considered:
-  strength_context:
   accepted_risks:
   required_builds:
   rejection_or_selection_reason:
@@ -324,7 +306,7 @@ candidate_eval:
 - Do not output a single pick without alternatives.
 - Do not use `open`, `wall density`, `water`, or `summary_tags` as direct scoring signals.
 - Do not treat `A counters B` as unconditional; explain mechanism, active conditions, fail conditions, and BP use.
-- Do not invent T0/meta claims from memory. If no strength source is provided, write `strength_context.source: unknown`.
+- Do not invent T0/meta claims from memory. The environment slot (high-rank pickrate) is empty; do not fabricate tiers or rankings.
 - Do not let `strategy_bias: aggressive` justify a tank/assassin without route, follow-up, and endpoint safety.
 - Do not let `balanced` collapse into only range/control/sustain shells.
 - Do not let `scripts/bp_index.py` output become the answer; it only locates stable pages and skill references.

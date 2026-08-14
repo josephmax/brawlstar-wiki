@@ -153,9 +153,7 @@ def test_player_skill_contract() -> None:
         "runtime_bp_index",
         "wiki/entities/maps/",
         "wiki/entities/brawlers/",
-        "strength_context",
         "tool-consumable runtime index",
-        "strength_weight",
         "工具只做事实召回",
         "include-id",
         "exclude-id",
@@ -189,8 +187,6 @@ def test_player_skill_contract() -> None:
         "runtime_index_compile_failed",
         "--summary",
         "entity_window",
-        "strength_tier",
-        "strength_rank",
         "retrieval_audit",
         "payload_kb",
         "fragments_returned",
@@ -209,6 +205,8 @@ def test_player_skill_contract() -> None:
         "ban_overlap_risk",
         "opener_safety",
         "last_pick_counterability",
+        "high-rank pickrate",
+        "pickrate_status",
     ]
     for term in required_terms:
         assert term in text, term
@@ -224,8 +222,6 @@ def test_player_skill_contract() -> None:
 
     for term in [
         "compile_input",
-        "strength_profile",
-        "strength_weight",
         "map_pool_signature",
         "candidate_index",
         "brawler_runtime_cards",
@@ -233,8 +229,9 @@ def test_player_skill_contract() -> None:
         "audit_summary",
         "evidence_refs",
         "debug traces",
-        "default_current_version_unknown",
-        "User-supplied strength compile",
+        "Environment Signal",
+        "pickrate_status",
+        "empty",
         "`mode_contract_hit` is only evidence that the brawler page has a contract for this mode",
         "`early_pick`, `response_pick`, `late_pick`, and `ban_pressure` projections require concrete map fit first",
         "Only the first `bp_brawler_profile` YAML block is a runtime compile input",
@@ -252,8 +249,6 @@ def test_player_skill_contract() -> None:
         "Neutral Fact Tools",
         "--summary",
         "entity_window",
-        "strength_tier",
-        "strength_rank",
         "--bucket",
         "candidate_eval",
         "bp_recommendation",
@@ -291,6 +286,19 @@ def test_player_skill_contract() -> None:
     for artifact in [text, compile_ref, decide_ref, fact_query_script, fact_hydrate_script]:
         assert forbidden_runtime_path not in artifact, forbidden_runtime_path
         assert "strength_prior" not in artifact, "strength_prior"
+        # 减法红线：强度/tier 概念不得以消费性 token 形式出现在任何 runtime 产物中
+        for retired_strength_token in [
+            "strength_profile_id",
+            "strength_profile_hash",
+            "strength_weight",
+            "strength_tier",
+            "strength_rank",
+            "strength_context",
+            "default-strength-profile",
+            "--strength-profile",
+            "ikaoss11-july-2026-screenshot",
+        ]:
+            assert retired_strength_token not in artifact, retired_strength_token
         for retired_effort in ["max=80", "high=50", "medium=12", "low=5"]:
             assert retired_effort not in artifact, retired_effort
 

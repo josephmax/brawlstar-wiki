@@ -7,7 +7,7 @@ Hard rules:
 - Write plain Markdown only. Do not use YAML blocks, JSON blocks, raw structured logs, or `match_header`.
 - Do not include `favored_side`, win probability, confidence score, judge-side draft evaluation, or any side preference.
 - Do not include token tables full of `null`. Add `执行元数据` only when real metrics or a real failure state was captured.
-- Record both `strategy_bias` values in `对局摘要`, plus `strength_weight` when present.
+- Record both `strategy_bias` values in `对局摘要`.
 - Use `state_handoff_to_next_turn`, not pressure language. The handoff may state visible facts and open structural questions, but must not tell the next player what to pick.
 - Copy, normalize, and lightly format player-submitted report summaries. Do not add independent BP analysis.
 - `玩家最终陈述` must come from player-submitted `post_draft_review` / `final_draft_review` after all six picks are locked. If it is missing, write `final_draft_review_missing` instead of synthesizing win condition, risks, or builds from judge-side reasoning.
@@ -21,7 +21,6 @@ Start every report with:
 
 - 地图 / 模式.
 - 蓝方 and 红方 strategy bias.
-- 强度权重 when present.
 - 禁用格式: simultaneous bans.
 - 选择顺序.
 - 最终阵容.

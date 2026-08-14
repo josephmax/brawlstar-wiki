@@ -20,7 +20,6 @@ REPORT_TEMPLATE = Template(
 
 - 地图 / 模式: $map ($mode)
 - 策略偏好: 蓝方 `$blue_strategy_bias`; 红方 `$red_strategy_bias`
-- 强度权重: `$strength_weight`
 - 禁用: 蓝方 $blue_ban_names; 红方 $red_ban_names
 - 选择顺序: 蓝方 1 楼 -> 红方 2-3 楼 -> 蓝方 4-5 楼 -> 红方 6 楼
 - 最终阵容: 蓝方 $blue_comp; 红方 $red_comp
@@ -205,7 +204,6 @@ def render_match_report(data: dict[str, Any]) -> str:
         "mode": text(data.get("mode"), "未知模式"),
         "blue_strategy_bias": text(data.get("blue_strategy_bias"), "未分配"),
         "red_strategy_bias": text(data.get("red_strategy_bias"), "未分配"),
-        "strength_weight": text(data.get("strength_weight"), "0.4"),
         "blue_comp": inline_list(blue.get("comp")),
         "red_comp": inline_list(red.get("comp")),
         "blue_ban_names": inline_list([row.get("brawler") for row in blue_ban_rows if isinstance(row, dict)]),

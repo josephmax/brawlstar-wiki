@@ -12,7 +12,6 @@ from runtime_index_tools import (
     brawler_matchups,
     canonical_brawler_name,
     candidate_map_fit,
-    candidate_strength,
     compact_manifest,
     emit_payload,
     format_query_summary,
@@ -22,7 +21,6 @@ from runtime_index_tools import (
     retrieval_log,
     runtime_card_fragment,
     runtime_card_counts,
-    strength_scalars,
     strip_tool_internal_keys,
 )
 
@@ -115,17 +113,15 @@ def has_relation_to_targets(index: dict[str, Any], brawler: str, targets: set[st
     return bool(targets and conditional_relations(index, brawler, targets))
 
 
-def candidate_sort_key(index: dict[str, Any], name: str, item: dict[str, Any]) -> tuple[int, int, str]:
-    strength = candidate_strength(index, name, item)
+def candidate_sort_key(index: dict[str, Any], name: str, item: dict[str, Any]) -> tuple[int, str]:
     map_signal = bool(item.get("active_hook_ids") or item.get("matched_capabilities"))
-    return (0 if map_signal else 1, int(strength.get("total_rank") or 9999), name)
+    return (0 if map_signal else 1, name)
 
 
 def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str, Any], targets: set[str]) -> dict[str, Any]:
     fit = candidate_map_fit(index, map_name, name)
     if item:
         fit.update({key: value for key, value in item.items() if key != "brawler"})
-    strength = candidate_strength(index, name, fit)
     card = runtime_card_fragment(index, name, fit)
     relations = conditional_relations(index, name, targets)
     buckets = list(
@@ -147,8 +143,6 @@ def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str
             "mode_contract_fit": fit.get("mode_contract_fit"),
             "mode_contract_hit": fit.get("mode_contract_hit") or False,
         },
-        "strength": strength,
-        **strength_scalars(strength),
         "map_hook_ids": fit.get("active_hook_ids") or [],
         "matched_capabilities": fit.get("matched_capabilities") or [],
         "failure_gate_ids": fit.get("failure_gates") or fit.get("risk_ids") or [],

@@ -12,7 +12,6 @@ from query_runtime_facts import conditional_relations, map_fact_packet, relation
 from runtime_index_tools import (
     canonical_brawler_name,
     candidate_map_fit,
-    candidate_strength,
     compact_manifest,
     emit_payload,
     format_hydration_summary,
@@ -22,7 +21,6 @@ from runtime_index_tools import (
     retrieval_log,
     runtime_card_fragment,
     runtime_card_counts,
-    strength_scalars,
 )
 
 
@@ -41,14 +39,11 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         if name in excludes:
             continue
         fit = candidate_map_fit(index, map_name, name)
-        strength = candidate_strength(index, name, fit)
         card = runtime_card_fragment(index, name, fit)
         relations = conditional_relations(index, name, targets)
         entities[name] = {
             "id": name,
             "entity_type": "brawler",
-            "map_strength": strength,
-            **strength_scalars(strength),
             "evidence_ref": brawler_refs.get(name),
             "retrieval_bucket_hits": retrieval_bucket_hits(index, map_name, name),
             "candidate_map_fit": fit,
@@ -75,7 +70,6 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
             "entities": entities,
             "entity_window": list(entities.values()),
             "evidence_refs": {
-                "strength_profile": evidence_refs.get("strength_profile"),
                 "map": (evidence_refs.get("maps") or {}).get(map_name),
             },
         }

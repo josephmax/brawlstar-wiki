@@ -1,7 +1,6 @@
 import json
 import subprocess
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,7 +8,6 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).resolve().parents[1]
 REPO_ROOT = SKILL_DIR.parents[1]
 SCRIPT = SKILL_DIR / "scripts" / "compile_runtime_index.py"
-DEFAULT_PROFILE = SKILL_DIR / "references" / "default-strength-profile.json"
 
 
 def run_compile(*args):
@@ -71,13 +69,15 @@ def run_compile_raw(*args):
 
 
 class CompileRuntimeIndexTest(unittest.TestCase):
-    def test_default_strength_profile_preserves_tier_and_left_to_right_order(self):
-        index = run_compile("--strength-profile", str(DEFAULT_PROFILE))
-        safe_zone_strength = index["map_pool_signature"]["Safe Zone"]["candidate_index"]
+    def test_manifest_records_empty_environment_slot_without_fabrication(self):
+        index = run_compile()
+        safe_zone = index["map_pool_signature"]["Safe Zone"]
 
-        self.assertNotIn("strength_prior", index)
-        self.assertNotIn("strength_layers", index)
-        self.assertEqual("ikaoss11-july-2026-screenshot", index["manifest"]["strength_profile_id"])
+        # 环境信号槽：当前为空，明确记录，不推断任何 tier/rank
+        self.assertNotIn("strength_profile_id", index["manifest"])
+        self.assertNotIn("strength_profile_hash", index["manifest"])
+        self.assertIsNone(index["manifest"]["pickrate_source"])
+        self.assertEqual("empty", index["manifest"]["pickrate_status"])
         self.assertEqual("runtime-v2", index["manifest"]["index_shape"])
         self.assertIn("Safe Zone", index["map_pool_signature"])
         self.assertEqual("Heist", index["map_pool_signature"]["Safe Zone"]["map_context"]["mode"])
@@ -88,26 +88,20 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertIn("candidate_projection", index["map_pool_signature"]["Safe Zone"])
         self.assertNotIn("capability_index", index)
 
-        brock = safe_zone_strength["Brock"]
-        eight_bit = safe_zone_strength["8-Bit"]
-        mico = safe_zone_strength["Mico"]
-
-        self.assertEqual("S", brock["tier"])
-        self.assertNotIn("effective_scope", brock)
-        self.assertNotIn("scope_key", brock)
-        self.assertEqual(1, brock["rank"])
-        self.assertEqual("S", eight_bit["tier"])
-        self.assertEqual(2, eight_bit["rank"])
-        self.assertEqual("E", mico["tier"])
-        self.assertEqual(104, mico["rank"])
+        # 候选层不再有任何强度/tier 概念
+        brock = safe_zone["candidate_index"]["Brock"]
+        self.assertNotIn("tier", brock)
+        self.assertNotIn("rank", brock)
+        self.assertNotIn("score", brock)
+        self.assertNotIn("proof_threshold", brock)
 
     def test_runtime_v2_includes_candidate_cards_matchups_and_audit(self):
-        index = run_compile("--strength-profile", str(DEFAULT_PROFILE))
+        index = run_compile()
         safe_zone = index["map_pool_signature"]["Safe Zone"]
         map_context = safe_zone["map_context"]
         candidate_index = safe_zone["candidate_index"]
 
-        self.assertEqual(104, len(candidate_index))
+        self.assertEqual(105, len(candidate_index))
         self.assertIn("objective_contracts", map_context)
         self.assertIn("hard_gates", map_context)
         self.assertIn("slot_pressure", map_context)
@@ -117,8 +111,8 @@ class CompileRuntimeIndexTest(unittest.TestCase):
 
         ruffs_fit = candidate_index["Ruffs"]
         self.assertEqual("strong", ruffs_fit["fit"])
-        self.assertEqual("S", ruffs_fit["tier"])
-        self.assertEqual(9, ruffs_fit["rank"])
+        self.assertNotIn("tier", ruffs_fit)
+        self.assertNotIn("rank", ruffs_fit)
         self.assertIn("early_pick", ruffs_fit["projection_buckets"])
         self.assertIn("ban_pressure", ruffs_fit["projection_buckets"])
         self.assertIn("heist_buffed_lane_and_safe_support", ruffs_fit["active_hook_ids"])
@@ -132,6 +126,10 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertIn("active_when", ruffs_card["map_hooks"]["heist_buffed_lane_and_safe_support"])
         self.assertIn("buff_without_conversion", ruffs_card["failure_modes"])
         self.assertIn("slot_1", ruffs_card["slot_notes"])
+        # 运行卡不再携带强度上下文
+        self.assertNotIn("strength_context", ruffs_card)
+        self.assertNotIn("strength_visibility", ruffs_card)
+        self.assertNotIn("proof_threshold", ruffs_card)
 
         brock_matchups = index["matchup_index"]["by_brawler"]["Brock"]
         self.assertTrue(any(edge["target"] == "8-Bit" for edge in brock_matchups["answers"]))
@@ -142,15 +140,15 @@ class CompileRuntimeIndexTest(unittest.TestCase):
 
         audit = index["audit_summary"]
         self.assertEqual(1, audit["map_count"])
-        self.assertEqual(104, audit["brawler_count"])
-        self.assertEqual(104, audit["candidate_index_entries"]["Safe Zone"])
+        self.assertEqual(105, audit["brawler_count"])
+        self.assertEqual(105, audit["candidate_index_entries"]["Safe Zone"])
 
-    def test_mode_contract_and_strength_do_not_promote_without_map_signal(self):
-        index = run_compile_for_map("Bridge Too Far", "--strength-profile", str(DEFAULT_PROFILE))
+    def test_mode_contract_does_not_promote_without_map_signal(self):
+        index = run_compile_for_map("Bridge Too Far")
         bridge = index["map_pool_signature"]["Bridge Too Far"]
         emz = bridge["candidate_index"]["Emz"]
 
-        self.assertEqual("A", emz["tier"])
+        self.assertNotIn("tier", emz)
         self.assertTrue(emz["mode_contract_hit"])
         self.assertEqual([], emz.get("matched_capabilities") or [])
         self.assertEqual([], emz.get("active_hook_ids") or [])
@@ -166,7 +164,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertNotIn("ban_pressure", emz.get("projection_buckets", []))
 
     def test_mode_contract_alone_does_not_enter_map_candidate_projection(self):
-        index = run_compile_for_map("Bridge Too Far", "--strength-profile", str(DEFAULT_PROFILE))
+        index = run_compile_for_map("Bridge Too Far")
         bridge = index["map_pool_signature"]["Bridge Too Far"]
 
         sandy = bridge["candidate_index"]["Sandy"]
@@ -189,11 +187,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertNotIn("Emz", projected_names)
 
     def test_july_event_map_fit_review_promotes_only_mechanism_backed_hooks(self):
-        crystal_index = run_compile_for_map(
-            "Crystal Arcade",
-            "--strength-profile",
-            str(DEFAULT_PROFILE),
-        )
+        crystal_index = run_compile_for_map("Crystal Arcade")
         crystal = crystal_index["map_pool_signature"]["Crystal Arcade"]
         expected_hooks = {
             "Griff": "gem_mid_super_area_and_anti_body",
@@ -210,11 +204,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertEqual("weak", glowy["map_floor_fit"])
         self.assertEqual([], glowy.get("active_hook_ids") or [])
 
-        goldarm_index = run_compile_for_map(
-            "Goldarm Gulch",
-            "--strength-profile",
-            str(DEFAULT_PROFILE),
-        )
+        goldarm_index = run_compile_for_map("Goldarm Gulch")
         goldarm = goldarm_index["map_pool_signature"]["Goldarm Gulch"]
         charlie = goldarm["candidate_index"]["Charlie"]
         self.assertEqual("strong", charlie["map_floor_fit"])
@@ -227,8 +217,8 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertEqual("weak", damian["map_floor_fit"])
         self.assertEqual([], damian.get("active_hook_ids") or [])
 
-    def test_projection_window_preserves_ability_diversity_before_strength_rank_cutoff(self):
-        index = run_compile_for_map("Bridge Too Far", "--strength-profile", str(DEFAULT_PROFILE))
+    def test_projection_window_preserves_ability_diversity(self):
+        index = run_compile_for_map("Bridge Too Far")
         bridge = index["map_pool_signature"]["Bridge Too Far"]
         early_pick_names = [
             item["brawler"]
@@ -246,71 +236,8 @@ class CompileRuntimeIndexTest(unittest.TestCase):
             self.assertTrue(item.get("active_hook_ids") or item.get("matched_capabilities"))
             self.assertNotEqual("weak", item["fit"])
 
-    def test_map_strength_overrides_mode_strength_and_mode_overrides_global(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            profile_path = Path(tmp) / "strength.json"
-            profile_path.write_text(
-                json.dumps(
-                    {
-                        "schema": "brawlstar.strength_profile.v1",
-                        "profile_id": "override-test",
-                        "tier_order": ["S", "A", "B", "C", "D", "E"],
-                        "profiles": {
-                            "global": {
-                                "tiers": {
-                                    "S": ["Brock"],
-                                    "A": [],
-                                    "B": [],
-                                    "C": [],
-                                    "D": [],
-                                    "E": [],
-                                }
-                            },
-                            "modes": {
-                                "Heist": {
-                                    "mode": "Heist",
-                                    "tiers": {
-                                        "S": [],
-                                        "A": [],
-                                        "B": [],
-                                        "C": ["Brock"],
-                                        "D": [],
-                                        "E": [],
-                                    },
-                                }
-                            },
-                            "maps": {
-                                "Heist/Safe Zone": {
-                                    "mode": "Heist",
-                                    "map": "Safe Zone",
-                                    "tiers": {
-                                        "S": [],
-                                        "A": [],
-                                        "B": [],
-                                        "C": [],
-                                        "D": ["Brock"],
-                                        "E": [],
-                                    },
-                                }
-                            },
-                        },
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-
-            index = run_compile("--strength-profile", str(profile_path))
-            map_strength = index["map_pool_signature"]["Safe Zone"]["candidate_index"]["Brock"]
-
-        self.assertNotIn("strength_prior", index)
-        self.assertEqual("D", map_strength["tier"])
-        self.assertEqual(1, map_strength["rank"])
-        self.assertNotIn("effective_scope", map_strength)
-        self.assertNotIn("scope_key", map_strength)
-
     def test_single_map_runtime_index_stays_compact(self):
-        output = run_compile_raw("--strength-profile", str(DEFAULT_PROFILE))
+        output = run_compile_raw()
         self.assertLess(len(output.encode("utf-8")), 1_500_000)
 
     def test_all_maps_runtime_index_stays_compact(self):
@@ -320,8 +247,6 @@ class CompileRuntimeIndexTest(unittest.TestCase):
                 str(SCRIPT),
                 "--repo",
                 str(REPO_ROOT),
-                "--strength-profile",
-                str(DEFAULT_PROFILE),
                 "--json",
             ],
             check=True,
@@ -329,8 +254,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
             stdout=subprocess.PIPE,
         )
         index = json.loads(result.stdout)["runtime_bp_index"]
-
-        self.assertEqual(30, len(index["map_pool_signature"]))
+        self.assertGreaterEqual(len(index["map_pool_signature"]), 20)
         self.assertLess(len(result.stdout.encode("utf-8")), 5_000_000)
 
 

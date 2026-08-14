@@ -16,13 +16,6 @@ COMPILE_SCRIPT = (
     / "scripts"
     / "compile_runtime_index.py"
 )
-DEFAULT_PROFILE = (
-    REPO_ROOT
-    / "skills"
-    / "brawl-stars-bp-slot-decision"
-    / "references"
-    / "default-strength-profile.json"
-)
 AUDIT_SCRIPT = SCRIPT_DIR / "audit_plp_matchup_coverage.py"
 
 
@@ -71,8 +64,6 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
                     str(REPO_ROOT),
                     "--map",
                     "Safe Zone",
-                    "--strength-profile",
-                    str(DEFAULT_PROFILE),
                     "--output",
                     str(index_path),
                 ],

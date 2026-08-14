@@ -1,8 +1,8 @@
 # BP 运行时索引编译架构
 
-状态日期：2026-07-10。性质：`runtime_architecture_implemented`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
+状态日期：2026-07-10；2026-08-14 更新（移除强度层）。性质：`runtime_architecture_implemented`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
 
-本页记录 BP skill 的 compile-first 架构决策：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实和用户 / 社区 / 选手的强度理解编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。该架构已经落地；当前可执行 contract 以 `skills/brawl-stars-bp-slot-decision/` 为准，质量演进与踩坑见 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]。
+本页记录 BP skill 的 compile-first 架构决策：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。该架构已经落地；当前可执行 contract 以 `skills/brawl-stars-bp-slot-decision/` 为准，质量演进与踩坑见 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]。**2026-08-14 更新：系统中已不存在 strength / tier 概念；环境信号固定为高分选手 pick(+ban) rate，当前为空槽（`pickrate_status: empty`）。** 决策与语义见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]。
 
 ## 核心结论
 
@@ -11,7 +11,7 @@
 - 英雄底层 BP 能力：`capability_vector`、`build_switches`、`map_feature_hooks`、`objective_contracts`、`failure_modes`、`conditional_matchups`、`slot_notes`。
 - 地图底层 BP 事实：`map_profile`、`map_bp_factors`、路线、位置、目标收益、地形状态计划、假阳性过滤。
 - 版本 BP 审计：哪些补丁 / 重做 / Buffies / Hypercharge 改变了能力语义，哪些只是数值强弱或观察项。
-- 外部或用户强度理解：作为 `strength_profile` 输入，不进入英雄百科或稳定地图页。
+- 环境信号（high-rank pickrate）：当前为空槽；接入后作为独立证据层，不进入英雄百科或稳定地图页，也不能升级 fit / eligibility。
 
 运行时索引仍然必要，但它应是可再生的编译产物，而不是手写 wiki 事实页。
 
@@ -21,11 +21,11 @@
 Stable Wiki Source
   英雄页 + 地图页 + schema + 版本审计
 
-Strength Profile
-  用户 / 社区 / 选手输入的当前强度理解
+Environment Signal（high-rank pickrate）
+  当前为空槽（pickrate_status: empty）
 
 Session Compile
-  Stable Wiki Source + Strength Profile + 当前地图池
+  Stable Wiki Source + 当前地图池
   -> runtime_bp_index
 
 BP Decision
@@ -48,11 +48,6 @@ compile_input:
   patch_id:
   map_pool:
   available_brawlers:
-  strength_profile:
-    profile_id:
-    owner:
-    scope: global | mode | map | custom
-    entries:
   source_policy:
     read_stable_wiki_only: true
 ```
@@ -64,8 +59,8 @@ runtime_bp_index:
   manifest:
     patch_id:
     map_pool_id:
-    strength_profile_id:
-    strength_profile_hash:
+    pickrate_source: null
+    pickrate_status: empty
     source_hash:
     compiler_version:
     compiled_at:
@@ -82,8 +77,6 @@ runtime_bp_index:
       capabilities:
       builds:
       failure_modes:
-      strength_visibility:
-      proof_threshold:
 
   map_brawler_edges:
     map + brawler:
@@ -113,7 +106,7 @@ runtime_bp_index:
     by_own_gap:
 ```
 
-编译阶段不能只是 LLM 自由总结。它必须有固定 schema、来源引用、hash 和校验器，否则会把 strength profile 与底层事实揉成不可审计的混合判断。
+编译阶段不能只是 LLM 自由总结。它必须有固定 schema、来源引用、hash 和校验器，否则会把环境信号与底层事实揉成不可审计的混合判断。
 
 ### 2. decide
 
@@ -135,17 +128,14 @@ decision_input:
 
 决策阶段不应常规读取底层 wiki。如果 runtime index 缺失、过期或 hash 不匹配，应报告 `runtime_index_stale_or_missing`，而不是临场翻百科补答案。
 
-## Strength Profile 的位置
+## 环境信号的位置（2026-08-14 更新）
 
-强度理解是编译参数，不是事实源。它可以来自用户、社区、选手、赛事样本或自定义 agent，但必须在运行报告中可见。
+旧版此处描述 strength profile；2026-08-14 已移除强度/tier 概念。环境信号（high-rank pickrate）当前为空槽，接入后作为独立证据层，必须在 manifest 中可见（`pickrate_source` / `pickrate_status`），不能反写英雄或地图稳定事实。
 
-它允许影响：
+接入后它允许影响：
 
-- 候选可见性。
-- 理论候选的证明门槛。
-- 对位边的可信度排序。
-- ban 压力。
-- 低强度但结构成立英雄是否仍进入候选池。
+- 同层候选的 tie-break（已过图/模式/对位门槛的候选之间）。
+- ban 与英雄池规划的参考面。
 
 它不能影响：
 
@@ -153,8 +143,9 @@ decision_input:
 - 英雄技能机制事实。
 - 已经写入英雄页的长期能力语义。
 - `hard_gate` 的基本逻辑。
+- fit / map_floor_fit / slot_eligibility / 候选资格。
 
-例如 `Jacky` 可以在稳定英雄页中保留“墙边、草路、球门、热区有条件接触惩罚”的结构事实；若 strength profile 认为当前版本 Jacky 极弱，compile 只应提高她进入候选池的证明门槛，而不是删除底层能力。相反，`Brock` 或 `Surge` 如果补丁改变了自保、启动、开团或对刺客的成立条件，则应先更新英雄稳定字段，再进入编译。
+例如 `Jacky` 可以在稳定英雄页中保留“墙边、草路、球门、热区有条件接触惩罚”的结构事实；环境信号为空槽时，所有候选只按地图证据排序。补丁如果改变英雄的自保、启动、开团或对刺客的成立条件，应先更新英雄稳定字段，再进入编译。
 
 ## 现有索引页审计
 
@@ -172,7 +163,7 @@ decision_input:
 - `wiki/syntheses/BP-条件化对位边索引.md`
 - `wiki/syntheses/BP-英雄地图特征适配索引.md`
 
-它们本质上只是为了减少 BP 决策读取底层事实时的手写快速知识。方法论成熟后，等价信息应由 `bp compile` 子命令或等价流程从英雄页、地图页、模式页和强度输入中重新生成，而不是继续手写维护。
+它们本质上只是为了减少 BP 决策读取底层事实时的手写快速知识。方法论成熟后，等价信息应由 `bp compile` 子命令或等价流程从英雄页、地图页、模式页中重新生成，而不是继续手写维护。
 
 ## 迁移步骤
 
@@ -189,7 +180,7 @@ decision_input:
 - 事实源仍是英雄页和地图页。
 - 没有 `runtime_bp_index` 时，直接从英雄页的 `conditional_matchups`、`map_feature_hooks`、`objective_contracts`、`failure_modes` 和地图页的 `map_bp_factors` 派生候选。
 - 不新建手写对位边索引、地图 hook 索引、候选排序表或固定 pick 优先级表。
-- 任何“当前版本强度”相关判断必须等待 strength profile 或明确的版本审计输入。
+- 任何环境信号（高分 pick rate）相关判断必须等待明确的数据输入；空槽时不推断。
 
 ## 关联页面
 

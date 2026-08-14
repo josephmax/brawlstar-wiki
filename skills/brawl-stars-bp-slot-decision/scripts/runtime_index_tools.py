@@ -68,8 +68,8 @@ def compact_manifest(index: dict[str, Any]) -> dict[str, Any]:
     keys = [
         "patch_id",
         "map_pool_id",
-        "strength_profile_id",
-        "strength_profile_hash",
+        "pickrate_source",
+        "pickrate_status",
         "compiler_version",
         "index_shape",
     ]
@@ -90,26 +90,6 @@ def map_context(index: dict[str, Any], map_name: str) -> dict[str, Any]:
         "hard_gates": source.get("hard_gates") or [],
         "slot_pressure": source.get("slot_pressure") or {},
         "false_positive_filters": source.get("false_positive_filters") or [],
-    }
-
-
-def candidate_strength(index: dict[str, Any], name: str, item: dict[str, Any]) -> dict[str, Any]:
-    tier = item.get("tier") or "unknown"
-    rank = item.get("rank")
-    return {
-        key: value
-        for key, value in {
-            "tier": tier,
-            "total_rank": rank,
-        }.items()
-        if value is not None
-    }
-
-
-def strength_scalars(strength: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "strength_tier": strength.get("tier") or "unknown",
-        "strength_rank": strength.get("total_rank"),
     }
 
 
@@ -244,8 +224,6 @@ def format_query_summary(query: dict[str, Any]) -> str:
         lines.append(
             "- "
             f"{item.get('id', '-')} | "
-            f"tier={item.get('strength_tier', 'unknown')} "
-            f"rank={item.get('strength_rank', '-')} | "
             f"fit={(item.get('map_fit') or {}).get('fit', '-')} "
             f"floor={(item.get('map_fit') or {}).get('map_floor_fit', '-')} | "
             f"buckets={compact_values(item.get('retrieval_buckets'))} | "
@@ -284,8 +262,6 @@ def format_hydration_summary(hydration: dict[str, Any]) -> str:
         lines.append(
             "- "
             f"{item.get('id', '-')} | "
-            f"tier={item.get('strength_tier', 'unknown')} "
-            f"rank={item.get('strength_rank', '-')} | "
             f"fit={fit.get('fit', '-')} "
             f"floor={fit.get('map_floor_fit', '-')} | "
             f"buckets={compact_values(item.get('retrieval_bucket_hits'))} | "

@@ -16,7 +16,6 @@ REMOVED_TOOL_NAMES = [
     "hydrate_runtime_evidence.py",
     "decide_with_runtime_index.py",
 ]
-DEFAULT_PROFILE = SKILL_DIR / "references" / "default-strength-profile.json"
 FORBIDDEN_TOOL_KEYS = {
     "enemy",
     "our_pick",
@@ -54,8 +53,6 @@ def compile_safe_zone_index(tmp: str) -> Path:
             str(REPO_ROOT),
             "--map",
             "Safe Zone",
-            "--strength-profile",
-            str(DEFAULT_PROFILE),
             "--output",
             str(index_path),
         ],
@@ -123,8 +120,10 @@ class RuntimeIndexToolsTest(unittest.TestCase):
         self.assertNotIn("Meg", names)
         self.assertLessEqual(len(names), 6)
         brock = next(item for item in payload["fact_window"] if item["id"] == "Brock")
-        self.assertIn("strength_tier", brock)
-        self.assertIn("strength_rank", brock)
+        # 事实窗口不再携带任何 strength/tier 概念
+        self.assertNotIn("strength_tier", brock)
+        self.assertNotIn("strength_rank", brock)
+        self.assertNotIn("strength", brock)
         self.assertIsInstance(brock["relation_count"], int)
         self.assertEqual(len(payload["fact_window"]) + 1, payload["retrieval_summary"]["fragments_returned"])
         self.assertIn("retrieval_log fragments=", result.stderr)
@@ -230,9 +229,9 @@ class RuntimeIndexToolsTest(unittest.TestCase):
         self.assertEqual(["Brock", "Meg"], [item["id"] for item in payload["entity_window"]])
         brock = payload["entities"]["Brock"]
         self.assertIn("runtime_card", brock)
-        self.assertIn("map_strength", brock)
-        self.assertIn("strength_tier", brock)
-        self.assertIn("strength_rank", brock)
+        self.assertNotIn("map_strength", brock)
+        self.assertNotIn("strength_tier", brock)
+        self.assertNotIn("strength_rank", brock)
         self.assertIn("retrieval_bucket_hits", brock)
         self.assertIn("conditional_relations", brock)
         self.assert_no_forbidden_keys(payload)

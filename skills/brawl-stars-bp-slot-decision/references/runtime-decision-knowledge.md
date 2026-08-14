@@ -10,11 +10,11 @@ Use this reference only in `decide` mode. The decider consumes a compiled `runti
 - return a compact map fact packet.
 - return entity fact windows selected by neutral `include-id`, `exclude-id`, `relation-target`, and bucket filters.
 - return conditional relation facts as source/target edges.
-- return strength evidence and source refs.
+- return map fit evidence and source refs.
 
 The tools must not:
 
-- receive business-role parameters such as `our_pick`, `enemy_pick`, `bans`, `strategy_bias`, `strength_weight`, or `decision_seed`.
+- receive business-role parameters such as `our_pick`, `enemy_pick`, `bans`, `strategy_bias`, or `decision_seed`.
 - output decision-shaped fields such as `judgment_brief`, `current_team_plan`, `candidate_shortlist`, `ability_gate`, `capability_gate`, `adjudication`, `ban_purposes`, `must_ban`, `top_decisions`, or `answers_enemy_picks`.
 - call something an answer, counter, protected pick, team gap, or ban purpose.
 
@@ -36,7 +36,6 @@ bp_reasoning_context:
   candidate_pool:
   known_player_constraints:
   strategy_bias: conservative | balanced | aggressive | high_variance
-  strength_weight: 0.0-1.0
 
 tool_query_context:
   include_ids: []        # entities whose facts must be visible
@@ -100,7 +99,7 @@ Output:
 - `scope`: map and mode.
 - `request`: neutral retrieval request echo.
 - `map_fact_packet`: source ref, objective contracts, required capabilities, route gates, hard gates, and false-positive filters.
-- `fact_window`: returned entities with map fit evidence, strength evidence, scalar `strength_tier`, scalar `strength_rank`, map hook IDs, matched capabilities, failure gates, build IDs, selected runtime-card fragments, `runtime_card_counts`, `conditional_relations`, and `relation_count`.
+- `fact_window`: returned entities with map fit evidence, map hook IDs, matched capabilities, failure gates, build IDs, selected runtime-card fragments, `runtime_card_counts`, `conditional_relations`, and `relation_count`.
 - `retrieval_summary`: fragment count and payload size.
 
 Use `hydrate_runtime_facts.py` only after the LLM narrows to a few serious entities:
@@ -115,7 +114,7 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/hydrate_runtime_facts.py \
   --json
 ```
 
-Hydration returns each requested entity's runtime-card facts, retrieval bucket hits, map strength, conditional relations, and source refs. The JSON keeps `entities` as a dictionary keyed by brawler and also returns `entity_window` as a list for safe iteration. Each entity includes scalar `strength_tier`, scalar `strength_rank`, `runtime_card_counts`, and `relation_count`; use those instead of comparing nested dictionaries. If returned facts are not enough to support a claim, mark the claim uncertain or reject that line of reasoning; do not bypass the tool by reading full wiki pages in decide mode.
+Hydration returns each requested entity's runtime-card facts, retrieval bucket hits, map fit, conditional relations, and source refs. The JSON keeps `entities` as a dictionary keyed by brawler and also returns `entity_window` as a list for safe iteration. Each entity includes `runtime_card_counts` and `relation_count`; use those instead of comparing nested dictionaries. If returned facts are not enough to support a claim, mark the claim uncertain or reject that line of reasoning; do not bypass the tool by reading full wiki pages in decide mode.
 
 ## LLM Decision Pipeline
 
@@ -129,14 +128,14 @@ Hydration returns each requested entity's runtime-card facts, retrieval bucket h
 4. Read `map_fact_packet` first: objective, route gates, hard gates, and false-positive filters define the map problem.
 5. Read `fact_window` as evidence, not as a recommendation. A returned entity is merely relevant enough to inspect.
 6. Interpret conditional relations yourself. A relation edge is not automatically a counter, answer, ban, or pick.
-7. Compare candidates by explicit reasoning: map duty coverage, relation activation, current draft needs, failure modes, required builds, strength evidence, and strategy bias.
+7. Compare candidates by explicit reasoning: map duty coverage, relation activation, current draft needs, failure modes, required builds, and strategy bias.
 8. Call `hydrate_runtime_facts.py` for the few entities whose detailed facts matter.
 9. Produce `candidate_eval`, `turn_decision_trace`, and `bp_recommendation` in the LLM response.
 10. Produce `retrieval_audit` from the actual tool requests and `retrieval_summary` values. This is evidence bookkeeping only: include query focus, neutral filters, recalled entities, `fragments_returned`, and `payload_kb`; do not turn it into a recommendation.
 
 ## Reasoning Rules
 
-- Do not rank by strength first and then explain around it. Strength is a separate evidence layer.
+- Do not rank by environment signal first and then explain around it. The environment slot (high-rank pickrate) is currently empty; there is no tier or strength layer in this system.
 - Do not let a tier or mode mention create map fit. Map fit must come from concrete map hooks, objective contracts, or matched capabilities.
 - Do not treat relation edges as unconditional. Name mechanism, active conditions, fail conditions, and whether the current map/draft activates them.
 - Do not treat retrieval order as final ranking. Retrieval order exists to keep the evidence window small.
@@ -293,7 +292,6 @@ bp_recommendation:
       evidence_used:
       map_duties_covered:
       relation_edges_considered:
-      strength_context:
       accepted_risks:
       required_builds:
       rejection_or_selection_reason:
@@ -341,5 +339,5 @@ Each candidate explanation should cite facts from `map_fact_packet`, `fact_windo
 - Treating `fact_window` order as a recommendation.
 - Treating conditional relation facts as automatic counters.
 - Loading the full runtime JSON instead of using `query_runtime_facts.py` and `hydrate_runtime_facts.py`.
-- Inventing T0/meta claims from memory when strength evidence is missing.
+- Inventing meta/T0 claims from memory when the environment slot is empty or evidence is missing.
 - Ignoring map false-positive filters because a relation edge looks attractive.

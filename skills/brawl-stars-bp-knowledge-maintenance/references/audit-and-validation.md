@@ -68,7 +68,7 @@ Run this after changing PLP ingest, brawler matchup fields, or runtime matchup c
 
 ```bash
 python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_plp_matchup_coverage.py \
-  --runtime-index outputs/runtime-bp-index/default-tierlist-all-maps-thin.json \
+  --runtime-index outputs/runtime-bp-index/default-runtime-index.json \
   --write
 ```
 

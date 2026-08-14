@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Generate map-scoped strength_profile JSON from a compiled runtime index."""
+"""Generate map-scoped strength_profile JSON from a compiled runtime index.
+
+DEPRECATED (2026-08-14): the BP system removed the strength/tier concept.
+This script's output is a draft for the retired editor only and must never
+enter the runtime consumption path. Kept for historical reference.
+"""
 
 from __future__ import annotations
 

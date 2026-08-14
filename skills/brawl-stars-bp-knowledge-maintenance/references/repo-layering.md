@@ -41,6 +41,6 @@ Non-BP concepts, resource systems, and broad synthesis pages belong to the gener
 ## Forbidden Collapses
 
 - Do not use `wiki/sources/` as a replacement for `raw/`.
-- Do not write current meta strength into stable brawler or map pages unless it changes capability semantics.
+- Do not write current meta strength or any tier data into stable brawler or map pages unless it changes capability semantics; the BP system has no strength/tier layer (retired 2026-08-14).
 - Do not let runtime BP decisions read `wiki/syntheses/` to repair missing index facts.
 - Do not treat `summary_tags`, `open`, `closed`, `grass`, `water`, or `high/medium/low` as direct BP signals.

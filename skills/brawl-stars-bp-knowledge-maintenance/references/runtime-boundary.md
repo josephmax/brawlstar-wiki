@@ -21,10 +21,10 @@ Runtime slot decision may read:
 - `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`
 - relevant `wiki/entities/maps/`
 - relevant `wiki/entities/brawlers/`
-- supplied strength profile
+- environment signal (high-rank pickrate) if supplied; currently empty slot
 - compiled `runtime_bp_index`
 
-`tournament_observation_profile.v1` is a maintainer output in Phase 1, not an allowed runtime input. Tournament observations must not auto-generate strength tiers, hard gates, map fit, slot eligibility, or matchup edges. A separately reviewed maintainer interpretation may later be supplied through the existing strength-profile boundary.
+`tournament_observation_profile.v1` is a maintainer output in Phase 1, not an allowed runtime input. Tournament observations must not auto-generate strength tiers, hard gates, map fit, slot eligibility, or matchup edges. The BP system no longer has a strength/tier layer (retired 2026-08-14); environment signal is high-rank pickrate and is currently an empty slot.
 
 `combat_breakpoint_profile` and `balance_breakpoint_audit.v1` are also maintainer-only inputs/outputs in v1. Runtime compile reads the first `bp_brawler_profile` block and must ignore the second combat block and every `outputs/balance-breakpoints/` report. A numeric transition reaches runtime only after a maintainer validates its packet/form/build/map assumptions and rewrites the durable qualitative consequence into an existing `build_switches`, `failure_modes`, `conditional_matchups`, or `map_feature_hooks` field.
 
@@ -48,7 +48,7 @@ It should compile:
 - brawler cards
 - map-brawler edges
 - draft edges
-- strength context
+- environment slot metadata (`pickrate_source`, `pickrate_status`)
 - source hashes or stable refs
 
 Write generated indexes to `outputs/` or a caller-provided path. Do not write hand-maintained decision indexes back into `wiki/syntheses/`.
@@ -56,7 +56,7 @@ Write generated indexes to `outputs/` or a caller-provided path. Do not write ha
 ## Boundary Failure Modes
 
 - Runtime decision cites a maintainer synthesis page as pick evidence.
-- A brawler page stores temporary tier strength instead of stable capability.
+- A brawler page stores temporary tier strength instead of stable capability (tier strength is a retired concept; any such data must stay out of runtime).
 - A map page stores current strong heroes instead of route/objective facts.
 - A source summary becomes the only copy of raw evidence.
 - An audit report becomes a long-term synthesis page.

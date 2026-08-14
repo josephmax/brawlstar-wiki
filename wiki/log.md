@@ -1153,3 +1153,53 @@
 - 契约测试：`bp skill contract ok`
 - Crystal Arcade compile：`mode_contract_hit=True: 105/105`，fit 分布 strong 47 / weak 58（均为已评估结论，不再有数据缺口造成的假 weak）
 
+
+## [2026-08-14] synthesis | BP 强度层语义回归与高分选取率估计器讨论
+
+### 背景
+
+维护者要求评价"只精通 Emz / Spike / Rico 的强度与上分上下限"。初始回答误用了 iKaoss11 强度榜及其衍生的 `outputs/strength-profiles/ikaoss11-ranked-map-adapted-preview.json`"全图 C/D 矩阵"（该文件是 2026-07-07 `generate_map_strength_profile.py` 生成的机器底稿，日志注明"供后续人工审计和逐图细调"，非被采纳的评价体系）。用户纠正：强度榜无共识；Spike 反而是难被后手 counter 的先手 pick。
+
+### 本轮结论（讨论中，未全部采纳）
+
+- 强度 = 环境基线先验（base-rate prior），不是英雄属性；合法用途仅限同层 tie-break 与 ban/英雄池规划参考面。
+- 估计器视角：tier list 是声明式估计器，高分选手 pick(+ban) rate 是揭示式估计器（与胜负有选择压力地因果耦合）；后者是强度层更合理的测量来源，但不能整体替代（合成数不可分解、补丁边界滞后、混入账号可用性、被赛季地图池污染）。
+- 正确设计：强度层 = 多来源开放槽（专家榜 / 高分统计 / 用户调校三通道）+ 认识论元数据（consensus / recency / derived / status / rank_floor / window / sample_size / companion_ban_rate）。
+- (pick, ban) 必须成对使用，二维对可表达"灵活安全先手 / 压制被争抢 / 冷门被忌惮"结构。
+- 教训：强度会渗入每个"没有证据归属"的问题类——本轮的"上分泛用性/英雄池规划"是继地图适配（2026-07-07 已修复）后的第二次发作；该问题类应补证据契约（counter 抵抗性 + 覆盖广度 + 操作上限 + 账号状态为主驱动，强度仅做 patch relevance 检查）。
+
+### 动作
+
+- 新增 `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`（design_discussion_in_progress_non_runtime）。
+- 更新 `wiki/index.md` 加入该页入口。
+- 记录 4 个待决问题（强度层重定义 / 英雄池规划证据契约 / 高分粒度定义 / 生成底稿处理）。
+- 架构修正评估与落地计划待维护者确认后执行（涉及 compile-knowledge.md、编辑器 schema、compile_runtime_index.py、测试与底稿治理）。
+
+## [2026-08-14] refactor | BP 系统移除 strength/tier 层（减法方案落地）
+
+### 决策
+
+承接同日合成页讨论，维护者拍板减法方案：整个体系不再消费 strength，不保留 tier 概念；环境信号固定命名为 high-rank pickrate（与 ban rate 成对），数据槽当前为空，先改实现。feature 分支：`feature/brawlstar-remove-strength`。
+
+### 代码变更
+
+- `compile_runtime_index.py`：删除 strength profile 输入、tier/rank/score/proof_threshold、strength_context、avoid_without_proof 桶；manifest 记录 `pickrate_source: null` / `pickrate_status: empty`；候选排序仅由地图证据决定。
+- `runtime_index_tools.py` / `query_runtime_facts.py` / `hydrate_runtime_facts.py` / `runtime_index_precheck.py`：删除 strength 字段、`strength_tier/rank`、`--strength-profile-*` 参数；manifest 校验改为 pickrate_status。
+- 文档：`compile-knowledge.md`、`runtime-decision-knowledge.md`、slot-decision SKILL.md、run-brawl-stars-bp SKILL.md / match-report-schema / renderer、AGENTS.md、README.md、`BP-运行时索引编译架构.md` 同步重写。
+- 契约测试：`test_bp_skill_contract.py` 增加减法红线（runtime 产物不得含 `strength_weight` / `strength_tier` / `strength_rank` / `strength_context` / `default-strength-profile` / `--strength-profile` / `ikaoss11-july-2026-screenshot` 等消费性 token）。
+
+### 退役
+
+- 删除 `skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json`。
+- `wiki/sources/iKaoss11-July-2026-Strength-Profile.md` 标注 deprecated（保留历史）。
+- `outputs/strength-profiles/`、`outputs/runtime-bp-index/strength-profile-with-nori.json` 及旧编译产物（default-tierlist-all-maps-thin / user-tuned / safe-zone-default / bsc-* / crystal-arcade-s47）移入 `outputs/_retired/`。
+- `tools/strength-profile-editor/` 保留代码，README 与生成脚本标注退役，不进入 runtime 消费路径。
+
+### 验证
+
+- slot-decision 21 个 unittest 通过；bp skill contract 通过；maintenance 各脚本测试通过（含 test_plp_matchup_coverage 移除 --strength-profile 后修复）。
+- 新索引 `outputs/runtime-bp-index/default-runtime-index.json`：30 图 / 105 英雄 / `pickrate_status: empty` / 候选层无 tier/rank。
+
+### 待办
+
+- pickrate 数据源调研与接入（高分粒度定义待决）；编辑器 UI 退役标注；`BP-下一阶段迭代方向决策记录` 待决问题待更新。

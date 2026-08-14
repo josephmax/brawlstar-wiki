@@ -1,17 +1,23 @@
 # iKaoss11 July 2026 Strength Profile
 
+> [!warning] 已退役（2026-08-14）
+> 本页为历史记录，**不进入任何 runtime 消费路径**。BP 系统已移除 strength / tier 概念，环境信号固定为高分选手 pick(+ban) rate（当前为空槽）。
+> - `skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json` 已删除。
+> - `outputs/strength-profiles/` 与 `outputs/runtime-bp-index/strength-profile-with-nori.json` 已移至 `outputs/_retired/`。
+> - 本页保留作来源历史与讨论背景，见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]。
+
 ## Source
 
-- 类型：外部 tier list 截图转录 / 通用版本强度先验
+- 类型：外部 tier list 截图转录 / 通用版本强度先验（已退役）
 - 创作者：iKaoss11
 - 视频：https://www.youtube.com/watch?v=dYE3tTni8Gk
 - 抓取/转录日期：2026-07-06
 - Raw capture：[[../../raw/inbox/ikaoss11-july-2026-tier-list-screenshot-transcription|ikaoss11-july-2026-tier-list-screenshot-transcription]]
-- Runtime copy：`skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json`
+- Runtime copy：~~`skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json`~~（已删除）
 
 ## Scope And Use
 
-本页保存第一版 BP `compile` 可消费的通用版本强度先验。它不是英雄稳定事实，不写入 `wiki/entities/brawlers/`；它只作为独立强度层参与 `runtime_bp_index` 编译。
+~~本页保存第一版 BP `compile` 可消费的通用版本强度先验。~~ 已退役。历史价值：记录单人 tier list 的共识缺失问题，以及"强度不能创造适配性"的讨论起点。
 
 `map` / `mode` / `global` strength 都只在其声明 scope 内表达版本理解；更细的地图强度需要显式维护，不能把本页 global 排名当作地图适配性证明。
 

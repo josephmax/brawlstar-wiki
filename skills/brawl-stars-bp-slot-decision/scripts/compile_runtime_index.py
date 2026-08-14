@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Compile stable BP facts and strength profile into a runtime_bp_index."""
+"""Compile stable BP facts into a runtime_bp_index.
+
+环境信号（high-rank pick rate）当前为空槽：compile 只基于稳定事实生成索引，
+manifest 记录 `pickrate_status: empty`。禁止从记忆、旧榜单或任何 tier 概念
+推断环境信号；数据源接入后以独立输入层加入，且永远不升级 fit/eligibility。
+"""
 
 from __future__ import annotations
 
@@ -14,29 +19,6 @@ from typing import Any, Iterable
 
 
 COMPILER_VERSION = "bp-compile-runtime-v2"
-DEFAULT_STRENGTH_PROFILE = (
-    "skills/brawl-stars-bp-slot-decision/references/default-strength-profile.json"
-)
-DEFAULT_TIERS = ["S", "A", "B", "C", "D", "E"]
-TIER_VALUE = {"S": 6, "A": 5, "B": 4, "C": 3, "D": 2, "E": 1, "unknown": 0}
-META_PRESSURE = {
-    "S": "must_answer_pressure",
-    "A": "high_priority",
-    "B": "playable_meta",
-    "C": "contextual",
-    "D": "niche_or_counter_only",
-    "E": "exception_only",
-    "unknown": "unknown",
-}
-PROOF_THRESHOLD = {
-    "S": "map_and_counter_check",
-    "A": "standard",
-    "B": "standard",
-    "C": "elevated",
-    "D": "high",
-    "E": "exception_only",
-    "unknown": "unknown",
-}
 
 CAPABILITY_TOKEN_HINTS = {
     "long_range_pressure": ["long_range", "long_sightline", "sniper", "marksman", "open_lane"],
@@ -110,11 +92,6 @@ def rel(path: Path, repo: Path) -> str:
         return str(path)
 
 
-def sha256_json(value: Any) -> str:
-    payload = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
-
-
 def sha256_texts(texts: Iterable[str]) -> str:
     digest = hashlib.sha256()
     for text in texts:
@@ -145,15 +122,6 @@ def extract_first_code_block(text: str, language: str) -> str:
     pattern = rf"```{re.escape(language)}\s*(.*?)```"
     match = re.search(pattern, text, flags=re.DOTALL)
     return match.group(1).strip() if match else ""
-
-
-def extract_profile_payload(path: Path) -> dict[str, Any]:
-    text = read_text(path)
-    if path.suffix.lower() == ".md":
-        json_block = extract_first_code_block(text, "json")
-        if json_block:
-            return json.loads(json_block)
-    return json.loads(text)
 
 
 def load_alias_index(repo: Path, valid_names: set[str]) -> dict[str, str]:
@@ -187,169 +155,6 @@ def load_alias_index(repo: Path, valid_names: set[str]) -> dict[str, str]:
 def normalize_brawler_name(name: str, aliases: dict[str, str]) -> str | None:
     raw = str(name).strip()
     return aliases.get(raw) or aliases.get(normalize_key(raw))
-
-
-def empty_tiers(tier_order: list[str]) -> dict[str, list[str]]:
-    return {tier: [] for tier in tier_order}
-
-
-def normalize_tier_map(
-    tiers: dict[str, Any],
-    tier_order: list[str],
-    aliases: dict[str, str],
-    missing_inputs: list[str],
-    label: str,
-) -> dict[str, list[str]]:
-    result = empty_tiers(tier_order)
-    seen: set[str] = set()
-    for tier in tier_order:
-        for raw_name in tiers.get(tier, []) if isinstance(tiers, dict) else []:
-            name = normalize_brawler_name(raw_name, aliases)
-            if not name:
-                missing_inputs.append(f"{label}: unknown brawler {raw_name}")
-                continue
-            if name in seen:
-                missing_inputs.append(f"{label}: duplicate brawler {name}")
-                continue
-            result[tier].append(name)
-            seen.add(name)
-    return result
-
-
-def has_tier_entries(record: dict[str, Any] | None) -> bool:
-    return any(record.get("tiers", {}).get(tier) for tier in record.get("tier_order", DEFAULT_TIERS)) if record else False
-
-
-def normalize_strength_profile(
-    payload: dict[str, Any],
-    aliases: dict[str, str],
-    missing_inputs: list[str],
-) -> dict[str, Any]:
-    tier_order = list(payload.get("tier_order") or DEFAULT_TIERS)
-    profile = {
-        "schema": payload.get("schema") or "brawlstar.strength_profile.v1",
-        "profile_id": payload.get("profile_id") or "runtime-supplied-strength-profile",
-        "patch_id": payload.get("patch_id") or "current",
-        "source": payload.get("source") or {},
-        "tier_order": tier_order,
-        "profiles": {"global": {"scope": "global", "tiers": empty_tiers(tier_order)}, "modes": {}, "maps": {}},
-    }
-
-    source_profiles = payload.get("profiles") or {}
-    global_tiers = source_profiles.get("global", {}).get("tiers") or payload.get("global_tiers") or {}
-    profile["profiles"]["global"]["tiers"] = normalize_tier_map(
-        global_tiers, tier_order, aliases, missing_inputs, "global"
-    )
-
-    for mode, record in (source_profiles.get("modes") or {}).items():
-        mode_name = record.get("mode") or mode
-        profile["profiles"]["modes"][mode_name] = {
-            "scope": "mode",
-            "mode": mode_name,
-            "tiers": normalize_tier_map(record.get("tiers") or {}, tier_order, aliases, missing_inputs, f"mode {mode_name}"),
-        }
-
-    for key, record in (source_profiles.get("maps") or {}).items():
-        mode = record.get("mode") or key.split("/")[0]
-        map_name = record.get("map") or "/".join(key.split("/")[1:])
-        scope_key = f"{mode}/{map_name}"
-        profile["profiles"]["maps"][scope_key] = {
-            "scope": "map",
-            "mode": mode,
-            "map": map_name,
-            "tiers": normalize_tier_map(record.get("tiers") or {}, tier_order, aliases, missing_inputs, f"map {scope_key}"),
-        }
-
-    for entry in payload.get("entries") or []:
-        name = normalize_brawler_name(entry.get("brawler"), aliases)
-        tier = entry.get("tier")
-        if not name or tier not in tier_order:
-            missing_inputs.append(f"entry: invalid brawler/tier {entry}")
-            continue
-        if entry.get("map") and entry.get("mode"):
-            key = f"{entry['mode']}/{entry['map']}"
-            record = profile["profiles"]["maps"].setdefault(
-                key,
-                {"scope": "map", "mode": entry["mode"], "map": entry["map"], "tiers": empty_tiers(tier_order)},
-            )
-        elif entry.get("mode"):
-            record = profile["profiles"]["modes"].setdefault(
-                entry["mode"],
-                {"scope": "mode", "mode": entry["mode"], "tiers": empty_tiers(tier_order)},
-            )
-        else:
-            record = profile["profiles"]["global"]
-        if name not in [item for values in record["tiers"].values() for item in values]:
-            record["tiers"][tier].append(name)
-
-    return profile
-
-
-def scope_record(profile: dict[str, Any], mode: str, map_name: str) -> tuple[str, str, dict[str, Any] | None]:
-    map_key = f"{mode}/{map_name}" if mode and map_name else ""
-    map_record = profile["profiles"]["maps"].get(map_key)
-    if map_record and any(map_record["tiers"].values()):
-        return "map", map_key, map_record
-    mode_record = profile["profiles"]["modes"].get(mode)
-    if mode_record and any(mode_record["tiers"].values()):
-        return "mode", mode, mode_record
-    global_record = profile["profiles"]["global"]
-    if global_record and any(global_record["tiers"].values()):
-        return "global", "global", global_record
-    return "unknown", "unknown", None
-
-
-def strength_lookup(profile: dict[str, Any], mode: str, map_name: str) -> dict[str, dict[str, Any]]:
-    effective_scope, scope_key, record = scope_record(profile, mode, map_name)
-    if not record:
-        return {}
-
-    tier_order = profile["tier_order"]
-    flat = [(tier, name) for tier in tier_order for name in record["tiers"].get(tier, [])]
-    total = len(flat)
-    tier_sizes = {tier: len(record["tiers"].get(tier, [])) for tier in tier_order}
-    lookup: dict[str, dict[str, Any]] = {}
-
-    total_rank = 0
-    tier_ranks = {tier: 0 for tier in tier_order}
-    for tier, name in flat:
-        total_rank += 1
-        tier_ranks[tier] += 1
-        tier_size = tier_sizes[tier]
-        within_score = (tier_size - tier_ranks[tier] + 1) / tier_size if tier_size else 0
-        ordered_score = (total - total_rank + 1) / total if total else 0
-        lookup[name] = {
-            "tier": tier,
-            "tier_value": TIER_VALUE.get(tier, 0),
-            "tier_rank": tier_ranks[tier],
-            "tier_size": tier_size,
-            "total_rank": total_rank,
-            "ranked_count": total,
-            "within_tier_score": round(within_score, 4),
-            "ordered_score": round(ordered_score, 4),
-            "effective_scope": effective_scope,
-            "scope_key": scope_key,
-            "source": profile["profile_id"],
-            "confidence": "external_current_meta",
-        }
-    return lookup
-
-
-def unknown_strength(profile_id: str) -> dict[str, Any]:
-    return {
-        "tier": "unknown",
-        "tier_value": 0,
-        "tier_rank": None,
-        "tier_size": 0,
-        "total_rank": None,
-        "ranked_count": 0,
-        "within_tier_score": 0,
-        "ordered_score": 0,
-        "effective_scope": "unknown",
-        "scope_key": "unknown",
-        "source": profile_id,
-        "confidence": "unknown",
-    }
 
 
 def extract_yaml_block(text: str, root_key: str) -> str:
@@ -604,7 +409,7 @@ def slot_pressure_for_map(mode: str, route_gates: list[dict[str, str]], required
         "early_pick": [f"cover core {mode} duty"] + [f"prove capability:{cap}" for cap in required_slice[:2]],
         "mid_pick": [f"answer_or_enable_route:{gate_id}" for gate_id in gate_ids],
         "late_pick": [f"punish_unanswered_route:{gate_id}" for gate_id in gate_ids[-2:]],
-        "ban": [f"remove_high_strength_candidate_when_no_answer:{cap}" for cap in required_slice[:2]],
+        "ban": [f"remove_map_strong_candidate_when_no_answer:{cap}" for cap in required_slice[:2]],
     }
 
 
@@ -689,7 +494,7 @@ def compile_map_duty(path: Path, repo: Path) -> dict[str, Any]:
     }
 
 
-def compile_brawler_card(path: Path, repo: Path, strength: dict[str, Any]) -> dict[str, Any]:
+def compile_brawler_card(path: Path, repo: Path) -> dict[str, Any]:
     text = read_text(path)
     block = extract_yaml_block(text, "bp_brawler_profile")
     capabilities = parse_key_value_lines(extract_named_section(block, "capability_vector"))
@@ -766,7 +571,6 @@ def compile_brawler_card(path: Path, repo: Path, strength: dict[str, Any]) -> di
         }
         for entry in split_list_entries(matchup_block)
     ]
-    tier = strength["tier"]
 
     return {
         "brawler": path.stem,
@@ -777,15 +581,6 @@ def compile_brawler_card(path: Path, repo: Path, strength: dict[str, Any]) -> di
         "map_hooks": map_hooks,
         "failure_modes": failures,
         "slot_notes": slot_notes,
-        "strength_visibility": strength,
-        "strength_context": {
-            "source": strength["source"],
-            "meta_pressure": META_PRESSURE.get(tier, "unknown"),
-            "overpowered_or_t0_exception": tier == "S",
-            "counter_availability": "draft_state_dependent",
-            "balance_volatility": "current_meta_external_source",
-        },
-        "proof_threshold": PROOF_THRESHOLD.get(tier, "unknown"),
         "conditional_matchups": matchups,
     }
 
@@ -847,20 +642,6 @@ def compile_draft_edges(card: dict[str, Any]) -> dict[str, Any]:
         else:
             answers.append(edge)
     return {"brawler": card["brawler"], "answers": answers, "is_answered_by": answered_by}
-
-
-def thin_strength_entry(strength: dict[str, Any], proof_threshold: str) -> dict[str, Any]:
-    return {
-        "tier": strength["tier"],
-        "tier_value": strength["tier_value"],
-        "tier_rank": strength["tier_rank"],
-        "tier_size": strength["tier_size"],
-        "total_rank": strength["total_rank"],
-        "score": strength["ordered_score"],
-        "within_tier_score": strength["within_tier_score"],
-        "source": strength["source"],
-        "proof_threshold": proof_threshold,
-    }
 
 
 def active_hooks_for_map(card: dict[str, Any], map_duty: dict[str, Any]) -> list[dict[str, Any]]:
@@ -942,7 +723,6 @@ def recall_channels(map_floor: str, card: dict[str, Any]) -> list[str]:
 def candidate_item(
     map_duty: dict[str, Any],
     card: dict[str, Any],
-    strength: dict[str, Any],
 ) -> dict[str, Any]:
     hooks = active_hooks_for_map(card, map_duty)
     mode_hit = mode_objective_hit(card, map_duty["mode"])
@@ -954,10 +734,6 @@ def candidate_item(
         "fit": combined_candidate_fit(floor_fit, mode_fit),
         "map_floor_fit": floor_fit,
         "mode_contract_fit": mode_fit,
-        "tier": strength["tier"],
-        "rank": strength["total_rank"],
-        "score": strength["ordered_score"],
-        "proof_threshold": PROOF_THRESHOLD.get(strength["tier"], "unknown"),
         "active_hook_ids": [hook.get("id") for hook in hooks if hook.get("id")][:3],
         "active_map_feature_types": sorted(
             {hook.get("map_feature_type") for hook in hooks if hook.get("map_feature_type")}
@@ -975,17 +751,16 @@ def candidate_item(
 
 def sorted_candidate_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     fit_order = {"strong": 0, "playable": 1, "conditional": 2, "weak": 3, "reject": 4}
-    return sorted(items, key=lambda item: (fit_order.get(item["fit"], 9), item["rank"] or 9999))
+    return sorted(items, key=lambda item: (fit_order.get(item["fit"], 9), item["brawler"]))
 
 
 def build_candidate_items(
     map_duty: dict[str, Any],
     cards: list[dict[str, Any]],
-    strengths: dict[str, dict[str, Any]],
 ) -> list[dict[str, Any]]:
     return sorted_candidate_items(
         [
-            candidate_item(map_duty, card, strengths.get(card["brawler"], unknown_strength("unknown")))
+            candidate_item(map_duty, card)
             for card in cards
         ]
     )
@@ -997,7 +772,6 @@ def candidate_projection_from_items(items: list[dict[str, Any]]) -> dict[str, li
         "response_pick": [],
         "late_pick": [],
         "ban_pressure": [],
-        "avoid_without_proof": [],
     }
 
     for item in items:
@@ -1023,10 +797,6 @@ def candidate_projection_from_items(items: list[dict[str, Any]]) -> dict[str, li
         if item["fit"] == "strong" and has_map_signal:
             projection["ban_pressure"].append(compact_candidate_item(item))
 
-    for item in items:
-        if item["tier"] in {"D", "E"} and item["fit"] == "weak" and len(projection["avoid_without_proof"]) < 6:
-            projection["avoid_without_proof"].append(compact_candidate_item(item))
-
     return projection
 
 
@@ -1036,8 +806,6 @@ def compact_candidate_item(item: dict[str, Any]) -> dict[str, Any]:
         for key in (
             "brawler",
             "fit",
-            "tier",
-            "rank",
             "active_hook_ids",
             "matched_capabilities",
             "mode_contract_hit",
@@ -1059,8 +827,6 @@ def build_candidate_index(items: list[dict[str, Any]], projection: dict[str, lis
             "fit": item["fit"],
             "map_floor_fit": item.get("map_floor_fit"),
             "mode_contract_fit": item.get("mode_contract_fit"),
-            "tier": item.get("tier"),
-            "rank": item.get("rank"),
             "projection_buckets": buckets_by_brawler.get(item["brawler"], []),
             "active_hook_ids": item.get("active_hook_ids") or [],
             "matched_capabilities": item.get("matched_capabilities") or [],
@@ -1101,10 +867,8 @@ def map_context(map_duty: dict[str, Any]) -> dict[str, Any]:
 def thin_map_signature(
     map_duty: dict[str, Any],
     cards: list[dict[str, Any]],
-    strength_profile: dict[str, Any],
 ) -> dict[str, Any]:
-    strengths = strength_lookup(strength_profile, map_duty["mode"], map_duty["map"])
-    items = build_candidate_items(map_duty, cards, strengths)
+    items = build_candidate_items(map_duty, cards)
     projection = candidate_projection_from_items(items)
     return {
         "map_context": map_context(map_duty),
@@ -1206,12 +970,6 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
     valid_names = set(entity_brawler_names(repo))
     aliases = load_alias_index(repo, valid_names)
 
-    strength_path = Path(args.strength_profile)
-    if not strength_path.is_absolute():
-        strength_path = repo / strength_path
-    strength_payload = extract_profile_payload(strength_path)
-    strength_profile = normalize_strength_profile(strength_payload, aliases, missing_inputs)
-
     map_paths = []
     for map_name in args.map:
         path = find_named_page(repo, "wiki/entities/maps", map_name)
@@ -1226,7 +984,7 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
 
     requested_brawlers = args.available_brawler or sorted(valid_names)
     brawler_cards = []
-    source_texts = [json.dumps(strength_profile, ensure_ascii=False, sort_keys=True)]
+    source_texts = []
     for raw_name in requested_brawlers:
         name = normalize_brawler_name(raw_name, aliases)
         if not name:
@@ -1237,14 +995,13 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
             missing_inputs.append(f"missing brawler page {name}")
             continue
         source_texts.append(read_text(path))
-        card = compile_brawler_card(path, repo, unknown_strength(strength_profile["profile_id"]))
+        card = compile_brawler_card(path, repo)
         brawler_cards.append(card)
     for path in map_paths:
         source_texts.append(read_text(path))
 
-    strength_hash = sha256_json(strength_profile)
     map_pool_signature = {
-        map_duty["map"]: thin_map_signature(map_duty, brawler_cards, strength_profile)
+        map_duty["map"]: thin_map_signature(map_duty, brawler_cards)
         for map_duty in map_duties
     }
     brawler_runtime_cards = {
@@ -1253,15 +1010,14 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
     }
     matchup_index = build_matchup_index(brawler_cards)
     evidence_refs = {
-        "strength_profile": rel(strength_path, repo),
         "maps": {duty["map"]: duty["source_ref"] for duty in map_duties},
         "brawlers": {card["brawler"]: card["source_ref"] for card in brawler_cards},
     }
     manifest = {
-        "patch_id": args.patch_id or strength_profile.get("patch_id") or "current",
+        "patch_id": args.patch_id or "current",
         "map_pool_id": args.map_pool_id or ",".join(duty["map"] for duty in map_duties) or "all_maps",
-        "strength_profile_id": strength_profile["profile_id"],
-        "strength_profile_hash": strength_hash,
+        "pickrate_source": None,
+        "pickrate_status": "empty",
         "source_hash": sha256_texts(source_texts),
         "compiler_version": COMPILER_VERSION,
         "compiled_at": datetime.now(timezone.utc).isoformat(),
@@ -1316,7 +1072,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--map", action="append", default=[], help="Map name to compile; repeatable")
     parser.add_argument("--mode", default="", help="Mode used when no map page supplies one")
     parser.add_argument("--available-brawler", action="append", default=[], help="Available brawler; repeatable")
-    parser.add_argument("--strength-profile", default=DEFAULT_STRENGTH_PROFILE, help="JSON profile or markdown page with JSON block")
     parser.add_argument("--patch-id", default="", help="Override manifest patch_id")
     parser.add_argument("--map-pool-id", default="", help="Override manifest map_pool_id")
     parser.add_argument("--output", default="", help="Write compiled runtime_bp_index JSON to this path")

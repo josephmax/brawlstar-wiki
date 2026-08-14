@@ -15,7 +15,6 @@ from typing import Any
 
 
 DEFAULT_INDEX_DIR = "outputs/runtime-bp-index"
-DEFAULT_STRENGTH_PROFILE_ID = "ikaoss11-july-2026-screenshot"
 
 
 def utc_now() -> datetime:
@@ -57,8 +56,7 @@ def derive_index_key(args: argparse.Namespace) -> str:
         "patch_id": args.patch_id or "default-current",
         "map_pool_id": args.map_pool_id or "current-ranked",
         "available_pool": sorted(args.available_pool),
-        "strength_profile_id": args.strength_profile_id or DEFAULT_STRENGTH_PROFILE_ID,
-        "strength_profile_hash": args.strength_profile_hash or "unknown",
+        "pickrate_status": args.pickrate_status or "empty",
     }
     return f"bp-{short_hash(payload)}"
 
@@ -71,8 +69,7 @@ def compute_compile_input_hash(args: argparse.Namespace, runtime_index_key: str)
         "patch_id": args.patch_id,
         "map_pool_id": args.map_pool_id,
         "available_pool": sorted(args.available_pool),
-        "strength_profile_id": args.strength_profile_id or DEFAULT_STRENGTH_PROFILE_ID,
-        "strength_profile_hash": args.strength_profile_hash,
+        "pickrate_status": args.pickrate_status or "empty",
     }
     return short_hash(payload)
 
@@ -101,8 +98,7 @@ def index_validation_error(index_path: Path, args: argparse.Namespace) -> str | 
     expected_fields = {
         "patch_id": args.patch_id,
         "map_pool_id": args.map_pool_id,
-        "strength_profile_id": args.strength_profile_id,
-        "strength_profile_hash": args.strength_profile_hash,
+        "pickrate_status": args.pickrate_status or "empty",
     }
     for field, expected in expected_fields.items():
         if expected and str(manifest.get(field, "")) != str(expected):
@@ -153,8 +149,7 @@ def make_lock_payload(
         "compile_input_hash": compile_input_hash,
         "patch_id": args.patch_id or "default-current",
         "map_pool_id": args.map_pool_id or "current-ranked",
-        "strength_profile_id": args.strength_profile_id or DEFAULT_STRENGTH_PROFILE_ID,
-        "strength_profile_hash": args.strength_profile_hash or "unknown",
+        "pickrate_status": args.pickrate_status or "empty",
         "attempt": attempt,
     }
 
@@ -305,8 +300,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--patch-id", default="", help="Expected manifest patch_id")
     parser.add_argument("--map-pool-id", default="", help="Expected manifest map_pool_id")
     parser.add_argument("--available-pool", action="append", default=[], help="Available brawler; repeatable")
-    parser.add_argument("--strength-profile-id", default="", help="Expected manifest strength_profile_id")
-    parser.add_argument("--strength-profile-hash", default="", help="Expected manifest strength_profile_hash")
+    parser.add_argument("--pickrate-status", default="", help="Expected manifest pickrate_status (default empty)")
     parser.add_argument("--compile-input-hash", default="", help="Compile input hash to store in the lock")
     parser.add_argument("--owner", default="", help="Lock owner label")
     parser.add_argument("--max-polls", type=int, default=12, help="Maximum polls when another compile owns the lock")
