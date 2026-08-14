@@ -131,15 +131,16 @@
 - ✅ 生成新索引 `outputs/runtime-bp-index/default-runtime-index.json`（30 图 / 105 英雄 / pickrate_status=empty / 无 tier）
 - ⏳ 待办：pickrate 数据源接入（方案见下节）
 
-## 十一、数据源决定（2026-08-14）：Liquipedia 月赛月度统计
+## 十一、数据源决定（2026-08-14，8/14 晚修正）
 
-维护者拍板环境信号的数据源方案（第三方高频抓取不采用）：
+维护者拍板环境信号的数据源方案（**修正版**：pick 主源 = Brawl Planet，ban 主源 = 月赛）：
 
-1. **高分定义 = Legendary+**，段位限定不可让步；由于天梯无公开的 Legendary+ pick/ban 数据，用**职业月赛（Liquipedia 月度决赛）作为该口径的近似**。
-2. **数据源 = Liquipedia 月赛**（MediaWiki API，已有 `ingest_liquipedia_event.py` 基建可复用），**每月单独统计一次**，pick 与 ban 成对产出。
-3. **ban 信息月度更新**，**不写入英雄信息页**——与 `skills/brawl-stars-bp-knowledge-maintenance/references/esports-event-ingest.md` 的既有规则一致（tournament pick/ban rates 不写入 `wiki/entities/brawlers/`）。
-4. 聚合产物作为环境信号输入层（`manifest.pickrate_source` / `pickrate_status`），进 runtime 前仍需：统计口径定义（set 级 vs match 级）、样本量标注、`rank_floor: legendary_plus`、`window: monthly`、`companion_ban_rate: true`。
-5. 后续实现建议：基于 `ingest_liquipedia_event.py` + `outputs/esports/` 的 `tournament_observation_profile.v1` 聚合，新增月度 pick/ban 汇总脚本，输出成对环境信号 JSON；本页不写实现细节，落地时进入对应 skill references。
+1. **高分定义 = Legendary+**，段位限定不可让步。
+2. **pick / use rate 主源 = Brawl Planet `pl-l1` 档**（Legendary I+，逐图、10 周滚动窗口、单图约 9 万场样本，总量约 288 万场）；数据为其 GCS 静态 JSON：`https://storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz`（`.gz` 为命名约定，实际是明文 JSON）。抓取脚本：`skills/brawl-stars-bp-knowledge-maintenance/scripts/fetch_brawlplanet_pickrate.py`。
+3. **ban rate 主源 = Liquipedia 月赛**，每月单独统计（职业月赛是唯一有真实成对 ban 数据的来源）；聚合脚本：`skills/brawl-stars-bp-knowledge-maintenance/scripts/aggregate_environment_signal.py`。
+4. **ban 信息月度更新，不写入英雄信息页**——与 `skills/brawl-stars-bp-knowledge-maintenance/references/esports-event-ingest.md` 的既有规则一致（tournament pick/ban rates 不写入 `wiki/entities/brawlers/`）。
+5. 环境信号 = **pick 层（Brawl Planet Legendary+）+ ban 层（月赛）**；时间窗不完全对齐（pick 为 10 周滚动，ban 为单月），合并时需标注窗口差异；补丁边界滞后由补丁账本做快 override。
+6. 聚合产物作为环境信号输入层（`manifest.pickrate_source` / `pickrate_status`），进 runtime 前仍需复核提升；`tier_generation: forbidden`、`runtime_consumption: forbidden_until_reviewed_promotion`。
 
 ## 关联页面
 

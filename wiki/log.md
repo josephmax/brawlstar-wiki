@@ -1215,3 +1215,34 @@
 - 实施路径：复用 `ingest_liquipedia_event.py` + `outputs/esports/` 基建，月度输出成对 pick/ban 汇总；落地时写入 skill references。
 
 动作：更新 `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`（待决问题 1-4 全部已决 + 新增"十一、数据源决定"）。
+
+## [2026-08-14] ingest+draft | Brawl Planet Legendary+ pick 数据验证（修正数据源分工）
+
+### 背景
+
+维护者指出上一轮把"数据源 = Liquipedia 月赛"记错了：段位限定（Legendary+）不可让步指的是 **Brawl Planet 高分段 pick 抓取**为主源，月赛只负责 ban。已修正合成页"十一、数据源决定"。
+
+### 抓取验证（全部实测）
+
+- Brawl Planet 数据实为其 GCS 静态 JSON：`https://storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz`（`.gz` 为命名约定，实际明文 JSON；`pl-l1`=Legendary I+、`pl-m1`=Mythic I+、`pl-results`=Diamond+），无需 headless browser。
+- 新增抓取脚本 `skills/brawl-stars-bp-knowledge-maintenance/scripts/fetch_brawlplanet_pickrate.py`（下载 pl-l1 + brawlers.json.gz，用 wiki 英雄页 canonical 名归一化，过滤 future 英雄，输出逐图 + 全局加权 use/win rate）。
+- 新增月度聚合脚本 `skills/brawl-stars-bp-knowledge-maintenance/scripts/aggregate_environment_signal.py`（从 tournament_observation_profile.v1 聚合成对 pick/ban 信号）。
+- 8 月（Season 6）EMEA Monthly Finals raw capture 已抓取（27 sets，revision 268338），analyze 出 observation profile。
+
+### 信号质量
+
+- Legendary+ pick 信号：33 图 / 29 active / **总样本 2,882,389 场** / 105 英雄全覆盖（名称归一化 0 失败）。Crystal Arcade（S47 featured 新图）单图 90,887 场。
+- 7 月月赛 ban 信号：4 赛区 98 sets，89 英雄有样本。
+- 合并视图交叉验证：高 use+高 ban（压制型）= Starr Nova/Max/8-Bit/Surge/Meg/Griff，**几乎全是 8/4 削弱名单**；高 use+低 ban（灵活安全先手）= Brock(26.7%/0%)/Pierce/Meeple/Stu/Rico/Edgar。印证"(pick, ban) 二维对"框架。
+
+### 产物（outputs/，gitignored）
+
+- `outputs/runtime-bp-index/environment-signal-pickrate-legendary-plus.json`
+- `outputs/runtime-bp-index/environment-signal-2026-07.json`（月赛 ban 聚合）
+- `outputs/runtime-bp-index/environment-signal-2026-08-emea.json`（8 月 EMEA 试点）
+- `outputs/esports/bsc-2026-aug-emea-observation-profile.json`
+
+### 待办
+
+- 完整环境信号 schema（pick 层 + ban 层合并、窗口差异标注）待确认；进 runtime 前需复核提升。
+- 8 月其余 3 赛区月赛页可探测后抓取。
