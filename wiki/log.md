@@ -1203,3 +1203,15 @@
 ### 待办
 
 - pickrate 数据源调研与接入（高分粒度定义待决）；编辑器 UI 退役标注；`BP-下一阶段迭代方向决策记录` 待决问题待更新。
+
+## [2026-08-14] decision | 环境信号数据源方案拍板
+
+维护者确认（承接同日减法方案）：
+
+- 高分定义 = **Legendary+**，段位限定不可让步。
+- 数据源 = **Liquipedia 月赛**，每月单独统计 pick 与 ban（成对）；第三方高频抓取（Brawl Planet / BrawlPulse 等）不采用。
+- ban 信息月度更新，**不写入英雄信息页**（与 esports-event-ingest 规则一致）。
+- 聚合产物作为环境信号输入层（pickrate_source / pickrate_status），口径：`rank_floor: legendary_plus`、`window: monthly`、`companion_ban_rate: true`。
+- 实施路径：复用 `ingest_liquipedia_event.py` + `outputs/esports/` 基建，月度输出成对 pick/ban 汇总；落地时写入 skill references。
+
+动作：更新 `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`（待决问题 1-4 全部已决 + 新增"十一、数据源决定"）。

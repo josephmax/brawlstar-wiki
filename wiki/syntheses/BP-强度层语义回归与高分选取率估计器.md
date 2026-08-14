@@ -98,16 +98,16 @@
 ## 九、待决问题
 
 > [!question] 1
-> 是否确认强度层重定义为"环境基线先验 + 多来源开放槽 + 认识论元数据"，并把 iKaoss11 榜降级为快 override 候选来源？
+> ~~是否确认强度层重定义为"环境基线先验 + 多来源开放槽 + 认识论元数据"？~~ **已决（2026-08-14）**：减法方案，无 strength/tier 概念；环境信号固定为 high-rank pickrate。
 
 > [!question] 2
-> 是否接受"英雄池规划"问题类证据契约（counter 抵抗性 + 覆盖广度 + 上限 + 账号状态为主驱动，强度仅做 patch relevance 检查）？
+> ~~是否接受"英雄池规划"问题类证据契约？~~ **已决（2026-08-14）**：接受；主驱动 = counter 抵抗性 + 覆盖广度 + 上限 + 账号状态，强度仅做 patch relevance 检查。
 
 > [!question] 3
-> "高分"的粒度定义：大师起还是神话+起？第三方站点（如 MetaCoreTroll）在大师段的逐图样本较薄，是否接受"神话+/传奇+ 全局 pick/ban"作为实际粒度，逐图的事交给 map fit 层？
+> ~~"高分"的粒度定义？~~ **已决（2026-08-14）**：**高分 = Legendary+（段位限定不可让步）**；数据源 = **Liquipedia 月赛**，**每月单独统计 pick 与 ban（成对）**；ban 信息月度更新，**不写入英雄信息页**。第三方高频抓取方案（Brawl Planet 等）不采用。
 
 > [!question] 4
-> `ikaoss11-ranked-map-adapted-preview.json` 这类生成底稿的处理：加 `status: draft-not-audited` 标记保留，还是移出 outputs 消费路径？
+> ~~生成底稿的处理？~~ **已决（2026-08-14）**：随减法方案退役，`outputs/strength-profiles/` 移入 `outputs/_retired/`；`generate_map_strength_profile.py` 保留代码并标注 deprecated。
 
 ## 十、已采纳决定（2026-08-14）：减法方案
 
@@ -129,7 +129,17 @@
 - ✅ compile-knowledge.md / runtime-decision-knowledge.md / SKILL.md（slot-decision 与 run-brawl-stars-bp）同步重写
 - ✅ AGENTS.md / README.md / 契约测试更新；slot-decision 21 个测试 + bp skill contract 全绿
 - ✅ 生成新索引 `outputs/runtime-bp-index/default-runtime-index.json`（30 图 / 105 英雄 / pickrate_status=empty / 无 tier）
-- ⏳ 待办：pickrate 数据源调研与接入（待决问题 3）；编辑器退役标注；`BP-运行时索引编译架构.md` 同步
+- ⏳ 待办：pickrate 数据源接入（方案见下节）
+
+## 十一、数据源决定（2026-08-14）：Liquipedia 月赛月度统计
+
+维护者拍板环境信号的数据源方案（第三方高频抓取不采用）：
+
+1. **高分定义 = Legendary+**，段位限定不可让步；由于天梯无公开的 Legendary+ pick/ban 数据，用**职业月赛（Liquipedia 月度决赛）作为该口径的近似**。
+2. **数据源 = Liquipedia 月赛**（MediaWiki API，已有 `ingest_liquipedia_event.py` 基建可复用），**每月单独统计一次**，pick 与 ban 成对产出。
+3. **ban 信息月度更新**，**不写入英雄信息页**——与 `skills/brawl-stars-bp-knowledge-maintenance/references/esports-event-ingest.md` 的既有规则一致（tournament pick/ban rates 不写入 `wiki/entities/brawlers/`）。
+4. 聚合产物作为环境信号输入层（`manifest.pickrate_source` / `pickrate_status`），进 runtime 前仍需：统计口径定义（set 级 vs match 级）、样本量标注、`rank_floor: legendary_plus`、`window: monthly`、`companion_ban_rate: true`。
+5. 后续实现建议：基于 `ingest_liquipedia_event.py` + `outputs/esports/` 的 `tournament_observation_profile.v1` 聚合，新增月度 pick/ban 汇总脚本，输出成对环境信号 JSON；本页不写实现细节，落地时进入对应 skill references。
 
 ## 关联页面
 
