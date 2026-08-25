@@ -116,9 +116,44 @@ def has_relation_to_targets(index: dict[str, Any], brawler: str, targets: set[st
     return bool(targets and conditional_relations(index, brawler, targets))
 
 
-def candidate_sort_key(index: dict[str, Any], name: str, item: dict[str, Any]) -> tuple[int, str]:
-    map_signal = bool(item.get("active_hook_ids") or item.get("matched_capabilities"))
-    return (0 if map_signal else 1, name)
+def brawler_capability_tags(index: dict[str, Any], brawler: str) -> set[str]:
+    card = (index.get("brawler_runtime_cards") or {}).get(brawler) or {}
+    return {normalize_key(tag) for tag in (card.get("capability_tags") or [])}
+
+
+def capability_window_filter(index: dict[str, Any], name: str, wanted: set[str]) -> bool:
+    """Keep a brawler when it has any wanted capability tag.
+
+    ``--capability`` is the capability-window retrieval primitive: it turns
+    "give me heroes with wall-bypass / crowd-control" into a concrete filter
+    over the stable ``runtime_card.capability_tags``, instead of relying on an
+    alphabetical window of map-fit candidates.
+    """
+    if not wanted:
+        return True
+    return bool(brawler_capability_tags(index, name) & wanted)
+
+
+FIT_RANK = {"strong": 0, "medium": 1, "weak": 2}
+
+
+def candidate_sort_key(index: dict[str, Any], name: str, item: dict[str, Any], wanted_capabilities: set[str]) -> tuple[int, int, int, int, int, str]:
+    """Order candidates by evidence relevance, not by name.
+
+    Primary: number of requested capability tags matched (0 when no
+    capability window is active), so capability-window queries surface the
+    requested pool first.
+    Then: map fit rank (strong < medium < weak < no-signal), active map hook
+    count, matched capability count. Name is only the final tiebreaker so the
+    window is stable and not alphabetical-truncated (which used to starve
+    W-Z brawlers such as Willow).
+    """
+    matched = len((brawler_capability_tags(index, name) & wanted_capabilities)) if wanted_capabilities else 0
+    fit = (item.get("fit") or "").lower()
+    fit_rank = FIT_RANK.get(fit, 3)
+    hook_count = len(item.get("active_hook_ids") or [])
+    capability_count = len(item.get("matched_capabilities") or [])
+    return (0 if matched else 1, fit_rank, -hook_count, -capability_count, 0 if hook_count or capability_count else 1, name)
 
 
 def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str, Any], targets: set[str]) -> dict[str, Any]:
@@ -180,12 +215,15 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     includes = [canonical_brawler_name(index, raw) for raw in args.include_id]
     excludes = {canonical_brawler_name(index, raw) for raw in args.exclude_id}
     targets = relation_targets(index, args.relation_target)
+    wanted_capabilities = {normalize_key(raw) for raw in args.capability}
     limit = args.limit if args.limit is not None else EFFORT_LIMITS[args.effort]
 
     items_by_name: dict[str, dict[str, Any]] = {}
     for item in bucket_items(index, map_name, args.bucket):
         name = item.get("brawler")
         if not name or name in excludes:
+            continue
+        if not capability_window_filter(index, name, wanted_capabilities):
             continue
         item = dict(item)
         item["retrieval_matches"] = [f"bucket:{item.get('retrieval_bucket')}"]
@@ -205,6 +243,8 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
             continue
         if not has_relation_to_targets(index, name, targets):
             continue
+        if not capability_window_filter(index, name, wanted_capabilities):
+            continue
         enriched = dict(item)
         enriched["brawler"] = name
         enriched["retrieval_matches"] = ["relation_target"]
@@ -218,10 +258,22 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     remaining = [
         name for name in items_by_name if name not in set(ordered_names)
     ]
-    remaining.sort(key=lambda name: candidate_sort_key(index, name, items_by_name[name]))
+    remaining.sort(key=lambda name: candidate_sort_key(index, name, items_by_name[name], wanted_capabilities))
     ordered_names.extend(remaining)
     if limit:
-        ordered_names = ordered_names[:limit]
+        # Capability-window hits are never truncated by the effort budget: the
+        # window's whole point is that every requested-capability brawler is
+        # visible, no matter where its name or hook count falls. Only
+        # non-matching fill brawlers are capped.
+        if wanted_capabilities:
+            capped = [
+                name for name in ordered_names
+                if brawler_capability_tags(index, name) & wanted_capabilities
+            ]
+            fill = [name for name in ordered_names if name not in set(capped)]
+            ordered_names = capped + fill[:max(0, limit - len(capped))]
+        else:
+            ordered_names = ordered_names[:limit]
 
     fact_window = [
         fact_payload(index, map_name, name, items_by_name[name], targets)
@@ -239,6 +291,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
                 "include_ids": includes,
                 "exclude_ids": sorted(excludes),
                 "relation_targets": sorted(targets),
+                "capabilities": sorted(wanted_capabilities),
                 "buckets": args.bucket,
                 "fields": args.field,
                 "effort": args.effort,
@@ -271,6 +324,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--include-id", action="append", default=[], help="Entity id to force include; repeatable")
     parser.add_argument("--exclude-id", action="append", default=[], help="Entity id to exclude from the fact window; repeatable")
     parser.add_argument("--relation-target", action="append", default=[], help="Entity id used to filter conditional relation facts; repeatable")
+    parser.add_argument("--capability", action="append", default=[], help="Capability tag required on the brawler's runtime card (OR semantics; repeatable); --include-id brawlers bypass this filter", metavar="TAG")
     parser.add_argument("--bucket", action="append", default=[], help="Compiled retrieval bucket id to include; repeatable")
     parser.add_argument("--field", action="append", default=[], help="Requested field hint for callers; repeatable")
     parser.add_argument(
