@@ -223,28 +223,28 @@ bp_brawler_profile:
       bp_use: build_requirement_check
 
   conditional_matchups:
-    - target: Bull_or_Jacky_or_El_Primo_or_Frank
+    - target: ["Bull", "Jacky", "El Primo", "Frank"]
       direction: subject_favored
       source: "[[sources/PLP-Surge|PLP-Surge]]"
       mechanism: Super 击退/免疫、Power Shield 弹药返还和近身爆发能惩罚直线进入的高血量前排
       active_when: 目标必须穿过可见 choke、球路或宝石入口，Surge 有 Super/Power Shield 或至少 Stage 1
       fails_when: 前排由投掷/治疗/速度支援送到贴脸，或 Surge 已把开局 Super 用于升速且尚未补回击退/Power Shield 资源
       bp_use: anti_tank_response_pick
-    - target: Edgar_or_Bibi_or_Buzz_or_Doug
+    - target: ["Edgar", "Bibi", "Buzz", "Doug"]
       direction: subject_favored
       source: "[[sources/PLP-Surge|PLP-Surge]]"
       mechanism: 跳跃击退、短距离免疫和三发爆发可以反打单一路线近身英雄
       active_when: 接近路线可预判，Power Shield 或 Super 留给 first contact
       fails_when: 敌方多路线夹击、先骗出 Super，或地图草墙让 Surge 无法预读
       bp_use: anti_aggro_route_guard
-    - target: Tick_or_Barley_or_Sprout_or_Willow
+    - target: ["Tick", "Barley", "Sprout", "Willow"]
       direction: target_favored
       source: "[[sources/PLP-Surge|PLP-Surge]]"
       mechanism: 投掷/墙后控制可以在 Stage 1 Surge 取得射程升级前压低血量，并阻止他用直线主攻击充出第二次 Super
       active_when: 墙体完整、投掷有安全口袋、Surge 队伍缺开墙或 dive，且 Stage 1 的 6.67 格射程接触不到目标
       fails_when: 地图打开，或 Surge 用 Stage 1 速度压到中距离并已取得 Stage 2 射程
       bp_use: must_answer_thrower_before_surge
-    - target: Belle_or_Crow_or_Bonnie_or_Piper
+    - target: ["Belle", "Crow", "Bonnie", "Piper"]
       direction: target_favored
       source: "[[sources/PLP-Surge|PLP-Surge]]"
       mechanism: 更长射程、持续毒伤或远程爆发会在 Surge 取得 Stage 2 射程前削血，迫使他把后续 Super 用于防守

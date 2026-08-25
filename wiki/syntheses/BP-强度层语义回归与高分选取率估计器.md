@@ -142,6 +142,18 @@
 5. 环境信号 = **pick 层（Brawl Planet Legendary+）+ ban 层（月赛）**；时间窗不完全对齐（pick 为 10 周滚动，ban 为单月），合并时需标注窗口差异；补丁边界滞后由补丁账本做快 override。
 6. 聚合产物作为环境信号输入层（`manifest.pickrate_source` / `pickrate_status`），进 runtime 前仍需复核提升；`tier_generation: forbidden`、`runtime_consumption: forbidden_until_reviewed_promotion`。
 
+## 十二、落地边界（2026-08-14 两阶段）：人类参考层 → compile 折叠证据层
+
+**阶段 1（2026-08-14 当日）**：维护者拍板环境信号（Brawl Planet Legendary+ pick + 月赛 ban）只作为人类参考、不接入 BP 决策；compile 的 `pickrate_status` 保持 `empty`、decide 不消费。
+
+**阶段 2（2026-08-14 架构转向，替代阶段 1 的"永不进 compile"）**：为消除"信号文件混在 compile 产物目录、decide 直连维护产物"的耦合，改为：
+
+- 观测与信号数据**归档到 `wiki/environment/`**（持久知识库层，git 跟踪），不在 gitignored `outputs/`；`current.json` 是指针。
+- **compile 是唯一聚合点**：从归档折叠 `environment_evidence`（`ladder_anchor` / `monthly_finals`，带 window / rank_floor / fetched_at / captured_at 标注）进 `runtime_bp_index`；manifest `pickrate_status: loaded`（无归档时 `empty`）、`environment_provenance` 记录折叠来源。
+- **decide 只消费索引内嵌证据**（经 `hydrate_runtime_facts.py`）；`query_environment_evidence.py` 退役。
+- 保留语义红线：环境证据**不生成 tier、不升级 fit/eligibility、不推翻机制约束**；样本诚实（ur<2% 或月赛 picks<5 为轶事级）；8 月其余赛区未打完暂不聚合。
+- 归档变更 → 更新 `current.json` 与 `wiki/environment/index.md` → 重编译 runtime index（`manifest.environment_provenance` 记录折叠了哪个快照）。
+
 ## 关联页面
 
 - [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]

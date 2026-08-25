@@ -449,7 +449,7 @@ def profile_block(row: RosterRow, fandom_path: Path, plp_path: Path, fandom_raw:
             f"      bp_use: {q(failure['bp_use'])}",
         ])
 
-    lines.extend(["", "  conditional_matchup_seeds:"])
+    lines.extend(["", "  conditional_matchups:"])
     if counters_these:
         lines.extend([
             "    - target:",
@@ -472,17 +472,6 @@ def profile_block(row: RosterRow, fandom_path: Path, plp_path: Path, fandom_raw:
             "      fails_when: \"map or comp removes target's access to the punishment mechanism\"",
             "      bp_use: \"must_avoid_or_protection_seed_only\"",
         ])
-    if not counters_these and not countered_by:
-        lines.extend([
-            "    - target: []",
-            "      direction: \"unknown\"",
-            "      source: \"PLP payload exposed no matchup list\"",
-            "      mechanism: \"unknown\"",
-            "      active_when: \"unknown\"",
-            "      fails_when: \"unknown\"",
-            "      bp_use: \"do_not_use_as_counter_signal\"",
-        ])
-
     lines.extend([
         "",
         "  slot_notes:",

@@ -237,29 +237,29 @@ bp_brawler_profile:
       mitigation: 根据草控需求改用 Black Portal 或谨慎放 Super
       bp_use: build_requirement_check
 
-  conditional_matchup_seeds:
-    - target: Nani_or_Tick_or_Mandy_or_Piper_or_Belle
+  conditional_matchups:
+    - target: ["Nani", "Tick", "Mandy", "Piper", "Belle"]
       direction: subject_favored
       source: "[[sources/PLP-Tara|PLP-Tara]]"
       mechanism: Support From Beyond 可挡单体弹道或迫使脆弱长手/投掷转火，Gravity 命中后可直接把远程拖入队友爆发
       active_when: 地图有草墙路线或目标迫使长手靠近矿区/门前，Tara 有 Super 或召唤物可启动
       fails_when: 地图纯开阔且对手保持极限距离，或召唤物被范围技能立即清掉
       bp_use: response_pick_into_fragile_range_when_route_exists
-    - target: Lou_or_Meg_or_Jae_yong
+    - target: ["Lou", "Meg", "Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Tara|PLP-Tara]]"
       mechanism: Gravity 能打断目标区控制/团队节奏并把多个站点身体拉进范围伤害
       active_when: 敌方为了站圈、推进或护 carrier 必须聚在中距离
       fails_when: 对方分散站位并用长手先压 Tara，或 Tara 队友没有范围 follow-up
       bp_use: teamfight_swing_response
-    - target: Penny_or_Nita_or_Emz_or_Sandy
+    - target: ["Penny", "Nita", "Emz", "Sandy"]
       direction: target_favored
       source: "[[sources/PLP-Tara|PLP-Tara]]"
       mechanism: 召唤物、炮台、范围喷射或视野/控场能吸收 Tara 资源，清掉影子并阻止她安全靠近 Super 范围
       active_when: 地图有目标区拥挤或草墙保护这些资源，Tara 队伍缺清召唤物/开墙
       fails_when: Tara 先用 Gravity 命中真实目标，或队友提前清掉资源
       bp_use: must_answer_spawnable_or_area_before_tara
-    - target: Damian_or_Shade_or_Edgar_or_Janet
+    - target: ["Damian", "Shade", "Edgar", "Janet"]
       direction: target_favored
       source: "[[sources/PLP-Tara|PLP-Tara]]"
       mechanism: 高机动、特殊路线或空中/墙体路径能让 Tara 难以把 Gravity 留给真实接触点

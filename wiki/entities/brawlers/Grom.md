@@ -224,36 +224,28 @@ bp_brawler_profile:
       mitigation: "破墙前指定后续站位和受益方，只选择敌方 pocket 或目标墙"
       bp_use: terrain_state_plan_check
 
-  conditional_matchup_seeds:
-    - target: Bea_or_Poco_or_Meg_or_Pam_or_Lou_or_Surge_or_Emz_or_Shelly
+  conditional_matchups:
+    - target: ["Bea", "Poco", "Meg", "Pam", "Lou", "Surge", "Emz", "Shelly"]
       direction: subject_favored
       source: "[[sources/PLP-Grom|PLP-Grom]]"
       mechanism: "低机动或需要固定 objective 站位的目标容易被越墙十字线、Super knockback 和 Radio Check 逼离路线"
       active_when: "目标守墙边、矿区、热区、safe 防守线或回合 choke，且 Grom 不需要短距离对枪"
       fails_when: "目标从开阔空间斜走躲十字，或用队友/速度直接压到 Grom 身边"
       bp_use: wall_cluster_thrower_response
-    - target: Bolt_or_Damian_or_Edgar_or_Mortis_or_Kaze_or_Sam
+    - target: ["Bolt", "Damian", "Edgar", "Mortis", "Kaze", "Sam"]
       direction: target_favored
       source: "[[sources/PLP-Grom|PLP-Grom]]"
       mechanism: "速度、突进、路线或近身爆发会跳过 Grom 的十字线等待时间，直接攻击低血投掷位"
       active_when: "地图给侧草、墙角或多路线接近，Grom 缺 Watchtower/peel/Super knockback"
       fails_when: "路线被队友视野和控制锁死，Grom 在远端只需输出固定目标"
       bp_use: must_answer_dive_before_grom
-    - target: Mr_P_or_Najia
+    - target: ["Mr. P", "Najia"]
       direction: target_favored
       source: "[[sources/PLP-Grom|PLP-Grom]]"
       mechanism: "Porter ammo tax、毒区/弧线和墙控可让 Grom 难以把慢 reload 十字线打到真实目标"
       active_when: "资源层或 poison 路线能安全进入 Grom 的投掷 pocket 或迫使他换位"
       fails_when: "队友先清资源，或 Grom 在更远墙后只压固定 objective 路线"
       bp_use: must_answer_resource_or_wall_pressure
-    - target: Heist_safe_or_wall_edge_retreat
-      direction: subject_favored
-      source: "[[sources/Fandom-Grom|Fandom-Grom]]"
-      mechanism: "固定 safe 和墙边撤退路线无法像移动英雄一样斜走，Radio Check 和 Super 更容易转换伤害"
-      active_when: "Grom 有安全投掷角，且队友保护他不被先切"
-      fails_when: "safe race 来自其他 lane，或敌方 dive 迫使 Grom 无法站桩瞄准"
-      bp_use: objective_specific_fixed_target_edge
-
   slot_notes:
     slot_1: "只在地图明确奖励墙后十字线与固定目标，且敌方低成本 dive 面较窄时早手；否则会被后手刺客/速度针对。"
     slot_2_3: "可作为长线投掷控制和 Heist/Bounty/Knockout 计划手，但队伍要补近身保护。"

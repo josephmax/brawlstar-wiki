@@ -217,29 +217,29 @@ bp_brawler_profile:
       mitigation: 先清资源，或只在资源不在路线上时开 Peep
       bp_use: must_answer_body_block_before_nani
 
-  conditional_matchup_seeds:
-    - target: Piper_or_Angelo_or_Belle_or_Mandy
+  conditional_matchups:
+    - target: ["Piper", "Angelo", "Belle", "Mandy"]
       direction: subject_favored
       source: "[[sources/PLP-Nani|PLP-Nani]]"
       mechanism: Nani 的极远收束爆发、Return to Sender 变体和 Peep 威慑能惩罚单发长狙站位
       active_when: 地图开阔，Nani 能站极远端，目标没有召唤物/墙体保护
       fails_when: 目标先取得安全角度，或 Nani 被 side pressure 迫使中距离出手
       bp_use: sniper_mirror_response_candidate
-    - target: Mortis_or_Fang_or_8-Bit_or_R-T
+    - target: ["Mortis", "Fang", "8-Bit", "R-T"]
       direction: subject_favored
       source: "[[sources/PLP-Nani|PLP-Nani]]"
       mechanism: 满额爆发或 Peep 可惩罚直线进场/低机动目标，但条件是先看到路线
       active_when: 接近路线长而可预判，Nani 有 Super/Return to Sender 或队友 peel
       fails_when: 目标从草墙贴脸，或 Nani 没有资源时被逼近
       bp_use: conditional_anti_entry_or_low_mobility_pick
-    - target: Max_or_Leon_or_Carl_or_Eve
+    - target: ["Max", "Leon", "Carl", "Eve"]
       direction: target_favored
       source: "[[sources/PLP-Nani|PLP-Nani]]"
       mechanism: 速度、隐身、回旋镖压力或隔水/幼体资源会破坏 Nani 的收束命中和 Peep 安全窗口
       active_when: 地图有侧路、水域、墙体或 dodge space，让目标选择 first contact
       fails_when: 路线被队友视野锁住，或 Nani 保留 Peep/Return to Sender 等资源等真正进场
       bp_use: avoid_without_vision_or_peel
-    - target: Pam_or_Mr_P_or_Pearl_or_Amber
+    - target: ["Pam", "Mr. P", "Pearl", "Amber"]
       direction: target_favored
       source: "[[sources/PLP-Nani|PLP-Nani]]"
       mechanism: 高血量、召唤物、持续火力或火区能吸收/压制 Nani 的单次爆发窗口

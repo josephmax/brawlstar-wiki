@@ -48,6 +48,27 @@ def safe_key(value: str) -> str:
     return cleaned.strip(".-") or "runtime-index"
 
 
+def resolve_pickrate_status(repo: Path) -> str:
+    """Resolve the expected environment slot from the archive pointer.
+
+    The pointer `wiki/environment/current.json` is the single source of truth;
+    precheck mirrors compile's folding behavior instead of hardcoding "empty".
+    """
+    pointer = read_json(repo / "wiki" / "environment" / "current.json")
+    if not pointer:
+        return "empty"
+    refs = [(pointer.get("monthly") or {}).get("signal"), pointer.get("ladder")]
+    if any(ref and (repo / ref).exists() for ref in refs):
+        return "loaded"
+    return "empty"
+
+
+def expected_pickrate_status(args: argparse.Namespace) -> str:
+    if args.pickrate_status:
+        return args.pickrate_status
+    return resolve_pickrate_status(Path(args.repo))
+
+
 def derive_index_key(args: argparse.Namespace) -> str:
     if args.index_key:
         return safe_key(args.index_key)
@@ -56,7 +77,7 @@ def derive_index_key(args: argparse.Namespace) -> str:
         "patch_id": args.patch_id or "default-current",
         "map_pool_id": args.map_pool_id or "current-ranked",
         "available_pool": sorted(args.available_pool),
-        "pickrate_status": args.pickrate_status or "empty",
+        "pickrate_status": expected_pickrate_status(args),
     }
     return f"bp-{short_hash(payload)}"
 
@@ -69,7 +90,7 @@ def compute_compile_input_hash(args: argparse.Namespace, runtime_index_key: str)
         "patch_id": args.patch_id,
         "map_pool_id": args.map_pool_id,
         "available_pool": sorted(args.available_pool),
-        "pickrate_status": args.pickrate_status or "empty",
+        "pickrate_status": expected_pickrate_status(args),
     }
     return short_hash(payload)
 
@@ -98,7 +119,7 @@ def index_validation_error(index_path: Path, args: argparse.Namespace) -> str | 
     expected_fields = {
         "patch_id": args.patch_id,
         "map_pool_id": args.map_pool_id,
-        "pickrate_status": args.pickrate_status or "empty",
+        "pickrate_status": expected_pickrate_status(args),
     }
     for field, expected in expected_fields.items():
         if expected and str(manifest.get(field, "")) != str(expected):
@@ -149,7 +170,7 @@ def make_lock_payload(
         "compile_input_hash": compile_input_hash,
         "patch_id": args.patch_id or "default-current",
         "map_pool_id": args.map_pool_id or "current-ranked",
-        "pickrate_status": args.pickrate_status or "empty",
+        "pickrate_status": expected_pickrate_status(args),
         "attempt": attempt,
     }
 
@@ -300,7 +321,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--patch-id", default="", help="Expected manifest patch_id")
     parser.add_argument("--map-pool-id", default="", help="Expected manifest map_pool_id")
     parser.add_argument("--available-pool", action="append", default=[], help="Available brawler; repeatable")
-    parser.add_argument("--pickrate-status", default="", help="Expected manifest pickrate_status (default empty)")
+    parser.add_argument("--pickrate-status", default="", help="Expected manifest pickrate_status; default resolves from wiki/environment/current.json (loaded) or empty")
     parser.add_argument("--compile-input-hash", default="", help="Compile input hash to store in the lock")
     parser.add_argument("--owner", default="", help="Lock owner label")
     parser.add_argument("--max-polls", type=int, default=12, help="Maximum polls when another compile owns the lock")

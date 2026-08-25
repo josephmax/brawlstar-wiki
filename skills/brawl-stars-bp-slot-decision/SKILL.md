@@ -9,7 +9,7 @@ description: Use when compiling or using a Brawl Stars Ranked Ban Pick runtime i
 
 This skill has two modes:
 
-- `compile`: read stable entity facts, then generate a `runtime_bp_index`. There is no strength layer; the environment slot (high-rank pickrate) is currently empty.
+- `compile`: read stable entity facts plus the archived high-rank pickrate environment signals (`wiki/environment/current.json` pointer), then generate a `runtime_bp_index` with the environment evidence folded in as labeled per-brawler `environment_evidence`. There is no strength layer; the environment slot is `loaded` when the archive resolves and `empty` otherwise.
 - `decide`: validate the compiled `runtime_bp_index`, query it through bundled tools, combine the returned fragments with current draft state and runtime decision rules, then return one ban or pick recommendation set.
 
 The skill must not use the wiki's synthesis/topic discussion layer as a runtime dependency. Those pages are maintainer workspace, not player-facing knowledge. The skill is self-contained through its own references and stable entity pages.
@@ -55,6 +55,7 @@ Read:
 
 - `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`
 - The compiled `runtime_bp_index` through the neutral fact tools: `scripts/query_runtime_facts.py` and `scripts/hydrate_runtime_facts.py`
+- Environment evidence embedded in the compiled index (per-brawler `environment_evidence`: `ladder_anchor` / `monthly_finals`, plus `environment_ladder` per-map rows), read through `hydrate_runtime_facts.py` as corroborating evidence for `evidence_roles` — never as a ranking or instruction
 - Current BP state only as caller-side reasoning context. Convert unavailable entities to neutral `--exclude-id`, forced evidence targets to `--include-id`, and relation probes to `--relation-target` before calling tools.
 
 Before deciding, run `runtime_index_precheck`. If no usable `runtime_bp_index` exists, acquire the compile lock and run a default `compile`; if another process is compiling the same index, poll with a bounded retry budget. Do not silently fall back to maintainer discussion pages.
@@ -98,6 +99,7 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py \
 - `--effort`: recall budget preset. Use `low=24` for normal runtime decisions or `high=32` for high-leverage / high-uncertainty decisions; default is `low`.
 - `--limit`: explicit override for returned entity fragments. Use only when the caller has a concrete reason to override `--effort`.
 - `--summary`: emit an agent-readable summary table for debugging, audit drafting, or manual comparison. Prefer this over ad hoc `python3 -c` JSON parsing when the caller only needs to inspect candidates.
+- `--cache-dir`: cross-query disk cache directory. Same index + parameters hit the cache (response carries `cache_hit: true`) and skip reloading the index. Reuse one cache dir across a whole match so repeated queries with the same map and parameters are served from disk. Applies to both `query_runtime_facts.py` and `hydrate_runtime_facts.py`; environment evidence travels inside the index and is cached with it.
 
 For JSON consumers, read candidates from `runtime_fact_query.fact_window`. Each row includes map fit evidence, map hook IDs, matched capabilities, failure gates, build IDs, `runtime_card_counts`, and `relation_count` so callers do not need to sort or compare nested dictionaries. There is no strength or tier field anywhere in the fact window.
 
@@ -112,9 +114,11 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/hydrate_runtime_facts.py \
   --json
 ```
 
-Hydration JSON keeps `entities` as a dictionary keyed by brawler for backward compatibility, and also returns `entity_window` as a list for safe iteration. Each hydrated entity includes `relation_count`, `runtime_card_counts`, `retrieval_bucket_hits`, `candidate_map_fit`, and `evidence_ref`. Use `--summary` when the caller wants a readable entity audit without writing parsing code.
+Hydration JSON keeps `entities` as a dictionary keyed by brawler for backward compatibility, and also returns `entity_window` as a list for safe iteration. Each hydrated entity includes `relation_count`, `runtime_card_counts`, `retrieval_bucket_hits`, `candidate_map_fit`, `evidence_ref`, and `environment_evidence` (ladder / monthly dimensions folded in by compile; `null` dimension means `no_ladder_sample` / `no_monthly_sample`). The hydration body also carries `environment_ladder` (Legendary+ per-map rows for the current map, projected to the requested heroes). Use `--summary` when the caller wants a readable entity audit without writing parsing code.
 
-There is no `--strength-weight` in this system: the environment slot (high-rank pickrate) is empty, and map fit / matchup / failure evidence is the entire basis for candidate comparison.
+Environment evidence is read from the compiled index only — hydrate several heroes in one call by repeating `--include-id`; there is no separate environment tool. When a hero's environment evidence was already hydrated in an earlier turn of the same match, reuse that result from context; do not re-query it.
+
+There is no `--strength-weight` in this system: environment evidence is labeled corroboration, never a ranking, and map fit / matchup / failure evidence is the entire basis for candidate comparison.
 
 ## Input Contract
 
@@ -131,7 +135,7 @@ compile_input:
     read_stable_entities_only: true
 ```
 
-Compile never takes a strength profile. The environment slot (high-rank pickrate) is empty by default; `manifest.pickrate_status` records `"empty"`. If a pickrate data source is integrated later, it enters as an independent evidence layer with provenance and still cannot change map fit or eligibility.
+Compile never takes a strength profile. When `wiki/environment/current.json` resolves, `manifest.pickrate_status` records `"loaded"` and the archived signals are folded into the index as labeled evidence; without it (or with `--no-environment`) the slot records `"empty"`. Environment evidence enters the index with provenance and still cannot change map fit or eligibility.
 
 ```yaml
 decide_input:
@@ -194,7 +198,7 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py \
 
 Compile must not use any tier or environment mention to upgrade `fit`, `map_floor_fit`, or `slot_eligibility`; those fields come from stable map hooks and matched capabilities. `mode_contract_fit` is evidence-only, not playability. `candidate_index` keeps `map_floor_fit`, `mode_contract_fit`, `recall_channels`, `slot_eligibility`, `conditional_lift`, and `failure_gates` separate so runtime fact tools can expose map fit, mode evidence, relation windows, and failure risks without deciding what wins.
 
-The compiled index may be richer than the prompt window, but decide must consume it through `query_runtime_facts.py` and `hydrate_runtime_facts.py`. Use `--debug-output` only for compile debugging. The empty environment slot remains explicit uncertainty, not a license to invent tiers or meta claims.
+The compiled index may be richer than the prompt window, but decide must consume it through `query_runtime_facts.py` and `hydrate_runtime_facts.py`. Use `--debug-output` only for compile debugging. Missing environment evidence remains explicit uncertainty, not a license to invent tiers or meta claims.
 
 ## Decide Summary
 
@@ -228,7 +232,7 @@ Each selected candidate and top decision must include a report-facing summary la
 
 When the caller needs a decision audit, also return `retrieval_audit` for each turn. This field is not BP advice from a tool; it is the LLM's bookkeeping over neutral tool metadata: query focus, include/exclude/relation filters, recalled candidate count, `fragments_returned`, `payload_kb`, and a compact summary of recalled map/entity/relation facts.
 
-Every ban/pick turn must return `turn_decision_trace`, even when no audit was requested. This is the real runtime thinking record, not a later explanation. It must include `decision_style`, `map_problem`, `visible_state`, `query_intent`, `retrieval_audit`, `candidate_comparison`, `selected_reason`, `rejected_options`, and `risk_and_build_implication`. If a field is unknown, write the uncertainty directly instead of omitting it.
+Every ban/pick turn must return `turn_decision_trace`, even when no audit was requested. This is the real runtime thinking record, not a later explanation. It must include `decision_style`, `map_problem`, `visible_state`, `query_intent`, `retrieval_audit`, `candidate_comparison`, `selected_reason`, `rejected_options`, `examined_options` (every inspected option with why it was examined), and `risk_and_build_implication`. If a field is unknown, write the uncertainty directly instead of omitting it.
 
 When revealed entities are visible, the caller may pass them as `--relation-target` so relation facts are available. The LLM decides whether those facts are counters, answers, soft pressure, irrelevant, or risky in the current BP state. Tool output must keep the neutral `conditional_relations` shape.
 
@@ -240,7 +244,7 @@ Ordering logic:
 4. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
 5. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
 6. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
-7. There is no strength ranking or tier in this system; the environment slot (high-rank pickrate) is empty, so no candidate ordering comes from it.
+7. There is no strength ranking or tier in this system; environment evidence is labeled corroboration, never a candidate ordering.
 8. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
 9. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
 
@@ -248,7 +252,33 @@ Always run `balanced_threat_probe`. A balanced draft must still evaluate one leg
 
 For `balanced`, the 2-4 candidate decisions must include at least one proactive threat candidate, including a tank/assassin, unless hard_gate_result.must_avoid or map false-positive filters rule it out.
 
-After all six draft positions are locked, run `final_draft_review` for each side. This review cannot change picks. It re-reads the full visible draft, hydrates only the selected brawlers and relevant relation targets if needed, then returns win condition, play pattern, primary risks, risk mitigation, and `role_build_plan` for every selected brawler. The judge may copy this review into the human report, but must not invent it.
+After all six draft positions are locked, run `final_draft_review` for each side. This review cannot change picks. It re-reads the full visible draft, hydrates only the selected brawlers and relevant relation targets if needed, then returns win condition, play pattern, primary risks, risk mitigation, and `role_build_plan` for every selected brawler. The judge may copy this review into the human report, but must not invent it. In match-scoped play, append the final review to your player log (`{PLAYER_LOG_PATH}`) as well; the per-turn outputs stay lean and fast.
+
+## Examined-Options Audit
+
+Every ban/pick turn must also produce `examined_options`: the structured record of every option the player actually examined this hand, with the reason it was examined. This is the audit core for later decision optimization.
+
+Output mode depends on the caller:
+
+- **Standalone single-hand BP runs** (this skill's decide output): return the full `examined_options` per turn, as specified below. The audit is part of the turn itself.
+- **Match-scoped turns** (judge-driven via `run-brawl-stars-bp/references/turn-prompt-template.md`): the judge's per-turn contract is intentionally lean (`decision` / `key_reason` / `confidence` / `retrieval`) to keep every turn fast and cheap. Do NOT emit the full `examined_options` in the reply — append it to your side's player log (`{PLAYER_LOG_PATH}`, passed in every 对局信息 block): a section per own turn with every option seriously inspected, `why_examined`, `evidence_used`, `verdict`, `verdict_reason`, and the ranking order in which they were considered. The judge reads both player logs after the match and assembles the verbose decision log from them.
+
+```yaml
+examined_options:
+  - option: <brawler>
+    why_examined: 为什么查它（进入候选池的来源：哪个检索窗口/bucket、哪条关系边、哪个地图职责或失败门核查）
+    evidence_used: 查到的关键证据（机制 hook / ladder / monthly，一句）
+    verdict: selected | rejected | deferred
+    verdict_reason: 一句理由
+```
+
+Rules:
+
+- Cover every candidate that was seriously inspected in this hand, not only the rejected ones: the final selection, rejected alternatives, and deferred options all appear. `why_examined` answers "why did this option enter the candidate pool at all" — the neutral query window, relation edge, map duty, or failure-gate check that surfaced it.
+- `evidence_used` must name the actual retrieved facts for that option (map hook / relation edge / ladder / monthly), so a later audit can see what the option was judged against.
+- `verdict` is one of `selected`, `rejected`, `deferred`. `deferred` means "serious candidate but intentionally held back for a later slot / different situation", distinct from a plain rejection.
+- `verdict_reason` is the one-line player-authored conclusion. Do not leave it as "see other fields".
+- The full `turn_decision_trace` (query intent, retrieval audit, candidate comparison, evidence roles) stays the source of how the decision was built; `examined_options` is the per-option inventory that audit reports consume. A trace that lists a candidate in `candidate_comparison` must also carry it in `examined_options` with its `why_examined`.
 
 ## Output Contract
 
@@ -262,6 +292,7 @@ bp_recommendation:
     entities:
     relation_targets:
   candidate_evals:
+  examined_options: # 本手查验过的每个选项（含选中、否决、推迟）；独立单手 BP 的审计核心，格式见上方 Examined-Options Audit
   top_decisions:
   draft_eval:
   uncertainty:
@@ -274,7 +305,8 @@ turn_decision_trace:
   retrieval_audit:
   candidate_comparison:
   selected_reason:
-  rejected_options:
+  rejected_options: # 可由 examined_options(verdict=rejected) 派生；保留作兼容摘要
+  examined_options: # 本手查验过的每个选项 + 为什么查它（审计核心，必须与 candidate_comparison 覆盖一致）
   risk_and_build_implication:
 final_draft_review:
   full_draft_read:
@@ -284,6 +316,7 @@ final_draft_review:
   risk_mitigation:
   role_build_plan:
   cannot_change_picks: true
+# match-scoped：详细思考过程（含 per-turn examined_options 全量 + 查验排序）写入选手日志 {PLAYER_LOG_PATH}，裁判整局结束后读取汇总 verbose decision log
 ```
 
 Each candidate must include:
@@ -306,7 +339,7 @@ candidate_eval:
 - Do not output a single pick without alternatives.
 - Do not use `open`, `wall density`, `water`, or `summary_tags` as direct scoring signals.
 - Do not treat `A counters B` as unconditional; explain mechanism, active conditions, fail conditions, and BP use.
-- Do not invent T0/meta claims from memory. The environment slot (high-rank pickrate) is empty; do not fabricate tiers or rankings.
+- Do not invent T0/meta claims from memory. Environment evidence is read from the compiled index only; do not fabricate tiers or rankings.
 - Do not let `strategy_bias: aggressive` justify a tank/assassin without route, follow-up, and endpoint safety.
 - Do not let `balanced` collapse into only range/control/sustain shells.
 - Do not let `scripts/bp_index.py` output become the answer; it only locates stable pages and skill references.

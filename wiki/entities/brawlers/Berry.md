@@ -225,35 +225,36 @@ bp_brawler_profile:
       mitigation: "分散铺路、覆盖入口和撤退线，而不是只叠一个点"
       bp_use: area_control_quality_gate
 
-  conditional_matchup_seeds:
-    - target: Jae_Yong_or_Poco_or_Gene
+  conditional_matchups:
+    - target: ["Jae-yong", "Poco", "Gene"]
       direction: subject_favored
       source: "[[sources/PLP-Berry|PLP-Berry]]"
       mechanism: "Berry 的持续治疗和地面控制可拉长支援互换，让低爆发支援位很难从固定 objective 线上直接赶走己方 body"
       active_when: "战斗围绕热区、矿区或金库入口反复发生，Berry 队友有可被治疗的前排或 lane holder"
       fails_when: "对方支援配高爆发突进，或 Berry 被长线先处理"
       bp_use: support_shell_sustain_response
-    - target: Sprout_or_Rico_or_Chuck_or_Najia
-      direction: volatile
-      source: "[[sources/PLP-Berry|PLP-Berry]]"
-      mechanism: "Berry 可越墙铺地和治疗抗压，但 Sprout/Rico 的墙体几何、Chuck 的路线和 Najia 的毒区都会让地面价值高度依赖地图"
-      active_when: "Berry 能覆盖他们必须经过的入口或支援己方处理路线"
-      fails_when: "几何让对方从更安全角度输出，或固定路线绕开 Berry puddle"
-      bp_use: map_geometry_check_before_accepting_candidate
-    - target: Buzz_or_short_entry_body
+    - target: ["Buzz"]
       direction: subject_favored
       source: "[[sources/PLP-Berry|PLP-Berry]] / [[sources/Fandom-Berry|Fandom-Berry]]"
       mechanism: "Friendship knockback、队友回血和预铺 puddle 可惩罚单一路线的短手进场"
       active_when: "进场路线可预判，Berry 有 gadget 或队友能跟伤"
       fails_when: "Buzz/刺客从侧草或多角度进入，或先骗掉 Friendship 再开团"
       bp_use: anti_aggro_support_if_route_locked
-    - target: Trunk_or_Bibi_or_Sam_or_Ash_or_Juju_or_Gray_or_Sirius_or_8_Bit
+    - target: ["Trunk", "Bibi", "Sam", "Ash", "Juju", "Gray", "Sirius", "8-Bit"]
       direction: target_favored
       source: "[[sources/PLP-Berry|PLP-Berry]]"
       mechanism: "高身体、位移/控制、召唤物或稳定 DPS 会压缩 Berry 的铺地时间，并迫使低血支援先交自保资源"
       active_when: "他们能守住 zone、球路、矿区或金库入口，迫使 Berry 进入其有效范围"
       fails_when: "Berry 在墙后只治疗队友，并由队友先清掉身体/召唤层"
       bp_use: must_answer_body_or_resource_before_berry
+
+    - target: ["Sprout", "Rico", "Chuck", "Najia"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Berry|PLP-Berry]]"
+      mechanism: "Berry 可越墙铺地和治疗抗压，但 Sprout/Rico 的墙体几何、Chuck 的路线和 Najia 的毒区都会让地面价值高度依赖地图"
+      active_when: "Berry 能覆盖他们必须经过的入口或支援己方处理路线"
+      fails_when: "几何让对方从更安全角度输出，或固定路线绕开 Berry puddle"
+      bp_use: "map_geometry_check_before_accepting_candidate"
 
   slot_notes:
     slot_1: "只在地图强奖励持续治疗控区，且敌方低成本突进/投掷反制面窄时早手；否则会暴露低血和慢 reload。"

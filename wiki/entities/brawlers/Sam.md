@@ -232,7 +232,7 @@ bp_brawler_profile:
       mitigation: "draft follow-up damage or objective finisher before relying on pull pressure"
       bp_use: candidate_eval.followup_requirement
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Stu"
         - "Squeak"

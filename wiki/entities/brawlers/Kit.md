@@ -232,36 +232,21 @@ bp_brawler_profile:
       mitigation: "先逼出控制，或让 Kit 附身目标避开控制入口"
       bp_use: must_answer_control_before_kit
 
-  conditional_matchup_seeds:
-    - target: Colt_or_Brock_or_Dynamike_or_Belle_or_Grom_or_Squeak_or_Mr_P_or_Angelo
+  conditional_matchups:
+    - target: ["Colt", "Brock", "Dynamike", "Belle", "Grom", "Squeak", "Mr. P", "Angelo"]
       direction: subject_favored
       source: "[[sources/PLP-Kit|PLP-Kit]]"
       mechanism: "Cardboard Box 隐身、自动充能 Super 和跳跃 stun 可以惩罚孤立长手/投掷/资源位"
       active_when: "目标缺队友保护，Kit 有 Super 或即将充好，并能从草/墙路接近"
       fails_when: "目标抱团、保留位移/控制，或开阔长线在 Kit 接近前压低他"
       bp_use: isolated_backline_punish
-    - target: Lou_or_Cordelius_or_Charlie_or_Bull_or_Tara_or_Chester_or_Gale_or_Frank
+    - target: ["Lou", "Cordelius", "Charlie", "Bull", "Tara", "Chester", "Gale", "Frank"]
       direction: target_favored
       source: "[[sources/PLP-Kit|PLP-Kit]]"
       mechanism: "控制、领域、茧、击退、爆发和高身体能阻止 Kit 跳入或拆掉其附身载体"
       active_when: "这些资源能保存给 Kit 或他的载体路线"
       fails_when: "资源已被逼出，Kit 只附安全队友远程输出"
       bp_use: must_answer_control_or_body_before_kit
-    - target: Tank_teammate
-      direction: subject_favored
-      source: "[[sources/Fandom-Kit|Fandom-Kit]] / [[sources/PLP-Kit|PLP-Kit]]"
-      mechanism: "附身高血队友提供持续百分比治疗、免疫本体伤害和越墙 yarn ball 输出"
-      active_when: "队友路线可转化进球、站区、carrier 保护或回合推进"
-      fails_when: "敌方反坦/控制直接阻断载体，或 Kit 需要自己创造目标"
-      bp_use: teammate_synergy_edge
-    - target: Poco_sustain_shell
-      direction: target_favored
-      source: "[[sources/PLP-Kit|PLP-Kit]]"
-      mechanism: "PLP avoid 标注 Poco，说明对面群体 sustain 可能降低 Kit 单抓/附身交易的击杀收益"
-      active_when: "Poco 队友能抱团、回血并保护 Kit 想跳的目标"
-      fails_when: "Kit 只打孤立后排或附身高压载体绕开 Poco 治疗核心"
-      bp_use: avoid_into_group_sustain_without_burst
-
   slot_notes:
     slot_1: "不适合盲先手，除非己方已锁定强载体或地图/模式明确奖励附身 sustain。"
     slot_2_3: "可与坦克、carrier 或强回合队友形成计划，但需要避免对方后手拿硬控。"

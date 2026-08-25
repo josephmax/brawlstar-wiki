@@ -219,35 +219,28 @@ bp_brawler_profile:
       mitigation: "只有队友能站圈时才把 Tick 计为 entry denial，不计为 zone body"
       bp_use: false_positive_filter.not_zone_body
 
-  conditional_matchup_seeds:
-    - target: Poco_or_Chuck_or_Meg_or_Lola_or_Berry_or_Lou_or_Jacky_or_Surge
+  conditional_matchups:
+    - target: ["Poco", "Chuck", "Meg", "Lola", "Berry", "Lou", "Jacky", "Surge"]
       direction: subject_favored
       source: "[[sources/PLP-Tick|PLP-Tick]]"
       mechanism: "这些目标若必须守固定 objective 或穿过 chokepoint，会被 Tick 雷区、Headfirst 和 ammo tax 迫使减速或交资源"
       active_when: "地图有墙后投掷位，目标路线固定，Tick 有队友保护侧路"
       fails_when: "目标用速度/路线工具绕开雷区，或其队友先开墙/贴脸处理 Tick"
       bp_use: route_denial_response_to_static_or_objective_targets
-    - target: Starr_Nova_or_Damian_or_Edgar_or_Mortis_or_Pearl_or_Mina_or_Leon_or_Brock
+    - target: ["Starr Nova", "Damian", "Edgar", "Mortis", "Pearl", "Mina", "Leon", "Brock"]
       direction: target_favored
       source: "[[sources/PLP-Tick|PLP-Tick]]"
       mechanism: "突进、隐身、速度、强远程或破墙会绕过 Tick 的慢地雷节奏，直接惩罚最低血量"
       active_when: "地图给侧路接近、开墙角度或纯开放长线，Tick 自保资源不足"
       fails_when: "入口被地雷和队友锁死，Last Hurrah/head 留给第一接触"
       bp_use: must_answer_dive_or_wallbreak_before_tick
-    - target: Blue_star_or_gem_mine_or_ball_landing_spot
-      direction: subject_favored
-      source: "[[sources/Fandom-Tick|Fandom-Tick]]"
-      mechanism: "Tick 可以把地雷放在模式关键物件或路径上，迫使敌方为了拾取/推进吃伤害或改路线"
-      active_when: "目标点固定且敌方必须进入，队友能利用其走位变化"
-      fails_when: "敌方可以远程清雷或从另一路绕开目标点"
-      bp_use: objective_specific_pickup_denial
-    - target: Gene_or_Tara_or_Jacky_pull_or_close_control
-      direction: volatile
+    - target: ["Gene", "Tara"]
+      direction: "subject_favored"
       source: "[[sources/Fandom-Tick|Fandom-Tick]]"
       mechanism: "Last Hurrah 可推开拉人/近身控制目标，但如果资源被骗或被连续开，Tick 仍会被秒"
       active_when: "Tick 保留 gadget 且敌方只靠单一路线接近"
       fails_when: "拉人后有队友补伤，或 Tick 被迫先交 Last Hurrah"
-      bp_use: single_resource_peel_check
+      bp_use: "single_resource_peel_check"
 
   slot_notes:
     slot_1: "只在 Bounty/Knockout 或强墙后封路图可早手；如果敌方后手有多突进/破墙，Tick 会成为明显攻击点。"

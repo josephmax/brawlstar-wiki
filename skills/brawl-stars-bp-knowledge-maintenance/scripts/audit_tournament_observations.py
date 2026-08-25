@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import _environment_sqlite as envdb
+
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -109,7 +111,7 @@ def main() -> int:
     repo = Path(args.repo).resolve()
     profile_path = Path(args.observation_profile) if Path(args.observation_profile).is_absolute() else repo / args.observation_profile
     runtime_path = None if not args.runtime_index else (Path(args.runtime_index) if Path(args.runtime_index).is_absolute() else repo / args.runtime_index)
-    report = audit(load_json(profile_path), repo, load_json(runtime_path) if runtime_path else None, args.min_pick_sets)
+    report = audit(envdb.load_profile(profile_path), repo, load_json(runtime_path) if runtime_path else None, args.min_pick_sets)
     text = render_markdown(report)
     if args.output:
         output = Path(args.output) if Path(args.output).is_absolute() else repo / args.output

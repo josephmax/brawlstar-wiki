@@ -54,6 +54,64 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
         self.assertTrue(pairs[0]["plp_source_ref"].endswith("8bit-2026-07-11.md"))
 
     def test_reports_plp_pairs_missing_from_compiled_matchup_index(self):
+        """Gap detection works on synthetic data: a PLP pair absent from the
+        compiled index is reported as a needs_mechanism_review seed."""
+        audit = load_audit_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            raw_dir = tmp_path / "raw"
+            raw_dir.mkdir()
+            # One brawler whose PLP raw claims two counters; only one is compiled.
+            (raw_dir / "8bit-2026-07-11.md").write_text(
+                '# Direct Raw Capture: PLP 8-Bit\n\n```json\n'
+                '{"name":"8-Bit","countersThese":[{"name":"Poco"},{"name":"Glowy"}],'
+                '"counteredBy":[{"name":"Bolt"}]}\n'
+                '```\n',
+                encoding="utf-8",
+            )
+            index_path = tmp_path / "index.json"
+            index_path.write_text(
+                json.dumps(
+                    {
+                        "runtime_bp_index": {
+                            "manifest": {"available_brawlers": ["8-Bit", "Poco", "Glowy", "Bolt"]},
+                            "brawler_runtime_cards": {},
+                            "matchup_index": {
+                                "by_brawler": {
+                                    "8-Bit": {
+                                        "answers": [
+                                            {"target": "Poco"},
+                                        ],
+                                        "is_answered_by": [
+                                            {"target": "Bolt"},
+                                        ],
+                                    }
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            payload = audit.coverage_payload(REPO_ROOT, index_path, raw_dir)
+            summary = payload["plp_matchup_coverage"]["summary"]
+
+        # Glowy is claimed by PLP but absent from the compiled index.
+        self.assertEqual(3, summary["plp_pairs"])
+        self.assertEqual(2, summary["overlap_pairs"])
+        self.assertEqual(1, summary["plp_only_pairs"])
+
+        seed = payload["plp_matchup_coverage"]["plp_only_seeds"][0]
+        self.assertEqual("needs_mechanism_review", seed["status"])
+        self.assertEqual("8-Bit", seed["subject"])
+        self.assertEqual("answers", seed["direction"])
+        self.assertEqual("Glowy", seed["target"])
+        self.assertIn("review_prompt", seed)
+
+    def test_real_data_audit_runs_and_is_fully_covered(self):
+        """The real repo audit runs end-to-end; with all gaps filled it must
+        report zero PLP-only pairs (full coverage of the latest PLP captures)."""
         with tempfile.TemporaryDirectory() as tmp:
             index_path = Path(tmp) / "safe-zone-index.json"
             subprocess.run(
@@ -95,18 +153,8 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
         self.assertGreater(summary["plp_pairs"], 1000)
         self.assertGreater(summary["compiled_pairs"], 1000)
         self.assertGreater(summary["overlap_pairs"], 1000)
-        self.assertGreater(summary["plp_only_pairs"], 0)
-        self.assertLess(summary["plp_only_pairs"], summary["plp_pairs"])
-
-        seed = payload["plp_only_seeds"][0]
-        self.assertEqual("needs_mechanism_review", seed["status"])
-        self.assertIn(seed["direction"], {"answers", "is_answered_by"})
-        self.assertTrue(seed["subject"])
-        self.assertTrue(seed["target"])
-        self.assertTrue(seed["plp_source_ref"].startswith("raw/sources/pl-prodigy/brawlers/"))
-        self.assertIn("matchup_tier", seed)
-        self.assertIn("source_kind", seed)
-        self.assertIn("review_prompt", seed)
+        # All PLP pairs are now covered by the compiled index.
+        self.assertEqual(0, summary["plp_only_pairs"])
 
 
 if __name__ == "__main__":

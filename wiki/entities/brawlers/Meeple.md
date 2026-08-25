@@ -249,29 +249,22 @@ bp_brawler_profile:
       mitigation: "不要把 Meeple 当无条件长手；需要先验证 Super 获取与区域落点"
       bp_use: resource_tracking.super_area_available
 
-  conditional_matchup_seeds:
-    - target: Gale_or_Ollie_or_Meg_or_Clancy_or_Chuck_or_Griff_or_Lou_or_Shelly
+  conditional_matchups:
+    - target: ["Gale", "Ollie", "Meg", "Clancy", "Chuck", "Griff", "Lou", "Shelly"]
       direction: subject_favored
       source: "[[sources/PLP-Meeple|PLP-Meeple]]"
       mechanism: "Meeple 用穿墙规则区、Mansions 陷阱、Ragequit 眩晕和 7.67 格略追踪普攻惩罚固定控制/身体/目标路线"
       active_when: "这些目标必须守矿区、热区、球门或回合墙边，且 Meeple 的 Super 或 Gadget 能改写其站位"
       fails_when: "目标不需要进入规则区，或用远程/队友先清掉 Meeple 本体"
       bp_use: rule_area_response_to_static_or_objective_targets
-    - target: Damian_or_Trunk_or_Rosa_or_Sandy_or_8_Bit_or_Ash_or_Mr_P_or_Draco
+    - target: ["Damian", "Trunk", "Rosa", "Sandy", "8-Bit", "Ash", "Mr. P", "Draco"]
       direction: target_favored
       source: "[[sources/PLP-Meeple|PLP-Meeple]]"
       mechanism: "高身体、持续压制、召唤物、隐蔽/控制或推进资源会迫使 Power 11 6600 HP Meeple 在 Super 转化前先处理生存问题"
       active_when: "地图给草/墙/身体推进路线，或目标能用召唤/炮台/增益压缩 Meeple 站位"
       fails_when: "Meeple 有 Ragequit 和队友 peel，且目标必须进入被 Super/Mansions 控制的单一路线"
       bp_use: must_answer_body_spawnable_or_aggro_before_meeple
-    - target: Open_map_snipers
-      direction: target_favored
-      source: "[[sources/Fandom-Meeple|Fandom-Meeple]]"
-      mechanism: "Piper、Brock、Nani、Colt、Rico、Amber、Lou、R-T、Mandy 等在完全开阔图可用更稳定长线压制 Meeple"
-      active_when: "地图缺可被 Critical Success 利用的墙体，且胜负主要是远距离对枪"
-      fails_when: "地图有短线/墙体让 Meeple 的 Super 把掩体变成己方输出通道"
-      bp_use: open_map_false_positive_filter
-    - target: Thrower_or_Rico_teammate_combo
+    - target: ["Dynamike", "Barley", "Tick", "Larry & Lawrie", "Rico"]
       direction: ally_synergy
       source: "[[sources/Fandom-Meeple|Fandom-Meeple]]"
       mechanism: "Mansions 困住目标后，Dynamike、Barley、Tick、Larry & Lawrie 等投掷手或 Rico 弹射能在 dice wall 内放大伤害"

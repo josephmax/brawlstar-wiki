@@ -1,5 +1,7 @@
 # Ranked Season 47 地图 Map Profile 总览
 
+> **已过期**：当前 Ranked 赛季为 Season 48（2026-08-20 起，featured = Brawl Ball）。本页保留作历史索引，当前地图池见 [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]。
+
 这页作为 `Ranked Season 47` 的赛季地图池索引。稳定地图结构、`map_feature`、地图特征对英雄能力的稳定影响和 `false_positive` 拆入单地图实体页。
 
 治理原则见 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]：
@@ -80,16 +82,14 @@
 
 ## 待 ingest 缺口
 
-- `Rustic Arcade`：Season 47 Gem Grab featured 新增图，仓库尚无 `raw/sources/fandom/maps/` raw capture、source 摘要或地图实体页。Fandom 页有效（`https://brawlstars.fandom.com/wiki/Rustic_Arcade`，地图图 `Rustic_Arcade-Map.png` revision `20260225223748`）。需要按正常地图 ingest 流程补齐后才能进入 BP 稳定层。
+- ~~`Rustic Arcade`~~：Season 47 Gem Grab featured 新增图，当时仓库尚无 raw capture、source 摘要或地图实体页。已于 2026-08-21（Season 48 落盘）补齐：`raw/sources/fandom/maps/rustic-arcade-2026-08-21.md`、[[sources/Fandom-Rustic-Arcade|Fandom 来源摘要: Rustic Arcade]]、[[entities/maps/Rustic Arcade|Rustic Arcade]]（`bp_map_profile_v2`）。S48 中仍为 Gem Grab 池内图。
 
 ## BP 查询用法
 
 ```text
-当前 Ranked BP 问题
--> 读 BP DSL
--> 读本页确定地图是否在 Season 47 池内
--> 进入对应地图实体页读取稳定 map_profile
--> 再读相关英雄页；若已有 runtime_bp_index，则读取编译产物
+历史赛季（S47）地图池查询
+-> 读本页确认某图曾在 Season 47 池内
+-> 当前赛季 BP 请使用 Season 48 索引与对应地图实体页
 ```
 
 ## 关联页面

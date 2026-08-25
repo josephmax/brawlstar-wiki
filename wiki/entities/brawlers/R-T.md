@@ -198,29 +198,22 @@ bp_brawler_profile:
       mitigation: 搭配长线/爆发队友，或把 R-T 当个人 poke 而非击杀核心
       bp_use: comp_synergy_check
 
-  conditional_matchup_seeds:
-    - target: Mico_or_El_Primo_or_Melodie_or_Sam_or_Buzz_or_Hank_or_Lily_or_Kaze
+  conditional_matchups:
+    - target: ["Mico", "El Primo", "Melodie", "Sam", "Buzz", "Hank", "Lily", "Kaze"]
       direction: subject_favored
       source: "[[sources/PLP-R-T|PLP-R-T]]"
       mechanism: 分体头腿各自 1240 基础范围伤害与标记集火，能惩罚必须进入短距离的跳脸、滚入、冲刺或高身体路线
       active_when: 突进路线可见、腿部安全、R-T 有 Super 或 Out Of Line 可立即分体
       fails_when: 目标绕开 R-T 打后排，或先用队友资源清腿/逼分体
       bp_use: anti_aggro_response_pick
-    - target: Marked_high_value_target
-      direction: subject_favored
-      source: "[[sources/Fandom-R-T|Fandom-R-T]]"
-      mechanism: 标记让队友下一次命中获得额外伤害，适合把低血量远程、carrier 或 round target 转成击杀
-      active_when: 队友有稳定命中或 burst，且目标必须继续 peek 目标区
-      fails_when: 标记后无队友角度，目标脱战，或盟友命中被召唤物/body block 吃掉
-      bp_use: team_focus_fire_edge
-    - target: Najia_or_Grom_or_Colette_or_Sandy_or_Leon_or_Pierce_or_Mina_or_Mortis
+    - target: ["Najia", "Grom", "Colette", "Sandy", "Leon", "Pierce", "Mina", "Mortis"]
       direction: target_favored
       source: "[[sources/PLP-R-T|PLP-R-T]]"
       mechanism: 远程毒/投掷、百分比伤害、隐身接近、资源型 marksman、控制或刺客能打破 R-T 的长线标记与分体安全
       active_when: 地图有墙袋、侧草、隐身路线或 R-T 腿部暴露点
       fails_when: 地图纯长线且 R-T 有队友保护，目标无法绕开标记火力
       bp_use: must_answer_before_R-T_core_plan
-    - target: Penny_or_Jessie_or_Carl_or_Pierce_or_thrower_splash
+    - target: ["Penny", "Jessie", "Carl", "Pierce"]
       direction: target_favored
       source: "[[sources/Fandom-R-T|Fandom-R-T]]"
       mechanism: 炮台、弹射、穿透和投掷可以清腿、打头腿同线，或迫使 R-T 不能使用分体形态

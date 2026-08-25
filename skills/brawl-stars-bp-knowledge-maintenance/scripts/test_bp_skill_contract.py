@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 JUDGE_SKILL = ROOT / "skills" / "run-brawl-stars-bp" / "SKILL.md"
 JUDGE_SCHEMA = ROOT / "skills" / "run-brawl-stars-bp" / "references" / "match-report-schema.md"
+JUDGE_TURN_TEMPLATE = ROOT / "skills" / "run-brawl-stars-bp" / "references" / "turn-prompt-template.md"
 JUDGE_RENDERER = ROOT / "skills" / "run-brawl-stars-bp" / "scripts" / "render_match_report.py"
 PLAYER_SKILL = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "SKILL.md"
 PLAYER_COMPILE_REF = ROOT / "skills" / "brawl-stars-bp-slot-decision" / "references" / "compile-knowledge.md"
@@ -88,6 +89,21 @@ def test_judge_skill_contract() -> None:
     ]
     for term in required_terms:
         assert term in text or term in schema, term
+
+    # The canonical turn prompt template must exist and carry the input/output contract.
+    template = read(JUDGE_TURN_TEMPLATE)
+    for template_term in [
+        "对局信息",
+        "输出契约",
+        "不可用池",
+        "strategy_bias",
+        "evidence_roles",
+        "bias_effect",
+        "What the judge must never add",
+        "Judge operation steps",
+        "visible_state_only_between_players",
+    ]:
+        assert template_term in template, template_term
 
     for section in [
         "对局摘要",
@@ -207,6 +223,7 @@ def test_player_skill_contract() -> None:
         "last_pick_counterability",
         "high-rank pickrate",
         "pickrate_status",
+        "environment_evidence",
     ]
     for term in required_terms:
         assert term in text, term
@@ -271,6 +288,13 @@ def test_player_skill_contract() -> None:
         "ban_overlap_risk",
         "opener_safety",
         "last_pick_counterability",
+        "environment_evidence",
+        "ladder_anchor",
+        "monthly_finals",
+        "no_ladder_sample",
+        "no_monthly_sample",
+        "evidence_roles",
+        "mechanism constraint",
     ]:
         assert term in decide_ref, term
 

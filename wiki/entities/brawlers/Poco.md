@@ -235,7 +235,7 @@ bp_brawler_profile:
       mitigation: "draft wallbreak, dive, or stronger area clear before relying on Poco sustain"
       bp_use: must_answer_thrower_pocket_before_poco_plan
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Lou"
         - "Crow"

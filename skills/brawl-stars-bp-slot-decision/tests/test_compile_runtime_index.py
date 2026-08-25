@@ -70,14 +70,16 @@ def run_compile_raw(*args):
 
 class CompileRuntimeIndexTest(unittest.TestCase):
     def test_manifest_records_empty_environment_slot_without_fabrication(self):
-        index = run_compile()
+        index = run_compile("--no-environment")
         safe_zone = index["map_pool_signature"]["Safe Zone"]
 
-        # 环境信号槽：当前为空，明确记录，不推断任何 tier/rank
+        # 环境信号槽：无归档/显式 --no-environment 时为空，明确记录，不推断任何 tier/rank
         self.assertNotIn("strength_profile_id", index["manifest"])
         self.assertNotIn("strength_profile_hash", index["manifest"])
         self.assertIsNone(index["manifest"]["pickrate_source"])
         self.assertEqual("empty", index["manifest"]["pickrate_status"])
+        self.assertNotIn("environment_ladder_per_map", index)
+        self.assertNotIn("environment_evidence", index["brawler_runtime_cards"]["Brock"])
         self.assertEqual("runtime-v2", index["manifest"]["index_shape"])
         self.assertIn("Safe Zone", index["map_pool_signature"])
         self.assertEqual("Heist", index["map_pool_signature"]["Safe Zone"]["map_context"]["mode"])
@@ -94,6 +96,31 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertNotIn("rank", brock)
         self.assertNotIn("score", brock)
         self.assertNotIn("proof_threshold", brock)
+
+    def test_manifest_folds_environment_signal_from_archive(self):
+        """compile 是环境信号唯一聚合点：默认折叠 wiki/environment/current.json，
+        内嵌带标注的 per-brawler environment_evidence 与逐图 ladder 行。"""
+        index = run_compile()
+        manifest = index["manifest"]
+
+        self.assertEqual("loaded", manifest["pickrate_status"])
+        self.assertEqual("wiki/environment/current.json", manifest["pickrate_source"])
+        self.assertIn("environment_provenance", manifest)
+        self.assertEqual("2026-08", manifest["environment_provenance"]["monthly"]["archive_id"])
+        self.assertEqual(
+            "wiki/environment/pickrate.sqlite3",
+            manifest["environment_provenance"]["ladder"]["signal"],
+        )
+
+        brock_env = index["brawler_runtime_cards"]["Brock"]["environment_evidence"]
+        self.assertIn("ladder_anchor", brock_env)
+        self.assertIn("monthly_finals", brock_env)
+        self.assertIn("window", brock_env["ladder_anchor"])
+        self.assertIn("rank_floor", brock_env["monthly_finals"])
+        self.assertIn("fetched_at", brock_env["ladder_anchor"])
+        self.assertIn("captured_at", brock_env["monthly_finals"])
+        self.assertIn("environment_ladder_per_map", index)
+        self.assertEqual(33, len(index["environment_ladder_per_map"]))
 
     def test_runtime_v2_includes_candidate_cards_matchups_and_audit(self):
         index = run_compile()
@@ -238,7 +265,7 @@ class CompileRuntimeIndexTest(unittest.TestCase):
 
     def test_single_map_runtime_index_stays_compact(self):
         output = run_compile_raw()
-        self.assertLess(len(output.encode("utf-8")), 1_500_000)
+        self.assertLess(len(output.encode("utf-8")), 2_000_000)
 
     def test_all_maps_runtime_index_stays_compact(self):
         result = subprocess.run(
@@ -255,7 +282,69 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         )
         index = json.loads(result.stdout)["runtime_bp_index"]
         self.assertGreaterEqual(len(index["map_pool_signature"]), 20)
-        self.assertLess(len(result.stdout.encode("utf-8")), 5_000_000)
+        self.assertLess(len(result.stdout.encode("utf-8")), 6_000_000)
+
+    def test_non_brawler_targets_are_excluded_from_matchup_index(self):
+        """Matchup targets that do not normalize to a roster brawler (mode
+        objectives, spawnables, type descriptions) must not enter the runtime
+        matchup index as edges."""
+        from importlib.util import spec_from_file_location, module_from_spec
+
+        spec = spec_from_file_location("compile_runtime_index", SCRIPT)
+        module = module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+
+        cards = [
+            {
+                "brawler": "Bull",
+                "conditional_matchups": [
+                    {"target": ["Heist safe", "Goal wall"], "direction": "subject_favored", "bp_use": "x"},
+                    {"target": ["Brock"], "direction": "subject_favored", "bp_use": "y"},
+                ],
+            },
+            {
+                "brawler": "Brock",
+                "conditional_matchups": [
+                    {"target": ["Bull"], "direction": "target_favored", "bp_use": "z"},
+                ],
+            },
+        ]
+        result = module.build_matchup_index(cards)
+        bull = result["by_brawler"]["Bull"]
+        targets = [e["target"] for e in bull.get("answers", [])]
+        self.assertIn("Brock", targets)
+        self.assertNotIn("Heist safe", targets)
+        self.assertNotIn("Goal wall", targets)
+
+    def test_unknown_directions_are_excluded_from_matchup_index(self):
+        """Directions that are not counter edges (e.g. ally_synergy) must not
+        be silently treated as one-way answers."""
+        from importlib.util import spec_from_file_location, module_from_spec
+
+        spec = spec_from_file_location("compile_runtime_index", SCRIPT)
+        module = module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+
+        cards = [
+            {
+                "brawler": "Meeple",
+                "conditional_matchups": [
+                    {"target": ["Gale"], "direction": "subject_favored", "bp_use": "x"},
+                    {"target": ["Thrower"], "direction": "ally_synergy", "bp_use": "y"},
+                ],
+            },
+            {
+                "brawler": "Gale",
+                "conditional_matchups": [],
+            },
+        ]
+        result = module.build_matchup_index(cards)
+        meeple = result["by_brawler"]["Meeple"]
+        targets = [e["target"] for e in meeple.get("answers", [])]
+        self.assertEqual(["Gale"], targets)
+        self.assertNotIn("Thrower", targets)
 
 
 if __name__ == "__main__":

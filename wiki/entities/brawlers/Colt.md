@@ -231,7 +231,7 @@ bp_brawler_profile:
       mitigation: "use Super from protected angle or after enemy CC is unavailable"
       bp_use: "candidate_eval.execution_risk"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Sprout"
         - "Tick"
@@ -264,6 +264,34 @@ bp_brawler_profile:
       mechanism: "mobility, burst, or superior angle pressure interrupts Colt's tracking window"
       active_when: "map has side cover or water/grass routes and Colt lacks peel"
       fails_when: "lane is fully open and Colt can pre-aim with slow or team control"
+      bp_use: "avoid_first_pick_or_require_peel"
+    - target: ["Damian"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Colt|PLP-Colt]]"
+      mechanism: "Damian 的高血身体能吸收 Colt 的弹幕爆发，Super 跳墙/水域和强化攻击击退直接跨过 Colt 的直线压制距离打断 unload；Colt 低血无硬控，贴脸后无法自保"
+      active_when: "地图有墙/草/水路线让 Damian 接近或跳入（Gem Grab/Brawl Ball/Hot Zone 目标图），Colt 无 peel 且无法保持 tracking 距离"
+      fails_when: "开阔长线让 Colt 在 Damian 接近前用整管弹幕压制，或 Speedloader 减速加队友集火锁住 Damian 落点"
+      bp_use: "avoid_first_pick_or_require_peel"
+    - target: ["Meeple"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Colt|PLP-Colt]]"
+      mechanism: "Meeple 的 Critical Success 穿墙规则区把 Colt 赖以压制的直线视野变成己方输出通道，Do Not Pass Go 穿墙伤害惩罚 Colt 站位，Mansions/Ragequit 还能打断 Colt 的弹幕 unload"
+      active_when: "地图有墙体让 Meeple 的 Super 覆盖关键对枪线（短线+长线混合图），Colt 必须穿过墙边或窄口才能 tracking"
+      fails_when: "完全开阔长线让 Colt 在 Meeple 规则区外对枪，或 Colt 用 Super/Silver Bullet 开墙拆掉 Meeple 的规则区收益"
+      bp_use: "avoid_first_pick_or_require_terrain_open"
+    - target: ["R-T"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Colt|PLP-Colt]]"
+      mechanism: "Colt 的高持续弹幕和开墙能力在长线对枪中压制 R-T 低机动的普通形态；R-T 分体腿是静止目标易被弹幕免费处理，Colt 开墙还能移除腿部掩体"
+      active_when: "开阔长线/Heist 对枪图，Colt 保持 tracking 距离，R-T 无队友保护分体腿或标记无人转化"
+      fails_when: "R-T 借墙缩短 Colt 弹道，或在窄口分体用头腿双端 1240 范围反打贴脸，Colt 被标记集火且无 peel"
+      bp_use: "lane_duel_candidate"
+    - target: ["Starr Nova"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Colt|PLP-Colt]]"
+      mechanism: "Starr Nova 的高移速、Super dash/Shining Starr 传送和剑形态能反复打断 Colt 六连弹幕的 tracking 窗口，5.67 格高速穿透弹对低血 Colt 的 poke 也很有效"
+      active_when: "地图有侧草/墙/路线让 Starr Nova 切入 Colt 侧面，Colt 无 peel 或无法预瞄"
+      fails_when: "开阔长线让 Colt 在 Starr Nova 接近前用弹幕压制，或 Speedloader 减速加队友控制锁死切入路线"
       bp_use: "avoid_first_pick_or_require_peel"
 
   slot_notes:

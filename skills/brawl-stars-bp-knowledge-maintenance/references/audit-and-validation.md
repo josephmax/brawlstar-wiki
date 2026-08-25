@@ -37,8 +37,8 @@ Expected write targets:
 | `scripts/audit_plp_matchup_coverage.py --write` | `outputs/plp-matchup-coverage-audit.md` | generated audit report |
 | `scripts/capture_liquipedia_event.py` | `raw/sources/liquipedia/events/` | canonical raw capture |
 | `scripts/ingest_liquipedia_event.py` | `wiki/sources/Liquipedia-*`, `wiki/entities/events/` | canonical source summary and event entity |
-| `scripts/analyze_esports_event.py --output` | `outputs/esports/*.json` | generated tournament observation profile |
-| `scripts/audit_tournament_observations.py --output` | `outputs/esports/*.md` | generated review-seed report |
+| `scripts/analyze_esports_event.py --db` | `wiki/environment/<YYYY-MM>/archive.sqlite3` | generated tournament observation profile (SQLite row archive; `--output` for JSON export) |
+| `scripts/audit_tournament_observations.py --output` | `outputs/esports/*.md` | generated review-seed report (temporary audit artifact) |
 | `scripts/audit_balance_breakpoints.py --output --report` | `outputs/balance-breakpoints/*.json`, `outputs/balance-breakpoints/*.md` | generated numeric breakpoint audit |
 | `scripts/test_balance_breakpoints.py` | stdout only | arithmetic, stacking, patch-ledger, and policy regression tests |
 | `scripts/test_liquipedia_event.py` | stdout only | parser and July event regression tests |

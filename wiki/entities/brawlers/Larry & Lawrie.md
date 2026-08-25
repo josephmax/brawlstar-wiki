@@ -216,36 +216,21 @@ bp_brawler_profile:
       mitigation: "补 anti-aggro、墙体保护或后手确认敌方缺直接进入"
       bp_use: must_answer_dive_before_larry_lawrie
 
-  conditional_matchup_seeds:
-    - target: Sprout_or_Jae_Yong_or_Ruffs_or_Nani_or_Squeak_or_Mandy_or_Belle_or_Meg
+  conditional_matchups:
+    - target: ["Sprout", "Jae-yong", "Ruffs", "Nani", "Squeak", "Mandy", "Belle", "Meg"]
       direction: subject_favored
       source: "[[sources/PLP-Larry-Lawrie|PLP-Larry-Lawrie]]"
       mechanism: "双段投掷和 Lawrie ammo tax 能惩罚固定控制、支援或长线站位，使其先处理召唤物/地面爆炸"
       active_when: "地图有墙袋或目标入口，Lawrie 能存活并逼目标交弹药"
       fails_when: "目标在纯开阔长线输出，或队友先清 Lawrie 后压 Larry"
       bp_use: spawnable_thrower_response_to_static_control
-    - target: Sam_or_Edgar_or_Bibi_or_Damian_or_Trunk_or_Bolt_or_Rosa_or_Shade
+    - target: ["Sam", "Edgar", "Bibi", "Damian", "Trunk", "Bolt", "Rosa", "Shade"]
       direction: target_favored
       source: "[[sources/PLP-Larry-Lawrie|PLP-Larry-Lawrie]]"
       mechanism: "高速身体、突进或范围近战可以越过慢投掷，清掉 Lawrie 并直接攻击 Larry"
       active_when: "地图给草/墙/跳入路线，Larry 缺队友 peel 或 Fall Back 退路"
       fails_when: "入口被双段爆炸锁死，Lawrie 保持距离并由队友补伤害"
       bp_use: must_answer_aggro_before_larry_lawrie
-    - target: Area_melee_or_chain_damage
-      direction: target_favored
-      source: "[[sources/Fandom-Larry-Lawrie|Fandom-Larry-Lawrie]]"
-      mechanism: "范围攻击会同时打 Larry 和 Lawrie，使 Protect 伤害转移和 Assist 回弹价值下降"
-      active_when: "双人站位过近或目标必须进入同一 choke"
-      fails_when: "Larry 保持距离，Lawrie 只作为远端诱饵或队友先控制近战"
-      bp_use: spawnable_liability_filter
-    - target: Ball_carrier_or_zone_entry
-      direction: subject_favored
-      source: "[[sources/Fandom-Larry-Lawrie|Fandom-Larry-Lawrie]]"
-      mechanism: "双段爆炸、Lawrie 追击和 Fall Back 换位可打断固定球路/回区路线"
-      active_when: "目标路线固定且队友能转化球权或 zone time"
-      fails_when: "目标高速绕开爆炸，或 Lawrie 被提前清掉"
-      bp_use: objective_specific_route_denial
-
   slot_notes:
     slot_1: "只在地图有稳定墙袋、且敌方清 Lawrie/突进面窄时早手。"
     slot_2_3: "可建立 Hot Zone / Brawl Ball 控区计划，但需要站区身体、scorer 或 anti-dive。"

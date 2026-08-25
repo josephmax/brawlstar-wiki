@@ -204,29 +204,29 @@ bp_brawler_profile:
       mitigation: 保墙、选择性封路，或避免在纯开阔图早手暴露 Sprout
       bp_use: terrain_state_plan_check
 
-  conditional_matchup_seeds:
-    - target: Belle_or_Bea_or_Penny_or_Gus_or_Amber
+  conditional_matchups:
+    - target: ["Belle", "Bea", "Penny", "Gus", "Amber"]
       direction: subject_favored
       source: "[[sources/PLP-Sprout|PLP-Sprout]]"
       mechanism: Sprout 可从墙后用 Seed Bomb 和 Hedge 压缩固定长线/炮台/支援位置，让目标无法用直线火力交换
       active_when: 地图有稳定墙后口袋，目标缺开墙、跳脸或投掷反制
       fails_when: 地图被开成纯长线，或目标有队友清 Sprout 口袋
       bp_use: wall_pocket_response_into_static_range
-    - target: Spike_or_Tara_or_Eve
+    - target: ["Spike", "Tara", "Eve"]
       direction: subject_favored
       source: "[[sources/PLP-Sprout|PLP-Sprout]]"
       mechanism: Hedge 阻断中距离控制位的重进场或撤退路线，投掷可以越过其正面控制区
       active_when: 目标必须守入口、矿区或球路，且没有自由水路/侧路直接绕开 Hedge
       fails_when: Eve 或队友从特殊路线换角，Tara 持 Super 开团，或 Spike 队友先压出 Sprout
       bp_use: conditional_control_mirror_pick
-    - target: Mortis_or_Fang_or_Darryl_or_Edgar
+    - target: ["Mortis", "Fang", "Darryl", "Edgar"]
       direction: target_favored
       source: "[[sources/PLP-Sprout|PLP-Sprout]]"
       mechanism: 突进/滚入/跳入能绕过投掷弹道延迟，贴脸后 Sprout 缺少稳定自保伤害
       active_when: 地图给墙草路线或敌方队友能逼出 Hedge/Transplant
       fails_when: 接近路线单一、Hedge 能锁入口，且 Sprout 队友有稳定 anti-aggro
       bp_use: must_answer_assassin_route_before_sprout
-    - target: Carl_or_Gray_or_Sam_or_Ash
+    - target: ["Carl", "Gray", "Sam", "Ash"]
       direction: target_favored
       source: "[[sources/PLP-Sprout|PLP-Sprout]]"
       mechanism: Hook、portal、速度前压或高血量路线压力能越过/压穿 Sprout 的口袋控制

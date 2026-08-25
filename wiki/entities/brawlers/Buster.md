@@ -235,7 +235,7 @@ bp_brawler_profile:
       mitigation: "draft him on grouped-choke maps or with a teammate who can play behind the screen"
       bp_use: slot_fit_and_map_fit_filter
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Carl"
         - "Spike"

@@ -231,7 +231,7 @@ bp_brawler_profile:
       mitigation: "assign Nita to a stable lane or pair with mobile teammate for far duty"
       bp_use: "slot_and_map_duty_filter"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Sandy"
         - "Squeak"
@@ -258,12 +258,23 @@ bp_brawler_profile:
       active_when: "map lets them attack from behind walls, sweep Bruce without stepping forward, or burst Nita before Super value"
       fails_when: "Nita has Super ready, Faux Fur/Bear Paws timing, and teammate pressure that prevents safe bear clear"
       bp_use: "must_answer_before_locking_nita"
-    - target:
-        - "Fang"
-        - "Darryl"
-        - "Mortis"
-        - "Bull"
-      direction: "volatile"
+    - target: ["Glowy"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Nita|PLP-Nita]]"
+      mechanism: "Bruce 可越墙投掷并追击，打断 Glowy 需要保持视线与距离的牵线支援，而其低爆发无法快速清熊，Nita 的穿透波还惩罚被牵线聚集的入口。"
+      active_when: "地图有墙袋或入口拥堵，Bruce 能接触 Glowy 或其牵线目标，敌方缺少快速清召唤物的资源。"
+      fails_when: "Glowy 保留 Super 用恐惧/减速打断 Bruce 进场，队友先清熊，或 Glowy 在开阔长线保持牵线距离让 Nita 无法安全充 Super。"
+      bp_use: "response_pick_candidate_against_support_tether"
+    - target: ["Meg"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Nita|PLP-Nita]]"
+      mechanism: "Bruce 作为第二身体持续税掉机甲弹药与血量，并可追击机甲破后的脆本体，Nita 的穿透波在入口惩罚 Meg 的变身与站位空间。"
+      active_when: "地图有中心入口或目标区拥堵，Bruce 能接触 Meg 或其机甲，且 Meg 队友缺少快速清熊的开墙或召唤物处理。"
+      fails_when: "Meg 已机甲上线并由队友保护变身窗口/清熊，或开阔图 Meg 用宽弹幕把 Nita 与 Bruce 一起消耗使 Nita 无法安全充 Super。"
+      bp_use: "spawnable_pressure_response_to_mecha"
+
+    - target: ["Fang", "Darryl", "Mortis", "Bull"]
+      direction: "subject_favored"
       source: "[[sources/Fandom-Nita|Fandom-Nita]]"
       mechanism: "Bruce can body-block non-piercing dives and Bear Paws can punish close-range entry, but Nita loses if the diver reaches her while Bruce is absent."
       active_when: "Nita has Super or Bear Paws and the diver must pass through a narrow route"

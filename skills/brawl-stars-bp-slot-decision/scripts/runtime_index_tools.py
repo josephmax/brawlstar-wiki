@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -11,6 +12,39 @@ from typing import Any
 
 
 TOOL_INTERNAL_KEYS = {"bp_use", "proof_threshold"}
+
+
+def query_cache_key(tool: str, index_path: str, params: dict[str, Any]) -> str:
+    """Deterministic cache key from tool name, index path and normalized query params."""
+    norm = {k: (v if isinstance(v, (list, tuple)) else [v]) for k, v in sorted(params.items()) if v}
+    canonical = json.dumps(norm, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    digest = hashlib.sha256(f"{tool}|{index_path}|{canonical}".encode("utf-8")).hexdigest()[:16]
+    return digest
+
+
+def cache_load(cache_dir: str | None, key: str) -> dict[str, Any] | None:
+    """Load a cached query payload if present and valid. Returns None on any miss/error."""
+    if not cache_dir:
+        return None
+    path = Path(cache_dir) / f"{key}.json"
+    try:
+        if not path.exists():
+            return None
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def cache_store(cache_dir: str | None, key: str, payload: dict[str, Any]) -> None:
+    """Persist a query payload to the cache dir. Best-effort; failures are ignored."""
+    if not cache_dir:
+        return
+    try:
+        path = Path(cache_dir)
+        path.mkdir(parents=True, exist_ok=True)
+        (path / f"{key}.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    except OSError:
+        pass
 
 
 def strip_tool_internal_keys(value: Any) -> Any:
@@ -70,6 +104,7 @@ def compact_manifest(index: dict[str, Any]) -> dict[str, Any]:
         "map_pool_id",
         "pickrate_source",
         "pickrate_status",
+        "environment_provenance",
         "compiler_version",
         "index_shape",
     ]

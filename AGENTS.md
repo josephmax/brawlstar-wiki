@@ -44,6 +44,7 @@ wiki/
     brawlers/
     maps/
     events/
+  environment/            # 环境信号与赛事观察数据持久归档（JSON 数据 + Markdown 索引）
   syntheses/
 skills/
   brawl-stars-bp-knowledge-maintenance/
@@ -70,6 +71,7 @@ outputs/
 | `wiki/entities/brawlers/` | 单英雄稳定事实、当前 BP 建模字段和经复核的 `combat_breakpoint_profile` | 不保存版本历史、批处理进度、全量斩杀矩阵或临时强度覆盖 |
 | `wiki/entities/maps/` | 单地图稳定结构和 BP 可消费地图因素 | 不保存当前强势英雄或 season-only 状态 |
 | `wiki/entities/events/` | 单项赛事的身份、赛区、赛制、结果和已进行 set 等事实 | 赛事频率不直接提升为英雄强度或 runtime 规则 |
+| `wiki/environment/` | 环境信号与赛事观察数据**持久归档**：`<月>/archive.sqlite3`（SQLite 行列：event/series/set/metric/signal）、`pickrate.sqlite3`、`current.json` 指针、`index.md` | SQLite 单文件 + Markdown 索引页；compile 的唯一环境输入；归档变更须同步指针与索引 |
 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论和归档 | 不是 BP runtime 依赖；执行规则采纳后复制进 skill references |
 | `skills/*/` | 可执行 agent skill、references、scripts 和契约测试 | 运行时或维护规则以这里为准；大段 wiki 讨论不能替代 skill 规则 |
 | `outputs/` | 审计报告、模拟报告、`runtime_bp_index`、临时交付物 | 已 gitignore；不写回长期 wiki |
@@ -85,6 +87,7 @@ outputs/
 | 原始来源层 | `raw/` | 保存不可变原始资料、抓取件、用户输入原文 | 不可读，除非执行 ingest / 复核任务 |
 | 来源摘要层 | `wiki/sources/` | 对单篇来源做摘要、解释、索引和 provenance | 不可作为默认运行时依赖；仅维护 / 复核时读取 |
 | 稳定事实层 | `wiki/entities/`、必要的 `wiki/concepts/` | 保存可持续追踪对象和稳定规则事实 | `compile` 可读，是 BP 索引事实源 |
+| 环境归档层 | `wiki/environment/` | 环境信号与赛事观察数据持久归档（SQLite 单文件 + Markdown 索引，git 跟踪） | `compile` 可读，是环境证据的唯一输入源；`decide` 不直接读 |
 | 维护综合层 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论、架构决策和归档 | `compile` / `decide` 都不可直接读取 |
 | Skill 规则层 | `skills/*/SKILL.md`、`skills/*/references/` | 可执行 skill 的渐进披露文档和操作规则 | skill 自己必须优先读取 |
 | 运行产物层 | `outputs/` 或调用方指定路径 | 临时报告、审计输出、`runtime_bp_index` 编译产物 | `decide` 可读对应 runtime index；不写回 wiki |
@@ -94,7 +97,7 @@ outputs/
 - `wiki/syntheses/` 可以讨论 BP 方法论，但讨论结论不会自动进入 skill。
 - 只有当某条结论被明确采纳为执行规则时，才复制到 `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md` 或 `runtime-decision-knowledge.md`，并同步更新契约测试。
 - BP skill 执行时禁止临场读取 `wiki/syntheses/` 来补规则、候选或版本判断；否则 syntheses 会从维护层滑回运行时依赖，破坏奥卡姆剃刀原则。
-- 稳定事实从 `wiki/entities/` 进入 `compile`，生成 `runtime_bp_index`。系统中不存在 strength / tier 概念；环境信号（high-rank pick rate）当前为空槽（`pickrate_status: empty`），禁止从记忆或旧榜单推断。
+- 稳定事实从 `wiki/entities/` 进入 `compile`，环境证据从 `wiki/environment/` 归档进入 `compile`，生成 `runtime_bp_index`。系统中不存在 strength / tier 概念；环境信号作为**标注过的证据**折叠进索引（`pickrate_status: loaded` 或 `empty`），永远不能生成 tier、升级 fit/eligibility；禁止从记忆或旧榜单推断。
 - `decide` 只消费 `runtime_bp_index` 和 skill 自身运行时规则；如果索引缺失或覆盖不足，先重新 `compile`，不要绕回 wiki syntheses。
 
 ### 英雄名称归一化规则
@@ -116,7 +119,7 @@ outputs/
 - `wiki/syntheses/`：跨来源整合后的专题结论
   - meta 分析、模式对比、新手成长路线、版本演化、资源系统总览
 
-赛事来源先写入 `raw/sources/liquipedia/events/` 和 `wiki/sources/`，可持续追踪的赛事事实进入 `wiki/entities/events/`。逐 set 选用、ban 和结果聚合生成 `outputs/esports/` 下的 `tournament_observation_profile.v1`；它只用于描述与知识缺口审计，不得自动生成 strength tier、稳定对位边、地图 fit 或 BP runtime 推荐。
+赛事来源先写入 `raw/sources/liquipedia/events/` 和 `wiki/sources/`，可持续追踪的赛事事实进入 `wiki/entities/events/`。逐 set 选用、ban 和结果聚合生成 `wiki/environment/<月>/archive.sqlite3`（SQLite 行列持久归档）；它只用于描述与知识缺口审计，不得自动生成 strength tier、稳定对位边、地图 fit 或 BP runtime 推荐。由它聚合出的月赛 ban 信号经 `compile` 折叠进 `runtime_bp_index`（标注过的 `monthly_finals` 证据）。
 
 每次平衡补丁中的英雄血量、离散伤害包、固定护盾和减伤变化，先在对应 `wiki/sources/` 页面建立 `balance_breakpoint_manifest.v1` 版本账本，再用英雄当前数值事实与 `wiki/concepts/伤害与生存断点.md` 规则生成 `outputs/balance-breakpoints/` 下的 `balance_breakpoint_audit.v1`。伤害变化应覆盖全部已索引目标状态；血量/减伤变化只能声明覆盖已复核攻击包，不得把裸 `Attack` 字段当完整一发。生成结果不得自动生成 strength tier、稳定 map fit、hard gate、slot eligibility、条件化对位边或 runtime 推荐。
 
@@ -201,7 +204,7 @@ outputs/
 BP 推演、Ban Pick 建模、英雄克制关系、阵容评价和 draft 顺位相关问题分两类处理：
 
 - 维护者讨论 / wiki 查询：先读 `wiki/index.md`，再读相关 syntheses、来源页、地图页、英雄页，并把有长期价值的结论沉淀回 wiki。
-- BP skill 执行：不得把 `wiki/syntheses/` 作为运行时依赖。`brawl-stars-bp-slot-decision` 必须遵循自身 `compile` / `decide` 分治：`compile` 只读取 skill 内 `references/compile-knowledge.md`、`wiki/entities/maps/`、`wiki/entities/brawlers/`（环境信号空槽，无强度输入），生成 `runtime_bp_index`；`decide` 只读取 skill 内 `references/runtime-decision-knowledge.md`、当前草稿状态和已生成的 `runtime_bp_index`。如果没有 runtime index，先编译或声明信息不足，不得临场改读 syntheses 来补决策。
+- BP skill 执行：不得把 `wiki/syntheses/` 作为运行时依赖。`brawl-stars-bp-slot-decision` 必须遵循自身 `compile` / `decide` 分治：`compile` 只读取 skill 内 `references/compile-knowledge.md`、`wiki/entities/maps/`、`wiki/entities/brawlers/` 与环境归档 `wiki/environment/current.json`（环境证据折叠，无强度输入），生成 `runtime_bp_index`；`decide` 只读取 skill 内 `references/runtime-decision-knowledge.md`、当前草稿状态和已生成的 `runtime_bp_index`。如果没有 runtime index，先编译或声明信息不足，不得临场改读 syntheses 来补决策。
 
 执行全量英雄 BP 建模、补抓 Fandom/Power League Prodigy 英雄详情页、扩展英雄覆盖、地图 source ingest、平衡补丁断点审计、或批量升级 `wiki/entities/brawlers/` / `wiki/entities/maps/` 时，必须使用 `skills/brawl-stars-bp-knowledge-maintenance/`。先读该 skill 的 `SKILL.md`，再按任务读取 `references/source-ingest.md`、`brawler-modeling.md`、`map-modeling.md`、`balance-breakpoint-audit.md`、`audit-and-validation.md` 或 `runtime-boundary.md`。`wiki/syntheses/BP-英雄建模标准流程.md` 和 `wiki/syntheses/BP-维护归档.md` 只作为维护背景 / 历史归档，不是执行入口。该任务必须先读取 roster manifest，再按当前 BP-active 英雄集合分批保留 raw；已下架或无有效来源覆盖的 roster 行不进入 BP 英雄集合、PLP 缺口追踪、对位边或运行时编译索引。禁止直接批量生成 BP-ready 字段。
 
@@ -214,7 +217,7 @@ BP schema 字段必须有明确消费方。没有明确进入 `hard_gate`、`req
 BP 维护文件职责：
 
 - `wiki/syntheses/条件化对位模型.md` 是长期维护 schema，定义 BP 推理对象和维护规则；不承载版本差分、补丁翻译、临时观察名单或批量 ingest 过程记录。
-- `wiki/syntheses/BP-运行时索引编译架构.md` 定义 BP skill 如何把稳定事实层编译为 `runtime_bp_index`；环境信号（high-rank pick rate）为独立空槽，接入后不升级 fit/eligibility。它是方法论页面，不是手写候选表。
+- `wiki/syntheses/BP-运行时索引编译架构.md` 定义 BP skill 如何把稳定事实层与环境归档编译为 `runtime_bp_index`；环境证据折叠后不升级 fit/eligibility。它是方法论页面，不是手写候选表。
 - 旧的手写条件化对位边索引和英雄地图特征适配索引已在 2026-07-02 删除；它们的长期信息必须回到英雄页、地图页、模式页或编译产物中。
 - BP skill 的执行规则必须复制到 skill 自身 references；syntheses 只作为维护者讨论与 wiki 治理层，不能成为 skill 的渐进披露读取路径。
 - 编译 / ingest 过程中的原始候选、审计和交接内容只能放在来源页、审计页、任务计划、日志或临时工作文件；完成 ingest 后，不应出现在 BP DSL 入口或长期手写运行时索引中。
@@ -237,7 +240,7 @@ BP 维护文件职责：
 
 - 不修改既有 `raw/` 原始内容；只允许新增 raw capture，或在明确 cleanup 任务中删除 / 归档已确认冗余的 raw。
 - 不把 `wiki/sources/` 当作 `raw/` 的替代品；来源摘要不能代替原始抓取件。
-- 保持 `wiki/` 为 Markdown 页面。
+- 保持 `wiki/` 为 Markdown 页面；唯一例外是 `wiki/environment/` 环境归档层，它存放结构化数据（SQLite 单文件 + 可选 JSON 导出）加一个 Markdown 索引页（`index.md`），数据本身是知识库的一部分（git 跟踪），不是临时产物。
 - 优先创建小而互相链接的页面，而不是超大单页。
 - 当来源不一致时，保留不确定性，不强行统一。
 - 新增、重命名或明显重构页面时，必须同步更新 `wiki/index.md`。
@@ -254,3 +257,12 @@ BP 维护文件职责：
 - 综合页：`wiki/syntheses/<专题>.md`
 
 命名优先使用清晰、稳定、可搜索的中文标题；必要时可带英文或版本号。
+
+<!-- register-skills: brawl-stars-bp-knowledge-maintenance -->
+- 引用仓库 skill: @skills/brawl-stars-bp-knowledge-maintenance （SKILL.md 位于 skills/brawl-stars-bp-knowledge-maintenance/SKILL.md）
+
+<!-- register-skills: brawl-stars-bp-slot-decision -->
+- 引用仓库 skill: @skills/brawl-stars-bp-slot-decision （SKILL.md 位于 skills/brawl-stars-bp-slot-decision/SKILL.md）
+
+<!-- register-skills: run-brawl-stars-bp -->
+- 引用仓库 skill: @skills/run-brawl-stars-bp （SKILL.md 位于 skills/run-brawl-stars-bp/SKILL.md）

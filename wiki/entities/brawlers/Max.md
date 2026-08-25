@@ -276,7 +276,7 @@ bp_brawler_profile:
       mitigation: "add long-range finisher, pull, or wallbreak teammate"
       bp_use: "role_coverage_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Colt"
         - "Nani"
@@ -307,12 +307,8 @@ bp_brawler_profile:
       active_when: "enemy can hold the route Max must accelerate through"
       fails_when: "Max can bait key tool first or attack from a different lane with teammate cover"
       bp_use: "must_answer_control_before_speed_plan"
-    - target:
-        - "Piper"
-        - "Mandy"
-        - "Belle"
-        - "Angelo"
-      direction: "volatile"
+    - target: ["Piper", "Mandy", "Belle", "Angelo"]
+      direction: "target_favored"
       source: "[[sources/Fandom-Max|Fandom-Max]]"
       mechanism: "Max can dodge and close windows, but loses if long-range target keeps safe angle and Max lacks burst"
       active_when: "wide lane gives Max room and teammate can finish after speed engage"

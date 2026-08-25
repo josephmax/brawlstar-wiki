@@ -242,7 +242,7 @@ bp_brawler_profile:
       mitigation: "evaluate him by route-to-objective, not by generic lane DPS"
       bp_use: candidate_eval.route_dependency
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Barley"
         - "Dynamike"

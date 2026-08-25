@@ -217,7 +217,7 @@ bp_brawler_profile:
       mitigation: "use as anti-entry lane or modifier-specific pick with a true safe DPS"
       bp_use: "false_positive_filter_for_heist_pick"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Jae-Yong"
         - "Shelly"
@@ -230,16 +230,6 @@ bp_brawler_profile:
       active_when: "objective requires walking through Emz's spray band and she has peel resources available"
       fails_when: "target outranges first, baits Friendzoner, or reaches point-blank with mobility still available"
       bp_use: "response_pick_candidate_against_close_or_body_pressure"
-    - target:
-        - "Squeak"
-        - "Glowy"
-        - "Brock"
-      direction: "volatile"
-      source: "[[sources/PLP-Emz|PLP-Emz]]"
-      mechanism: "Emz can punish these targets when map geometry forces them into midrange, but wall or long-lane control can reverse the lane"
-      active_when: "their lane must contest a choke, ball lane, or zone edge inside 6.67 tiles"
-      fails_when: "they keep safe wall or long-range angles and Emz lacks Acid Spray or wallbreak support"
-      bp_use: "map_geometry_lane_check"
     - target:
         - "Gray"
         - "Ollie"
@@ -262,6 +252,14 @@ bp_brawler_profile:
       active_when: "walls or open lanes let them attack without stepping into the lingering cloud"
       fails_when: "terrain or teammate pressure forces them into midrange and Emz has enough ammo for the choke"
       bp_use: "must_answer_range_or_thrower_pressure"
+
+    - target: ["Squeak", "Glowy", "Brock"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Emz|PLP-Emz]]"
+      mechanism: "Emz can punish these targets when map geometry forces them into midrange, but wall or long-lane control can reverse the lane"
+      active_when: "their lane must contest a choke, ball lane, or zone edge inside 6.67 tiles"
+      fails_when: "they keep safe wall or long-range angles and Emz lacks Acid Spray or wallbreak support"
+      bp_use: "map_geometry_lane_check"
 
   slot_notes:
     slot_1: "reasonable only on clear zone/ball/gem choke maps where long-range and thrower counters are already constrained"

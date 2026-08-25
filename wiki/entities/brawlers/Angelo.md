@@ -234,7 +234,7 @@ bp_brawler_profile:
       mitigation: "Master Fletcher, wallbreak teammate, or choose open lane"
       bp_use: "must_answer_or_avoid"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Belle"
         - "Colette"
@@ -262,12 +262,30 @@ bp_brawler_profile:
       active_when: "walls/summons protect target or enemy can pressure Angelo before charge releases"
       fails_when: "map is open, summons are absent, or Angelo can take water off-angle"
       bp_use: "avoid_or_pair_with_wallbreak_and_summon_clear"
-    - target:
-        - "Kit"
-        - "Stu"
-        - "Mico"
-        - "Edgar"
-      direction: "volatile"
+    - target: ["Lola"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Angelo|PLP-Angelo]]"
+      mechanism: "Lola 的 Ego 分身可吸收 Angelo 昂贵的高价值单箭，双 9 格交叉火力持续消耗其蓄力周期，蓄力被挡后 Angelo 无爆发可换"
+      active_when: "开阔或半开长线，Ego 能放在 Angelo 射线前方挡箭，Lola 保持 9 格距离让本体不被先手命中"
+      fails_when: "Angelo 走水路/跳位绕过 Ego 拿到 off-angle，Master Fletcher 穿透清掉分身，或 Ego 被清后 Lola 本体暴露在蓄力箭下"
+      bp_use: "avoid_first_pick_into_ego_body"
+    - target: ["Pearl"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Angelo|PLP-Angelo]]"
+      mechanism: "Angelo 用超长蓄力箭在 Pearl 宽散射不可靠的射程带外持续消耗，毒伤拖住其站线，低机动让 Pearl 无法逃出或逼进蓄力窗口"
+      active_when: "开阔图，Angelo 能从 Pearl 散射稳定带外安全蓄力，水路/跳位提供躲避角度，Pearl 必须探头维持 Heat"
+      fails_when: "墙体/掩体吸收单箭，或窄口迫使 Angelo 进入 Pearl 中近距离散射带与 Super 击退半径"
+      bp_use: "response_pick_candidate_against_low_mobility_scatter"
+    - target: ["Ruffs"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Angelo|PLP-Angelo]]"
+      mechanism: "Ruffs 的弹墙激光可从墙后持续惩罚 Angelo 的蓄力位，Take Cover 沙包挡下高价值单箭，快装填弹墙消耗其蓄力周期"
+      active_when: "地图有墙角/反弹角度让 Ruffs 安全输出，沙包能放在 Angelo 射线路径上，Angelo 必须过度暴露才能命中"
+      fails_when: "开阔水图让 Angelo 从反弹几何外取角，关键墙被开或沙包被消耗后低血 Ruffs 暴露在蓄力箭下"
+      bp_use: "avoid_first_pick_into_bounce_lane"
+
+    - target: ["Kit", "Stu", "Mico", "Edgar"]
+      direction: "subject_favored"
       source: "[[sources/Fandom-Angelo|Fandom-Angelo]]"
       mechanism: "Angelo can escape with Stinging Flight, but loses if dive forces charge cancel twice"
       active_when: "Stinging Flight is available and route lets Angelo reset to range"

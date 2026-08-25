@@ -301,6 +301,28 @@ bp_brawler_profile:
       fails_when: "summon anchors are protected by thrower pocket or force Rico into open field"
       bp_use: "summon_pressure_response_candidate"
 
+    - target: ["Crow"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Rico|PLP-Rico]]"
+      mechanism: "封闭墙廊的反弹弹幕可在 Crow 用毒镖标签前先压低他的低血量，贩卖机能挡非穿透匕首，Bouncy Castle 减速惩罚他的接近与跳跃进场。"
+      active_when: "地图有耐久墙廊或窄口，Crow 必须穿过 Rico 的反弹路线才能标签目标，Rico 保持反弹角度或贩卖机锚点。"
+      fails_when: "开阔长线 Crow 从安全距离挂毒并风筝，或用 Super 跳过墙廊/贩卖机直接贴脸打断 Rico 的反弹节奏。"
+      bp_use: "closed_lane_response_to_poison_assassin"
+    - target: ["Gray"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Rico|PLP-Rico]]"
+      mechanism: "Gray 的传送门可绕过或改写 Rico 依赖的墙廊，Walking Cane 把他拉出反弹位，Grand Piano 的条件开墙直接抹掉他的反弹角度。"
+      active_when: "墙廊是 Rico 的核心价值来源，Gray 有传送/拉人/开墙资源且传送落点不被敌方蹲守。"
+      fails_when: "传送出口被守、拉人被召唤物或队友保护挡住，或 Rico 队伍保留关键墙体并先压制低承诺的 Gray。"
+      bp_use: "must_answer_route_or_wallbreak_before_rico"
+    - target: ["Ruffs"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Rico|PLP-Rico]]"
+      mechanism: "Ruffs 的 Air Superiority 选择性开墙可移除 Rico 依赖的反弹墙，其长射程弹墙激光还能在同一墙廊换血，补给强化让队友在 Rico 压力下站线。"
+      active_when: "Rico 依赖耐久墙廊，Ruffs 能安全开出关键墙或用弹墙角度对线，队友能拾取补给并转成线权。"
+      fails_when: "Rico 队伍保留关键墙体并用反弹火力先压低 Ruffs 低血本体，或开墙反而让敌方远程接管使 Ruffs 开墙收益不成立。"
+      bp_use: "wall_state_threat_before_rico"
+
   slot_notes:
     slot_1: "只在耐久反弹路线很明确，或贩卖机有受保护的目标锚点时先手；仍要预留对投掷、穿透清点和选择性开墙的回答。"
     slot_2_3: "可围绕耐久墙廊建立反弹核心，或用贩卖机补一个临时掩体/反弹面；需要队友保留关键墙体。"

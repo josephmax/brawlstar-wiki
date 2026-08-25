@@ -250,7 +250,7 @@ bp_brawler_profile:
       mitigation: "pair with wallbreak, flank pressure, or save Cordelius for last-pick route punishment"
       bp_use: map_fit_filter
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Tara"
         - "Shelly"
@@ -286,15 +286,13 @@ bp_brawler_profile:
       active_when: "map gives them open lanes, repeated kite space, or side angles that force Cordelius to cross visible ground"
       fails_when: "Cordelius reaches through grass/wall jump, catches the actual carrier/scorer, or their key escape/control is already spent"
       bp_use: avoid_open_lane_first_pick_or_require_route_support
-    - target:
-        - "Nita"
-        - "Frank"
-      direction: "volatile"
+    - target: ["Nita", "Frank"]
+      direction: "target_favored"
       source: "[[sources/PLP-Cordelius|PLP-Cordelius]] / [[sources/Fandom-Cordelius|Fandom-Cordelius]]"
       mechanism: "Cordelius can isolate bulky targets, but spawnables, stun pressure, or high health can outlast his short-range damage if he lacks Comboshrooms or teammate conversion."
       active_when: "Cordelius isolates them away from support near an objective route and enters with ammo/health advantage"
       fails_when: "Bruce or teammates tax his shots, Frank controls the choke before Super lands, or the normal fight collapses during isolation"
-      bp_use: resource_and_objective_context_check
+      bp_use: "resource_and_objective_context_check"
 
   slot_notes:
     slot_1: "risky except on maps where route denial and anti-aggro are mandatory and long-range/thrower punishers are already banned or weak."

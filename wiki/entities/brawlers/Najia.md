@@ -216,36 +216,21 @@ bp_brawler_profile:
       mitigation: 把罐子作为队友支援到位的时间桥，不当自保终点
       bp_use: defensive_resource_timing
 
-  conditional_matchup_seeds:
-    - target: Dynamike_or_Meg_or_Gale_or_Mandy_or_Lou_or_R-T_or_Piper_or_Jae-Yong
+  conditional_matchups:
+    - target: ["Dynamike", "Meg", "Gale", "Mandy", "Lou", "R-T", "Piper", "Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Najia|PLP-Najia]]"
       mechanism: Najia 的越墙/远距毒伤能逼迫固定控制、长线或站点目标离开安全角度，并用毒池惩罚撤退路线
       active_when: 地图有墙角、矿区、热区入口或目标必须守固定线
       fails_when: 目标有高速队友开到 Najia，或地图完全开放让慢弹道难以命中
       bp_use: wall_or_objective_route_response
-    - target: Poco_or_Eve_or_Edgar_or_Sam_or_Damian_or_Melodie_or_Chuck_or_Lola
+    - target: ["Poco", "Eve", "Edgar", "Sam", "Damian", "Melodie", "Chuck", "Lola"]
       direction: target_favored
       source: "[[sources/PLP-Najia|PLP-Najia]]"
       mechanism: 治疗、离水角度、刺客、高速路线、墙控或替身能化解毒伤节奏并惩罚 Najia 的低爆发
       active_when: 这些目标能绕开固定入口，或有治疗/资源让毒伤无法转换
       fails_when: 队友先锁路线，Najia 只负责远程毒区而不独立接触
       bp_use: must_answer_sustain_or_aggro_before_najia
-    - target: Grouped_zone_or_gem_route
-      direction: subject_favored
-      source: "[[sources/Fandom-Najia|Fandom-Najia]]"
-      mechanism: 毒池、蛇和 Super 多罐会叠加区域压力，惩罚中路拥挤和反复进圈
-      active_when: 敌方抱团守矿、站圈或走同一 choke
-      fails_when: 敌方分路、远程清点或用高速绕开毒区
-      bp_use: objective_specific_grouped_route_punish
-    - target: High_mobility_dive
-      direction: target_favored
-      source: "[[sources/Fandom-Najia|Fandom-Najia]]"
-      mechanism: 高机动可以跳过毒池等待时间，直接逼 Najia 交 Jar 或击杀她
-      active_when: 地图有侧草、跳点、dash 路线或 Najia 无队友保护
-      fails_when: 入口被队友控制，Najia 预铺毒池且只需要拖一波
-      bp_use: anti_aggro_false_positive_filter
-
   slot_notes:
     slot_1: 不建议仅因 PLP 多模式信号先手；除非地图是固定入口/墙角毒区图且敌方突进池受限。
     slot_2_3: 可建立墙角控制或热区/矿区入口计划，但队伍必须同时补身体和即时伤害。

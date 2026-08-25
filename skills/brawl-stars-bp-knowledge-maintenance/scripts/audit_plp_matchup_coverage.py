@@ -127,11 +127,11 @@ def compiled_matchup_pairs(index: dict[str, Any]) -> set[tuple[str, str, str]]:
         for edge in records.get("answers") or []:
             target = edge.get("target")
             if target:
-                pairs.add((subject, "answers", target))
+                pairs.add((normalize_key(subject), "answers", normalize_key(target)))
         for edge in records.get("is_answered_by") or []:
             target = edge.get("target")
             if target:
-                pairs.add((subject, "is_answered_by", target))
+                pairs.add((normalize_key(subject), "is_answered_by", normalize_key(target)))
     return pairs
 
 
@@ -152,12 +152,15 @@ def coverage_payload(repo: Path, runtime_index: Path, raw_dir: Path) -> dict[str
     lookup = name_lookup(valid_brawler_names(repo, index))
     plp_pairs = plp_matchup_pairs(repo, raw_dir, lookup)
     compiled_pairs = compiled_matchup_pairs(index)
-    plp_pair_keys = {(item["subject"], item["direction"], item["target"]) for item in plp_pairs}
+    plp_pair_keys = {
+        (normalize_key(item["subject"]), item["direction"], normalize_key(item["target"]))
+        for item in plp_pairs
+    }
     overlap = plp_pair_keys & compiled_pairs
     plp_only_keys = plp_pair_keys - compiled_pairs
 
     pair_by_key = {
-        (item["subject"], item["direction"], item["target"]): item
+        (normalize_key(item["subject"]), item["direction"], normalize_key(item["target"])): item
         for item in plp_pairs
     }
     plp_only = [

@@ -10,6 +10,8 @@ from typing import Any
 
 from query_runtime_facts import conditional_relations, map_fact_packet, relation_targets
 from runtime_index_tools import (
+    cache_load,
+    cache_store,
     canonical_brawler_name,
     candidate_map_fit,
     compact_manifest,
@@ -17,6 +19,7 @@ from runtime_index_tools import (
     format_hydration_summary,
     load_runtime_index,
     map_context,
+    query_cache_key,
     retrieval_bucket_hits,
     retrieval_log,
     runtime_card_fragment,
@@ -25,13 +28,27 @@ from runtime_index_tools import (
 
 
 def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
+    cache_key = query_cache_key("hydrate_runtime_facts", args.index, {
+        "map": args.map,
+        "mode": args.mode,
+        "include_id": args.include_id,
+        "exclude_id": args.exclude_id,
+        "relation_target": args.relation_target,
+    })
+    cached = cache_load(args.cache_dir, cache_key)
+    if cached is not None:
+        cached.setdefault("runtime_fact_hydration", {})["cache_hit"] = True
+        return cached
+
     index = load_runtime_index(args.index)
     context = map_context(index, args.map)
     map_name = context["map"]
     targets = relation_targets(index, args.relation_target)
     excludes = {canonical_brawler_name(index, raw) for raw in args.exclude_id}
+    include_names = {canonical_brawler_name(index, raw) for raw in args.include_id}
     evidence_refs = index.get("evidence_refs") or {}
     brawler_refs = evidence_refs.get("brawlers") or {}
+    cards = index.get("brawler_runtime_cards") or {}
     entities: dict[str, Any] = {}
 
     for raw_name in args.include_id:
@@ -51,7 +68,26 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
             "runtime_card_counts": runtime_card_counts(card),
             "conditional_relations": relations,
             "relation_count": len(relations),
+            "environment_evidence": (cards.get(name) or {}).get("environment_evidence"),
         }
+
+    environment_ladder: list[dict[str, Any]] = []
+    per_map = index.get("environment_ladder_per_map") or {}
+    for row in per_map.values():
+        if row.get("map") != map_name:
+            continue
+        if args.mode and row.get("mode") != args.mode:
+            continue
+        keep = (row.get("individual") or {}).copy()
+        if include_names:
+            keep = {hero: value for hero, value in keep.items() if hero in include_names}
+        environment_ladder.append({
+            "map": row.get("map"),
+            "mode": row.get("mode"),
+            "match_count": row.get("match_count"),
+            "active": row.get("active"),
+            "individual": keep,
+        })
 
     body = {
         "runtime_fact_hydration": {
@@ -67,6 +103,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
                 "relation_targets": sorted(targets),
             },
             "map_fact_packet": map_fact_packet(context),
+            "environment_ladder": environment_ladder,
             "entities": entities,
             "entity_window": list(entities.values()),
             "evidence_refs": {
@@ -83,6 +120,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     log["entity_fragments"] = len(entities)
     log["map_fragments"] = 1
     body["runtime_fact_hydration"]["retrieval_summary"] = log
+    cache_store(args.cache_dir, cache_key, body)
     return body
 
 
@@ -96,6 +134,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--exclude-id", action="append", default=[], help="Entity id to skip; repeatable")
     parser.add_argument("--relation-target", action="append", default=[], help="Entity id used to filter conditional relation facts; repeatable")
     parser.add_argument("--summary", action="store_true", help="Emit a compact text summary for agent-readable debugging")
+    parser.add_argument("--cache-dir", default="", help="Directory for cross-query disk cache (same params skip recompute); empty disables")
     parser.add_argument("--json", action="store_true", help="Emit JSON")
     return parser.parse_args()
 

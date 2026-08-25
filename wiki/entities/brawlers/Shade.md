@@ -229,7 +229,7 @@ bp_brawler_profile:
       mitigation: "use Longarms/Jumpscare timing or attack from wall where center hit is likely"
       bp_use: "map_factor_false_positive_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Mr. P"
         - "Jessie"
@@ -260,13 +260,8 @@ bp_brawler_profile:
       active_when: "objective forces Shade into melee or enemy can hold the wall anchor"
       fails_when: "Shade can ignore them and access a fragile backline or carrier"
       bp_use: "avoid_or_require_team_damage"
-    - target:
-        - "Barley"
-        - "Larry & Lawrie"
-        - "Willow"
-        - "Mico"
-        - "Jacky"
-      direction: "volatile"
+    - target: ["Barley", "Larry & Lawrie", "Willow", "Mico", "Jacky"]
+      direction: "target_favored"
       source: "[[sources/Fandom-Shade|Fandom-Shade]]"
       mechanism: "Shade likes walls, but some enemies can still damage through/over walls and deny the anchor"
       active_when: "enemy controls the same wall pocket Shade wants to use"

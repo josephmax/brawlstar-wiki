@@ -215,7 +215,7 @@ bp_brawler_profile:
       mitigation: "进场前确认弹药，拉人后需要队友范围伤害跟进"
       bp_use: "ammo_state_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Mortis", "Edgar", "Tick", "Dynamike", "Grom", "Poco", "Doug", "Hank"]
       direction: "subject_favored"
       source: "[[sources/PLP-Jacky|PLP-Jacky]]"
@@ -230,13 +230,6 @@ bp_brawler_profile:
       active_when: "这些资源保留给 Jacky 的加速进场或 Super 后窗口"
       fails_when: "资源已交、目标被队友压低，或 Jacky 只需要一次拉人/掉球目标转化"
       bp_use: "must_avoid_or_enemy_response_prediction"
-    - target: ["Ball carrier", "Goal defender", "Zone holder"]
-      direction: "subject_favored"
-      source: "[[sources/Fandom-Jacky|Fandom-Jacky]]"
-      mechanism: "Super 拉人取消移动/攻击，Brawl Ball 中持球者被拉会掉球，热区中可把目标拉离站位"
-      active_when: "目标必须靠近球门、热区或防守路径，Jacky 能进入 5 格 Super 半径"
-      fails_when: "目标远程清球/站圈不进半径，或 Jacky Super 后没有弹药/队友跟伤害"
-      bp_use: "objective_specific_displacement"
     - target: ["Bull", "Rosa", "Draco", "Darryl", "Leon", "Nani", "Buzz"]
       direction: "target_favored"
       source: "[[sources/Fandom-Jacky|Fandom-Jacky]]"

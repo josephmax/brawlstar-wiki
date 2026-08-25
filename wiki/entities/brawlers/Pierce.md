@@ -211,36 +211,28 @@ bp_brawler_profile:
       mitigation: 先清资源或避免把 Pierce 当唯一输出
       bp_use: enemy_resource_filter
 
-  conditional_matchup_seeds:
-    - target: Gale_or_Jacky_or_Meg_or_El_Primo_or_R-T_or_Dynamike_or_Sam_or_Jae-Yong
+  conditional_matchups:
+    - target: ["Gale", "Jacky", "Meg", "El Primo", "R-T", "Dynamike", "Sam", "Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Pierce|PLP-Pierce]]"
       mechanism: Pierce 用中长线、最后一发减速和弹壳资源惩罚固定路线、短手身体或需要站位输出的目标
       active_when: 目标必须穿过可见 objective lane，Pierce 有弹药/弹壳缓存
       fails_when: 目标有队友遮挡、召唤物吃弹，或地图给其草/墙先手
       bp_use: resource_gated_lane_response
-    - target: Chuck_or_Damian_or_Barley_or_Amber_or_Eve_or_Sprout_or_Lola_or_Nita
+    - target: ["Chuck", "Damian", "Barley", "Amber", "Eve", "Sprout", "Lola", "Nita"]
       direction: target_favored
       source: "[[sources/PLP-Pierce|PLP-Pierce]]"
       mechanism: 路线突进、墙控、区域燃烧、水/角度、替身或召唤物会干扰 Pierce 的壳循环和直线输出
       active_when: 地图给这些目标墙袋、侧角、水线或资源保护
       fails_when: 墙体被打开、资源被清，且 Pierce 能保持中长线弹壳循环
       bp_use: must_answer_resource_disruption_before_pierce
-    - target: Mr_P_or_Jessie_or_Penny_or_spawnable_core
+    - target: ["Mr_P", "Jessie", "Penny"]
       direction: target_favored
       source: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
       mechanism: 额外身体会浪费 Pierce 弹药、打乱掉壳节奏，并让他无法把最后一发资源打到真实目标
       active_when: 召唤物能安全过线或炮台/宠物站在 Pierce 必须射击的角度
       fails_when: 我方先清资源，或 Pierce 只负责补伤害不负责独自处理资源层
       bp_use: spawnable_liability_filter
-    - target: Ball_carrier_or_goal_defender
-      direction: subject_favored
-      source: "[[sources/Fandom-Pierce|Fandom-Pierce]]"
-      mechanism: 最后一发减速、Super 追踪和弹壳击退可以打断固定持球路线或门前防守站位
-      active_when: 球路经过中距离直线，队友能接控制窗口完成射门
-      fails_when: 目标有多身体挡弹或 Pierce 控住后无人转化进球
-      bp_use: objective_specific_control_edge
-
   slot_notes:
     slot_1: 只有在地图目标路线适合中长线壳循环，且敌方召唤物/刺客反制面窄时可先手。
     slot_2_3: 可作为长手控制和资源压线手，但队伍必须补身体、探草或反突进。

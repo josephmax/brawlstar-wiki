@@ -1,8 +1,8 @@
 # BP 运行时索引编译架构
 
-状态日期：2026-07-10；2026-08-14 更新（移除强度层）。性质：`runtime_architecture_implemented`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
+状态日期：2026-07-10；2026-08-14 两次更新（移除强度层 → 环境归档折叠进 compile）。性质：`runtime_architecture_implemented`。来源：[[sources/User-Note-BP-Runtime-Index-Compilation|用户经验来源摘要: BP 运行时索引应按版本语境编译]]。
 
-本页记录 BP skill 的 compile-first 架构决策：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。该架构已经落地；当前可执行 contract 以 `skills/brawl-stars-bp-slot-decision/` 为准，质量演进与踩坑见 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]。**2026-08-14 更新：系统中已不存在 strength / tier 概念；环境信号固定为高分选手 pick(+ban) rate，当前为空槽（`pickrate_status: empty`）。** 决策与语义见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]。
+本页记录 BP skill 的 compile-first 架构决策：长期 wiki 只维护稳定底层事实；每次 BP 前由 skill 将底层事实编译成运行时索引；正式 ban / pick 决策只消费该运行时索引。该架构已经落地；当前可执行 contract 以 `skills/brawl-stars-bp-slot-decision/` 为准，质量演进与踩坑见 [[syntheses/BP-知识压缩与决策质量演进复盘|BP 知识压缩与决策质量演进复盘]]。**2026-08-14 更新：系统中已不存在 strength / tier 概念；环境信号固定为高分选手 pick(+ban) rate，归档在 `wiki/environment/`，由 compile 折叠为标注证据进索引（`pickrate_status: loaded`；无归档时 `empty`）。** 决策与语义见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]。
 
 ## 核心结论
 
@@ -11,7 +11,7 @@
 - 英雄底层 BP 能力：`capability_vector`、`build_switches`、`map_feature_hooks`、`objective_contracts`、`failure_modes`、`conditional_matchups`、`slot_notes`。
 - 地图底层 BP 事实：`map_profile`、`map_bp_factors`、路线、位置、目标收益、地形状态计划、假阳性过滤。
 - 版本 BP 审计：哪些补丁 / 重做 / Buffies / Hypercharge 改变了能力语义，哪些只是数值强弱或观察项。
-- 环境信号（high-rank pickrate）：当前为空槽；接入后作为独立证据层，不进入英雄百科或稳定地图页，也不能升级 fit / eligibility。
+- 环境信号（high-rank pickrate）：归档在 `wiki/environment/`（持久数据层），由 compile 折叠为标注证据；不进入英雄百科或稳定地图页，也不能升级 fit / eligibility。
 
 运行时索引仍然必要，但它应是可再生的编译产物，而不是手写 wiki 事实页。
 
@@ -22,10 +22,11 @@ Stable Wiki Source
   英雄页 + 地图页 + schema + 版本审计
 
 Environment Signal（high-rank pickrate）
-  当前为空槽（pickrate_status: empty）
+  wiki/environment/ 归档（current.json 指针）
+  由 compile 折叠为标注证据（pickrate_status: loaded；无归档时 empty）
 
 Session Compile
-  Stable Wiki Source + 当前地图池
+  Stable Wiki Source + 环境归档 + 当前地图池
   -> runtime_bp_index
 
 BP Decision
@@ -59,8 +60,9 @@ runtime_bp_index:
   manifest:
     patch_id:
     map_pool_id:
-    pickrate_source: null
-    pickrate_status: empty
+    pickrate_source: null | wiki/environment/current.json
+    pickrate_status: empty | loaded
+    environment_provenance: null | {pointer, monthly, ladder}
     source_hash:
     compiler_version:
     compiled_at:
@@ -128,9 +130,9 @@ decision_input:
 
 决策阶段不应常规读取底层 wiki。如果 runtime index 缺失、过期或 hash 不匹配，应报告 `runtime_index_stale_or_missing`，而不是临场翻百科补答案。
 
-## 环境信号的位置（2026-08-14 更新）
+## 环境信号的位置（2026-08-14 两次更新）
 
-旧版此处描述 strength profile；2026-08-14 已移除强度/tier 概念。环境信号（high-rank pickrate）当前为空槽，接入后作为独立证据层，必须在 manifest 中可见（`pickrate_source` / `pickrate_status`），不能反写英雄或地图稳定事实。
+旧版此处描述 strength profile；2026-08-14 已移除强度/tier 概念，并把环境信号从"空槽"改为"归档折叠"：观测与信号数据持久归档在 `wiki/environment/`（`<月>/archive.sqlite3`、`pickrate.sqlite3` + `current.json` 指针，SQLite 行列存储，2026-08-24 起替代 JSON），**compile 是唯一聚合点**，折叠为 per-brawler `environment_evidence`（`ladder_anchor` / `monthly_finals`）进 `runtime_bp_index`；decide 经 `hydrate_runtime_facts.py` 读索引内嵌证据，不直连归档。manifest 必须可见（`pickrate_source` / `pickrate_status` / `environment_provenance`），不能反写英雄或地图稳定事实。
 
 接入后它允许影响：
 
@@ -145,7 +147,7 @@ decision_input:
 - `hard_gate` 的基本逻辑。
 - fit / map_floor_fit / slot_eligibility / 候选资格。
 
-例如 `Jacky` 可以在稳定英雄页中保留“墙边、草路、球门、热区有条件接触惩罚”的结构事实；环境信号为空槽时，所有候选只按地图证据排序。补丁如果改变英雄的自保、启动、开团或对刺客的成立条件，应先更新英雄稳定字段，再进入编译。
+例如 `Jacky` 可以在稳定英雄页中保留“墙边、草路、球门、热区有条件接触惩罚”的结构事实；环境信号只作标注证据（tie-break 参考面），所有候选仍按地图证据 + 机制约束排序。补丁如果改变英雄的自保、启动、开团或对刺客的成立条件，应先更新英雄稳定字段，再进入编译。
 
 ## 现有索引页审计
 

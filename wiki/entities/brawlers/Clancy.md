@@ -235,7 +235,7 @@ bp_brawler_profile:
       mitigation: "draft peel, speed/Shield support, or avoid early pick into control-heavy comps"
       bp_use: must_protect_scaling_damage
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Sam"
         - "Rosa"

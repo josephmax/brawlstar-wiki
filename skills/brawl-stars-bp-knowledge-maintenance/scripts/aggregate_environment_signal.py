@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """Aggregate a monthly pick/ban environment signal from tournament observation profiles.
 
-Input:  one or more `tournament_observation_profile.v1` JSON files (outputs/esports/).
+Input:  one or more `tournament_observation_profile.v1` files (JSON or the archive
+        wiki/environment/<YYYY-MM>/archive.sqlite3).
 Output: `brawlstar.environment_signal.v1` — per-brawler monthly pick rate (paired with
-        ban rate), intended as the BP environment-signal input layer.
+        ban rate), written into the archive db via `--db` and folded into the
+        runtime_bp_index by the slot-decision compile.
 
 Design decisions (2026-08-14, see wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md):
 - high-rank approximation = pro Monthly Finals (rank_floor: legendary_plus_approximation)
 - window = monthly; pick and ban are reported as a pair
-- This artifact is a draft signal: policy.runtime_consumption stays forbidden until a
-  separate reviewed promotion into the compiler's pickrate slot.
+- The signal is compile-folded evidence (labeled, never a tier); the archive pointer
+  wiki/environment/current.json decides whether compile loads it.
 """
 
 from __future__ import annotations
@@ -20,6 +22,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+import _environment_sqlite as envdb
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -86,16 +90,21 @@ def aggregate(profiles: list[dict[str, Any]]) -> dict[str, Any]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--profile", action="append", required=True, help="tournament_observation_profile.v1 JSON; repeatable.")
+    parser.add_argument("--profile", action="append", required=True,
+                        help="tournament_observation_profile.v1 JSON or archive .sqlite3; repeatable.")
     parser.add_argument("--output", default="", help="Write JSON to this path (relative to repo root if not absolute).")
+    parser.add_argument("--db", default="", help="Write the signal tables into this archive .sqlite3 (row/column storage).")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    profiles = [load_json(Path(path)) for path in args.profile]
+    profiles = [envdb.load_profile(Path(path)) for path in args.profile]
     signal = aggregate(profiles)
     text = json.dumps(signal, ensure_ascii=False, indent=2) + "\n"
+    if args.db:
+        envdb.write_signal(Path(args.db), signal)
+        print(f"WROTE DB {args.db}")
     if args.output:
         output_path = Path(args.output)
         output_path.parent.mkdir(parents=True, exist_ok=True)

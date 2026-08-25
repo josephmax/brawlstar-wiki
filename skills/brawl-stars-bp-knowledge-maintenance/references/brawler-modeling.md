@@ -16,6 +16,8 @@ The first `bp_brawler_profile` block only contains fields consumed by compile/de
 - `conditional_matchups`
 - `slot_notes`
 
+`conditional_matchups` is the single matchup field. The legacy name `conditional_matchup_seeds` has been merged into it (2026-08-14); do not reintroduce `conditional_matchup_seeds` blocks. Its `target` must be canonical brawler names only; mode objectives, spawnables, hero-type descriptions, and mechanism fragments are not valid targets (see Common Mistakes).
+
 A brawler page may contain a second fenced JSON `combat_breakpoint_profile` block for current stable numerical mechanics consumed only by the maintainer breakpoint audit. It is not a runtime field. Allowed contents are reviewed `target_states`, discrete `damage_packets`, `defense_modifiers`/`defense_variants`, and explicit temporal or source-conflict exclusions. Do not store patch history, generated pairwise matrices, tiers, or review seeds in this block.
 
 The audit may fall back to the latest direct Fandom `Health`/`Health1` for a primary body so every roster brawler can enter the health index. Alternate forms, split bodies, summons, multi-hit packets, distance scaling, cycles, DoT, and hero-specific defenses require explicit reviewed semantics; a bare infobox scalar is not enough.
@@ -60,6 +62,8 @@ Fandom and PLP are complementary here. PLP does not replace Fandom mechanics, an
 ## Common Mistakes
 
 - Copying PLP `countersThese` into unconditional `conditional_matchups`.
+- Putting non-brawler targets (mode objectives like Heist safe / Zone holder, spawnables, hero-type descriptions like Open_map_snipers, or mechanism fragments like Water / Flying) into `conditional_matchups`. The `target` of every matchup entry must be a canonical brawler name. Mode-objective and spawnable knowledge belongs to mode-level signals (e.g. the high-rank environment signal layer) or to `failure_modes` / `slot_notes`, never to the hero-vs-hero matchup fields. Compile skips any target that does not normalize to a roster brawler (with a warning).
+- Using non-matchup directions in `conditional_matchups`. The only allowed directions are `subject_favored` and `target_favored`. A conditionally-two-sided matchup is not a third direction: express it as a one-way edge whose `active_when` is the win condition and whose `fails_when` is the fail condition (the target's own window). `volatile` was removed (2026-08-14) because raising it into `answers` would over-attend to targets the brawler does not actually answer. A teammate-combo note (e.g. `ally_synergy`) is not a counter edge either: keep it in `slot_notes` as build/comp knowledge, or leave it out of the matchup fields — compile skips any non-whitelisted direction with a warning instead of silently treating it as a one-way counter.
 - Writing "good on open maps" without route and objective conversion.
 - Treating a version strength bump as a permanent ability change.
 - Marking a generated draft `bp_ready` because required sections exist.

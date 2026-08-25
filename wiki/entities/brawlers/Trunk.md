@@ -214,35 +214,28 @@ bp_brawler_profile:
       mitigation: 让队友先压低终点或把 Super 作为二段调整而非裸开
       bp_use: avoid_raw_dash_entry
 
-  conditional_matchup_seeds:
-    - target: Sprout_or_Squeak_or_Nani_or_Piper_or_Mandy_or_Jae-Yong
+  conditional_matchups:
+    - target: ["Sprout", "Squeak", "Nani", "Piper", "Mandy", "Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Trunk|PLP-Trunk]]"
       mechanism: Trunk 可用墙边圆形伤害、草/墙路线和高身体压缩低血量控制或长线目标的安全空间
       active_when: 地图有浅墙、草路或目标必须守矿/球门/热区入口
       fails_when: 目标在全开放长线输出，或有反坦队友保护入口
       bp_use: route_based_response_into_fragile_control
-    - target: Shade_or_Mico
-      direction: volatile
-      source: "[[sources/PLP-Trunk|PLP-Trunk]]"
-      mechanism: Trunk 的短手身体和墙边伤害能惩罚落点/接触点，但这些目标也可能绕过 Trunk 打后排
-      active_when: 目标必须进入 Trunk 守住的 objective endpoint
-      fails_when: 它们选择另一条路线打脆皮，或 Trunk 没有队友补伤害
-      bp_use: endpoint_guard_not_universal_counter
-    - target: Otis_or_Clancy_or_Crow_or_Damian_or_Colette_or_Nita_or_Doug_or_Juju
+    - target: ["Otis", "Clancy", "Crow", "Damian", "Colette", "Nita", "Doug", "Juju"]
       direction: target_favored
       source: "[[sources/PLP-Trunk|PLP-Trunk]]"
       mechanism: 沉默、反坦 DPS、毒伤、百分比伤害、召唤物或墙控会让 Trunk 无法稳定站在蚂蚁区域中
       active_when: 这些目标守住热区、球门或矿区入口，Trunk 必须正面进入
       fails_when: Trunk 只承担短时间 bodyguard，且队友先清掉控制/召唤物
       bp_use: must_answer_before_committing_trunk_body
-    - target: Zone_holder_or_ball_carrier_or_thrower_pocket
-      direction: subject_favored
-      source: "[[sources/Fandom-Trunk|Fandom-Trunk]]"
-      mechanism: 蚂蚁区域、Super dash 和一格墙后攻击能把固定目标从入口、球路或浅墙口袋挤走
-      active_when: 目标位置固定且离 Trunk 接触路线很近
-      fails_when: 目标位于深墙袋或有控制链保护
-      bp_use: objective_specific_body_pressure
+    - target: ["Shade", "Mico"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Trunk|PLP-Trunk]]"
+      mechanism: "Trunk 的短手身体和墙边伤害能惩罚落点/接触点，但这些目标也可能绕过 Trunk 打后排"
+      active_when: "目标必须进入 Trunk 守住的 objective endpoint"
+      fails_when: "它们选择另一条路线打脆皮，或 Trunk 没有队友补伤害"
+      bp_use: "endpoint_guard_not_universal_counter"
 
   slot_notes:
     slot_1: 只在地图天然短接触、草/墙/热区入口收益极高且敌方反坦池被 ban 掉时先手。

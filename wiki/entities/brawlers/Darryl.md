@@ -253,7 +253,7 @@ bp_brawler_profile:
       mitigation: "ban or bait the key answer before committing Darryl, or use him on a separate objective route"
       bp_use: must_answer_before_drafting_darryl
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Mr. P"
         - "Jessie"
@@ -291,17 +291,13 @@ bp_brawler_profile:
       active_when: "they can guard the roll endpoint, force repeated close trades, or hold objective space Darryl must enter"
       fails_when: "Darryl attacks a different route, baits the key control, or teammates punish the defender while Darryl draws attention"
       bp_use: avoid_first_pick_or_require_route_protection
-    - target:
-        - "Frank"
-        - "Shelly"
-        - "El Primo"
-        - "Jacky"
-      direction: "volatile"
+    - target: ["Frank", "Shelly", "El Primo", "Jacky"]
+      direction: "target_favored"
       source: "[[sources/Fandom-Darryl|Fandom-Darryl]]"
       mechanism: "Darryl can cancel some Supers with roll knockback and burst at point blank, but heavy melee bodies can also win if he lands without ammo, shield, or Tar Barrel."
       active_when: "Darryl has Super, Tar Barrel, ammo, and a bounce angle that controls first contact"
       fails_when: "enemy holds their CC/burst until post-roll or Darryl crosses into multiple close-range bodies"
-      bp_use: tank_mirror_resource_check
+      bp_use: "tank_mirror_resource_check"
 
   slot_notes:
     slot_1: "risky unless map hard-requires roll entry and major anti-tank answers are banned; early Darryl is easy to route-camp."

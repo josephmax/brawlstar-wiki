@@ -10,6 +10,7 @@ Hard rules:
 - Record both `strategy_bias` values in `对局摘要`.
 - Use `state_handoff_to_next_turn`, not pressure language. The handoff may state visible facts and open structural questions, but must not tell the next player what to pick.
 - Copy, normalize, and lightly format player-submitted report summaries. Do not add independent BP analysis.
+- 选择时间线 content (选择摘要 / 关键因素 / 主要风险 / 构筑提示 / 查验选项) comes from each side's player log (`{PLAYER_LOG_PATH}`, appended per turn with the full `examined_options`), which the judge reads after the match — not from per-turn traces, which are intentionally lean (`decision` / `key_reason` / `confidence` / `retrieval`). If a player log entry lacks a field, write `examined_options_missing` instead of reconstructing.
 - `玩家最终陈述` must come from player-submitted `post_draft_review` / `final_draft_review` after all six picks are locked. If it is missing, write `final_draft_review_missing` instead of synthesizing win condition, risks, or builds from judge-side reasoning.
 - Keep audit detail out of the human report. Fields such as `construct_direction`, `why_now`, candidate shortlists, `missing_required_capabilities`, and `adjudication` details belong in `.decision-log.md`.
 - Human reports must use Chinese concept summaries, not raw runtime ids. Do not print underscore-heavy labels such as map hook ids, failure ids, or build ids in the report.
@@ -35,6 +36,8 @@ For each ban:
 
 - `Brawler`: player-submitted report summary; two or three priority factors; one risk summary.
 
+Optionally (when the player recorded the audit inventory in its player log's ban entry), show the ban hand's `examined_options`（查验选项）: every candidate examined during the ban turn, why each was examined, and the verdict. If present, render it as a compact list; if missing, write `examined_options_missing` instead of reconstructing.
+
 ### 红方禁用
 
 Same shape as 蓝方禁用.
@@ -55,11 +58,12 @@ Use one subsection per pick turn:
 Each subsection must include:
 
 - Visible state: own picks, enemy picks, unavailable pool.
-- Player submitted `report_summary`.
+- Player submitted `report_summary`（from the player log per-turn entry）.
 - Player submitted `priority_factors`.
 - Player submitted `risk_summary`.
 - Player submitted `build_summary`.
-- Rejected options and the player-submitted reason, if present.
+- Player submitted `examined_options` (查验选项, from the player log): for each option examined this hand, its `why_examined`（为什么查它）, `evidence_used`（评判证据）, `verdict`（selected/rejected/deferred）and one-line `verdict_reason`, in the player's recorded ranking order. This is the decision-optimization surface: it shows the examined set and why each option was looked at, not just the final pick. If the player did not record `examined_options` in the log, write `examined_options_missing` instead of reconstructing the list.
+- Rejected options and the player-submitted reason, if present (derivable from `examined_options` with `verdict: rejected`).
 
 ## 玩家最终陈述
 

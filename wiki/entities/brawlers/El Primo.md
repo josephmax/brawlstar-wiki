@@ -219,7 +219,7 @@ bp_brawler_profile:
       mitigation: "提前定义墙体状态计划"
       bp_use: "terrain_state_plan_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Squeak", "Sprout", "Tick", "Grom", "Piper"]
       direction: "subject_favored"
       source: "[[sources/PLP-El-Primo|PLP-El-Primo]]"
@@ -242,7 +242,7 @@ bp_brawler_profile:
       fails_when: "资源已交，目标孤立，或 Primo 只需一次摔人/进球窗口"
       bp_use: "must_avoid_or_enemy_response_prediction"
     - target: ["Bull", "Darryl", "Frank"]
-      direction: "volatile"
+      direction: "target_favored"
       source: "[[sources/Fandom-El-Primo|Fandom-El-Primo]]"
       mechanism: "近战互打取决于站位、弹药、Super/ Suplex 时机和是否吃满对方爆发"
       active_when: "Primo 能用射程边缘、Super 击退或 Suplex 打断关键攻击"

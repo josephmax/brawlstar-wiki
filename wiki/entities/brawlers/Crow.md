@@ -254,7 +254,7 @@ bp_brawler_profile:
       mitigation: "add wallbreak, splash, or a teammate that clears bodies before relying on poison pressure"
       bp_use: must_answer_summons_or_throwers
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Byron"
         - "Pam"

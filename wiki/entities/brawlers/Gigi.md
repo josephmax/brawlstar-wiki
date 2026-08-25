@@ -214,7 +214,7 @@ bp_brawler_profile:
       mitigation: "avoid early pick into unshown anti-aggro; pair with slow, chip, or anti-tank"
       bp_use: avoid_first_pick_or_require_team_damage
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Mr. P"
         - "Jessie"

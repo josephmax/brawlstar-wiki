@@ -15,8 +15,10 @@ Output: `brawlstar.environment_signal_pickrate.v1` — per-map use/win rates plu
 match-weighted global aggregate, as the pick-rate half of the BP environment signal.
 The ban-rate half comes from monthly Liquipedia aggregation (aggregate_environment_signal.py).
 
-Policy: descriptive draft signal. runtime_consumption stays forbidden until a separate
-reviewed promotion into the compiler's pickrate slot. Tier generation is forbidden.
+Archive: write to `wiki/environment/pickrate.sqlite3` via `--db` (SQLite row storage,
+persistent knowledge-base layer); the slot-decision compile folds it into the
+runtime_bp_index via the `wiki/environment/current.json` pointer. `--output` writes a
+JSON export for review. Tier generation is forbidden.
 """
 
 from __future__ import annotations
@@ -28,6 +30,8 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+
+import _environment_sqlite as envdb
 from typing import Any
 
 GCS_BASE = "https://storage.googleapis.com/brawlanalyzer-public"
@@ -166,7 +170,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repo", default=str(Path(__file__).resolve().parents[3]))
     parser.add_argument("--user-agent", default=DEFAULT_UA)
     parser.add_argument("--tier", default="l1", choices=["l1", "m1", "default"], help="pl-l1 (Legendary+), pl-m1 (Mythic+), or default (Diamond+).")
-    parser.add_argument("--output", default="", help="Write JSON to this path.")
+    parser.add_argument("--output", default="", help="Write JSON to this path (optional export).")
+    parser.add_argument("--db", default="", help="Write the pickrate tables into this .sqlite3 (row/column storage).")
     return parser.parse_args()
 
 
@@ -180,6 +185,9 @@ def main() -> int:
     canonical = canonical_names(Path(args.repo))
     signal = build_signal(pickrate, brawlers, canonical)
     text = json.dumps(signal, ensure_ascii=False, indent=2) + "\n"
+    if args.db:
+        envdb.write_pickrate(Path(args.db), signal)
+        print(f"WROTE DB {args.db}")
     if args.output:
         output_path = Path(args.output)
         output_path.parent.mkdir(parents=True, exist_ok=True)

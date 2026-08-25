@@ -271,35 +271,42 @@ bp_brawler_profile:
       mitigation: 把普通补给只按伤害/最大生命增益结算；只有明确追踪到 Ruffs Hypercharge 时才预算一次队友 Hypercharge 转移
       bp_use: resource_tracking.ruffs_hypercharge_transfer
 
-  conditional_matchup_seeds:
-    - target: Cordelius_or_Gigi_or_Lola_or_Meg
+  conditional_matchups:
+    - target: ["Cordelius", "Gigi", "Lola", "Meg"]
       direction: subject_favored
       source: "[[sources/PLP-Ruffs|PLP-Ruffs]]"
       mechanism: 长射程弹墙、沙包挡线和补给 buff 可以让队友/自己在中长距离换血中压过这些需要接近或站位输出的目标
       active_when: 地图有墙角或长线让 Ruffs 安全支援，目标不能直接越过沙包碰到 Ruffs
       fails_when: Cordelius/高机动从草墙直接隔离，或 Lola/Meg 在队友保护下先逼退 Ruffs
       bp_use: support_lane_response_not_unconditional_counter
-    - target: Darryl_or_Shelly_or_R-T_or_Maisie
+    - target: ["Darryl", "Shelly", "R-T", "Maisie"]
       direction: subject_favored
       source: "[[sources/PLP-Ruffs|PLP-Ruffs]]"
       mechanism: 补给提高队友生存和伤害，Supply Drop 击退/开墙可打断直线进场或掩体站位
       active_when: 敌方需要穿过可见 route，Ruffs 队友能利用 buff 集火
       fails_when: 目标有多路线近身、穿透/范围清沙包，或 Ruffs 队伍缺实际 damage follow-up
       bp_use: team_buffed_anti_body_response
-    - target: Barley_or_Larry_and_Lawrie_or_Sandy_or_Nita
+    - target: ["Barley", "Larry & Lawrie", "Sandy", "Nita"]
       direction: target_favored
       source: "[[sources/PLP-Ruffs|PLP-Ruffs]]"
       mechanism: 投掷、沙暴/草控、召唤物和范围压力可以绕过沙包，消耗低血 Ruffs 并阻止队友安全拾取补给
       active_when: 墙体/草丛保护这些资源，Ruffs 没有 Air Superiority 清墙或队友先清资源
       fails_when: 关键墙被开，召唤物被清，Ruffs 只负责后排 buff 而不站危险点
       bp_use: must_answer_wall_or_spawnable_before_ruffs
-    - target: Damian_or_Frank_or_Rosa_or_Ollie
+    - target: ["Damian", "Frank", "Rosa", "Ollie"]
       direction: target_favored
       source: "[[sources/PLP-Ruffs|PLP-Ruffs]]"
       mechanism: 高血量、控制或强目标身体能压缩 Ruffs 的低血站位，并让补给包节奏来不及改变第一波接触
       active_when: 模式目标要求近距离站点/推进，敌方能在沙包被绕开或清掉后开团
       fails_when: Ruffs 提前 buff 反坦队友，Air Superiority 打开路线并保持远程集火
       bp_use: avoid_support_without_body_answer
+    - target: ["Larry & Lawrie"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Ruffs|PLP-Ruffs]]"
+      mechanism: "Larry & Lawrie 的越墙双段投掷可绕过 Take Cover 沙包压制低血 Ruffs，Lawrie 召唤物持续搜草/追打并阻止队友安全拾取补给。"
+      active_when: "墙体或口袋保护 Larry，Lawrie 能存活并追打 Ruffs，Ruffs 缺 Air Superiority 开墙或队友无法先清投掷口袋。"
+      fails_when: "Ruffs 用 Air Superiority 打开口袋墙，队友清掉 Lawrie 并压制 Larry，或 Ruffs 只做后排 buff 不站危险点让投掷无法接触。"
+      bp_use: "must_answer_wall_or_spawnable_before_ruffs"
 
   slot_notes:
     slot_1: 可以在队友/地图职责明确会用到 buff、开墙或弹墙支援时先手；不要在缺目标核心时裸选。

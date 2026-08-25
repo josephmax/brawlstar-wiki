@@ -25,9 +25,11 @@ The primary decision audit section must be `decision_audit_narrative`: Chinese c
 - Pick turns: "后手/先手 X 楼根据已知的 bans、已选英雄和完整不可用池，针对性地查询了某类事实窗口，并用 `exclude-id` / `relation-target` 表达可见状态；召回 N 个候选 / K KB；在候选中考虑地图职责、关系边、失败模式、配装要求和 strategy_bias 后，最后选出了 A 或 A+B。"
 - Final draft: "6 个位置都选出完毕后，红/蓝方根据已知完整阵容，确认获胜条件和打法为 X，主要风险为 Y，对应出装为 Z。"
 
+Every turn's narrative must also enumerate `examined_options` from the player log: 本手查验了哪些选项、每个选项为什么进入候选池（`why_examined`）、被什么证据评判（`evidence_used`）、最终 verdict 与一句理由，以及查验顺序（ranking）。This is the decision-optimization surface: it shows the examined set and the reason each option was looked at, not just the final choice. The full list lives in the player log — per-turn traces intentionally do not carry it. If a player did not record `examined_options` in the log, mark the audit as incomplete instead of reconstructing the list.
+
 Tables may follow as evidence appendix, but the audit must not rely on truncated return snippets. Include every turn's query focus, recalled candidate count, `fragments_returned`, `payload_kb`, and a short summary of recalled entity/relation information.
 
-The narrative must be sourced from player-submitted `turn_decision_trace` and `post_draft_review` / `final_draft_review`, not reconstructed by the judge after the fact. If a player did not submit those fields, mark the audit as incomplete instead of filling the gap.
+The narrative must be sourced from player-submitted lean per-turn traces (`decision` + `key_reason` + `confidence` + `retrieval`) plus each side's **player log** (`{PLAYER_LOG_PATH}`, appended every turn with the full `examined_options` and retrieval audit) and `post_draft_review` / `final_draft_review`, not reconstructed by the judge after the fact. The judge reads both player logs after the match and assembles the verbose `.decision-log.md` from them. If a player did not submit those fields or the log is missing, mark the audit as incomplete (`player_log_missing`) instead of filling the gap.
 
 ## Required Inputs
 
@@ -70,10 +72,11 @@ For every simulated match, create exactly two match-scoped player subagents befo
 3. Spawn the match-scoped blue and red player subagents with fixed `strategy_bias`, the runtime-index path, and default effort policy.
 4. Run `simultaneous_ban_phase` by prompting both match-scoped player subagents in parallel without revealing the other side's bans.
 5. Run pick turns in strict order on the same two player subagents: blue slot 1, red slots 2-3, blue slots 4-5, red slot 6.
-6. Run `post_draft_review` on the same two player subagents after all six picks are locked. This cannot change picks; it only confirms full-draft win condition, play pattern, risks, mitigation, and role/build plan.
-7. Write the match report using the human Markdown template by copying, normalizing, and lightly formatting player-submitted conclusions. Do not add independent BP analysis.
-8. Close both match-scoped player subagents and record closure/failure in metrics when available.
-9. Update `wiki/index.md` and `wiki/log.md` when reports are durable wiki artifacts.
+6. Run `post_draft_review` on the same two player subagents after all six picks are locked. This cannot change picks; it confirms full-draft win condition, play pattern, risks, mitigation, and role/build plan. Each side also appends its final review to its own player log.
+7. Read both player logs (`{PLAYER_LOG_PATH}` for blue and red) — the full per-turn `examined_options`, verdicts, retrieval audit, and final review recorded there.
+8. Write the match report using the human Markdown template by copying, normalizing, and lightly formatting player-submitted conclusions. Assemble the verbose `.decision-log.md` from the player logs. Do not add independent BP analysis.
+9. Close both match-scoped player subagents and record closure/failure in metrics when available.
+10. Update `wiki/index.md` and `wiki/log.md` when reports are durable wiki artifacts.
 
 ## simultaneous_ban_phase
 
@@ -98,15 +101,17 @@ Use the unique set only for later pick availability. Preserve duplicate bans in 
 
 ## Turn Prompt Contract
 
+**Use the canonical template in `references/turn-prompt-template.md` verbatim for every player-agent prompt.** Fill only the 对局信息 (match-info) block; keep the 要求 and 输出契约 sections fixed. Do not add strategy hints, query suggestions, opponent analysis, or reasoning prompts to the template.
+
+The input layer to the player is exactly one thing: match information. Everything else — environment evidence, mechanism facts, skill references — is retrieved by `brawl-stars-bp-slot-decision` itself. Judge-added reasoning duplicates the skill's job and is forbidden.
+
 Every player-agent prompt must include:
 
 - map, mode, side, global slot, current picks, own bans, enemy bans, unavailable pool
 - `strategy_bias`; style_bias_assigned_at_spawn, then left fixed for that player. The judge must choose this before the player sees the prompt.
 - `decision_effort_policy`: normal runtime effort has only `low=24` and `high=32`. The judge provides the slot baseline and the fixed `strategy_bias`; the player chooses the final effort or explicit per-hand `--limit` while keeping fact tools neutral.
 - any user-provided environment/meta context (high-rank pickrate data if supplied); otherwise the player relies on its own BP skill process and marks the environment slot as empty
-- the fixed output schema for this exact turn
-- required `turn_decision_trace`: decision style, map problem, visible state, query intent, retrieval audit, candidate comparison, selected reason, rejected options, and risk/build implication
-- metrics request: token usage only if visible; otherwise wall-clock time and failure state if available. Do not force null token tables into the final report.
+- the fixed output schema from the canonical template (精简 trace: decision / key_reason / confidence / retrieval). 决策阶段每手只返回选中项与关键理由；详细思考过程（examined_options 全量、查验排序、证据、verdict）追加写入选手日志 `{PLAYER_LOG_PATH}`，裁判整局结束后读取双方日志生成详细 decision log。
 
 Do not ask red slot 2-3 before blue slot 1 is known. Do not ask blue slot 4-5 before red slot 2-3 is known. Do not ask red slot 6 before blue slot 4-5 is known.
 
@@ -140,6 +145,10 @@ After red slot 6 returns, ask both sides for a `final_draft_review` using the co
 - `cannot_change_picks: true`
 
 This review cannot change picks, bans, or previous decisions. If a review is missing, the final report and decision log must say `final_draft_review_missing`; do not synthesize it from judge-side analysis.
+
+## Player Log Contract
+
+Each player gets a side-local log file at spawn (`{PLAYER_LOG_PATH}`, e.g. `outputs/bp-simulations/match-<map>.blue.player-log.md` / `...red.player-log.md`), passed in every 对局信息 block. The player appends a section per own turn (ban / slot1 / slot2_3 / slot4_5 / slot6) with `decision`, `key_reason`, `side_asymmetric_ban_strategy` (ban only), `confidence`, `retrieval`, and the full `examined_options` list — every option seriously inspected with `why_examined`, `evidence_used`, `verdict`, `verdict_reason`, and the ranking order in which they were considered — plus the final review. The player log is the only place the full thinking process is recorded: it is written every turn (append, never overwrite), and the judge must not ask the player to repeat it in chat. After the match the judge reads both logs and assembles the verbose `.decision-log.md`. If a log is missing or a field is absent, mark `player_log_missing` / `examined_options_missing` instead of reconstructing.
 
 ## Strategy Bias Assignment
 

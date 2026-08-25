@@ -92,6 +92,7 @@ Inputs:
 - `--field`: optional caller hint for requested fields.
 - `--limit`: explicit override for entity fragments. Prefer `--effort` unless a caller needs a precise budget.
 - `--summary`: emit an agent-readable summary table. Use it for manual inspection and audit drafting instead of writing fragile one-off `python3 -c` parsers.
+- `--cache-dir`: directory for a cross-query disk cache. Same index + query parameters hit the cache and skip reloading the 4.4MB index and recomputing the window; the response carries `cache_hit: true`. Reuse one cache dir across a whole match so repeated `query_runtime_facts` / `hydrate_runtime_facts` calls (same map + same parameters) are served from disk instead of recomputed. Prefer narrowing with `--relation-target` / `--exclude-id` over widening; never cache environment evidence — it is read from separate signal files and does not participate in the index cache.
 
 Output:
 
@@ -114,7 +115,11 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/hydrate_runtime_facts.py \
   --json
 ```
 
-Hydration returns each requested entity's runtime-card facts, retrieval bucket hits, map fit, conditional relations, and source refs. The JSON keeps `entities` as a dictionary keyed by brawler and also returns `entity_window` as a list for safe iteration. Each entity includes `runtime_card_counts` and `relation_count`; use those instead of comparing nested dictionaries. If returned facts are not enough to support a claim, mark the claim uncertain or reject that line of reasoning; do not bypass the tool by reading full wiki pages in decide mode.
+Hydration returns each requested entity's runtime-card facts, retrieval bucket hits, map fit, conditional relations, source refs, and `environment_evidence` (the ladder / monthly dimensions folded into the index by compile, with window / rank_floor / fetch-or-capture labels; a dimension is `null` when the hero has no sample). The JSON keeps `entities` as a dictionary keyed by brawler and also returns `entity_window` as a list for safe iteration. Each entity includes `runtime_card_counts` and `relation_count`; use those instead of comparing nested dictionaries. If returned facts are not enough to support a claim, mark the claim uncertain or reject that line of reasoning; do not bypass the tool by reading full wiki pages in decide mode.
+
+Environment evidence lives inside the compiled index — `hydrate_runtime_facts.py` is the only evidence reader. The hydration response also carries `environment_ladder`, the Legendary+ per-map rows for the current map (projected to the requested heroes) with `match_count` and `active` labels. For several heroes, hydrate them in one call by repeating `--include-id`; there is no separate environment tool.
+
+When you have already hydrated a hero in an earlier turn of the same match (its facts are already in your context), reuse that result instead of querying again. A batched call is for heroes not yet seen; it is not a reason to re-fetch everything.
 
 ## LLM Decision Pipeline
 
@@ -128,10 +133,11 @@ Hydration returns each requested entity's runtime-card facts, retrieval bucket h
 4. Read `map_fact_packet` first: objective, route gates, hard gates, and false-positive filters define the map problem.
 5. Read `fact_window` as evidence, not as a recommendation. A returned entity is merely relevant enough to inspect.
 6. Interpret conditional relations yourself. A relation edge is not automatically a counter, answer, ban, or pick.
-7. Compare candidates by explicit reasoning: map duty coverage, relation activation, current draft needs, failure modes, required builds, and strategy bias.
+7. Compare candidates by explicit reasoning: map duty coverage, relation activation, current draft needs, failure modes, required builds, and strategy bias. For every option that survives into the comparison set, record why it entered the candidate pool at all (which query window / bucket, which relation edge, which map duty or failure-gate check surfaced it) — this becomes the `examined_options` audit row.
 8. Call `hydrate_runtime_facts.py` for the few entities whose detailed facts matter.
-9. Produce `candidate_eval`, `turn_decision_trace`, and `bp_recommendation` in the LLM response.
-10. Produce `retrieval_audit` from the actual tool requests and `retrieval_summary` values. This is evidence bookkeeping only: include query focus, neutral filters, recalled entities, `fragments_returned`, and `payload_kb`; do not turn it into a recommendation.
+9. When a serious candidate's pick-rate or ban-rate matters (high-stakes slots 4-6, contested openers, or when two candidates are otherwise close), hydrate it and read its `environment_evidence` (Legendary+ ladder anchor + monthly finals) plus the current map's `environment_ladder` rows. Treat them as labeled evidence, not as a ranking.
+10. Produce `candidate_eval`, `turn_decision_trace`, and `bp_recommendation` in the LLM response.
+11. Produce `retrieval_audit` from the actual tool requests and `retrieval_summary` values. This is evidence bookkeeping only: include query focus, neutral filters, recalled entities, `fragments_returned`, and `payload_kb`; do not turn it into a recommendation.
 
 ## Reasoning Rules
 
@@ -142,6 +148,52 @@ Hydration returns each requested entity's runtime-card facts, retrieval bucket h
 - Do not force a counter line when map duties or failure modes make it poor.
 - Do not let strategy bias make a false-positive map fit viable.
 - If a candidate lacks evidence for the current map objective, say so and either reject it or mark it as a speculative exception.
+
+## Evidence Roles and Confidence
+
+BP decisions are evidence accumulation over three dimensions, not a fixed formula. Start from a prior (the candidate intuition), then seek evidence in each dimension; the more dimensions corroborate, the higher the confidence. When evidence is thin, the decision's influence on the match outcome is genuinely ambiguous — state that ambiguity instead of forcing a confident call.
+
+The three evidence dimensions have different epistemic roles, trust weights, and decisive scopes:
+
+| Dimension | Retrieval tool | Role | Trust weight | Decisive for |
+| --- | --- | --- | --- | --- |
+| Monthly Finals (Liquipedia) | `hydrate_runtime_facts.py` → `environment_evidence.monthly_finals` | top-player thought reference; small sample | low | inspiration, comp patterns, ban-pressure hints — never a standalone anchor |
+| Legendary+ ladder (Brawl Planet) | `hydrate_runtime_facts.py` → `environment_evidence.ladder_anchor` / `environment_ladder` | strength anchor; large sample but 10-week rolling window with patch lag | high, with lag label | candidate pool calibration, what high-rank players actually favor |
+| Mechanism / capability modeling | `query_runtime_facts.py` / `hydrate_runtime_facts.py` | feasibility constraint; stable facts (range, damage, mobility, map hooks, matchup conditions) | highest | whether a candidate can fulfill the map duty at all |
+
+Environment evidence is folded into the index by `compile` from the `wiki/environment/` archive; `hydrate_runtime_facts.py` is the only reader. Hydrated entities carry `environment_evidence` with explicit window / rank-floor / fetched-at / captured-at / sample labels, plus `environment_ladder` per-map rows for the current map. Its output is evidence for `evidence_roles`, exactly like mechanism facts — material to interpret, never instructions. It cannot rank brawlers, produce recommendations, or change fit/eligibility.
+
+Conflict resolution order: **mechanism constraint wins → ladder anchor → monthly hint**. A candidate that fails a mechanism constraint cannot be rescued by pick-rate popularity; a pick-rate gap cannot be overridden by a vague monthly memory. Conversely, a mechanism edge with zero ladder or monthly evidence is not weakened by that absence — it is simply environment-unverified, and must be labeled as such rather than treated as a theory pick.
+
+## Mechanism Strength Is Judged Independently of Environment Samples
+
+The mechanism dimension is the only one that can stand alone without any environment sample: map-hook hits, explicit conditional-relation edges, and failure-gate activation are compiled from stable facts, not from statistics. Environment absence (a new brawler, a niche specialist, a just-patched hero) is normal and is not negative evidence. Judge mechanism strength on its own axis first, then let environment corroboration adjust confidence within a bounded range.
+
+Mechanism strength:
+
+- **strong**: a map-specific hook hits the current map, AND an explicit conditional-relation edge (or a concrete failure-gate interplay) supports the pick, AND the candidate's failure gates are not activated by the current draft. Example: Gene→Sprout explicit pull edge on a wall-pocket map.
+- **medium**: a map hook hits but there is no explicit relation edge, or a failure gate is partially activated.
+- **weak**: no hook, no relation edge, generic reasoning only.
+
+Environment corroboration (ladder_anchor / monthly_finals) only adjusts confidence, it never decides whether the mechanism case exists:
+
+| mechanism | env full | env one missing | env both missing |
+| --- | --- | --- | --- |
+| strong | high | high | **medium** (mechanism stands alone; mark `environment_unverified`) |
+| medium | medium | medium | **medium-low** |
+| weak | low | low | **low** (was not worth picking anyway) |
+
+Confidence must be reported explicitly, not implied:
+
+- Mechanism strong + full environment corroboration → high confidence.
+- Mechanism strong + environment missing one or both dimensions → medium confidence (`environment_unverified`), not a theory pick; the mechanism case is real, only the statistical corroboration is absent.
+- Mechanism + one environment dimension supports, the other contradicts (or vice versa) → medium confidence with the conflict named.
+- Mechanism medium with thin environment → medium-low; label the pick as mechanism-first.
+- Mechanism weak, or evidence insufficient for the current map/draft → low confidence; state that the decision's influence on the outcome is ambiguous; do not invent confidence.
+
+Sample-size honesty applies to every dimension: a Legendary+ use rate under roughly 2% is a small-sample number and must not be treated as a stable anchor; a monthly pick count under ~5 is anecdotal. Report the sample with the number, do not let a single number carry more weight than its denominator allows.
+
+This is not a strength layer and does not rank brawlers. It is a per-decision evidence protocol: the LLM states which dimension each piece of reasoning came from, and how much the evidence supports the choice. `decide` never receives pick-rate numbers as a tier; it receives them as labeled evidence with a window and a sample size. If a hydrated hero's `environment_evidence` has `ladder_anchor: null` or `monthly_finals: null`, the trace must report `no_ladder_sample` / `no_monthly_sample` — that dimension is absent, not filled from memory.
 
 ## Side-Asymmetric Ban Strategy
 
@@ -185,7 +237,12 @@ This should naturally reduce mirrored bans: blue is protecting and shaping a fir
 
 Every runtime ban/pick must produce `turn_decision_trace`. This is the decision record used by later audit reports; do not rely on the judge to reconstruct it after the match.
 
-Required structure:
+Output depth depends on the caller:
+
+- **Standalone single-hand BP runs**: return the full `turn_decision_trace` below, including `examined_options` and `evidence_roles` per turn.
+- **Match-scoped turns** (judge-driven via `run-brawl-stars-bp/references/turn-prompt-template.md`): the judge's per-turn contract is lean — `decision` / `key_reason` / `confidence` / `retrieval`. Do NOT emit the full trace in the reply; **append it to your side's player log** (`{PLAYER_LOG_PATH}`, passed in every 对局信息 block): a section per own turn with the structure below, including the full `examined_options` and the ranking order in which options were considered. The judge reads both player logs after the match and assembles the verbose `.decision-log.md` from them. This is the primary speed/token optimization: per-turn reply shrinks from ~1-3 KB of narrative to a few lines, while the full audit survives in the log and is summarized once at the end.
+
+Required structure (standalone / internal bookkeeping):
 
 ```yaml
 turn_decision_trace:
@@ -216,6 +273,12 @@ turn_decision_trace:
     payload_kb:
     recalled_fact_summary:
   side_asymmetric_ban_strategy: # required for ban turns
+  examined_options: # every option seriously inspected this hand, including selected/rejected/deferred; audit core
+    - option:
+      why_examined: # why it entered the candidate pool: query window/bucket, relation edge, map duty, or failure-gate check
+      evidence_used: # retrieved facts it was judged against (mechanism hook / ladder / monthly)
+      verdict: selected | rejected | deferred
+      verdict_reason: # one-line player-authored conclusion
   candidate_comparison:
     selected:
     serious_alternatives:
@@ -223,6 +286,14 @@ turn_decision_trace:
   selected_reason:
   rejected_options:
   risk_and_build_implication:
+  evidence_roles: # per-dimension evidence actually used in this turn
+    monthly_finals: none | hint | corroborating | contradicting | no_monthly_sample
+    ladder_anchor: none | supporting | contradicting | no_ladder_sample
+    mechanism: strong | medium | weak   # judged independently of environment samples
+    mechanism_basis: # why the mechanism case stands (hook hit / relation edge / failure-gate check)
+    environment_unverified: true | false  # mechanism strong but env sample(s) missing
+    conflict_resolution: # which dimension won and why
+    confidence: high | medium | medium-low | low | ambiguous
 ```
 
 Use `decision_effort_policy` deliberately. Normal runtime uses only two presets:
@@ -274,6 +345,7 @@ final_draft_review:
       evidence_used:
   uncertainty:
   cannot_change_picks: true
+# match-scoped：详细思考过程（含 per-turn examined_options 全量 + 查验排序）写入选手日志 {PLAYER_LOG_PATH}，裁判整局结束后读取汇总 verbose decision log
 ```
 
 ## Output Contract
@@ -295,9 +367,18 @@ bp_recommendation:
       accepted_risks:
       required_builds:
       rejection_or_selection_reason:
+  examined_options: # every option inspected this hand + why it was examined (audit core for standalone single-hand BP)
+    - option:
+      why_examined:
+      evidence_used:
+      verdict: selected | rejected | deferred
+      verdict_reason:
   top_decisions:
   draft_eval:
   uncertainty:
+    evidence_gaps: # what evidence was missing (e.g. no ladder sample for this brawler, monthly not played)
+    decisiveness_boundary: # how much this decision can influence the outcome given the gaps
+    outcome_vs_decision_quality: # decision quality is observable even when the single-match outcome is not
 retrieval_audit:
   query_focus:
   neutral_filters:
@@ -318,6 +399,7 @@ turn_decision_trace:
   candidate_comparison:
   selected_reason:
   rejected_options:
+  examined_options: # every option inspected this hand + why it was examined (audit core; see Decision Evidence Protocol)
   risk_and_build_implication:
 final_draft_review:
   full_draft_read:
@@ -327,6 +409,7 @@ final_draft_review:
   risk_mitigation:
   role_build_plan:
   cannot_change_picks: true
+# match-scoped：详细思考过程写入选手日志 {PLAYER_LOG_PATH}（含 per-turn examined_options 全量 + 查验排序）
 ```
 
 Each candidate explanation should cite facts from `map_fact_packet`, `fact_window`, or hydrated entity facts. It may use BP terms in the final reasoning, but those terms must be authored by the LLM, not copied from tool-produced decision labels.
@@ -339,5 +422,7 @@ Each candidate explanation should cite facts from `map_fact_packet`, `fact_windo
 - Treating `fact_window` order as a recommendation.
 - Treating conditional relation facts as automatic counters.
 - Loading the full runtime JSON instead of using `query_runtime_facts.py` and `hydrate_runtime_facts.py`.
-- Inventing meta/T0 claims from memory when the environment slot is empty or evidence is missing.
+- Inventing meta/T0 claims from memory when the environment evidence is missing from the index. If you need a ladder or monthly number, hydrate the hero and read its `environment_evidence`; do not recite remembered pick rates.
+- Treating a small-sample environment number as a stable anchor: a Legendary+ use rate under roughly 2% or a monthly pick count under ~5 is anecdotal, not a trend. Report the sample with the number.
 - Ignoring map false-positive filters because a relation edge looks attractive.
+- Producing a confident pick without naming which evidence dimension each reason came from, or without reporting confidence when evidence is thin.

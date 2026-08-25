@@ -226,7 +226,7 @@ bp_brawler_profile:
       mitigation: "把隐身用于接近或撤退，不把持球隐身当作完全安全"
       bp_use: "mode_fit_false_positive"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Piper", "Colt", "Bonnie", "Mandy", "Dynamike", "Mr. P"]
       direction: "subject_favored"
       source: "[[sources/PLP-Leon|PLP-Leon]]"
@@ -248,14 +248,6 @@ bp_brawler_profile:
       active_when: "他们能守关键目标或持续暴露 Leon 路线"
       fails_when: "技能已交、目标孤立且 Leon 只需单次击杀/偷球"
       bp_use: "must_avoid / enemy_response_prediction"
-    - target: ["Gem carrier", "High bounty target", "Ball carrier"]
-      direction: "volatile"
-      source: "[[sources/Fandom-Leon|Fandom-Leon]]"
-      mechanism: "Leon 可隐身接近高价值目标或自己带资源撤退，但目标交互会暴露位置"
-      active_when: "敌方探点不足且 Leon 有撤退路线"
-      fails_when: "拾取/持球暴露后敌方有控制、召唤物或范围伤害覆盖"
-      bp_use: "objective-specific chase or escape edge"
-
   slot_notes:
     slot_1: "只有在地图极奖励草/信息差且主要反制被 ban 时才考虑；否则容易被后手探测和控制压低价值"
     slot_2_3: "可作为半计划英雄，逼敌方支付探草/反隐身税，但队伍要补稳定目标职责"

@@ -234,7 +234,7 @@ bp_brawler_profile:
       mitigation: "优先把它用于固定地形转换，或在目标被墙角、控制和 objective 路线限制时才计算命中"
       bp_use: "projectile_and_wallbreak_reliability_gate"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Sprout", "Grom", "Dynamike", "Squeak"]
       direction: "subject_favored"
       source: "[[sources/PLP-Gray|PLP-Gray]]"
@@ -256,14 +256,6 @@ bp_brawler_profile:
       active_when: "这些英雄能守门、挡弹、追击 Gray 或让他无法保持满血减伤"
       fails_when: "地图窄口让 Walking Cane 命中更稳定，或他们缺队友保护被拉出后可被秒"
       bp_use: "enemy_response_prediction / ban_reason"
-    - target: ["Gem carrier", "Ball carrier"]
-      direction: "subject_favored"
-      source: "[[sources/Fandom-Gray|Fandom-Gray]]"
-      mechanism: "Walking Cane 可拉敌方持球者或宝石持有者，改变目标位置"
-      active_when: "目标靠墙/入口/球门前移动且队友能跟伤害"
-      fails_when: "目标有位移、召唤物挡线，或拉人后我方阵型无法承接"
-      bp_use: "objective-specific response edge"
-
   slot_notes:
     slot_1: "不宜无脑一抢；只有地图明确需要路线支援且我方能围绕传送门建队时才考虑"
     slot_2_3: "可作为 plan-building 支援，配一个能吃门收益的拆库/站圈/刺杀队友"

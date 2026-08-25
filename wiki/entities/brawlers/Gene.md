@@ -230,35 +230,49 @@ bp_brawler_profile:
       mitigation: Lamp Blowout、队友 peel、选择接近路线少的地图
       bp_use: build_requirement_or_avoid
 
-  conditional_matchup_seeds:
-    - target: Fang_or_Buzz_or_Carl
+  conditional_matchups:
+    - target: ["Fang", "Buzz", "Carl"]
       direction: subject_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: Gene 可用拉人、推开或队友集火打断进场节奏
       active_when: Gene 有队友 follow-up，敌方进场路径可预判
       fails_when: 目标能绕侧路贴脸，或 Gene 没有 Lamp Blowout/保护
       bp_use: response_pick_candidate_against_linear_engage
-    - target: Barley_or_Sprout_or_Squeak_or_Rico
+    - target: ["Barley", "Sprout", "Squeak", "Rico"]
       direction: subject_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: Magic Hand 穿墙威胁会把墙后控场/弹墙位从安全口袋拉成可集火目标
       active_when: 地图墙体给 Gene 拉手机会，且己方有爆发或控制接拉
       fails_when: 目标有召唤物挡手、口袋过深、或 Gene 被长线压到无法攒 Super
       bp_use: wall_pocket_answer_candidate
-    - target: Piper_or_Mandy_or_Brock
+    - target: ["Piper", "Mandy", "Brock"]
       direction: target_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: 极长射程在 Gene 拉人前消耗或逼退站位
       active_when: 地图长线开阔，Gene 缺掩体和队友压制
       fails_when: Gene 可借墙体、视野或队友压力安全攒 Super
       bp_use: avoid_first_pick_on_pure_long_range_maps
-    - target: Mico_or_Stu_or_Eve_or_Mr_P
+    - target: ["Mico", "Stu", "Eve", "Mr. P"]
       direction: target_favored
       source: "[[sources/PLP-Gene|PLP-Gene]]"
       mechanism: 跳跃/机动/水域角度或 porter 身体会让 Gene 的慢弹道和单次拉手更难稳定命中核心目标
       active_when: 地图给目标侧路、跳墙、隔水或召唤物挡手，Gene 无法用队友先清资源
       fails_when: 路线被视野锁住，或 Gene 保留 Lamp Blowout / Magic Hand 等关键资源等真正进场
       bp_use: must_answer_mobility_or_body_block_before_gene
+    - target: ["Bea"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Gene|PLP-Gene]]"
+      mechanism: "Bea 的 10 格单发和 Supercharged 高伤能在 Gene 攒出 Magic Hand 前持续压制低血中距离控制位，Honeycomb 30% 盾提高其长线对枪容错；Gene 慢弹道和 low burst 难以消耗开阔线上的 Bea"
+      active_when: "开阔长线图（Bounty/Knockout），Gene 无法借墙/视野安全攒 Super，Bea 有队友挡住侧路"
+      fails_when: "Gene 借墙和 Vision Gear 安全攒出 Super，Magic Hand 穿墙拉中 Bea 并由队友集火；或 Bea 单发 miss、被贴脸打断节奏"
+      bp_use: "avoid_first_pick_on_pure_long_range_maps"
+    - target: ["Emz"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Gene|PLP-Gene]]"
+      mechanism: "Gene 的分裂弹中长距离 poke 在 Emz 的 6.67 格喷雾带外消耗低机动控场位，Emz 无位移无法追回距离，Magic Hand 还能把站位靠前的 Emz 拉进队友集火"
+      active_when: "地图长线/墙边让 Gene 安全 poke，Emz 必须穿过 Gene 射程接近目标区，队友能接拉"
+      fails_when: "Emz 借草口/窄口贴脸进入喷雾带并用 Friendzoner 推开反打，或 Gene 被更长射程先压到无法攒 Super"
+      bp_use: "outrange_answer_to_spray_control"
 
   slot_notes:
     slot_1: 不宜在纯长线且敌方有多个自然长狙答案时裸先；可在 Bounty/Knockout 需要控制和支援时作为可延展先手。

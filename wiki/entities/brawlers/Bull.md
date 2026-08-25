@@ -216,7 +216,7 @@ bp_brawler_profile:
       mitigation: "从草/侧路起手，或配合队友控制让终点安全"
       bp_use: "candidate_eval.route_safety"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Sprout", "Grom", "Poco", "Gus"]
       direction: "subject_favored"
       source: "[[sources/PLP-Bull|PLP-Bull]]"
@@ -224,13 +224,6 @@ bp_brawler_profile:
       active_when: "地图提供接近路线，目标缺 hard peel，Bull 进场后能持续接触"
       fails_when: "墙口被控制覆盖、队友保护目标，或 Bull 被开阔线提前消耗"
       bp_use: "last_pick_route_punish"
-    - target: ["Buzz", "Buster", "Bibi", "Sam"]
-      direction: "volatile"
-      source: "[[sources/PLP-Bull|PLP-Bull]]"
-      mechanism: "Bull 的贴脸爆发能赢部分近身 body trade，但对方也可能用控制、屏障、位移或弹药状态反打"
-      active_when: "Bull 有先手草口/终点优势或目标资源已交"
-      fails_when: "对方保留 stun/screen/knockback 或多角度队友跟伤害"
-      bp_use: "close_body_trade_check"
     - target: ["Maisie", "Shelly", "Stu", "Charlie", "Colette", "Lou", "Otis", "Surge"]
       direction: "target_favored"
       source: "[[sources/PLP-Bull|PLP-Bull]]"
@@ -238,13 +231,13 @@ bp_brawler_profile:
       active_when: "这些资源能留给 Bull 的入场或 safe 终点"
       fails_when: "资源被 bait，Bull 从侧草进场，或目标被队友先压低"
       bp_use: "must_avoid_or_ban_reason_for_bull_plan"
-    - target: ["Heist safe", "Goal wall", "Zone entry"]
+    - target: ["Buzz", "Buster", "Bibi", "Sam"]
       direction: "subject_favored"
-      source: "[[sources/Fandom-Bull|Fandom-Bull]]"
-      mechanism: "Super 破墙和近身霰弹可直接转换目标压力"
-      active_when: "目标入口被墙/草保护且敌方无法立即控制 Bull"
-      fails_when: "目标已被远程 race 接管，或开墙帮助敌方多于我方"
-      bp_use: "objective_specific_route_edge"
+      source: "[[sources/PLP-Bull|PLP-Bull]]"
+      mechanism: "Bull 的贴脸爆发能赢部分近身 body trade，但对方也可能用控制、屏障、位移或弹药状态反打"
+      active_when: "Bull 有先手草口/终点优势或目标资源已交"
+      fails_when: "对方保留 stun/screen/knockback 或多角度队友跟伤害"
+      bp_use: "close_body_trade_check"
 
   slot_notes:
     slot_1: "只在 Heist/Brawl Ball 地图明确奖励入库或破门且主要反坦已被 ban 时考虑；否则早手容易被低成本反制"

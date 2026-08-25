@@ -262,6 +262,14 @@ bp_brawler_profile:
       fails_when: "路线完全开阔、8-Bit 满弹药且有控制队友，或 Cheat Cartridge 提供安全撤退锚点"
       bp_use: "avoid_body_or_contact_pressure_without_peel"
 
+    - target: ["Glowy"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-8-Bit|PLP-8-Bit]]"
+      mechanism: "8-Bit 的 10 格持续火力和 Damage Booster 增伤覆盖 Glowy 必须维持的牵线距离，而 Glowy 无破墙/隔墙手段清理炮台，低爆发也难拆高耐久本体"
+      active_when: "开阔 front-to-back 对局，Glowy 必须进入牵线范围维持视线，8-Bit 炮台存活且队友能保护炮台与本体"
+      fails_when: "敌方投掷/突进先清炮台或逼 8-Bit 转线，Glowy 在墙后保持牵线不被覆盖，或恐惧锥打断 8-Bit 输出窗口使队伍无法转化"
+      bp_use: "response_pick_candidate_against_los_dependent_support"
+
   slot_notes:
     slot_1: "只在 Heist 长线或可保护炮台的 Gem/Hot Zone 图早手；否则会暴露慢速和炮台清点弱点"
     slot_2_3: "适合围绕 Booster 建立队伍火力核心，再补探草、反投掷和 peel"

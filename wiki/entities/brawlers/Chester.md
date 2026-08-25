@@ -219,29 +219,29 @@ bp_brawler_profile:
       mitigation: "按当前 20% damage / 2.5x reload / 150 speed / 420 HPS 的 5 秒随机结果估算，并把 15 秒冷却后的下一次使用当独立资源；不写成确定开团能力"
       bp_use: build_rng_gate
 
-  conditional_matchup_seeds:
-    - target: Edgar_or_Mortis_or_Kit_or_Lily
+  conditional_matchups:
+    - target: ["Edgar", "Mortis", "Kit", "Lily"]
       direction: subject_favored
       source: "[[sources/PLP-Chester|PLP-Chester]] / [[sources/Fandom-Chester|Fandom-Chester]]"
       mechanism: "3/4 铃近身 burst 加 Jawbreaker/Candy Popper/Pop Rocks 可在刺客进场时反杀或打断第一波接触"
       active_when: "Chester 预热到高铃，保留 Super 或 Candy Beans，刺客必须进入正面近距离"
       fails_when: "刺客从侧草/墙后先手且 Chester 当前是低铃或错误 Super"
       bp_use: anti_assassin_if_sequence_ready
-    - target: Jacky_or_Frank_or_Pam_or_Sandy
+    - target: ["Jacky", "Frank", "Pam", "Sandy"]
       direction: subject_favored
       source: "[[sources/PLP-Chester|PLP-Chester]]"
       mechanism: "多铃爆发和随机 Super 控制可惩罚固定 objective body 或低机动支援站位"
       active_when: "目标必须守球路、热区、矿区入口且不能从远端白打 Chester"
       fails_when: "目标有队友长手/投掷支援，或 Frank/Jacky 先拿到控制窗口"
       bp_use: objective_body_response_with_burst_gate
-    - target: Piper_or_Belle_or_Angelo_or_Byron
+    - target: ["Piper", "Belle", "Angelo", "Byron"]
       direction: target_favored
       source: "[[sources/PLP-Chester|PLP-Chester]] / [[sources/Fandom-Chester|Fandom-Chester]]"
       mechanism: "极长线或稳定长手在 Chester 进入多铃爆发距离前压低血量，并让随机 Super 工具难以触发"
       active_when: "地图开放、缺墙草接近路线，Chester 队伍不能压缩距离"
       fails_when: "墙体/草线让 Chester 能预热后进入中近距离，或长手被队友先压退"
       bp_use: avoid_open_lane_into_multiple_snipers
-    - target: Charlie_or_Meg_or_Willow_or_Lola
+    - target: ["Charlie", "Meg", "Willow", "Lola"]
       direction: target_favored
       source: "[[sources/PLP-Chester|PLP-Chester]]"
       mechanism: "茧、机甲身体、控制接管、替身/双火力会打乱 Chester 的单体爆发目标和随机 Super 转化"

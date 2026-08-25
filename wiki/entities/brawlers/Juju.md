@@ -218,35 +218,28 @@ bp_brawler_profile:
       mitigation: "只有水域给出射角、slow route 或撤退价值才计入地图适配"
       bp_use: false_positive_filter.water_must_convert_objective
 
-  conditional_matchup_seeds:
-    - target: Jae_Yong_or_Poco_or_Berry
+  conditional_matchups:
+    - target: ["Jae-yong", "Poco", "Berry"]
       direction: subject_favored
       source: "[[sources/PLP-Juju|PLP-Juju]]"
       mechanism: "Juju 用投掷弧线、元素 slow/damage 和 Gris-Gris ammo tax 压低支援壳的固定站位"
       active_when: "支援目标必须站在矿区、热区、球路或 safe defender route"
       fails_when: "支援壳有强突进保护，或 Juju 的地形加成无法触达目标"
       bp_use: thrower_pressure_into_static_support
-    - target: Lola_or_Meg_or_R_T_or_Shelly_or_Spike
-      direction: volatile
-      source: "[[sources/PLP-Juju|PLP-Juju]]"
-      mechanism: "Juju 可用墙后投掷和召唤物压资源位，但这些目标的身体、替身、分体、近身爆发或 slow 也会反制她"
-      active_when: "地图给 Juju 墙袋/水/草角度，目标被迫守固定路口"
-      fails_when: "资源层吸收 Gris-Gris 或目标在开阔中距离先压 Juju"
-      bp_use: map_geometry_and_resource_check
-    - target: Brock_or_Rosa_or_Edgar_or_Gray_or_Sam_or_Trunk_or_Larry_Lawrie_or_Kaze
+    - target: ["Brock", "Rosa", "Edgar", "Gray", "Sam", "Trunk", "Larry & Lawrie", "Kaze"]
       direction: target_favored
       source: "[[sources/PLP-Juju|PLP-Juju]]"
       mechanism: "破墙、坦克进场、刺客/传送/速度和强投掷召唤物会绕过 Juju 的元素窗口或直接处理本体"
       active_when: "他们能到达 Juju 的地形站位或清掉 Gris-Gris"
       fails_when: "Juju 站在安全水/草/墙后角度且队友覆盖进场路线"
       bp_use: must_answer_dive_or_wallbreak_before_juju
-    - target: Water_or_bush_route_target
-      direction: subject_favored
-      source: "[[sources/Fandom-Juju|Fandom-Juju]]"
-      mechanism: "水上 slow、草中射程/隐身和地面高伤分别惩罚不同路线目标"
-      active_when: "目标必须经过这些地形关联的路线，Juju 当前站位能触发对应元素"
-      fails_when: "目标路线不经过元素价值区或有 vision/long-range clear"
-      bp_use: objective_specific_terrain_edge
+    - target: ["Lola", "Meg", "R-T", "Shelly", "Spike"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Juju|PLP-Juju]]"
+      mechanism: "Juju 可用墙后投掷和召唤物压资源位，但这些目标的身体、替身、分体、近身爆发或 slow 也会反制她"
+      active_when: "地图给 Juju 墙袋/水/草角度，目标被迫守固定路口"
+      fails_when: "资源层吸收 Gris-Gris 或目标在开阔中距离先压 Juju"
+      bp_use: "map_geometry_and_resource_check"
 
   slot_notes:
     slot_1: "只有地图水/草/墙袋明确服务目标时才早手；否则后手会被突进或长手针对。"

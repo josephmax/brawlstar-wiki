@@ -36,8 +36,10 @@ Fresh event pages can receive corrections. A capture is a revision-specific obse
 | Direct raw capture | `raw/sources/liquipedia/events/` | Full wikitext, revision provenance, and deterministic parsed event JSON |
 | Source summary | `wiki/sources/Liquipedia-*` | Document-scoped results, data coverage, semantics, attribution, usable/not-usable boundaries |
 | Event entity | `wiki/entities/events/` | Stable identity, date, region, format, champion, runner-up, played series/sets, map-mode occurrence |
-| Observation profile | `outputs/esports/*.json` | Generated pick/ban/set-win counts at event/global/mode/map scopes |
-| Knowledge-gap audit | `outputs/esports/*.md` | Missing entity/map coverage and optional runtime-fit review seeds |
+| Observation profile | `wiki/environment/<YYYY-MM>/archive.sqlite3` | Generated pick/ban/set-win counts as SQLite row tables (`metric_*` + per-set `series/set/pick/ban`); persistent archive, part of the knowledge base |
+| Knowledge-gap audit | `outputs/esports/*.md` | Missing entity/map coverage and optional runtime-fit review seeds (temporary audit artifact) |
+
+The observation profile is a persistent data archive under `wiki/environment/` (see `environment-signal-ingest.md`): it is not a gitignored `outputs/` transient. The monthly ban signal aggregated from it is folded into the `runtime_bp_index` by `compile`; the profile itself remains descriptive evidence and never auto-generates a tier.
 
 Do not write tournament pick rates, win rates, or ban rates directly into `wiki/entities/brawlers/`. Event entities keep event facts; brawler entities keep stable mechanisms and BP contracts.
 
@@ -77,19 +79,19 @@ The parser must remain deterministic and source-shaped:
 - Exclude forfeited series from played-series and played-set denominators; keep the forfeit as an event result.
 - Determine a set winner from its `score1` / `score2`. These are game scores inside the set.
 - Preserve team picks as team rosters. `t1c1..3` and `t2c1..3` must not be presented as chronological pick order unless `Map.firstpick` is populated and a separate draft-order parser is proven.
-- Normalize brawler names using `wiki/concepts/英雄名称归一化.md`; do not add a script-local alias table.
+- Normalize brawler names using `wiki/concepts/英雄名称归一化.md`; do not add a script-local alias table. `analyze_esports_event.py` re-maps names against the **live** normalization rules before aggregation (raw captures stay immutable; an alias fix takes effect on re-run). Any name not registered in the YAML aliases or `wiki/entities/brawlers/` is reported on stderr (`warning: unrecognized brawler name ...`) instead of passing silently — fix it in the YAML, then re-run analyze.
 - `pick_sets` uses played sets as denominator.
 - `set_wins_when_picked` is a descriptive set result, not individual-game wins and not causal credit.
 - Keep local ban nominations, local unique-set coverage, global ban nominations, and global unique-series coverage as separate atomic metrics.
 - Do not produce a composite meta score.
 
-Generate a neutral observation profile:
+Generate a neutral observation profile into the persistent archive:
 
 ```bash
 python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/analyze_esports_event.py \
   --raw raw/sources/liquipedia/events/<capture-a>.md \
   --raw raw/sources/liquipedia/events/<capture-b>.md \
-  --output outputs/esports/tournament-observation-profile.json
+  --db wiki/environment/<YYYY-MM>/archive.sqlite3
 ```
 
 ## Wiki and BP Connection
@@ -97,14 +99,14 @@ python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/analyze_esports_even
 The connection is a gated evidence flow:
 
 ```text
-event raw -> event source/entity -> tournament_observation_profile.v1
-                                      |
+event raw -> event source/entity -> tournament_observation_profile.v1 (wiki/environment/<month>/)
+                                      |   +-> aggregate_environment_signal -> monthly ban signal
+                                      |          +-> compile folds into runtime_bp_index (labeled evidence)
                                       +-> knowledge-gap audit -> VOD/draft-context review
-                                      |
                                       +-> separate maintainer interpretation -> optional supplied strength profile
 ```
 
-The observation profile must not auto-generate a strength tier. It also must not create:
+The monthly ban signal aggregated from the profile is folded into the `runtime_bp_index` by `compile` as labeled `monthly_finals` evidence (per-brawler, with window / rank_floor / sample denominators). Folding is aggregation of descriptive rates, not strength generation: the observation profile must not auto-generate a strength tier. It also must not create:
 
 - `hard_gate`
 - `required_capabilities`
@@ -126,7 +128,7 @@ Run structural coverage checks after generating the profile:
 
 ```bash
 python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_tournament_observations.py \
-  --observation-profile outputs/esports/tournament-observation-profile.json \
+  --observation-profile wiki/environment/<YYYY-MM>/archive.sqlite3 \
   --runtime-index outputs/runtime-bp-index/<index>.json \
   --output outputs/esports/tournament-knowledge-gap-audit.md
 ```

@@ -217,29 +217,29 @@ bp_brawler_profile:
       mitigation: Homemade Recipe、掩体节奏、队友交叉火力
       bp_use: matchup_and_build_check
 
-  conditional_matchup_seeds:
-    - target: Brock_or_Mandy_or_Belle_or_Byron
+  conditional_matchups:
+    - target: ["Brock", "Mandy", "Belle", "Byron"]
       direction: subject_favored
       source: "[[sources/PLP-Piper|PLP-Piper]]"
       mechanism: Piper 在纯开阔远端用高伤害单发和 Snappy reload 惩罚同类长线的低机动站位
       active_when: 地图开阔、Piper 有满距离角度、对方缺更安全掩体或召唤物
       fails_when: 对方有开墙/极远 Super/治疗队友，或 Piper 被迫移动丢失输出节奏
       bp_use: sniper_mirror_response_candidate
-    - target: Gene_or_Bea_or_Bonnie_or_Colt
+    - target: ["Gene", "Bea", "Bonnie", "Colt"]
       direction: subject_favored
       source: "[[sources/PLP-Piper|PLP-Piper]]"
       mechanism: 满距离伤害能在他们建立控制、支援或中距离 DPS 前先压低血量
       active_when: 目标需要走进 Piper 的长线才能发挥，且没有稳定突进保护
       fails_when: 目标通过墙体、召唤物或队友 speed/peel 缩短距离
       bp_use: long_lane_punish_candidate
-    - target: Nani_or_Angelo_or_R-T_or_Tick
+    - target: ["Nani", "Angelo", "R-T", "Tick"]
       direction: target_favored
       source: "[[sources/PLP-Piper|PLP-Piper]]"
       mechanism: 更高爆发、特殊弹道、标记或投掷压力会让 Piper 的单发长线优势失效
       active_when: 地图允许他们从更安全角度输出或用召唤/墙体限制 Piper
       fails_when: Piper 有先手草角、Homemade Recipe 或队友先清投掷/标记资源
       bp_use: avoid_blind_sniper_mirror
-    - target: Max_or_Mortis_or_Gray_or_Mr_P
+    - target: ["Max", "Mortis", "Gray", "Mr. P"]
       direction: target_favored
       source: "[[sources/PLP-Piper|PLP-Piper]]"
       mechanism: 速度、dash、传送或 porter 弹药税能越过/消耗 Piper 的单发节奏

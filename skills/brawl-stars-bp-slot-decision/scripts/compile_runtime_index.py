@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Compile stable BP facts into a runtime_bp_index.
+"""Compile stable BP facts plus archived environment signals into a runtime_bp_index.
 
-环境信号（high-rank pick rate）当前为空槽：compile 只基于稳定事实生成索引，
-manifest 记录 `pickrate_status: empty`。禁止从记忆、旧榜单或任何 tier 概念
-推断环境信号；数据源接入后以独立输入层加入，且永远不升级 fit/eligibility。
+compile 是环境信号的唯一聚合点：从 `wiki/environment/current.json` 指针读取
+持久归档（月赛 pick/ban + Legendary+ ladder），折叠为 per-brawler
+`environment_evidence`（带 window / rank_floor / fetched_at / captured_at 标注）
+与 `environment_ladder_per_map` 内嵌进索引。无归档或 --no-environment 时
+manifest 保持 `pickrate_status: empty`。禁止从记忆、旧榜单或任何 tier 概念
+推断环境信号；环境证据永远不升级 fit/eligibility、不生成 tier。
 """
 
 from __future__ import annotations
@@ -12,6 +15,7 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -98,6 +102,100 @@ def sha256_texts(texts: Iterable[str]) -> str:
         digest.update(text.encode("utf-8"))
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+ENVIRONMENT_MANIFEST_DEFAULT = "wiki/environment/current.json"
+
+_ENVIRONMENT_PROTOCOL_IMPORTED = False
+
+
+def load_json_file(path: Path) -> dict[str, Any] | None:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return None
+
+
+def _environment_protocol():
+    """Load the shared sqlite archive protocol module (single implementation).
+
+    The protocol lives in `skills/brawl-stars-bp-knowledge-maintenance/scripts/`
+    (the data producer owns the schema); consumers import the same module
+    instead of copying the expansion logic, so schema evolution cannot drift.
+    """
+    global _ENVIRONMENT_PROTOCOL_IMPORTED
+    try:
+        import _environment_sqlite
+    except ImportError:
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo / "skills" / "brawl-stars-bp-knowledge-maintenance" / "scripts"))
+        import _environment_sqlite
+    _ENVIRONMENT_PROTOCOL_IMPORTED = True
+    return _environment_sqlite
+
+
+def resolve_environment(repo: Path, manifest_arg: str, no_environment: bool) -> dict[str, Any] | None:
+    """Load the environment archive pointer and its monthly/ladder signals.
+
+    Returns None when disabled, when the pointer is missing, or when neither
+    signal file resolves. The pointer (`wiki/environment/current.json`) is the
+    only environment input contract; decide never reads these files directly.
+    Reads go through the shared protocol module (`_environment_sqlite`), which
+    rejects unknown `user_version` schemas instead of guessing.
+    """
+    if no_environment:
+        return None
+    pointer_path = Path(manifest_arg) if Path(manifest_arg).is_absolute() else repo / manifest_arg
+    pointer = load_json_file(pointer_path)
+    if not pointer:
+        return None
+    envdb = _environment_protocol()
+    monthly_ref = (pointer.get("monthly") or {}).get("db") or (pointer.get("monthly") or {}).get("signal")
+    ladder_ref = pointer.get("ladder")
+    monthly = envdb.load_signal(repo / monthly_ref) if monthly_ref else None
+    ladder = envdb.load_pickrate(repo / ladder_ref) if ladder_ref else None
+    if monthly is None and ladder is None:
+        return None
+    return {
+        "manifest_path": str(pointer_path.relative_to(repo)) if pointer_path.is_relative_to(repo) else str(pointer_path),
+        "pointer": pointer,
+        "monthly": monthly,
+        "ladder": ladder,
+    }
+
+
+def fold_environment_evidence(name: str, env: dict[str, Any]) -> dict[str, Any]:
+    """Per-brawler labeled evidence: `ladder_anchor` + `monthly_finals`.
+
+    Each dimension stays None when the brawler has no sample (decide reports
+    `no_ladder_sample` / `no_monthly_sample`). Evidence is labeled with window /
+    rank_floor / fetch or capture time; it is corroboration, never a tier.
+    """
+    ladder_signal = env.get("ladder") or {}
+    monthly_signal = env.get("monthly") or {}
+    ladder_row = (ladder_signal.get("global") or {}).get(name)
+    monthly_row = (monthly_signal.get("brawlers") or {}).get(name)
+    evidence: dict[str, Any] = {"ladder_anchor": None, "monthly_finals": None}
+    if ladder_row is not None:
+        evidence["ladder_anchor"] = {
+            "use_rate": ladder_row.get("use_rate"),
+            "win_rate": ladder_row.get("win_rate"),
+            "window": ladder_signal.get("window"),
+            "rank_floor": ladder_signal.get("rank_floor"),
+            "fetched_at": ladder_signal.get("fetched_at"),
+        }
+    if monthly_row is not None:
+        evidence["monthly_finals"] = {
+            "picks": monthly_row.get("picks"),
+            "pick_rate": monthly_row.get("pick_rate"),
+            "win_rate_when_picked": monthly_row.get("win_rate_when_picked"),
+            "ban_rate": monthly_row.get("ban_rate"),
+            "ban_set_coverage": monthly_row.get("ban_set_coverage"),
+            "window": monthly_signal.get("window"),
+            "rank_floor": monthly_signal.get("rank_floor"),
+            "captured_at": monthly_signal.get("captured_at"),
+        }
+    return evidence
 
 
 def entity_brawler_names(repo: Path) -> list[str]:
@@ -558,9 +656,7 @@ def compile_brawler_card(path: Path, repo: Path) -> dict[str, Any]:
         )
         for index, entry in enumerate(split_list_entries(extract_named_section(block, "failure_modes")), start=1)
     ]
-    matchup_block = extract_named_section(block, "conditional_matchup_seeds")
-    if not matchup_block:
-        matchup_block = extract_named_section(block, "conditional_matchups")
+    matchup_block = extract_named_section(block, "conditional_matchups")
     matchups = [
         {
             **compact_entry(
@@ -637,9 +733,14 @@ def compile_draft_edges(card: dict[str, Any]) -> dict[str, Any]:
             "target": matchup.get("target"),
             "bp_use": matchup.get("bp_use"),
         }
-        if matchup.get("direction") == "target_favored":
+        direction = matchup.get("direction")
+        if direction == "target_favored":
             answered_by.append(edge)
         else:
+            # subject_favored only. Volatile was removed (2026-08-14): a
+            # conditionally-two-sided matchup is not a one-way counter and must
+            # never be raised into the "answers" bucket, which would over-attend
+            # to targets the brawler does not actually answer.
             answers.append(edge)
     return {"brawler": card["brawler"], "answers": answers, "is_answered_by": answered_by}
 
@@ -922,12 +1023,35 @@ def matchup_edge(subject: str, target: str, matchup: dict[str, Any]) -> dict[str
 
 def build_matchup_index(cards: list[dict[str, Any]]) -> dict[str, Any]:
     by_brawler: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    brawler_keys = {normalize_key(card["brawler"]) for card in cards}
     for card in cards:
         name = card["brawler"]
         bucket = by_brawler.setdefault(name, {"answers": [], "is_answered_by": []})
         for matchup in card.get("conditional_matchups") or []:
             direction = matchup.get("direction")
+            if direction not in ("subject_favored", "target_favored"):
+                # Only the two one-way matchup directions are valid. Any other
+                # value (volatile, volatile_subject_favored, ally_synergy, ...)
+                # is not a counter edge: raising it into "answers" would
+                # over-attend to targets the brawler does not actually answer.
+                # Such entries stay on the brawler page as maintenance knowledge
+                # but never enter the runtime matchup index.
+                print(
+                    f"compile warning: {name} matchup direction {direction!r} skipped (not a matchup direction)",
+                    file=sys.stderr,
+                )
+                continue
             for target in target_values(matchup.get("target")):
+                if normalize_key(target) not in brawler_keys:
+                    # Non-brawler targets (mode objectives like Heist safe,
+                    # spawnables, type descriptions) are not hero-vs-hero
+                    # matchup edges. They are maintenance-layer knowledge and
+                    # cannot be recalled by relation-target hero queries.
+                    print(
+                        f"compile warning: {name} matchup target {target!r} skipped (not a brawler)",
+                        file=sys.stderr,
+                    )
+                    continue
                 edge = matchup_edge(name, target, matchup)
                 if direction == "target_favored":
                     bucket["is_answered_by"].append(edge)
@@ -1013,12 +1137,49 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
         "maps": {duty["map"]: duty["source_ref"] for duty in map_duties},
         "brawlers": {card["brawler"]: card["source_ref"] for card in brawler_cards},
     }
+
+    env = resolve_environment(repo, args.environment_manifest, args.no_environment)
+    if env:
+        for name in brawler_runtime_cards:
+            brawler_runtime_cards[name]["environment_evidence"] = fold_environment_evidence(name, env)
+
+    environment_provenance = None
+    if env:
+        pointer = env["pointer"]
+        monthly = env["monthly"] or {}
+        ladder = env["ladder"] or {}
+        environment_provenance = {
+            "pointer": env["manifest_path"],
+            "monthly": {
+                "archive_id": (pointer.get("monthly") or {}).get("archive_id"),
+                "signal": (pointer.get("monthly") or {}).get("db") or (pointer.get("monthly") or {}).get("signal"),
+                "window": monthly.get("window"),
+                "rank_floor": monthly.get("rank_floor"),
+                "captured_at": monthly.get("captured_at"),
+                "played_series": (monthly.get("source") or {}).get("played_series"),
+                "played_sets": (monthly.get("source") or {}).get("played_sets"),
+            },
+            "ladder": {
+                "signal": pointer.get("ladder"),
+                "window": ladder.get("window"),
+                "rank_floor": ladder.get("rank_floor"),
+                "fetched_at": ladder.get("fetched_at"),
+            },
+        }
+
+    input_texts = list(source_texts)
+    if env:
+        for signal in (env.get("monthly"), env.get("ladder")):
+            if signal:
+                input_texts.append(json.dumps(signal, ensure_ascii=False, sort_keys=True))
+
     manifest = {
         "patch_id": args.patch_id or "current",
         "map_pool_id": args.map_pool_id or ",".join(duty["map"] for duty in map_duties) or "all_maps",
-        "pickrate_source": None,
-        "pickrate_status": "empty",
-        "source_hash": sha256_texts(source_texts),
+        "pickrate_source": env["manifest_path"] if env else None,
+        "pickrate_status": "loaded" if env else "empty",
+        "environment_provenance": environment_provenance,
+        "source_hash": sha256_texts(input_texts),
         "compiler_version": COMPILER_VERSION,
         "compiled_at": datetime.now(timezone.utc).isoformat(),
         "missing_inputs": missing_inputs,
@@ -1053,6 +1214,8 @@ def build_runtime_index(args: argparse.Namespace) -> dict[str, Any]:
         "matchup_index": matchup_index,
         "evidence_refs": evidence_refs,
     }
+    if env and (env.get("ladder") or {}).get("per_map"):
+        runtime_index["environment_ladder_per_map"] = (env["ladder"] or {}).get("per_map")
     runtime_index["audit_summary"] = audit_summary(
         manifest,
         map_pool_signature,
@@ -1075,6 +1238,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--patch-id", default="", help="Override manifest patch_id")
     parser.add_argument("--map-pool-id", default="", help="Override manifest map_pool_id")
     parser.add_argument("--output", default="", help="Write compiled runtime_bp_index JSON to this path")
+    parser.add_argument("--environment-manifest", default=ENVIRONMENT_MANIFEST_DEFAULT, help="Environment archive pointer JSON (default wiki/environment/current.json)")
+    parser.add_argument("--no-environment", action="store_true", help="Skip environment folding even if the archive pointer exists")
     parser.add_argument("--debug-output", default="", help="Optionally write thick debug trace JSON to this path")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print runtime index JSON instead of compact output")
     parser.add_argument("--json", action="store_true", help="Emit JSON to stdout")

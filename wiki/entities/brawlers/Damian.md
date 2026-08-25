@@ -226,36 +226,21 @@ bp_brawler_profile:
       mitigation: "先骗资源或让队友从远端削弱，再跳入关键目标"
       bp_use: must_answer_anti_body_before_pick
 
-  conditional_matchup_seeds:
-    - target: Gale_or_Sprout_or_Squeak_or_Jae_Yong_or_Piper_or_Nani_or_Mr_P_or_Ziggy
+  conditional_matchups:
+    - target: ["Gale", "Sprout", "Squeak", "Jae-yong", "Piper", "Nani", "Mr. P", "Ziggy"]
       direction: subject_favored
       source: "[[sources/PLP-Damian|PLP-Damian]]"
       mechanism: "Damian 用跳跃和 Mosh Pit 跳过部分远程/墙控安全距离，把低身体或固定控制位拉入短手爆发与队友火力"
       active_when: "地图给 Damian Super 接近路线或目标必须守 objective，且反坦资源不足"
       fails_when: "目标在纯开阔长线持续风筝，或有队友控制等在落点"
       bp_use: route_based_tank_engage_response
-    - target: Clancy_or_Otis_or_Chester_or_Bull_or_Juju_or_Doug_or_Jacky_or_Trunk
+    - target: ["Clancy", "Otis", "Chester", "Bull", "Juju", "Doug", "Jacky", "Trunk"]
       direction: target_favored
       source: "[[sources/PLP-Damian|PLP-Damian]]"
       mechanism: "反坦 DPS、沉默、爆发、复活/高身体或墙控能吸收 Damian 跳入并惩罚短手停留"
       active_when: "他们守住球门、热区、矿区或 Damian 的落点"
       fails_when: "控制被提前骗掉，Damian 只跳后排或队友先拆掉身体层"
       bp_use: must_answer_anti_body_before_damian
-    - target: Gem_carrier_or_ball_carrier_or_zone_holder
-      direction: subject_favored
-      source: "[[sources/Fandom-Damian|Fandom-Damian]]"
-      mechanism: "Mosh Pit、强化击退和临时墙能直接改变 carrier/holder 的路线和目标动作"
-      active_when: "目标必须留在固定路线，Damian 有 Super/empowered attack"
-      fails_when: "目标有 dash、invulnerability、teammate peel or long-range cover"
-      bp_use: objective_specific_displacement_edge
-    - target: Wallbreak_or_thrower_clear
-      direction: target_favored
-      source: "[[sources/Fandom-Damian|Fandom-Damian]]"
-      mechanism: "Mosh Pit speaker 可被攻击且从内侧弹飞一次后自行破碎；Wall of Sound 也可被破墙，投掷/破墙与重复触碰都会降低边界价值"
-      active_when: "Damian 的计划依赖临时墙/边界持续 5-7 秒"
-      fails_when: "结构只需要争取一瞬间，或队友先控制清墙者"
-      bp_use: terrain_creation_counterplay_filter
-
   slot_notes:
     slot_1: "只在地图目标强迫短距离接触、且敌方反坦面较窄时早手；开阔长线会让 Damian 变成被风筝目标。"
     slot_2_3: "可作为目标身体和进场计划手，但要补长手、清投掷或反控制。"

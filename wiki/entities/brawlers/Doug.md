@@ -225,7 +225,7 @@ bp_brawler_profile:
       mitigation: "keep Super for teammate trade, add anti-tank damage, or avoid the short-range mirror"
       bp_use: "must_answer_close_burst_before_locking_doug"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Lola"
         - "Eve"
@@ -239,15 +239,6 @@ bp_brawler_profile:
       active_when: "map forces those targets to hold gem, ball, zone, or knockout cover where Doug's teammate can enter"
       fails_when: "they keep fully open spacing, clear the close teammate before Doug arrives, or destroy the revive location from range"
       bp_use: "response_pick_candidate_against_control_or_poke_trade"
-    - target:
-        - "Stu"
-        - "Chuck"
-      direction: "volatile"
-      source: "[[sources/PLP-Doug|PLP-Doug]]"
-      mechanism: "Doug can deny a tempo engage with revive, but mobile targets can also reset outside his short radius if they avoid the protected teammate"
-      active_when: "their dash or route must finish on the same objective body that Doug is protecting"
-      fails_when: "they attack a separate lane, bait Second Serving, or force Doug to walk across open ground"
-      bp_use: "route_and_objective_contact_check"
     - target:
         - "Darryl"
         - "Bull"
@@ -270,6 +261,14 @@ bp_brawler_profile:
       active_when: "map has open lanes such as Bounty/Knockout sightlines or opened Gem Grab mid"
       fails_when: "terrain forces them into close objective contact and Doug's team controls the revive tile"
       bp_use: "open_map_counter_warning"
+
+    - target: ["Stu", "Chuck"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Doug|PLP-Doug]]"
+      mechanism: "Doug can deny a tempo engage with revive, but mobile targets can also reset outside his short radius if they avoid the protected teammate"
+      active_when: "their dash or route must finish on the same objective body that Doug is protecting"
+      fails_when: "they attack a separate lane, bait Second Serving, or force Doug to walk across open ground"
+      bp_use: "route_and_objective_contact_check"
 
   slot_notes:
     slot_1: "avoid unless map is clearly close-objective and your comp already commits to a Doug-enabled push shell"

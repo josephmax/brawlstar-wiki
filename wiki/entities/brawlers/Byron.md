@@ -197,35 +197,49 @@ bp_brawler_profile:
       mitigation: 开墙、刺客/投掷回答、换到开阔地图或长线 lane
       bp_use: false_positive_filter
 
-  conditional_matchup_seeds:
-    - target: Frank_or_Jacky_or_El_Primo_or_Buzz
+  conditional_matchups:
+    - target: ["Frank", "Jacky", "El Primo", "Buzz"]
       direction: subject_favored
       source: "[[sources/PLP-Byron|PLP-Byron]]"
       mechanism: 长射程毒伤和队友治疗能让直线进场身体在接触前被消耗，Malaise 降低其续航回合
       active_when: 进场路线可见，Byron 有队友身体可治疗并能集火
       fails_when: 目标从草/墙侧直接碰到 Byron，或队友没有伤害完成反打
       bp_use: anti_body_support_response
-    - target: Max_or_Gale_or_R-T
+    - target: ["Max", "Gale", "R-T"]
       direction: subject_favored
       source: "[[sources/PLP-Byron|PLP-Byron]]"
       mechanism: Byron 在长换血中用治疗抵消 poke/控制收益，让队友保持线权
       active_when: 地图允许后排安全支援，且敌方不能隔墙切断 Byron
       fails_when: Max 速度带出多角度夹击，或 R-T/Gale 队友能直接压 Byron
       bp_use: sustain_answer_to_control_or_tempo
-    - target: Barley_or_Willow_or_Sprout
+    - target: ["Barley", "Willow", "Sprout"]
       direction: target_favored
       source: "[[sources/PLP-Byron|PLP-Byron]]"
       mechanism: 投掷和墙后控制绕开 Byron 的直线治疗/伤害线，持续压低低血后排
       active_when: 墙体完整、投掷有安全口袋、我方缺开墙或 dive
       fails_when: 墙体打开或 Byron 队友能先清投掷口袋
       bp_use: must_answer_wall_control_before_byron
-    - target: Poco_or_Rosa_or_Sandy_or_Lola
+    - target: ["Poco", "Rosa", "Sandy", "Lola"]
       direction: target_favored
       source: "[[sources/PLP-Byron|PLP-Byron]]"
       mechanism: 群体 sustain、草丛身体、隐蔽推进或分身火力会让 Byron 单体治疗/毒伤跟不上目标区节奏
       active_when: 目标图是 Hot Zone/Gem/Brawl Ball 草墙接触图，敌方能把战斗压成近距离团战
       fails_when: Byron 队伍有足够范围伤害、探草和 anti-tank，Malaise 命中关键回复目标
       bp_use: avoid_as_only_sustain_answer
+    - target: ["Chuck"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Byron|PLP-Byron]]"
+      mechanism: "Chuck 的轨道冲刺可绕过 Byron 的直线治疗/毒伤线直接碰到低机动、低血、无自保位移的后排，冲刺 50% 减伤还削弱 Byron 的换血效率；Byron 的 anti_aggro 只在有队友 peel 时成立"
+      active_when: "Chuck 已铺好 Posts/冲刺路线（Heist 固定目标图最明显），Byron 没有可治疗转 peel 的前排且无视野封锁落点"
+      fails_when: "Chuck 在铺设前被长线消耗或队友控制/守 endpoint 打断路线，或 Byron 有前排吃治疗并集火冲刺路线"
+      bp_use: "avoid_first_pick_or_require_peel"
+    - target: ["Dynamike"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Byron|PLP-Byron]]"
+      mechanism: "Byron 的超远程快装填药剂可在 Dynamike 投掷范围外持续换血，毒伤 tick 加队友治疗创造血量差；Dynamike 低血无自疗，长线拉扯中延迟引信更难命中有治疗的站位"
+      active_when: "地图开阔、Byron 有队友可治疗并把治疗转成线权，Dynamike 缺完整墙袋做安全投掷"
+      fails_when: "墙体完整让 Dynamike 从墙后隔墙投掷（Byron 直线药剂无法触达），或 Dynamike 用 Super 爆发/窄口击退直接打死 Byron"
+      bp_use: "response_pick_candidate_against_thrower_attrition"
 
   slot_notes:
     slot_1: 只在长线支援和可治疗队友价值很确定时先手；否则容易被投掷或刺客后手惩罚。

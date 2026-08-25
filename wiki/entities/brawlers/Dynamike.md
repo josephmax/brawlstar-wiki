@@ -225,29 +225,22 @@ bp_brawler_profile:
       mitigation: "把 Satchel 留给持球者/刺客/关键站区身体，而非低价值预判"
       bp_use: resource_tracking.satchel_available
 
-  conditional_matchup_seeds:
-    - target: Meg_or_Jae_Yong_or_Lola_or_Sprout_or_Squeak_or_Lou_or_Mandy_or_Nani
+  conditional_matchups:
+    - target: ["Meg", "Jae-yong", "Lola", "Sprout", "Squeak", "Lou", "Mandy", "Nani"]
       direction: subject_favored
       source: "[[sources/PLP-Dynamike|PLP-Dynamike]]"
       mechanism: "墙后投掷、Satchel stun 和 Super burst 能惩罚固定站位、低机动控制或长线在墙边卡点的目标"
       active_when: "地图给 Dynamike 安全 pocket，目标必须守矿区、热区、球路或金库防守线"
       fails_when: "目标在开阔远端输出，或有队友突进先处理 Dynamike"
       bp_use: thrower_burst_response_to_fixed_control
-    - target: Sam_or_Kaze_or_Edgar_or_Mortis_or_Kenji_or_Damian_or_Gray_or_Stu
+    - target: ["Sam", "Kaze", "Edgar", "Mortis", "Kenji", "Damian", "Gray", "Stu"]
       direction: target_favored
       source: "[[sources/PLP-Dynamike|PLP-Dynamike]]"
       mechanism: "高机动、传送/拉人或强突进可绕过延迟炸点；1.4 秒装填缩短空窗，但不能解决引信延迟和低血被贴脸"
       active_when: "地图有侧草、墙角或多路线接近，Dynamike 缺 Satchel/peel"
       fails_when: "入口被锁死，Satchel 保留给第一接触，或队友提前控制突进路线"
       bp_use: must_avoid_without_peel_or_satchel
-    - target: Heist_safe_or_goal_defender_or_zone_holder
-      direction: subject_favored
-      source: "[[sources/Fandom-Dynamike|Fandom-Dynamike]]"
-      mechanism: "固定目标和固定路线更容易吃到双炸、Demolition Super 或 Satchel 后续爆发"
-      active_when: "目标不能离开 safe/球门/热区位置，Dynamike 可从墙后完整释放"
-      fails_when: "目标能离开炸点或用控制打断 Dynamike 的释放/站位"
-      bp_use: objective_specific_fixed_target_burst
-    - target: Brock_or_Hank_or_Squeak_or_Jacky_wall_hit_tools
+    - target: ["Brock", "Hank", "Squeak"]
       direction: target_favored
       source: "[[sources/Fandom-Dynamike|Fandom-Dynamike]]"
       mechanism: "能穿墙/炸墙/墙边命中的工具会惩罚 Dynamike 过度贴墙躲避"

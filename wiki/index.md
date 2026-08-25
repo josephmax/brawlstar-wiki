@@ -19,7 +19,8 @@
 - [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
-- [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]（当前赛季，featured = Gem Grab）
+- [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]（当前赛季，featured = Brawl Ball）
+- [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[concepts/伤害与生存断点|伤害与生存断点]]
 
@@ -29,8 +30,12 @@
 - `skills/brawl-stars-bp-knowledge-maintenance/`：维护者 / BP 知识维护 skill，负责 LLM-wiki intake、source ingest、英雄/地图建模、审计和运行时边界治理。
 - `skills/run-brawl-stars-bp/`：裁判 / run-bp 编排 skill，负责同步 ban、顺序 pick、策略偏好、回合指标和统一 match report。
 - `skills/brawl-stars-bp-slot-decision/`：选手 / 单手 BP 决策 skill，负责 `compile` / `decide` 分治。
-- `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md`：编译期规则，只读取 `wiki/entities/` 与 strength profile。
+- `skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md`：编译期规则，读取 `wiki/entities/` 与 `wiki/environment/` 归档。
 - `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md`：运行时决策规则，只消费 `runtime_bp_index` 与当前 BP 状态。
+
+## Environment Archive（环境信号与赛事观察数据归档）
+
+- 环境信号与赛事观察数据（`tournament_observation_profile.v1`、月赛 pick/ban 聚合、Legendary+ pickrate）持久归档在 `wiki/environment/`，由 `compile` 折叠进 `runtime_bp_index` 作为标注证据；归档索引与指针见 [[environment/index|环境信号与赛事观察数据归档]]。
 
 ## BP Maintenance
 
@@ -50,6 +55,10 @@
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|Liquipedia：BSC 2026 July South America Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|Liquipedia：BSC 2026 July East Asia Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-North-America-Monthly-Finals|Liquipedia：BSC 2026 July North America Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-August-EMEA-Monthly-Finals|Liquipedia：BSC 2026 August EMEA Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-August-South-America-Monthly-Finals|Liquipedia：BSC 2026 August South America Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-August-East-Asia-Monthly-Finals|Liquipedia：BSC 2026 August East Asia Monthly Finals]]
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-August-North-America-Monthly-Finals|Liquipedia：BSC 2026 August North America Monthly Finals]]
 - [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 三张补充地图的适配复核]]
 
 - 站点与 manifest：
@@ -66,6 +75,10 @@
 - [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement（future-only）]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
+- [[sources/Fandom-Ranked-Season-48-Map-Pages|Fandom 来源摘要: Ranked Season 48 地图池]]
+- [[sources/Fandom-Beach-Ball|Fandom 来源摘要: Beach Ball]]
+- [[sources/Fandom-Spiraling-Out|Fandom 来源摘要: Spiraling Out]]
+- [[sources/Fandom-Rustic-Arcade|Fandom 来源摘要: Rustic Arcade]]
 - [[sources/Fandom-Backyard-Bowl|Fandom 来源摘要: Backyard Bowl]]
 - [[sources/Fandom-BSC-July-2026-Observed-Map-Pages|Fandom 来源摘要: BSC 2026 July 三张补充地图页]]
 - [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]（已退役：强度/tier 概念已从 BP 系统移除，环境信号改为高分 pick rate 空槽，见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]）
@@ -391,6 +404,7 @@
 
 - 地图：
 - [[entities/maps/Backyard Bowl|Backyard Bowl]]
+- [[entities/maps/Beach Ball|Beach Ball]]
 - [[entities/maps/Belle's Rock|Belle's Rock]]
 - [[entities/maps/Bridge Too Far|Bridge Too Far]]
 - [[entities/maps/Center Stage|Center Stage]]
@@ -414,10 +428,12 @@
 - [[entities/maps/Pinhole Punt|Pinhole Punt]]
 - [[entities/maps/Pit Stop|Pit Stop]]
 - [[entities/maps/Ring of Fire|Ring of Fire]]
+- [[entities/maps/Rustic Arcade|Rustic Arcade]]
 - [[entities/maps/Safe Zone|Safe Zone]]
 - [[entities/maps/Safe(r) Zone|Safe(r) Zone]]
 - [[entities/maps/Shooting Star|Shooting Star]]
 - [[entities/maps/Sneaky Fields|Sneaky Fields]]
+- [[entities/maps/Spiraling Out|Spiraling Out]]
 - [[entities/maps/Triple Dribble|Triple Dribble]]
 - [[entities/maps/Undermine|Undermine]]
 - 赛事
@@ -435,6 +451,7 @@
 - [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
 - [[syntheses/BP-维护归档|BP 维护归档]]
 - [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]
+- [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]
 - [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]

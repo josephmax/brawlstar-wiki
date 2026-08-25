@@ -231,7 +231,7 @@ bp_brawler_profile:
       mitigation: "place behind protected wall or use another gadget/build"
       bp_use: "map_factor_false_positive_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Sprout"
         - "Dynamike"

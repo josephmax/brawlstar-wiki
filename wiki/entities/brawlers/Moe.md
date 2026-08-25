@@ -216,35 +216,28 @@ bp_brawler_profile:
       mitigation: 选择入口明确地图、搭配减速/视野，或把 Moe 留到后手惩罚低机动阵容
       bp_use: avoid_blind_pick_into_multi_angle_mobility
 
-  conditional_matchup_seeds:
-    - target: Sprout_or_Nani_or_Bea_or_Piper_or_Squeak_or_Poco
+  conditional_matchups:
+    - target: ["Sprout", "Nani", "Bea", "Piper", "Squeak", "Poco"]
       direction: subject_favored
       source: "[[sources/PLP-Moe|PLP-Moe]]"
       mechanism: Moe 用分裂石块消耗墙边/长线目标，并用 Super 绕过固定站位或低机动后排的安全距离
       active_when: 目标缺近身保镖，地图给 Moe 分裂角或地下切入路线
       fails_when: 目标有硬 peel、投掷口袋被队友保护，或 Moe 出土点被预判
       bp_use: response_pick_against_fragile_control_or_range
-    - target: Jae-Yong_or_Lola
-      direction: volatile
-      source: "[[sources/PLP-Moe|PLP-Moe]]"
-      mechanism: Moe 可以用路线切入惩罚支援/固定输出，但 Jae-yong 的节奏支援和 Lola 的替身/角度会让出土目标选择变难
-      active_when: Moe 能先找到真身或支援核心，队友能跟上爆发
-      fails_when: 替身、加速或队友保护让 Moe 钻到错误目标或空窗
-      bp_use: matchup_requires_target_selection_check
-    - target: Chester_or_Damian_or_Ash_or_Draco_or_Rosa_or_Trunk_or_8-Bit_or_Willow
+    - target: ["Chester", "Damian", "Ash", "Draco", "Rosa", "Trunk", "8-Bit", "Willow"]
       direction: target_favored
       source: "[[sources/PLP-Moe|PLP-Moe]]"
       mechanism: 高身体、爆发、持续 DPS、沉默/控制或墙控能吃下 Moe 出土窗口并反打短手 Driller
       active_when: 这些目标守住 Moe 必须进入的球门、热区、金库入口或矿区路线
       fails_when: Moe 只打侧面后排，或队友先拆掉控制/身体层
       bp_use: must_avoid_or_require_team_clear_before_Moe_entry
-    - target: Ball_carrier_or_goal_defender_or_heist_safe
-      direction: subject_favored
-      source: "[[sources/Fandom-Moe|Fandom-Moe]]"
-      mechanism: Super 出土击退和 Driller 窗口可以直接影响持球者、门前防守者或金库附近防线
-      active_when: 目标正在固定位置执行目标动作，Moe 有 Super 且路线终点不被硬控覆盖
-      fails_when: 击退没有队友接球/补伤害，或金库防守把 Moe 清掉后 race 继续
-      bp_use: objective_specific_route_edge
+    - target: ["Jae-Yong", "Lola"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Moe|PLP-Moe]]"
+      mechanism: "Moe 可以用路线切入惩罚支援/固定输出，但 Jae-yong 的节奏支援和 Lola 的替身/角度会让出土目标选择变难"
+      active_when: "Moe 能先找到真身或支援核心，队友能跟上爆发"
+      fails_when: "替身、加速或队友保护让 Moe 钻到错误目标或空窗"
+      bp_use: "matchup_requires_target_selection_check"
 
   slot_notes:
     slot_1: 只在地图明确奖励 Moe 的分裂压制和 Super 路线，且敌方低成本控制面窄时考虑；否则早手容易暴露短窗弱点。

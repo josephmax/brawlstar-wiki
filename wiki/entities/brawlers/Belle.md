@@ -233,7 +233,7 @@ bp_brawler_profile:
       mitigation: "treat Belle as single-target poker and do not overvalue chain damage"
       bp_use: "false_positive_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "El Primo"
         - "Jacky"
@@ -269,6 +269,20 @@ bp_brawler_profile:
       active_when: "map creates grass/choke entry or objective forces Belle to stand near the route"
       fails_when: "Belle controls approach with Nest Egg and has peel or wide open retreat space"
       bp_use: "slot_6_punish_warning"
+    - target: ["Griff"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Belle|PLP-Belle]]"
+      mechanism: "Belle 的 10 格可靠快弹在 Griff 慢速三波卸弹的有效带外持续白打，Spotter 标记放大集火压过 Business Resilience 的渐进回复"
+      active_when: "开阔长线，Belle 保持最大射程，Griff 必须跨开阔地才能进入其中近距离爆发带"
+      fails_when: "Piggy Bank 破开 Belle 掩体/路线并击退她，Griff 借草/墙进入中近距离用完整弹幕或 Super 秒掉低血 Belle，或 Belle 无 peel 被逼靠近"
+      bp_use: "response_pick_candidate_against_slow_unload_midrange"
+    - target: ["Stu"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Belle|PLP-Belle]]"
+      mechanism: "Belle 的 10 格可靠快弹赢得首发命中，Stu 冲刺依赖命中充能，Nest Egg 减速封锁其进场路线，Spotter 标记让冲刺循环换不过血"
+      active_when: "开阔或半开长线，Belle 保持射程外距离，Stu 必须跨过 Nest Egg/开阔地才能命中第一发启动 dash chain"
+      fails_when: "Stu 借草/墙先命中第一发直贴低血 Belle，Speed Zone 给敌方整体节奏绕过，或 Belle 无 peel 被逼入中距离"
+      bp_use: "response_pick_candidate_against_dash_dependent_mobility"
 
   slot_notes:
     slot_1: "可在开阔 Bounty/Knockout 或长线 Heist 先手，但要确认敌方 2-3 位没有低成本投掷/突脸组合。"

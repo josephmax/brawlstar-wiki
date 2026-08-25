@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -53,9 +54,43 @@ def load_brawler_names(repo: Path) -> dict[str, str]:
     return result
 
 
+_reported_unrecognized_brawlers: set[str] = set()
+
+
 def canonicalize_brawler(value: str, canonical_names: dict[str, str]) -> str:
     value = re.sub(r"<!--.*?-->", "", value, flags=re.S).strip()
-    return canonical_names.get(normalized_key(value), value)
+    key = normalized_key(value)
+    if key not in canonical_names and key not in _reported_unrecognized_brawlers:
+        # 未注册名字（改名旧称、拼写变体、新英雄）必须显式暴露，禁止静默歧义。
+        # 修复方式：在 wiki/concepts/英雄名称归一化.md 的 aliases 或实体页注册后重新 analyze。
+        _reported_unrecognized_brawlers.add(key)
+        print(
+            f"warning: unrecognized brawler name {value!r} "
+            "(not in wiki/concepts/英雄名称归一化.md nor wiki/entities/brawlers/)",
+            file=sys.stderr,
+        )
+    return canonical_names.get(key, value)
+
+
+def renormalize_event_names(event: dict[str, Any], canonical_names: dict[str, str]) -> dict[str, Any]:
+    """Re-map pick/ban names with the current normalization rules.
+
+    Raw captures freeze the parsed names at capture time; normalization rules
+    are alive in `wiki/concepts/英雄名称归一化.md`. Re-running analyze after an
+    alias fix must merge renamed brawlers (e.g. Glowbert -> Glowy) without
+    rewriting the immutable raw file. Idempotent under stable rules.
+    """
+    for match in event.get("matches") or []:
+        for side in ("team1", "team2"):
+            bans = match.get("global_bans") or {}
+            bans[side] = [canonicalize_brawler(name, canonical_names) for name in bans.get(side) or []]
+        for item in match.get("sets") or []:
+            for side in ("team1", "team2"):
+                picks = item.get("picks") or {}
+                picks[side] = [canonicalize_brawler(name, canonical_names) for name in picks.get(side) or []]
+                local_bans = item.get("local_bans") or {}
+                local_bans[side] = [canonicalize_brawler(name, canonical_names) for name in local_bans.get(side) or []]
+    return event
 
 
 def split_top_level(body: str) -> list[str]:

@@ -213,7 +213,7 @@ bp_brawler_profile:
       mitigation: "把 Fang 当 scoring window / zone clear，而不是唯一目标位"
       bp_use: "objective_contract_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Piper", "Tick", "Dynamike", "Grom", "Mr. P", "Berry"]
       direction: "subject_favored"
       source: "[[sources/PLP-Fang|PLP-Fang]]"
@@ -221,13 +221,6 @@ bp_brawler_profile:
       active_when: "地图有掩体或目标被压血，后排没有 bodyguard，Fang 能在落点完成击杀"
       fails_when: "目标有墙阻断连跳、队友保护或保留控制，Fang 先被消耗到无法进场"
       bp_use: "last_pick_backline_punish"
-    - target: ["Jessie", "El Primo"]
-      direction: "volatile"
-      source: "[[sources/PLP-Fang|PLP-Fang]]"
-      mechanism: "Fang 可用 Super 处理孤立 Jessie 或借前排跳后排，但炮台/高血量身体会改变落点和击杀阈值"
-      active_when: "目标孤立、炮台不影响落点，或前排只是跳板"
-      fails_when: "Jessie 炮台和队友保护覆盖 Fang，或 Primo/Bull 类前排把 Fang 留在近身互打"
-      bp_use: "route_and_landing_check"
     - target: ["Surge", "Shelly", "Nita", "Gale", "Chester", "Bull", "Colette", "Sirius"]
       direction: "target_favored"
       source: "[[sources/PLP-Fang|PLP-Fang]]"
@@ -242,6 +235,14 @@ bp_brawler_profile:
       active_when: "Fang 有弹药或 gadget，且对方必须进 Fang 身边完成伤害"
       fails_when: "对方先手骗出 Roundhouse，或 Fang 被连续位移/队友伤害夹击"
       bp_use: "anti_mobile_aggro_branch"
+
+    - target: ["Jessie", "El Primo"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Fang|PLP-Fang]]"
+      mechanism: "Fang 可用 Super 处理孤立 Jessie 或借前排跳后排，但炮台/高血量身体会改变落点和击杀阈值"
+      active_when: "目标孤立、炮台不影响落点，或前排只是跳板"
+      fails_when: "Jessie 炮台和队友保护覆盖 Fang，或 Primo/Bull 类前排把 Fang 留在近身互打"
+      bp_use: "route_and_landing_check"
 
   slot_notes:
     slot_1: "不建议作为普通一抢；早手会暴露刺客路线并被反突进/控制回答"

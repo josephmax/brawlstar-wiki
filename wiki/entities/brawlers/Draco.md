@@ -218,7 +218,7 @@ bp_brawler_profile:
       mitigation: "pick into objective fights that naturally feed his Trait or pair with lane control that lets him hit apex stabs"
       bp_use: candidate_eval.super_cycle_requirement
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Squeak"
         - "Meeple"

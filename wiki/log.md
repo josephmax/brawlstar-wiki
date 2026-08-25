@@ -1252,3 +1252,237 @@
 - 新增 `wiki/sources/Brawl-Planet-站点与数据接口.md`：站点与 GCS 静态 JSON 接口（`storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz` 等，`.gz` 为命名约定实为明文）、文件命名规律、数据结构（per-map `individual` 的 wr/ur/sr + match_count）、抓取方法论、首次执行结果（33 图/29 active/2,882,389 场/105 英雄全覆盖/Crystal Arcade 90,887 场）、边界（无 ban、10 周滚动窗口、不可 runtime 直消费）。
 - 新增 `skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md`：环境信号两层结构（pick=Brawl Planet Legendary+、ban=Liquipedia 月赛）、月度流程、字段口径、禁则（不写英雄页、不生成 tier、名称归一化、过滤 future 英雄）。
 - `skills/brawl-stars-bp-knowledge-maintenance/SKILL.md` 登记新 reference；`wiki/index.md` 加入来源页入口。
+
+## [2026-08-14] decision | 环境信号仅人类参考，不接入 BP 决策
+
+维护者拍板（承接数据源方案）：
+- 环境信号（Brawl Planet Legendary+ pick + 月赛 ban）**只作为人类参考**，先不接入 BP 决策；compile 的 `pickrate_status` 槽保持 `empty`，`decide` 不消费；看不清楚的事情保持模糊，不预支未来接入。
+- 8 月（Season 6）其余赛区月赛**未比完，暂不抓取**；完整月度 ban 信号等当届打完再聚合。
+- 更新 `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`（新增"十二、落地边界"）与 `skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md`（状态改为 human-reference only，去掉 promotion gate 预支）。
+
+## [2026-08-14] audit+docs | BP 提升第一性论证：转录审计、三维证据协议、README 核心理念
+
+维护者围绕"消除个人局限对体系影响"做了多轮双向钢人论证，结论：知识侧（事实与解释分层、机械忠实拆解、社区溯源）已到位，剩余杠杆在决策侧。落地三件事：
+
+- **转录审计（抽查 12 英雄）**：PLP countersThese/counteredBy 16 对位 vs 页面 `conditional_matchups`/`conditional_matchup_seeds` 覆盖对照。结果：9 个 16/16 完美（Bolt/Griff/Brock/Bibi/Nori/Surge/Starr Nova/Meeple/Max），8-Bit 缺 Glowy、Ash 缺 Barley、Angelo 缺 Pearl/Ruffs/Lola（均为低选取率对位目标，低风险缺口）；部分页面有社区原文之外的 Fandom/合成增补条目。抽查脚本即兴执行，未落盘正式报告。
+- **三维证据协议进 skill**：`skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md` 新增 "Evidence Roles and Confidence" 章节——月赛=低权重思路提示、传奇+=强度锚（10 周滞后标注）、机制=最高权重可行性约束，冲突裁决顺序机制→传奇→月赛；`turn_decision_trace` 加 `evidence_roles`（三维度状态+conflict_resolution+confidence），`bp_recommendation.uncertainty` 结构化（evidence_gaps/decisiveness_boundary/outcome_vs_decision_quality）；Common Mistakes 加"不声明证据维度"条目。`test_bp_skill_contract.py` 通过。
+- **README 核心理念**：`README.md` 新增"核心设计理念"五条——事实与解释分层（混合函数刻意不明确）、决策质量可观测 vs 单局结果不可观测、证据累积式信心更新（三维证据等级表）、环境信号只校准不裁决、转录损失不在决策路径。
+
+- 维护者决策补充：转录损失按 wiki 完备性任务治理（低优先级），不占决策预算；数据 vs 页面差异清单作为未来复核触发器候选，本次未实现。
+
+## [2026-08-14] audit+fix | volatile 对位语义修复 + 全量补缺 PLP 对位（105 英雄 100% 覆盖）
+
+承接上轮转录审计，维护者确认两件事必须做：volatile 语义在 compile 里被误当单向克制是真 bug；PLP 对位缺口按"最新版本 raw"口径全量补齐。落地：
+
+- **volatile 语义修复（compile + query）**：`compile_runtime_index.py` 的 `compile_draft_edges` 与 `build_matchup_index` 原将 `direction: volatile`（含变体 `volatile_subject_favored`）归入单向 `answers`（我克谁），把"条件性双向"误报成"单向克制"喂给决策。修复：edge 带 `volatile: true` 标记存 answers（不复制 mechanism 文本），`query_runtime_facts.py` 的 `conditional_relations` 在查询时把 volatile 边展开为 outgoing + incoming 两条关系。函数级验证：Angelo↔Kit 从 0 条变 2 条（outgoing+incoming），Mandy 仍 1 条 incoming 未被误伤。涉及 22 个页面 24 处 volatile 条目。
+- **全量补齐 PLP 对位缺口**：用 workflow 分发 4 个子代理合成 28 条缺失对位条目（方向来自 PLP 最新 raw，mechanism/active_when/fails_when/bp_use 基于各英雄页 capability_vector 合成），写入 15 个英雄页。13 页追加进 `conditional_matchup_seeds`；8-Bit/Rico 是 `conditional_matchups` 字段（bp_ready），先误建 seeds 导致 compile 优先读 seeds 跳过原 matchups（8-Bit runtime 边一度只剩 1 条），已修正为合并进 matchups 并删除 seeds 块，恢复且扩充（8-Bit 16 边、Rico 18 边）。
+- **官方审计脚本口径修复**：`audit_plp_matchup_coverage.py` 两处 bug——(1) pair key 未归一化导致 Jae-Yong/Jae-yong 等大小写变体假阳性（63 条 plp_only 中 57 条是假）；(2) volatile 边在 index 只存 answers，审计把 PLP 的 is_answered_by 期望与 volatile 的 answers 比较产生假阳性。修复后按 normalize_key 比较、volatile 边同时计入两个方向。`test_plp_matchup_coverage.py` 重写：合成 fixture 验证缺口检测（plp_only=1 的 Glowy seed），真实数据测试断言 105 页全覆盖且 plp_only=0。
+- **最终结果**：官方审计 `plp_pairs=1536, overlap=1536, plp_only=0`——105 个英雄、1536 条 PLP 对位边全部被 compile 后 runtime index 覆盖，零缺口。测试全绿：契约测试 + 维护 18 tests + slot-decision 21 tests。
+- 遗留：audit 的 `compiled_pairs=1841`（含页面非 PLP 增补边，如 Fandom 来源），> plp_pairs 属正常；多版本 PLP raw（8-Bit/Bo/Brock/Max）由 `latest_plp_raw_paths` 正确取最新版，旧版不进对比。
+
+## [2026-08-14] governance | 对位字段分类治理：非英雄 target 移出 + direction 白名单 + ally_synergy 归位
+
+维护者指出：对位字段里混入了"另一类知识"（模式目标/召唤物/类型描述/队友配合），且 compile 对未知方向静默落 else（当"我克谁"），是消费方错误。做减法式治理（数据+审计+消费+文档四层同修）：
+
+- **数据侧（22 个英雄页，31 条条目）**：`conditional_matchup_seeds` 中 25 条 ALL-NONHERO（Heist safe / Ball carrier / Zone holder / Open_map_snipers 等模式目标、类型描述、机制碎片）整体移除——这些是模式/目标维度知识，不属于英雄对英雄对位，且 query 按英雄名召回永远无法命中；5 条 MIXED 拆分为仅英雄 target（如 Pierce 的 `Mr_P_or_Jessie_or_Penny_or_spawnable_core` → `["Mr. P","Jessie","Penny"]`）；Meeple 1 条 `ally_synergy` 保留（队友配合是合理英雄页知识），target 从 `Thrower_or_Rico_teammate_combo` 修正为英雄列表 `["Dynamike","Barley","Tick","Larry & Lawrie","Rico"]`。
+- **命名统一**：顺手修正 4 个页面的 `Larry_and_Lawrie` 拼写变体为 canonical `Larry & Lawrie`（Otis/Ruffs/Sirius/Spike）；全量扫描确认所有 target 均 normalize 到 canonical 英雄（0 残留）。`brawler-modeling.md` 明确：`conditional_matchups` 是唯一对位字段（`conditional_matchup_seeds` 为历史别名，勿混用）、target 只允许 canonical 英雄名、方向白名单 `subject_favored/target_favored/volatile/volatile_subject_favored`。
+- **消费侧**：`compile_runtime_index.py` 的 `build_matchup_index` 加两层白名单——target 必须 normalize 到 roster 英雄（非英雄跳过 + warning）、direction 必须合法（未知/ally_synergy 跳过 + warning，不再静默当 answers）。结果：runtime index 从 1847 → 1782 条边，**0 条非英雄边**；Meeple 的 ally_synergy 不再进 answers。
+- **验证**：官方审计 `plp_pairs=1536, overlap=1536, plp_only=0`（清理未破坏 PLP 英雄对位覆盖）；compile 警告从 65 → 1（仅 Meeple ally_synergy 预期跳过）；slot-decision 23 tests（新增 2 个：非英雄 target 过滤、未知方向过滤）、维护 3 tests、契约测试全绿。
+- **模式维度去向**：模式/目标召回不加重英雄页负担，按维护者决策走环境信号层（Brawl Planet per-map 传奇+数据）承载，本页不承载。
+
+## [2026-08-14] governance | volatile 消除为 win/fail 条件单向边 + conditional_matchup_seeds 收敛 + target 格式统一
+
+维护者三项要求全部落地：
+
+1. **`conditional_matchup_seeds` 收敛为 `conditional_matchups`**：62 页字段名统一（0 页同时使用两个），compile 删 seeds 优先分支只读 `conditional_matchups`，`ingest_brawler_bp_profiles.py` 模板字段同步（并删除违反方向白名单的 `direction: unknown` 空条目回退块），`brawler-modeling.md` 明确 seeds 为已合并历史别名禁止再引入。
+2. **volatile 消除（消费端提权修复）**：23 条 volatile 条目全部移除并转化为标准单向边——按 PLP 锚定方向优先（17 条），无 PLP 锚定按机制倾向判断（6 条），组内方向混合的按 target 拆分（Eve/Gus/Nita/Sandy/Shade）。转化保留每条完整 `active_when`（win 条件）+ `fails_when`（fail 条件），实现"win/fail 条件应对关系边"。消费端：compile 方向白名单只剩 `subject_favored/target_favored`，volatile/ally_synergy/未知一律跳过+warning 不再静默当 answers；query 删 volatile 双向展开；audit 删 volatile 双向计数。`brawler-modeling.md` 记录 volatile 移除理由（避免对不恰当角色提权）。
+3. **target 格式统一**：85 条 `_or_` 字符串 + 1 条裸串全部转换为标准双引号列表 `["canonical", "name"]`，修正 `Larry_and_Lawrie` 等拼写变体为 canonical（Otis/Ruffs/Sirius/Spike）。全量验证：所有 target 均为双引号列表且 normalize 到 canonical 英雄（0 残留）。
+
+- **验证结果**：官方审计 `plp_pairs=1536, overlap=1536, plp_only=0`（volatile 移除曾暴露 45 条方向缺口，全部经拆分转化恢复覆盖）；compile 警告仅 1 条（Meeple ally_synergy 预期跳过）；slot-decision 23 tests、维护 3 tests、契约测试全绿。
+
+## [2026-08-14] runtime | 环境信号升级为三维决策证据（decide 按需查询，不进 compile）
+
+维护者认知升级：机制事实层已完备，月赛/传奇+数据是"更新佐证"而非污染源，因此"环境信号仅人类参考"的保守定位让位于三维证据判断框架——证据强度随数据迭代变化，但框架本身不变。落地：
+
+- **新增 `skills/brawl-stars-bp-slot-decision/scripts/query_environment_evidence.py`**：decide 按需查询环境证据的只读工具。`--hero X [--mode M] [--map MAP]` 返回传奇+强度锚（全局 ur/wr + 按模式/地图过滤的 per-map）+ 月赛 ban 层（pick/ban/win_rate_when_picked + 分母），带 window/rank_floor/fetched_at 标注；无样本时返回 `no_ladder_sample` / `no_monthly_sample`。不排名、不生成建议、不改 fit/eligibility。
+- **`runtime-decision-knowledge.md`**：Evidence Roles and Confidence 章节升级为真实执行流程——三维证据表加入检索工具列（月赛=低权重提示、传奇+=强度锚带滞后标注、机制=最高权重约束）；LLM Decision Pipeline 新增第 9 步（高 stakes slot 4-6 / 争议开局时查询环境证据）；`evidence_roles` 字段取值更新（ladder_anchor 支持 supporting/contradicting/no_ladder_sample，monthly_finals 支持 hint/corroborating/contradicting/no_monthly_sample）；Common Mistakes 新增"凭记忆背选取率"和"小样本当锚"两条；样本量诚实规则（ur<2% 或月赛 picks<5 为轶事级）。
+- **`SKILL.md`**：decide Read 列表登记 `query_environment_evidence.py`，标注"佐证证据、绝非排名或指令"。
+- **`compile-knowledge.md` / `environment-signal-ingest.md` / `README.md`**：同步从"仅人类参考/空槽/不进 decide"改为"三维决策证据、decide 按需查询、compile 仍保持 empty"；README 架构图环境信号流向 decide（虚线按需查询），不进 compile。
+- **边界不变**：数据永进 compile（compile 只产稳定事实）、不生成 tier、不改 fit/eligibility、不推翻机制约束；证据强度迭代只更新 confidence 不改变框架。契约测试新增 `query_environment_evidence.py`/`ladder_anchor`/`monthly_finals`/`no_*_sample`/`evidence_roles` 断言。
+- **验证**：工具端到端（Griff 全局 ur 29.4%/wr 49.5% + 逐图；Starr Nova 三维齐备：ur 19.6%/wr 52.7%/月赛 ban 55.6%）；契约测试 + slot-decision 23 tests + 维护 3 tests 全绿。
+
+## [2026-08-14] runtime | confidence 规则修正：机制强度独立于环境样本评估
+
+维护者指出框架的结构性偏差：文档原规则 "Mechanism-only (no ladder sample, no monthly presence) → low confidence; theory pick" 用"环境维度齐全度"绑架了机制证据强度——新英雄/冷门特化/刚补丁英雄（环境样本天然缺失）会被结构性压成 low，而这恰恰是机制独立思考价值最高的场景。
+
+修正（`runtime-decision-knowledge.md`）：
+- 新增 "Mechanism Strength Is Judged Independently of Environment Samples" 小节：机制强度分 strong（地图专属 hook + 显式对位边 + 失败门不激活）/ medium / weak 三档，独立评估不看环境样本；环境佐证只在一定范围内调节 confidence，不决定机制是否成立。
+- 环境缺失从"负面证据"改为"中性缺失"：机制 strong + 环境双缺 → medium（`environment_unverified` 标注）而非 low theory pick。
+- confidence 矩阵：strong+全齐=high / strong+缺一或双缺=medium / medium+薄=medium-low / weak 或证据不足=low。
+- `evidence_roles` 更新：mechanism 取值为 strong|medium|weak + mechanism_basis（依据：hook/关系边/失败门）+ environment_unverified 标记；confidence 增 medium-low 档。
+- 这使文档的 confidence 规则与"机制约束 > 传奇+锚 > 月赛提示"的裁决顺序重新一致（此前裁决顺序说机制最高、confidence 分级却惩罚机制-only）。
+
+## [2026-08-14] judge | 裁判 turn prompt 模板规范化：输入层=对局信息，零思考引导，可独立交付
+
+维护者指出：此前裁判（本 agent）在 spawn subagent 时在 prompt 里塞了大量思考引导（"先读 X 章节""查 Y bucket""你需要应对 Z""你的反制池还剩..."），把 decision skill 该自己做的推理替做了，导致每手查询冗余、思考冗长、决策质量未提升。且决策 skill 的架构原则是"上下文输入只有对局信息一层，其余全部 skill 自主查询"。
+
+落地：
+- 新增 `skills/run-brawl-stars-bp/references/turn-prompt-template.md`（canonical 模板，160 行）：
+  - spawn prompt（ban 阶段）与 pick-turn prompt 两个可复制模板，只填 `对局信息` 块（地图/模式/阵营/策略偏置/本手/已ban/不可用池/已选/runtime index/环境工具）
+  - "What the judge must never add" 清单：禁止加策略提示、查询建议、对手分析、推理引导、上手的对方 trace
+  - 精简输出契约：decision / mechanism / evidence / evidence_roles / confidence / conflict / bias_effect / rejected / retrieval 九字段（trace 瘦身，审计友好）
+  - Judge operation steps（独立可跑：准备 index → match config → spawn → ban 合并 → 严格 pick 顺序 → final review → 报告）
+  - 完整 worked example（蓝方 ban 阶段完整 prompt）
+- `run-brawl-stars-bp/SKILL.md` Turn Prompt Contract 重写：强制使用 canonical 模板、只填对局信息块、声明"输入层=对局信息、其余 skill 自主检索"。
+- 契约测试新增 JUDGE_TURN_TEMPLATE 校验（模板存在 + 含对局信息/输出契约/不可用池/evidence_roles/bias_effect/never-add 清单/操作步骤等 9 词）。
+- 验证：契约测试 + slot-decision 23 tests 全绿。
+- 交付性：模板不依赖任何会话上下文，陌生裁判按 Judge operation steps + 模板即可复现相同流程。
+
+## [2026-08-21] run | 裁判 skill 跑 1 局 Crystal Arcade（Gem Grab）BP 模拟
+
+- 按 `skills/run-brawl-stars-bp` 裁判流程跑 1 局排位 BP：Crystal Arcade（Gem Grab，S47 featured）。用户要求双方策略不同：蓝方 `aggressive` vs 红方 `conservative`（使用 `assign_strategy_bias` 随机分配并保证不同）。
+- 蓝/红各 1 个 match-scoped player subagent 贯穿整局（ban → 4 个 pick turn → final review），复用 `send_message` 续轮，不跨局复用；裁判只传公开 picks/bans/unavailable pool，不传他方隐藏推理。
+- runtime index 直接复用已编译的 `outputs/runtime-bp-index/default-runtime-index.json`（manifest 覆盖 Crystal Arcade，`pickrate_status=empty`，precheck ready），未重新 compile。
+- 禁用阶段（simultaneous，互不可见）：蓝方 ban `Griff`/`Emz`/`Charlie`；红方 ban `Griff`/`Crow`/`Stu`；重复 ban：`Griff`。不可用池：Griff/Emz/Charlie/Crow/Stu。
+- 选择：蓝1 `Bo` → 红2-3 `Meeple`+`Ash` → 蓝4-5 `Otis`+`Mortis` → 红6 `Pearl`。最终阵容：蓝 `Bo/Otis/Mortis` vs 红 `Meeple/Ash/Pearl`。
+- 逐局完整报告与 decision log 写入 `outputs/bp-simulations/match-crystal-arcade.md` 与 `match-crystal-arcade.decision-log.md`（临时运行产物，按 2026-07-01 cleanup 约定不进 wiki syntheses）；本局关键结论如需沉淀再单独提炼。
+
+## [2026-08-21] tooling | 项目内 skill 注册修复：DSH 项目根判定
+
+- 问题：`scripts/register-skills.sh` 把三个 BP skills 软链到 `brawlstar/.dsh/skills/` 后，新会话仍找不到——根因是 DSH `dsh-skill-filesystem` 的 `findProjectRoot(cwd)` 从 cwd 向上找最近含 `.git` 的祖先作为项目根，再扫描 `<项目根>/.dsh/skills`。本仓库位于无 `.git` 的 vault 内（git 根在上级 `vaults/`），DSH 把项目根判定为 `vaults/`，永远扫不到 `brawlstar/.dsh/skills`。
+- 修复：在仓库根创建 gitlink 文件 `.git`（内容 `gitdir: ../.git`），使 `findProjectRoot` 从 brawlstar 向上第一层即命中；git 本身支持该文件形式（同 submodule）。同时 `register-skills.sh` 新增 `ensure_dsh_project_root_marker()` 自动创建该标记，并把 dsh 注册扩展为双路径：`.dsh/skills/`（rank 100）+ `.agents/skills/`（rank 200，与用户根 `~/.agents/skills` 同源更稳）。
+- 验证：skill 目录已出现 `brawl-stars-bp-knowledge-maintenance`、`brawl-stars-bp-slot-decision`、`run-brawl-stars-bp` 三项，`skill` 工具可正常加载（base dir 指向 `brawlstar/.dsh/skills/<name>`）。三个 BP skills 现可在本仓库任意新会话中被 DSH 发现并使用。
+
+## [2026-08-21] ingest+synthesis | 新建 Ranked Season 48 地图池索引并标记 Season 47 过期；补齐三张缺图
+
+- 确认当前赛季为 Season 48（2026-08-20 起），featured 模式从 Season 47 的 Gem Grab 切换为 Brawl Ball；Trial Brawlers 锚点 `#48 | August 20, 2026 | Trunk, Willow, Kaze | Brawl Ball`。来源：Fandom Ranked 页 "Active maps (Season 48)" 表（MediaWiki API，revid 217144，2026-08-21T00:23:29Z）。
+- S48 地图池：6 模式 30 张图（Gem Grab 6 / Heist 6 / Bounty 4 / Brawl Ball 6 / Hot Zone 4 / Knockout 4）。与 S47 差异：Brawl Ball +2（`Beach Ball`、`Spiraling Out`），总图数 28 → 30；Gem Grab 失去 featured 后保留 6 张图（与 Heist S46→S47 行为一致）。
+- 新增 raw：`raw/sources/fandom/maps/ranked-season-48-map-extracts-2026-08-21.md`（compact manifest，含池表、S48 vs S47 diff、Trial Brawlers 锚点、编号冲突说明）+ `beach-ball-2026-08-21.md`、`spiraling-out-2026-08-21.md`、`rustic-arcade-2026-08-21.md` 三张 per-map raw capture（含 revision 元数据）。
+- 新增 source 摘要：`Fandom-Ranked-Season-48-Map-Pages.md`、`Fandom-Beach-Ball.md`、`Fandom-Spiraling-Out.md`、`Fandom-Rustic-Arcade.md`。
+- 新增地图实体页（`bp_map_profile_v2`）：`wiki/entities/maps/Beach Ball.md`、`Spiraling Out.md`、`Rustic Arcade.md`。Spiraling Out 因 Fandom Tips 为空，实体页只写结构层结论并显式声明低证据；Rustic Arcade 关闭 Season 47 页标记的"待 ingest 缺口"。
+- 新增 `wiki/syntheses/Ranked-Season-48-地图Map-Profile总览.md`（当前赛季索引）；`Ranked-Season-47-地图Map-Profile总览.md` 顶部加过期标注并指向 S48，Rustic Arcade 缺口条目更新为已补齐；`wiki/index.md` 同步赛季行、地图实体列表与来源列表。
+- 编号说明：单地图页 History 使用另一套赛季编号（2026-08-20 条目写作 "Season 30 Ranked"），与 Ranked 页 "Season 48" 并存；本库以 Ranked 页编号为准，已写入 raw manifest 与来源页。
+- 后续动作：Season 48 地图池落盘后需重新编译 `outputs/runtime-bp-index/default-runtime-index.json`，使三张新图进入可查询稳定层（见 runtime 条目）。
+
+## [2026-08-21] runtime | Season 48 地图池落盘后重编译 default runtime index
+
+- 判断：runtime index 由稳定实体页编译（`wiki/entities/maps/` + `wiki/entities/brawlers/`），不读赛季索引。Season 48 落盘新增 3 张地图实体页（Beach Ball / Spiraling Out / Rustic Arcade），稳定事实层发生变化，`decide` 要能查询新池内图，必须重编译 `outputs/runtime-bp-index/default-runtime-index.json`。旧索引编译于 2026-08-14（S48 开始前），不覆盖新图。
+- 执行：`compile_runtime_index.py --repo . --output outputs/runtime-bp-index/default-runtime-index.json`。manifest 更新：`map_pool_id` 30 -> 33 张、`compiled_at` 2026-08-21；`pickrate_status=empty`、`missing_inputs=[]` 不变；仅 1 条已知 Meeple ally_synergy 警告。
+- 验证：新索引 33 张图，三张新图 candidate_index 各 105 英雄；`query_runtime_facts.py` 对 Beach Ball / Rustic Arcade 冒烟通过（hook 经能力 token 匹配命中，如 Brock goal_wallbreak、Bo bush_vision、Charlie gem_carrier_cocoon 等）；fit 分布与既有地图同量级（Beach Ball 53/105、Spiraling Out 59/105、Rustic Arcade 41/105 strong，对照 Triple Dribble 65、Safe Zone 29、Undermine 1）；契约测试通过。
+- 顺带修正：26 张旧地图实体页"当前赛季索引"导航链接从 Season 46 批量更新到 Season 48（S47 落盘时遗漏）；来源行保持指向 S46 source 页不变。
+
+## [2026-08-21] run | 裁判 skill 跑 1 局 Out in the Open（Knockout）BP 模拟
+
+- 按 `skills/run-brawl-stars-bp` 裁判流程跑 1 局排位 BP：Out in the Open（Knockout，S48 池内既有图）。用户要求双方策略不同：蓝方 `aggressive` vs 红方 `conservative`。
+- 蓝/红各 1 个 match-scoped player subagent 贯穿整局（ban → 4 个 pick turn → final review），复用 `send_message` 续轮，不跨局复用；裁判只传公开 picks/bans/unavailable pool，不传他方隐藏推理。
+- runtime index 复用已编译的 `outputs/runtime-bp-index/default-runtime-index.json`（2026-08-21 重编译，33 图覆盖 Out in the Open，`pickrate_status=empty`，precheck ready），未重新 compile。
+- 禁用阶段（simultaneous，互不可见）：蓝方 ban `Brock`/`Pearl`/`Mandy`；红方 ban `Brock`/`Angelo`/`8-Bit`；重复 ban：`Brock`（双方均刻意 deny，镜像非重叠浪费）。不可用池：Brock/Pearl/Mandy/Angelo/8-Bit。
+- 选择：蓝1 `Piper` → 红2-3 `Nani`+`Gene` → 蓝4-5 `Max`+`Gus` → 红6 `Carl`。最终阵容：蓝 `Piper/Max/Gus` vs 红 `Nani/Gene/Carl`。
+- 逐局完整报告与 decision log 写入 `outputs/bp-simulations/match-out-in-the-open.md` 与 `match-out-in-the-open.decision-log.md`（临时运行产物，按 2026-07-01 cleanup 约定不进 wiki syntheses）；本局关键结论如需沉淀再单独提炼。
+
+## [2026-08-21] skill | 裁判/选手 BP 输出契约改为"精简返回 + 选手日志"两通道
+
+- 动机：跑 Out in the Open 模拟时发现每手 decision 输出过重——每手 trace 1-3KB，其中 `examined_options`（每条含 why_examined/evidence_used/verdict_reason）占 60-70%，且每手重复写叙述；这些"记日志+总结理由"占每手生成时间与 token 的大头。用户要求：单手下发要简略清晰、最小化上下文（跑得快），详细思考过程记在选手自己日志里，裁判最后分别读双方日志给详细 verbose decision log。
+- 改动（`skills/run-brawl-stars-bp/references/turn-prompt-template.md` + `SKILL.md` + `references/match-report-schema.md`；`skills/brawl-stars-bp-slot-decision/SKILL.md` + `references/runtime-decision-knowledge.md`）：
+  - 决策阶段每手只回 `decision` + `key_reason`（每项一句最强依据）+ ban 加一行 `side_asymmetric_ban_strategy` + `confidence` + `retrieval`（一行）；不再展开未选理由，上下文最小化。
+  - 每手详细思考过程（查验了哪些选项、每项为什么被查、关键证据、查验结果排序 ranking、verdict、被否决/推迟项，可含 evidence_roles / bias_effect）【追加】写入选手 side-local 日志 `{PLAYER_LOG_PATH}`（裁判 spawn 时分配，如 `outputs/bp-simulations/match-<map>.blue.player-log.md` / `...red.player-log.md`），每手 append 不覆盖。
+  - 裁判整局结束后分别读取双方日志，据此组装详细 `.decision-log.md`；日志缺失标 `player_log_missing`，不重建。final_draft_review 仍返回获胜条件/打法/风险/配装，并追加到日志。
+  - standalone 单手 BP（slot-decision 自带 decide）仍返回完整 `turn_decision_trace` + `examined_options`；match-scoped 走精简契约 + 选手日志，二者在 slot-decision SKILL.md 中显式区分。
+- 验证：`test_bp_skill_contract.py` 通过（模板含 对局信息/输出契约/不可用池/strategy_bias/evidence_roles/bias_effect/never-add/Judge operation steps/visible_state_only_between_players 等契约词，新增 选手日志/PLAYER_LOG_PATH/player_log_missing/ranking）；slot-decision 23 tests 全绿。
+
+## [2026-08-21] cleanup | runtime-bp-index 目录清理：死锁与一次性产物
+
+- 用户确认清理 `outputs/runtime-bp-index/` 历史遗留：
+  - 删除 5 个无对应索引的死锁（`rt-final.lock`、`safe-zone-current.lock`、`safe-zone-heist-final.lock`、`belles-rock-knockout-blue-v1.lock`、`crystal-arcade-s47-gg.lock`，均为 2026-08-20~21 一次性 decide/compile 实验遗留，`state: compiling` 但 `<key>.json` 均不存在；同名旧索引 crystal-arcade-s47.json 已在 `outputs/_retired/`）。
+  - `environment-signal-2026-08-emea.json`（8 月 EMEA 试点月赛层，非任何脚本默认）归档至 `outputs/_retired/environment-signal-2026-08-emea.json`；原始聚合输入保留在 `outputs/esports/bsc-2026-aug-emea-observation-profile.json`，可随时重新聚合。
+  - 删除 `ranked-s48-pool.json`（本会话"理解版本"用 S48 30 图快照，无脚本消费，被 33 图 default 索引覆盖）。
+- 剩余 3 个在用文件：`default-runtime-index.json`（运行时主索引）、`environment-signal-pickrate-legendary-plus.json` 与 `environment-signal-2026-07.json`（query_environment_evidence.py 的两个默认证据层）。
+
+## [2026-08-21] run | 裁判 skill 跑 1 局 Beach Ball（Brawl Ball）BP 模拟
+
+- 按 `skills/run-brawl-stars-bp` 裁判流程跑 1 局排位 BP：Beach Ball（Brawl Ball，Season 48 新增图，S48 featured 模式）。用户要求双方策略不同且地图选 48 赛季新图：蓝方 `aggressive` vs 红方 `conservative`。
+- 蓝/红各 1 个 match-scoped player subagent 贯穿整局（ban → 4 个 pick turn → final review），复用 `send_message` 续轮，不跨局复用；裁判只传公开 picks/bans/unavailable pool，不传他方隐藏推理。
+- runtime index 复用已编译的 `outputs/runtime-bp-index/default-runtime-index.json`（2026-08-21 重编译，33 图覆盖 Beach Ball，`pickrate_status=empty`，precheck ready），未重新 compile。
+- 禁用阶段（simultaneous，互不可见）：蓝方 ban `Brock`/`Griff`/`Amber`；红方 ban `Brock`/`Amber`/`Bo`；重复 ban：`Brock`、`Amber`（双方均刻意 deny/保护，镜像非重叠浪费）。不可用池：Brock/Griff/Amber/Bo。
+- 选择：蓝1 `Damian` → 红2-3 `Frank`+`Janet` → 蓝4-5 `Emz`+`Bull` → 红6 `Lou`。最终阵容：蓝 `Damian/Emz/Bull` vs 红 `Frank/Janet/Lou`。
+- 逐局完整报告与 decision log 写入 `outputs/bp-simulations/match-beach-ball.md` 与 `match-beach-ball.decision-log.md`（临时运行产物，按 2026-07-01 cleanup 约定不进 wiki syntheses）；双方选手日志 `match-beach-ball.{blue,red}.player-log.md` 保留完整 examined_options 审计；本局关键结论如需沉淀再单独提炼。
+
+## [2026-08-21] architecture | 环境信号归档层 + compile 折叠：消除 maintenance 与 slot-decision 的目录/文件名耦合
+
+维护者拍板架构转向（承接 2026-08-14 环境信号方案），目标是让"抓 esports 数据 → 生成 runtime index"收敛为单向数据流：maintenance 只写持久归档，compile 是唯一聚合点，decide 只消费索引内嵌证据。
+
+- **新增持久归档层 `wiki/environment/`**（git 跟踪，知识库一部分，不在 gitignored `outputs/`）：
+  - `2026-07/observation-profile.json`（四赛区 canonical，由原 `outputs/esports/bsc-2026-july-four-regions-observation-profile.json` 迁入；7-13 两赛区初版为其严格子集，迁至 `outputs/_retired/`）
+  - `2026-07/environment-signal.json`（月赛 pick/ban 聚合，由原 `outputs/runtime-bp-index/environment-signal-2026-07.json` 迁入）
+  - `2026-08/observation-profile.json`（8 月 EMEA，revision 268338；当月其余赛区未打完，暂不聚合 signal）
+  - `pickrate-legendary-plus.json`（Brawl Planet Legendary+ 快照，由原 `outputs/runtime-bp-index/environment-signal-pickrate-legendary-plus.json` 迁入）
+  - `current.json`（`environment_archive_pointer.v1` 指针）+ `index.md`（归档索引与 provenance 表格）
+- **`compile` 成为环境信号唯一聚合点**（`compile_runtime_index.py`）：默认读 `wiki/environment/current.json`，折叠 per-brawler `environment_evidence`（`ladder_anchor` / `monthly_finals`，带 window / rank_floor / fetched_at / captured_at 标注）+ `environment_ladder_per_map` 进索引；manifest 新增 `pickrate_status: loaded|empty`、`environment_provenance`（指针、归档月、窗口、样本分母），`source_hash` 纳入信号内容。`--no-environment` / `--environment-manifest` 可覆盖。
+- **`runtime_index_precheck.py` 不再硬编码 `empty`**：默认从 `wiki/environment/current.json` 解析期望 `pickrate_status`（与 compile 一致，调用方无需感知信号状态）。
+- **`hydrate_runtime_facts.py` 透出内嵌证据**：per-entity `environment_evidence` + 当前图 `environment_ladder`（按请求英雄投影）。
+- **`query_environment_evidence.py` 完全退役**（删除脚本与全部引用）；decide 只经 query/hydrate 读索引。
+- 文档同步：AGENTS.md（目录速查、层级表新增环境归档层、单向同步规则、esports 段落、"wiki/ 为 Markdown"例外）、`compile-knowledge.md`、`runtime-decision-knowledge.md`、slot-decision SKILL.md、`environment-signal-ingest.md`、`esports-event-ingest.md`、`audit-and-validation.md`、`source-ingest.md`、run-brawl-stars-bp turn-prompt-template、README 架构图、`wiki/environment/index.md`、`wiki/index.md`、两篇 syntheses（落地边界、运行时索引编译架构）、Brawl Planet 来源页、维护 SKILL.md 与脚本 docstring。
+- 测试与验证：契约测试通过；slot-decision 24 tests（新增 `test_manifest_folds_environment_signal_from_archive`，空槽测试改用 `--no-environment`，体积阈值按实测上调）全绿；maintenance 15 tests 全绿；`default-runtime-index.json` 重编译：`pickrate_status=loaded`、provenance 记录 2026-07 月赛 + 2026-08-14 ladder、105 卡 / 33 图 / 33 图 ladder 行、零 missing input。
+
+## [2026-08-24] ingest | 补齐 BSC 8 月（Season 6）其余三赛区月赛并刷新环境信号
+
+按 `environment-signal-ingest.md` 月度流程执行（8 月四赛区现已全部打完）：
+
+- **抓取**：Liquipedia MediaWiki API 新增 South America（rev 269181 / 27 sets）、East Asia（rev 269178 / 27 sets）、North America（rev 269180 / 29 sets）三份 revision-specific raw capture；与既有 EMEA（rev 268338 / 27 sets）构成 8 月四赛区全集。当月 4 赛区全部打完、零弃权（EMEA FUT Esports、South America LOUD、East Asia Crazy Raccoon、North America Tribe）。
+- **ingest**：为四赛区补齐 source summary 与 event entity（8 月 EMEA 此前只有观察产物、缺来源页/实体页，本次补齐）。
+- **analyze**：重建 `wiki/environment/2026-08/observation-profile.json` 为四赛区 canonical（28 series / 110 sets / 88 英雄 global 观察），完整覆盖 2026-08-14 的 EMEA-only 版。
+- **aggregate**：新增 `wiki/environment/2026-08/environment-signal.json`（28 series / 110 sets / 88 英雄；ban 前列 Bolt 53.6%、Lumi 46.4%、Max 39.3%、Meg/Starr Nova 32.1%）——8 月 EMEA 试点期"当月未打完不聚合"的待办就此关闭。
+- **排位层刷新**：`fetch_brawlplanet_pickrate.py --tier l1` 更新 `wiki/environment/pickrate-legendary-plus.json`（fetched 2026-08-24，105 英雄 / 33 图；ur 前列 Griff 28.9%、Brock 26.9%、Surge 23.3%、Max 21.0%、Meg 20.5%）。
+- **指针与索引**：`current.json` 切到 `2026-08`；`wiki/environment/index.md` 归档表与 provenance 更新；重编译 `outputs/runtime-bp-index/default-runtime-index.json`（`pickrate_status: loaded`，provenance 记录 2026-08 月赛 + 2026-08-24 ladder；105 卡 / 33 图 / 零 missing）。
+- **知识缺口审计**：`outputs/esports/bsc-2026-aug-knowledge-gap-audit.md` 共 60 条 review seeds（`observed_without_concrete_map_fit`，需 VOD/draft-context 复核）+ 1 条 `missing_brawler_entity: Glowbert`（maintenance_blocker，不自动建页，待来源 ingest 单独处理）；均不自动升级实体或 runtime。
+- 收尾：`wiki/index.md` 加入 8 月四赛区来源页入口。
+
+## [2026-08-24] cleanup | 英雄改名归一化：Glowbert → Glowy 统一，未知名显式告警
+
+审计发现 8 月 profile 出现 `missing_brawler_entity: Glowbert`。排查确认是**改名 + alias 拼写错误**叠加：
+
+- **改名事实**：Glowbert 是 Glowy 的曾用名，Liquipedia 东亚月赛页（7 月、8 月）沿用旧名 `Glowbert`，其余赛区用 `Glowy`，导致同一英雄在 profile 里分成两条。
+- **拼写错误根源**：`wiki/concepts/英雄名称归一化.md` 的 Glowy 段已有 alias `"Clowbert"`（C 开头，未覆盖实际出现的 Glowbert）。
+- **修复**：
+  - YAML Glowy 段注册 `"Glowbert"`（保留 `"Clowbert"` 变体，注明曾用名关系）。
+  - `_liquipedia_event.py`：`canonicalize_brawler` 对未注册名字打印 `warning: unrecognized brawler name`（去重、stderr）；新增 `renormalize_event_names()`。
+  - `analyze_esports_event.py`：聚合前按**当前**归一化规则重新映射名字（raw 保持不可变，alias 修复后重跑即生效；未知名显式暴露，不再静默歧义）。
+- **产物重建**：7 月与 8 月 observation-profile / environment-signal 重新生成——Glowbert 全部合并进 Glowy（8 月 Glowy 6 picks / 7 月 11 picks，无 Glowbert 残留）；重编译 `default-runtime-index.json`（`monthly_finals.picks=6` 等）；重跑审计，`missing_brawler_entity: Glowbert` 消失，剩余 60 条 review seeds 不变。
+- **验证**：`test_liquipedia_event.py` 5 tests（补 `import sys` 修复告警路径）、slot-decision compile 11 tests（折叠测试 archive_id 断言更新为 2026-08）、契约测试全绿；未知名字告警实测生效（`Zedbert` 触发 warning 且返回原名，审计仍可兜底暴露）。
+- 规则补充：`esports-event-ingest.md` 写明 analyze 按活规则重映射 + 未知名告警；今后改名字一律走 `英雄名称归一化.md` 单一别名表，禁止脚本本地第二份表。
+
+## [2026-08-24] architecture | 环境归档存储层迁移：JSON → SQLite 行列库
+
+维护者拍板：环境/观察数据从嵌套 JSON 迁移到本地可读的 db 格式（可迁移、供其它应用访问、行列数据），读取时再展开成结构数据。
+
+- **新增 `skills/brawl-stars-bp-knowledge-maintenance/scripts/_environment_sqlite.py`**（schema `PRAGMA user_version = 1`）：
+  - 月度 `archive.sqlite3`：`event`（source_events 平铺）、`metric_global/mode/map`（scopes 聚合）、`series`/`set`/`set_pick`/`set_ban`（逐 set 行列，来自 raw 解析，含 winner/score/vod 等完整字段）、`signal_brawler`（月赛信号）、`meta`（schema/策略/provenance）。
+  - 滚动 `pickrate.sqlite3`：`ladder_global` + `ladder_per_map`（`source_key` 保留 GCS 原始 key，含 `Safe Zone` / `Safe(r) Zone` 变体）。
+  - 读函数 `load_profile` / `load_signal` / `load_pickrate` / `read_raw_events`：把行展开成与原 JSON 完全等价的 Python 结构（round-trip 测试逐字段验证）；同样接受 `.json` 路径，向后兼容。
+- **生成脚本加 `--db`**：`analyze_esports_event.py`、`aggregate_environment_signal.py`、`fetch_brawlplanet_pickrate.py` 直接写 sqlite；`--output` 保留为可选 JSON 导出（人类审查 / git diff）。
+- **读层适配**：`compile_runtime_index.py` 的 `resolve_environment` 内联 sqlite 读取（按 meta 键判别 signal/ladder，避免空表误判；自包含不跨 skill import）；`audit_tournament_observations.py` 与 `aggregate_environment_signal.py` 走 `envdb.load_profile`。
+- **指针**：`current.json` 的 `monthly.db` / `ladder` 指向 sqlite；compile 兼容新旧键名。
+- **迁移**：7 月 / 8 月 `archive.sqlite3`（含逐 set 行列）+ `pickrate.sqlite3` 生成；旧 JSON（observation-profile / environment-signal / pickrate-legendary-plus）删除。
+- **体积**：月度 archive ≈ 185 KB（原 JSON ≈ 800 KB，省 ~4 倍）；pickrate ≈ 500 KB（行列展开 + PK 索引的固有开销，略大于紧凑 JSON，换取外部应用可 SQL 查询；极限压缩仍可用 gzip）。
+- **测试**：新增 `test_environment_sqlite.py`（3 tests：profile/raw-events/signal/pickrate 完整 round-trip + SQL 查询示例 + Safe(r) Zone 变体保留）；契约测试、liquipedia 5 tests、slot-decision 24 tests 全绿。
+- **文档**：`wiki/environment/index.md`（存储格式/目录/维护命令）、`environment-signal-ingest.md`、`esports-event-ingest.md`、`audit-and-validation.md`、`compile-knowledge.md`、`AGENTS.md`（目录职责/层级表/Markdown 例外）、`BP-运行时索引编译架构.md`、Brawl Planet 来源页、fetch/aggregate docstring 全部同步 sqlite。
+- 重编译 `default-runtime-index.json`（`loaded`，provenance 指向 archive.sqlite3 / pickrate.sqlite3）；hydrate 端到端验证（Bolt ban 53.6%、Max ban 39.3%、Glowy picks 6 均来自 sqlite 折叠）。
+
+## [2026-08-24] architecture | 环境归档 sqlite 协议化：统一生产侧与消费侧读取
+
+维护者指出：sqlite 数据格式应作为**协议**统一生产侧与消费侧，而不是各自维护解析逻辑。此前 compile 为保持 skill 自包含而内联复制了一份展开代码，存在 schema 演进漂移风险。
+
+- **协议单一实现**：`_environment_sqlite.py` 作为唯一实现，新增 `EnvironmentProtocolError`、`PROTOCOL_TABLES`（13 张协议表）、`META_KEY_PREFIXES`；`connect()` 加 **user_version 守卫**——已存在库的 `user_version` 既非 0 也非 `SCHEMA_VERSION` 时拒绝打开（消费侧不得猜测未知布局）。
+- **compile 安装协议**：删除 `compile_runtime_index.py` 的内联 `_read_environment_signal`（约 60 行复制），改为 `_environment_protocol()` 经 repo 相对路径动态 import 共享模块，用 `load_signal` / `load_pickrate` 读取；schema 演进只改一处。
+- **契约测试** `test_environment_protocol.py`（4 tests）：未知 user_version 拒绝、协议表集合稳定、compile 消费路径与协议模块读取完全一致（真实 8 月库）、旧 `.json` 路径仍兼容。
+- **文档**：`wiki/environment/index.md` 新增"协议契约"章节（协议表、版本守卫、演进规则：改 schema 须同步模块并递增 `SCHEMA_VERSION`；消费侧无需改动；外部应用按表结构自实现）。
+- 验证：契约测试、sqlite 3 tests、协议 4 tests、liquipedia 5 tests、slot-decision 24 tests 全绿；compile 经协议模块读取真实归档正常（hydrate 端到端不变）。
+
+## [2026-08-25] run | 裁判 skill 跑 1 局 Spiraling Out（Brawl Ball）BP 模拟
+
+- 按 `skills/run-brawl-stars-bp` 裁判流程跑 1 局排位 BP：Spiraling Out（Brawl Ball，Season 48 新增图，S48 featured 模式）。用户要求选本赛季新增图用当前 BP skill 跑一局；Beach Ball（另一张 S48 新增图）已于 2026-08-21 跑过，本轮选 Spiraling Out。策略偏置随机分配：蓝方 `high_variance` vs 红方 `aggressive`。
+- 蓝/红各 1 个 match-scoped player subagent 贯穿整局（ban → 4 个 pick turn → final review），复用 `send_message` 续轮，不跨局复用；裁判只传公开 picks/bans/unavailable pool，不传他方隐藏推理。
+- runtime index 复用已编译的 `outputs/runtime-bp-index/default-runtime-index.json`（2026-08-24 重编译，33 图覆盖 Spiraling Out，`pickrate_status=loaded`——2026-08 月赛 archive + Legendary+ 10 周 ladder 折叠，precheck ready），未重新 compile；本图无逐图 ladder 行（无 Legendary+ 样本），环境证据仅为全局锚点 + monthly finals 双维。
+- 禁用阶段（simultaneous，互不可见）：蓝方 ban `Brock`/`Bo`/`Buzz`（protect_first_pick——保留环境最强的 Griff 作蓝 1，ban 红方对首手的三组廉价反制）；红方 ban `Bo`/`Brock`/`Griff`（deny_blue_safe_opener——剥夺蓝 1 安全开局者）；重复 ban：`Brock`、`Bo`（蓝方动机=保护首手，红方动机=deny，独立成立）。不可用池：Brock/Bo/Buzz/Griff。
+- 选择：蓝1 `Meeple`（穿墙改写中部角墙 + Ragequit 眩晕制造开放球门射门窗口，双 route gate 命中，monthly 20 选全场最高）→ 红2-3 `Ash`+`Crow`（Ash→Meeple 失败门反向命中 + Crow 反疗减速反制规则区推进兼探草）→ 蓝4-5 `Emz`+`Rico`（Emz 喷雾反 Ash 笨重目标 + Rico 弹射反突进，两者投射物配合 Meeple 穿墙规则区）→ 红6 `Grom`（越墙 thrower 反 Rico 失败门 + Grom→Emz 明确边 + 补侦察缺口，environment_unverified 但机制独立成立）。最终阵容：蓝 `Meeple/Emz/Rico` vs 红 `Ash/Crow/Grom`。
+- 逐局完整报告与 decision log 写入 `outputs/bp-simulations/match-spiraling-out.md` 与 `match-spiraling-out.decision-log.md`（临时运行产物，按 2026-07-01 cleanup 约定不进 wiki syntheses）；双方选手日志 `match-spiraling-out.{blue,red}.player-log.md` 保留完整 examined_options 审计；本局核心对局结构为「Meeple 穿墙规则区 vs Grom 越墙」的墙几何争夺，关键结论如需沉淀再单独提炼。

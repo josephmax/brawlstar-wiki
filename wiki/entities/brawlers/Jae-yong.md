@@ -197,13 +197,6 @@ bp_brawler_profile:
       active_when: "地图允许我方长线站住，且敌方不能直接切掉 Jae-yong"
       fails_when: "敌方控制转成硬开，或墙体/投掷让 Jae-yong 无法安全给线"
       bp_use: "作为支援型回答，前提是我方已有输出"
-    - target: ["El Primo", "Mico", "Sam", "Stu"]
-      direction: "volatile_subject_favored"
-      source: "[[sources/PLP-Jae-yong|PLP-Jae-yong]]"
-      mechanism: "Work speed 和 slow gadget 能拉开接近窗口，但只在进场路线可预判时成立"
-      active_when: "敌方进场必须经过开阔通道或草口，Jae-yong 还留有 gadget/Super"
-      fails_when: "敌方绕后贴身、我方无 peel，或 Jae-yong 为了治疗队友站位过前"
-      bp_use: "可作为反接近辅助，不能单独承担 anti-assassin"
     - target: ["Bibi", "Rosa", "Doug", "Sandy"]
       direction: "target_favored"
       source: "[[sources/PLP-Jae-yong|PLP-Jae-yong]]"
@@ -218,6 +211,14 @@ bp_brawler_profile:
       active_when: "地图存在稳定墙后口袋，且我方无开墙/突进回答"
       fails_when: "墙体被打开，或我方能用速度迅速换线切入"
       bp_use: "draft 时检查 wall pocket answer"
+
+    - target: ["El Primo", "Mico", "Sam", "Stu"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Jae-yong|PLP-Jae-yong]]"
+      mechanism: "Work speed 和 slow gadget 能拉开接近窗口，但只在进场路线可预判时成立"
+      active_when: "敌方进场必须经过开阔通道或草口，Jae-yong 还留有 gadget/Super"
+      fails_when: "敌方绕后贴身、我方无 peel，或 Jae-yong 为了治疗队友站位过前"
+      bp_use: "可作为反接近辅助，不能单独承担 anti-assassin"
 
   slot_notes:
     slot_1: "仅在 Bounty/Knockout 开阔图、队伍准备围绕长线支援开局时可早手；否则容易暴露低 DPS"

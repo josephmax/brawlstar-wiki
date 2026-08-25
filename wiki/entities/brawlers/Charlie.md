@@ -251,7 +251,7 @@ bp_brawler_profile:
       mitigation: "draft wallbreak/dive or keep Charlie on open/control lane instead of thrower pocket duty"
       bp_use: map_fit_filter
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Chuck"
         - "Bolt"

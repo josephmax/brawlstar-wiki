@@ -10,6 +10,8 @@ from typing import Any
 
 from runtime_index_tools import (
     brawler_matchups,
+    cache_load,
+    cache_store,
     canonical_brawler_name,
     candidate_map_fit,
     compact_manifest,
@@ -18,6 +20,7 @@ from runtime_index_tools import (
     load_runtime_index,
     map_context,
     normalize_key,
+    query_cache_key,
     retrieval_log,
     runtime_card_fragment,
     runtime_card_counts,
@@ -155,6 +158,22 @@ def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str
 
 
 def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
+    cache_key = query_cache_key("query_runtime_facts", args.index, {
+        "map": args.map,
+        "mode": args.mode,
+        "bucket": args.bucket,
+        "include_id": args.include_id,
+        "exclude_id": args.exclude_id,
+        "relation_target": args.relation_target,
+        "effort": args.effort,
+        "limit": args.limit,
+        "field": args.field,
+    })
+    cached = cache_load(args.cache_dir, cache_key)
+    if cached is not None:
+        cached.setdefault("runtime_fact_query", {})["cache_hit"] = True
+        return cached
+
     index = load_runtime_index(args.index)
     context = map_context(index, args.map)
     map_name = context["map"]
@@ -239,6 +258,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     log["entity_fragments"] = len(fact_window)
     log["map_fragments"] = 1
     body["runtime_fact_query"]["retrieval_summary"] = log
+    cache_store(args.cache_dir, cache_key, body)
     return body
 
 
@@ -261,6 +281,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--limit", type=int, default=None, help="Override effort budget; maximum entity fact fragments to return; 0 means no limit")
     parser.add_argument("--summary", action="store_true", help="Emit a compact text summary for agent-readable debugging")
+    parser.add_argument("--cache-dir", default="", help="Directory for cross-query disk cache (same params skip recompute); empty disables")
     parser.add_argument("--json", action="store_true", help="Emit JSON")
     return parser.parse_args()
 

@@ -228,7 +228,7 @@ bp_brawler_profile:
       mitigation: "利用水域角度和队友火力交叉，而不是纯正面对狙"
       bp_use: "must_avoid_against_sniper_core"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Piper", "Mandy", "Bea", "Bonnie", "Byron"]
       direction: "subject_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
@@ -236,13 +236,6 @@ bp_brawler_profile:
       active_when: "地图提供水域/侧角，敌方缺范围清召唤物，Eve 不需要正面吃完整狙击线"
       fails_when: "地图纯开阔无水域价值，目标命中更稳定，或敌方队友能免费清 hatchling"
       bp_use: "response to single-target marksman；不是无条件狙击 counter"
-    - target: ["Shelly", "Meg", "Rosa", "El Primo", "Mortis", "Edgar"]
-      direction: "volatile"
-      source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
-      mechanism: "足够大的水域让普通短手难以触达 Eve，但一旦离水或被强进场贴脸，Eve 慢 unload 会失效"
-      active_when: "水域直接参与主战场，短手没有跳跃/钩子/隐身或队友开路"
-      fails_when: "短手拥有跨距手段、草墙逼迫 Eve 离水、或目标模式要求 Eve 站到陆地"
-      bp_use: "map-dependent anti-aggro；BP 输出必须引用具体地图 feature"
     - target: ["Penny", "Sandy", "Rosa", "Bibi", "Chuck", "Lumi", "Alli"]
       direction: "target_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]]"
@@ -250,13 +243,35 @@ bp_brawler_profile:
       active_when: "他们能接触巢蛋、清 hatchling，或逼 Eve 离开安全水域"
       fails_when: "地图水域隔绝他们的主路线，或队友压制使其不能追 Eve"
       bp_use: "enemy_response_prediction / must_avoid"
-    - target: ["Grom", "Rico", "Jessie"]
-      direction: "volatile"
+    - target: ["Najia"]
+      direction: "subject_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]]"
-      mechanism: "Eve 可用水域/长线避免部分常规路线，但这些英雄也可能通过特殊弹道、弹墙或炮台清理 hatchling"
-      active_when: "Eve 有隔水角度且不会被弹墙/炮台逼离"
-      fails_when: "墙体角度让对方绕过水域打到 Eve，或召唤物被快速清掉"
-      bp_use: "map geometry check before accepting PLP signal"
+      mechanism: "Eve 的 9.33 格射程和水域站位在 Najia 罐子/蛇的有效覆盖外消耗，hatchling 清理税挤占 Najia 慢装填的毒区铺设节奏；Najia 毒伤是持续压力而非爆发，难以快速压掉低血 Eve 的隔水角度"
+      active_when: "地图有水域或长线角度让 Eve 保持距离，Najia 无队友突进保护且必须用弹药清 hatchling"
+      fails_when: "地图无水域且 Najia 从墙后弧线持续命中 Eve（罐子可越墙），或敌方范围清理免费清 hatchling，或 Najia 队友突进跨水贴脸"
+      bp_use: "response_pick_candidate_against_poison_route_control"
+
+    - target: ["Shelly", "Meg", "Rosa", "El Primo", "Mortis", "Edgar"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
+      mechanism: "足够大的水域让普通短手难以触达 Eve，但一旦离水或被强进场贴脸，Eve 慢 unload 会失效"
+      active_when: "水域直接参与主战场，短手没有跳跃/钩子/隐身或队友开路"
+      fails_when: "短手拥有跨距手段、草墙逼迫 Eve 离水、或目标模式要求 Eve 站到陆地"
+      bp_use: "map-dependent anti-aggro；BP 输出必须引用具体地图 feature"
+    - target: ["Grom"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Eve|PLP-Eve]]"
+      mechanism: "Grom 的弧线投掷可跨水域从墙后持续命中 Eve 的蓄力位，清 hatchling 的成本也拖慢 Eve 的资源节奏"
+      active_when: "Grom 有墙后投掷角度，Eve 无法用水域完全规避弹道"
+      fails_when: "Eve 从开阔水域/跳位拿到 Grom 投掷覆盖外的角度，或队友先逼 Grom 转位"
+      bp_use: "must_answer_thrower_arc_before_eve"
+    - target: ["Rico", "Jessie"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Eve|PLP-Eve]]"
+      mechanism: "Eve 的水域站位和 hatchling 清理税在 Rico/Jessie 需保持线权时干扰其弹道节奏，且其召唤物/弹墙难以处理跨水角度"
+      active_when: "Eve 保持水域或长线距离，Rico/Jessie 必须跨水或进入 hatchling 覆盖才能兑现价值"
+      fails_when: "墙体角度让 Rico 弹墙或 Jessie 炮台绕过水域，或 Eve 被逼离水进入其有效射程"
+      bp_use: "response_pick_candidate_against_water_unfriendly_lane"
 
   slot_notes:
     slot_1: "只在地图水域/长线是硬职责且敌方低成本答案被 ban 时可早手；否则容易被后手范围清理或突进惩罚"

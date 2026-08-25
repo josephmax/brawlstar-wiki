@@ -66,7 +66,7 @@ https://storage.googleapis.com/brawlanalyzer-public/<file>.json.gz
 - 覆盖：33 图（29 active）/ **总样本 2,882,389 场** / 105 英雄全覆盖（名称归一化 0 失败）。
 - 单图样本：Crystal Arcade（S47 featured 新图）**90,887 场** Legendary+。
 - 全局 use rate top（按对局量加权）：Griff 29.4%、Brock 26.7%、Crow 23.8%、Surge 23.7%、Max 20.7%、Pierce 20.1%、Starr Nova 19.6%、Meg 19.4%、8-Bit 18.4%。
-- 产物：`outputs/runtime-bp-index/environment-signal-pickrate-legendary-plus.json`（`brawlstar.environment_signal_pickrate.v1`）。
+- 产物：`wiki/environment/pickrate.sqlite3`（`brawlstar.environment_signal_pickrate.v1`，SQLite 行列归档，持久化；compile 经 `current.json` 指针折叠进 runtime index）。
 
 ## 边界与限制
 

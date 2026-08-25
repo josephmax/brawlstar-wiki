@@ -225,36 +225,28 @@ bp_brawler_profile:
       mitigation: "队友先清资源，或用 Piggy Bank/Super 同时处理资源与真实目标"
       bp_use: enemy_resource_filter
 
-  conditional_matchup_seeds:
-    - target: Nita_or_Poco_or_Colette_or_Janet
+  conditional_matchups:
+    - target: ["Nita", "Poco", "Colette", "Janet"]
       direction: subject_favored
       source: "[[sources/PLP-Griff|PLP-Griff]]"
       mechanism: "Griff 的中近距离爆发、宽 Super 和开墙能力能惩罚固定支援、资源位或需要进入目标区域的中等身板"
       active_when: "目标必须守矿区、球路、热区或 safe 防守线，且无法在远端白打 Griff"
       fails_when: "召唤物/队友保护吃掉 Griff 弹药，或目标从极远角度持续输出"
       bp_use: midrange_burst_response_to_static_control
-    - target: Sam_or_Rosa_or_Darryl_or_Bull
+    - target: ["Sam", "Rosa", "Darryl", "Bull"]
       direction: subject_favored
       source: "[[sources/PLP-Griff|PLP-Griff]] / [[sources/Fandom-Griff|Fandom-Griff]]"
       mechanism: "近距离多硬币命中和 Super burst 对进入 safe、球门或热区的身体目标伤害极高，Piggy Bank 可击退或拆掩体"
       active_when: "身体目标必须走可见入口，Griff 有弹药和距离，队友能补控制"
       fails_when: "他们从草/墙先手贴脸并逼 Griff 空弹，或有强控制保护进场"
       bp_use: anti_body_if_entry_visible
-    - target: Surge_or_Spike_or_Bo_or_Buzz_or_Colt_or_Fang_or_Stu_or_Crow
+    - target: ["Surge", "Spike", "Bo", "Buzz", "Colt", "Fang", "Stu", "Crow"]
       direction: target_favored
       source: "[[sources/PLP-Griff|PLP-Griff]]"
       mechanism: "升级/减速/地雷/射程/突进/毒和高机动会让 Griff 难以保持中近距离完整 unload，并惩罚他低机动站位"
       active_when: "地图给他们开阔 kite、侧草突进或资源预铺，Griff 无法先破关键墙或逼近"
       fails_when: "墙体/队友控制限制他们路线，Griff 只在目标点反打进入者"
       bp_use: must_answer_kite_or_resource_before_griff
-    - target: Goal_wall_or_safe_wall_or_zone_cover
-      direction: subject_favored
-      source: "[[sources/Fandom-Griff|Fandom-Griff]]"
-      mechanism: "Piggy Bank 可延迟破墙并 knockback，直接改变球门、金库和热区掩体状态"
-      active_when: "破墙后我方 scorer、safe DPS 或 zone holder 更受益"
-      fails_when: "开墙同时给敌方长手/突进更清晰路线"
-      bp_use: terrain_state_plan.objective_wallbreak
-
   slot_notes:
     slot_1: "只有地图目标天然进入中近距离、且敌方难以用极远长手风筝时才早手；否则名义长射程会被惩罚。"
     slot_2_3: "适合作为目标图 anti-body 和开墙计划手，但队伍要补 scorer、carrier 或站区主体。"

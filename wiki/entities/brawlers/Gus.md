@@ -220,7 +220,7 @@ bp_brawler_profile:
       mitigation: "pair with a clear protected carry or select a more self-sufficient lane pick"
       bp_use: "slot_fit.requires_carry_or_entry_target"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Gray"
         - "Emz"
@@ -235,18 +235,6 @@ bp_brawler_profile:
       active_when: "map has playable long lanes and the target lacks cheap body-block or wall control that stops Gus's hits"
       fails_when: "target plays behind deeper walls, receives summon cover, or deletes Gus before shield cycle"
       bp_use: "support_lane_response_candidate"
-    - target:
-        - "Fang"
-        - "Bull"
-        - "El Primo"
-        - "Darryl"
-        - "Mortis"
-      direction: "volatile"
-      source: "[[sources/Fandom-Gus|Fandom-Gus]]"
-      mechanism: "shield knockback can stop single-lane engage, but Gus himself dies if the diver bypasses the protected teammate or chains a second engage"
-      active_when: "Super is available and the diver must commit onto the shielded ally through a predictable lane"
-      fails_when: "diver baits shield, enters from two angles, or reaches Gus directly after shield decay"
-      bp_use: "anti_aggro_resource_check"
     - target:
         - "Mr. P"
         - "Nani"
@@ -269,6 +257,14 @@ bp_brawler_profile:
       active_when: "map has enough open dodge space or Eve water/offsides that deny stable projectile tagging"
       fails_when: "Gus saves shield for the actual entry and teammate control pins the mobile target in place"
       bp_use: "avoid_or_pair_with_control"
+
+    - target: ["Fang", "Bull", "El Primo", "Darryl", "Mortis"]
+      direction: "subject_favored"
+      source: "[[sources/Fandom-Gus|Fandom-Gus]]"
+      mechanism: "shield knockback can stop single-lane engage, but Gus himself dies if the diver bypasses the protected teammate or chains a second engage"
+      active_when: "Super is available and the diver must commit onto the shielded ally through a predictable lane"
+      fails_when: "diver baits shield, enters from two angles, or reaches Gus directly after shield decay"
+      bp_use: "anti_aggro_resource_check"
 
   slot_notes:
     slot_1: "acceptable only on long-lane Bounty/Knockout maps when team can protect his low health and use the shield"

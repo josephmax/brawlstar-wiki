@@ -260,29 +260,29 @@ bp_brawler_profile:
       mitigation: "先逼掉控制，用 More Rockets Buffie 移速调整轨迹，不要无计划地叠加 Laces"
       bp_use: "super_resource_commitment_check"
 
-  conditional_matchup_seeds:
-    - target: 8-Bit_or_Pam_or_Nita_or_Hank
+  conditional_matchups:
+    - target: ["8-Bit", "Pam", "Nita", "Hank"]
       direction: subject_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: 长射程与溅射惩罚低机动或站位笨重目标
       active_when: 开阔长线、对方缺接近压力、Brock 可保持距离
       fails_when: 敌方有硬开或 Brock 被迫中距离对枪
       bp_use: response_pick_or_lane_pressure_candidate
-    - target: Emz_or_Spike_or_Mr_P_or_Shelly
+    - target: ["Emz", "Spike", "Mr. P", "Shelly"]
       direction: subject_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: Brock 可用长射程、溅射和开墙惩罚依赖中距离、墙体、召唤物或固定防守位置的目标
       active_when: 地图允许 Brock 先开距离或先改图，目标必须守矿/球门/金库路线
       fails_when: 草丛、墙角或目标队友让 Brock 被迫进入中近距离
       bp_use: map_conditioned_response_not_unconditional_counter
-    - target: Stu_or_Max_or_Leon_or_Mortis_or_Edgar
+    - target: ["Stu", "Max", "Leon", "Mortis", "Edgar"]
       direction: target_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: 高机动缩短距离，惩罚 Brock 慢弹道和低血量
       active_when: 地图给出侧路、草丛或多接近路线
       fails_when: 地图长线开阔且 Brock 有队友 peel
       bp_use: must_avoid_or_ban_reason_if_plan_depends_on_Brock
-    - target: Crow_or_Cordelius_or_Bibi
+    - target: ["Crow", "Cordelius", "Bibi"]
       direction: target_favored
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       mechanism: 毒、领域隔离、加速身体或击退接触会破坏 Brock 的安全距离和慢装填节奏

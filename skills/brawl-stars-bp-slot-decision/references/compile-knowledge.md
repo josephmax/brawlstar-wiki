@@ -1,6 +1,6 @@
 # Compile Knowledge
 
-Use this reference only in `compile` mode. The goal is to generate a session-local `runtime_bp_index` from stable entity facts. There is no strength layer: the only environment signal in this system is high-rank pick rate (paired with ban rate), and that slot is currently **empty**. Compile never infers or fabricates environment signals from memory, old tier lists, or maintainer discussion.
+Use this reference only in `compile` mode. The goal is to generate a session-local `runtime_bp_index` from stable entity facts plus archived environment signals. There is no strength layer: the only environment signal in this system is high-rank pick rate (paired with ban rate), folded in by compile as labeled evidence from the `wiki/environment/` archive. Compile never infers or fabricates environment signals from memory, old tier lists, or maintainer discussion.
 
 ## Boundary
 
@@ -9,6 +9,7 @@ Allowed inputs:
 - This reference.
 - Relevant `wiki/entities/maps/` pages.
 - Relevant `wiki/entities/brawlers/` pages.
+- The environment archive pointer `wiki/environment/current.json` and the monthly/ladder signal files it references (the only environment inputs).
 - Current map pool and available brawler pool supplied by the user, judge, or caller.
 
 Forbidden inputs:
@@ -24,12 +25,13 @@ If the needed map pool is missing, compile a partial index and mark the gap in `
 
 ## Environment Signal (high-rank pickrate)
 
-The system's only environment signal is `high_rank_pickrate`, defined as the aggregate revealed draft preference of high-rank players, paired with `ban_rate`. Current status: **empty slot**.
+The system's environment signal is `high_rank_pickrate` (Brawl Planet Legendary+ pick layer, `wiki/environment/pickrate.sqlite3`) paired with `ban_rate` (Liquipedia monthly aggregation, `wiki/environment/<YYYY-MM>/archive.sqlite3`). The archive lives under `wiki/environment/` and `current.json` is the machine-readable pointer. **Compile is the only aggregator**: it folds the archived signals into the index as per-brawler `environment_evidence` (`ladder_anchor` / `monthly_finals`) plus `environment_ladder_per_map`. `decide` never reads signal files; it consumes the embedded evidence from the index through `hydrate_runtime_facts.py`.
 
-- `manifest.pickrate_source` is `null` and `manifest.pickrate_status` is `"empty"` when no pickrate input is supplied.
-- Compile does not invent pick rates, tiers, or rankings. Unknown environment signal is explicit uncertainty; it must not upgrade or demote any candidate.
-- Map fit (`fit`, `map_floor_fit`, `slot_eligibility`, projection buckets) comes only from stable map hooks, matched capabilities, and mode contracts. Environment signal can never create or rewrite those fields.
-- When a pickrate data source is integrated later, it enters as an independent evidence layer with provenance (`rank_floor`, `window`, `sample_size`, `companion_ban_rate`), still unable to change fit or eligibility.
+- With the archive present, `manifest.pickrate_status` is `"loaded"` and `manifest.pickrate_source` records the pointer path; without the pointer (or with `--no-environment`) the slot stays `"empty"`.
+- Compile does not invent pick rates, tiers, or rankings. Missing environment evidence is explicit uncertainty; it must not upgrade or demote any candidate.
+- Map fit (`fit`, `map_floor_fit`, `slot_eligibility`, projection buckets) comes only from stable map hooks, matched capabilities, and mode contracts. Environment evidence can never create or rewrite those fields.
+- The signal enters the decision path only as labeled evidence with provenance (`rank_floor`, `window`, `fetched_at` / `captured_at`, sample denominators), embedded in the index by compile; evidence strength updates with each refresh without changing the framework.
+- `manifest.environment_provenance` records the exact pointer, archive id, windows, and sample denominators folded into this index, so every index is traceable to its archived signal inputs.
 
 ## compile_input
 
@@ -83,8 +85,9 @@ runtime_bp_index:
   manifest:
     patch_id:
     map_pool_id:
-    pickrate_source: null
-    pickrate_status: empty
+    pickrate_source: null | wiki/environment/current.json
+    pickrate_status: empty | loaded
+    environment_provenance: null | {pointer, monthly, ladder}
     source_hash:
     compiler_version:
     compiled_at:
@@ -137,6 +140,11 @@ runtime_bp_index:
       objective_contracts:
       failure_modes:
       slot_notes:
+      environment_evidence:   # only when the archive is folded
+        ladder_anchor: null | {use_rate, win_rate, window, rank_floor, fetched_at}
+        monthly_finals: null | {picks, pick_rate, win_rate_when_picked, ban_rate, window, rank_floor, captured_at}
+
+  environment_ladder_per_map: {}   # only when the archive is folded; per-map rows keyed by map_mode
 
   matchup_index:
     by_brawler:
@@ -161,11 +169,11 @@ Detailed raw extracted `map_duties`, unpruned `brawler_cards`, `map_brawler_edge
 
 ## Environment Signal Integration
 
-The environment slot is empty by default. There is no strength layer and no tier input.
+Compile folds the archived environment signal only when `wiki/environment/current.json` resolves (pass `--no-environment` to force the empty slot, or point `--environment-manifest` elsewhere). There is no strength layer and no tier input.
 
 Rules:
 
-- `manifest.pickrate_source` is `null` and `manifest.pickrate_status` is `"empty"`; do not fabricate pick rates or rankings.
+- Without the archive, `manifest.pickrate_source` is `null` and `manifest.pickrate_status` is `"empty"`; do not fabricate pick rates or rankings. With the archive, status is `"loaded"` and the per-brawler evidence is labeled with window / rank_floor / fetch or capture time.
 - `mode_contract_hit` is only evidence that the brawler page has a contract for this mode. It is not map eligibility. Store `mode_contract_fit: evidence_only` when present, never `playable`.
 - Only concrete map signals such as `active_hook_ids` or `matched_capabilities` can make `map_floor_fit: strong` or `fit: strong`. A brawler with only `mode_contract_hit` must remain `fit: weak` until current draft context activates a counter line.
 - `early_pick`, `response_pick`, `late_pick`, and `ban_pressure` projections require concrete map fit first. Preserve all concrete map candidates that are legal for that slot; do not cut projection to a short strength-ranked list.
@@ -183,6 +191,8 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/compile_runtime_index.py \
   --repo . \
   --output outputs/runtime-bp-index/default-runtime-index.json
 ```
+
+The default `--environment-manifest wiki/environment/current.json` folds the current archived signals into the index when the pointer exists. Use `--no-environment` for a stable-facts-only index, and `--environment-manifest <path>` to fold a different archive snapshot.
 
 Use `--map "Safe Zone"` only when compiling a single-map index. Omit `--map` to compile the full map pool under `wiki/entities/maps/`.
 
@@ -205,12 +215,12 @@ Reject or mark incomplete any index entry that lacks:
 - a slot use
 - a source entity reference
 
-The output must be smaller than the underlying wiki pages and must not require the decider to search the wiki. Because v2 stores global brawler cards and matchup edges once, file size is allowed to be larger than the earlier minimal index, but tool returns must remain small:
+The output must be smaller than the underlying wiki pages and must not require the decider to search the wiki. Because v2 stores global brawler cards, matchup edges, and the folded environment evidence once, file size is allowed to be larger than the earlier minimal index, but tool returns must remain small:
 
-- single-map runtime-v2 index: under 1.5MB
-- current full map pool runtime-v2 index: under 3MB
+- single-map runtime-v2 index: under 2MB
+- current full map pool runtime-v2 index: under 6MB (environment embedding grows the file; tool windows stay small)
 - normal `query_runtime_facts.py` return: expected low single-digit KB for a bounded fact window
-- normal `hydrate_runtime_facts.py` return: expected low single-digit to low tens of KB for 2-4 entities
+- normal `hydrate_runtime_facts.py` return: expected low single-digit to low tens of KB for 2-4 entities (plus the current map's environment ladder rows, projected to the requested heroes)
 
 ## Compiler Output Discipline
 

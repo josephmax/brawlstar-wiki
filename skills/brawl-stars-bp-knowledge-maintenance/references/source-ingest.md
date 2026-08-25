@@ -75,4 +75,4 @@ Keep separate sources when they provide different evidence fields, different tim
 
 For Liquipedia API limits, series/set parsing, `tournament_observation_profile.v1`, event entities, and the promotion gate into stable BP knowledge, read `references/esports-event-ingest.md`.
 
-Event capture writes canonical raw under `raw/sources/liquipedia/events/`; ingest writes a document-scoped `wiki/sources/Liquipedia-*` page and a trackable `wiki/entities/events/` page. Generated observations and gap audits belong under `outputs/esports/`. They must not auto-generate brawler tiers or direct runtime recommendations.
+Event capture writes canonical raw under `raw/sources/liquipedia/events/`; ingest writes a document-scoped `wiki/sources/Liquipedia-*` page and a trackable `wiki/entities/events/` page. Observation profiles are archived under `wiki/environment/<YYYY-MM>/` (persistent knowledge-base layer); gap audits stay under `outputs/esports/` as temporary artifacts. They must not auto-generate brawler tiers or direct runtime recommendations.

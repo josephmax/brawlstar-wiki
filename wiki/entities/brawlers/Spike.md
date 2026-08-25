@@ -209,35 +209,42 @@ bp_brawler_profile:
       mitigation: 搭配目标身体、得分手或远程 race 组件
       bp_use: role_coverage_check
 
-  conditional_matchup_seeds:
-    - target: El_Primo_or_Fang_or_Meg_or_Gale
+  conditional_matchups:
+    - target: ["El Primo", "Fang", "Meg", "Gale"]
       direction: subject_favored
       source: "[[sources/PLP-Spike|PLP-Spike]]"
       mechanism: 多段尖刺和 Super slow 惩罚必须进入中近距离的前排/控制英雄
       active_when: 目标要穿过 choke、草口、球路或站圈入口，Spike 持有 ammo/Super
       fails_when: 目标用队友投掷/长手先压退 Spike，或从多路线同时进场
       bp_use: anti_body_or_route_response
-    - target: Bea_or_Lou_or_Glowy_or_Jae_yong
+    - target: ["Bea", "Lou", "Glowy", "Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Spike|PLP-Spike]]"
       mechanism: Curveball 和区域 slow 能压迫低血或节奏型控制/支援位，让他们难以稳定站目标边缘
       active_when: 地图是中距离目标区，目标必须在 Spike 射程内反复 peek
       fails_when: 目标保持全开放远线或有队友清掉 Spike 的站位
       bp_use: midrange_control_pressure_candidate
-    - target: Mico_or_Melodie_or_Edgar_or_Chuck
+    - target: ["Mico", "Melodie", "Edgar", "Chuck"]
       direction: target_favored
       source: "[[sources/PLP-Spike|PLP-Spike]]"
       mechanism: 跳跃、连续 dash 或路径技能可绕过 Spike 的预置慢区并直接攻击低血本体
       active_when: 地图有侧路、墙草或 safe/goal route 让他们选择 first contact
       fails_when: Spike 预判落点留 Super，且队友有硬控或爆发接 slow
       bp_use: avoid_without_peel_or_route_lock
-    - target: Larry_and_Lawrie_or_Jessie_or_Frank_or_Damian
+    - target: ["Larry & Lawrie", "Jessie", "Frank", "Damian"]
       direction: target_favored
       source: "[[sources/PLP-Spike|PLP-Spike]]"
       mechanism: 召唤物、投掷/墙压、重身体或特殊路线会消耗 Spike 弹药并逼他离开中距离爆发点
       active_when: 地图墙体保护资源，或 objective 迫使 Spike 先清额外身体
       fails_when: 队友先清 summon/wall pocket，Spike 只负责 Super slow 和爆发收割
       bp_use: must_answer_resource_or_wall_control
+    - target: ["Larry & Lawrie"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Spike|PLP-Spike]]"
+      mechanism: "越墙双段投掷从墙后覆盖 Spike 的中距离爆发站位，Lawrie 身体吃弹药打断其慢装填与 Super 充能节奏，Spike 无开墙能力只能被逼离爆发点。"
+      active_when: "墙体保护 Larry 的投掷口袋，目标区/球路迫使 Spike 在墙外中距离活动，Lawrie 存活能持续施加 ammo tax"
+      fails_when: "队友先清 Lawrie 或开墙处理投掷口袋，Spike 只负责 Super slow 与近距离爆发收割"
+      bp_use: "must_answer_resource_or_wall_control"
 
   slot_notes:
     slot_1: 可以在目标区/反坦价值稳定的图先手，但要警惕投掷和机动后手。

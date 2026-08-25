@@ -216,7 +216,7 @@ bp_brawler_profile:
       mitigation: "要求队友压线、近库墙角锚点或已确认敌方基地清理不足"
       bp_use: "map_factor_false_positive_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Dynamike", "Grom", "Sprout", "Squeak"]
       direction: "subject_favored"
       source: "[[sources/PLP-Edgar|PLP-Edgar]]"
@@ -239,7 +239,7 @@ bp_brawler_profile:
       fails_when: "控制已交、目标低弹药且孤立、或 Edgar 用最后手只需完成一次换人/进球"
       bp_use: "ban_reason / must_avoid / enemy_response_prediction"
     - target: ["Pam", "Rosa", "Ash", "Frank", "8-Bit"]
-      direction: "volatile"
+      direction: "subject_favored"
       source: "[[sources/Fandom-Edgar|Fandom-Edgar]]"
       mechanism: "Edgar 可利用快速 unload 和回血打慢出手高血量目标，但吃满伤害会被反杀"
       active_when: "敌方攻击前摇长、弹药不足、Edgar 可绕身位并持续命中"

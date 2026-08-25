@@ -233,7 +233,7 @@ bp_brawler_profile:
       mitigation: "use healer support, retreat routes, and First Bash timing before committing to objective"
       bp_use: "candidate_eval.required_support"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Nita"
         - "Otis"
@@ -259,12 +259,16 @@ bp_brawler_profile:
       active_when: "map is open enough for kiting or objective forces Ash into their preferred range"
       fails_when: "Ash has cover, healer support, and can force them through rats or choke points"
       bp_use: "avoid_first_pick_or_require_protection"
-    - target:
-        - "Darryl"
-        - "Leon"
-        - "Sam"
-        - "Cordelius"
-      direction: "volatile"
+    - target: ["Barley"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Ash|PLP-Ash]]"
+      mechanism: "Barley 的越墙 puddle 封锁 Ash 必须穿过的窄口，持续地面伤害阻止其低 Rage 阶段积攒怒气，Sticky Syrup 减速抵消 Rage 移速"
+      active_when: "地图有保护 Barley 的墙后投掷位，Ash 只能经预铺 puddle 的窄口/草口接近且缺少队友开路"
+      fails_when: "队伍先破墙清投掷位，Ash 从无覆盖的草/墙路线直接贴脸，或 Barley 的 Super 被中断、Sticky Syrup 交掉后无路可退"
+      bp_use: "avoid_first_pick_into_thrower_or_require_wall_open"
+
+    - target: ["Darryl", "Leon", "Sam", "Cordelius"]
+      direction: "subject_favored"
       source: "[[sources/PLP-Ash|PLP-Ash]]"
       mechanism: "Ash can outscale bruisers after Rage, but loses if their burst or displacement lands before his swing cycle stabilizes."
       active_when: "Ash is pre-raged, has tip-range spacing, and the fight happens in a lane funnel"

@@ -236,7 +236,7 @@ bp_brawler_profile:
       mitigation: "avoid early pick into those answers or require teammate peel and route control"
       bp_use: must_answer_counter_chain
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Jae-Yong"
         - "Sprout"

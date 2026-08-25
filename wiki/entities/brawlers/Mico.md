@@ -227,7 +227,7 @@ bp_brawler_profile:
       mitigation: "count only routes tied to target access and follow-up"
       bp_use: "map_factor_false_positive_check"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Sprout"
         - "Ziggy"
@@ -258,18 +258,6 @@ bp_brawler_profile:
       active_when: "objective forces Mico to land near these targets or their protected teammate"
       fails_when: "Mico can bypass them and hit an isolated backline or safe"
       bp_use: "must_avoid_or_ban_reason_if_mico_plan"
-    - target:
-        - "Heist_safe"
-        - "Jessie_turret"
-        - "Pam_turret"
-        - "Mr_P_porters"
-      direction: "subject_favored"
-      source: "[[sources/Fandom-Mico|Fandom-Mico]]"
-      mechanism: "Record Smash doubles damage against non-Brawlers and special targets"
-      active_when: "target is reachable and Mico can spend ammo on objective instead of escape"
-      fails_when: "defenders body-block landing or Mico needs all ammo to survive"
-      bp_use: "objective_or_spawnable_answer_candidate"
-
   slot_notes:
     slot_1: "不宜裸先，除非地图明确奖励跳墙且敌方反刺客池被 ban；否则容易被坦克/控制 2-3 回答。"
     slot_2_3: "可回答早出的投掷/狙击，但必须搭配稳定前线或控制，避免 Mico 单人进场。"

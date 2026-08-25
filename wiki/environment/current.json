@@ -1,0 +1,10 @@
+{
+  "schema": "environment_archive_pointer.v1",
+  "description": "当前生效的环境信号归档指针。compile 只读此指针折叠信号进 runtime_bp_index；维护脚本更新归档后须同步更新本文件。数据存储为 SQLite（行列式，可迁移），读取时由脚本展开为结构数据。",
+  "monthly": {
+    "archive_id": "2026-08",
+    "db": "wiki/environment/2026-08/archive.sqlite3"
+  },
+  "ladder": "wiki/environment/pickrate.sqlite3",
+  "updated_at": "2026-08-24T15:03:00+00:00"
+}

@@ -221,7 +221,7 @@ bp_brawler_profile:
       mitigation: "ban 核心反坦，或把 Frank 放到最后手确认敌方回答不足"
       bp_use: "must_avoid_or_ban_reason"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target: ["Squeak", "Grom", "Sprout", "Gene", "Penny", "Charlie", "Cordelius", "Ash"]
       direction: "subject_favored"
       source: "[[sources/PLP-Frank|PLP-Frank]]"

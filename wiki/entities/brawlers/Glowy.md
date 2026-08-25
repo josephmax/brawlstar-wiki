@@ -228,36 +228,28 @@ bp_brawler_profile:
       mitigation: 先确认队伍有 scorer、zone body 或长线输出核心
       bp_use: comp_dependency_check
 
-  conditional_matchup_seeds:
-    - target: El_Primo_or_Mico_or_Stu_or_Alli_or_Shade_or_Buzz_or_Sam
+  conditional_matchups:
+    - target: ["El Primo", "Mico", "Stu", "Alli", "Shade", "Buzz", "Sam"]
       direction: subject_favored
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
       mechanism: 恐惧/减速和敌方牵线能阻止近身或移动型目标完成第一波接触，队友再利用控制窗口补伤害
       active_when: 目标从正面或固定入口进入，Glowy 保留 Super 或牵线位置
       fails_when: 目标从侧草/墙后绕入，或 Glowy 的队友无法在恐惧期间击杀
       bp_use: anti_aggro_support_response
-    - target: Jae-Yong
+    - target: ["Jae-yong"]
       direction: subject_favored
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
       mechanism: Glowy 的持续牵线和治疗回补能把节奏支援对局拖成持续换血，削弱 Jae-yong 依赖节奏窗口的推进
       active_when: 双方围绕热区/回合空间打正面交换，Glowy 的队友输出更稳定
       fails_when: Jae-yong 让队友快速换线或绕开 Glowy 的牵线范围
       bp_use: support_tempo_matchup
-    - target: Gale_or_Sandy_or_Willow_or_Lou_or_Lumi_or_Emz_or_Sirius_or_Jessie
+    - target: ["Gale", "Sandy", "Willow", "Lou", "Lumi", "Emz", "Sirius", "Jessie"]
       direction: target_favored
       source: "[[sources/PLP-Glowy|PLP-Glowy]]"
       mechanism: 击退/隐蔽/墙控/冰冻/区域压制/召唤物会打断 Glowy 的牵线站位或让她的支援窗口无法转化
       active_when: 地图有墙袋、草丛、热区入口或召唤物锚点保护这些资源
       fails_when: 资源被清、视线打开，且 Glowy 能站在队友身后持续牵线
       bp_use: must_answer_control_or_spawnable_before_glowy
-    - target: Flying_or_airborne_entry
-      direction: target_favored
-      source: "[[sources/Fandom-Glowy|Fandom-Glowy]]"
-      mechanism: 飞行目标会暂停牵线伤害或绕开正面恐惧，让 Glowy 的 anti-aggro 价值下降
-      active_when: 对方有跳跃/滞空进入并能落在 Glowy 或核心队友身边
-      fails_when: 落点被队友控制覆盖，或 Glowy 只负责治疗不是反跳核心
-      bp_use: anti_aggro_false_positive_filter
-
   slot_notes:
     slot_1: 不适合盲目先手；只有 Hot Zone/回合图明确需要支援 sustain，且敌方反支援资源不宽时才考虑。
     slot_2_3: 可作为队伍站点或长线核心的放大器，但必须同步锁定一个真实输出/身体。

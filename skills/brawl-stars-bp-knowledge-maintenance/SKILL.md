@@ -39,12 +39,12 @@ A caller only needs to name the target brawler or map, such as "update Brock BP 
 
 ## Core Boundary
 
-This skill may read `raw/`, `wiki/sources/`, `wiki/syntheses/`, `wiki/entities/`, `skills/`, and `outputs/` when doing maintenance.
+This skill may read `raw/`, `wiki/sources/`, `wiki/syntheses/`, `wiki/entities/`, `wiki/environment/`, `skills/`, and `outputs/` when doing maintenance.
 
 Runtime BP skills must remain narrower:
 
 - `skills/run-brawl-stars-bp/` is a neutral judge and report coordinator.
-- `skills/brawl-stars-bp-slot-decision/` compiles or decides from stable entity facts, strength input, and `runtime_bp_index`.
+- `skills/brawl-stars-bp-slot-decision/` compiles or decides from stable entity facts, the `wiki/environment/` archive (via compile folding), and `runtime_bp_index`.
 - Runtime decision work must not read maintenance discussion pages to patch a pick.
 
 ## Domain Scripts
@@ -73,7 +73,7 @@ Use `--dry-run` when a script offers it before large writes. Treat script output
 
 For current-coverage audits, it reads the latest direct raw per Brawler. Older dated captures remain immutable history but must not be unioned into the current PLP matchup set.
 
-The Liquipedia event scripts preserve revision-specific event raw, create source/event pages, generate `tournament_observation_profile.v1`, and emit review seeds. Tournament observations are descriptive evidence and must not auto-generate a strength tier, stable matchup edge, map fit, or runtime recommendation.
+The Liquipedia event scripts preserve revision-specific event raw, create source/event pages, generate `tournament_observation_profile.v1` into the persistent archive `wiki/environment/<YYYY-MM>/`, and emit review seeds. The monthly ban signal aggregated from the profile is folded into `runtime_bp_index` by the slot-decision `compile`; the profile itself stays descriptive evidence and must not auto-generate a strength tier, stable matchup edge, map fit, or runtime recommendation.
 
 `scripts/audit_balance_breakpoints.py` compiles `balance_breakpoint_manifest.v1`, latest roster health, and reviewed `combat_breakpoint_profile` blocks into `balance_breakpoint_audit.v1`. It applies the project `damage_reduction_stack_rule`, normalizes standard values to Power Level 11, and writes only generated artifacts under `outputs/balance-breakpoints/`. Breakpoint transitions and Shield-gear build pressure must not auto-generate strength, matchup, map-fit, or runtime rules; promote only through the review gate in `references/balance-breakpoint-audit.md`.
 
@@ -83,6 +83,6 @@ The Liquipedia event scripts preserve revision-specific event raw, create source
 - Non-BP concept pages and broad synthesis pages are handled by the general wiki workflow, not as this skill's primary outputs.
 - Source summaries explain what each source can and cannot prove.
 - Version strength and short-lived meta stay in source/audit/log layers unless they change a stable capability, map hook, matchup condition, or slot rule.
-- Audits and generated runtime indexes go to `outputs/` or caller-provided paths.
+- Audits and generated runtime indexes go to `outputs/` or caller-provided paths; observation profiles and environment signals are archived under `wiki/environment/` (persistent knowledge-base layer, git tracked).
 - Every patch with health, discrete damage, barrier, or damage-reduction changes has a source manifest and a breakpoint coverage audit; exclusions remain explicit.
 - `scripts/test_bp_skill_contract.py` passes after changing BP skills, references, or maintenance boundaries.

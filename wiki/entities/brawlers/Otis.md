@@ -200,35 +200,49 @@ bp_brawler_profile:
       mitigation: 与 scorer、safe DPS 或 zone body 搭配
       bp_use: role_coverage_check
 
-  conditional_matchup_seeds:
-    - target: Chuck_or_Sam_or_Rosa_or_Bibi
+  conditional_matchups:
+    - target: ["Chuck", "Sam", "Rosa", "Bibi"]
       direction: subject_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"
       mechanism: Otis 的 mute 会阻止进场英雄攻击、接 Super/Gadget 或完成目标动作
       active_when: 目标需要近身或技能连段转化为进球/打库/站圈
       fails_when: Otis 没有 Super、被先手逼退，或目标由队友保护进入
       bp_use: response_pick_candidate_against_entry_plan
-    - target: Ash_or_Trunk_or_Damian
+    - target: ["Ash", "Trunk", "Damian"]
       direction: subject_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"
       mechanism: 高血量或路线型前排一旦被沉默，会失去近身输出/技能节奏，无法把身体转换成目标收益
       active_when: 目标必须通过窄口、草口或金库入口正面接触 Otis 队伍
       fails_when: 前排有远程队友先压低 Otis，或用多路线逼出 Super 后再进场
       bp_use: anti_body_route_lock_candidate
-    - target: Barley_or_Larry_and_Lawrie_or_Willow
+    - target: ["Barley", "Larry & Lawrie", "Willow"]
       direction: target_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"
       mechanism: 投掷/绕墙控制让 Otis 难以用直线射程和 Super 接触目标
       active_when: 墙体完整、敌方有安全口袋、我方缺开墙或刺客
       fails_when: 地图被开墙或 Otis 队友能处理投掷口袋
       bp_use: avoid_or_must_pair_with_thrower_answer
-    - target: Ziggy_or_Glowy_or_Shade_or_Lola_or_Ollie
+    - target: ["Ziggy", "Glowy", "Shade", "Lola", "Ollie"]
       direction: target_favored
       source: "[[sources/PLP-Otis|PLP-Otis]]"
       mechanism: 延迟区域、特殊路线、分身/身体或位移控制会迫使 Otis 把 mute 用在错误目标或无法直线接触核心
       active_when: 地图有墙、草、侧路或分体压力，敌方能先逼 Otis 站位/资源
       fails_when: Otis 有视野、队友清掉分身/墙口，并把 Super 留给真正的进场目标
       bp_use: false_positive_filter_for_anti_aggro_pick
+    - target: ["Larry & Lawrie"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Otis|PLP-Otis]]"
+      mechanism: "Larry & Lawrie 的越墙双段投掷和 Lawrie 召唤物可从墙后持续压制，Otis 的直线射程与单目标 mute 无法同时封锁两个身体。"
+      active_when: "墙体完整、Larry & Lawrie 有墙后口袋，Otis 缺少开墙或队友无法处理投掷口袋。"
+      fails_when: "地图被开墙，队友清掉 Lawrie 或逼出 Larry 本体，或 Otis 用 Dormant Star 预封窄口让投掷无法安全站位。"
+      bp_use: "avoid_or_must_pair_with_thrower_answer"
+    - target: ["Mandy"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Otis|PLP-Otis]]"
+      mechanism: "Otis 的 mute 会封锁 Mandy 站定 Focus 的输出与 Sugar Ray，让她最依赖的长线斩杀/保星节奏归零，而 Otis 的长射程能在她专注时稳定命中。"
+      active_when: "Mandy 必须在长线站定 Focus，Otis 保留 Super 且能命中她，队友能跟伤害把 mute 窗口转成击杀。"
+      fails_when: "Mandy 用 Cookie Crumbs 穿墙先手或队友保护使她不被 mute 命中，或开阔对狙中 Otis 弹道散布让 Mandy 先拿到击杀。"
+      bp_use: "response_pick_candidate_against_focused_sniper"
 
   slot_notes:
     slot_1: 在 Heist/Brawl Ball/Hot Zone 若地图进场路线明确，可以作为稳定 anti-aggro 控制先手；纯长线图不宜裸先。

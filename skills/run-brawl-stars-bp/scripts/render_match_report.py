@@ -99,9 +99,13 @@ def text(value: Any, empty: str = "未提交") -> str:
     return str(value) if str(value) else empty
 
 
-def render_bans(bans: list[dict[str, Any]]) -> str:
+def render_bans(bans: list[dict[str, Any]], examined: list[dict[str, Any]] | None = None) -> str:
+    parts: list[str] = []
+    if examined:
+        parts.append(render_examined_options(examined))
     if not bans:
-        return "- 无"
+        parts.append("- 无")
+        return "\n".join(parts)
     lines: list[str] = []
     for ban in bans:
         brawler = text(ban.get("brawler"), "未知")
@@ -111,7 +115,8 @@ def render_bans(bans: list[dict[str, Any]]) -> str:
         matchup = text(ban.get("matchup_summary"), "")
         matchup_part = f" 对位依据：{matchup}。" if matchup else ""
         lines.append(f"- `{brawler}`: {summary} 关键因素：{factors}。{matchup_part}{risk}")
-    return "\n".join(lines)
+    parts.append("\n".join(lines))
+    return "\n\n".join(parts)
 
 
 def render_rejected(options: list[dict[str, Any]]) -> str:
@@ -119,10 +124,35 @@ def render_rejected(options: list[dict[str, Any]]) -> str:
         return "无"
     rendered = []
     for option in options:
-        name = text(option.get("brawler_or_pair"), "未知")
-        reason = text(option.get("reason_rejected"), "未提交理由")
+        name = text(option.get("brawler_or_pair") or option.get("option") or option.get("brawler"), "未知")
+        reason = text(option.get("reason_rejected") or option.get("verdict_reason"), "未提交理由")
         rendered.append(f"`{name}` ({reason})")
     return "; ".join(rendered)
+
+
+def render_examined_options(options: list[dict[str, Any]]) -> str:
+    """Render the per-option audit inventory: why examined, evidence, verdict.
+
+    Accepts both the new canonical shape (option/why_examined/evidence_used/
+    verdict/verdict_reason) and legacy plain-string entries.
+    """
+    if not options:
+        return "- 无"
+    lines = ["- 查验选项:"]
+    for option in options:
+        if isinstance(option, dict):
+            name = text(option.get("option") or option.get("brawler") or option.get("brawler_or_pair"), "未知")
+            why = text(option.get("why_examined") or option.get("reason_examined"), "未提交查验理由")
+            evidence = text(option.get("evidence_used"), "")
+            verdict = text(option.get("verdict"), "rejected")
+            reason = text(option.get("verdict_reason") or option.get("reason_rejected"), "未提交结论")
+            evidence_part = f" 证据：{evidence}。" if evidence and evidence != "未提交" else ""
+            lines.append(
+                f"  - `{name}`（verdict: {verdict}）：查验理由——{why}。{evidence_part} 结论——{reason}"
+            )
+        else:
+            lines.append(f"  - {option}")
+    return "\n".join(lines)
 
 
 def render_turn(turn: dict[str, Any]) -> str:
@@ -140,6 +170,9 @@ def render_turn(turn: dict[str, Any]) -> str:
     ]
     if decision.get("matchup_summary"):
         lines.append(f"- 对位依据: {text(decision.get('matchup_summary'))}")
+    examined = as_list(decision.get("examined_options"))
+    if examined:
+        lines.extend(["", render_examined_options(examined)])
     lines.extend(
         [
             f"- 主要风险: {text(decision.get('risk_summary'), '主要风险：未提交')}",
@@ -208,8 +241,8 @@ def render_match_report(data: dict[str, Any]) -> str:
         "red_comp": inline_list(red.get("comp")),
         "blue_ban_names": inline_list([row.get("brawler") for row in blue_ban_rows if isinstance(row, dict)]),
         "red_ban_names": inline_list([row.get("brawler") for row in red_ban_rows if isinstance(row, dict)]),
-        "blue_bans": render_bans(blue_ban_rows),
-        "red_bans": render_bans(red_ban_rows),
+        "blue_bans": render_bans(blue_ban_rows, as_list(ban_phase.get("blue_examined_options"))),
+        "red_bans": render_bans(red_ban_rows, as_list(ban_phase.get("red_examined_options"))),
         "unavailable_pool": inline_list(ban_phase.get("unavailable_pool")),
         "draft_timeline": "\n\n".join(render_turn(turn) for turn in as_list(data.get("turns"))),
         "blue_win_condition": text(blue.get("win_condition")),

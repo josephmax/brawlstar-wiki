@@ -217,35 +217,35 @@ bp_brawler_profile:
       mitigation: 跟随队友、用影子打空间，不独立守高风险边线
       bp_use: avoid_isolated_duel
 
-  conditional_matchup_seeds:
-    - target: Gale_or_Meg_or_Nani_or_Glowy_or_Pam_or_Shelly_or_Maisie_or_Fang
+  conditional_matchups:
+    - target: ["Gale", "Meg", "Nani", "Glowy", "Pam", "Shelly", "Maisie", "Fang"]
       direction: subject_favored
       source: "[[sources/PLP-Sirius|PLP-Sirius]]"
       mechanism: 影子身体、减速和调度能让中短距离控制/支援/单体输出目标花弹药处理额外单位，从而失去目标节奏
       active_when: Sirius 已有影子，目标必须守矿、球门、热区或回合路线
       fails_when: 目标队伍有溅射清场，或 Sirius 还没启动影子经济
       bp_use: shadow_resource_response_pick
-    - target: Penny_or_Edgar_or_Damian_or_Brock_or_Mortis_or_Alli_or_Larry_and_Lawrie_or_Barley
+    - target: ["Penny", "Edgar", "Damian", "Brock", "Mortis", "Alli", "Larry & Lawrie", "Barley"]
       direction: target_favored
       source: "[[sources/PLP-Sirius|PLP-Sirius]]"
       mechanism: 炮台/溅射/投掷、刺客或墙控能绕过影子税，直接清资源或击杀低血本体
       active_when: 地图有墙袋、草路、长线开墙或投掷安全角度
       fails_when: 资源被先清，Sirius 站在队友保护后面且影子只做 bodyguard
       bp_use: must_answer_shadow_clear_or_dive
-    - target: Nita_or_Tara_or_Carl_or_Emz_or_Penny
+    - target: ["Nita", "Tara", "Carl", "Emz", "Penny"]
       direction: target_favored
       source: "[[sources/Fandom-Sirius|Fandom-Sirius]]"
       mechanism: 这些 splash/pierce/body 资源能清影子并同时威胁 Sirius，影子越多越可能变成范围收益
       active_when: 影子与本体站位靠近，或目标可以从墙后/中距离覆盖影子群
       fails_when: 影子分散巡逻且队友先压掉清场资源
       bp_use: spawnable_liability_filter
-    - target: Ball_carrier_or_goal_defender_or_gem_carrier
-      direction: subject_favored
-      source: "[[sources/Fandom-Sirius|Fandom-Sirius]]"
-      mechanism: 影子不能拿目标，但能挡路、吸弹、逼持有者改变路线，Super 调度可制造突然踢球或护送窗口
-      active_when: 目标正在经过窄口、门前或 carrier 撤退线，Sirius 有影子资源
-      fails_when: 队友无法接控制窗口，或敌方清影子后直接反打
-      bp_use: objective_specific_shadow_bodyguard
+    - target: ["Larry & Lawrie"]
+      direction: "target_favored"
+      source: "[[sources/PLP-Sirius|PLP-Sirius]]"
+      mechanism: "Larry 越墙双段爆炸和 Lawrie 的近中距离散射能低成本同时清掉影子群并压制低血本体，把 Sirius 的影子经济变成敌方溅射收益。"
+      active_when: "地图有墙袋或投掷安全角度，Larry 不需视线即可覆盖影子站位，Lawrie 存活并在 8 格内命中以维持 Assist 回弹"
+      fails_when: "Sirius 影子分散巡逻、本体在队友保护后只做 bodyguard，或队友先压掉 Larry & Lawrie 的投掷 pocket"
+      bp_use: "enemy_resource_filter"
 
   slot_notes:
     slot_1: 不宜无条件先手；影子经济怕清场资源，早手会给敌方明确拿 splash/pierce 的机会。

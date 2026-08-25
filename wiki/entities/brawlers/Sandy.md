@@ -231,7 +231,7 @@ bp_brawler_profile:
       mitigation: "add wallbreak/dive or avoid relying on storm path through the same pocket"
       bp_use: "must_answer_or_avoid"
 
-  conditional_matchup_seeds:
+  conditional_matchups:
     - target:
         - "Jae-Yong"
         - "Piper"
@@ -257,13 +257,23 @@ bp_brawler_profile:
       active_when: "enemy controls the storm edge or can damage hidden allies without needing exact line of sight"
       fails_when: "Sandy lands first Super with teammate collapse and removes the area-control anchor before it stabilizes"
       bp_use: "must_answer_area_reveal_before_sandy_plan"
-    - target:
-        - "Rosa"
-        - "Mortis"
-        - "Damian"
-        - "Darryl"
-        - "Fang"
-      direction: "volatile"
+    - target: ["Chuck"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Sandy|PLP-Sandy]]"
+      mechanism: "Sandstorm 压缩视线并隐藏己方位置，使 Chuck 可预测的 post 路线失去安全端点，Rude Sands 对端点区域施加反治疗与揭示税，Sweet Dreams 可打断冲刺或惩罚端点营地。"
+      active_when: "Chuck 必须在固定目标路线（safe 路线、矿区、球路）上兑现 post 价值，且 Sandy 有 Super 或能通过宽穿透命中群聚敌人充能"
+      fails_when: "敌方用 reveal 或区域清场先压掉沙暴，Chuck 用 Rerouting 或 Ghost Train 改变端点/穿墙绕过，或 Sandy 队伍缺爆发无法把 tag/stun 转成击杀"
+      bp_use: "route_denial_response_pick_candidate"
+    - target: ["Gigi"]
+      direction: "subject_favored"
+      source: "[[sources/PLP-Sandy|PLP-Sandy]]"
+      mechanism: "Sandstorm 的隐身让 Gigi 无法锁定传送落地与近身旋转目标，Sandy 的中距穿透在 Gigi 的短射程外持续 tag，Sweet Dreams 可惩罚传送落点。"
+      active_when: "Gigi 需要可见的草/墙路线或弹道充能才能接近，而地图目标迫使她进入沙暴覆盖的固定区域"
+      fails_when: "Gigi 用高移速或 7.33 格 Super 从多角度绕过沙暴，敌方有 reveal 使隐身失效，或 Sandy 低伤害无法把 tag 转成击杀"
+      bp_use: "endpoint_denial_response_pick_candidate"
+
+    - target: ["Rosa", "Mortis", "Damian", "Darryl", "Fang"]
+      direction: "target_favored"
       source: "[[sources/Fandom-Sandy|Fandom-Sandy]]"
       mechanism: "Sandy can hide a team anti-aggro response and stop a dive with Sweet Dreams, but close-range threats can also exploit the storm if Sandy lacks damage support."
       active_when: "Sandy has Sweet Dreams, allies are ready to punish the entry, and the route is predictable"
