@@ -84,9 +84,10 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py \
 
 Inputs:
 
-- `--include-id`: force an entity's facts into the returned fact window.
+- `--include-id`: force an entity's facts into the returned fact window (always honored, even when `--capability` is active).
 - `--exclude-id`: exclude an entity from the returned fact window.
 - `--relation-target`: return conditional relation facts involving this target entity.
+- `--capability`: capability-window retrieval primitive. Repeatable, OR semantics. Keeps only brawlers whose stable `runtime_card.capability_tags` include any requested tag (e.g. `throw_or_wall_bypass`, `crowd_control`, `wall_break`). Capability hits are never truncated by `--effort`/`--limit`: every matching brawler is visible, so a W-Z name like Willow cannot be starved by an alphabetical window. This is how a player answers "I need a wall-bypass thrower" instead of waiting for the generic map-fit window.
 - `--bucket`: select a precompiled retrieval bucket by id. The bucket id is an index partition, not a recommendation.
 - `--effort`: recall budget preset. `low=24` and `high=32`; default is `low`.
 - `--field`: optional caller hint for requested fields.
@@ -124,25 +125,29 @@ When you have already hydrated a hero in an earlier turn of the same match (its 
 ## LLM Decision Pipeline
 
 1. Run `runtime_index_precheck`; continue only with a validated `index_path`.
-2. Translate BP state into neutral tool filters:
+2. **Capability-Window First**: before querying, define the capability window this hand needs. Derive it from (a) the map's `required_capabilities` / route gates, (b) the current draft's missing duties, and (c) the opponent's revealed picks (which capability would answer them). Express it as concrete tags (`throw_or_wall_bypass`, `wall_break`, `crowd_control`, `scouting_or_vision`, `goal_area_denial`, ...) and pass them as `--capability`. The window is the candidate pool; map fit and relations are then judged *inside* the pool.
+3. Translate BP state into neutral tool filters:
    - already unavailable entities -> `--exclude-id`
    - revealed or important entities to inspect -> `--include-id`
    - visible entities whose relation edges matter -> `--relation-target`
    - desired evidence window -> `--bucket`
-3. Call `query_runtime_facts.py`.
-4. Read `map_fact_packet` first: objective, route gates, hard gates, and false-positive filters define the map problem.
-5. Read `fact_window` as evidence, not as a recommendation. A returned entity is merely relevant enough to inspect.
-6. Interpret conditional relations yourself. A relation edge is not automatically a counter, answer, ban, or pick.
-7. Compare candidates by explicit reasoning: map duty coverage, relation activation, current draft needs, failure modes, required builds, and strategy bias. For every option that survives into the comparison set, record why it entered the candidate pool at all (which query window / bucket, which relation edge, which map duty or failure-gate check surfaced it) — this becomes the `examined_options` audit row.
-8. Call `hydrate_runtime_facts.py` for the few entities whose detailed facts matter.
-9. When a serious candidate's pick-rate or ban-rate matters (high-stakes slots 4-6, contested openers, or when two candidates are otherwise close), hydrate it and read its `environment_evidence` (Legendary+ ladder anchor + monthly finals) plus the current map's `environment_ladder` rows. Treat them as labeled evidence, not as a ranking.
-10. Produce `candidate_eval`, `turn_decision_trace`, and `bp_recommendation` in the LLM response.
+   - capability window derived in step 2 -> `--capability`
+4. Call `query_runtime_facts.py`.
+5. Read `map_fact_packet` first: objective, route gates, hard gates, and false-positive filters define the map problem.
+6. Read `fact_window` as evidence, not as a recommendation. A returned entity is merely relevant enough to inspect.
+7. Interpret conditional relations yourself. A relation edge is not automatically a counter, answer, ban, or pick.
+8. **Mode-feature filter inside the pool**: not every capability-tagged brawler is a real answer on this map/mode. Check each pool member against the mode's objective behavior (e.g. in Brawl Ball a thrower that cannot participate in ball carry, score conversion, or goal defense is a false positive even with a strong wall-bypass tag). The map's false-positive filters and each candidate's `objective_contracts.false_positive` are the evidence for this step.
+9. Compare candidates by explicit reasoning: capability-window fit, mode-feature fit, map duty coverage, relation activation, current draft needs, failure modes, required builds, and strategy bias. For every option that survives into the comparison set, record why it entered the candidate pool at all (which capability window / bucket, which relation edge, which map duty or failure-gate check surfaced it) — this becomes the `examined_options` audit row.
+10. Call `hydrate_runtime_facts.py` for the few entities whose detailed facts matter.
+11. When a serious candidate's pick-rate or ban-rate matters (high-stakes slots 4-6, contested openers, or when two candidates are otherwise close), hydrate it and read its `environment_evidence` (Legendary+ ladder anchor + monthly finals) plus the current map's `environment_ladder` rows. Treat them as labeled evidence, not as a ranking.
+12. Produce `candidate_eval`, `turn_decision_trace`, and `bp_recommendation` in the LLM response.
 11. Produce `retrieval_audit` from the actual tool requests and `retrieval_summary` values. This is evidence bookkeeping only: include query focus, neutral filters, recalled entities, `fragments_returned`, and `payload_kb`; do not turn it into a recommendation.
 
 ## Reasoning Rules
 
 - Do not rank by environment signal first and then explain around it. The environment slot (high-rank pickrate) is currently empty; there is no tier or strength layer in this system.
 - Do not let a tier or mode mention create map fit. Map fit must come from concrete map hooks, objective contracts, or matched capabilities.
+- Do not treat a capability tag as a pick. `--capability` defines the candidate pool, not the answer: a tagged brawler still needs map fit, mode-feature fit, and draft activation. Conversely, do not let the generic map-fit window be the only entry into the pool — a capability-window query is the deliberate way to answer "this hand needs a thrower / a wall-breaker / a mind-controller".
 - Do not treat relation edges as unconditional. Name mechanism, active conditions, fail conditions, and whether the current map/draft activates them.
 - Do not treat retrieval order as final ranking. Retrieval order exists to keep the evidence window small.
 - Do not force a counter line when map duties or failure modes make it poor.

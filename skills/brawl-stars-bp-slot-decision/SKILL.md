@@ -92,9 +92,10 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py \
 
 `query_runtime_facts.py` uses neutral retrieval terms:
 
-- `--include-id`: force an entity's facts into the returned fact window.
+- `--include-id`: force an entity's facts into the returned fact window (always honored, even when `--capability` is active).
 - `--exclude-id`: remove an entity from the returned fact window.
 - `--relation-target`: return conditional relation facts involving that entity, without naming it as ally/enemy/counter/answer.
+- `--capability`: capability-window retrieval primitive. Repeatable, OR semantics. Keeps only brawlers whose stable `runtime_card.capability_tags` include any requested tag (e.g. `throw_or_wall_bypass`, `crowd_control`, `wall_break`). Capability hits are never truncated by `--effort`/`--limit`, so a late-alphabet name like Willow cannot be starved by an alphabetical window. This is the tool-level answer to "this hand needs a thrower / a wall-breaker / a mind-controller": define the capability window first, judge map fit and relations inside the pool.
 - `--bucket`: select a precompiled retrieval bucket by id. The id is an index partition, not a recommendation.
 - `--effort`: recall budget preset. Use `low=24` for normal runtime decisions or `high=32` for high-leverage / high-uncertainty decisions; default is `low`.
 - `--limit`: explicit override for returned entity fragments. Use only when the caller has a concrete reason to override `--effort`.
@@ -204,6 +205,8 @@ The compiled index may be richer than the prompt window, but decide must consume
 
 `decide` uses `query_runtime_facts.py` for the neutral map/entity fact window and `hydrate_runtime_facts.py` for the final few entities, then the LLM produces `candidate_eval`, `turn_decision_trace`, and `bp_recommendation`. The model should reason from returned facts, conditional relations, map hooks, objective contracts, and failure modes. The tools must not choose candidates, label answers, or produce a team plan.
 
+**Capability-Window First** is the default entry into every decide hand: before querying, derive the capability window this hand needs (map `required_capabilities` + current draft gaps + answers to the opponent's revealed picks), express it as concrete `--capability` tags, and treat that pool as the candidate set. Then judge map fit, mode-feature fit, and relations *inside* the pool. This replaces the habit of passively reading the generic map-fit window — which is alphabetical-truncated and can starve late-alphabet brawlers.
+
 For ban turns, the LLM must add `side_asymmetric_ban_strategy` before finalizing bans. Blue bans reason from `first_pick_initiative`: protect_first_pick, preserve flexible opener/fog value, and avoid `ban_overlap_risk` from generic map-power mirroring. Red bans reason from `last_counter_leverage`: `deny_blue_safe_opener`, preserve_red6_counter_pool, force blue slot-1 exposure, and evaluate `last_pick_counterability`. Both sides still query only neutral facts; side, purpose, `opener_safety`, and counter exposure are LLM interpretations, not tool outputs.
 
 Use `decision_effort_policy` to choose the recall budget before each fact query. Runtime only has two normal presets: `low=24` and `high=32`. Slot power supplies the baseline and `strategy_bias` supplies the default posture, but the player may still use explicit `--limit` for a single hand when it needs finer control. Do not reintroduce broad offline tiers as normal BP presets.
@@ -239,14 +242,16 @@ When revealed entities are visible, the caller may pass them as `--relation-targ
 Ordering logic:
 
 1. Hard gates beat everything.
-2. Mode objective and map duty coverage beat isolated matchup comfort.
-3. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
-4. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
-5. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
-6. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
-7. There is no strength ranking or tier in this system; environment evidence is labeled corroboration, never a candidate ordering.
-8. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
-9. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
+2. Capability-window fit comes before map-fit window membership: the hand's required capability (thrower / wall-break / mind-control / scouting) defines who is in the pool at all.
+3. Mode-feature fit inside the pool beats isolated matchup comfort: a capability-tagged brawler that cannot participate in the mode's objective (e.g. a thrower with no ball-carry / score-conversion / goal-defense path in Brawl Ball) is a false positive even with a strong tag.
+4. Mode objective and map duty coverage beat isolated matchup comfort.
+5. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
+6. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
+7. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
+8. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
+9. There is no strength ranking or tier in this system; environment evidence is labeled corroboration, never a candidate ordering.
+10. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
+11. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
 
 Always run `balanced_threat_probe`. A balanced draft must still evaluate one legal `route_based_tank_or_assassin` / `proactive_threat_candidate` when the map exposes a real route, endpoint payoff, and constrained enemy answer set. Use `do_not_demote_tank_assassin_for_style_alone`: demotion requires a named failed route, missing `route_endpoint_payoff`, or realistic remaining counter.
 

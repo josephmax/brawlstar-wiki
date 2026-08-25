@@ -320,6 +320,174 @@ class RuntimeIndexToolsTest(unittest.TestCase):
         self.assertNotEqual(0, result.returncode)
         self.assertIn("unrecognized arguments", result.stderr)
 
+    # --- Capability-window retrieval (layer 1) ---
+
+    def test_fact_query_capability_filter_keeps_only_matching_brawlers(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "high",
+                    "--capability",
+                    "throw_or_wall_bypass",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        self.assertEqual(["throworwallbypass"], payload["request"]["capabilities"])
+        self.assertTrue(payload["fact_window"])
+        for item in payload["fact_window"]:
+            tags = set(item.get("runtime_card", {}).get("capability_tags") or [])
+            self.assertIn("throw_or_wall_bypass", tags)
+        self.assert_no_forbidden_keys(payload)
+
+    def test_fact_query_capability_window_is_not_truncated_by_effort_budget(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "low",
+                    "--limit",
+                    "5",
+                    "--capability",
+                    "crowd_control",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        # Capability hits are never capped: every crowd-control brawler is
+        # visible even when the requested window is small.
+        self.assertGreater(len(payload["fact_window"]), 5)
+        for item in payload["fact_window"]:
+            tags = set(item.get("runtime_card", {}).get("capability_tags") or [])
+            self.assertIn("crowd_control", tags)
+        self.assert_no_forbidden_keys(payload)
+
+    def test_fact_query_include_id_bypasses_capability_filter(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "low",
+                    "--limit",
+                    "5",
+                    "--capability",
+                    "crowd_control",
+                    "--include-id",
+                    "Brock",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        names = [item["id"] for item in payload["fact_window"]]
+        self.assertIn("Brock", names)  # explicit include survives the filter
+        self.assert_no_forbidden_keys(payload)
+
+    def test_fact_query_ordering_is_evidence_based_not_alphabetical(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "high",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        names = [item["id"] for item in payload["fact_window"]]
+        sorted_alphabetically = sorted(names)
+        # The window must not be a bare alphabetical prefix (the old
+        # candidate_sort_key starved late-alphabet brawlers such as Willow).
+        self.assertNotEqual(names, sorted_alphabetically[: len(names)])
+
+    def test_fact_query_without_capability_keeps_legacy_bucket_behavior(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "high",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        self.assertEqual([], payload["request"]["capabilities"])
+        self.assertLessEqual(len(payload["fact_window"]), 32)
+        self.assert_no_forbidden_keys(payload)
+
 
 if __name__ == "__main__":
     unittest.main()

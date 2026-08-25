@@ -1486,3 +1486,22 @@
 - 禁用阶段（simultaneous，互不可见）：蓝方 ban `Brock`/`Bo`/`Buzz`（protect_first_pick——保留环境最强的 Griff 作蓝 1，ban 红方对首手的三组廉价反制）；红方 ban `Bo`/`Brock`/`Griff`（deny_blue_safe_opener——剥夺蓝 1 安全开局者）；重复 ban：`Brock`、`Bo`（蓝方动机=保护首手，红方动机=deny，独立成立）。不可用池：Brock/Bo/Buzz/Griff。
 - 选择：蓝1 `Meeple`（穿墙改写中部角墙 + Ragequit 眩晕制造开放球门射门窗口，双 route gate 命中，monthly 20 选全场最高）→ 红2-3 `Ash`+`Crow`（Ash→Meeple 失败门反向命中 + Crow 反疗减速反制规则区推进兼探草）→ 蓝4-5 `Emz`+`Rico`（Emz 喷雾反 Ash 笨重目标 + Rico 弹射反突进，两者投射物配合 Meeple 穿墙规则区）→ 红6 `Grom`（越墙 thrower 反 Rico 失败门 + Grom→Emz 明确边 + 补侦察缺口，environment_unverified 但机制独立成立）。最终阵容：蓝 `Meeple/Emz/Rico` vs 红 `Ash/Crow/Grom`。
 - 逐局完整报告与 decision log 写入 `outputs/bp-simulations/match-spiraling-out.md` 与 `match-spiraling-out.decision-log.md`（临时运行产物，按 2026-07-01 cleanup 约定不进 wiki syntheses）；双方选手日志 `match-spiraling-out.{blue,red}.player-log.md` 保留完整 examined_options 审计；本局核心对局结构为「Meeple 穿墙规则区 vs Grom 越墙」的墙几何争夺，关键结论如需沉淀再单独提炼。
+
+## [2026-08-25] skill | slot-decision 加 Capability-Window First 检索层（能力窗口 + 排序修复）
+
+用户对 Spiraling Out 模拟（红方 6 楼 Grom）提出质疑：既然选 Grom 的理由是"投手/越墙反制"，Willow（fit=strong、Brawl Ball 专属 hook `brawl_ball_hex_carrier_or_goalkeeper_displacement` 心控持球者/守门员）明显更优，为何漏选。核查发现工具层 bug + 检索范式缺口：
+
+- **字典序截断 bug**：`query_runtime_facts.py` 的 `candidate_sort_key` 只有两级排序（`(0 if map_signal else 1, name)`），limit=32 截断时"有信号"组内按英雄名字典序取前 32 个 → W-Z 开头的英雄（Willow）永远出局；重放红方 6 楼查询证实窗口是 A-M 连续字典序，Grom（G）侥幸入围。
+- **检索范式缺口**：人类选手按"能力窗口"组织候选（本手需要投手能力 → 圈投手子集 → 池内按模式特征/阵容交互筛选），工具只有"地图信号全池扫描"，没有"按能力查人"的原语。
+
+**第一层（工具）**：
+- `query_runtime_facts.py` 新增 `--capability` 检索原语（可重复、OR 语义）：按英雄 `runtime_card.capability_tags` 过滤，能力命中者**不受 `--effort`/`--limit` 截断**（保证 Willow 这类晚字母英雄可见）；`--include-id` 显式点名始终绕过能力过滤。
+- `candidate_sort_key` 重写为证据排序：能力命中数 → fit 等级（strong<medium<weak<None）→ hook 数 → 能力匹配数 → 名字 tiebreaker。字典序只作同分稳定性，不再主导截断。
+- 验证：crowd_control 窗口 53 人（Willow 可见）；throw_or_wall_bypass 窗口含 Willow/Grom/Barley/Juju/Dynamike/Mico/Sprout；Larry & Lawrie 因本图 fit=weak 正确排除（能力过滤不硬拉 weak-fit）。
+
+**第二层（决策规则）**：
+- `runtime-decision-knowledge.md`：LLM Decision Pipeline 插入 **Capability-Window First** 步骤（从地图 required_capabilities + 阵容缺口 + 对方已选推导能力窗口 → `--capability` 圈池 → 池内做模式特征过滤 → 地图职责/关系/失败门比较）；Neutral Fact Tools 文档补 `--capability`；Reasoning Rules 加"能力标签不是选人结论"与"能力窗口是显式入池方式"两条。
+- `brawl-stars-bp-slot-decision/SKILL.md`：Decide Summary 声明 Capability-Window First 为默认入池方式；Ordering logic 插入能力窗口 fit 与模式特征 fit 两条（能力池内模式目标参与度是硬过滤）。
+- 测试：slot-decision 新增 5 条契约测试（能力过滤生效/能力命中不截断/include-id 绕过/排序非字典序/无能力参数保持旧行为），29 条全绿；maintenance 契约测试补 `--capability`/`capability-window`/`Capability-Window First` 术语锁定，契约通过。
+
+**第三层（能力×能力对抗边）未动**：基于 `capability_vector`（18 个带量级维度）+ 现有条件化对位边结构评估可行，留待单独迭代（需设计能力对抗条件与 compile 折叠，维护成本可控：能力维度封闭，远小于 105×105 英雄全对位）。

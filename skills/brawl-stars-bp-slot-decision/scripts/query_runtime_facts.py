@@ -264,14 +264,16 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         # Capability-window hits are never truncated by the effort budget: the
         # window's whole point is that every requested-capability brawler is
         # visible, no matter where its name or hook count falls. Only
-        # non-matching fill brawlers are capped.
+        # non-matching fill brawlers are capped. Explicit --include-id names
+        # are always preserved regardless of capability tags.
         if wanted_capabilities:
-            capped = [
+            protected = set(includes) | {
                 name for name in ordered_names
                 if brawler_capability_tags(index, name) & wanted_capabilities
-            ]
-            fill = [name for name in ordered_names if name not in set(capped)]
-            ordered_names = capped + fill[:max(0, limit - len(capped))]
+            }
+            keep = [name for name in ordered_names if name in protected]
+            fill = [name for name in ordered_names if name not in protected]
+            ordered_names = keep + fill[:max(0, limit - len(keep))]
         else:
             ordered_names = ordered_names[:limit]
 
