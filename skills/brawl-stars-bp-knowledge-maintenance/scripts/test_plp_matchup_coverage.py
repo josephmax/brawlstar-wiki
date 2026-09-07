@@ -148,7 +148,8 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
             payload = json.loads(result.stdout)["plp_matchup_coverage"]
 
         summary = payload["summary"]
-        self.assertEqual(105, summary["plp_raw_pages"])
+        # 2026-09-03: Wendy 双源闭环建档后 PLP raw 页增至 106；计数锁随 roster 变更更新
+        self.assertEqual(106, summary["plp_raw_pages"])
         self.assertGreaterEqual(summary["plp_raw_files"], summary["plp_raw_pages"])
         self.assertGreater(summary["plp_pairs"], 1000)
         self.assertGreater(summary["compiled_pairs"], 1000)

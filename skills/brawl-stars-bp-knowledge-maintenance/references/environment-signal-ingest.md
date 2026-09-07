@@ -11,6 +11,8 @@ The environment signal has two layers with different windows:
 | pick / use rate | Brawl Planet `pl-l1-results.json.gz` | rolling 10 weeks | Legendary+ | `use_rate` (ur %) |
 | ban rate | Liquipedia Monthly Finals aggregation | monthly | pro (legendary+ approximation) | `ban_rate` |
 
+- **Ranked-pool filter (2026-09-07)**: the pick layer defaults to the current Ranked map pool via `wiki/environment/ranked_pool.json` (`brawlstar.ranked_pool_manifest.v1`). The fetcher counts only in-pool active maps in the global aggregate, keeps only in-pool rows in `per_map`, and records out-of-pool maps in `summary.excluded_maps`; `--no-ranked-pool-filter` fetches raw ladder-wide data. Update the manifest every season rotation (see Rules). The source cannot slice per-tier stats: `pl-l1` is a Legendary I+ floor whose sample already includes Masters-and-above matches; no Masters/Esports-Elite-specific file exists (verified 2026-09-07).
+
 - **Current status (2026-08-14 architecture turn): compile-folded evidence.** Maintenance archives the signals under `wiki/environment/`; `compile` is the only aggregator and folds them into the `runtime_bp_index` as per-brawler `environment_evidence` (`ladder_anchor` / `monthly_finals`) plus `environment_ladder_per_map`, with window / rank_floor / fetch-or-capture labels. `decide` reads the embedded evidence through `hydrate_runtime_facts.py` for `evidence_roles`; it never reads signal files directly. The evidence never becomes fit/eligibility and never generates tiers. It is corroboration for the decision, not a replacement for mechanism reasoning. Evidence strength changes with each update (new month, refreshed 10-week window) without changing the three-dimension framework itself.
 - Keep the two layers as separate fields with explicit `window` labels; never average them into one number.
 
@@ -31,7 +33,7 @@ wiki/environment/
 
 ## Monthly Workflow
 
-1. **Pick layer**: run `fetch_brawlplanet_pickrate.py --tier l1` (Legendary+) and write to `wiki/environment/pickrate.sqlite3` (`--db`；`--output` 为可选 JSON 导出).
+1. **Pick layer**: run `fetch_brawlplanet_pickrate.py --tier l1` (Legendary+; defaults to the Ranked-pool manifest `wiki/environment/ranked_pool.json`) and write to `wiki/environment/pickrate.sqlite3` (`--db`；`--output` 为可选 JSON 导出). Check `summary.ranked_pool.pool_maps_missing_from_source` — a non-empty list means the season manifest is stale and must be updated first.
 2. **Ban layer**: after the monthly finals of the month are fully played, capture each region with `capture_liquipedia_event.py`, analyze with `analyze_esports_event.py --db wiki/environment/<YYYY-MM>/archive.sqlite3`（内含逐 set 行列表），then aggregate with `aggregate_environment_signal.py --profile wiki/environment/<YYYY-MM>/archive.sqlite3 --db wiki/environment/<YYYY-MM>/archive.sqlite3` (paired pick/ban per brawler, set-level denominator). Do not aggregate an unfinished month.
 3. Update `current.json` to point at the new month's signal, refresh `wiki/environment/index.md`, append `wiki/log.md`.
 4. Recompile the runtime index (default `--environment-manifest wiki/environment/current.json`) so the next `decide` consumes the new evidence; `manifest.environment_provenance` records which archive snapshot was folded.
@@ -39,6 +41,7 @@ wiki/environment/
 
 ## Rules
 
+- **Ranked-pool manifest is season-scoped maintenance input**: when Ranked rotates maps (new season), update `wiki/environment/ranked_pool.json` (maps + provenance, synced with the season index synthesis page) before refreshing the pick layer. The fetcher warns on stderr when pool maps are missing from the source. Archive pickrate queries are pool-only by construction; `--no-ranked-pool-filter` exists only for explicit ladder-wide audits, never for the canonical archive.
 - The signal enters the runtime index **only through compile folding**. `decide` never queries signal files; `query_environment_evidence.py` is retired. It cannot override a mechanism constraint, cannot create fit/eligibility, and cannot generate tiers.
 - `manifest.pickrate_status` records `"loaded"` when the archive pointer resolves and `"empty"` otherwise; `manifest.environment_provenance` keeps the exact pointer, archive id, windows, and sample denominators.
 - Do not write tournament or ladder pick/ban rates into `wiki/entities/brawlers/`. Event entities keep event facts; brawler entities keep stable mechanisms and BP contracts.

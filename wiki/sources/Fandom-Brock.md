@@ -7,7 +7,7 @@
 - 读取日期：2026-07-17
 - Fandom 页面最后编辑：2026-07-16T21:25:22Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/brock.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

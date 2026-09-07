@@ -7,7 +7,7 @@
 - 读取日期：2026-07-17
 - Fandom 页面最后编辑：2026-07-01T17:16:54Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/leon-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/leon.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

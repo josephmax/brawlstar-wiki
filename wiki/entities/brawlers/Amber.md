@@ -32,32 +32,34 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long_mid_stream; 主攻击 8.33 格，持续火流有轻微 spread 和 travel delay"
     projectile_reliability: "high_on_constrained_routes_medium_vs_dash; 连续喷射容错高，但要预判移动方向"
-    burst: "medium_low_immediate; Dancing Flames 和点燃燃油可爆发，默认主攻击没有硬控瞬秒"
+    burst: "medium_low_immediate; Dancing Flames 和点燃燃油可爆发，Oil Spill Buffie 下普攻命中附带点燃状态，默认主攻击没有硬控瞬秒"
     sustained_dps: "high_if_ammo_managed; 40 flame ammo 长时间压线，空弹后恢复慢"
-    objective_damage: "medium_high_with_fire_starters_or_dancing_flames; Heist 可用持续火线和固定目标 gadget"
-    mobility: "medium_with_fire_starters; 默认 720 移速，gadget 3 秒 +100 speed 并铺燃油"
+    objective_damage: "medium_high_with_dancing_flames_and_ignited_oil; Heist 可用持续火线、点燃油区（含油桶洒油）和 Dancing Flames 固定目标窗口"
+    mobility: "medium; 默认 720 移速，技能本体无加速；Fire Starters 为掷桶铺油，加速依赖 Dancing Flames Buffie +20%、Wild Flames Buffie 近油 +10% 与 Hypercharge"
     survivability: "medium_low; Power 11 本体 6800 HP，依靠距离、燃油墙和 Shield gear"
     engage: "medium; 通过燃油封路逼近，不是硬开团"
-    disengage: "medium_with_fire_wall; 点燃燃油和 Fire Starters 可阻止追击路线"
-    anti_aggro: "medium; 燃油墙/Dancing Flames 能惩罚刺客，但近身无 stun/knockback"
+    disengage: "medium_with_fire_wall; 点燃燃油、油桶洒油和 Wild Flames 油迹可把追击路线变成可点火油面"
+    anti_aggro: "medium; 燃油墙/Dancing Flames 能惩罚刺客，Wild Flames 下油区内敌人减速 10%，但近身仍无 stun/knockback"
     anti_tank: "medium_high_if_distance_held; 连续火线和燃油穿越税能磨高血量"
     wall_break: "bush_destroy_only; 点燃燃油可烧草，不破墙"
     throw_or_wall_bypass: "super_lob; Super 可越墙投掷燃油，主攻击不能越墙"
-    area_control: "very_high; 持久燃油、火墙、双 puddle 和草丛清除"
+    area_control: "very_high; 多滩 Super 油持久并存互不清除，Fire Starters 油桶（7000 耐久，Power 11）洒油可连片，点燃火墙和草丛清除"
     scouting_or_vision: "high_with_vision_gear_and_bush_burn; Vision gear 配持续命中，燃油点火清草"
     team_support: "medium_high; 把敌人赶出 chokepoint 和队友射线"
     spawnable_or_pet: "none"
-    crowd_control: "soft_area_denial; 没有 slow/stun，靠灼烧路径成本"
+    crowd_control: "soft_area_denial_with_fluid_slow; Wild Flames 使油区内敌人减速 10%，仍无 stun/knockback"
     source_trace:
       - "[[sources/Fandom-Amber|Fandom-Amber]]"
       - "[[sources/PLP-Amber|PLP-Amber]]"
+      - "[[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
 
   build_switches:
     - build: "Fire Starters / Wild Flames / Vision, Shield, Reload"
       source: "[[sources/PLP-Amber|PLP-Amber]]"
       changes_capabilities:
-        - "Fire Starters 提供 3 秒移速和沿途燃油，帮助抢线和铺设回撤火墙"
-        - "Wild Flames 允许两个 Super 燃油池，并在燃油附近每秒充能 Super"
+        - "Fire Starters 掷出 7000 耐久（Power 11）油桶，被毁或每秒 12% 自然衰减（至多 9 秒）后在落点洒出 3x3 燃油，与 Super 油同质且互不清除，冷却 24 秒"
+        - "Wild Flames 使燃油黏滞：敌人沾油后被附着并随移动留下至多 3 秒油迹，油区内敌人减速 10%"
+        - "Fire Starters Buffie 可同时部署 2 个油桶（双桶放下后才开始冷却）；Wild Flames Buffie 靠近火/油迹时 +10% 移速"
         - "Vision gear 让持续火线命中后服务草区侦测，Reload gear 缓解空弹风险"
       enables:
         - "Gem Grab 矿区燃油控制"
@@ -74,8 +76,8 @@ bp_brawler_profile:
     - build: "Dancing Flames / Scorchin' Siphon variant"
       source: "[[sources/Fandom-Amber|Fandom-Amber]]"
       changes_capabilities:
-        - "Dancing Flames 在身边生成 3 个火球，适合防突脸或 Heist 固定目标贴身输出"
-        - "Scorchin' Siphon 在燃油附近提高 reload，适合围绕已铺 Super 控线"
+        - "Dancing Flames 在身边生成 3 个环绕火球持续 5 秒，适合防突脸或 Heist 固定目标贴身输出；Buffie 自我附焰 +20% 移速并对触碰敌人每秒 400 伤害（Power 11，至多 5 跳）"
+        - "Scorching Siphon 在敌人因燃烧油受伤（非普攻直伤）时回充 7% 弹条（约 3 发火焰），适合围绕已铺油区控线；Buffie 使燃烧状态 +1 秒（4→5 秒）"
       enables:
         - "刺客近身惩罚"
         - "固定目标额外伤害"
@@ -90,7 +92,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "gem_mine_fluid_burn_and_vision"
       map_feature_type: "mine_area_oil_control_and_bush_reveal"
-      uses_feature_by: "Super 燃油长期覆盖矿区/退线，点燃时烧草并用 Vision gear 追踪目标"
+      uses_feature_by: "Super 燃油长期覆盖矿区/退线（多滩油互不清除），点燃时烧草并用 Vision gear 追踪目标；Wild Flames 油迹把目标逃离路线也铺成可点燃油面"
       route_or_position: "宝石矿、矿区侧草、carrier 倒计时退线"
       objective_conversion: "阻止敌方收宝或回矿，逼 carrier 绕进队友射线"
       active_when: "敌方需要穿过矿区或草边拿宝，Amber 可避免提前误点燃燃油"
@@ -102,7 +104,7 @@ bp_brawler_profile:
       bp_use: "map_bp_factors.mine_oil_control_and_vision"
     - id: "hot_zone_oil_wall_entry_tax"
       map_feature_type: "zone_entry_persistent_firewall"
-      uses_feature_by: "双燃油池和点火威胁把区口变成穿越税，持续火线补压进入者"
+      uses_feature_by: "Super 油与油桶洒油连成的持久油区（Wild Flames 油区 10% 减速）和点火威胁把区口变成穿越税，持续火线补压进入者"
       route_or_position: "Hot Zone 区口、侧草入口、敌方回区路径"
       objective_conversion: "延迟回区、分割前后排、让己方站区者少吃正面压力"
       active_when: "区口固定且燃油可安全铺下，Amber 有队友保护避免被 dive"
@@ -115,7 +117,7 @@ bp_brawler_profile:
       bp_use: "map_bp_factors.zone_entry_firewall"
     - id: "brawl_ball_firewall_lane_and_bush_burn"
       map_feature_type: "ball_lane_firewall_and_grass_clear"
-      uses_feature_by: "燃油/主火线清理门前草和侧路，Fire Starters 可快速铺出回防火墙"
+      uses_feature_by: "燃油/主火线清理门前草和侧路，Fire Starters 油桶可远程在回防路径上洒油形成可点燃火墙"
       route_or_position: "中场侧路、门前草、持球推进路径"
       objective_conversion: "迫使 defender 离开草位，保护己方持球推进或切断敌方反推"
       active_when: "球路经过草口/窄口，Amber 有时间先铺油再点燃"
@@ -128,7 +130,7 @@ bp_brawler_profile:
       bp_use: "slot_task.ball_lane_control_and_bush_burn"
     - id: "heist_fire_starters_safe_race_or_defense"
       map_feature_type: "fixed_target_fire_stream_and_oil_path"
-      uses_feature_by: "Fire Starters 路线和持续火线可转化为 safe 压力，也能在防守端烧掉进 safe 路线"
+      uses_feature_by: "Dancing Flames（含 Buffie 附焰追烧）和持续火线可转化为 safe 压力，Fire Starters 洒油也能在防守端烧掉进 safe 路线"
       route_or_position: "safe 入口、safe 侧草、lane win 后进 safe 角度"
       objective_conversion: "形成一段 burst/race 窗口，或把敌方近战 safe hitter 逼出输出位"
       active_when: "Amber 能保留足够 ammo 靠近 safe，且敌方无法立即 outrange 或贴脸打断"
@@ -165,7 +167,7 @@ bp_brawler_profile:
     - mode: "Heist"
       can_fulfill:
         - "持续火线打 safe"
-        - "Dancing Flames/Fire Starters 固定目标窗口"
+        - "Dancing Flames 固定目标窗口（Buffie 附焰追烧）"
         - "防守近战 safe hitter"
       cannot_fulfill:
         - "远程无风险 race"
@@ -218,7 +220,7 @@ bp_brawler_profile:
     - id: "close_range_no_hard_stop"
       active_when: "Edgar、Gray、Melodie 等越过燃油直接贴 Amber"
       exposed_by: "Fandom notes she has no immediate damage/stun/slow/knockback at close range"
-      mitigation: "配 peel，或在预期被贴时切 Dancing Flames/站燃油边"
+      mitigation: "配 peel，或在预期被贴时切 Dancing Flames（Buffie 附焰 +20% 移速换血）、把敌人引进 Wild Flames 减速油区再点燃"
       bp_use: "anti_aggro_false_positive_filter"
     - id: "long_range_outpoke"
       active_when: "Brock、Bea、Byron、Piper、Crow 等在 Amber 射程外或燃油外持续消耗"
@@ -226,9 +228,9 @@ bp_brawler_profile:
       mitigation: "用墙/草/燃油逼走位，或避免在纯开阔长线早选"
       bp_use: "range_gate_for_early_pick"
     - id: "oil_timing_and_water_interrupt"
-      active_when: "燃油被过早点燃、落点被水体切断，或没有队友把敌人逼进火线"
-      exposed_by: "Super fluid persists until ignited and is interrupted by lakes"
-      mitigation: "把燃油放在敌方必经路径旁而非自己攻击线正前，水图检查可连接区域"
+      active_when: "燃油被过早点燃、落点被水体切断、误铺油滩因互不清除而长期残留，或没有队友把敌人逼进火线"
+      exposed_by: "[[sources/Fandom-Amber|Fandom-Amber]] fluid persists until ignited, is interrupted by lakes, and multiple puddles coexist; [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
+      mitigation: "把燃油放在敌方必经路径旁而非自己攻击线正前，水图检查可连接区域；油桶可被敌人集火提前打爆改变洒油点，铺桶位要避开敌方火力线"
       bp_use: "map_feature_execution_check"
 
   conditional_matchups:
@@ -242,7 +244,7 @@ bp_brawler_profile:
     - target: ["Max", "Nita", "Surge", "Melodie"]
       direction: "subject_favored"
       source: "[[sources/PLP-Amber|PLP-Amber]]"
-      mechanism: "燃油墙增加高速推进和召唤/形态压线的穿越成本，连续火线可跟踪跑位"
+      mechanism: "燃油墙增加高速推进和召唤/形态压线的穿越成本（Wild Flames 油区 10% 减速、油迹延伸税），连续火线可跟踪跑位"
       active_when: "地图路线被油区收窄，Amber 有队友处理第一波突进"
       fails_when: "Max/Melodie 直接越过燃油贴后排，或 Nita Bear 吸收火线导致 Amber 空弹"
       bp_use: "route_tax_into_speed_or_pet_pressure"
@@ -263,7 +265,7 @@ bp_brawler_profile:
 
   slot_notes:
     slot_1: "有固定 chokepoint、草区和可保护 Amber 的队友计划时可早手"
-    slot_2_3: "作为控区层选出后，需要补长手或 anti-dive，不要让她单吃开阔长线"
+    slot_2_3: "作为控区层选出后，需要补长手或 anti-dive，不要让她单吃开阔长线；Wild Flames 减速油区和油桶铺油适合对抗贴脸体系，但油桶可被远程点爆"
     slot_4_5: "看到敌方中近距阵地或草口依赖时响应价值高"
     slot_6: "最后手可针对缺长手/缺突进的路线阵容，或补 Heist/Hot Zone 区域税"
 ```

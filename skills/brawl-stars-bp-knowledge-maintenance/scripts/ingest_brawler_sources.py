@@ -55,12 +55,8 @@ def source_suffix(name: str) -> str:
 
 
 def slug_from_url_or_name(url: str, name: str) -> str:
-    if url and url != "no_page_found":
-        leaf = unquote(urlparse(url).path.rstrip("/").split("/")[-1])
-    else:
-        leaf = name
-    leaf = leaf.replace("_", " ").replace("&", " ").replace(".", " ")
-    return re.sub(r"[^A-Za-z0-9]+", "-", leaf).strip("-").lower()
+    # 2026-09-03: slug 统一按 canonical name 推导（此前 PLP 用页面 URL 原样 slug，产生 8bit/mrp/elprimo 等与 fandom 目录不一致的命名）。
+    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("&", " ").replace(".", " ")).strip("-").lower()
 
 
 def capture_rank(path: Path) -> tuple[str, int]:
@@ -75,6 +71,10 @@ def capture_rank(path: Path) -> tuple[str, int]:
 
 
 def latest_direct_raw(directory: Path, slug: str) -> Path:
+    # 2026-09-03: 文件名不再带日期；优先精确名，兼容旧日期命名。
+    exact = directory / f"{slug}.md"
+    if exact.exists() and "Direct Raw Capture" in exact.read_text(encoding="utf-8", errors="replace")[:160]:
+        return exact
     candidates = []
     for path in directory.glob(f"{slug}-*.md"):
         head = path.read_text(encoding="utf-8", errors="replace")[:160]

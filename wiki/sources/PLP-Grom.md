@@ -5,7 +5,7 @@
 - 标题：Best build for Grom | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Grom | Power League Prodigy](https://powerleagueprodigy.com/grom)
 - 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/grom-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/grom.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

@@ -5,7 +5,7 @@
 - 标题：Best build for Meeple | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Meeple | Power League Prodigy](https://powerleagueprodigy.com/meeple)
 - 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/meeple-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/meeple.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

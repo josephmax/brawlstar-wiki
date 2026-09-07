@@ -4,30 +4,29 @@
 
 - 标题：Wendy
 - 来源：[Wendy | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Wendy)
-- 读取日期：2026-07-11
-- Fandom 页面最后编辑：2026-07-04T19:19:42Z
+- 读取日期：2026-09-03
+- Fandom 页面最后编辑：2026-09-02T18:27:46Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/wendy-2026-07-11.md]]
-- source_quality：direct_raw_capture_future_page
-- source_type：future_brawler / pre_release_mechanics_candidate
+- 上游 raw：[[../../raw/sources/fandom/heroes/wendy.md]]
+- source_quality：direct_raw_capture
+- source_type：official_or_wiki_mechanics
 
 ## 可用范围
 
-- usable_for: future_release_tracking, pre_release_mechanics_candidate, source_conflict_audit
-- not_usable_for: stable_mechanics, current_release_state_without_roster_check, bp_ready_profile, current_meta_strength, runtime_candidate, unconditional_bp_recommendation
+- usable_for: stable_mechanics, ability_candidates, build_candidates_from_tips, mode_fit_candidates, map_feature_candidates
+- not_usable_for: current_meta_strength_without_overlay, final_counter_claim, unconditional_bp_recommendation
 
 ## 页面核心字段
 
-- 发布状态: `FutureUpdate`; 页面称 Wendy 将成为第 106 位英雄，History 仍无正式发布记录
 - 稀有度: Mythic
 - 官方定位: Support
-- 移动速度: 770 (Fast)
+- 移动速度: 770 (Fast)<br>809 (with Hypercharge)
 - 生命值: 2000
 - 攻击距离: 8 (Long)
 - 装填: 1.45 seconds (Fast)
-- 普攻数值: 1100
+- 普攻数值: 1000
 - Super 距离: 5 (Normal)
-- Super 数值: 3500
+- Super 数值: 2500
 - Gadgets: Wind-Powered, Green Grenade
 
 ## BP 建模可抽取信号
@@ -47,15 +46,16 @@
 - Gadgets / Green Grenade
 - Star Powers / Slowing Shield
 - Star Powers / Solar Shield
+- Hypercharge: Green Energy
+- Tips / Game Modes and Maps
+- Tips / Other
 
 ## 与本地 wiki 的意义
 
-- `Wendy` 的 Fandom future 页面已有 direct raw，可用于发布状态追踪和预发布机制候选，但不能作为稳定实体事实。
-- 本页的普攻伤害、自身护盾与 Gadget 冷却和 [[sources/Supercell-Wendy-Announcement-June-2026|Supercell Wendy Announcement]] 不一致；正式发布前保留冲突，不选择其中一组写入实体。
-- Wendy 仍不进入当前 105 人 released roster、strength profile 或 runtime 默认池。
+- `Wendy` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
+- 后续升级 [[entities/brawlers/Wendy|Wendy]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Wendy|PLP 竞技信号]] 分层合并。
 
 ## 关联页面
 
-- [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement]]
-- [[sources/Brawler-Roster|Brawler Roster]]
-- [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
+- [[entities/brawlers/Wendy|Wendy]]
+- [[sources/PLP-Wendy|PLP 来源摘要: Wendy]]

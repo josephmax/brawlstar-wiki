@@ -5,7 +5,7 @@
 - 标题：Best build for Max | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Max | Power League Prodigy](https://powerleagueprodigy.com/max)
 - 读取日期：2026-07-11
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/max-2026-07-11.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/max.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

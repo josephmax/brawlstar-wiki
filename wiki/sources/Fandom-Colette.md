@@ -7,7 +7,7 @@
 - 读取日期：2026-07-17
 - Fandom 页面最后编辑：2026-07-15T20:56:07Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/colette-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/colette.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

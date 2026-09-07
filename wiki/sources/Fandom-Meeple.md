@@ -7,7 +7,7 @@
 - 读取日期：2026-07-17
 - Fandom 页面最后编辑：2026-07-05T03:28:52Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/meeple-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/meeple.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

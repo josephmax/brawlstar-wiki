@@ -5,7 +5,7 @@
 - 标题：Best build for Otis | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Otis | Power League Prodigy](https://powerleagueprodigy.com/otis)
 - 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/otis-2026-06-29.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/otis.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

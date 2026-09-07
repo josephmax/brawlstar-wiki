@@ -4,10 +4,10 @@
 
 - 标题：Gus
 - 来源：[Gus | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gus)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T07:50:30Z
+- 读取日期：2026-09-03
+- Fandom 页面最后编辑：2026-09-03T03:36:20Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/gus-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/gus.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -41,7 +41,7 @@
 - Attack: Loony Balloons
 - Super: Spooky Boy
 - Gadgets / Kooky Popper
-- Gadgets / Soul Switcher
+- Gadgets / Knockback Spirit
 - Star Powers / Health Bonanza
 - Star Powers / Spirit Animal
 - Hypercharge: Spooky Pop

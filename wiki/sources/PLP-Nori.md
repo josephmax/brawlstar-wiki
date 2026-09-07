@@ -4,8 +4,8 @@
 
 - 标题：Best build for Nori | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Nori | Power League Prodigy](https://powerleagueprodigy.com/nori)
-- 读取日期：2026-08-11
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/nori-2026-08-11.md]]
+- 读取日期：2026-09-03
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/nori.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：unknown

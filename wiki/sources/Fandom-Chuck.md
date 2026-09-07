@@ -4,10 +4,10 @@
 
 - 标题：Chuck
 - 来源：[Chuck | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chuck)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-23T20:01:30Z
+- 读取日期：2026-09-03
+- Fandom 页面最后编辑：2026-09-03T04:13:12Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/chuck-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/chuck.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,8 +20,8 @@
 
 - 稀有度: Mythic
 - 官方定位: Controller
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>3700 (with Super)
-- 生命值: 4700
+- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>3200 (with Super)
+- 生命值: 4400
 - 攻击距离: 6.67 (Normal)
 - 装填: 2 seconds (Slow)
 - 普攻数值: 540

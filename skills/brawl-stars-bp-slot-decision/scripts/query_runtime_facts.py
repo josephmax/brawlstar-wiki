@@ -134,6 +134,61 @@ def capability_window_filter(index: dict[str, Any], name: str, wanted: set[str])
     return bool(brawler_capability_tags(index, name) & wanted)
 
 
+# Ordinal scale for capability levels. Mirror of compile_runtime_index.py's
+# CAPABILITY_LEVEL_ORDER; test_runtime_index_tools.py asserts both copies
+# stay identical so threshold/floor semantics never drift apart.
+CAPABILITY_LEVEL_ORDER: dict[str, int] = {
+    "none": 0,
+    "low": 1,
+    "medium_low": 2,
+    "medium": 3,
+    "medium_high": 4,
+    "high": 5,
+    "very_high": 6,
+}
+
+
+def brawler_archetypes(index: dict[str, Any], name: str) -> set[str]:
+    card = (index.get("brawler_runtime_cards") or {}).get(name) or {}
+    return set(card.get("archetypes") or [])
+
+
+def archetype_window_filter(index: dict[str, Any], name: str, wanted: set[str]) -> bool:
+    """``--archetype`` keeps brawlers derived-tagged with any wanted class."""
+    if not wanted:
+        return True
+    return bool(brawler_archetypes(index, name) & wanted)
+
+
+def parse_floor_spec(spec: str) -> tuple[list[str], str]:
+    """Parse "dim1,dim2@level" into (dims, level). Raises ValueError on junk."""
+    if "@" not in spec:
+        raise ValueError(f"--require-floor expects 'dim1,dim2@level', got: {spec!r}")
+    dims_part, level = spec.rsplit("@", 1)
+    dims = [d.strip() for d in dims_part.split(",") if d.strip()]
+    level = level.strip().lower()
+    if not dims or level not in CAPABILITY_LEVEL_ORDER:
+        raise ValueError(f"--require-floor expects 'dim1,dim2@level', got: {spec!r}")
+    return dims, level
+
+
+def floor_window_filter(index: dict[str, Any], name: str, floors: list[tuple[list[str], str]]) -> bool:
+    """``--require-floor "survivability,disengage@medium"`` keeps brawlers
+    whose every named axis reaches at least that level — the "no weak axis /
+    dual-duty allrounder" query (R-T / Pearl shape), not a peak query."""
+    if not floors:
+        return True
+    card = (index.get("brawler_runtime_cards") or {}).get(name) or {}
+    levels = card.get("capability_levels") or {}
+    for dims, level in floors:
+        threshold = CAPABILITY_LEVEL_ORDER[level]
+        for dim in dims:
+            value = CAPABILITY_LEVEL_ORDER.get(levels.get(dim) or "")
+            if value is None or value < threshold:
+                return False
+    return True
+
+
 FIT_RANK = {"strong": 0, "medium": 1, "weak": 2}
 
 
@@ -184,6 +239,7 @@ def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str
         "map_hook_ids": fit.get("active_hook_ids") or [],
         "matched_capabilities": fit.get("matched_capabilities") or [],
         "failure_gate_ids": fit.get("failure_gates") or fit.get("risk_ids") or [],
+        "failure_gate_activation": fit.get("failure_gate_activation") or {},
         "required_build_ids": fit.get("required_build_ids") or [],
         "runtime_card": card,
         "runtime_card_counts": runtime_card_counts(card),
@@ -216,14 +272,23 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     excludes = {canonical_brawler_name(index, raw) for raw in args.exclude_id}
     targets = relation_targets(index, args.relation_target)
     wanted_capabilities = {normalize_key(raw) for raw in args.capability}
+    wanted_archetypes = {normalize_key(raw) for raw in args.archetype}
+    floors = [parse_floor_spec(raw) for raw in args.require_floor]
     limit = args.limit if args.limit is not None else EFFORT_LIMITS[args.effort]
+
+    def passes_windows(idx: dict[str, Any], name: str) -> bool:
+        return (
+            capability_window_filter(idx, name, wanted_capabilities)
+            and archetype_window_filter(idx, name, wanted_archetypes)
+            and floor_window_filter(idx, name, floors)
+        )
 
     items_by_name: dict[str, dict[str, Any]] = {}
     for item in bucket_items(index, map_name, args.bucket):
         name = item.get("brawler")
         if not name or name in excludes:
             continue
-        if not capability_window_filter(index, name, wanted_capabilities):
+        if not passes_windows(index, name):
             continue
         item = dict(item)
         item["retrieval_matches"] = [f"bucket:{item.get('retrieval_bucket')}"]
@@ -243,12 +308,28 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
             continue
         if not has_relation_to_targets(index, name, targets):
             continue
-        if not capability_window_filter(index, name, wanted_capabilities):
+        if not passes_windows(index, name):
             continue
         enriched = dict(item)
         enriched["brawler"] = name
         enriched["retrieval_matches"] = ["relation_target"]
         items_by_name[name] = enriched
+
+    # An active capability/archetype/floor window scans the FULL candidate
+    # index, not just projection buckets: "I need a thrower" must be able to
+    # surface a fit=weak thrower on an open map (visible with its weak fit
+    # and ranked below strong fits) instead of pretending the hero does not
+    # exist. Without a window, plain bucket behavior is unchanged.
+    if wanted_capabilities or wanted_archetypes or floors:
+        for name, item in candidate_index.items():
+            if name in excludes or name in items_by_name:
+                continue
+            if not passes_windows(index, name):
+                continue
+            enriched = dict(item)
+            enriched["brawler"] = name
+            enriched["retrieval_matches"] = ["capability_window"]
+            items_by_name[name] = enriched
 
     ordered_names = [
         name
@@ -261,15 +342,21 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     remaining.sort(key=lambda name: candidate_sort_key(index, name, items_by_name[name], wanted_capabilities))
     ordered_names.extend(remaining)
     if limit:
-        # Capability-window hits are never truncated by the effort budget: the
-        # window's whole point is that every requested-capability brawler is
-        # visible, no matter where its name or hook count falls. Only
-        # non-matching fill brawlers are capped. Explicit --include-id names
-        # are always preserved regardless of capability tags.
-        if wanted_capabilities:
+        # Capability/archetype/floor window hits are never truncated by the
+        # effort budget: the window's whole point is that every matching
+        # brawler is visible, no matter where its name or hook count falls.
+        # Only non-matching fill brawlers are capped. Explicit --include-id
+        # names are always preserved regardless of any filter.
+        if wanted_capabilities or wanted_archetypes or floors:
+            def window_hit(name: str) -> bool:
+                return (
+                    bool(brawler_capability_tags(index, name) & wanted_capabilities)
+                    or bool(brawler_archetypes(index, name) & wanted_archetypes)
+                    or floor_window_filter(index, name, floors)
+                )
+
             protected = set(includes) | {
-                name for name in ordered_names
-                if brawler_capability_tags(index, name) & wanted_capabilities
+                name for name in ordered_names if window_hit(name)
             }
             keep = [name for name in ordered_names if name in protected]
             fill = [name for name in ordered_names if name not in protected]
@@ -294,6 +381,8 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
                 "exclude_ids": sorted(excludes),
                 "relation_targets": sorted(targets),
                 "capabilities": sorted(wanted_capabilities),
+                "archetypes": sorted(wanted_archetypes),
+                "require_floor": [f"{','.join(dims)}@{level}" for dims, level in floors],
                 "buckets": args.bucket,
                 "fields": args.field,
                 "effort": args.effort,
@@ -327,6 +416,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--exclude-id", action="append", default=[], help="Entity id to exclude from the fact window; repeatable")
     parser.add_argument("--relation-target", action="append", default=[], help="Entity id used to filter conditional relation facts; repeatable")
     parser.add_argument("--capability", action="append", default=[], help="Capability tag required on the brawler's runtime card (OR semantics; repeatable); --include-id brawlers bypass this filter", metavar="TAG")
+    parser.add_argument("--archetype", action="append", default=[], help="Derived archetype class to require, e.g. assassin / sniper / dual_duty_mid (OR semantics; repeatable)", metavar="CLASS")
+    parser.add_argument("--require-floor", action="append", default=[], help="Floor constraint 'dim1,dim2@level': every named axis must reach at least that level (AND; repeatable groups)", metavar="DIMS@LEVEL")
     parser.add_argument("--bucket", action="append", default=[], help="Compiled retrieval bucket id to include; repeatable")
     parser.add_argument("--field", action="append", default=[], help="Requested field hint for callers; repeatable")
     parser.add_argument(

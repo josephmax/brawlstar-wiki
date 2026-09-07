@@ -488,6 +488,188 @@ class RuntimeIndexToolsTest(unittest.TestCase):
         self.assertLessEqual(len(payload["fact_window"]), 32)
         self.assert_no_forbidden_keys(payload)
 
+    # --- Capability dimension cleaning, archetypes, floors, census ---
+
+    def test_capability_level_order_copies_are_identical(self):
+        # Import both modules and compare their ordinal scales so threshold
+        # semantics can never drift between compile and query sides.
+        import importlib.util
+        import sys as _sys
+        from pathlib import Path as _Path
+
+        skill_scripts = _Path(__file__).resolve().parents[1] / "scripts"
+        if str(skill_scripts) not in _sys.path:
+            _sys.path.insert(0, str(skill_scripts))
+
+        def load(name, file):
+            spec = importlib.util.spec_from_file_location(name, file)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+
+        compile_mod = load("compile_ri", skill_scripts / "compile_runtime_index.py")
+        query_mod = load("query_rf", skill_scripts / "query_runtime_facts.py")
+        self.assertEqual(compile_mod.CAPABILITY_LEVEL_ORDER, query_mod.CAPABILITY_LEVEL_ORDER)
+
+    def test_capability_tags_exclude_none_valued_dimensions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            cards = index["runtime_bp_index"]["brawler_runtime_cards"]
+
+            for name, card in cards.items():
+                tags = set(card.get("capability_tags") or [])
+                levels = card.get("capability_levels") or {}
+                # every tag must have a real (non-none) compiled level
+                self.assertEqual(tags, set(levels.keys()), name)
+                self.assertTrue(all(level != "none" for level in levels.values()), name)
+
+            # range tiles: only heroes with an explicit "X 格" note carry it
+            for name, card in cards.items():
+                rt = card.get("range_tiles")
+                self.assertTrue(rt is None or rt > 0, name)
+
+    def test_fact_query_archetype_filter_keeps_only_members(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "low",
+                    "--archetype",
+                    "sniper",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        self.assertEqual(["sniper"], payload["request"]["archetypes"])
+        self.assertTrue(payload["fact_window"])
+        for item in payload["fact_window"]:
+            archs = set(item.get("runtime_card", {}).get("archetypes") or [])
+            self.assertIn("sniper", archs)
+        self.assert_no_forbidden_keys(payload)
+
+    def test_fact_query_require_floor_keeps_only_allrounders(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "low",
+                    "--require-floor",
+                    "survivability,anti_tank@medium",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        self.assertEqual(["survivability,anti_tank@medium"], payload["request"]["require_floor"])
+        self.assertTrue(payload["fact_window"])
+        order = {"none": 0, "low": 1, "medium_low": 2, "medium": 3, "medium_high": 4, "high": 5, "very_high": 6}
+        for item in payload["fact_window"]:
+            levels = item.get("runtime_card", {}).get("capability_levels") or {}
+            for dim in ("survivability", "anti_tank"):
+                self.assertIsNotNone(levels.get(dim), f"{item['id']} missing {dim}")
+                self.assertGreaterEqual(order[levels[dim]], order["medium"], f"{item['id']}.{dim}")
+        self.assert_no_forbidden_keys(payload)
+
+    def test_fact_window_carries_failure_gate_activation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "early_pick",
+                    "--effort",
+                    "low",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+
+        for item in payload["fact_window"]:
+            self.assertIn("failure_gate_activation", item)
+            activation = item["failure_gate_activation"]
+            self.assertIsInstance(activation, dict)
+            for level in activation.values():
+                self.assertIn(level, {"high", "medium", "low", "unknown"})
+
+    def test_matchup_census_filters_survivors_by_bans(self):
+        census_script = SKILL_DIR / "scripts" / "query_matchup_census.py"
+        self.assertTrue(census_script.exists())
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            matchups = index["runtime_bp_index"]["matchup_index"]["by_brawler"]
+            hero = next(
+                name
+                for name, edges in matchups.items()
+                if edges.get("is_answered_by")
+            )
+            first_predator = matchups[hero]["is_answered_by"][0]["target"]
+
+            base = subprocess.run(
+                [sys.executable, str(census_script), "--index", str(index_path), "--hero", hero, "--json"],
+                check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            )
+            banned = subprocess.run(
+                [
+                    sys.executable, str(census_script),
+                    "--index", str(index_path), "--hero", hero, "--banned", first_predator, "--json",
+                ],
+                check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            )
+
+        base_body = json.loads(base.stdout)["matchup_census"]
+        banned_body = json.loads(banned.stdout)["matchup_census"]
+        self.assertEqual(base_body["answered_by"]["total_edges"], banned_body["answered_by"]["total_edges"])
+        self.assertEqual(
+            base_body["answered_by"]["alive_count"] - 1,
+            banned_body["answered_by"]["alive_count"],
+        )
+        self.assertEqual(banned_body["answered_by"]["removed_by_bans"], 1)
+        alive_names = {row["target"] for row in banned_body["answered_by"]["alive"]}
+        self.assertNotIn(first_predator, alive_names)
+        self.assert_no_forbidden_keys(banned_body)
+
 
 if __name__ == "__main__":
     unittest.main()

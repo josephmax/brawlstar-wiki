@@ -7,7 +7,7 @@
 - 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-14T21:01:43Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/kaze-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/kaze.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

@@ -40,7 +40,7 @@ Poco 是典型的治疗支援英雄，核心不是打出最高伤害，而是让
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-09-03"
     plp: "direct_raw_capture_2026-06-30"
     user_notes: "none"
 
@@ -54,28 +54,30 @@ bp_brawler_profile:
     survivability: "team_dependent_high; Power 11 8000 health backed by Super heal, Tuning Fork option, Da Capo attack healing, and Hypercharge overheal shield"
     engage: "supportive; enables tank or scorer pushes rather than initiating alone"
     disengage: "medium; instant long Super heal can reset retreat or save carrier/scorer"
-    anti_aggro: "medium_with_team; wide cone and healing buy time, but Poco lacks hard CC"
+    anti_aggro: "medium_with_team; wide cone and healing buy time, and the Screeching Solo Buffie adds a 0.5s Encore silence as his only hard-CC option"
     anti_tank: "low_by_self; needs teammate DPS into high-health targets"
     wall_break: low
     throw_or_wall_bypass: "medium_for_heal; Super travels through obstacles to heal allies"
     area_control: "medium; wide spread checks grass and clustered enemies but does not deny space by damage alone"
     scouting_or_vision: "medium; wide attack can check large bushes"
-    team_support: "very_high; healing, cleanse, status immunity, and overheal shield define his pick value"
+    team_support: "very_high; constant Power Chord ally healing (400 Power 11 per hit, 1040 Power 11 with Da Capo!, ≈13% of max health), Tuning Fork pulse heals, Super heal, cleanse, status immunity, and overheal shield define his pick value"
     spawnable_or_pet: low
-    crowd_control: "medium_as_cleanse_answer; Protective Tunes removes slows, stuns, poison, burns, Frost, marks, and silence-like effects but does not displace enemies"
+    crowd_control: "medium_as_cleanse_answer; Protective Tunes removes slows, stuns, poison, burns, Frost, marks, and silence-like effects but does not displace enemies, and the Screeching Solo Buffie makes Encore silence hit enemies for 0.5 seconds (attacks, Supers, Gadgets, and Hypercharges blocked)"
     terrain_creation: low
     terrain_destruction: low
     source_trace:
       - "[[sources/Fandom-Poco|Fandom-Poco]]"
       - "[[sources/PLP-Poco|PLP-Poco]]"
+      - "[[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
 
   build_switches:
     - build: "Protective Tunes / Da Capo / Shield, Damage"
-      source: "[[sources/PLP-Poco|PLP-Poco]]"
+      source: "[[sources/PLP-Poco|PLP-Poco]] + [[sources/Fandom-Poco|Fandom-Poco]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "Protective Tunes cleanses adverse effects in a 6-tile radius and grants 4 seconds of immunity"
-        - "Da Capo lets Poco's main attack heal allies it hits, enabling tank or scorer sustain even before Super"
+        - "Protective Tunes creates a 3-tile-radius area for 4 seconds that cleanses all adverse effects and grants immunity while inside (cleanse reach 6 tiles); its Buffie increases the radius to 4 tiles and the duration to 6 seconds"
+        - "Power Chord now constantly heals allies it hits for 400 Power 11, and Da Capo! adds 640 Power 11 more (1040 Power 11 per hit, ≈13% of max health), enabling tank or scorer sustain even before Super; its Buffie grants full-health teammates 3 seconds of 10% Super charge rate"
         - "Shield gear improves Poco's own survival; Damage gear helps convert low-damage chip when he is already safe"
+        - "Medic's Melody Hypercharge keeps converting Encore overheal into a 5-second decaying shield; its Buffie widens main attacks to a 180-degree cone during Hypercharge"
       enables:
         - tank_push_support
         - zone_sustain_anchor
@@ -89,13 +91,15 @@ bp_brawler_profile:
         - "enemy can split the team so Da Capo and Protective Tunes cannot cover multiple lanes"
       bp_use: default_reviewed_build_for_brawl_ball_and_hot_zone_sustain
     - build: "Tuning Fork / Screeching Solo variants"
-      source: "[[sources/Fandom-Poco|Fandom-Poco]]"
+      source: "[[sources/Fandom-Poco|Fandom-Poco]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "Tuning Fork adds 5 seconds of local healing around Poco"
-        - "Screeching Solo gives Super a low-damage finishing function, more useful when healing allies is less central"
+        - "Tuning Fork heals Poco and nearby allies for 1000 Power 11 three times (a 3-second buff healing 12.5% of max health per second in a 3.33-tile radius, not a persistent area); its Buffie gives allies inside the radius 3 seconds of 25% reload speed"
+        - "Screeching Solo makes Super hit enemies for 1520 Power 11 without charging Super from that damage, keeping the low-damage finishing role; its Buffie silences Encore-hit enemies for 0.5 seconds"
       enables:
         - local_zone_heal
         - low_health_finish
+        - encore_silence_window
+        - healed_reload_surge
       mitigates_failure_modes:
         - no_super_heal_window
       poor_when:

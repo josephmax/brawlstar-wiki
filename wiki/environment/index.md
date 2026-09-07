@@ -41,7 +41,8 @@ outputs/runtime-bp-index/<current>.json                    ← runtime_bp_index�
 | --- | --- |
 | `current.json` | `environment_archive_pointer.v1`：compile 只读此指针；维护更新归档后必须同步更新 |
 | `<YYYY-MM>/archive.sqlite3` | 该月归档：`event`（source_events）+ `metric_*`（scopes 聚合）+ `series/set/set_pick/set_ban`（逐 set 行列，来自 raw 解析）+ `signal_brawler`（月赛信号） |
-| `pickrate.sqlite3` | `brawlstar.environment_signal_pickrate.v1`：Legendary+ 滚动 10 周快照（`ladder_global` + `ladder_per_map` 行列表，带 `fetched_at`） |
+| `pickrate.sqlite3` | `brawlstar.environment_signal_pickrate.v1`：Legendary+ 滚动 10 周快照，**只含当前 Ranked 地图池**（`ladder_global` + `ladder_per_map` 行列表，带 `fetched_at`；池外/退役图在生产侧过滤） |
+| `ranked_pool.json` | `brawlstar.ranked_pool_manifest.v1`：当前 Ranked 赛季地图池 manifest（30 图 + provenance）；`fetch_brawlplanet_pickrate.py` 默认按它过滤，赛季轮换后由维护者更新 |
 | `index.md` | 本索引页 |
 
 ## 当前归档
@@ -50,18 +51,20 @@ outputs/runtime-bp-index/<current>.json                    ← runtime_bp_index�
 | --- | --- | --- |
 | `2026-07/archive.sqlite3` | BSC 2026 July 四赛区（EMEA + South America + East Asia + North America）：27 场已进行 series / 98 个已进行 set；7 月月赛信号（89 英雄有样本） | Liquipedia revisions 263360 / 263153 / 264095 / 264554；generated 2026-07-21 |
 | `2026-08/archive.sqlite3` | BSC 2026 August 四赛区：28 场已进行 series / 110 个已进行 set，零弃权；8 月月赛信号（87 英雄有样本；ban 前列 Bolt / Lumi / Max / Meg / Starr Nova） | Liquipedia revisions 268338 / 269181 / 269178 / 269180；generated 2026-08-24。冠军：FUT Esports / LOUD / Crazy Raccoon / Tribe |
-| `pickrate.sqlite3` | Brawl Planet Legendary+ 全局 + 33 图逐图 use/win rate，105 英雄全覆盖 | GCS `pl-l1-results.json.gz`；fetched 2026-08-24；window rolling_10_weeks |
+| `pickrate.sqlite3` | Brawl Planet Legendary+ 全局 + **Ranked 池内 30 图**逐图 use/win rate，106 英雄全覆盖；池过滤自 2026-09-07 生效（`ranked_pool.json`，S48） | GCS `pl-l1-results.json.gz`；fetched 2026-09-07；window rolling_10_weeks；`summary.excluded_maps` 保留 5 张池外图审计记录（Canal Grande / Deathcap Trap / Last Stop / Penalty Kick / Snake Prairie） |
 
 归档历史：
 - 2026-07-13 两赛区（EMEA + SA）初版 observation profile 已被 2026-07 四赛区版**完整覆盖**，原 JSON 已删除（数据迁入 `2026-07/archive.sqlite3`）。
 - 2026-08-14 EMEA 试点聚合信号已退役至 `outputs/_retired/`（当时当月未打完）；2026-08-24 四赛区打完后重建完整 8 月归档。
 - 2026-08-24 存储层由 JSON 迁移为 SQLite（`archive.sqlite3` + `pickrate.sqlite3`）；`current.json` 指向 `2026-08`。
+- 2026-09-07 pick 层加入 Ranked 池过滤：新增 `ranked_pool.json`（S48，30 图），`pickrate.sqlite3` 以池过滤口径整体重建（30 图，前快照 fetched 2026-08-24 的 33 图全梯数据由 git 历史保留）。
 - `current.json` 当前指向 `2026-08`。
 
 ## 维护规则
 
 - 每月赛区打完后：`analyze_esports_event.py --db wiki/environment/<YYYY-MM>/archive.sqlite3`（写入 profile + 逐 set 行列）；当月全部赛区打完再 `aggregate_environment_signal.py --profile wiki/environment/<YYYY-MM>/archive.sqlite3 --db wiki/environment/<YYYY-MM>/archive.sqlite3`（写入月赛信号）。
-- pick 层刷新：`fetch_brawlplanet_pickrate.py --tier l1 --db wiki/environment/pickrate.sqlite3`。
+- pick 层刷新：`fetch_brawlplanet_pickrate.py --tier l1 --db wiki/environment/pickrate.sqlite3`（默认按 `ranked_pool.json` 只保留当前 Ranked 池：global 只累计池内 active 图，归档 per_map 只写池内行，池外图记入 `summary.excluded_maps`；`--no-ranked-pool-filter` 可取未过滤的天梯全量数据）。
+- 赛季轮换时：先更新 `ranked_pool.json`（同步 [[syntheses/Ranked-Season-XX-地图Map-Profile总览|Season 索引页]] 的池清单与 provenance），再刷新 pick 层；manifest 指向源数据里已不存在的图时脚本会在 stderr 打 WARNING。
 - 需要人类可读导出（审查 / git diff / 交付）时加 `--output` 写 JSON，不入 canonical 归档。
 - 每次归档变更后更新 `current.json` 指针与 `index.md` 表格，并在 `wiki/log.md` 追加记录。
 - 名称归一化：信号与归档内英雄名使用 `wiki/concepts/英雄名称归一化.md` 的 canonical name；future-only 英雄（如 Wendy）不入信号。

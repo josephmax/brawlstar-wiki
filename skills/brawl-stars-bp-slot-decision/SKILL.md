@@ -119,6 +119,8 @@ Hydration JSON keeps `entities` as a dictionary keyed by brawler for backward co
 
 Environment evidence is read from the compiled index only — hydrate several heroes in one call by repeating `--include-id`; there is no separate environment tool. When a hero's environment evidence was already hydrated in an earlier turn of the same match, reuse that result from context; do not re-query it.
 
+Counter census: `scripts/query_matchup_census.py --hero X --banned ...` filters the compiled matchup edges into surviving `answered_by` (who can still punish X) / `answers` (who X still punishes) lists with alive counts plus each edge's mechanism / active_when / fails_when. It is the mechanical input to first-response discipline: before spending a pick on countering an early opponent pick, check (a) whether that pick's failure gates actually activate on this map's shape, (b) whether its predators/prey are still alive per census, and counter only when all budget conditions hold — otherwise build your own structure first and keep counter picks in reserve.
+
 There is no `--strength-weight` in this system: environment evidence is labeled corroboration, never a ranking, and map fit / matchup / failure evidence is the entire basis for candidate comparison.
 
 ## Input Contract
@@ -205,7 +207,7 @@ The compiled index may be richer than the prompt window, but decide must consume
 
 `decide` uses `query_runtime_facts.py` for the neutral map/entity fact window and `hydrate_runtime_facts.py` for the final few entities, then the LLM produces `candidate_eval`, `turn_decision_trace`, and `bp_recommendation`. The model should reason from returned facts, conditional relations, map hooks, objective contracts, and failure modes. The tools must not choose candidates, label answers, or produce a team plan.
 
-**Capability-Window First** is the default entry into every decide hand: before querying, derive the capability window this hand needs (map `required_capabilities` + current draft gaps + answers to the opponent's revealed picks), express it as concrete `--capability` tags, and treat that pool as the candidate set. Then judge map fit, mode-feature fit, and relations *inside* the pool. This replaces the habit of passively reading the generic map-fit window — which is alphabetical-truncated and can starve late-alphabet brawlers.
+**Capability-Window First** is the default entry into every decide hand: before querying, derive the capability window this hand needs (map `required_capabilities` + current draft gaps + answers to the opponent's revealed picks), express it as concrete `--capability` tags, and treat that pool as the candidate set. Two derived-shape queries extend the same window: `--archetype` for derived classes (assassin / sniper / dual_duty_mid / ...) and `--require-floor "dim1,dim2@level"` for the "no weak axis" allrounder shape. Then judge map fit, mode-feature fit, and relations *inside* the pool. This replaces the habit of passively reading the generic map-fit window — which is alphabetical-truncated and can starve late-alphabet brawlers. All three windows evaluate the cleaned per-brawler `capability_levels` (none-valued axes are dropped, magnitudes kept) plus derived `archetypes` and `range_tiles` folded into each runtime card.
 
 For ban turns, the LLM must add `side_asymmetric_ban_strategy` before finalizing bans. Blue bans reason from `first_pick_initiative`: protect_first_pick, preserve flexible opener/fog value, and avoid `ban_overlap_risk` from generic map-power mirroring. Red bans reason from `last_counter_leverage`: `deny_blue_safe_opener`, preserve_red6_counter_pool, force blue slot-1 exposure, and evaluate `last_pick_counterability`. Both sides still query only neutral facts; side, purpose, `opener_safety`, and counter exposure are LLM interpretations, not tool outputs.
 
@@ -242,16 +244,17 @@ When revealed entities are visible, the caller may pass them as `--relation-targ
 Ordering logic:
 
 1. Hard gates beat everything.
-2. Capability-window fit comes before map-fit window membership: the hand's required capability (thrower / wall-break / mind-control / scouting) defines who is in the pool at all.
-3. Mode-feature fit inside the pool beats isolated matchup comfort: a capability-tagged brawler that cannot participate in the mode's objective (e.g. a thrower with no ball-carry / score-conversion / goal-defense path in Brawl Ball) is a false positive even with a strong tag.
-4. Mode objective and map duty coverage beat isolated matchup comfort.
-5. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
-6. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
-7. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
-8. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
-9. There is no strength ranking or tier in this system; environment evidence is labeled corroboration, never a candidate ordering.
-10. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
-11. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
+2. First-Response Discipline: an early opponent pick is answered with a dedicated counter only after exposure diagnosis (its failure gates must actually activate on this map, per `failure_gate_activation`) and predator census (`query_matchup_census.py`); otherwise build structure first and keep counter picks in reserve.
+3. Capability-window fit comes before map-fit window membership: the hand's required capability (thrower / wall-break / mind-control / scouting) defines who is in the pool at all.
+4. Mode-feature fit inside the pool beats isolated matchup comfort: a capability-tagged brawler that cannot participate in the mode's objective (e.g. a thrower with no ball-carry / score-conversion / goal-defense path in Brawl Ball) is a false positive even with a strong tag.
+5. Mode objective and map duty coverage beat isolated matchup comfort.
+6. Conditional matchups count only when their active conditions match the map, mode, comp, build, and slot.
+7. Evidence-backed map fit (concrete hooks / matched capabilities) beats generic matchup comfort.
+8. Relation edges can matter only when the revealed draft state activates their mechanism; they do not reclassify the entity as generally strong on the map.
+9. For paired response slots, build a team plan first. Relation coverage is useful only when it also serves map / mode / comp shape or avoids a named failure.
+10. There is no strength ranking or tier in this system; environment evidence is labeled corroboration, never a candidate ordering.
+11. Slot exposure can demote otherwise strong candidates. Route-only or objective-only picks need a real endpoint and failure mitigation.
+12. Strategy bias changes judgment among viable candidates; it cannot make a false-positive map fit viable.
 
 Always run `balanced_threat_probe`. A balanced draft must still evaluate one legal `route_based_tank_or_assassin` / `proactive_threat_candidate` when the map exposes a real route, endpoint payoff, and constrained enemy answer set. Use `do_not_demote_tank_assassin_for_style_alone`: demotion requires a named failed route, missing `route_endpoint_payoff`, or realistic remaining counter.
 

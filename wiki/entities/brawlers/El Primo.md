@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-El Primo 的核心不是“肉”，而是用受击充能和 Super 跳入把短手问题暂时解决。他在 Brawl Ball 的自传球、破门、击退防守者，Heist 的跳库和 Asteroid Belt 开墙中有明确目标价值；但在开阔图、无墙图、敌方反坦/沉默/高 DPS 充足时，Primo 会因为攻击极短、Super 轨迹可预判而失效。
+El Primo 的核心不是“肉”，而是用受击充能和 Super 跳入把短手问题暂时解决。他在 Brawl Ball 的自传球、破门、击退防守者，Heist 的跳库和 Asteroid Belt 的 1 秒免伤窗口中有明确目标价值；但在开阔图、无墙图、敌方反坦/沉默/高 DPS 充足时，Primo 会因为攻击极短、Super 轨迹可预判而失效。
 
 ## BP 建模
 
@@ -22,7 +22,7 @@ El Primo 的核心不是“肉”，而是用受击充能和 Super 跳入把短�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "[[sources/Fandom-El-Primo|Fandom-El-Primo]] direct_raw_capture_2026-06-30"
+    fandom: "[[sources/Fandom-El-Primo|Fandom-El-Primo]] direct_raw_capture_2026-09-03"
     plp: "[[sources/PLP-El-Primo|PLP-El-Primo]] direct_raw_capture_2026-06-30"
     user_notes: "近战坦克按高水平对局预设：路线、Super 充能、控制反制必须显式检查"
 
@@ -31,30 +31,31 @@ bp_brawler_profile:
     projectile_reliability: "近身持续命中可靠；远程完全无压力"
     burst: "中高；Super 落地 + El Fuego + 快速拳击可秒低血目标"
     sustained_dps: "高；0.8 秒装填但前提是贴身持续接触"
-    objective_damage: "条件性；Heist 跳到 safe 后输出可观，El Fuego 增加固定目标伤害"
+    objective_damage: "条件性；Heist 跳到 safe 后输出可观，El Fuego 点燃 3600 Power 11 / 4 秒（约 237% 普拳伤害），Buffie 下 Super 落地后普攻命中燃烧目标延长燃烧 4 秒"
     mobility: "Super 长距离跳跃越墙并击退/破墙；Meteor Rush 提供落地后移速"
-    survivability: "极高血量，受伤充 Super；但吃伤也会给对方充 Super"
+    survivability: "极高血量，受伤充 Super；但吃伤也会给对方充 Super；Asteroid Belt 提供 1 秒完全免伤窗口；Meteor Rush Buffie 在 Super 后 4 秒加速期提供额外 20% 减伤"
     engage: "强；Super 可越过墙/水/屏障切入"
     disengage: "中等；Super 可逃跑，但通常是主要进场资源"
     anti_aggro: "可用 Suplex/Super 打断近身目标或持球者"
     anti_tank: "不稳定；能打慢目标，但怕 Bull/Shelly/Colette/Otis 等反坦"
-    wall_break: "Super 与 Asteroid Belt 可破墙"
+    wall_break: "仅 Super 可破墙；Asteroid Belt 是 1 秒完全免伤的防御窗口，不参与破墙"
     throw_or_wall_bypass: "Super 跳跃越障碍"
-    area_control: "中等；落地击退、Suplex 位移、Asteroid 迫使走位"
+    area_control: "中等；落地击退、Suplex 抓摔位移迫使走位；Asteroid Belt 的 1 秒完全免伤掩护突进而非逼退"
     scouting_or_vision: "Suplex 可探草但不是真 reveal"
     team_support: "通过摔人、破墙、击退为队友创造目标窗口"
     spawnable_or_pet: "无"
-    crowd_control: "Super 击退，Suplex Supplement 摔人/位移，Asteroid knockback"
+    crowd_control: "Super 击退；Suplex Supplement 突进抓取首个命中敌人摔到身后（位移打断）；Asteroid Belt 无控制效果"
     terrain_creation: "无"
-    terrain_destruction: "中等；Super/Asteroid 可打开目标墙"
+    terrain_destruction: "中等；仅 Super 可打开目标墙（Asteroid Belt 是免伤窗口，不参与破墙）"
 
   build_switches:
     - build: "Suplex Supplement / El Fuego / Shield + Damage"
-      source: "[[sources/PLP-El-Primo|PLP-El-Primo]] + [[sources/Fandom-El-Primo|Fandom-El-Primo]]"
+      source: "[[sources/PLP-El-Primo|PLP-El-Primo]] + [[sources/Fandom-El-Primo|Fandom-El-Primo]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "Suplex Supplement 稳定打断持球、防守者、Frank/Carl 等慢 Super"
-        - "El Fuego 增加落地后持续伤害和 Heist 固定目标伤害"
+        - "Suplex Supplement 突进抓取首个命中敌人摔到身后，稳定打断持球、防守者、Frank/Carl 等慢 Super；Buffied=摔地时对落点范围造成 2000 Power 11 伤害"
+        - "El Fuego 点燃 3600 Power 11 / 4 秒（约 237% 普拳伤害），增加落地后持续伤害和 Heist 固定目标伤害；Buffied=Super 落地后普攻命中燃烧目标延长燃烧 4 秒"
         - "Shield/Damage 增强入场承伤和贴脸斩杀线"
+        - "Gravity Leap Hypercharge 跳跃砸地把敌人拉向中心；Buffied=Hypercharge 期间普拳体积翻倍并点燃 2 秒（燃烧机制同 El Fuego）"
       enables:
         - "Brawl Ball 得分/断球/摔开守门"
         - "Heist 跳库和破墙协助队友"
@@ -66,18 +67,18 @@ bp_brawler_profile:
       poor_when: "纯开阔长线、敌方 Colette/Otis/Clancy/Maisie/8-Bit 等能在跳前后稳定处理"
       bp_use: "Brawl Ball scorer/control、Heist jump-to-safe、objective displacement"
     - build: "Asteroid Belt / Meteor Rush"
-      source: "[[sources/Fandom-El-Primo|Fandom-El-Primo]]"
+      source: "[[sources/Fandom-El-Primo|Fandom-El-Primo]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "Asteroid Belt 定点破墙和逼走位，尤其用于足球破门或 Heist 开库墙"
-        - "Meteor Rush 提高落地后追击、抢球和撤出速度"
+        - "Asteroid Belt 提供 1 秒完全免伤（impervious to all damage），掩护持球、跳点与接近路线的关键伤害窗口，不提供破墙或击退；Buffied=免伤期间 Super 回充速度翻倍"
+        - "Meteor Rush 在 Super 后提供 25% 加速 4 秒；Buffied=加速期间额外 20% 减伤"
       enables:
-        - "选择性开墙"
+        - "1 秒免伤窗口吃掉敌方一轮关键爆发的进场与持球保护"
         - "跳入后继续追击或自传球"
       mitigates_failure_modes:
         - "partially_mitigates_slow_post_jump_chase"
-      best_when: "关键墙体阻挡进球/打库，且开墙后我方更受益"
-      poor_when: "我方也依赖墙体接近或防守，开墙会帮敌方远程"
-      bp_use: "terrain_state_plan branch"
+      best_when: "敌方依赖瞬发爆发或控制链收尾突进、且 1 秒免伤足以覆盖关键伤害窗口，破墙需求由 Super 承担"
+      poor_when: "敌方威胁以持续消耗为主、免伤窗口过后仍被压制，或我方也依赖墙体接近"
+      bp_use: "invulnerability_window_and_post_super_tempo branch"
 
   map_feature_hooks:
     - id: "brawl_ball_jump_score_and_suplex"
@@ -120,7 +121,7 @@ bp_brawler_profile:
         - "[[entities/maps/Pit Stop|Pit Stop]]"
         - "[[entities/maps/Gem Fort|Gem Fort]]"
       route_or_position: "球门墙、safe wall、中心堡垒墙或敌方掩体"
-      objective_conversion: "用 Super/Asteroid 打开队友远程线或清除敌方保护墙"
+      objective_conversion: "用 Super 打开队友远程线或清除敌方保护墙；Asteroid Belt 的 1 秒免伤窗口掩护推进"
       active_when: "开墙后我方远程/安全 DPS 明确受益"
       fails_if: "开墙同时削弱 Primo 接近路线或让敌方远程接管"
       bp_use: "terrain_state_plan.selective_wallbreak"
@@ -142,6 +143,7 @@ bp_brawler_profile:
         - "jump_to_safe"
         - "safe_wallbreak_support"
         - "short_contact_damage"
+        - "el_fuego_buffie_burn_extension_window"
       cannot_fulfill:
         - "低承诺远程 safe DPS"
         - "三路长线独立守路"
@@ -214,7 +216,7 @@ bp_brawler_profile:
       mitigation: "从草/短距离/队友控制后起跳，或用 Suplex 处理近身目标"
       bp_use: "candidate_eval.engage_reliability"
     - id: "wallbreak_backfires"
-      active_when: "Asteroid/Super 打开己方需要的墙或让敌方远程进场"
+      active_when: "Super 打开己方需要的墙或让敌方远程进场（Asteroid Belt 不参与破墙）"
       exposed_by: "Fandom 提示障碍物也可能是己方功能条件"
       mitigation: "提前定义墙体状态计划"
       bp_use: "terrain_state_plan_check"
@@ -222,8 +224,8 @@ bp_brawler_profile:
   conditional_matchups:
     - target: ["Squeak", "Sprout", "Tick", "Grom", "Piper"]
       direction: "subject_favored"
-      source: "[[sources/PLP-El-Primo|PLP-El-Primo]]"
-      mechanism: "Super/Suplex 绕过或打断低近战自保后排，贴脸后快速拳击完成击杀"
+      source: "[[sources/PLP-El-Primo|PLP-El-Primo]] + [[sources/Fandom-El-Primo|Fandom-El-Primo]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
+      mechanism: "Super/Suplex 绕过或打断低近战自保后排，贴脸后快速拳击完成击杀；Asteroid Belt 的 1 秒完全免伤可吃掉投掷手一轮关键齐射，Buffie 下免伤期间 Super 回充翻倍"
       active_when: "地图有墙草、目标无 bodyguard，Primo 已充 Super 或能安全受击充能"
       fails_when: "目标有队友保护、入口被控、或地图开阔导致跳前被消耗"
       bp_use: "last_pick_backline_or_thrower_punish"

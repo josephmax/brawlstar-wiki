@@ -278,6 +278,161 @@ def parse_key_value_lines(block: str, indent: int = 4) -> dict[str, str]:
     return result
 
 
+# Capability-vector values are free text whose head (before the first ";")
+# carries an ordered level word. Map every value to one ordinal level so
+# threshold queries ("break walls", "outrange X") work on facts, and values
+# that are explicitly "none" disappear from the tag set instead of polluting
+# every brawler with phantom capabilities (56 wall_breaks were exactly this).
+# Level words exist in English and Chinese across the 105 brawler pages
+# ("high", "medium_high", "高", "极高", "中高", "无", ...); longest /
+# most-specific match wins.
+CAPABILITY_LEVEL_WORDS: list[tuple[str, str]] = [
+    # ordered: longest / most specific first
+    ("very_high", "very_high"),
+    ("极高", "very_high"),
+    ("medium_high", "medium_high"),
+    ("中高", "medium_high"),
+    ("medium_low", "medium_low"),
+    ("中低", "medium_low"),
+    ("none", "none"),
+    ("no_", "none"),
+    ("无", "none"),
+    ("没有", "none"),
+    ("high", "high"),
+    ("高", "high"),
+    ("medium", "medium"),
+    ("中等", "medium"),
+    ("中", "medium"),
+    ("low", "low"),
+    ("低", "low"),
+]
+
+CAPABILITY_DESCRIPTIVE_LEVEL: list[tuple[str, str]] = [
+    ("very_long", "high"),
+    ("extreme", "high"),
+    ("long_", "high"),
+    ("short", "low"),
+]
+
+
+def parse_capability_level(raw: str) -> str:
+    """Reduce a capability_vector value like "high_with_dive; note" to an
+    ordinal level: none/low/medium_low/medium/medium_high/high/very_high.
+    Falls back to a small descriptive map, else "unknown" (kept out of
+    threshold matching rather than guessed)."""
+    head = (raw or "").split(";")[0].strip().lower()
+    if not head:
+        return "unknown"
+    if head.startswith("none"):
+        return "none"
+    for word, level in CAPABILITY_LEVEL_WORDS:
+        if word in head:
+            return level
+    for word, level in CAPABILITY_DESCRIPTIVE_LEVEL:
+        if head.startswith(word) or head.endswith(word):
+            return level
+    return "unknown"
+
+
+def extract_range_tiles(raw: str) -> float | None:
+    """Pull the first explicit tile range ("7.33 格") from an
+    effective_range note so relative queries ("outrange Griff") can compare
+    numbers instead of vague level words."""
+    match = re.search(r"(\d+(?:\.\d+)?)\s*格", raw or "")
+    if not match:
+        return None
+    try:
+        return float(match.group(1))
+    except ValueError:
+        return None
+
+
+# Ordinal scale for capability levels. Mirrored in
+# scripts/runtime_index_tools.py (query side); test_runtime_index_tools.py
+# asserts both copies stay identical.
+CAPABILITY_LEVEL_ORDER: dict[str, int] = {
+    "none": 0,
+    "low": 1,
+    "medium_low": 2,
+    "medium": 3,
+    "medium_high": 4,
+    "high": 5,
+    "very_high": 6,
+}
+
+
+def eval_capability_predicate(
+    levels: dict[str, str], dim: str, op: str, level: str
+) -> bool:
+    value = CAPABILITY_LEVEL_ORDER.get(levels.get(dim) or "")
+    threshold = CAPABILITY_LEVEL_ORDER.get(level)
+    if threshold is None:
+        return False
+    if op == ">=":
+        # A lower bound needs positive evidence: an unmodeled axis never
+        # counts as meeting it.
+        return value is not None and value >= threshold
+    # An upper bound is a "not too much" constraint: an unmodeled axis does
+    # not violate it (absence of a mobility note is not high mobility).
+    return value is None or value <= threshold
+
+
+# Archetypes are derived, never hand-listed: each is a closed conjunction of
+# capability predicates evaluated on the cleaned capability_levels. A new
+# brawler is classified automatically; "why is X an assassin" is always
+# printable as the matching predicates. Keep this set small and query-driven:
+# an archetype earns its place by answering a real draft question.
+ARCHETYPE_RULES: dict[str, list[tuple[str, str, str]]] = {
+    # mobile engage threat that dies easily — the "answer the backline" class
+    # (a diver's survivability IS its mobility, so allow medium_high)
+    "assassin": [
+        ("mobility", ">=", "high"),
+        ("engage", ">=", "medium"),
+        ("survivability", "<=", "medium_high"),
+    ],
+    # long-range stationary lane holder
+    "sniper": [
+        ("effective_range", ">=", "high"),
+        ("mobility", "<=", "medium"),
+    ],
+    # wall-bypassing arc/pocket damage core
+    "thrower_core": [
+        ("throw_or_wall_bypass", ">=", "high"),
+    ],
+    # durable frontline that can take space
+    "tank_front": [
+        ("survivability", ">=", "high"),
+        ("engage", ">=", "medium"),
+    ],
+    # zone denial / control anchor
+    "area_controller": [
+        ("area_control", ">=", "high"),
+    ],
+    # information layer (vision / reveal)
+    "vision_controller": [
+        ("scouting_or_vision", ">=", "high"),
+    ],
+    # the "no weak axis" lane-safe allrounder (R-T / Pearl shape): every key
+    # combat axis at medium or above — a floor archetype, high minimum not
+    # high peak
+    "dual_duty_mid": [
+        ("survivability", ">=", "medium"),
+        ("effective_range", ">=", "medium"),
+        ("anti_tank", ">=", "medium"),
+        ("anti_aggro", ">=", "medium"),
+        ("sustained_dps", ">=", "medium"),
+    ],
+}
+
+
+def archetypes_for(levels: dict[str, str]) -> list[str]:
+    return sorted(
+        name
+        for name, predicates in ARCHETYPE_RULES.items()
+        if all(eval_capability_predicate(levels, dim, op, level) for dim, op, level in predicates)
+    )
+
+
 def split_list_entries(block: str) -> list[str]:
     entries: list[list[str]] = []
     current: list[str] = []
@@ -595,7 +750,6 @@ def compile_map_duty(path: Path, repo: Path) -> dict[str, Any]:
 def compile_brawler_card(path: Path, repo: Path) -> dict[str, Any]:
     text = read_text(path)
     block = extract_yaml_block(text, "bp_brawler_profile")
-    capabilities = parse_key_value_lines(extract_named_section(block, "capability_vector"))
     slot_notes = parse_key_value_lines(extract_named_section(block, "slot_notes"))
     builds = [
         with_entry_id(
@@ -668,10 +822,27 @@ def compile_brawler_card(path: Path, repo: Path) -> dict[str, Any]:
         for entry in split_list_entries(matchup_block)
     ]
 
+    # Capability dimension cleaning: a dimension only becomes a tag when its
+    # value is a real (non-none, non-unknown) level. Levels are kept so
+    # threshold/floor queries compare magnitudes, and the first explicit
+    # tile range of effective_range is kept for "outrange X" queries.
+    capability_levels: dict[str, str] = {}
+    range_tiles: float | None = None
+    for dim, raw in parse_key_value_lines(extract_named_section(block, "capability_vector")).items():
+        level = parse_capability_level(raw)
+        if level in {"none", "unknown"}:
+            continue
+        capability_levels[dim] = level
+        if dim == "effective_range" and range_tiles is None:
+            range_tiles = extract_range_tiles(raw)
+
     return {
         "brawler": path.stem,
         "source_ref": rel(path, repo),
-        "capability_tags": sorted(capabilities),
+        "capability_tags": sorted(capability_levels),
+        "capability_levels": capability_levels,
+        "range_tiles": range_tiles,
+        "archetypes": archetypes_for(capability_levels),
         "builds": builds,
         "objective_contracts": objectives,
         "map_hooks": map_hooks,
@@ -821,6 +992,57 @@ def recall_channels(map_floor: str, card: dict[str, Any]) -> list[str]:
     return channels
 
 
+# Failure gates describe *what can kill a hero*; whether that death is
+# actually reachable depends on the map's approach geometry. Classify each
+# gate's precondition from its active_when text, classify the map's approach
+# profile from its route gates, and derive a per-map activation level
+# (high/medium/low). Unknown stays unknown — the LLM still reads the text.
+GATE_PREREQ_RULES: list[tuple[str, list[str]]] = [
+    (
+        "close_approach",
+        ["贴脸", "近身", "贴上", "刺客", "突进", "墙后", "草", "bush", "diver", "assassin", "close_range", "flank", "jump"],
+    ),
+    (
+        "open_exposure",
+        ["开阔", "长线", "风筝", "kite", "open_map", "sniper", "poke", "outrange", "outsustain", "长射程"],
+    ),
+]
+
+
+def gate_prereq_type(failure: dict[str, Any]) -> str:
+    text = f"{failure.get('active_when') or ''} {failure.get('id') or ''}".lower()
+    for prereq, words in GATE_PREREQ_RULES:
+        if any(word.lower() in text for word in words):
+            return prereq
+    return "unknown"
+
+
+def map_approach_profile(map_duty: dict[str, Any]) -> dict[str, bool]:
+    gates = json.dumps(map_duty.get("route_gates") or [], ensure_ascii=False).lower()
+    required = " ".join(map_duty.get("required_capabilities") or []).lower()
+    text = gates + " " + required
+    return {
+        "grass_approach": any(word in text for word in ["grass", "bush", "草", "伏击", "ambush"]),
+        "open_lanes": any(word in text for word in ["open", "sniper", "长线", "开阔"]),
+    }
+
+
+def gate_activation_on_map(prereq: str, profile: dict[str, bool]) -> str:
+    if prereq == "close_approach":
+        if profile["grass_approach"]:
+            return "high"
+        if profile["open_lanes"]:
+            return "low"
+        return "medium"
+    if prereq == "open_exposure":
+        if profile["open_lanes"]:
+            return "high"
+        if profile["grass_approach"]:
+            return "low"
+        return "medium"
+    return "unknown"
+
+
 def candidate_item(
     map_duty: dict[str, Any],
     card: dict[str, Any],
@@ -830,6 +1052,12 @@ def candidate_item(
     matched_capabilities = matched_capabilities_for_map(map_duty, card)
     floor_fit = map_floor_fit(bool(hooks or matched_capabilities), mode_hit)
     mode_fit = mode_contract_fit(mode_hit)
+    profile = map_approach_profile(map_duty)
+    gate_activation = {
+        failure["id"]: gate_activation_on_map(gate_prereq_type(failure), profile)
+        for failure in card.get("failure_modes", [])[:4]
+        if failure.get("id")
+    }
     return {
         "brawler": card["brawler"],
         "fit": combined_candidate_fit(floor_fit, mode_fit),
@@ -845,6 +1073,7 @@ def candidate_item(
         "slot_eligibility": slot_eligibility(floor_fit, mode_fit),
         "conditional_lift": conditional_lift(card, floor_fit, mode_fit),
         "failure_gates": [failure.get("id") for failure in card.get("failure_modes", [])[:4] if failure.get("id")],
+        "failure_gate_activation": gate_activation,
         "required_build_ids": [build.get("id") for build in card.get("builds", [])[:3] if build.get("id")],
         "projection_buckets": [],
     }
@@ -936,6 +1165,7 @@ def build_candidate_index(items: list[dict[str, Any]], projection: dict[str, lis
             "slot_eligibility": item.get("slot_eligibility") or {},
             "conditional_lift": item.get("conditional_lift") or [],
             "failure_gates": item.get("failure_gates") or [],
+            "failure_gate_activation": item.get("failure_gate_activation") or {},
             "required_build_ids": item.get("required_build_ids") or [],
         }
         result[item["brawler"]] = {
@@ -1003,6 +1233,9 @@ def runtime_brawler_card(card: dict[str, Any]) -> dict[str, Any]:
     ]
     return {
         "capability_tags": card.get("capability_tags") or [],
+        "capability_levels": card.get("capability_levels") or {},
+        "range_tiles": card.get("range_tiles"),
+        "archetypes": card.get("archetypes") or [],
         "build_switches": build_switches,
         "map_hooks": map_hooks,
         "objective_contracts": objective_contracts,

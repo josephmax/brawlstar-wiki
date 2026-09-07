@@ -45,14 +45,14 @@ bp_brawler_profile:
   capability_vector:
     effective_range: short_to_mid_with_Longarms
     projectile_reliability: high_in_wall_or_choke_range; attack has wind-up and center sweet spot
-    burst: high_if_center_hit_or_Hypercharged_Super
+    burst: high_if_center_hit_or_Hypercharged_Super; The Frightener Buffie 中心伤害 +44.375% 且拥抱体积 +50%
     sustained_dps: medium_high; very fast reload but short range
     objective_damage: medium_conditional; close-range DPS if it reaches target
-    mobility: very_high_with_Super_and_water_trait
-    survivability: medium_high_during_Super_with_Hardened_Hoodie
-    engage: high_from_wall_phase_or_water_route
-    disengage: medium_high_if_Super_duration_remaining
-    anti_aggro: medium; Jump Scare slow helps, but Shade prefers initiating from terrain
+    mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 6 秒（Hardened Hoodie Buffie +1 秒），Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
+    survivability: medium_high_during_Super_with_Hardened_Hoodie_30pct; The Frightener 墙内每秒回 2000（Power 11），Jump Scare Buffie 跳跃护盾 2000（Power 11，每 0.5 秒衰减 5%）
+    engage: high_from_wall_phase_water_route_or_Jump_Scare_wall_hop
+    disengage: medium_high_if_Super_duration_remaining; Jump Scare 越墙跳+恐惧也能脱离追击
+    anti_aggro: medium_high_with_Jump_Scare_fear; 落地恐惧 1 秒使敌人逃跑、40% 减速且无法攻击/开 Super，但 Shade 仍偏好借地形先手
     anti_tank: low_medium; high-health melee can punish short range
     wall_break: low
     throw_or_wall_bypass: very_high; attacks through walls and Super passes obstacles
@@ -63,13 +63,14 @@ bp_brawler_profile:
     source_trace:
       - "[[sources/Fandom-Shade|Fandom-Shade]]"
       - "[[sources/PLP-Shade|PLP-Shade]]"
+      - "[[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
 
   build_switches:
     - build: "Longarms / Hardened Hoodie / Shield, Damage"
       source: "[[sources/PLP-Shade|PLP-Shade]]"
       changes_capabilities:
-        - "Longarms extends next attack and helps charge Super from safer distance"
-        - "Hardened Hoodie gives damage reduction during wall-phase Super"
+        - "Longarms 下一发普攻 +50% 射程（3.67→5.33 格）并帮助从更远处安全充能 Super；Buffie 使强化攻击命中的敌人被拉向拥抱中心"
+        - "Hardened Hoodie 虚体形态 30% 减伤；Buffie 使 Super 时长 +1 秒（6→7 秒）"
         - "Shield/Damage stabilizes short-range entry trades"
       enables:
         - wall_phase_entry
@@ -84,8 +85,8 @@ bp_brawler_profile:
     - build: "Jump Scare / Spooky Speedster chase variant"
       source: "[[sources/Fandom-Shade|Fandom-Shade]]"
       changes_capabilities:
-        - "Jump Scare gives a local slow after Shade reaches contact range"
-        - "Spooky Speedster rewards center hits with chase speed"
+        - "Jump Scare 短距跳跃（至多 4 格、可越墙，空中免伤），落地范围恐惧 1 秒：敌人逃跑、40% 减速且无法攻击/开 Super；Buffie 跳跃时获得 2000 护盾（Power 11，每 0.5 秒衰减 5%）"
+        - "Spooky Speedster 中心命中 +20% 移速 2 秒；Buffie 命中后按当前冷却 -15% 缩短 Gadget 冷却"
       enables:
         - close_range_chase
         - scorer_or_carrier_catch
@@ -109,7 +110,7 @@ bp_brawler_profile:
         - Pinball Dreams
       bp_use: must_answer_wall_pocket_candidate
     - map_feature_type: "water_crossing_or_obstacle_bypass"
-      uses_feature_by: "Water trait and Super obstacle pass create unusual approach lines"
+      uses_feature_by: "Water trait, Super obstacle pass, and Jump Scare 越墙短跳 create unusual approach lines"
       route_or_position: "water edge, wall-water gap, or obstacle route near objective"
       objective_conversion: "reach carrier/zone/safe route from an angle normal short-range heroes cannot use"
       active_when: "route lets Shade start within threat range and still retreat before Super ends"
@@ -121,7 +122,7 @@ bp_brawler_profile:
         - Parallel Plays
       bp_use: map_bp_factors.route_gate_and_false_positive_filter
     - map_feature_type: "wall_phase_survival_anchor"
-      uses_feature_by: "Super lets Shade hide inside/through walls while pressuring nearby enemies"
+      uses_feature_by: "Super lets Shade hide inside/through walls while pressuring nearby enemies; The Frightener 墙内每秒回 2000（Power 11）延长驻墙续航，Hardened Hoodie Buffie 再 +1 秒虚体"
       route_or_position: "wall next to zone, gem mine, or ball lane"
       objective_conversion: "stall zone, threaten carrier, or deny defender position"
       active_when: "enemy lacks through-wall answer and Shade tracks Super duration"
@@ -150,7 +151,7 @@ bp_brawler_profile:
       can_fulfill:
         - wall_phase_defender_disruption
         - short_range_scoring_pressure
-        - slow_or_center_hit_chase
+        - fear_or_center_hit_chase
       cannot_fulfill:
         - reliable_wallbreak_goal_opening
         - long_range_clear
@@ -211,7 +212,7 @@ bp_brawler_profile:
     - id: "super_ends_in_bad_position"
       active_when: "Shade remains inside or beyond a wall when Incorporeal Form expires"
       exposed_by: "[[sources/Fandom-Shade|Fandom-Shade]] Super duration and push-out rule"
-      mitigation: "track timer, refresh Super, or retreat before expiry"
+      mitigation: "track timer, refresh Super, 用 Hardened Hoodie Buffie 的 +1 秒虚体容错，or retreat before expiry"
       bp_use: "candidate_eval.execution_risk"
     - id: "open_map_range_gap"
       active_when: "map lacks walls/water routes and enemy can kite Shade before Super charges"
@@ -226,7 +227,7 @@ bp_brawler_profile:
     - id: "center_hit_dependency"
       active_when: "Shade only clips outer arc and loses doubled damage or Spooky Speedster chase"
       exposed_by: "[[sources/Fandom-Shade|Fandom-Shade]] Haunted Hug center damage"
-      mitigation: "use Longarms/Jumpscare timing or attack from wall where center hit is likely"
+      mitigation: "use Longarms（Buffie 把命中敌人拉向拥抱中心）/Jump Scare 恐惧 timing or attack from wall where center hit is likely"
       bp_use: "map_factor_false_positive_check"
 
   conditional_matchups:
@@ -241,7 +242,7 @@ bp_brawler_profile:
         - "Nani"
       direction: "subject_favored"
       source: "[[sources/PLP-Shade|PLP-Shade]]"
-      mechanism: "wall-phase entry and through-wall attacks punish backline or control picks that depend on fixed cover"
+      mechanism: "wall-phase entry and through-wall attacks punish backline or control picks that depend on fixed cover; Jump Scare 落地恐惧可打断固定站位的防守反应"
       active_when: "map has walls near the target and Shade can charge or activate Super before being kited"
       fails_when: "target has through-wall answer, bodyguard, or open retreat space"
       bp_use: "response_pick_candidate_against_wall_backline"
@@ -271,6 +272,6 @@ bp_brawler_profile:
   slot_notes:
     slot_1: "只在墙体密集且敌方 through-wall 回答受限时考虑先手；开阔图先手风险很高。"
     slot_2_3: "适合回答依赖固定墙位的后排/控场，同时要求队友补远程输出。"
-    slot_4_5: "可用于补墙体进场、Hot Zone 贴墙压制或 Brawl Ball 后排骚扰；检查敌方 6 位坦克/投掷回答。"
+    slot_4_5: "可用于补墙体进场、Hot Zone 贴墙压制或 Brawl Ball 后排骚扰；Jump Scare 提供越墙位移与恐惧自保，The Frightener 强化贴墙驻留；检查敌方 6 位坦克/投掷回答。"
     slot_6: "敌方缺厚前排、缺穿墙/投掷答案且关键目标靠墙时，Shade 可以作为惩罚位。"
 ```

@@ -7,7 +7,7 @@
 - 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-06-15T10:14:14Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/ollie-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/ollie.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

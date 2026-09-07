@@ -4,10 +4,10 @@
 
 - 标题：Shade
 - 来源：[Shade | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Shade)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-05T13:36:13Z
+- 读取日期：2026-09-03
+- Fandom 页面最后编辑：2026-09-03T03:31:37Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/shade-2026-07-17.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/shade.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -55,6 +55,10 @@
 
 - `Shade` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
 - 后续升级 [[entities/brawlers/Shade|Shade]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Shade|PLP 竞技信号]] 分层合并。
+
+## 来源差异备注（2026-09-03）
+
+- 官方 Release Notes August 2026 与当前 Fandom 页存在三处口径差，本库以当前 direct raw 为稳定事实：Jump Scare 恐惧时长 raw 为 `1 秒`（release notes 写 0.5 秒）；Hardened Hoodie Buffied Super 持续 raw 为 `+1 秒`（release notes 写 +2 秒）；The Frightener Buffied 拥抱中心 raw 为 `伤害 +44.375%、体积 +50%`（release notes 只写 +50% 的合并表述）。
 
 ## 关联页面
 

@@ -5,7 +5,7 @@
 - 标题：Best build for Colt | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Colt | Power League Prodigy](https://powerleagueprodigy.com/colt)
 - 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/colt-2026-06-29.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/colt.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

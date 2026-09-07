@@ -170,6 +170,9 @@ def runtime_card_fragment(index: dict[str, Any], brawler: str, fit: dict[str, An
     }
     return {
         "capability_tags": card.get("capability_tags") or [],
+        "capability_levels": card.get("capability_levels") or {},
+        "range_tiles": card.get("range_tiles"),
+        "archetypes": card.get("archetypes") or [],
         "build_switches": strip_tool_internal_keys(build_switches),
         "map_hooks": strip_tool_internal_keys(map_hooks),
         "objective_contracts": strip_tool_internal_keys(card.get("objective_contracts") or []),

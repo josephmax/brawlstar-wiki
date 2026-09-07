@@ -1505,3 +1505,74 @@
 - 测试：slot-decision 新增 5 条契约测试（能力过滤生效/能力命中不截断/include-id 绕过/排序非字典序/无能力参数保持旧行为），29 条全绿；maintenance 契约测试补 `--capability`/`capability-window`/`Capability-Window First` 术语锁定，契约通过。
 
 **第三层（能力×能力对抗边）未动**：基于 `capability_vector`（18 个带量级维度）+ 现有条件化对位边结构评估可行，留待单独迭代（需设计能力对抗条件与 compile 折叠，维护成本可控：能力维度封闭，远小于 105×105 英雄全对位）。
+
+## [2026-09-03] ingest | 2026-08 补丁全量 ingest：Wendy/Nori 极限充能、6 个新芭菲、平衡调整与新英雄入册
+
+用户要求更新 Wendy/Nori 极限充能、最新一期平衡性调整和 6 个芭菲（= Buffies）。本次补丁源为 Fandom `Version_History/2026` 的 `Release Notes August 2026` section（revid 217944）。
+
+- **raw 层新增 10 件**：`release-notes-august-2026-2026-09-03.md`（section 抓取，boundary 明确排除 Brawl Arena——维护者决定本库不追踪 Brawl Arena；season/skin/mode 亦不入）；Wendy Fandom+PLP（发布后状态，页面已无 `FutureUpdate`）、Nori Fandom+PLP、Poco/El Primo/Amber/Gus/Chuck/Shade 六人 Fandom 最新 raw（经 MediaWiki API `capture_brawler_sources.py` 通道，Fandom HTML 仍 403）。
+- **roster**：category API 恢复可直连，released roster `105 → 108`（+Wendy/+Cosmo/+Vince，Buzz Lightyear 仍排除）；新 manifest `brawlers-roster-2026-09-03.md`；[[sources/Brawler-Roster]] 刷新。Cosmo/Vince PLP 404，按规则只入 ingest 队列不建实体。Wendy PLP `/wendy` 已上线，双源闭环。
+- **source 层**：新增 [[sources/Fandom-Release-Notes-August-2026]]（含 `balance_patch_manifest`：15 条 breakpoint_supported + 30 条显式排除/非断点行，effective_order 4）；Wendy/Nori 四个来源页以发布后状态重建；六人 Fandom 来源摘要从 09-03 raw 重生成；Poco/El Primo/Amber/Shade 四页追加「来源差异备注」——官方 release notes 文案与线上页存在大量口径差（如 Asteroid Belt 1s 完全免伤 vs notes 2s 拦截投射物、Tuning Fork 1000×3 vs 400×3、El Fuego Buffie +4s vs +1.5s、Jump Scare 恐惧 1s vs 0.5s 等），一律以 direct raw 为稳定事实、notes 差异保留在备注，不静默统一。
+- **entity 层**：新建 [[entities/brawlers/Wendy]] `bp_ready`（全字段 + `combat_breakpoint_profile`：body 2000/P1、main 1000/P1、出生等量护盾作 barrier_hp 变体、发生器 redirect/队友盾/Hypercharge 全部显式排除）；`Nori` 纳入 Hypercharge MASTER FISHERMAN 并校准削弱后数值（7000/2000 P11、Sushi Snack 18s）；六个芭菲英雄按 raw 把重做与 Buffie 折叠进稳定字段（Gus Kooky Popper 缴弹、Knockback Spirit 重做、Spirit Animal +15% 移速窗口、Spooky Pop 穿墙气球；Chuck 全 Super 4 充能模型重写；Poco/El Primo/Amber/Shade 各自重做+Buffie；初稿误用 notes 值的 Poco/El Primo 已逐条改回 raw 值）。Wendy 对位边补齐 PLP 全部 16 个种子（Bo/Surge/Pierce/Frank/Lola 后补评审边），PLP 覆盖审计恢复零缺口。
+- **concept 层**：新建 [[concepts/Buffies]]（芭菲系统规则与建模边界；「芭菲」是 Buffies 的社区俗称、非英雄名，故不进英雄名称归一化表，只在该页记录）。
+- **断点审计**：`audit_balance_breakpoints.py` 全链 4 份 manifest 重跑，8 月补丁渲染 18 个 supported 行；产出 `outputs/balance-breakpoints/2026-june-august-balance-breakpoints.{json,md}`（106 目标、757 pairwise deltas、321 build-pressure deltas、75 显式排除；Nori 斩击 3 发阈值目标 33→19 等真实变化正常）。
+- **计数锁与运行时**：roster 变更后更新三处编译计数锁（slot-decision 编译测试 105→106 ×3）与 PLP 覆盖审计计数锁（105→106）；重编译 `outputs/runtime-bp-index/default-runtime-index.json`（106 brawlers，Wendy 卡片含 build/capability/hooks/contracts）。全部验证：profile 审计 106/106 `bp_ready` 零 blocker；维护+slot-decision 测试 58/58 通过；`test_balance_breakpoints.py` 10 tests 通过。
+
+## [2026-09-03] cleanup | 英雄 raw 去重：每个英雄只保留最新日期抓取件
+
+维护者决定：多版本英雄页只保留最新，历史日期版不再保留。按「新抓取件完整覆盖同一页面状态」的冗余标准执行显式 cleanup。
+
+- **删除 74 件旧日期 raw**：`raw/sources/fandom/heroes/` 70 件（50 个英雄的多版本，如 crow/max/8-bit/surge/starr-nova 各 3-4 版 → 只留最新；wendy-2026-07-11 future 页、nori-2026-07-11 早期页一并按此决定删除，其预发布差异证据已闭合保留在 [[sources/Supercell-Wendy-Announcement-June-2026]] 与 [[sources/Fandom-Release-Notes-August-2026]]）；`raw/sources/pl-prodigy/brawlers/` 4 件（8bit-2026-06-30、max-2026-06-29、brock-2026-06-29、nori-2026-08-11）。删后每目录 106 件 = 每英雄恰 1 份最新抓取，与 106 个 `bp_ready` 实体一一对应。
+- **引用修复**：删除前全库精确检查，`wiki/` 与 `skills/` 对被删文件的活引用为零（`wiki/log.md` 历史条目按 append-only 原则保留原文；`test_plp_matchup_coverage.py` 中的 `8bit-2026-06-30.md` 是 tempfile 夹具字符串，与真实 raw 无关）。
+- **审计语义不受影响**：`audit_plp_matchup_coverage.py` 与断点审计本就只读每英雄最新 direct raw；`plp_raw_files >= plp_raw_pages` 断言在 106=106 下成立。验证：维护+slot-decision 全部测试 58/58 通过，多版本残留检查为空。
+- 本条为删除记录；被删文件内容如需追溯，见 git 历史或对应英雄的现行 raw 与来源摘要页。
+
+## [2026-09-07] maintenance | pick 层加入 Ranked 池过滤 + Brawl Planet 接口复查（无大师/电竞精英档）
+
+维护者要求 pick 层查询只统计当前 Ranked 地图池；同时复查 Brawl Planet 段位覆盖（回应"为什么只查到传奇"的疑问）。
+
+- **接口复查**（`[[sources/Brawl-Planet-站点与数据接口]]` 更新）：站点改版 turbopack，GCS bucket 不变。HEAD 探测确认统计文件全集为 `pl` / `pl-d1`（新发现）/ `pl-m1` / `pl-m3`（nav 已摘但文件仍在）/ `pl-l1` + `brawlers`；`pl-l2`/`pl-ma1`/`pl-masters`/`pl-e1`/`pl-elite`/`pl-pro` 全部 403，nav 只挂 d1/m1/l1。**结论：本源无法产出大师/电竞精英逐段位切分**；`pl-l1` 是"传奇 I 及以上"下限口径，样本已含大师及以上对局。
+- **Ranked 池 manifest**：新建 `wiki/environment/ranked_pool.json`（`brawlstar.ranked_pool_manifest.v1`，S48 30 图 + Fandom Ranked 页 revid 217144 provenance），来源同步 [[syntheses/Ranked-Season-48-地图Map-Profile总览]]。数据源的 35 图是天梯轮换池，与排位池本就不等（Deathcap Trap 天梯 active 但不在 S48 池；Snake Prairie 等 4 图 `active:false` 为滚动窗口退役残留）。
+- **fetch 脚本**（`fetch_brawlplanet_pickrate.py`）：默认按 manifest 过滤——global 只累计池内 active 图、per_map 只保留池内行、池外图记入 `summary.excluded_maps`（含 reason），池图缺失时 stderr WARNING（赛季翻新信号）；`--ranked-pool-manifest` / `--no-ranked-pool-filter` 可选；`--tier` 扩为 l1/m1/m3/d1/default；`--db` 改为临时文件 + `os.replace` 原子快照，防旧赛季行残留。`pool_key` 地图名保留标点（区分 Safe Zone / Safe(r) Zone）、模式名去标点空格（raw `brawlball` == 显示 `Brawl Ball`，首版实现漏掉该归一导致 16 图误判池外，已修复并加回归测试）。归档协议（`_environment_sqlite.py`、SCHEMA_VERSION）零改动——过滤在生产侧完成，compile 折叠自动生效。
+- **归档刷新**：`pickrate.sqlite3` 以池过滤口径重建（fetched 2026-09-07，30 图 / 106 英雄；Charlie 2.61% / 47.45%，Edgar 15.36% / 51.54%）；`current.json` bumped；`outputs/runtime-bp-index/default-runtime-index.json` 重编译折叠新 provenance。
+- **测试**：新增 `test_ranked_pool_filter.py` 7 条（global 加权、per_map 池内限定+标注、summary 排除/缺失、stale manifest、未过滤直通、manifest 校验、pool_key 变体）；维护 + slot-decision 全量测试通过。
+- **文档**：[[environment/index|环境归档索引]]（目录表 + 当前归档 + 维护规则 + 归档历史）、`skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md`（Signal 结构、Monthly Workflow step 1、Rules 各加池过滤与 manifest 赛季维护条款）。
+
+## [2026-09-03] cleanup | PLP raw slug 统一：按 canonical name 推导，消除 8bit/mrp/elprimo 类命名
+
+维护者指出 `8bit-2026-06-30.md` 这类 URL 原样 slug（PLP 页面 URL 即 `/8bit`）与 canonical 名 `8-Bit` 对不上、观感差。核查后统一：
+
+- **改名 7 件 PLP raw**（日期不变）：`8bit→8-bit`、`elprimo→el-primo`、`jaeyong→jae-yong`、`larrylawrie→larry-lawrie`、`mrp→mr-p`、`rt→r-t`、`starrnova→starr-nova`。fandom 目录 106 件本就全部符合 name-slug，无需改名；改后两目录 slug 与 `brawlers-roster-2026-09-03.md` 的 canonical 名一一对应。
+- **slug 规则统一**：`capture_brawler_sources.py` 与 `ingest_brawler_sources.py` 的 `slug_from_url_or_name` 改为按 canonical name 推导（不再用页面 URL 原样 leaf），今后新抓取不会再产生 URL 风格命名；`direct_capture_exists` / `latest_direct_raw` 在新规则下能正确命中改名后的文件（capture 对 Mr. P 实测 `skip_existing_direct`，ingest 对改名英雄 dry-run planned 正常无 FileNotFoundError）。
+- **引用修复**：7 个 `wiki/sources/PLP-*.md` 的上游 raw 链接同步改名；PLP 覆盖审计按 raw 内 JSON `name` 字段解析 canonical 名，不依赖文件名，审计与全部测试 71/71 通过。
+
+## [2026-08-25] architecture | 第三层落地：能力维度量化 + 对抗原型 + 天敌清点 + 失败门地形激活
+
+承接同日 Capability-Window First 检索层。用户以"神秘流星 Squeak 一选如何回应"实战测试检索范式，暴露四个缺口后拍板全部落地（五步计划），并先完成 24 能力维度 MECE 摸底（五轴分类：自身属性 / 伤害输出 / 控制压制 / 地形 / 信息团队；关键发现：16 个标签 105/105 全覆盖零区分度、112 个 none 值误收、中英量级词混用）。
+
+- **步骤 1（维度清洗，compile）**：新增 `parse_capability_level`（中英量级词映射 none/low/medium_low/medium/medium_high/high/very_high，保守 unknown）、`extract_range_tiles`（"7.33 格"数值提取）。`capability_tags` 只收非 none/unknown 维度（wall_break 105→30，El Primo 不再带投掷标签）；新增 `capability_levels`/`range_tiles` 结构化字段进 card 与 hydrate/query。
+- **步骤 2（天敌清点，新工具）**：新增 `query_matchup_census.py`——输入 hero + banned 集，输出 `answered_by`/`answers` 幸存名单与计数（alive/removed_by_bans + mechanism/active_when/fails_when 边原文）。实测纠正一处叙事幻觉：Squeak 的 8 条天敌边（Bibi/Edgar/Bull/Bolt/Ollie/Trunk/Willow/Rosa）与本次 ban 位无交集——"ban 清了它的天敌"是脑补，数据不支持。
+- **步骤 3（时序纪律，规则）**：runtime-decision-knowledge 新增 **First-Response Discipline** 章节（暴露诊断 → 天敌清点 → 预算纪律三步，专 counter 须三条件同时满足否则 structure-first）；SKILL.md Ordering logic 同步。
+- **步骤 4（失败门×地形，compile）**：`gate_prereq_type` 从 active_when 文本分类前提（close_approach/open_exposure/unknown），`map_approach_profile` 从 route_gates 推断地图接近特征，逐图生成 `failure_gate_activation`（high/medium/low/unknown）进 candidate_index 与 fact window。验证：同一 Squeak 贴脸门在神秘流星=low、Beach Ball=high——"纸面弱点 vs 真实弱点"机械可判。
+- **步骤 5（原型 + floor）**：`ARCHETYPE_RULES` 谓词合取（assassin/sniper/thrower_core/tank_front/area_controller/vision_controller/dual_duty_mid），compile 自动派生 `archetypes`（不手写名单，新英雄自动归类，谓词可解释可测试）；谓词语义：下界缺失不满足、上界缺失不违反。查询工具新增 `--archetype`（OR）与 `--require-floor "dims@level"`（无短板轴下限查询，R-T/Pearl 型）；窗口命中者不被 effort 截断。
+- **测试**：slot-decision 新增 6 条（量级序双副本一致/none 剔除/archetype 过滤/floor 过滤/gate activation 透出/census banned 过滤），35 tests 全绿；maintenance 契约加 `--archetype`/`--require-floor`/`First-Response Discipline`/`query_matchup_census`/`capability_levels`/`failure_gate_activation` 术语锁定，契约通过（maintenance 32 tests 亦全绿）。
+- **审计移交**：`outputs/bp-simulations/capability-level-unknown-audit-2026-08-25.md`——94 英雄 / 405 维度为纯描述无量级词（如 Edgar mobility），按"查询驱动维护"原则列为后续批修队列；unknown 维度保守排除出阈值查询，不做猜测。
+
+## [2026-09-03] cleanup | 英雄 raw 文件名去日期化：每英雄一份 `<hero>.md` 现行抓取
+
+维护者决定：既然每英雄永远只保留一份最新抓取，文件名不再携带日期版本号。
+
+- **改名 212 件**：`raw/sources/fandom/heroes/<slug>-<date>.md` → `<slug>.md`、`raw/sources/pl-prodigy/brawlers/<slug>-<date>.md` → `<slug>.md`。抓取时间仍记录在文件头 `- Capture date:` 元数据，时间信息不丢失。
+- **脚本适配**：`capture_brawler_sources.py`（输出路径 `<slug>.md`、存在即 `skip_exists`、`direct_capture_exists` 优先精确名并兼容旧日期名）与 `ingest_brawler_sources.py`（`latest_direct_raw` 优先精确名、兼容旧日期名）同步更新；实测 8-Bit capture 返回 `skip_exists -> raw/sources/fandom/heroes/8-bit.md`、ingest dry-run planned 正常。时间点敏感文档（patch notes、roster manifest、赛事抓取）保留日期命名。
+- **引用修复**：212 个 wiki 文件的上游 raw 链接批量去日期化（`wiki/log.md` 历史条目保留原文）；`AGENTS.md`「来源版本与覆盖清理规则」的 canonical 抓取件示例同步改为无日期命名约定。
+- **验证**：维护 + slot-decision 全部测试通过；全库英雄 raw 多版本与日期残留检查为空。
+
+## [2026-08-25] fix | 能力窗口全池扫描 + 量级阈值查询姿势（投手池 26 人误报修复）
+
+用户质疑神秘流星局 `--capability throw_or_wall_bypass` 捞出 26 个"投手"（真实投手远少于此）。诊断出两层问题并修复：
+
+- **标签≠阈值**：capability 标签匹配不筛量级，7 个 low（Stu/Colt/Byron 等"技能勉强碰墙"）混入。正确姿势是 `--require-floor "throw_or_wall_bypass@high"`（26→10）。
+- **维度语义混杂**：`throw_or_wall_bypass` 建模"任何越墙手段"（真投手普攻 / 技能弹穿墙 / 位移越墙三类混在一个维度），Gene 魔手、Mandy 妙具也被记 high。根治需英雄页维度拆分（arc_throwing / utility_wall_pierce / mobility_wall_cross），已记入 capability 审计文件作为后续队列；查询层先用 floor 阈值缓解。
+- **窗口全池扫描（本条核心修复）**：发现 Willow/Barley/Mico/Larry & Lawrie 等真投手在开阔图 `fit=weak` 不进任何投影桶，能力窗口完全看不到他们——违背"能力圈人、地图适配是圈内排序"的范式。修复：capability/archetype/floor 任一窗口激活时，候选扫描扩大到全 candidate_index（`retrieval_matches` 标 `capability_window`，weak fit 照常透出并按 fit 排序靠后）；无窗口时保持原 bucket 行为。实测神秘流星投掷@high 窗口 10 strong + 18 weak 全量可见，含全部四位真投手。
+- 文档：runtime-decision-knowledge.md `--capability` 条目补"Tag ≠ threshold（优先 floor 形式）"与"窗口全池扫描、weak fit 是信息不是不存在"两条使用规则。
+- 测试：slot-decision 35 tests 全绿，maintenance 契约通过。

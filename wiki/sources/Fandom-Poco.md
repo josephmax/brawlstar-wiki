@@ -4,10 +4,10 @@
 
 - 标题：Poco
 - 来源：[Poco | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Poco)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-14T21:10:38Z
+- 读取日期：2026-09-03
+- Fandom 页面最后编辑：2026-09-03T03:26:59Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/poco-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/poco.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -54,6 +54,10 @@
 
 - `Poco` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
 - 后续升级 [[entities/brawlers/Poco|Poco]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Poco|PLP 竞技信号]] 分层合并。
+
+## 来源差异备注（2026-09-03）
+
+- 官方 Release Notes August 2026 与当前 Fandom 页在 Poco 重做数值上存在明显口径差，本库以当前 direct raw 为稳定事实：Tuning Fork raw 为治疗 `1000`×3（12.5% 最大生命/秒、3 秒 buff、3.33 格半径；release notes 写 400×3/6 秒）；Tuning Fork Buffied 加速 raw 为 `3 秒`（release notes 写 2 秒）；Da Capo! raw 为额外治疗 `640`（约 13% 最大生命；release notes 写基线 300+220）；Screeching Solo raw 为 `1520`（release notes 写 760）。Protective Tunes 与沉默时长两源一致。
 
 ## 关联页面
 

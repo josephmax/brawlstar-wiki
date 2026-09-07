@@ -4,8 +4,8 @@
 
 - 标题：Brawl Planet — Ranked stats & pick/use rate data source
 - 来源：[Brawl Planet](https://brawlplanet.com)（HTTP 308 重定向到 `https://www.brawlplanet.com`）
-- 相关页面：`/powerleague`（Diamond I+）、`/powerleague/pl-m1`（Mythic I+）、`/powerleague/pl-m3`（Mythic III+）、`/powerleague/pl-l1`（**Legendary I+**）
-- 首次验证日期：2026-08-14
+- 相关页面：`/powerleague`（Diamond I+）、`/powerleague/pl-d1`、`/powerleague/pl-m1`（Mythic I+）、`/powerleague/pl-m3`（Mythic III+，nav 已不再挂但文件仍在）、`/powerleague/pl-l1`（**Legendary I+**）
+- 首次验证日期：2026-08-14；复查日期：2026-09-07（站点改版为 turbopack chunk，接口与 bucket 不变）
 - 类型：第三方 Ranked 统计站（数据经 Google Cloud Storage 静态 JSON 公开）
 - 状态：`environment_signal_pick_source_v1`（描述性信号源，非稳定事实、非 runtime 直接输入）
 
@@ -25,8 +25,14 @@ https://storage.googleapis.com/brawlanalyzer-public/<file>.json.gz
 | --- | --- | --- |
 | `pl-l1-results.json.gz` | **Legendary I+（legendary_plus）** | 环境信号 pick 层主文件 |
 | `pl-m1-results.json.gz` | Mythic I+ | 备选段位下限 |
+| `pl-m3-results.json.gz` | Mythic III+ | 2026-09-07 HEAD 探测仍 200（nav 已不挂） |
+| `pl-d1-results.json.gz` | Diamond I band | 2026-09-07 新发现（nav 有 `/powerleague/pl-d1`） |
 | `pl-results.json.gz` | Diamond I+（powerleague 默认页） | 更宽口径参考 |
 | `brawlers.json.gz` | — | 英雄目录（含 future 英雄标记） |
+
+**段位上限（2026-09-07 HEAD 探测）**：更高段位档不存在——`pl-l2` / `pl-ma1` / `pl-masters` / `pl-e1` / `pl-elite` / `pl-pro` 全部 403，站点 nav 只暴露 `d1 / m1 / l1` 三个档位变体，前端 `RANKED_COLORS` 色板也止于 `masters`。因此**本源无法产出大师或电竞精英的逐段位切分统计**。注意 `pl-l1` 是"传奇 I 及以上"的下限口径：样本本身已包含大师及以上对局，只是无法单独切出。
+
+**地图池口径（2026-09-07 确认）**：数据文件按高分段天梯轮换池返回（35 图），其中含排位赛池外图与已退役图（`active: false`，如 Snake Prairie 最后对局 2025-02）。维护侧由 `fetch_brawlplanet_pickrate.py` 按 `wiki/environment/ranked_pool.json` 在生产侧过滤为当前 Ranked 池（30 图），未过滤口径可用 `--no-ranked-pool-filter` 取得。
 
 文件命名规律（从 chunk 代码 `"pl"===y?"pl-results.json.gz":`+"`${y}-results.json.gz`"` 得出）：`<tier>-results.json.gz`。
 

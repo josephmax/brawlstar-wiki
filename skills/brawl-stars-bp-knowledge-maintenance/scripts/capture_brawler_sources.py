@@ -60,19 +60,14 @@ def has_active_bp_sources(row: RosterRow) -> bool:
 
 
 def slug_from_url_or_name(url: str, name: str) -> str:
-    if url and url != "no_page_found":
-        parsed = urlparse(url)
-        leaf = unquote(parsed.path.rstrip("/").split("/")[-1])
-    else:
-        leaf = name
-    leaf = leaf.replace("_", " ")
-    leaf = leaf.replace("&", " ")
-    leaf = leaf.replace(".", " ")
-    slug = re.sub(r"[^A-Za-z0-9]+", "-", leaf).strip("-").lower()
-    return slug or re.sub(r"[^A-Za-z0-9]+", "-", name).strip("-").lower()
+    # 2026-09-03: slug 统一按 canonical name 推导（此前 PLP 用页面 URL 原样 slug，产生 8bit/mrp/elprimo 等与 fandom 目录不一致的命名）。
+    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("&", " ").replace(".", " ")).strip("-").lower()
 
 
 def direct_capture_exists(directory: Path, slug: str) -> bool:
+    # 2026-09-03: 文件名不再带日期（每英雄只保留一份现行抓取）；兼容旧日期命名。
+    if (directory / f"{slug}.md").exists():
+        return True
     for path in directory.glob(f"{slug}-*.md"):
         try:
             head = path.read_text(encoding="utf-8", errors="replace")[:120]
@@ -260,9 +255,9 @@ def selected_fandom_excerpts(wikitext: str, *, per_block_limit: int = 4200, tota
 
 def capture_fandom(row: RosterRow, capture_date: str, *, force: bool, dry_run: bool) -> tuple[str, Path | None]:
     slug = slug_from_url_or_name(row.fandom_url, row.name)
-    out = FANDOM_DIR / f"{slug}-{capture_date}.md"
+    out = FANDOM_DIR / f"{slug}.md"
     if out.exists():
-        return "skip_exists_this_date", out
+        return "skip_exists", out
     if not force and direct_capture_exists(FANDOM_DIR, slug):
         return "skip_existing_direct", None
     if dry_run:
@@ -391,9 +386,9 @@ def capture_plp(row: RosterRow, capture_date: str, *, force: bool, dry_run: bool
     if row.plp_url == "no_page_found":
         return "skip_no_page_found", None
     slug = slug_from_url_or_name(row.plp_url, row.name)
-    out = PLP_DIR / f"{slug}-{capture_date}.md"
+    out = PLP_DIR / f"{slug}.md"
     if out.exists():
-        return "skip_exists_this_date", out
+        return "skip_exists", out
     if not force and direct_capture_exists(PLP_DIR, slug):
         return "skip_existing_direct", None
     if dry_run:

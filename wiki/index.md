@@ -67,6 +67,7 @@
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
 - [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
+- [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]（8 月补丁：新英雄 Cosmo/Vince、Wendy/Nori 极限充能、6 个新芭菲、平衡性调整，含 balance_patch_manifest）
 - [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
 - [[sources/Supercell-Maintenance-August-4-2026|Supercell 来源摘要: Maintenance - August 4, 2026]]
 - [[sources/User-Note-Balance-Breakpoint-Audit|用户维护规则：平衡调整伤害—生存断点审计]]
@@ -83,9 +84,8 @@
 - [[sources/Fandom-BSC-July-2026-Observed-Map-Pages|Fandom 来源摘要: BSC 2026 July 三张补充地图页]]
 - [[sources/iKaoss11-July-2026-Strength-Profile|iKaoss11 July 2026 Strength Profile]]（已退役：强度/tier 概念已从 BP 系统移除，环境信号改为高分 pick rate 空槽，见 [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器]]）
 
-- 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]] / [[sources/PLP-Nori|PLP 来源摘要: Nori]]（双源已闭环，bp_ready profile 已建；strength profile 档位待补）。
-- 未来英雄来源：[[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]（仍为 `FutureUpdate`，不进入 released roster 或 runtime）。
-- 英雄来源（本地已闭环的 104 个 BP-ready 英雄）：
+- 新增英雄来源：[[sources/Fandom-Nori|Fandom 来源摘要: Nori]] / [[sources/PLP-Nori|PLP 来源摘要: Nori]] / [[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]] / [[sources/PLP-Wendy|PLP 来源摘要: Wendy]]（Nori、Wendy 双源均已闭环，bp_ready profile 已建）。
+- 英雄来源（本地已闭环的 106 个 BP-ready 英雄）：
 - [[sources/Fandom-8-Bit|Fandom 来源摘要: 8-Bit]] / [[sources/PLP-8-Bit|PLP 来源摘要: 8-Bit]]
 - [[sources/Fandom-Alli|Fandom 来源摘要: Alli]] / [[sources/PLP-Alli|PLP 来源摘要: Alli]]
 - [[sources/Fandom-Amber|Fandom 来源摘要: Amber]] / [[sources/PLP-Amber|PLP 来源摘要: Amber]]
@@ -268,6 +268,7 @@
 - [[concepts/Daily Streak|Daily Streak]]
 - [[concepts/Daily Wins|Daily Wins]]
 - [[concepts/Gears|Gears]]
+- [[concepts/Buffies|Buffies]]（芭菲：Gadget / Star Power / Hypercharge 强化层）
 - [[concepts/Starr Road|Starr Road]]
 - [[concepts/Fame|Fame]]
 - [[concepts/Catalog|Catalog]]
@@ -294,8 +295,8 @@
 - [[entities/events/Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|BSC 2026 July East Asia Monthly Finals]]
 - [[entities/events/Brawl-Stars-Championship-2026-July-North-America-Monthly-Finals|BSC 2026 July North America Monthly Finals]]
 
-- 英雄（游戏已发布 105 个；本地稳定运行层 105 个 `bp_ready`。Nori 缺口已闭环：Fandom + PLP 双源 + bp_ready profile；strength profile 档位仍缺，runtime tier=unknown）：
-- 当前缺口：无结构缺口。`Nori` 的 strength profile 档位待补（iKaoss11 July 输入早于 Nori 发布），见 [[sources/Brawler-Roster|Brawler Roster]]。
+- 英雄（游戏已发布 108 个；本地稳定运行层 106 个 `bp_ready`。`Wendy` 已发布并双源闭环建档；`Cosmo`、`Vince` 已发布但 PLP 未覆盖，按规则暂不进入 BP 英雄集合，见 [[sources/Brawler-Roster|Brawler Roster]]。`Wendy`、`Nori` 的极限充能与 2026-08 补丁见 [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]）：
+- 当前缺口：Cosmo、Vince 的竞技来源（PLP guide）覆盖。
 - [[entities/brawlers/8-Bit|8-Bit]]
 - [[entities/brawlers/Alli|Alli]]
 - [[entities/brawlers/Amber|Amber]]
@@ -399,6 +400,7 @@
 - [[entities/brawlers/Tara|Tara]]
 - [[entities/brawlers/Tick|Tick]]
 - [[entities/brawlers/Trunk|Trunk]]
+- [[entities/brawlers/Wendy|Wendy]]
 - [[entities/brawlers/Willow|Willow]]
 - [[entities/brawlers/Ziggy|Ziggy]]
 

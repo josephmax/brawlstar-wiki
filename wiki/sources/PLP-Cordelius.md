@@ -5,7 +5,7 @@
 - 标题：Best build for Cordelius | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Cordelius | Power League Prodigy](https://powerleagueprodigy.com/cordelius)
 - 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/cordelius-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/cordelius.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z

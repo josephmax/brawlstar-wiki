@@ -7,7 +7,7 @@
 - 读取日期：2026-08-10
 - Fandom 页面最后编辑：2026-08-04T09:37:10Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/surge-2026-08-10.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/surge.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 

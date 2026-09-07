@@ -12,10 +12,11 @@
 - PLP：[[sources/PLP-Nori|PLP 来源摘要: Nori]]
 - PLP 推荐模式：Hot Zone, Heist, Bounty
 - 8/4 补丁 fix：[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]
+- Hypercharge MASTER FISHERMAN 与当前数值口径：[[sources/Fandom-Nori|Fandom-Nori]] / [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]
 
 ## 角色定位总结
 
-Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（1100，可一次收多条鱼），hold 充能钩子突进（720，钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +4% 巨鱼伤害，即使空命中也消耗。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗。风险在于充能期不能回血、被 stun 取消，Super 空放会浪费鱼资源，且缺 strength profile 档位导致 runtime tier 未知。
+Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 2000，P11 口径，可一次收多条鱼），hold 充能钩子突进（钩击 1440，P11 口径；钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +4% 巨鱼伤害，即使空命中也消耗。Hypercharge `MASTER FISHERMAN` 让 Nori 跳入水中时把范围内敌人拉入并向水坑中心聚拢，再结算范围伤害，把进场/聚拢/终结压进同一窗口。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗（18s 冷却）。风险在于充能期不能回血、被 stun 取消，Super 空放会浪费鱼资源，且缺 strength profile 档位导致 runtime tier 未知。
 
 ## BP 建模
 
@@ -36,12 +37,12 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "dual_form; tap melee 8.33 格弧形 AOE，hold hook 13.33-16.67 格充能突进，满充可跳墙"
     projectile_reliability: "medium; tap 弧形稳定多目标，hook 需充能预判且可被墙/miss 取消"
-    burst: "high_with_fish_super; tap 1100 AOE 多目标，满鱼 Super 巨鱼 1750+ 成长，hook+tap 链可秒脆皮"
+    burst: "high_with_fish_super; tap 斩击 2000（P11）AOE 多目标，满鱼 Super 巨鱼 3500+（P11）成长，hook+tap 链可秒脆皮；MASTER FISHERMAN 聚拢后巨鱼伤害落在拉入目标上，终结确定性更高"
     sustained_dps: "medium; 装填 0.1s（ammo-bar 充能型，满充 2s），tap 可连续挥杆但 hold 充能期不能回血"
     objective_damage: "medium_high; PLP 推荐 Heist，Super 成长巨鱼可打库，hook 可改路线接近金库"
     mobility: "very_high; Very Fast 820 基础，hook 拉墙位移，满充跳墙，His Mother's Son 命中后 984"
-    survivability: "medium_high; Power 11 本体 7600 血，Sushi Snack 鱼换治疗，Super 落地后消失躲爆发，root 可断开团"
-    engage: "high; hook 突进 + root + Super 水坑区域接管"
+    survivability: "medium_high; Power 11 本体 7000 血，Sushi Snack 鱼换治疗（18s 冷却），Super 落地后消失躲爆发，root 可断开团"
+    engage: "high; hook 突进 + root + Super 水坑区域接管；MASTER FISHERMAN 让 Super 入水时拉入范围内敌人并向中心聚拢，越墙/水域进场自带聚拢+爆发终结窗口"
     disengage: "medium; hook 拉墙后撤，Super 消失躲关键技能，但回点在坑中心"
     anti_aggro: "high; root 1.25s 断刺客/突进，Super 水坑封路线，tap AOE 清近身"
     anti_tank: "conditional; tap AOE 和 Super 成长可压中血，但纯坦硬控会惩罚充能期"
@@ -57,12 +58,13 @@ bp_brawler_profile:
     source_trace:
       - "[[sources/Fandom-Nori|Fandom-Nori]]"
       - "[[sources/PLP-Nori|PLP-Nori]]"
+      - "[[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
 
   build_switches:
     - build: "Sushi Snack / Big Haul / Health, Shield"
       source: "[[sources/PLP-Nori|PLP-Nori]]"
       changes_capabilities:
-        - "Sushi Snack 吃最多 3 条鱼每条治疗 1000（PLP）/ 700（Fandom Infobox），提供进场后续战"
+        - "Sushi Snack 吃最多 3 条鱼每条治疗 1000（PLP）/ 700（Fandom Infobox），18s 冷却，提供进场后续战"
         - "Big Haul Super 命中每敌收 3 鱼，加速 Super 成长循环，PLP 标注为推荐优于 His Mother's Son"
         - "Health+Shield 提升进场第一轮容错和低血确认"
       enables:
@@ -88,6 +90,20 @@ bp_brawler_profile:
       best_when: "敌方有 Stu/Surge/Damian 等突进核心需要 root 断"
       poor_when: "更需要 Super 成长循环而非单次 root"
       bp_use: "anti_dive_or_mobility_variant"
+    - build: "MASTER FISHERMAN Hypercharge（配 Big Haul / Sushi Snack）"
+      source: "[[sources/Fandom-Nori|Fandom-Nori]] / [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
+      changes_capabilities:
+        - "MASTER FISHERMAN：Nori 跳入水中时把范围内敌人拉入，落地把目标抛起并向水坑中心聚拢，再结算范围伤害；Super 立即获得 10 条鱼强度，激活期 +20% 移速、+5% 伤害与护盾"
+        - "改变进场/聚拢/终结窗口：越墙或水域进场自带聚拢+爆发终结，满鱼巨鱼 3500（P11 口径）直接落在拉入目标上"
+      enables:
+        - "越墙/水域进场聚拢脆皮或站区者，落地即终结"
+        - "Heist 用聚拢+爆发一次性收库"
+        - "把突进核心拉进水坑反打"
+      mitigates_failure_modes:
+        - "super_whiff_consumes_fish"
+      best_when: "敌方必须站位目标点或抱团推进，Nori 可用聚拢进场直接改写站位并吃满成长伤害"
+      poor_when: "敌方分散站位且保留硬控，聚拢落地即被控制链反打"
+      bp_use: "hypercharge_engage_cluster_and_burst_finish"
 
   map_feature_hooks:
     - id: "hot_zone_fish_super_zone_takeover"
@@ -146,7 +162,7 @@ bp_brawler_profile:
         - "root 封进场"
         - "tap AOE 清近身站区者"
       cannot_fulfill:
-        - "长期主站区 body（Power 11 7600 血不够扛持续 chip）"
+        - "长期主站区 body（Power 11 本体 7000 血不够扛持续 chip）"
         - "处理区外 thrower/long range"
       needs_teammate_support:
         - "站区前排、区外长手、探草/反投掷"
@@ -157,7 +173,7 @@ bp_brawler_profile:
         - "hook 改路线接近金库"
         - "tap AOE 清守库"
       cannot_fulfill:
-        - "无鱼时 Super 伤害低（1250 基础）"
+        - "无鱼时 Super 伤害低（2500，P11 口径）"
         - "扛硬控守库"
       needs_teammate_support:
         - "反控制、吸引守库火力、打库跟进"
@@ -190,7 +206,7 @@ bp_brawler_profile:
         - "root 断倒计时撤退或抢矿"
         - "Super 水坑封矿区入口限制收宝路线"
       cannot_fulfill:
-        - "长期稳定持宝石（充能期不能回血，Power 11 7600 血不够扛持续 chip）"
+        - "长期稳定持宝石（充能期不能回血，Power 11 本体 7000 血不够扛持续 chip）"
         - "无视野情况下独立控中"
       needs_teammate_support:
         - "中路稳定火力和探草"
@@ -213,7 +229,7 @@ bp_brawler_profile:
     - id: "charge_cannot_regen"
       active_when: "Nori hold 充能期间无法自然回血，被持续 chip 压血"
       exposed_by: "[[sources/Fandom-Nori|Fandom-Nori]] Hold Attack notes: cannot heal from auto-regeneration while charging"
-      mitigation: "用 Sushi Snack 补血、草丛重置、或避免在敌方视野内长充能"
+      mitigation: "用 Sushi Snack 补血（18s 冷却）、草丛重置、或避免在敌方视野内长充能"
       bp_use: "sustain_resource_check"
     - id: "charge_cancelled_by_cc"
       active_when: "Nori 充能期被 stun/push/knock 打断，hook 资源浪费"
@@ -248,7 +264,7 @@ bp_brawler_profile:
       bp_use: "avoid_into_long_burst_or_silence_chain"
 
   slot_notes:
-    slot_1: "Hot Zone/Heist 强图可早手，但会暴露给 Bolt/Starr Nova 长线；缺 strength 档位时谨慎首抢"
+    slot_1: "Hot Zone/Heist 强图可早手：MASTER FISHERMAN 让进场自带聚拢+爆发终结，早手价值上调，但本体 7000（P11）仍会暴露给 Bolt/Starr Nova 长线；缺 strength 档位时谨慎首抢"
     slot_2_3: "适合作为 hook/root 核心或成长 Super 打库/清区手，后续补长手和反控制"
     slot_4_5: "看到敌方中速长手/控场缺保镖时可响应；Damian/Surge/Otis 已暴露时避免"
     slot_6: "最后手惩罚无长线爆发的阵容很强；Bolt/Starr Nova/Pam 在场时不要硬锁"
@@ -259,3 +275,4 @@ bp_brawler_profile:
 - [[sources/Fandom-Nori|Fandom 来源摘要: Nori]]
 - [[sources/PLP-Nori|PLP 来源摘要: Nori]]
 - [[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]
+- [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]
