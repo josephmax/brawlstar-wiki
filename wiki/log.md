@@ -1604,3 +1604,10 @@
 
 - 应用集成真实 CLI 发现 `--archetype thrower_core` 被英雄名称归一化器改为 `throwercore`，与编译卡片的 schema ID 不一致，导致带下划线的原型全部空召回；旧测试只覆盖不含下划线的 `sniper`。
 - 查询原型参数改为仅 trim/lower，保留 schema 下划线；新增大写 `THROWER_CORE` + floor + include/exclude + limit=1 的真实编译/查询回归，核实匹配候选不被通用预算截断。
+
+## [2026-09-08] skill | 玩家候选蒙版与个人英雄池接口
+
+- query 的 bucket/include/relation/全池窗口及 hydrate 共用 candidate_mask.v1 硬约束；空池与不限分离，版本不符/未知名称/缺文件明确失败；关系目标不裁掉。
+- census 保留全池 answered_by/answers，新增 selectable_answered_by 投影。
+- resolve_player_pool 复用唯一实体/alias 数据，输出 P11+ 名单和未匹配/等级不足原因；不保存用户资料。
+- 修复查询缓存遗漏能力/原型/阈值参数及仅按索引路径缓存的问题，加入蒙版和索引内容身份；同步 skill references 与真实 CLI 契约测试。

@@ -92,7 +92,8 @@ python3 skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py \
 
 `query_runtime_facts.py` uses neutral retrieval terms:
 
-- `--include-id`: force an entity's facts into the returned fact window (always honored, even when `--capability` is active).
+- `--include-id`: force an entity past soft windows; explicit excludes and a supplied hard candidate mask still take precedence.
+- `--candidate-mask-file`: optional caller-owned allowlist for player candidate query/hydration. See [candidate-mask.md](references/candidate-mask.md) when using a player's roster. Empty IDs mean no candidates; invalid masks fail. Observe opponents, locked entities, ban threats and unknown teammates separately without this personal mask.
 - `--exclude-id`: remove an entity from the returned fact window.
 - `--relation-target`: return conditional relation facts involving that entity, without naming it as ally/enemy/counter/answer.
 - `--capability`: capability-window retrieval primitive. Repeatable, OR semantics. Keeps only brawlers whose stable `runtime_card.capability_tags` include any requested tag (e.g. `throw_or_wall_bypass`, `crowd_control`, `wall_break`). Capability hits are never truncated by `--effort`/`--limit`, so a late-alphabet name like Willow cannot be starved by an alphabetical window. This is the tool-level answer to "this hand needs a thrower / a wall-breaker / a mind-controller": define the capability window first, judge map fit and relations inside the pool.

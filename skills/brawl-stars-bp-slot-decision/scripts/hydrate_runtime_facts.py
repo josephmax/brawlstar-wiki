@@ -7,6 +7,7 @@ import argparse
 import json
 import sys
 from typing import Any
+from candidate_mask import read_mask, validate_mask, allows, mask_summary
 
 from query_runtime_facts import conditional_relations, map_fact_packet, relation_targets
 from runtime_index_tools import (
@@ -28,7 +29,9 @@ from runtime_index_tools import (
 
 
 def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
+    mask = read_mask(getattr(args, "candidate_mask_file", None))
     cache_key = query_cache_key("hydrate_runtime_facts", args.index, {
+        "mask": mask,
         "map": args.map,
         "mode": args.mode,
         "include_id": args.include_id,
@@ -41,6 +44,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         return cached
 
     index = load_runtime_index(args.index)
+    validate_mask(mask, index)
     context = map_context(index, args.map)
     map_name = context["map"]
     targets = relation_targets(index, args.relation_target)
@@ -53,7 +57,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 
     for raw_name in args.include_id:
         name = canonical_brawler_name(index, raw_name)
-        if name in excludes:
+        if name in excludes or not allows(mask, name):
             continue
         fit = candidate_map_fit(index, map_name, name)
         card = runtime_card_fragment(index, name, fit)
@@ -79,6 +83,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         if args.mode and row.get("mode") != args.mode:
             continue
         keep = (row.get("individual") or {}).copy()
+        keep = {hero: value for hero, value in keep.items() if hero not in excludes and allows(mask, hero)}
         if include_names:
             keep = {hero: value for hero, value in keep.items() if hero in include_names}
         environment_ladder.append({
@@ -91,6 +96,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 
     body = {
         "runtime_fact_hydration": {
+            "candidate_mask": mask_summary(mask),
             "manifest": compact_manifest(index),
             "scope": {
                 "map": map_name,
@@ -127,6 +133,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
+    parser.add_argument("--candidate-mask-file", help="Hard candidate allowlist; omit when hydrating observed entities")
     parser.add_argument("--map", required=True, help="Map name covered by the index")
     parser.add_argument("--mode", default="", help="Optional mode echo")
     parser.add_argument("--entity-type", default="brawler", choices=["brawler"], help="Entity type to hydrate")

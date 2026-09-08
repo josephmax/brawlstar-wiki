@@ -1,5 +1,7 @@
 # Runtime Decision Knowledge
 
+When the caller supplies player eligibility, apply [candidate-mask.md](candidate-mask.md) to personal candidate queries and hydration. Include and capability windows cannot override the mask. Inspect opponents/locked entities separately; retain global census counts and use the additional selectable projection for personal responses.
+
 Use this reference only in `decide` mode. The decider consumes a compiled `runtime_bp_index` through neutral fact-retrieval tools. It does not search maintainer notes, load the full index into the prompt, rebuild the index during a pick turn, or delegate BP judgment to scripts.
 
 ## Core Boundary

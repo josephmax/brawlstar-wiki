@@ -16,9 +16,11 @@ TOOL_INTERNAL_KEYS = {"bp_use", "proof_threshold"}
 
 def query_cache_key(tool: str, index_path: str, params: dict[str, Any]) -> str:
     """Deterministic cache key from tool name, index path and normalized query params."""
-    norm = {k: (v if isinstance(v, (list, tuple)) else [v]) for k, v in sorted(params.items()) if v}
-    canonical = json.dumps(norm, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-    digest = hashlib.sha256(f"{tool}|{index_path}|{canonical}".encode("utf-8")).hexdigest()[:16]
+    # Preserve empty constraints and include ordering. A file at the same path
+    # may have been recompiled, so the path alone is not an index identity.
+    canonical = json.dumps(params, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    index_hash = hashlib.sha256(Path(index_path).read_bytes()).hexdigest()
+    digest = hashlib.sha256(f"v2|{tool}|{index_hash}|{canonical}".encode("utf-8")).hexdigest()[:32]
     return digest
 
 

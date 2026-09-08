@@ -22,6 +22,7 @@ import argparse
 import json
 import sys
 from typing import Any
+from candidate_mask import read_mask, validate_mask, allows, mask_summary
 
 from runtime_index_tools import (
     brawler_matchups,
@@ -54,9 +55,9 @@ def project_edges(edges: list[dict[str, Any]] | None, banned: set[str]) -> dict[
     }
 
 
-def census(index: dict[str, Any], hero: str, banned: set[str]) -> dict[str, Any]:
+def census(index: dict[str, Any], hero: str, banned: set[str], mask: dict[str, Any] | None = None) -> dict[str, Any]:
     matchups = brawler_matchups(index, hero)
-    return {
+    result = {
         "hero": hero,
         "banned": sorted(banned),
         # "who can still punish this hero" — shrinking alive_count means the
@@ -66,11 +67,22 @@ def census(index: dict[str, Any], hero: str, banned: set[str]) -> dict[str, Any]
         # ban phase removed its prey and banning/picking it lost value.
         "answers": project_edges(matchups.get("answers") or [], banned),
     }
+    if mask is not None:
+        validate_mask(mask, index)
+        surviving = result["answered_by"]["alive"]
+        selectable = [row for row in surviving if allows(mask, row["target"])]
+        result["candidate_mask"] = mask_summary(mask)
+        result["selectable_answered_by"] = {
+            "alive": selectable, "alive_count": len(selectable),
+            "removed_by_mask": len(surviving) - len(selectable),
+        }
+    return result
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
+    parser.add_argument("--candidate-mask-file", help="Additional selectable answered_by projection; global census is unchanged")
     parser.add_argument("--hero", required=True, help="Hero to census (canonical or alias)")
     parser.add_argument("--banned", action="append", default=[], help="Hero removed from the pool; repeatable")
     parser.add_argument("--json", action="store_true", help="Emit JSON")
@@ -83,7 +95,8 @@ def main() -> int:
         index = load_runtime_index(args.index)
         hero = canonical_brawler_name(index, args.hero)
         banned = {canonical_brawler_name(index, raw) for raw in args.banned}
-        payload = {"matchup_census": census(index, hero, banned)}
+        mask = read_mask(args.candidate_mask_file)
+        payload = {"matchup_census": census(index, hero, banned, mask)}
         payload["matchup_census"]["retrieval_summary"] = retrieval_log(
             "query_matchup_census",
             args.index,

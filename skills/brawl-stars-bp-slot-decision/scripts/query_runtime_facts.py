@@ -7,6 +7,7 @@ import argparse
 import json
 import sys
 from typing import Any
+from candidate_mask import read_mask, validate_mask, allows, mask_summary
 
 from runtime_index_tools import (
     brawler_matchups,
@@ -296,7 +297,12 @@ def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str
 
 
 def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
+    mask = read_mask(getattr(args, "candidate_mask_file", None))
     cache_key = query_cache_key("query_runtime_facts", args.index, {
+        "mask": mask,
+        "capability": args.capability,
+        "archetype": args.archetype,
+        "require_floor": args.require_floor,
         "map": args.map,
         "mode": args.mode,
         "bucket": args.bucket,
@@ -313,6 +319,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         return cached
 
     index = load_runtime_index(args.index)
+    validate_mask(mask, index)
     context = map_context(index, args.map)
     map_name = context["map"]
     includes = [canonical_brawler_name(index, raw) for raw in args.include_id]
@@ -335,7 +342,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     items_by_name: dict[str, dict[str, Any]] = {}
     for item in bucket_items(index, map_name, args.bucket):
         name = item.get("brawler")
-        if not name or name in excludes:
+        if not name or name in excludes or not allows(mask, name):
             continue
         if not passes_windows(index, name):
             continue
@@ -345,7 +352,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 
     candidate_index = index["map_pool_signature"][map_name].get("candidate_index") or {}
     for name in includes:
-        if name in excludes:
+        if name in excludes or not allows(mask, name):
             continue
         item = dict(candidate_index.get(name) or {})
         item["brawler"] = name
@@ -353,7 +360,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
         items_by_name[name] = item
 
     for name, item in candidate_index.items():
-        if name in excludes or name in items_by_name:
+        if name in excludes or name in items_by_name or not allows(mask, name):
             continue
         if not has_relation_to_targets(index, name, targets):
             continue
@@ -371,7 +378,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     # exist. Without a window, plain bucket behavior is unchanged.
     if wanted_capabilities or wanted_archetypes or floors:
         for name, item in candidate_index.items():
-            if name in excludes or name in items_by_name:
+            if name in excludes or name in items_by_name or not allows(mask, name):
                 continue
             if not passes_windows(index, name):
                 continue
@@ -431,9 +438,11 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     fact_window = [
         fact_payload(index, map_name, name, items_by_name[name], targets)
         for name in ordered_names
+        if allows(mask, name)
     ]
     body = {
         "runtime_fact_query": {
+            "candidate_mask": mask_summary(mask),
             "manifest": compact_manifest(index),
             "scope": {
                 "map": map_name,
@@ -465,6 +474,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     )
     log["entity_fragments"] = len(fact_window)
     log["map_fragments"] = 1
+    log["masked_candidate_index_count"] = sum(not allows(mask, name) for name in candidate_index)
     body["runtime_fact_query"]["retrieval_summary"] = log
     cache_store(args.cache_dir, cache_key, body)
     return body
@@ -473,6 +483,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
+    parser.add_argument("--candidate-mask-file", help="Hard candidate_mask.v1 allowlist; include cannot override it")
     parser.add_argument("--map", required=True, help="Map name covered by the index")
     parser.add_argument("--mode", default="", help="Optional mode echo")
     parser.add_argument("--entity-type", default="brawler", choices=["brawler"], help="Entity type to retrieve")
