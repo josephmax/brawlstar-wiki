@@ -1591,3 +1591,8 @@
 - 测试：新增 `test_ban_pressure_window_orders_by_map_environment_ladder`（自校准：取基线窗尾两名注入合成环境行，断言重查后置顶），slot-decision 36 tests 全绿，maintenance 契约通过。
 - 实测（Belle's Rock / Knockout，局内同款索引）：新窗口 24 人含全部最终三 ban（Edgar/Brock/Mortis，旧窗缺 Mortis）与红方实际选用的 Meeple/Gene/Sprout；14 进 14 出，被挤出者为环境冷门位（Bea/Buster/Doug/Dynamike 等）。 Doug 类低使用率结构手的第一窗可见性下降，但其发现渠道本就是 census/定向 hydrate，不受此排序影响。
 - 文档：runtime-decision-knowledge.md `--bucket` 条目同步排序规则说明。
+
+## [2026-09-08] fix | 原型筛选保留 schema 下划线
+
+- 应用集成真实 CLI 发现 `--archetype thrower_core` 被英雄名称归一化器改为 `throwercore`，与编译卡片的 schema ID 不一致，导致带下划线的原型全部空召回；旧测试只覆盖不含下划线的 `sniper`。
+- 查询原型参数改为仅 trim/lower，保留 schema 下划线；新增大写 `THROWER_CORE` + floor + include/exclude + limit=1 的真实编译/查询回归，核实匹配候选不被通用预算截断。

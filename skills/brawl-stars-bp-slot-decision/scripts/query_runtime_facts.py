@@ -319,7 +319,9 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     excludes = {canonical_brawler_name(index, raw) for raw in args.exclude_id}
     targets = relation_targets(index, args.relation_target)
     wanted_capabilities = {normalize_key(raw) for raw in args.capability}
-    wanted_archetypes = {normalize_key(raw) for raw in args.archetype}
+    # Archetype IDs are schema keys, not brawler names. Keep underscores so
+    # thrower_core / tank_front / dual_duty_mid match the compiled card IDs.
+    wanted_archetypes = {raw.strip().lower() for raw in args.archetype}
     floors = [parse_floor_spec(raw) for raw in args.require_floor]
     limit = args.limit if args.limit is not None else EFFORT_LIMITS[args.effort]
 

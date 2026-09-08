@@ -639,6 +639,28 @@ class RuntimeIndexToolsTest(unittest.TestCase):
             self.assertIn("sniper", archs)
         self.assert_no_forbidden_keys(payload)
 
+    def test_underscore_archetype_combines_with_floor_and_preserves_window_hits(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+            result = subprocess.run(
+                [sys.executable, str(FACT_QUERY_SCRIPT), "--index", str(index_path),
+                 "--map", "Safe Zone", "--archetype", "THROWER_CORE",
+                 "--require-floor", "throw_or_wall_bypass@high",
+                 "--include-id", "Brock", "--exclude-id", "Tick", "--limit", "1", "--json"],
+                check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            )
+            payload = json.loads(result.stdout)["runtime_fact_query"]
+        self.assertEqual(payload["request"]["archetypes"], ["thrower_core"])
+        rows = payload["fact_window"]
+        self.assertGreater(len(rows), 1)
+        self.assertIn("Brock", [row["id"] for row in rows])
+        self.assertNotIn("Tick", [row["id"] for row in rows])
+        for row in rows:
+            if row["id"] == "Brock":
+                continue
+            self.assertIn("thrower_core", row["runtime_card"]["archetypes"])
+            self.assertIn(row["runtime_card"]["capability_levels"]["throw_or_wall_bypass"], ["high", "very_high"])
+
     def test_fact_query_require_floor_keeps_only_allrounders(self):
         with tempfile.TemporaryDirectory() as tmp:
             index_path = compile_safe_zone_index(tmp)
