@@ -488,6 +488,82 @@ class RuntimeIndexToolsTest(unittest.TestCase):
         self.assertLessEqual(len(payload["fact_window"]), 32)
         self.assert_no_forbidden_keys(payload)
 
+    def test_ban_pressure_window_orders_by_map_environment_ladder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            index_path = compile_safe_zone_index(tmp)
+
+            # Baseline: the legacy hook-count/name window tail gives us two
+            # real bucket members that the effort cut starves last, so the
+            # test does not depend on which heroes the fixture ranks where.
+            baseline = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "ban_pressure",
+                    "--effort",
+                    "high",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            baseline_names = [
+                item["id"]
+                for item in json.loads(baseline.stdout)["runtime_fact_query"]["fact_window"]
+            ]
+            self.assertGreaterEqual(len(baseline_names), 2)
+            tail_two = baseline_names[-2:]
+
+            # Inject a synthetic per-map ladder: only the two tail heroes get
+            # active rows, ordered opposite to their legacy (name) order.
+            index = json.loads(index_path.read_text())
+            container = index["runtime_bp_index"] if "runtime_bp_index" in index else index
+            container["environment_ladder_per_map"] = {
+                "synthetic": {
+                    "map": "Safe Zone",
+                    "mode": "Heist",
+                    "match_count": 120000,
+                    "active": True,
+                    "individual": {
+                        tail_two[1]: {"use_rate": 61.0, "win_rate": 50.0, "star_player_rate": 1.0},
+                        tail_two[0]: {"use_rate": 55.0, "win_rate": 52.0, "star_player_rate": 2.0},
+                    },
+                }
+            }
+            index_path.write_text(json.dumps(index))
+
+            requery = subprocess.run(
+                [
+                    sys.executable,
+                    str(FACT_QUERY_SCRIPT),
+                    "--index",
+                    str(index_path),
+                    "--map",
+                    "Safe Zone",
+                    "--bucket",
+                    "ban_pressure",
+                    "--effort",
+                    "low",
+                    "--json",
+                ],
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            payload = json.loads(requery.stdout)["runtime_fact_query"]
+
+        names = [item["id"] for item in payload["fact_window"]]
+        self.assertEqual(names[:2], [tail_two[1], tail_two[0]])
+        self.assert_no_forbidden_keys(payload)
+
     # --- Capability dimension cleaning, archetypes, floors, census ---
 
     def test_capability_level_order_copies_are_identical(self):

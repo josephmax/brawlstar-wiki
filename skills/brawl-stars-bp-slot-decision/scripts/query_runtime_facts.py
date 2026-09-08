@@ -211,6 +211,53 @@ def candidate_sort_key(index: dict[str, Any], name: str, item: dict[str, Any], w
     return (0 if matched else 1, fit_rank, -hook_count, -capability_count, 0 if hook_count or capability_count else 1, name)
 
 
+def map_environment_row(index: dict[str, Any], map_name: str, mode: str | None, name: str) -> dict[str, Any] | None:
+    """Return this brawler's Legendary+ per-map ladder row, if one exists.
+
+    Mirrors how hydrate_runtime_facts resolves `environment_ladder_per_map`:
+    rows match by map (and by mode when a mode is resolvable).
+    """
+    for row in (index.get("environment_ladder_per_map") or {}).values():
+        if row.get("map") != map_name:
+            continue
+        if mode and row.get("mode") != mode:
+            continue
+        individual = row.get("individual") or {}
+        if name in individual:
+            return {"active": row.get("active"), **(individual[name] or {})}
+    return None
+
+
+def ban_pressure_env_sort_key(
+    index: dict[str, Any],
+    map_name: str,
+    mode: str | None,
+    name: str,
+    item: dict[str, Any],
+    wanted_capabilities: set[str],
+) -> tuple[int, ...]:
+    """Order ban_pressure recall by the map's own environment ladder.
+
+    Active ladder rows come first by use_rate then win_rate, so the effort
+    cut lands on environment-hot candidates instead of hook-count/name
+    order. Names without an active row fall back to the generic
+    evidence-relevance order (fit, hooks, capabilities, name). Bucket
+    membership is unchanged; only presentation order — and therefore which
+    names survive the effort truncation — differs.
+    """
+    row = map_environment_row(index, map_name, mode, name)
+    if row is not None and row.get("active"):
+        use_rate = row.get("use_rate")
+        win_rate = row.get("win_rate")
+        return (
+            0,
+            -(use_rate if isinstance(use_rate, (int, float)) else 0.0),
+            -(win_rate if isinstance(win_rate, (int, float)) else 0.0),
+            name,
+        )
+    return (1,) + candidate_sort_key(index, name, item, wanted_capabilities)
+
+
 def fact_payload(index: dict[str, Any], map_name: str, name: str, item: dict[str, Any], targets: set[str]) -> dict[str, Any]:
     fit = candidate_map_fit(index, map_name, name)
     if item:
@@ -339,7 +386,22 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
     remaining = [
         name for name in items_by_name if name not in set(ordered_names)
     ]
-    remaining.sort(key=lambda name: candidate_sort_key(index, name, items_by_name[name], wanted_capabilities))
+    if "ban_pressure" in args.bucket:
+        # The effort cut must land on the decision-relevant axis: order
+        # ban_pressure recall by the map's own environment ladder (see
+        # ban_pressure_env_sort_key) instead of hook-count/name order.
+        remaining.sort(
+            key=lambda name: ban_pressure_env_sort_key(
+                index,
+                map_name,
+                args.mode or context.get("mode"),
+                name,
+                items_by_name[name],
+                wanted_capabilities,
+            )
+        )
+    else:
+        remaining.sort(key=lambda name: candidate_sort_key(index, name, items_by_name[name], wanted_capabilities))
     ordered_names.extend(remaining)
     if limit:
         # Capability/archetype/floor window hits are never truncated by the

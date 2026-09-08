@@ -1576,3 +1576,18 @@
 - **窗口全池扫描（本条核心修复）**：发现 Willow/Barley/Mico/Larry & Lawrie 等真投手在开阔图 `fit=weak` 不进任何投影桶，能力窗口完全看不到他们——违背"能力圈人、地图适配是圈内排序"的范式。修复：capability/archetype/floor 任一窗口激活时，候选扫描扩大到全 candidate_index（`retrieval_matches` 标 `capability_window`，weak fit 照常透出并按 fit 排序靠后）；无窗口时保持原 bucket 行为。实测神秘流星投掷@high 窗口 10 strong + 18 weak 全量可见，含全部四位真投手。
 - 文档：runtime-decision-knowledge.md `--capability` 条目补"Tag ≠ threshold（优先 floor 形式）"与"窗口全池扫描、weak fit 是信息不是不存在"两条使用规则。
 - 测试：slot-decision 35 tests 全绿，maintenance 契约通过。
+
+## [2026-09-08] skill | 窗口纪律规则 + Meeple ally_synergy 编译警告清账
+
+- 背景：Belle's Rock（Knockout）模拟局后复盘发现，capability v2 的"窗口全池扫描"落地后出现两类开销退行——选手在同一手内对 bucket 窗口（`ban_pressure` 等）已覆盖的候选池再做第二个全池 `--capability` 窗口复核（重复付费），以及 Meeple 英雄页一条 `ally_synergy` 协同条目误放在 `conditional_matchups` 编译字段内导致每次编译输出 skip 警告。
+- `skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md` 查询参数区新增"Window discipline"条目：每手只做一次认真的能力窗口；bucket 窗口与 `--capability` 窗口在同池高度重叠，第一个窗口已返回本手所需候选时不得再扫第二个全池窗口；担心截断时的正确动作是收窄（`--relation-target` / `--exclude-id`）或定向 hydrate `--include-id`，`--limit` 用作单手显式召回预算；确需第二次扩窗必须在检索审计中说明第一个窗口答不了什么。（`.dsh/skills/` 为指向 `skills/` 的挂载链接，一份编辑即双份生效。）
+- `wiki/entities/brawlers/Meeple.md`：将 Meeple → Dynamike / Barley / Tick / Larry & Lawrie / Rico 的协同条目从 `conditional_matchups`（runtime 编译字段）迁出为"组合协同备注（维护层，不入 runtime 对位索引）"prose 段，字段语义保持（队友协同非一-way counter 边）；知识不删除，仅离开无消费方的 schema 字段。
+- 验证：重编译 stderr 无任何警告；新旧索引逐字段 diff 仅 `manifest.source_hash`（源文件变更）与 `compiled_at` 两处，运行时 payload 完全一致——该条目此前即被跳过、从未进过对位索引，本次为纯数据卫生修复；slot-decision 35 tests 全绿，maintenance 契约测试通过。
+
+## [2026-09-08] skill | ban_pressure 召回排序改按本图环境行（effort 截断落在决策相关轴）
+
+- 背景：Belle's Rock 复盘发现第一窗（`--bucket ban_pressure --effort low`）按钩子数/字母序从 53 个 strong-fit 成员截前 24，最终三 ban 之一的 Mortis 与环境第二强的 Rico 都被字母序挤在窗外，选手被迫追加两次全池能力扫描补救——召回层的排序依据与决策依据不相关。
+- 改动（`skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py`）：新增 `map_environment_row`（与 hydrate 同源解析 `environment_ladder_per_map`）与 `ban_pressure_env_sort_key`；当请求 bucket 含 `ban_pressure` 时，桶内排序改为"激活环境行优先，按本图 use_rate → win_rate 降序，无激活行的名字按原证据相关序垫底"。桶成员资格不变（仍需 fit=strong + 地图信号），只改呈现序与因此被 effort 截断的名字；其余 bucket 行为不变。
+- 测试：新增 `test_ban_pressure_window_orders_by_map_environment_ladder`（自校准：取基线窗尾两名注入合成环境行，断言重查后置顶），slot-decision 36 tests 全绿，maintenance 契约通过。
+- 实测（Belle's Rock / Knockout，局内同款索引）：新窗口 24 人含全部最终三 ban（Edgar/Brock/Mortis，旧窗缺 Mortis）与红方实际选用的 Meeple/Gene/Sprout；14 进 14 出，被挤出者为环境冷门位（Bea/Buster/Doug/Dynamike 等）。 Doug 类低使用率结构手的第一窗可见性下降，但其发现渠道本就是 census/定向 hydrate，不受此排序影响。
+- 文档：runtime-decision-knowledge.md `--bucket` 条目同步排序规则说明。

@@ -264,13 +264,6 @@ bp_brawler_profile:
       active_when: "地图给草/墙/身体推进路线，或目标能用召唤/炮台/增益压缩 Meeple 站位"
       fails_when: "Meeple 有 Ragequit 和队友 peel，且目标必须进入被 Super/Mansions 控制的单一路线"
       bp_use: must_answer_body_spawnable_or_aggro_before_meeple
-    - target: ["Dynamike", "Barley", "Tick", "Larry & Lawrie", "Rico"]
-      direction: ally_synergy
-      source: "[[sources/Fandom-Meeple|Fandom-Meeple]]"
-      mechanism: "Mansions 困住目标后，Dynamike、Barley、Tick、Larry & Lawrie 等投掷手或 Rico 弹射能在 dice wall 内放大伤害"
-      active_when: "敌方多人靠近，队友能从安全角度输出被困目标"
-      fails_when: "敌方破墙、无敌盾清墙，或 Mansions 同时困住己方关键英雄"
-      bp_use: combo_requirement_for_mansions_pick
 
   slot_notes:
     slot_1: "不适合无脑早手；只有地图明确是短线+长线混合、Super 能改写关键墙体，且敌方开放长手/突进答案有限时才考虑。"
@@ -278,6 +271,11 @@ bp_brawler_profile:
     slot_4_5: "适合看到敌方固定身体、支援或控制路线后，用 Mansions/Ragequit/穿墙区作为回答，同时防敌方 slot_6 拿纯开阔长手或强突进。"
     slot_6: "最适合惩罚敌方三人缺破墙、缺多角度突进、且必须站在墙边目标路线的局面；可以选择 Mansions 上限或 Ragequit 反 aggro/进球。"
 ```
+
+## 组合协同备注（维护层，不入 runtime 对位索引）
+
+- Meeple → Dynamike / Barley / Tick / Larry & Lawrie / Rico（来源：[[sources/Fandom-Meeple|Fandom-Meeple]]）：Mansions 困住目标后，投掷手或 Rico 弹射能在 dice wall 内放大伤害；成立条件为敌方多人靠近且队友能从安全角度输出被困目标；失效条件为敌方破墙、无敌盾清墙，或 Mansions 同时困住己方关键英雄（原条目 `bp_use: combo_requirement_for_mansions_pick`，2026-09-08 自 `conditional_matchups` 迁出）。
+- 说明：这是队友协同（combo requirement），不是 `subject_favored` / `target_favored` 语义的英雄对位 counter 边；运行时对位索引只收一-way counter 边（见 `skills/brawl-stars-bp-slot-decision/scripts/compile_runtime_index.py` 的方向校验与契约测试 `test_unknown_directions_are_excluded_from_matchup_index`），因此本条不放在 `conditional_matchups` 编译字段内，避免每次编译产生 skip 警告。
 
 ## 关联页面
 
