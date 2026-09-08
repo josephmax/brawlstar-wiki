@@ -16,7 +16,9 @@ The audit answers deterministic questions such as “which target states moved f
 | Current body health | latest direct Fandom raw, indexed by roster | Power Level and form must be explicit |
 | Reviewed alternate forms, damage packets, and hero-specific defenses | second fenced JSON block on `wiki/entities/brawlers/*.md` | top-level key `combat_breakpoint_profile`; current stable fact only |
 | Power scaling, Shield gear, stacking, and rounding semantics | `wiki/concepts/伤害与生存断点.md` | shared rules are not copied into every brawler page |
-| Pairwise differences | `outputs/balance-breakpoints/` | generated, reproducible, and excluded from canonical wiki/runtime |
+| Pairwise differences | `outputs/balance-breakpoints/` | generated, reproducible, ephemeral ledger — see durability rule below |
+
+**Durability rule (`outputs` is never persistent)**: everything under `outputs/` — including this audit and `runtime_bp_index` — is a gitignored, regenerable computation artifact: compile-or-generate on demand, use, discard. It is never part of the knowledge base and never a dependency of any page. Wiki pages must not link to or cite `outputs/` paths; a synthesis page digesting an audit must be self-contained (carry its own conclusions, tables, and reliability notes) and only record valuable audit conclusions. When the machine ledger is needed again, regenerate it deterministically from the `balance_patch_manifest` ledgers and stable profiles with the audit command in this reference.
 
 The current roster fallback may seed a primary `body` state from the latest direct Fandom `Health` or `Health1`. It must report coverage and may not invent an attack packet from a bare `Attack` field. Multi-projectile, distance-scaled, form-dependent, staged, percentage-health, DoT, or resource-dependent attacks need a reviewed packet.
 

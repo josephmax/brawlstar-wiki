@@ -1592,6 +1592,14 @@
 - 实测（Belle's Rock / Knockout，局内同款索引）：新窗口 24 人含全部最终三 ban（Edgar/Brock/Mortis，旧窗缺 Mortis）与红方实际选用的 Meeple/Gene/Sprout；14 进 14 出，被挤出者为环境冷门位（Bea/Buster/Doug/Dynamike 等）。 Doug 类低使用率结构手的第一窗可见性下降，但其发现渠道本就是 census/定向 hydrate，不受此排序影响。
 - 文档：runtime-decision-knowledge.md `--bucket` 条目同步排序规则说明。
 
+## [2026-09-08] skill + syntheses | "outputs 永不持久化"原则落地 + 六月至八月断点审计消化
+
+- 架构原则（维护者裁决）：`outputs/`（含 `runtime_bp_index` 与断点审计账本）永不持久化——不入 git、即编即用、可随时删除重建，永远不是知识库组成部分或任何页面的依赖；wiki 页面不得链接或引用 outputs 路径；syntheses 消化页必须自包含携带结论，只沉淀有价值的审计报告和结论。
+- 原则落位：`AGENTS.md` 平衡补丁工作流段落新增"outputs 永不持久化原则"；`skills/brawl-stars-bp-knowledge-maintenance/references/balance-breakpoint-audit.md` 输入归属表更新并新增 Durability rule。
+- 修旧页：`wiki/syntheses/2026六月至七月平衡性断点双向评估.md` 移除指向 `outputs/balance-breakpoints/` 的 JSON/MD 链接，改为自包含声明（账本可再生、按维护命令重生成）。
+- 新增消化页：`wiki/syntheses/2026六月至八月平衡性断点双向评估.md`（`version_breakpoint_synthesis_non_runtime`），自包含消化 2026-08-04 维护断点审计增量：Janet 三发线 19→33 为唯一大幅增强，Nori −14 / Lumi −4 为最深削弱；Nori/Melodie/Chuck/Hank/Jacky 的血量与减伤状态联合驱动；满盾对 Janet 从可选变保线必需、对 Lumi/Nori 边际价值归零；5 英雄 manifest/profile 失配排除与 NanoPower 23 项限时排除如实声明。页面无任何 outputs 链接。
+- `wiki/index.md` BP Archive 区登记新页。
+
 ## [2026-09-08] fix | 原型筛选保留 schema 下划线
 
 - 应用集成真实 CLI 发现 `--archetype thrower_core` 被英雄名称归一化器改为 `throwercore`，与编译卡片的 schema ID 不一致，导致带下划线的原型全部空召回；旧测试只覆盖不含下划线的 `sniper`。

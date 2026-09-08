@@ -123,6 +123,8 @@ outputs/
 
 每次平衡补丁中的英雄血量、离散伤害包、固定护盾和减伤变化，先在对应 `wiki/sources/` 页面建立 `balance_breakpoint_manifest.v1` 版本账本，再用英雄当前数值事实与 `wiki/concepts/伤害与生存断点.md` 规则生成 `outputs/balance-breakpoints/` 下的 `balance_breakpoint_audit.v1`。伤害变化应覆盖全部已索引目标状态；血量/减伤变化只能声明覆盖已复核攻击包，不得把裸 `Attack` 字段当完整一发。生成结果不得自动生成 strength tier、稳定 map fit、hard gate、slot eligibility、条件化对位边或 runtime 推荐。
 
+**outputs 永不持久化原则**：`outputs/`（含 `runtime_bp_index` 与断点审计账本）是不入 git 的可再生计算产物，即编即用、可随时删除重建，永远不是知识库的组成部分或任何页面的依赖。wiki 任何页面不得链接或引用 outputs 路径；消化审计结论的 syntheses 页必须自包含地携带结论（需要机器账本时，用维护 skill 记录的审计命令按 manifest 与稳定 profile 确定性重生成），只把有价值的审计报告和结论写进 syntheses。
+
 如果一个词既像实体又像概念，按下面的优先级决定：
 
 1. 能否被当作独立对象持续追踪。能，就放 `entities/`。
