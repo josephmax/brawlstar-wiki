@@ -10,7 +10,6 @@ REPO = SCRIPTS.parents[2]
 sys.path.insert(0, str(SCRIPTS))
 from candidate_mask import read_mask
 from query_matchup_census import census
-from resolve_player_pool import resolve
 
 
 class CandidateMaskTest(unittest.TestCase):
@@ -99,14 +98,6 @@ class CandidateMaskTest(unittest.TestCase):
         self.assertEqual(result["answers"], baseline["answers"])
         self.assertEqual({r["target"] for r in result["selectable_answered_by"]["alive"]}, {chosen})
         self.assertEqual(census(self.data, hero, {chosen}, mask)["selectable_answered_by"]["alive_count"], 0)
-
-    def test_player_resolution_uses_wiki_names_and_preserves_unknowns(self):
-        result = resolve(REPO, [{"id": 1, "name": "BROCK", "power": 11},
-                                {"id": 2, "name": "MEG", "power": 10},
-                                {"id": 3, "name": "Future Hero", "power": 11}])
-        self.assertEqual(result["eligible_ids"], ["Brock"])
-        self.assertEqual([r["reason"] for r in result["brawlers"]], [None, "below_min_power", "unmapped"])
-
 
 if __name__ == "__main__":
     unittest.main()

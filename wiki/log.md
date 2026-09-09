@@ -1611,3 +1611,9 @@
 - census 保留全池 answered_by/answers，新增 selectable_answered_by 投影。
 - resolve_player_pool 复用唯一实体/alias 数据，输出 P11+ 名单和未匹配/等级不足原因；不保存用户资料。
 - 修复查询缓存遗漏能力/原型/阈值参数及仅按索引路径缓存的问题，加入蒙版和索引内容身份；同步 skill references 与真实 CLI 契约测试。
+
+## [2026-09-09] skill | 将玩家 API 数据适配与资格策略移回应用层
+
+- 修正 2026-09-08 引入的层级边界：删除 resolve_player_pool.py 及其玩家资料测试；官方 API 字段适配、等级筛选和排除原因全部由应用实现。
+- 知识库仅保留现有通用实体/别名索引与 candidate_mask.v1 的 canonical allowlist 消费契约；不接收玩家英雄等级行。
+- 同步蒙版 reference 与 skill 说明，保留 query/hydrate/census 的通用硬约束及缓存隔离。

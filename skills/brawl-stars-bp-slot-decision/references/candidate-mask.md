@@ -1,4 +1,4 @@
-# Player candidate masks
+# Caller-supplied candidate masks
 
 Keep the complete runtime index. Account eligibility constrains candidate retrieval, not knowledge of opponents or relation targets. Query and hydration accept `--candidate-mask-file <path>`:
 
@@ -12,6 +12,6 @@ Bucket, explicit include, relation recall and full capability/archetype/floor sc
 
 `query_matchup_census.py` accepts the same flag. Original `answered_by` / `answers` and their counts retain full ecology. Additional `selectable_answered_by` projects surviving predators to the supplied pool. A player's unowned heroes do not disappear from the opponent's ecology.
 
-`resolve_player_pool.py --repo <root>` accepts minimal `brawlers: [{id,name,power}]` on stdin, reads the existing canonical entity/alias index and returns P11+ `eligible_ids`, resolved rows and explicit `below_min_power` / `unmapped` reasons. Numeric IDs remain external identity; unknown names are not guessed. It neither fetches player data nor writes knowledge.
+The application owns external API records, account identity, roster adaptation, level thresholds and eligibility policy. It computes the canonical allowlist before invoking these tools. Knowledge scripts consume that allowlist only; they do not accept developer API player rows or derive account eligibility. Applications can read the existing canonical entity/alias index to resolve names without maintaining a second alias table.
 
 Cache identity includes actual index content, all window parameters and mask content. Replacing a mask at the same path, including changing to an empty list, cannot reuse another pool's result. Returned mask summaries expose status/count/context/digest without repeating the entire roster.
