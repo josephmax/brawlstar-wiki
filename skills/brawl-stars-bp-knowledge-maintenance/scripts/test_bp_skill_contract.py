@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+import json
+import sys
+import tempfile
 from pathlib import Path
 
 
@@ -336,6 +339,30 @@ def test_player_skill_contract() -> None:
             assert retired_effort not in artifact, retired_effort
 
 
+def test_recall_mask_wire_contract() -> None:
+    # Exercise the public mask example through the real reader/summary contract.
+    # A retrieval window needs only entity IDs and index identity.
+    scripts = PLAYER_FACT_QUERY_SCRIPT.parent
+    sys.path.insert(0, str(scripts))
+    try:
+        from candidate_mask import read_mask, validate_mask, mask_summary
+    finally:
+        sys.path.pop(0)
+    reference = read(scripts.parent / "references" / "candidate-mask.md")
+    example = json.loads(reference.split("```json\n", 1)[1].split("\n```", 1)[0])
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "mask.json"
+        path.write_text(json.dumps(example))
+        mask = read_mask(str(path))
+    validate_mask(mask, {
+        "manifest": {"source_hash": example["index_source_hash"]},
+        "brawler_runtime_cards": {name: {} for name in example["ids"]},
+    })
+    summary = mask_summary(mask)
+    assert summary["visible_id_count"] == len(set(example["ids"]))
+    assert "eligible_count" not in summary
+
+
 def test_maintenance_skill_contract() -> None:
     text = read(MAINTENANCE_SKILL)
     agents = read(AGENTS)
@@ -432,5 +459,6 @@ if __name__ == "__main__":
     test_judge_skill_contract()
     test_judge_report_renderer_contract()
     test_player_skill_contract()
+    test_recall_mask_wire_contract()
     test_maintenance_skill_contract()
     print("bp skill contract ok")

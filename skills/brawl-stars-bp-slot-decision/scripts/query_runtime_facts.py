@@ -483,7 +483,7 @@ def query_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
-    parser.add_argument("--candidate-mask-file", help="Hard candidate_mask.v1 allowlist; include cannot override it")
+    parser.add_argument("--candidate-mask-file", help="Restrict candidate roots to this recall mask; include cannot override it")
     parser.add_argument("--map", required=True, help="Map name covered by the index")
     parser.add_argument("--mode", default="", help="Optional mode echo")
     parser.add_argument("--entity-type", default="brawler", choices=["brawler"], help="Entity type to retrieve")

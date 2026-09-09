@@ -51,6 +51,7 @@ class CandidateMaskTest(unittest.TestCase):
                                   "--include-id", "Brock", "--relation-target", "8-Bit", *flags)
             self.assertEqual([r["id"] for r in result["fact_window"]], ["Brock"])
             self.assertTrue(result["candidate_mask"]["applied"])
+            self.assertEqual(result["candidate_mask"]["visible_id_count"], 1)
         unmasked = self.run_cli("hydrate", "--include-id", "Brock", "--relation-target", "8-Bit")
         masked = self.run_cli("hydrate", "--candidate-mask-file", mask, "--include-id", "Brock",
                               "--include-id", "Meg", "--relation-target", "8-Bit")
@@ -88,7 +89,7 @@ class CandidateMaskTest(unittest.TestCase):
         finally:
             self.index.write_text(original)
 
-    def test_census_preserves_global_ecology_and_adds_selectable_projection(self):
+    def test_census_preserves_global_edges_and_adds_masked_projection(self):
         hero = next(name for name in self.data["brawler_runtime_cards"] if census(self.data, name, set())["answered_by"]["alive"])
         baseline = census(self.data, hero, set())
         chosen = baseline["answered_by"]["alive"][0]["target"]
@@ -96,8 +97,29 @@ class CandidateMaskTest(unittest.TestCase):
         result = census(self.data, hero, set(), mask)
         self.assertEqual(result["answered_by"], baseline["answered_by"])
         self.assertEqual(result["answers"], baseline["answers"])
-        self.assertEqual({r["target"] for r in result["selectable_answered_by"]["alive"]}, {chosen})
-        self.assertEqual(census(self.data, hero, {chosen}, mask)["selectable_answered_by"]["alive_count"], 0)
+        self.assertEqual({r["target"] for r in result["masked_answered_by"]["alive"]}, {chosen})
+        self.assertEqual(census(self.data, hero, {chosen}, mask)["masked_answered_by"]["alive_count"], 0)
+
+    def test_each_call_has_its_own_window_without_changing_the_index(self):
+        original_index = self.index.read_bytes()
+        include = ["--include-id", "Brock", "--include-id", "Meg"]
+        for operation, key in [("query", "fact_window"), ("hydrate", "entity_window")]:
+            for visible in [["Brock"], ["Meg"], []]:
+                with self.subTest(operation=operation, visible=visible):
+                    result = self.run_cli(operation, *include, "--candidate-mask-file",
+                                          self.mask(visible, context_id="window-only"))
+                    self.assertEqual([row["id"] for row in result[key]], visible)
+                    self.assertEqual(result["candidate_mask"]["visible_id_count"], len(visible))
+            result = self.run_cli(operation, *include)
+            self.assertTrue({"Brock", "Meg"}.issubset({row["id"] for row in result[key]}))
+            self.assertIsNone(result["candidate_mask"]["visible_id_count"])
+        self.assertEqual(self.index.read_bytes(), original_index)
+
+    def test_mask_count_is_not_the_query_match_count(self):
+        result = self.run_cli("query", "--candidate-mask-file", self.mask(["Brock", "Meg"]),
+                              "--include-id", "Brock", "--exclude-id", "Meg")
+        self.assertEqual(result["candidate_mask"]["visible_id_count"], 2)
+        self.assertEqual([row["id"] for row in result["fact_window"]], ["Brock"])
 
 if __name__ == "__main__":
     unittest.main()

@@ -20,7 +20,8 @@ def query_cache_key(tool: str, index_path: str, params: dict[str, Any]) -> str:
     # may have been recompiled, so the path alone is not an index identity.
     canonical = json.dumps(params, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     index_hash = hashlib.sha256(Path(index_path).read_bytes()).hexdigest()
-    digest = hashlib.sha256(f"v2|{tool}|{index_hash}|{canonical}".encode("utf-8")).hexdigest()[:32]
+    # v3 invalidates cached responses using the previous mask summary fields.
+    digest = hashlib.sha256(f"v3|{tool}|{index_hash}|{canonical}".encode("utf-8")).hexdigest()[:32]
     return digest
 
 

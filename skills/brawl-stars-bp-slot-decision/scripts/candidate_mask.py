@@ -1,4 +1,4 @@
-"""Hard candidate eligibility; never remove relation targets or global facts."""
+"""Caller-defined recall windows over root entities; related facts stay intact."""
 from __future__ import annotations
 
 import hashlib
@@ -46,7 +46,7 @@ def mask_summary(mask: dict[str, Any] | None) -> dict[str, Any]:
     return {
         "applied": mask is not None and mask["mode"] == "allowlist",
         "mode": mask["mode"] if mask else "unrestricted",
-        "eligible_count": len(mask["ids"]) if mask and mask["mode"] == "allowlist" else None,
+        "visible_id_count": len(mask["ids"]) if mask and mask["mode"] == "allowlist" else None,
         "context_id": mask.get("context_id") if mask else None,
         "hash": mask["hash"] if mask else None,
     }

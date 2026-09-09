@@ -1617,3 +1617,10 @@
 - 修正 2026-09-08 引入的层级边界：删除 resolve_player_pool.py 及其玩家资料测试；官方 API 字段适配、等级筛选和排除原因全部由应用实现。
 - 知识库仅保留现有通用实体/别名索引与 candidate_mask.v1 的 canonical allowlist 消费契约；不接收玩家英雄等级行。
 - 同步蒙版 reference 与 skill 说明，保留 query/hydrate/census 的通用硬约束及缓存隔离。
+
+## [2026-09-09] skill | 蒙版契约收敛为通用召回窗口
+
+- 按调用方明确的分层要求，蒙版只表达本次召回可见的 canonical 根实体集合，不携带或解释遮挡原因；移除运行说明中的个人资格策略。
+- 摘要字段 eligible_count 更名为 visible_id_count，census 的 selectable_answered_by 更名为 masked_answered_by；保留原全局关系与 ban 过滤语义，关联证据不受根实体蒙版裁剪。
+- candidate_mask.v1 输入保持不变；查询缓存命名空间升级到 v3，隔离旧输出字段。历史日志保留原提交记录，当前执行契约以 skill references 为准。
+- 增加连续不同窗口/无蒙版调用、索引不变、蒙版规模与实际命中数分离及文档 JSON 示例的真实契约回归；应用负责解释投影与自身策略的关系。

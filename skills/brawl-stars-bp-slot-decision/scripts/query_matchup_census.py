@@ -70,11 +70,11 @@ def census(index: dict[str, Any], hero: str, banned: set[str], mask: dict[str, A
     if mask is not None:
         validate_mask(mask, index)
         surviving = result["answered_by"]["alive"]
-        selectable = [row for row in surviving if allows(mask, row["target"])]
+        visible = [row for row in surviving if allows(mask, row["target"])]
         result["candidate_mask"] = mask_summary(mask)
-        result["selectable_answered_by"] = {
-            "alive": selectable, "alive_count": len(selectable),
-            "removed_by_mask": len(surviving) - len(selectable),
+        result["masked_answered_by"] = {
+            "alive": visible, "alive_count": len(visible),
+            "removed_by_mask": len(surviving) - len(visible),
         }
     return result
 
@@ -82,7 +82,7 @@ def census(index: dict[str, Any], hero: str, banned: set[str], mask: dict[str, A
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
-    parser.add_argument("--candidate-mask-file", help="Additional selectable answered_by projection; global census is unchanged")
+    parser.add_argument("--candidate-mask-file", help="Additional answered_by projection within this recall mask; global census is unchanged")
     parser.add_argument("--hero", required=True, help="Hero to census (canonical or alias)")
     parser.add_argument("--banned", action="append", default=[], help="Hero removed from the pool; repeatable")
     parser.add_argument("--json", action="store_true", help="Emit JSON")

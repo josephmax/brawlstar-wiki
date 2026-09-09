@@ -28,6 +28,10 @@ Runtime slot decision may read:
 
 `combat_breakpoint_profile` and `balance_breakpoint_audit.v1` are also maintainer-only inputs/outputs in v1. Runtime compile reads the first `bp_brawler_profile` block and must ignore the second combat block and every `outputs/balance-breakpoints/` report. A numeric transition reaches runtime only after a maintainer validates its packet/form/build/map assumptions and rewrites the durable qualitative consequence into an existing `build_switches`, `failure_modes`, `conditional_matchups`, or `map_feature_hooks` field.
 
+## Recall Mask Boundary
+
+A recall mask is a caller-supplied window over canonical root entity IDs for one invocation. Runtime scripts restrict retrieval and detail construction to that window without interpreting its cause. Keep the full index and related evidence intact. Use `visible_id_count` for the mask summary and `masked_answered_by` for the census intersection; neither is a decision verdict. The executable contract lives in the slot-decision reference `references/candidate-mask.md`.
+
 ## Rule Promotion
 
 If a maintainer conclusion becomes an operational runtime rule:

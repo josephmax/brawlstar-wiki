@@ -133,7 +133,7 @@ def hydrate_runtime_facts(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--index", required=True, help="Compiled runtime_bp_index JSON path")
-    parser.add_argument("--candidate-mask-file", help="Hard candidate allowlist; omit when hydrating observed entities")
+    parser.add_argument("--candidate-mask-file", help="Restrict root entities to this recall mask; related facts remain intact")
     parser.add_argument("--map", required=True, help="Map name covered by the index")
     parser.add_argument("--mode", default="", help="Optional mode echo")
     parser.add_argument("--entity-type", default="brawler", choices=["brawler"], help="Entity type to hydrate")
