@@ -36,6 +36,16 @@ When a patch changes brawler health, a discrete damage packet, flat barrier, or 
 
 Patch manifests are a version ledger in `wiki/sources/`; current reviewed inputs belong in `combat_breakpoint_profile`, and generated pairwise results belong in `outputs/balance-breakpoints/`. Consecutive old/new changes to one packet must remain continuous, including chains such as Crow `320 -> 420 -> 380`.
 
+### Rework- and Buffie-flavored changes: community-evidence recheck
+
+Balance rows that rework an ability — or touch a Buffie, which almost always carries rework flavor — tend to have qualitative matchup consequences the patch text alone cannot prove. Never infer matchup stories from the literal note text ("has knockback, therefore anti-dive"); go read what the community pages actually say post-change. For every affected Brawler at ingest time:
+
+1. Re-capture or freshness-check that Brawler's current Fandom **and** PLP pages, even when the patch rows look purely numeric (cooldowns and healing ratios often sit on freshly reworked abilities).
+2. Diff the community evidence against the wiki's existing edge layer: PLP `countersThese`/`counteredBy` lists and build/matchup prose, Fandom Tips/Strategies statements that name opponents or play patterns.
+3. New or changed community evidence is the legitimate source for new or rewritten `conditional_matchups` edges through the standard promotion gate (mechanism, `active_when`, `fails_when`, `bp_use`, source ref). Maintainer game knowledge can confirm direction, but the evidence trail starts here.
+4. Record checked negatives explicitly: if PLP/Fandom show no post-rework matchup updates, note the checked date and the lag ("PLP lists unchanged as of `<date>`; community pages may lag reworks") in the source summary or log. Stale silence is evidence of source lag, not proof of "no change" — third-party matchup lists are pre-rework snapshots until proven otherwise.
+5. Pair this recheck with the capability-grounded review in `references/balance-breakpoint-audit.md`: the curated rework-atom list feeds `audit_capability_edge_coverage.py`, and the community diff feeds the resulting review seeds.
+
 Use these scripts for repeatable hero source work:
 
 ```bash

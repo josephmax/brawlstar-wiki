@@ -4,8 +4,8 @@
 
 - 标题：Belle
 - 来源：[Belle | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Belle)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T10:06:21Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T09:30:19Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/belle.md]]
 - source_quality：direct_raw_capture
@@ -20,11 +20,11 @@
 
 - 稀有度: Epic
 - 官方定位: Marksman
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 2900
 - 攻击距离: 10 (Very Long)
 - 装填: 1.4 seconds (Fast)<br>1.19 seconds (with Reload Gear)
-- 普攻数值: 1040
+- 普攻数值: 1140
 - Super 距离: 10.67 (Very Long)
 - Super 数值: 550
 - Gadgets: Nest Egg, Reverse Polarity

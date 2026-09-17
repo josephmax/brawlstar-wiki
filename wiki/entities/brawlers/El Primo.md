@@ -258,6 +258,41 @@ bp_brawler_profile:
     slot_6: "最适合最后手惩罚无反坦、无击退、无沉默阵容，要求能明确转化为进球、打库或赶人"
 ```
 
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "El Primo",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 6500, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-El-Primo|Fandom-El-Primo]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": [
+      {
+        "id": "meteor_rush_buffie_shield",
+        "source_kind": "star_buffie",
+        "loadout_group": "star_buffie",
+        "applies_to_states": ["body"],
+        "effect": {"type": "damage_reduction", "ratio": 0.15},
+        "active_when": "装备 Meteor Rush 星徽及其 Star Buffie，Super 落地后 3 秒窗口内（2026-09-16 由 0.20 下调）",
+        "sequence_validity": "仅在 Super 后的加速窗口内有效，窗口结束即失效",
+        "source_ref": "[[sources/Fandom-El-Primo|Fandom-El-Primo]]"
+      }
+    ],
+    "exclusions": [
+      {"id": "asteroid_belt_immunity", "reason": "Asteroid Belt 1 秒完全免伤是时限无敌窗口，不折算静态 EHP", "change_class": "temporal_survival_excluded"},
+      {"id": "el_fuego_burn", "reason": "El Fuego 燃烧是 DoT 时间序列，不建模为静态包", "change_class": "temporal_survival_excluded"}
+    ]
+  }
+}
+```
+
 ## 关联页面
 
 - [[sources/Fandom-El-Primo|Fandom 来源摘要: El Primo]]

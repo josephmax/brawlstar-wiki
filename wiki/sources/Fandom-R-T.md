@@ -4,8 +4,8 @@
 
 - 标题：R-T
 - 来源：[R-T | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/R-T)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-05T02:43:46Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T14:07:12Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/r-t.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Mythic
 - 官方定位: Damage Dealer
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>820 (split)<br>984 (split; with Hypercharge)
+- 移动速度: 750 (Normal)<br>850 (split)
 - 生命值: 4100
 - 攻击距离: 10 (Very Long)<br> 3.33 (split; Short)
 - 装填: 1.5 seconds (Normal)<br>1.8 seconds (split; Normal)

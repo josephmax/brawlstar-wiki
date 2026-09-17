@@ -243,7 +243,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Tara|PLP-Tara]]"
       mechanism: Support From Beyond 可挡单体弹道或迫使脆弱长手/投掷转火，Gravity 命中后可直接把远程拖入队友爆发
       active_when: 地图有草墙路线或目标迫使长手靠近矿区/门前，Tara 有 Super 或召唤物可启动
-      fails_when: 地图纯开阔且对手保持极限距离，或召唤物被范围技能立即清掉
+      fails_when: 地图纯开阔且对手保持极限距离（2026-09-16 起 Belle 三发 3×2280=6840 可点杀 Tara 裸身 6600，开阔接近窗口进一步变窄），或召唤物被范围技能立即清掉
       bp_use: response_pick_into_fragile_range_when_route_exists
     - target: ["Lou", "Meg", "Jae-yong"]
       direction: subject_favored

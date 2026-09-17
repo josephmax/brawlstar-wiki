@@ -203,7 +203,7 @@ bp_brawler_profile:
       mitigation: "BP 时把水/草/地面位置写成具体路线，不用泛化标签"
       bp_use: map_factor_hard_gate
     - id: low_health_dive_pressure
-      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 Power 11 6200 HP Juju"
+      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 Power 11 7000 HP Juju（2026-09-16 由 6200 上调）"
       exposed_by: "[[sources/PLP-Juju|PLP-Juju]] counteredBy list"
       mitigation: "保留 Elementalist 逃生，配队友 peel 或选择水/草安全角"
       bp_use: draft_requires_peel

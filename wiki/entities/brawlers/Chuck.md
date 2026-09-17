@@ -69,11 +69,11 @@ bp_brawler_profile:
     anti_tank: "low_medium; dash damage of 1600 (Power 11) is meaningful, but tanks with CC/burst punish predictable paths against only 35% dash damage reduction"
     wall_break: low
     throw_or_wall_bypass: "high_with_Ghost_Train; Posts can be thrown over walls, Ghost Train opens 8 seconds of wall-crossing dashes, and the Buffied fire trail adds 2400 (Power 11) of path denial"
-    area_control: "medium; up to 4 Posts reshape where enemies can safely stand, and the Buffied Pit Stop burn zone adds 400 (Power 11) of post-denial damage"
+    area_control: "medium; up to 4 Posts reshape where enemies can safely stand, and the Buffied Pit Stop burn zone adds 400 (Power 1, up to 4 ticks over 4s; 2026-09-16 由 100 上调) of post-denial damage"
     scouting_or_vision: low
     team_support: "low_direct; Chuck creates route pressure and objective races, not buffs"
     spawnable_or_pet: "medium_as_route_anchor; Posts are persistent route anchors dealing 800 (Power 11) on landing rather than damage pets, capped at 4"
-    crowd_control: "low_medium; Post landing carries no knockback, so remaining control is Pit Stop's 20% slow on Post hits and the Tickets Please ammo steal"
+    crowd_control: "low_medium; Post landing carries no knockback, so remaining control is Pit Stop's 30% slow on Post hits and the Tickets Please ammo steal"
     terrain_creation: "medium; the 4-Post network is a persistent route graph, but every node costs one finite Super charge to place"
     terrain_destruction: low
     source_trace:
@@ -86,7 +86,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Chuck|PLP-Chuck]]"
       changes_capabilities:
         - "Rerouting removes the nearest Post and refunds 50% of one Super charge; the Buffie adds a 20% damage-reduction shield for 5 seconds on activation"
-        - "Pit Stop slows enemies hit by Post placement by 20% for 1 second; the Buffie leaves a 4-second burn area on placement dealing 400 (Power 11)"
+        - "Pit Stop slows enemies hit by Post placement by 30% for 2 seconds (2026-09-16 由 20%/1s 上调); the Buffie leaves a 4-second burn area on placement dealing 400 (Power 1) per tick, up to 4 ticks"
         - "Shield and Damage gears improve survival and safe-race pressure while the route stands"
       enables:
         - heist_safe_route_burst
@@ -105,6 +105,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Chuck|Fandom-Chuck]]"
       changes_capabilities:
         - "Ghost Train lets every dash of the current Super connect through walls for 8 seconds; the Buffie makes those dashes leave a fire trail dealing 2400 (Power 11) that can tick 3 times"
+        - "Hyper Buffie (Full Steam Ahead!) makes the main attack fire 2 additional projectiles angled left and right (3 steam clouds total) and extends the Hypercharge window by 2 seconds, widening narrow-lane chip and wall-pocket coverage"
         - "Tickets Please steals 33% of ammo from enemies hit by dashes and refunds it to Chuck; the Buffie raises dash speed by 25%"
       enables:
         - wall_bypass_entry

@@ -4,7 +4,7 @@
 
 - 稀有度：Mythic
 - 定位：Support
-- 类型：护盾与减伤支援英雄（全游戏最低基础血量，靠护盾、发生器与水面机动换取容错）
+- 类型：护盾与减伤支援英雄（全游戏第二低基础血量，靠护盾、发生器与水面机动换取容错）
 
 ## 攻击特征
 
@@ -26,7 +26,7 @@
 
 ## 角色定位总结
 
-Wendy 是把团队伤害分摊和护盾资源做到极致的最低血量 Support：本体极脆，但出生即带等量护盾、普攻持续供盾、Super 用发生器集体减伤。她改写的是"队伍有效血量"，而不是自身输出；一旦发生器被拆或护盾循环断供，本体几乎没有任何自保。
+Wendy 是把团队伤害分摊和护盾资源做到极致的近最低血量 Support：本体极脆，但出生即带最大生命 40% 的护盾、普攻持续供盾、Super 用发生器集体减伤。她改写的是"队伍有效血量"，而不是自身输出；一旦发生器被拆或护盾循环断供，本体几乎没有任何自保。
 
 ## 关联页面
 
@@ -51,8 +51,8 @@ bp_brawler_profile:
     burst: "low to medium; Power 11 单发 2000 的稳定输出，无爆发包"
     sustained_dps: "medium with 1.45s fast reload; sustained pressure exists but is support-grade"
     objective_damage: "low direct safe/objective DPS; objective contribution is shields, damage redirection and zone mitigation"
-    mobility: "medium base 770 fast plus water walking; Wind-Powered adds a 5 tile jump over walls and water with airborne immunity"
-    survivability: "lowest body in game at Power 11 4000, but effective spawn health is Power 11 8000 with the non-decaying starting shield; ally shields add Power 11 1520 per hit with stacking to 4x"
+    mobility: "medium base 800 fast plus water walking; Wind-Powered adds a 5 tile jump over walls and water with airborne immunity"
+    survivability: "near-lowest body in game at Power 11 5000 (second-lowest per Fandom lead), but effective spawn health is Power 11 7000 with the non-decaying starting shield at 40% max health; ally shields add Power 11 1520 per hit with stacking to 4x"
     engage: "medium as shield-entry support; feeding shields to a mobile or high-HP teammate creates a protected entry window"
     disengage: "high with Wind-Powered jump over walls or water and the slowing Green Grenade"
     anti_aggro: "high when turbine zone plus slow field meet a single diver; weak once burst exceeds shield and turbine breakpoints"
@@ -72,7 +72,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
       changes_capabilities:
         - "jump adds wall and water escape or entry with airborne immunity"
-        - "Solar Shield raises turbine durability by Power 11 4000, extending the fortification window"
+        - "Solar Shield raises turbine durability, extending the fortification window（2026-09-16 削弱后加成值存在来源口径冲突，见 [[sources/Fandom-Maintenance-September-16-2026|9 月维护账本]]）"
       enables:
         - "shield-fed carrier push on Brawl Ball goal routes"
         - "turbine-anchored zone stands on Gem Grab countdown and Hot Zone"
@@ -160,7 +160,7 @@ bp_brawler_profile:
         - "answers to deep thrower pockets"
       needs_teammate_support:
         - "a pick threat that uses the protected window"
-      false_positive: "shrinking zones without cover expose the Power 11 4000 body once shields break"
+      false_positive: "shrinking zones without cover expose the Power 11 5000 body once shields break"
     - mode: "Gem Grab"
       can_fulfill:
         - "carrier shields during countdown and turbine fortification on the mine"
@@ -196,7 +196,7 @@ bp_brawler_profile:
         - "turbine-anchored zone body support with Slowing Shield denial"
         - "sustain answer with Green Grenade anti-heal"
       cannot_fulfill:
-        - "stand the circle alone at Power 11 4000 body"
+        - "stand the circle alone at Power 11 5000 body"
         - "thrower pocket removal from safety"
       needs_teammate_support:
         - "durable zone holder that stands inside her turbine"
@@ -205,7 +205,7 @@ bp_brawler_profile:
   failure_modes:
     - id: "lowest_body_focus_fire"
       active_when: "enemy burst or focus reaches Wendy after shields or turbine are stripped"
-      exposed_by: "Power 11 4000 body, lowest in game, with no decay on her own shield but no passive regeneration of it"
+      exposed_by: "Power 11 5000 body, second-lowest in game, with no decay on her own shield but no passive regeneration of it"
       mitigation: "keep max-range cycle, hold Wind-Powered for wall or water escape, and plant the turbine before committing to contested space"
       bp_use: "false_positive_filter_for_frontline_role"
     - id: "shield_cycle_stall"
@@ -244,7 +244,7 @@ bp_brawler_profile:
         - "Lily"
       direction: "subject_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "dash-in assassins meet slow field plus shields and a jump escape; their short combos do not clear effective spawn health before the turbine answers"
+      mechanism: "dash-in assassins meet slow field plus shields and a jump escape; effective spawn health is Power 11 7000 since 2026-09-16 (body 5000 + 40% spawn shield, previously 8000), and whether their short combos still clear that value is unverified until reviewed combo packets exist"
       active_when: "turbine or slow covers the dive route and Wind-Powered is held for the engage"
       fails_when: "they bait the jump and re-enter after the shield window, or walls hide their approach"
       bp_use: "anti_dive_peel_resource"
@@ -272,7 +272,7 @@ bp_brawler_profile:
         - "Pierce"
       direction: "subject_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking, Pierce's charged shots)"
+      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking, Pierce's charged shots); the shield absorb margin is roughly halved since 2026-09-16 (spawn shield 40% max, per-hit self shield 600 at Power 11)"
       active_when: "open lanes let her keep the shield cycle while the turbine covers the contested space"
       fails_when: "they outrange the turbine edge after Surge stacks late stages, mines deny her cycle lane, or charged shots overkill the shield bar faster than she replenishes it"
       bp_use: "support_lane_response_candidate"
@@ -282,7 +282,7 @@ bp_brawler_profile:
         - "Bull"
       direction: "target_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "sustained or burst-heavy bodies out-trade her moderate damage; Ash and Carl chip through shields continuously and Bull's burst exceeds shield breakpoints in one window"
+      mechanism: "sustained or burst-heavy bodies out-trade her moderate damage; Ash and Carl chip through shields continuously and Bull's burst exceeds shield breakpoints in one window (easier since 2026-09-16: spawn shield 40% max and per-hit self shield 600 at Power 11)"
       active_when: "they reach Wendy or the turbine before the team answers"
       fails_when: "turbine slow plus grenade peel breaks the engage before the shield stack is stripped"
       bp_use: "avoid_or_pair_with_control"
@@ -313,7 +313,7 @@ bp_brawler_profile:
         "id": "body",
         "entity_class": "brawler_body",
         "roster_target": true,
-        "health": {"amount": 2000, "at_power_level": 1, "scaling": "standard"},
+        "health": {"amount": 2500, "at_power_level": 1, "scaling": "standard"},
         "source_ref": "[[sources/Fandom-Wendy|Fandom-Wendy]]"
       }
     ],
@@ -336,16 +336,16 @@ bp_brawler_profile:
         "source_kind": "trait",
         "loadout_group": "trait",
         "applies_to_states": ["body"],
-        "effect": {"type": "barrier_hp", "amount": 2000, "at_power_level": 1},
-        "active_when": "出生时自带、不随时间衰减、只能由普攻回充；被击破后消失直到回充",
+        "effect": {"type": "barrier_hp", "amount": 1000, "at_power_level": 1},
+        "active_when": "出生时自带最大生命 40% 的护盾（2026-09-16 由 100% 下调）、不随时间衰减、只能由普攻回充；被击破后消失直到回充",
         "sequence_validity": "静态近似仅代表满盾时点；对局中期实际护盾量取决于攻击循环",
         "source_ref": "[[sources/Fandom-Wendy|Fandom-Wendy]]"
       }
     ],
     "exclusions": [
-      {"id": "attack_granted_shields", "reason": "普攻自盾 580 / 队友盾 760（Power 1）是随攻击循环与时序变化的临时护盾，不建模为静态 EHP", "change_class": "temporal_survival_excluded"},
+      {"id": "attack_granted_shields", "reason": "普攻自盾 300 / 队友盾 760（Power 1，2026-09-16 自盾 580->300、队友盾不变）是随攻击循环与时序变化的临时护盾，不建模为静态 EHP", "change_class": "temporal_survival_excluded"},
       {"id": "planet_protector_redirect", "reason": "发生器把范围内多人伤害的 60%（Hypercharge 90%）redirect 到可被摧毁的 deployable，是伤害分配时序模型", "change_class": "unsupported_mechanic"},
-      {"id": "turbine_health", "reason": "发生器耐久 2500（Power 1）与 Solar Shield +2000 属 deployable durability，不进英雄分母", "change_class": "non_breakpoint"},
+      {"id": "turbine_health", "reason": "发生器耐久 2500（Power 1）与 Solar Shield 加成、GREEN ENERGY 加成 1000（Power 1，2026-09-16 由 2000 下调）属 deployable durability，不进英雄分母；Solar Shield 加成当前存在 1080/1200/24% 多口径冲突，见 [[sources/Fandom-Maintenance-September-16-2026|2026-09 维护账本]]", "change_class": "non_breakpoint"},
       {"id": "green_energy_hypercharge", "reason": "Hypercharge 期间 90% 吸收与耐久提升依赖激活窗口", "change_class": "temporal_survival_excluded"}
     ]
   }

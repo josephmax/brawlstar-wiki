@@ -6,7 +6,7 @@
 - 来源：[Fandom: Version History/2026](https://brawlstars.fandom.com/wiki/Version_History/2026)（section 1）
 - 读取日期：2026-09-03
 - Section revid at capture: 217944
-- 上游 raw：[[../../raw/sources/fandom/systems/release-notes-august-2026-2026-09-03.md|release-notes-august-2026-2026-09-03]]
+- 上游 raw：[[../../raw/sources/fandom/systems/release-notes-august-2026-2026-09-17.md|release-notes-august-2026-2026-09-17]]（2026-09-17 回填抓取；原 2026-09-03 抓取件缺失于仓库，回填自 revid 219043，August section 内容与原摘要一致）
 - source_quality：direct_raw_capture_patch_notes
 - source_type：monthly_release_notes / balance_change_index
 

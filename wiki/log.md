@@ -1624,3 +1624,78 @@
 - 摘要字段 eligible_count 更名为 visible_id_count，census 的 selectable_answered_by 更名为 masked_answered_by；保留原全局关系与 ban 过滤语义，关联证据不受根实体蒙版裁剪。
 - candidate_mask.v1 输入保持不变；查询缓存命名空间升级到 v3，隔离旧输出字段。历史日志保留原提交记录，当前执行契约以 skill references 为准。
 - 增加连续不同窗口/无蒙版调用、索引不变、蒙版规模与实际命中数分离及文档 JSON 示例的真实契约回归；应用负责解释投影与自身策略的关系。
+
+## [2026-09-17] ingest | 2026-09-16 维护补丁断点 ingest：8 英雄数值入账 + 全链审计
+
+用户要求按平衡补丁标准维护有变动英雄并汇报斩杀线边界变化。补丁源为 Fandom `Version_History/2026` 的 `Maintenance - September 16th` section（revid 219043，9 削弱 9 增强）。
+
+- **raw 层新增 10 件**：`maintenance-september-16-2026-2026-09-17.md`（section 抓取，bug fix 全录）；Wendy/Willow/Juju/Ollie/Belle/El Primo/R-T/Chuck 八人 Fandom 最新 direct raw（`capture_brawler_sources.py --force` 经 MediaWiki API，2026-09-16 后页面状态；Wendy 不在脚本默认 roster，经同一 API 通道手动抓取落 `raw/sources/fandom/heroes/wendy.md`）。回填缺失件：`release-notes-august-2026-2026-09-17.md`（[[sources/Fandom-Release-Notes-August-2026]] 原 09-03 raw 引用悬空，从 revid 219043 回填并改链接；另发现 [[sources/Brawler-Roster]] 引用的 `brawlers-roster-2026-09-03.md` manifest 亦不在仓库，本轮以 2026-08-11 roster 绕过，留待后续补）。
+- **source 层**：新增 [[sources/Fandom-Maintenance-September-16-2026]]（`balance_patch_manifest` effective_order 5：8 行 breakpoint_supported——Wendy/Willow/Juju body health、Ollie/Belle main packet、El Primo Meteor Rush Buffie 盾 0.20->0.15、R-T Recording 头 0.20->0.25 + 腿 0.50->0.55；约 40 行显式排除）。关键口径裁决：R-T 维护索引只写头部 20%->25%，个人页 direct raw（2026-07-17 旧 raw 可证改前态）显示腿替代值同步 29%->50% 变 29%->55%，拆两行入账；Wendy 出生护盾 100%->40% 是 barrier_hp 比例，v1 账本行只收 damage_reduction，按 unsupported 排除、profile 当前值生效；Wendy Solar Shield 加成 4 口径冲突（600/1080/1200/24%）保留不统一；Wendy Trait 受盾伤充能 30%->15% 出自个人页 History、维护索引未列，入排除行。七人 Fandom 来源页经 `ingest_brawler_sources.py --sites fandom` 重建（El Primo 页 2026-09-03 来源差异备注段先取后补回），Wendy 来源页手动刷新。
+- **entity 层**：Wendy profile 更新（body 2000->2500/P1；spawn_shield barrier 2000->1000/P1 = 40% max；排除区自盾 580->300、GREEN ENERGY 加成 2000->1000）+ YAML 数值文案校准（移速 770->800 系 09-01 全局变化、PL11 5000 body、出生有效血 7000、"全游戏最低"改"第二低"依 Fandom lead）；R-T profile 两处 Recording DR 更新；新建 Ollie（body 5400/P1 + main.impact 1000/P1 identical）、Belle（body 2900/P1 + main.impact 1140/P1 identical；弹跳伴随包与 Super +35% 易伤标记入排除）、El Primo（body 6500/P1 + meteor_rush_buffie_shield 0.15）三个最小已复核 `combat_breakpoint_profile`；Willow/Juju/Chuck 页 Power 11 数值文案刷新（7200/7000、Pit Stop 30%/2s、Buffie 区伤 400/P1 至多 4 跳）。
+- **断点审计**：`audit_balance_breakpoints.py` 全链 5 份 manifest 重跑，`--patch-id 2026-09-16-maintenance` 渲染 8 个 supported 行；产出 `outputs/balance-breakpoints/2026-june-september-balance-breakpoints.{json,md}`（113 活跃目标、250 防御态、33 已复核包、326 pairwise deltas、130 build-pressure deltas、114 显式排除；继承 8 月的 6 个英雄级 chain 失配排除，本次无新增失配）。结论要点：Belle 2080->2280 后恰好 3 发目标池 24->37，13 人无装备 body 4->3、须满盾保线（Amber/Gray/Gus/Janet/Jessie/Leon/Meeple/Najia/Sirius/Sprout/Surge/Tara/Ziggy）；Ollie 1800->2000 后 3 发池 7->20，13 人 4->3（Bea/Belle/Brock/Crow/Dynamike/Grom/Larry & Lawrie/Mandy/Pierce/Piper/Rico/Ruffs/Spike）+ Tick 满盾 4->3 + Meg 机甲 5->4；交叉效应 Juju/Wendy 血量增强跑赢 Belle 伤害增强（各 +1 发），Wendy body 对 13 个已复核攻击包全线 +1 发、出生态净有效血 8000->7000 为净削弱面；R-T 头部 Recording 上调使 Piper max_range 3->4；El Primo 窗口盾下调在已复核包内无 ≤4 发整数穿越。
+- **运行时**：roster 无变化，编译计数不动；因 Wendy/R-T 等页 capability_vector/build_switches 文案属编译字段，重编译 `outputs/runtime-bp-index/default-runtime-index.json`（无警告）。
+- **验证**：`test_balance_breakpoints.py` 10/10；维护契约测试通过；slot-decision 43/43；profile 质量审计 106/106 零 blocker。
+
+## [2026-09-17] syntheses | 9 月 16 日维护断点消化页
+
+按六月至八月篇格式新增 [[syntheses/2026六月至九月平衡性断点双向评估]]（`version_breakpoint_synthesis_non_runtime`），自包含消化 2026-09-16 维护断点审计增量：Belle/Ollie 三发线目标池各 +13（24→37、7→20）为全部增量、无三发线减量；裸身丢线需盾各 13 人；Wendy/Juju/Willow 血量增强解除多条满盾保线需求，其中 Juju 对新 Belle 反而 3→4 发；Wendy 出生盾 100%→40% 使出生态有效血 8000→7000 为净削弱；R-T 头部 Recording 上调使 Piper 满距离 3→4；El Primo 窗口盾在已复核包内无整数穿越。页面无任何 outputs 链接；wiki/index.md BP Archive 区登记。
+
+## [2026-09-17] ingest | Ranked Season 49 地图池轮换 ingest（赛季当日更新）
+
+用户要求按赛季更新重新审计地图池的运行时影响。补丁源为 Fandom `Ranked` 页 "Active maps (Season 49)" 表 + Seasons 表 `#49` 行（revid 219103，2026-09-17T06:56 抓取；页面规则：赛季于每月第三个周四开始，S49 即 2026-09-17 当日开赛）。
+
+- **池差异（S49 vs S48）**：总图数 30 → 26；featured 从 Brawl Ball 切换为 **Hot Zone**。Hot Zone 4→6（新增 `In the Liminal`、`Quick Travel`，均随 featured 入池的回归图）；失去 featured 的 Gem Grab（出 `Crystal Arcade`、`Rustic Arcade`）、Heist（出 `Pit Stop`、`Safe(r) Zone`）、Brawl Ball（出 `Beach Ball`、`Spiraling Out`，两图完成单赛季生命周期）各缩 2 张；Bounty/Knockout 不变。Trial Brawlers 锚点 `Trunk, Willow, Kaze` → `Ash, Mortis, Pierce`。
+- **raw 层新增 3 件**：`ranked-season-49-map-extracts-2026-09-17.md`（池表 + 赛季锚点 + 节奏规则）；`in-the-liminal-2026-09-17.md`、`quick-travel-2026-09-17.md`（两张新图页，MediaWiki API 手动抓取——地图抓取无脚本通道）。
+- **source 层新增 3 页**：[[sources/Fandom-Ranked-Season-49-Map-Pages]]（池索引 + S49 vs S48 差异）；[[sources/Fandom-In-the-Liminal]]、[[sources/Fandom-Quick-Travel]]。
+- **entity 层新增 2 页**：`Quick Travel`（`bp_map_profile_v2`：绳网可穿透分割、S 形草簇连接、双弹射垫双向资源、防守姿态惩罚四组 tactical features + map_rules/false_positive）；`In the Liminal`（源页面 Layout/Tips 为空，按 map-modeling 规范只建 infobox 可证结构，标注 `layout_coverage_gap`，BP 消费仅限"扫草/探草保底价值"，待布局证据补齐）。出池 6 图实体页保留为稳定结构知识，仅离开赛季索引。
+- **syntheses 层**：新增 [[syntheses/Ranked-Season-49-地图Map-Profile总览]]（`ranked_rotation_index`）；[[syntheses/Ranked-Season-48-地图Map-Profile总览]] 头部标注已过期。
+- **runtime**：以 26 图池 + `--map-pool-id ranked-season-49` 重编译 `outputs/runtime-bp-index/ranked-season-49.json`（pickrate_status loaded、missing_inputs 空；Quick Travel 编译卡含 4 route_gates/13 required_capabilities/11 false_positive_filters，In the Liminal 按保守口径单规则编译）。
+- **验证**：slot-decision 43/43 通过，维护契约测试通过；`wiki/index.md` 同步（赛季总览区、地图实体区、来源区）。
+
+## [2026-09-17] skill | 断点消化进对位关系的窄口径判据（数值成立型对位边）
+
+维护者裁决：`conditional_matchups` 的断点消化范围收窄为**数值成立型对位边**——仅当边的 mechanism/active_when/fails_when 文本携带断点数学可证伪的生存/斩杀前提（爆发窗口、发数、outlast、清有效出生血、低血斩杀区间、盾线要求）时，才因补丁整数变化触发复核。位置/功能型前提（body-block、墙控、探草、路线、目标转化）即使双方都是补丁涉及英雄也不入复核面；非整数 EHP 漂移永不触发。方向裁决仍来自机制+来源复核，审计只拉响门铃；build-pressure 发现照旧直走 `build_switches`/`failure_modes`。
+
+- 落位：`skills/brawl-stars-bp-knowledge-maintenance/references/balance-breakpoint-audit.md` Promotion Gate 新增 "Numerically-grounded matchup review scope" 小节（`.agents` 挂载同份生效）；维护契约测试通过。
+- 首轮窄口径复核（2026-09-16 补丁，7 个涉及英雄 × 全库对位边扫描，18 对候选 → 9 条数值前提命中）：必改 4 条——Gus→Belle（拆 bundle 方向复核，Belle 三发线覆盖 Gus 裸身）、Wendy→Stu/Lily（"not clear effective spawn health" 前提因出生盾 100%→40% 直接触及）、Wendy→Bo/Surge/Pierce（盾循环变薄）、Wendy→Ash/Carl/Bull（burst 剥盾前提走强）；轻触 2 条——Tara→Belle（Tara 裸身 4→3）、Piper→R-T（Recording 头 25% 使 Piper 满距 3→4，方向不变、证据增强）。正确排除：7 条 El Primo 目标边（本期无整数穿越）、Belle 5→4 满盾环与 Juju/Willow 刺客边（对手包无穿越）。处置写入对话汇报，页面改写待维护者确认方向后执行。
+
+## [2026-09-17] skill | 窄口径判据补丁：前提类别子测试（静态 EHP 类 vs 回复/持续类）
+
+维护者挑战 Gus→Belle 处置（"Gus 现在是回血耐杀王"）暴露判据缺口：整数发数线被用来质疑一条回复循环前提的边，但静态 EHP 矩阵按定义看不见治疗相互作用（审计模型本就列治疗为排除类）。修正：
+
+- `balance-breakpoint-audit.md` 窄口径小节新增**前提类别子测试**：整数变化触发复核前，先分清前提是静态 EHP 类（固定血池、不回复护盾、平窗减伤——可被矩阵证伪）还是回复/持续类（治疗循环、再生、盾回充、"回血/耐杀/靠治疗 outlast"——temporal 排除类，静态矩阵不可证伪，入时序建模队列而非方向复核队列）。
+- 方向裁决规则补强：爆发窗口发数线最多注 `fails_when`（"减疗/集火窗口内"），永不翻转方向。
+- Gus→Belle 处置由"必改·拆分翻转"降级为"方向不动（subject_favored 依 PLP 种子+维护者对局知识）；可选把含糊的 outlast 措辞按回复循环写实；fails_when 可补窄条件（减疗/盾循环空窗内裸身三发可达 6840）"。本轮必改清单剩 Wendy 三条（barrier/自盾属静态类）与 Tara/Piper 两条补锚点。
+
+## [2026-09-17] ingest | 窄口径对位复核首轮落地：5 条边数值条件增补（方向零变动）
+
+按"前提类别子测试"修正后的窄口径执行首轮页面落地，维护者确认方向裁决后执行：
+
+- **Wendy→Stu/Lily**（subject_favored 保持）：机制改写为携带新事实——出生有效血 Power 11 8000→7000（body 5000 + 40% 出生盾）；"short combos do not clear"断言按"组合包未索引"降级为 unverified，不得反向断言。
+- **Wendy→Bo/Surge/Pierce**（subject_favored 保持）：机制增补盾吸收余量约减半（出生盾 40%、单发自盾 600/P11）。
+- **Wendy→Ash/Carl/Bull**（target_favored 保持）：机制增补"burst 破盾更容易（2026-09-16 起）"。
+- **Tara→Belle 等五人 bundle**（subject_favored 保持）：fails_when 增补"Belle 三发 6840 可点杀 Tara 裸身 6600，开阔接近窗口变窄"。
+- **Piper→Nani/Angelo/R-T/Tick bundle**（target_favored 保持）：机制增补"R-T Recording 头 20%→25% 使 Piper 满距 3→4 发，方向证据增强"。
+- **Gus→Belle 不动**：前提属回复/持续类（temporal 排除），方向依 PLP 种子与维护者对局认知保持 subject_favored；bundle 拆分与措辞卫生留作独立维护项。
+- 验证：default 与 ranked-season-49 两个 runtime 索引重编译；slot-decision 43/43、维护契约测试通过。
+
+## [2026-09-17] skill | 能力成立型对位复核方法论落地 + 2026-08 重做潮全量回归
+
+Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、Gus 旧边因 9/16 削弱回归被动 peel 定位而保持现状）后，把"行为重做是否传导到对位层"的方法论落入 maintenance 技能：
+
+- **reference**：`balance-breakpoint-audit.md` 新增 "Capability-grounded matchup review (behavior reworks)" 小节——重做原子清单由维护者从 manifest 行为行+稳定字段人工整理；脚本只做覆盖检查，缺边层覆盖产出 **review seed 而非边**；方向永不由脚本裁决；accepted seed 记录维护者理由后视为已关闭复核；多英雄 ingest 浪潮后应全量回归。
+- **script**：新增 `audit_capability_edge_coverage.py`（默认内置 2026-08 重做波 6 英雄 21 个原子；`--atoms-json` 可换波次；`--brawler` 可单查）+ `test_capability_edge_coverage.py` 7 项测试全绿；维护契约测试通过。折叠检查面为稳定字段四区（capability_vector/build_switches/map_feature_hooks/objective_contracts），边层检查面为 conditional_matchups。
+- **全量回归结果**：12 个 review seeds + 1 个真 fold gap。**fold gap 唯一实锤：Chuck Hyper Buffie 三连发**（raw 有"2 additional projectiles"、实体页全无）——已按 raw 原文补进 build_switches，复检 fold_gaps=0。12 个 seeds 初步分诊：Gus 4 条（knockback_spirit/kooky_popper/health_bonanza_homing/spooky_pop）按维护者裁决接受现状（9/16 削弱后回归被动 peel 定位，妙具组属 loadout 细节）；其余 8 条（Poco Tuning Fork、Shade Frightener/Speedster、El Primo Gravity Leap、Amber 油桶/Siphon、Chuck Rerouting 盾）多为子边级 loadout 细节，待维护者逐一裁决，其中 Shade Frightener（墙内回血）与 El Primo Gravity Leap（拉拽）有潜在边层故事，优先看。
+- 审计账本（可再生）：`outputs/balance-breakpoints/2026-08-rework-capability-edge-coverage.{json,md}`；runtime 索引已重编译。
+
+## [2026-09-17] skill | rework/芭菲类 ingest 的社区证据复查规则 + Gus 首次实查落地
+
+维护者裁决：技能重做类改动（含芭菲——几乎总带重做性质）的 ingest 必须参考社区观点，禁止按补丁文本望文生义推对位。
+
+- **reference 更新两处**：`source-ingest.md` 新增 "Rework- and Buffie-flavored changes: community-evidence recheck" 五步规则（重抓/核对双源现页 → diff 对位证据 → 新证据走标准晋升门 → **显式记录 checked-negative 与来源滞后**——第三方名单在证伪前视为重做前快照 → 与能力复核脚本联动）；`balance-breakpoint-audit.md` 能力复核小节插入该联动为第 2 步并重排编号。
+- **Gus 首次实查**：按新规则重抓 PLP-Gus 现页（2026-09-17）与 09-03 抓取件 diff——`countersThese` 8 人无变化（checked-negative）；**`counteredBy` 漂移：+Nori、−Mandy**。链条走全：`capture_brawler_sources.py --sites plp` 新 raw、PLP-Gus 来源页重建、Gus 页 target_favored 边更新（目标列表 Mandy→Nori；mechanism 增补 Nori 机制——钩突进+1.25s root 断盾/灵体循环、MASTER FISHERMAN 拉入让爆发直接落在低血本体，机制均出自 Nori 已复核稳定字段；active_when 增补钩距离窗口）。
+- 验证：runtime 索引重编译；slot-decision 43/43、维护契约、profile 质量零 blocker。
+
+## [2026-09-17] maintenance | S49 机器地图池清单同步
+
+应用发布核对发现赛季索引已更新但 `wiki/environment/ranked_pool.json` 仍为 S48。按已归档 revid 219103 的池表同步为 S49（26 图，Hot Zone featured），新增 In the Liminal / Quick Travel，移除本季出池 6 图；保留历史实体与归档。来源摘要补充机器消费说明，已有导航无需变更。

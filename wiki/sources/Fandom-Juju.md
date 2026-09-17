@@ -4,8 +4,8 @@
 
 - 标题：Juju
 - 来源：[Juju | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Juju)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-04T01:32:46Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T20:09:23Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/juju.md]]
 - source_quality：direct_raw_capture
@@ -20,8 +20,8 @@
 
 - 稀有度: Mythic
 - 官方定位: Artillery
-- 移动速度: 720 (Normal)<br>1008 (on water; with Elementalist)<br>864 (with Hypercharge)<br>1152 (with Hypercharge and on water; with Elementalist)
-- 生命值: 3100
+- 移动速度: 750 (Normal)<br>1050 (on water; with Elementalist)
+- 生命值: 3500
 - 攻击距离: 6.33 (Normal)<br>9 (in bushes; Long)<br>9 (with Voodoo Chile; Long)
 - 装填: 1.6 seconds (Normal)<br>2 seconds (while Voodoo Chile is active)
 - 普攻数值: 800

@@ -1,5 +1,7 @@
 # Ranked Season 48 地图 Map Profile 总览
 
+> **已过期**：当前 Ranked 赛季为 Season 49（2026-09-17 起，featured = Hot Zone）。本页保留作历史索引，当前地图池见 [[syntheses/Ranked-Season-49-地图Map-Profile总览|Ranked Season 49 地图 Map Profile 总览]]。
+
 这页作为 `Ranked Season 48` 的赛季地图池索引。稳定地图结构、`map_feature`、地图特征对英雄能力的稳定影响和 `false_positive` 拆入单地图实体页。
 
 治理原则见 [[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]：

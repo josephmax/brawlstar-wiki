@@ -4,8 +4,8 @@
 
 - 标题：Willow
 - 来源：[Willow | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Willow)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-18T01:05:13Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T10:32:32Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/willow.md]]
 - source_quality：direct_raw_capture
@@ -20,10 +20,10 @@
 
 - 稀有度: Mythic
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
-- 生命值: 3300
+- 移动速度: 750 (Normal)
+- 生命值: 3600
 - 攻击距离: 7.33 (Long)
-- 装填: 2 seconds (Slow)
+- 装填: 1.8 seconds (Normal)
 - 普攻数值: 400
 - Super 距离: 8.33 (Long)
 - Super 数值: unknown

@@ -19,7 +19,8 @@
 - [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
-- [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]（当前赛季，featured = Brawl Ball）
+- [[syntheses/Ranked-Season-49-地图Map-Profile总览|Ranked Season 49 地图 Map Profile 总览]]（当前赛季，featured = Hot Zone）
+- [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]（已过期，featured = Brawl Ball）
 - [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[concepts/伤害与生存断点|伤害与生存断点]]
@@ -47,6 +48,7 @@
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 - [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]
 - [[syntheses/2026六月至八月平衡性断点双向评估|2026 六月至八月平衡性断点双向评估]]
+- [[syntheses/2026六月至九月平衡性断点双向评估|2026 六月至九月平衡性断点双向评估]]
 - [[syntheses/BP-模拟样本关键结论汇总|BP 模拟样本关键结论汇总]]
 
 ## Sources
@@ -69,6 +71,7 @@
 - [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]（8 月补丁：新英雄 Cosmo/Vince、Wendy/Nori 极限充能、6 个新芭菲、平衡性调整，含 balance_patch_manifest）
+- [[sources/Fandom-Maintenance-September-16-2026|Fandom 来源摘要: Maintenance - September 16, 2026]]（9 月 16 日维护补丁：9 削弱 9 增强，含 balance_patch_manifest，effective_order 5）
 - [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
 - [[sources/Supercell-Maintenance-August-4-2026|Supercell 来源摘要: Maintenance - August 4, 2026]]
 - [[sources/User-Note-Balance-Breakpoint-Audit|用户维护规则：平衡调整伤害—生存断点审计]]
@@ -77,7 +80,10 @@
 - [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement（future-only）]]
 - [[sources/Fandom-Ranked-Map-Source-Assessment|Fandom 来源摘要: Ranked 地图页建模价值评估]]
 - [[sources/Fandom-Ranked-Season-46-Map-Pages|Fandom 来源摘要: Ranked Season 46 全量地图页]]
+- [[sources/Fandom-Ranked-Season-49-Map-Pages|Fandom 来源摘要: Ranked Season 49 地图池]]（当前赛季：Hot Zone featured、6 出 2 进，含 S49 vs S48 差异）
 - [[sources/Fandom-Ranked-Season-48-Map-Pages|Fandom 来源摘要: Ranked Season 48 地图池]]
+- [[sources/Fandom-In-the-Liminal|Fandom 来源摘要: In the Liminal]]（S49 新增图，布局证据缺口）
+- [[sources/Fandom-Quick-Travel|Fandom 来源摘要: Quick Travel]]（S49 新增图）
 - [[sources/Fandom-Beach-Ball|Fandom 来源摘要: Beach Ball]]
 - [[sources/Fandom-Spiraling-Out|Fandom 来源摘要: Spiraling Out]]
 - [[sources/Fandom-Rustic-Arcade|Fandom 来源摘要: Rustic Arcade]]
@@ -421,6 +427,7 @@
 - [[entities/maps/Hard Rock Mine|Hard Rock Mine]]
 - [[entities/maps/Hideout|Hideout]]
 - [[entities/maps/Hot Potato|Hot Potato]]
+- [[entities/maps/In the Liminal|In the Liminal]]
 - [[entities/maps/Kaboom Canyon|Kaboom Canyon]]
 - [[entities/maps/Layer Cake|Layer Cake]]
 - [[entities/maps/New Horizons|New Horizons]]
@@ -430,6 +437,7 @@
 - [[entities/maps/Pinball Dreams|Pinball Dreams]]
 - [[entities/maps/Pinhole Punt|Pinhole Punt]]
 - [[entities/maps/Pit Stop|Pit Stop]]
+- [[entities/maps/Quick Travel|Quick Travel]]
 - [[entities/maps/Ring of Fire|Ring of Fire]]
 - [[entities/maps/Rustic Arcade|Rustic Arcade]]
 - [[entities/maps/Safe Zone|Safe Zone]]

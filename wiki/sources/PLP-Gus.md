@@ -4,11 +4,11 @@
 
 - 标题：Best build for Gus | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Gus | Power League Prodigy](https://powerleagueprodigy.com/gus)
-- 读取日期：2026-06-30
+- 读取日期：2026-09-17
 - 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/gus.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -18,7 +18,7 @@
 ## 结构化字段摘要
 
 - 推荐 Gadget: `Kooky Popper`
-- 推荐 Star Power: `Spirit Animal`
+- 推荐 Star Power: `Health Bonanza`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Bounty, Knockout
 - Notes: none observed
@@ -27,7 +27,7 @@
 ## Matchup 候选
 
 - countersThese: `Gray`, `Emz`, `Belle`, `Bo`, `Lola`, `Fang`, `Squeak`, `Amber`
-- counteredBy: `Mr. P`, `Nani`, `Bonnie`, `R-T`, `Stu`, `Eve`, `Pam`, `Mandy`
+- counteredBy: `Nori`, `Mr. P`, `Nani`, `Bonnie`, `R-T`, `Stu`, `Eve`, `Pam`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

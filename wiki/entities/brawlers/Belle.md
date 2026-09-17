@@ -290,3 +290,39 @@ bp_brawler_profile:
     slot_4_5: "用于补长线、反前排或 Hot Zone 入口税；同时检查敌方 6 位是否能补 thrower/dive。"
     slot_6: "当敌方缺投掷、缺侧路突脸且必须过窄口时，可以作为惩罚性安全输出。"
 ```
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Belle",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 2900, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Belle|Fandom-Belle]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "bolt_impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {"amount": 1140, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "主弹直接命中单个目标（2026-09-16 由 1040 上调）；对同一目标的重复普攻按相同包计",
+        "source_conflict_status": "none",
+        "source_ref": "[[sources/Fandom-Belle|Fandom-Belle]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": [
+      {"id": "main_bounce_companion", "reason": "弹跳段 570（Power 1，主弹一半）最多 3 跳、以近旁敌人为条件，是主包的伴随条件包，不并入单目标斩杀除法", "change_class": "unsupported_mechanic"},
+      {"id": "super_spotter_mark", "reason": "Super 标记使目标受到的所有伤害 +35%，是乘性易伤倍率而非静态包；斩杀阈值结论进入实战时须按标记状态另行复核", "change_class": "unsupported_mechanic"}
+    ]
+  }
+}
+```

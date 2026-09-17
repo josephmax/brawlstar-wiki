@@ -152,6 +152,30 @@ A generated transition may enter an existing BP field only when all are true:
 
 Tournament picks may corroborate that a state or build occurred. Frequency and results never enter the formula or promotion score.
 
+### Numerically-grounded matchup review scope (2026-09-17 maintainer decision)
+
+Breakpoint digestion into `conditional_matchups` is scoped to **numerically-grounded edges only** — edges whose `mechanism`/`active_when`/`fails_when` text carries a survival or kill-time premise that the breakpoint math can prove or falsify (burst windows, shot counts, outlast claims, "clears effective spawn health", low-HP finish ranges, shield-line requirements). For each patch:
+
+- **Premise-class sub-test first**: before an integer transition fires a review, classify the premise as static-EHP class or sustain/healing class. Sustain premises (healing loops, regen, shield replenishment cycles, "回血/耐杀/outlast by healing") belong to the temporal-survival exclusion class — the static matrix cannot falsify them, so they never trigger direction review; they queue for packet/time-sequence modeling instead. Only static-EHP premises (fixed pools, non-regenerating barriers, flat DR windows) are auditable.
+- Review only edges involving patch-involved parties (attacker packet changed, or target state/defense changed) whose premise text is numerically-grounded AND passed the sub-test.
+- An integer transition that falsifies such a premise triggers rewrite, bundle-split, or demotion of that edge; a non-integer EHP drift never does.
+- Edges that are positional or utility-based (body-block, wall control, scouting, routing, objective conversion) are out of scope even when both parties are patch-involved; their premises are not functions of the EHP matrix.
+- Direction calls (favored side) still come from mechanism and source review, never from the audit matrix; the audit only fires the review, and a burst-window line at most annotates `fails_when` (e.g., "inside an anti-heal/focus window"), never flips a direction.
+- Build-pressure findings route to `build_switches`/`failure_modes` regardless of this scope, since those fields are their named consumers.
+
+### Capability-grounded matchup review (behavior reworks)
+
+Behavior reworks — gadget/star-power/hypercharge reworks and new mechanics such as knockback, ammo steal, homing, purge — are not breakpoint quantities, so the numeric scope above is blind to them. But they change which matchup stories an edge can truthfully tell. Known regression case (2026-08 wave): Gus's Knockback Spirit rework reached `capability_vector`/`crowd_control` yet his dive-bundle edge kept telling the pre-rework Super-shield-only story.
+
+For every patch that carries behavior-rework rows for a Brawler:
+
+1. Curate the rework-atom list (ability atom plus keyword group) from the manifest's behavior rows and the brawler's reviewed stable fields. This list is maintainer knowledge, not script output.
+2. Pair the curation with the community-evidence recheck required by `references/source-ingest.md` ("Rework- and Buffie-flavored changes"): re-check the current Fandom and PLP pages for new match-up evidence instead of inferring stories from the literal patch text, and use that evidence as the source for any edge a seed grows into.
+3. Run `audit_capability_edge_coverage.py`: for each atom, check coverage in (a) the brawler's stable fact fields (`capability_vector`, `build_switches`, `map_feature_hooks`, `objective_contracts`) and (b) its `conditional_matchups` mechanism/active_when/fails_when text.
+4. Missing capability coverage means the ingest fold itself was incomplete — fix the entity fields first. Missing edge coverage produces a **review seed**, never an edge: a maintainer decides whether the atom actually changes an edge story, using mechanism and source knowledge; direction is never set by the script. Many atoms are legitimately sub-edge loadout detail; an accepted seed is a closed review, not an open gap — record the maintainer rationale (e.g., "post-nerf the Brawler returned to the passive-peel positioning").
+5. New or rewritten edge text follows the standard promotion discipline: mechanism, `active_when`, `fails_when`, `bp_use`, and a source ref; sustain-class caveats from the premise-class sub-test still apply (e.g., chase-down claims about healing Brawlers cannot lean on the static matrix).
+6. Re-run the audit after ingest waves touching multiple Brawlers (full regression), not only for the single patch that triggered it.
+
 ## Commands
 
 ```bash

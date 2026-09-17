@@ -4,8 +4,8 @@
 
 - 标题：El Primo
 - 来源：[El Primo | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/El_Primo)
-- 读取日期：2026-09-03
-- Fandom 页面最后编辑：2026-09-03T03:14:34Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T18:21:36Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/el-primo.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Rare
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>963 (with Meteor Rush)<br>1117 (with Meteor Rush and Hypercharge)<br>1600 (with Super)
+- 移动速度: 800 (Fast)<br>1000 (with Meteor Rush)<br>1600 (with Super)
 - 生命值: 6500
 - 攻击距离: 3 (Short)
 - 装填: 0.8 seconds (Very Fast)

@@ -235,7 +235,7 @@ bp_brawler_profile:
     - target: ["Nani", "Angelo", "R-T", "Tick"]
       direction: target_favored
       source: "[[sources/PLP-Piper|PLP-Piper]]"
-      mechanism: 更高爆发、特殊弹道、标记或投掷压力会让 Piper 的单发长线优势失效
+      mechanism: 更高爆发、特殊弹道、标记或投掷压力会让 Piper 的单发长线优势失效；R-T Recording 头部减伤 20%→25%（2026-09-16）使其分体头对 Piper 满距离从 3 发变 4 发，进一步坐实该方向
       active_when: 地图允许他们从更安全角度输出或用召唤/墙体限制 Piper
       fails_when: Piper 有先手草角、Homemade Recipe 或队友先清投掷/标记资源
       bp_use: avoid_blind_sniper_mirror

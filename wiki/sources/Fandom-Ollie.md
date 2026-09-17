@@ -4,8 +4,8 @@
 
 - 标题：Ollie
 - 来源：[Ollie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Ollie)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T10:14:14Z
+- 读取日期：2026-09-17
+- Fandom 页面最后编辑：2026-09-16T19:39:43Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/ollie.md]]
 - source_quality：direct_raw_capture
@@ -20,11 +20,11 @@
 
 - 稀有度: Mythic
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>2300 (with Super)<br>1283 (with Regulate)<br>930 (with Kick, Push)<br>1084 (with Kick, Push and Hypercharge)<br>4000 (with Hypercharged Super)
+- 移动速度: 800 (Fast)<br>2300 (with Super)<br>960 (with Kick, Push)<br>4000 (with Hypercharged Super)
 - 生命值: 5400
 - 攻击距离: 6.33 (Normal)
 - 装填: 1.8 seconds (Normal)
-- 普攻数值: 900
+- 普攻数值: 1000
 - Super 距离: 5.67 (Normal)<br>6.67 (with Hypercharge)
 - Super 数值: 800
 - Gadgets: Regulate, All Eyez On Me

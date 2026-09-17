@@ -287,8 +287,8 @@ bp_brawler_profile:
         "source_kind": "star_power",
         "applies_to_states": ["split_head_full_health"],
         "loadout_group": "star_power",
-        "effect": {"type": "damage_reduction", "ratio": 0.20},
-        "active_when": "分体且装备 Recording",
+        "effect": {"type": "damage_reduction", "ratio": 0.25},
+        "active_when": "分体且装备 Recording（2026-09-16 由 0.20 上调）",
         "source_ref": "[[sources/Fandom-R-T|Fandom-R-T]]"
       },
       {
@@ -296,9 +296,9 @@ bp_brawler_profile:
         "source_kind": "star_power",
         "applies_to_states": ["split_legs"],
         "loadout_group": "star_power",
-        "effect": {"type": "damage_reduction", "ratio": 0.50},
+        "effect": {"type": "damage_reduction", "ratio": 0.55},
         "replaces_intrinsic_damage_reduction": true,
-        "active_when": "分体且装备 Recording；替代默认 29% 而非与其相加",
+        "active_when": "分体且装备 Recording；替代默认 29% 而非与其相加（2026-09-16 由 0.50 上调，见 [[sources/Fandom-Maintenance-September-16-2026|9 月维护账本]]）",
         "source_ref": "[[sources/Fandom-R-T|Fandom-R-T]]"
       }
     ]

@@ -278,6 +278,41 @@ bp_brawler_profile:
     slot_6: "最后手适合封闭图开首杀；遇 Colette/Poco/Sandy/Rosa 等应谨慎"
 ```
 
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Ollie",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {"amount": 5400, "at_power_level": 1, "scaling": "standard"},
+        "source_ref": "[[sources/Fandom-Ollie|Fandom-Ollie]]"
+      }
+    ],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "soundwave_impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {"amount": 1000, "at_power_level": 1, "scaling": "standard"},
+        "active_when": "单发音波命中单个目标（2026-09-16 由 900 上调）；穿透窄锥可命中多个目标，但不改变对单一目标的每包伤害",
+        "source_conflict_status": "none",
+        "source_ref": "[[sources/Fandom-Ollie|Fandom-Ollie]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": [
+      {"id": "super_hypnotize", "reason": "Super 强制移动/控制窗口属时序控制模型，不建模为静态 EHP 或包", "change_class": "temporal_survival_excluded"}
+    ]
+  }
+}
+```
+
 ## 关联页面
 
 - [[sources/Fandom-Ollie|Fandom 来源摘要: Ollie]]

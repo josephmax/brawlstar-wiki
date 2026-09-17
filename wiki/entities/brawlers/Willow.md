@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "low_medium; 2 秒 slow reload，靠毒伤和控位"
     objective_damage: "low; 主要控人/控区，不是 Heist race"
     mobility: "low; Dive 是无敌停滞，不是位移"
-    survivability: "low_without_dive; Power 11 6600 HP，Hex 控人时自己仍会被第三方威胁"
+    survivability: "low_without_dive; Power 11 7200 HP（2026-09-16 由 6600 上调），Hex 控人时自己仍会被第三方威胁"
     engage: "medium_with_hex; 命中 Hex 后可把目标拉近/赶走/移出目标点"
     disengage: "high_with_dive_or_hex; Dive 2 秒无敌，Hex 可让追击者走开"
     anti_aggro: "medium_high_if_hex_hits; 心控能打断突进路线，但 miss 后很脆"
@@ -58,7 +58,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "Dive 让 Willow 2 秒无法行动但免疫直接伤害，DoT/debuff 仍可作用"
         - "Obsession 让 Hex 目标获得 +240 flat speed，实际持续 3 秒"
-        - "Shield/Damage gear 缓解 Power 11 6600 HP 和 DoT 输出不足"
+        - "Shield/Damage gear 缓解 Power 11 7200 HP 和 DoT 输出不足"
       enables:
         - "Hex 后快速拖走 carrier/scorer/body"
         - "危险窗口保命"
@@ -228,7 +228,7 @@ bp_brawler_profile:
       bp_use: "survival_false_positive_filter"
     - id: "slow_thrower_reload_under_dive_pressure"
       active_when: "Mortis、Mico、Melodie、Stu、Lily、Moe、Gray、Sam 等从侧翼压 Willow"
-      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored signals and Power 11 6600 HP"
+      exposed_by: "[[sources/PLP-Willow|PLP-Willow]] target_favored signals and Power 11 7200 HP"
       mitigation: "补视野/peel，选墙后投掷角，避免无防守侧路"
       bp_use: "draft_requires_peel"
 
