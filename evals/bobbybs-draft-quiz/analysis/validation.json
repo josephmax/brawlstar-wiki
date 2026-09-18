@@ -1,0 +1,15 @@
+{
+  "checks": "passed",
+  "cases": 56,
+  "videos": 19,
+  "development_inputs": 55,
+  "paired_review_inputs": 1,
+  "withheld_from_regular": 1,
+  "gold": 0,
+  "transcript_hashes": 19,
+  "screenshot_hashes": 15,
+  "knowledge_files": 91,
+  "knowledge_drift": [],
+  "local_links": 771,
+  "scope": "integrity, export isolation and source hashes; not strategy or model performance"
+}

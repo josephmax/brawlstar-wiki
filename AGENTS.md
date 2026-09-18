@@ -13,6 +13,7 @@
 | `wiki/index.md` | 内容导航入口 | query、ingest、lint 时用来定位页面和检查导航覆盖 |
 | `wiki/log.md` | 维护操作日志 | ingest、重要 query、lint、结构变更和 cleanup 后追加 |
 | `skills/brawl-stars-bp-knowledge-maintenance/` | BP 知识维护 skill，`$markdown-llm-wiki` 的 Brawl Stars BP 领域子集 | source ingest、英雄/地图建模、BP profile 审计、runtime 边界治理 |
+| `skills/brawl-stars-bp-eval-maintenance/` | 专家题库维护 skill | 视频采集、核源、名称校准、考点拆解、输入隔离与题库校验 |
 | `skills/run-brawl-stars-bp/` | BP 裁判 / 对局编排 skill | 运行模拟 BP、同步 ban、顺序 pick、生成 match report |
 | `skills/brawl-stars-bp-slot-decision/` | 单手 BP 决策 skill | 执行 `compile` / `decide`，从稳定事实和 `runtime_bp_index` 做选手侧决策 |
 
@@ -48,8 +49,11 @@ wiki/
   syntheses/
 skills/
   brawl-stars-bp-knowledge-maintenance/
+  brawl-stars-bp-eval-maintenance/
   run-brawl-stars-bp/
   brawl-stars-bp-slot-decision/
+evals/                      # 持久专家题库，维护/评分侧专用，不进入 runtime
+  bobbybs-draft-quiz/
 outputs/
   bp-simulations/
 ```
@@ -74,6 +78,7 @@ outputs/
 | `wiki/environment/` | 环境信号与赛事观察数据**持久归档**：`<月>/archive.sqlite3`（SQLite 行列：event/series/set/metric/signal）、`pickrate.sqlite3`、`current.json` 指针、`index.md` | SQLite 单文件 + Markdown 索引页；compile 的唯一环境输入；归档变更须同步指针与索引 |
 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论和归档 | 不是 BP runtime 依赖；执行规则采纳后复制进 skill references |
 | `skills/*/` | 可执行 agent skill、references、scripts 和契约测试 | 运行时或维护规则以这里为准；大段 wiki 讨论不能替代 skill 规则 |
+| `evals/` | 持久专家题库、校准记录、考点和干净测评输入 | 原始字幕/证据在 `raw/sources/`；作者答案和分析禁止进入 runtime，运行成绩留 `outputs/` |
 | `outputs/` | 审计报告、模拟报告、`runtime_bp_index`、临时交付物 | 已 gitignore；不写回长期 wiki |
 
 ## 知识架构与 BP Skill 边界
@@ -91,6 +96,10 @@ outputs/
 | 维护综合层 | `wiki/syntheses/` | 维护者讨论、方法论、跨来源结论、架构决策和归档 | `compile` / `decide` 都不可直接读取 |
 | Skill 规则层 | `skills/*/SKILL.md`、`skills/*/references/` | 可执行 skill 的渐进披露文档和操作规则 | skill 自己必须优先读取 |
 | 运行产物层 | `outputs/` 或调用方指定路径 | 临时报告、审计输出、`runtime_bp_index` 编译产物 | `decide` 可读对应 runtime index；不写回 wiki |
+
+### 专家题库边界
+
+题库维护使用 `skills/brawl-stars-bp-eval-maintenance/`。`evals/` 是持久维护/评分资料，不是 `outputs/` 的临时计算产物，也不是稳定英雄事实。`compile` / `decide` 禁止读取题库、题库原始字幕/截图及其维护 skill；来源页只供维护者导航。正式测评必须由调用方隔离被测进程的文件访问权限，不能仅依靠 prompt。专家接受名单不穷尽最优解，派生反事实不自动成为新真值。
 
 ### 单向同步规则
 
@@ -268,3 +277,6 @@ BP 维护文件职责：
 
 <!-- register-skills: run-brawl-stars-bp -->
 - 引用仓库 skill: @skills/run-brawl-stars-bp （SKILL.md 位于 skills/run-brawl-stars-bp/SKILL.md）
+
+<!-- register-skills: brawl-stars-bp-eval-maintenance -->
+- 引用仓库 skill: @skills/brawl-stars-bp-eval-maintenance （SKILL.md 位于 skills/brawl-stars-bp-eval-maintenance/SKILL.md）

@@ -40,6 +40,9 @@
 
 ## BP Maintenance
 
+- [[sources/BobbyBS-Draft-Quiz|BobbyBS 专家 BP 题库来源与核验入口]]（维护/测评专用，不进入 runtime）
+- [题库维护 skill](../skills/brawl-stars-bp-eval-maintenance/SKILL.md)：采集、核源、校准、分析与输入隔离。
+
 - [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
 - [[syntheses/BP-维护归档|BP 维护归档]]
 

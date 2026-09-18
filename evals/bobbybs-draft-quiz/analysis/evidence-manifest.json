@@ -1,0 +1,472 @@
+{
+  "analyzed_on": "2026-09-18",
+  "vault_root": ".",
+  "vault_git_head": "40914e56939bc86b9ba80dd8660103a7982ee2b9",
+  "note": "Working-file sha256 pins knowledge. Prior v1 visual review had no saved screenshots; v2 evidence files are hashed separately. No independent original-audio listening or current-patch expert audit was performed.",
+  "source_sha256": {
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/02w4WJrpZOg.txt": "bed8613c75fdfd54340036b894a5b74059fab934679333fc80cdf5a0f274f631",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/58k8-_o9sKU.txt": "bf591d33d223159de3fc44ca82e4d52767fcc25ae9be96e1be01f26589ad3cef",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/5HP07EygUio.txt": "93a3f01ae52dd53c1bf8ccc50941a692d3f3bffe1ecf0544885fa54c83afc15f",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/8CGXicuVjbs.txt": "5d519d88f29dc8c9acde1bc077cebaea1b62c31a2c161437be38ae3da9d1193e",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/BiABMt4w2qI.txt": "018999991346f33ff430db950976b33f7f398cb2ed2fb82a4d14ad27b21be920",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/BzIBRZCMiMM.txt": "d1a99096f6201ec56a0c8cdad52be1b3989579061fdb2f5e46051ccc4f08e62a",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/JxRGZPCa8Us.txt": "39e66ce4ec5cc4904f141071e3c38dabc7cc6842a08a595d51f3933f2a9573bb",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/K7iG6U18pR4.txt": "efaccea4b61dbfea0ccb36b499cd018468d9f2101b9a089fd15dfa1eb821f1c2",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/SoRLuUmTPG4.txt": "fef98a6dce8ae42100b5e2904b18356e4fbe9e419cb9137e1339404f0b746b0e",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/StONtQp8uZ4.txt": "1276907fc77b4a8ba96c368c3d837edacf587a3c6967350a36948fd4ecd4950c",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/ZdWs3kiDrJ8.txt": "8bd40ee43c0a1366557410cd03442d6613b965cc4da6772f489156b066e65087",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/aItvGu49FEo.txt": "ef52ba3dadc0b7c94aa65df374adc71232e7b7869bed9188db0901e07bfed595",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/ai3KY3I5xRY.txt": "de8d383de140613aa7f375a73d24ed54b07daf16d58f5a22119910848a58afa3",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/c7C6B5cjD9o.txt": "07bf96f538afc86f3060525512b505ad0f19c32531e1149c07680d417a36a18b",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/itE4PAuap_E.txt": "42d671f4dd44f85a2345b7b9835b27b7dc18028b5a09399e115d948e48ac1b98",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/m4P2v_NfmlY.txt": "935ce245860fe128a60e76303fe9b25f2eb0b9019ef0ea798e7f4eed4fc488c7",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/qajAIs6gTLM.txt": "cb5eecb5d65c3eb14a0fb9e27095db0d0dbab7bd0dc049f0caa94ca3c2de2cbf",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/sGgIg02ctoU.txt": "39dbe81c7b683ed818bc0b4c4dc3e9f2def1b9fc0a9cc0a62be6b55785e45ebf",
+    "../../raw/sources/bobbybs-draft-quiz/transcripts/uw_BQfFSFZY.txt": "8675604426caec4880338cf28aac1bac589589d0c7efe3fc9210c1ccee218696"
+  },
+  "knowledge_files": {
+    "wiki/entities/brawlers/Griff.md": {
+      "sha256": "093327d5a965053700539a5ea3455b1ff512eebddf4c5dbd8a73c97ddad46540",
+      "path": "wiki/entities/brawlers/Griff.md"
+    },
+    "wiki/entities/brawlers/Starr Nova.md": {
+      "sha256": "1160748abdb44105dd5595eaf787fc74aee0dd4e27c8c21557051e8696b07834",
+      "path": "wiki/entities/brawlers/Starr Nova.md"
+    },
+    "wiki/entities/brawlers/Byron.md": {
+      "sha256": "a79bf13ff7d77b173113d7f63b4c5a1f0c2c23d5463e7d30093b77a7745cfd03",
+      "path": "wiki/entities/brawlers/Byron.md"
+    },
+    "wiki/entities/brawlers/Janet.md": {
+      "sha256": "85a5f0a44729ad001e452af79726d3765fac69fb715ac60b1d81bb1ebe32671b",
+      "path": "wiki/entities/brawlers/Janet.md"
+    },
+    "wiki/entities/brawlers/Pierce.md": {
+      "sha256": "eb8a9470180fe7a8658618d7d900625f58884420eef1a0ce76df5e6c798e3ad0",
+      "path": "wiki/entities/brawlers/Pierce.md"
+    },
+    "wiki/entities/brawlers/Gus.md": {
+      "sha256": "3de603fd091eb9f25d423ad1034405ca49e9cc4b41884bdd92e0f252d5396791",
+      "path": "wiki/entities/brawlers/Gus.md"
+    },
+    "wiki/entities/maps/Hard Rock Mine.md": {
+      "sha256": "103ea9df4655dae53003bf61b7067d2a980e02ce8473014eda3fa6a68f679ed7",
+      "path": "wiki/entities/maps/Hard Rock Mine.md"
+    },
+    "wiki/entities/brawlers/Sprout.md": {
+      "sha256": "dd70bccd739ef3b7e165d8d84dae187b58836dfa8fbba11d8771bab5d5899c65",
+      "path": "wiki/entities/brawlers/Sprout.md"
+    },
+    "wiki/entities/brawlers/Piper.md": {
+      "sha256": "842e15ea3ec7cedada61cea2b155b34f7ef08542633cb65b1232e0d87a5f11ae",
+      "path": "wiki/entities/brawlers/Piper.md"
+    },
+    "wiki/entities/brawlers/Wendy.md": {
+      "sha256": "9952881bce2ef085bc6a9adf83e17e0dcd03f660bd961009997060eeaa052ed5",
+      "path": "wiki/entities/brawlers/Wendy.md"
+    },
+    "wiki/entities/brawlers/R-T.md": {
+      "sha256": "c128ed9add4d0bc3c4f142659521c5669349ea0f876757430e015912c8603020",
+      "path": "wiki/entities/brawlers/R-T.md"
+    },
+    "wiki/entities/brawlers/Pearl.md": {
+      "sha256": "489de239575f0eec43e280094eb04041bddc6eae7a03049b71f8ba4e923f09e4",
+      "path": "wiki/entities/brawlers/Pearl.md"
+    },
+    "wiki/entities/brawlers/Edgar.md": {
+      "sha256": "bdb04232f365844b7c9b4510be0263c88389060fa96ed5803bef491a3f37514d",
+      "path": "wiki/entities/brawlers/Edgar.md"
+    },
+    "wiki/entities/brawlers/Rico.md": {
+      "sha256": "4def0481f74a5f8069ebd63489df30c604e2d8c8073666a1b56207a9e5b5b355",
+      "path": "wiki/entities/brawlers/Rico.md"
+    },
+    "wiki/entities/maps/Belle's Rock.md": {
+      "sha256": "ff56ac5eff797b1d541b6c01ad50993e2905c013d0f78b0a1b7f6aa443f11175",
+      "path": "wiki/entities/maps/Belle's Rock.md"
+    },
+    "wiki/entities/brawlers/Nita.md": {
+      "sha256": "4b870a4ba2eb536c5f34beb3ef1c9b7e64ab6c82ab8bfab1b20c86a33055dbf1",
+      "path": "wiki/entities/brawlers/Nita.md"
+    },
+    "wiki/entities/brawlers/Jessie.md": {
+      "sha256": "1d1b596516ac967367db9e8843fffb9da9d413c0bdaeafab0c5fc1b986c98260",
+      "path": "wiki/entities/brawlers/Jessie.md"
+    },
+    "wiki/entities/brawlers/Shade.md": {
+      "sha256": "a1411cd179d7cb6c870631c7453f06acc992a32f2d5a9d096b6199f480936f9b",
+      "path": "wiki/entities/brawlers/Shade.md"
+    },
+    "wiki/entities/brawlers/Tara.md": {
+      "sha256": "9d2a31afae9bbefdec37489b2f815644d74ae721988dcbaf42610cc903afaed6",
+      "path": "wiki/entities/brawlers/Tara.md"
+    },
+    "wiki/entities/brawlers/Bull.md": {
+      "sha256": "d5555c5aed30476dfadc54865c4adadeba3da898d708584fd562ae231dc20cae",
+      "path": "wiki/entities/brawlers/Bull.md"
+    },
+    "wiki/entities/brawlers/Gray.md": {
+      "sha256": "eefcfd582a66b8f42d81b5b65d345df60f2b680a55a5693cc24895f7ee52e738",
+      "path": "wiki/entities/brawlers/Gray.md"
+    },
+    "wiki/entities/maps/Double Swoosh.md": {
+      "sha256": "8b1a11c7dbb364956a22b5f76c9291bcf03edccab0f0b8f9c619dd7a3fca1505",
+      "path": "wiki/entities/maps/Double Swoosh.md"
+    },
+    "wiki/entities/brawlers/Colette.md": {
+      "sha256": "70bb49c81883c544d5fa5af5fbc0b80e34de9642573127184a8fb92d689cf01d",
+      "path": "wiki/entities/brawlers/Colette.md"
+    },
+    "wiki/entities/brawlers/Mortis.md": {
+      "sha256": "27809c585f3d705162a2a6d85fe85f2c9f15442b66eec14bd888370056c75b33",
+      "path": "wiki/entities/brawlers/Mortis.md"
+    },
+    "wiki/entities/maps/Shooting Star.md": {
+      "sha256": "f55c0068fcc346d7fcf5431fb7ff9579dee1fb63b7eb46478f080b19278ebae0",
+      "path": "wiki/entities/maps/Shooting Star.md"
+    },
+    "wiki/entities/brawlers/Poco.md": {
+      "sha256": "aea26412bbba36a0508bbfb0fd6f7d72c83f3be81692ee3b70d6697d730fd89f",
+      "path": "wiki/entities/brawlers/Poco.md"
+    },
+    "wiki/entities/brawlers/Lou.md": {
+      "sha256": "376466064123a9e23941fb1d5a93935255bd024edf001d2847f2327d2843c8fd",
+      "path": "wiki/entities/brawlers/Lou.md"
+    },
+    "wiki/entities/brawlers/Leon.md": {
+      "sha256": "883320a479ba2eed48d04d4076dc171ca67b75f77be7f608080e9eaee923ee1a",
+      "path": "wiki/entities/brawlers/Leon.md"
+    },
+    "wiki/entities/brawlers/Fang.md": {
+      "sha256": "0c8d0ea23d18e3ca0f19d010b236b762963554844bbe9754a04dac79884681eb",
+      "path": "wiki/entities/brawlers/Fang.md"
+    },
+    "wiki/entities/brawlers/Amber.md": {
+      "path": "wiki/entities/brawlers/Amber.md",
+      "sha256": "9b95aee7417e97929fa42cbec51d5b6333cca9dc0dad405d193c755efc927402"
+    },
+    "wiki/entities/maps/Ring of Fire.md": {
+      "sha256": "000a98c94185bb03b4b15806c8c29c529f0ed9edc5c706f2b36029b7bcdf9d86",
+      "path": "wiki/entities/maps/Ring of Fire.md"
+    },
+    "wiki/entities/brawlers/Frank.md": {
+      "sha256": "4719115a43c1d11cba767c555af394d50fcffa97b169c0a699522cec9a2e0a7b",
+      "path": "wiki/entities/brawlers/Frank.md"
+    },
+    "wiki/entities/brawlers/Emz.md": {
+      "sha256": "7e139f60a2fa3d0c7b7a5adbd93844b6c7339d2e2c1180fd11d9743440090b80",
+      "path": "wiki/entities/brawlers/Emz.md"
+    },
+    "wiki/entities/brawlers/Draco.md": {
+      "sha256": "268a1bfff4fa4eee3c589349d4fabe1c0a69644e3e95b60a201ec6ea38d008ce",
+      "path": "wiki/entities/brawlers/Draco.md"
+    },
+    "wiki/entities/brawlers/Max.md": {
+      "sha256": "dd20fa6bcde3d302f3564cefb04e6d153cfd78e68ae715b74ab556b4fac47b7d",
+      "path": "wiki/entities/brawlers/Max.md"
+    },
+    "wiki/entities/maps/Open Business.md": {
+      "sha256": "b69f711c4b38d05b22336112ec1fdee2a3776c6c780f0ffc0e7e9866e722561d",
+      "path": "wiki/entities/maps/Open Business.md"
+    },
+    "wiki/entities/brawlers/Barley.md": {
+      "sha256": "01d4ff3c61a8af0dc906eb66ba57fd11d54b1d5fc9e1e55079dc1c53c6476ced",
+      "path": "wiki/entities/brawlers/Barley.md"
+    },
+    "wiki/entities/brawlers/8-Bit.md": {
+      "sha256": "163f28e501661b066327118a3685e2ba280c9b6197b9c7d0fc200c8d515f4e72",
+      "path": "wiki/entities/brawlers/8-Bit.md"
+    },
+    "wiki/entities/maps/Pinball Dreams.md": {
+      "sha256": "77501e0a94e8a01d5cdbf14c006065b737b7060f687461500463ad46c65d55e0",
+      "path": "wiki/entities/maps/Pinball Dreams.md"
+    },
+    "wiki/entities/brawlers/Jae-yong.md": {
+      "sha256": "5570e68dcf6c393e3b2d7b7e5bde255e9dd5b65175677d350819e8728e1b8e76",
+      "path": "wiki/entities/brawlers/Jae-yong.md"
+    },
+    "wiki/entities/brawlers/Charlie.md": {
+      "sha256": "27f342ae14b9114bc990ff672f3f0dd562f6716c9149964c96c6c984c808a5de",
+      "path": "wiki/entities/brawlers/Charlie.md"
+    },
+    "wiki/entities/brawlers/Penny.md": {
+      "sha256": "698222facc3de419e4e7ae32443bcd9a66f3adf092c03551646c9ef5aef3e048",
+      "path": "wiki/entities/brawlers/Penny.md"
+    },
+    "wiki/entities/maps/Hideout.md": {
+      "sha256": "9d27de564f3627ec63e4f80a8b49720a276c225fa8ec2ea47e94c6831cebceaa",
+      "path": "wiki/entities/maps/Hideout.md"
+    },
+    "wiki/entities/brawlers/Stu.md": {
+      "sha256": "1f44aeca036771de73780bba1b4ee1d90e96537795645673697ee0ff51865870",
+      "path": "wiki/entities/brawlers/Stu.md"
+    },
+    "wiki/entities/brawlers/Ruffs.md": {
+      "sha256": "d766d49f3444dca624f30369791f40cfaffe8a5796f6843adb60156ded28cc89",
+      "path": "wiki/entities/brawlers/Ruffs.md"
+    },
+    "wiki/entities/brawlers/Nori.md": {
+      "sha256": "374b6367b6609f9dba2c42f9ceeca0f2cbee252780ceec0dfb34d71a19fcfd38",
+      "path": "wiki/entities/brawlers/Nori.md"
+    },
+    "wiki/entities/brawlers/Belle.md": {
+      "sha256": "ed14572fc2e117806cc4148f69c3845ad21f561bda6c7f0bdf7e4ec4b77f3bd2",
+      "path": "wiki/entities/brawlers/Belle.md"
+    },
+    "wiki/entities/brawlers/Colt.md": {
+      "sha256": "f4ab25f028a89bf7998e3ad592ad8293d9d7ab38de203c09016bed50cb633616",
+      "path": "wiki/entities/brawlers/Colt.md"
+    },
+    "wiki/entities/brawlers/Cordelius.md": {
+      "sha256": "484dd5daa5e1a0f404a10412302c6d1726e8d383f4f7c4165e25876eea529c86",
+      "path": "wiki/entities/brawlers/Cordelius.md"
+    },
+    "wiki/entities/brawlers/Kit.md": {
+      "sha256": "1e4b35d60860cfb17c461ac2e4b5d007cf0ef89d256a064180551d0b0c1643bf",
+      "path": "wiki/entities/brawlers/Kit.md"
+    },
+    "wiki/entities/maps/Pit Stop.md": {
+      "sha256": "463d972010b985556dd0d83a09203ae394d0d9336bbc0dda50812e93004ba208",
+      "path": "wiki/entities/maps/Pit Stop.md"
+    },
+    "wiki/entities/brawlers/Crow.md": {
+      "sha256": "5cdb72ec7d2ee2088813c0d647416d61e9fc835e81e20f07862cef83b3543a0b",
+      "path": "wiki/entities/brawlers/Crow.md"
+    },
+    "wiki/entities/brawlers/Finx.md": {
+      "sha256": "6fb1edcc56f4abb7e213ededda8d1fae4cd307d33afd433e290d0759e846b5af",
+      "path": "wiki/entities/brawlers/Finx.md"
+    },
+    "wiki/entities/brawlers/Sirius.md": {
+      "sha256": "41591dc0a1dee17f1a0c1ee0dbb134cd73e70c3fa8de056d3b290b9a3589c399",
+      "path": "wiki/entities/brawlers/Sirius.md"
+    },
+    "wiki/entities/brawlers/Chester.md": {
+      "sha256": "80719fa9d7d7380569948d9affc25f65c47210876efb42ab600044ab17e48bb1",
+      "path": "wiki/entities/brawlers/Chester.md"
+    },
+    "wiki/entities/brawlers/Sandy.md": {
+      "sha256": "8cc7c7cbf3d7389172734144a05c08cb5fbe436c06acc5c2d01d93b7eaa3b05c",
+      "path": "wiki/entities/brawlers/Sandy.md"
+    },
+    "wiki/entities/brawlers/Otis.md": {
+      "path": "wiki/entities/brawlers/Otis.md",
+      "sha256": "a221e01e74fc907c7a52f6a1964c240d6b63e6af62b9e7946eaef4c234abd6e9"
+    },
+    "wiki/entities/maps/Pinhole Punt.md": {
+      "sha256": "583d22aefbe2bdf11bb8a00f2cccd34590431d43aabb7c33d74a4d4de039f10d",
+      "path": "wiki/entities/maps/Pinhole Punt.md"
+    },
+    "wiki/entities/brawlers/Lumi.md": {
+      "sha256": "dea726d11205e26e943b06c211c69c887fc968b58ab3c2ff216bc97c505f1b05",
+      "path": "wiki/entities/brawlers/Lumi.md"
+    },
+    "wiki/entities/maps/Undermine.md": {
+      "sha256": "64292cdea45f920dd0dc8f7e74eee88799f7e8a28c680fcb27591f166a1d803f",
+      "path": "wiki/entities/maps/Undermine.md"
+    },
+    "wiki/entities/maps/Hot Potato.md": {
+      "sha256": "e823c3943ab4b49cf2c38431ba281937aba6c9f592981795330bf7241f576968",
+      "path": "wiki/entities/maps/Hot Potato.md"
+    },
+    "wiki/entities/maps/Dueling Beetles.md": {
+      "sha256": "959910338ceae2916086e2557b76b9bd6910b77324d60115a053c830cdb79726",
+      "path": "wiki/entities/maps/Dueling Beetles.md"
+    },
+    "wiki/entities/brawlers/Najia.md": {
+      "sha256": "9b650590a35285cd1658094a43de1775e491f2d12cd2711ba2ebded5b481f3ab",
+      "path": "wiki/entities/brawlers/Najia.md"
+    },
+    "wiki/entities/brawlers/Gene.md": {
+      "sha256": "2a2b5ce27bfa0e0fff2eb4c3c157ea419145ae0d5e19217fb0739958de1a9ecd",
+      "path": "wiki/entities/brawlers/Gene.md"
+    },
+    "wiki/entities/brawlers/Chuck.md": {
+      "sha256": "0fab2c1b67f4aa78a714eb463d642f5936e1511983acb03342445692d7664464",
+      "path": "wiki/entities/brawlers/Chuck.md"
+    },
+    "wiki/entities/maps/Safe Zone.md": {
+      "sha256": "5d81fb2f20f6a959aea772bfb7c2f30c35f56ae335f9954ebe26bcfa36fb1518",
+      "path": "wiki/entities/maps/Safe Zone.md"
+    },
+    "wiki/entities/maps/Goldarm Gulch.md": {
+      "sha256": "4a413a0cd248816776c7cfbbbe0449352d09ca3ccff9a66dcd24ea72b179f30a",
+      "path": "wiki/entities/maps/Goldarm Gulch.md"
+    },
+    "wiki/entities/brawlers/Spike.md": {
+      "sha256": "65877f435bcda3132f12504aef14d47139afc762ebfea3f4a3c6b31472c68381",
+      "path": "wiki/entities/brawlers/Spike.md"
+    },
+    "wiki/entities/brawlers/Ziggy.md": {
+      "sha256": "754262c94198ca033c1376f5051fd334f9d88e5a61f04893d7aa2962da028c1b",
+      "path": "wiki/entities/brawlers/Ziggy.md"
+    },
+    "wiki/entities/brawlers/Grom.md": {
+      "sha256": "f95fde09d232e9f95c0bf9d38f2bdc9bc7c51f2d36b6c458779b336e89a0d8ce",
+      "path": "wiki/entities/brawlers/Grom.md"
+    },
+    "wiki/entities/brawlers/Pam.md": {
+      "sha256": "4dd06434b8b1606b5e9e677233a4edb03d3e61cedb2412f6807c9c310e4ad20e",
+      "path": "wiki/entities/brawlers/Pam.md"
+    },
+    "wiki/entities/brawlers/Angelo.md": {
+      "sha256": "99226d06e6e218c4f5ff5f1d3681edad495c7c0edf18ff8f5cf4f10040d1e543",
+      "path": "wiki/entities/brawlers/Angelo.md"
+    },
+    "wiki/entities/brawlers/Nani.md": {
+      "sha256": "72befc4c0cce7b878d41fe7baef65184fee627ee97a41a7835e27f71930c92fb",
+      "path": "wiki/entities/brawlers/Nani.md"
+    },
+    "wiki/entities/maps/Kaboom Canyon.md": {
+      "sha256": "024c85bfcf4f031fd127fe1f33b035ae103083337bd35639dfdf90e2a420635a",
+      "path": "wiki/entities/maps/Kaboom Canyon.md"
+    },
+    "wiki/entities/brawlers/Carl.md": {
+      "path": "wiki/entities/brawlers/Carl.md",
+      "sha256": "8fff1490aa511873997b5658e3b14b7d7e60d1ae8a3f3a06631f6c5bbe850b20"
+    },
+    "wiki/entities/maps/Triple Dribble.md": {
+      "sha256": "297c33a0c60e50c797ba74d92a4648d960eda7a8b20fe8cb1e6cf37c73ee45ba",
+      "path": "wiki/entities/maps/Triple Dribble.md"
+    },
+    "wiki/entities/brawlers/Kaze.md": {
+      "sha256": "5e4649ce13996052e76c5d8364d5a2bbf040d1c55f5450a9cf535ec2e96a88be",
+      "path": "wiki/entities/brawlers/Kaze.md"
+    },
+    "wiki/entities/brawlers/Kenji.md": {
+      "sha256": "eb9273dec881aa18707f490a4e27b03dbdb61ce0a05ae9f2d52ca86de0ab258a",
+      "path": "wiki/entities/brawlers/Kenji.md"
+    },
+    "wiki/entities/maps/Center Stage.md": {
+      "sha256": "c5d35f8f67b133ab40dd03c528c7216830fe34f86ca3d5bef7ec0bc4e29871b1",
+      "path": "wiki/entities/maps/Center Stage.md"
+    },
+    "wiki/entities/brawlers/Dynamike.md": {
+      "sha256": "e1e9d618198cc40157005dc42ceae8892ff69fba3bb838296cc0c47febe6ce04",
+      "path": "wiki/entities/brawlers/Dynamike.md"
+    },
+    "wiki/entities/brawlers/Berry.md": {
+      "sha256": "df215f0f77a4e3fd793e4b23326e499633d5afd1421050cc8881b1ee2723961b",
+      "path": "wiki/entities/brawlers/Berry.md"
+    },
+    "wiki/entities/maps/Layer Cake.md": {
+      "sha256": "e61fa96912bb0b610f9c0f1378f4639052d4839669dccb8c1af3763734839da4",
+      "path": "wiki/entities/maps/Layer Cake.md"
+    },
+    "wiki/entities/brawlers/Juju.md": {
+      "sha256": "262979470f40d56a314fa5466a87b95a6590255508a59bdd9e5c74034408eafc",
+      "path": "wiki/entities/brawlers/Juju.md"
+    },
+    "wiki/entities/brawlers/Alli.md": {
+      "sha256": "2648d5338a0f0c2ad7708272764bd350f26ab8d5acb04b3a4d40a55f4da738b7",
+      "path": "wiki/entities/brawlers/Alli.md"
+    },
+    "wiki/entities/brawlers/Meeple.md": {
+      "sha256": "5f4ad75b20935af600e2536094ff32b09ec1df7834568bbea3942dd20483fbca",
+      "path": "wiki/entities/brawlers/Meeple.md"
+    },
+    "wiki/entities/brawlers/Tick.md": {
+      "sha256": "94b7cac6823631c337ca4a848385f9363145079593ffbd3f2302a1803f7e2a22",
+      "path": "wiki/entities/brawlers/Tick.md"
+    },
+    "wiki/entities/brawlers/Lily.md": {
+      "sha256": "a7ccbd76e7b95720df440742ce9e79220bac0e3f247baf0f5bbf10e589549ca8",
+      "path": "wiki/entities/brawlers/Lily.md"
+    },
+    "wiki/entities/brawlers/Darryl.md": {
+      "sha256": "523b1ea3c249667f41ac240086922a559cd33cc340f590cef4cc68226b9131e9",
+      "path": "wiki/entities/brawlers/Darryl.md"
+    },
+    "wiki/concepts/英雄名称归一化.md": {
+      "sha256": "6cb43345370afc10519e96cd308760ada9bdd89a0b84e5362561f29805cedc9f",
+      "path": "wiki/concepts/英雄名称归一化.md"
+    },
+    "skills/brawl-stars-bp-slot-decision/SKILL.md": {
+      "sha256": "a2e50cc3ef224e100b63a51db243db7ff63cfa7c11976041c56ae8580bd24bfc",
+      "path": "skills/brawl-stars-bp-slot-decision/SKILL.md"
+    },
+    "wiki/entities/brawlers/Damian.md": {
+      "path": "wiki/entities/brawlers/Damian.md",
+      "sha256": "8fea08990392499c847da6f158b76779dbb4100fc30d0e7c53fad31bb1f85062"
+    }
+  },
+  "case_count": 56,
+  "episode_count": 19,
+  "development_input_count": 55,
+  "withheld_from_dev_input": 1,
+  "gold_count": 0,
+  "tag_counts": {
+    "职责补齐": 5,
+    "资源保护": 3,
+    "双选协同": 6,
+    "地形转变": 2,
+    "剩余回应": 8,
+    "多目标机制": 4,
+    "资源循环": 3,
+    "首选安全": 13,
+    "目标节奏": 2,
+    "构筑依赖": 3,
+    "占区时间": 4,
+    "模式转化": 3,
+    "队友放大": 10,
+    "射程条件": 5,
+    "攻守分工": 3,
+    "首选回应": 6,
+    "反突保护": 4,
+    "路线终点": 6,
+    "地形利用": 8,
+    "控制窗口": 1,
+    "目标访问": 5,
+    "禁用生态": 3,
+    "选边禁用": 3,
+    "多解比较": 2,
+    "版本条件": 3
+  },
+  "visual_review_revision": {
+    "resolved_previous_cases": [
+      1,
+      17,
+      18,
+      19,
+      20,
+      22,
+      24,
+      25,
+      30,
+      31,
+      32,
+      35,
+      49,
+      51,
+      52,
+      53
+    ],
+    "paired_review_case": 2,
+    "pair_exploratory_input": "inputs.paired-review.jsonl",
+    "audio_independently_reviewed": false,
+    "method": "rendered video portraits and embedded author text; browser media time observed; auto captions retained as secondary context"
+  },
+  "visual_evidence_sha256": {
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-20-q1.png": "afba17b7fdd9ed74538121ae9bbaee0e5d57be7ebe585fd585c5837bc7b72217",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-51-q2.png": "ff56918d90eeb081ca3c959a7dc40b254e5f88311f791a943140b6c1e406c68f",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-65-q2-pair.png": "22b8fa57377cce92651c3dc485eac0d0399ab11c3ec1e3ee65d6472028c6d79b",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/c7C6B5cjD9o-43-q3.png": "3cc6ee2a9b97246aaab979d5a90f35896f97a4eafde662fb6b5be265726272b2",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-5.50-ban.png": "764a23702574e824b222b54c3f59ca072152492b48d0a15ad2e777aa2f8f3f3b",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-31.12-q3-Najia.png": "fe8775a317143d90e1835fa78ee8693c6a5c39718d8340badb5b0b3e74f21e71",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/8CGXicuVjbs-29.4-q2-answer.png": "5de3a16de3feca2c3052bc50a03878f41f01a11847a8d5c3cefeb220ea236ca8",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/qajAIs6gTLM-11-q1-answer.png": "e6849de99cc5af35af91bc662e92349a71daa033ebd7e4745e98450a917041f0",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/qajAIs6gTLM-17-q2-bans.png": "60230cf200338e89c9c81b47d8f0f13785e7ee5633c02fc798d0a57a8946526c",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-2.60-ban.png": "7627a12ecfed20a71321e97446e32a48add9b3cb2979fbe2b4518d395fc7c26b",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-16-q2-bans.png": "bc5d348122668801ff0644c0b50002cfb106ce31cba390e641daa06a400ba451",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/m4P2v_NfmlY-29-q3.png": "1097f4036ac884ac23da9835f93135d485bbd93b97bfbac244298b667a448825",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/StONtQp8uZ4-29.5-q2-answer.png": "c05fec3e7b565f68f0535fafce5a7e13cf579968f6055572671dbbe13cf98b7f",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-5-ban.png": "ae1ce994e98e78d7251f7e573628a46c7c0bd22b3e5111bd60b3f3d6b9c46b31",
+    "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-23-q2.png": "1c3c0bf64a9a35f74395a25cbf1c8c1e9cf0e67d0100bd2a7e2887ff61f0e4cb"
+  },
+  "path_conventions": {
+    "vault_root": "repository root, relative to dataset ../..",
+    "knowledge_files": "repo-relative paths",
+    "source_sha256": "dataset-relative paths",
+    "visual_evidence_sha256": "dataset-relative paths"
+  }
+}

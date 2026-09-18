@@ -1,0 +1,474 @@
+{
+  "method": "direct video frames; no independent audio review",
+  "events": [
+    {
+      "ordinal": 1,
+      "case_id": "bobby-JxRGZPCa8Us-q1",
+      "field": "input.enemies",
+      "before": [],
+      "after": [
+        "Amber",
+        "Carl",
+        "Otis"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 20,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=20s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-20-q1.png",
+      "observation": "题面上方 Amber / Carl / Otis，下方 Griff / Starr Nova；五个已选头像。"
+    },
+    {
+      "ordinal": 1,
+      "case_id": "bobby-JxRGZPCa8Us-q1",
+      "field": "input.pick_slot_basis",
+      "before": "explicit_or_inferred_from_visible_caption_counts; see context",
+      "after": "inferred_from_complete_visible_five_pick_state",
+      "basis": "direct_video_frame_review",
+      "video_seconds": 20,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=20s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-20-q1.png",
+      "observation": "二友三敌完整，下一手为第六手；不声称看到原始历史选人顺序。"
+    },
+    {
+      "ordinal": 1,
+      "case_id": "bobby-JxRGZPCa8Us-q1",
+      "field": "input.bans",
+      "before": [
+        "Gus"
+      ],
+      "after": [
+        "Gus",
+        "Shade",
+        "Rico"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 20,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=20s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-20-q1.png",
+      "observation": "确认可辨识的 Gus、Shade、Rico；另一个橙色护目镜小 pin 暂不强行命名，完整 bans 仍为 partial。"
+    },
+    {
+      "ordinal": 2,
+      "case_id": "bobby-JxRGZPCa8Us-q2",
+      "field": "input.decision_scope",
+      "before": null,
+      "after": "paired_4_5",
+      "basis": "direct_video_frame_review",
+      "video_seconds": 51,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=51s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-51-q2.png",
+      "observation": "一名己方 Gus、两名敌方 Piper / Wendy；这是 4/5 连选阶段。"
+    },
+    {
+      "ordinal": 2,
+      "case_id": "bobby-JxRGZPCa8Us-q2",
+      "field": "input.pick_slots",
+      "before": null,
+      "after": [
+        4,
+        5
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 51,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=51s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-51-q2.png",
+      "observation": "位次由完整可见人数推定；两手之间没有对手插入。"
+    },
+    {
+      "ordinal": 2,
+      "case_id": "bobby-JxRGZPCa8Us-q2",
+      "field": "reference.accepted_pairs",
+      "before": null,
+      "after": [
+        [
+          "Sprout",
+          "R-T"
+        ],
+        [
+          "Sprout",
+          "Pearl"
+        ]
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 65,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=65s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-65-q2-pair.png",
+      "observation": "65s Sprout 头像；字幕49—64s为 thrower + R-T/Pearl，具体 thrower 为 Sprout。组合两手顺序不参与评分。"
+    },
+    {
+      "ordinal": 2,
+      "case_id": "bobby-JxRGZPCa8Us-q2",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Shade"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 51,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=51s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-51-q2.png",
+      "observation": "仅将明确可辨认的 Shade 写为已知 ban；另三个不同小 pin 留待实体对照，重复禁用不当成六个不同英雄。"
+    },
+    {
+      "ordinal": 2,
+      "case_id": "bobby-JxRGZPCa8Us-q2",
+      "field": "input.ban_status",
+      "before": "not_provided",
+      "after": "partial",
+      "basis": "direct_video_frame_review",
+      "video_seconds": 51,
+      "url": "https://www.youtube.com/watch?v=JxRGZPCa8Us&t=51s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/JxRGZPCa8Us-51-q2.png",
+      "observation": "画面展示完整禁用栏，但本次只可靠归一化其中部分名字。"
+    },
+    {
+      "ordinal": 17,
+      "case_id": "bobby-c7C6B5cjD9o-q3",
+      "field": "input.enemies",
+      "before": [
+        "Stu",
+        "Amber",
+        "Nita"
+      ],
+      "after": [
+        "Stu",
+        "Amber",
+        "Nita"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 44.08,
+      "url": "https://www.youtube.com/watch?v=c7C6B5cjD9o&t=44s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/c7C6B5cjD9o-43-q3.png",
+      "observation": "画面第三名是红熊帽 Nita；此处保留 Nita，不改 Najia。截图捕获约44秒，文件名43是请求的定位时间。"
+    },
+    {
+      "ordinal": 18,
+      "case_id": "bobby-ZdWs3kiDrJ8-q1",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5.5,
+      "url": "https://www.youtube.com/watch?v=ZdWs3kiDrJ8&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-5.50-ban.png",
+      "observation": "全片 ban 片段直接展示灰色金属帽、麦克风与红胡子的 Damian；非 Dynamike。"
+    },
+    {
+      "ordinal": 19,
+      "case_id": "bobby-ZdWs3kiDrJ8-q2",
+      "field": "input.bans",
+      "before": [
+        "Colette",
+        "Crow"
+      ],
+      "after": [
+        "Colette",
+        "Crow",
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5.5,
+      "url": "https://www.youtube.com/watch?v=ZdWs3kiDrJ8&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-5.50-ban.png",
+      "observation": "全片 ban 片段直接展示灰色金属帽、麦克风与红胡子的 Damian；非 Dynamike。"
+    },
+    {
+      "ordinal": 20,
+      "case_id": "bobby-ZdWs3kiDrJ8-q3",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5.5,
+      "url": "https://www.youtube.com/watch?v=ZdWs3kiDrJ8&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-5.50-ban.png",
+      "observation": "全片 ban 片段直接展示灰色金属帽、麦克风与红胡子的 Damian；非 Dynamike。"
+    },
+    {
+      "ordinal": 20,
+      "case_id": "bobby-ZdWs3kiDrJ8-q3",
+      "field": "input.enemies",
+      "before": [
+        "Nita"
+      ],
+      "after": [
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 31.12,
+      "url": "https://www.youtube.com/watch?v=ZdWs3kiDrJ8&t=31s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/ZdWs3kiDrJ8-31.12-q3-Najia.png",
+      "observation": "第三题上方头像为金色蛇冠与紫色蛇罐 Najia。"
+    },
+    {
+      "ordinal": 22,
+      "case_id": "bobby-8CGXicuVjbs-q2",
+      "field": "reference.accepted",
+      "before": [
+        "Pierce",
+        "Gene",
+        "Nita"
+      ],
+      "after": [
+        "Pierce",
+        "Gene",
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 29.4,
+      "url": "https://www.youtube.com/watch?v=8CGXicuVjbs&t=29s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/8CGXicuVjbs-29.4-q2-answer.png",
+      "observation": "三枚答案头像依次为 Pierce、Gene、Najia。"
+    },
+    {
+      "ordinal": 24,
+      "case_id": "bobby-qajAIs6gTLM-q1",
+      "field": "reference.accepted",
+      "before": [
+        "Gene",
+        "Nita",
+        "Pierce"
+      ],
+      "after": [
+        "Gene",
+        "Najia",
+        "Pierce"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 11,
+      "url": "https://www.youtube.com/watch?v=qajAIs6gTLM&t=11s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/qajAIs6gTLM-11-q1-answer.png",
+      "observation": "画面明确出现 NAJIA 字样与对应头像；Pierce 按同题原字幕保留。"
+    },
+    {
+      "ordinal": 25,
+      "case_id": "bobby-qajAIs6gTLM-q2",
+      "field": "input.bans",
+      "before": [
+        "Damian",
+        "Gene",
+        "Nita"
+      ],
+      "after": [
+        "Damian",
+        "Gene",
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 17,
+      "url": "https://www.youtube.com/watch?v=qajAIs6gTLM&t=17s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/qajAIs6gTLM-17-q2-bans.png",
+      "observation": "禁用栏 Gene / Najia 灰色头像，画面文字 NAJIA。"
+    },
+    {
+      "ordinal": 30,
+      "case_id": "bobby-5HP07EygUio-q1",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 2.6,
+      "url": "https://www.youtube.com/watch?v=5HP07EygUio&t=2s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-2.60-ban.png",
+      "observation": "开头直接显示 Damian 头像，自动字幕 Dynamike 错误。"
+    },
+    {
+      "ordinal": 31,
+      "case_id": "bobby-5HP07EygUio-q2",
+      "field": "input.bans",
+      "before": [
+        "Gene",
+        "Pierce",
+        "Nita"
+      ],
+      "after": [
+        "Gene",
+        "Pierce",
+        "Nita",
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 2.6,
+      "url": "https://www.youtube.com/watch?v=5HP07EygUio&t=2s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-2.60-ban.png",
+      "observation": "开头直接显示 Damian 头像，自动字幕 Dynamike 错误。"
+    },
+    {
+      "ordinal": 32,
+      "case_id": "bobby-5HP07EygUio-q3",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 2.6,
+      "url": "https://www.youtube.com/watch?v=5HP07EygUio&t=2s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-2.60-ban.png",
+      "observation": "开头直接显示 Damian 头像，自动字幕 Dynamike 错误。"
+    },
+    {
+      "ordinal": 31,
+      "case_id": "bobby-5HP07EygUio-q2",
+      "field": "input.bans",
+      "before": [
+        "Gene",
+        "Pierce",
+        "Nita",
+        "Damian"
+      ],
+      "after": [
+        "Gene",
+        "Pierce",
+        "Najia",
+        "Damian"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 16,
+      "url": "https://www.youtube.com/watch?v=5HP07EygUio&t=16s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/5HP07EygUio-16-q2-bans.png",
+      "observation": "三枚灰色禁用头像 Gene / Pierce / Najia，并直接显示 NAJIA 字样。"
+    },
+    {
+      "ordinal": 35,
+      "case_id": "bobby-m4P2v_NfmlY-q3",
+      "field": "input.enemies",
+      "before": [
+        "Rico",
+        "Nita",
+        "Carl"
+      ],
+      "after": [
+        "Rico",
+        "Nita",
+        "Carl"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 28.93,
+      "url": "https://www.youtube.com/watch?v=m4P2v_NfmlY&t=28s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/m4P2v_NfmlY-29-q3.png",
+      "observation": "敌方中间为红熊帽 Nita，左右 Rico / Carl。保留 Nita。"
+    },
+    {
+      "ordinal": 49,
+      "case_id": "bobby-StONtQp8uZ4-q2",
+      "field": "reference.accepted",
+      "before": [
+        "Nita",
+        "Emz"
+      ],
+      "after": [
+        "Nita",
+        "Emz"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 29.5,
+      "url": "https://www.youtube.com/watch?v=StONtQp8uZ4&t=29s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/StONtQp8uZ4-29.5-q2-answer.png",
+      "observation": "答案区明确为 Nita / Emz。保留 Nita。"
+    },
+    {
+      "ordinal": 49,
+      "case_id": "bobby-StONtQp8uZ4-q2",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Najia",
+        "Colette",
+        "Lola"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 29.5,
+      "url": "https://www.youtube.com/watch?v=StONtQp8uZ4&t=29s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/StONtQp8uZ4-29.5-q2-answer.png",
+      "observation": "新增原字幕漏掉的顶部三枚灰色 ban：Najia、Colette、Lola；Lola 经原图放大与本地 lola.png 对照。"
+    },
+    {
+      "ordinal": 51,
+      "case_id": "bobby-uw_BQfFSFZY-q1",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5,
+      "url": "https://www.youtube.com/watch?v=uw_BQfFSFZY&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-5-ban.png",
+      "observation": "全片 ban 片段直接展示 Najia 金色蛇冠、紫色蛇罐头像。"
+    },
+    {
+      "ordinal": 52,
+      "case_id": "bobby-uw_BQfFSFZY-q2",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5,
+      "url": "https://www.youtube.com/watch?v=uw_BQfFSFZY&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-5-ban.png",
+      "observation": "全片 ban 片段直接展示 Najia 金色蛇冠、紫色蛇罐头像。"
+    },
+    {
+      "ordinal": 53,
+      "case_id": "bobby-uw_BQfFSFZY-q3",
+      "field": "input.bans",
+      "before": [],
+      "after": [
+        "Najia"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 5,
+      "url": "https://www.youtube.com/watch?v=uw_BQfFSFZY&t=5s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-5-ban.png",
+      "observation": "全片 ban 片段直接展示 Najia 金色蛇冠、紫色蛇罐头像。"
+    },
+    {
+      "ordinal": 52,
+      "case_id": "bobby-uw_BQfFSFZY-q2",
+      "field": "input.enemies",
+      "before": [
+        "Poco",
+        "Meepo"
+      ],
+      "after": [
+        "Poco",
+        "Meeple"
+      ],
+      "basis": "direct_video_frame_review",
+      "video_seconds": 23,
+      "url": "https://www.youtube.com/watch?v=uw_BQfFSFZY&t=23s",
+      "screenshot": "../../raw/sources/bobbybs-draft-quiz/visual-evidence/uw_BQfFSFZY-23-q2.png",
+      "observation": "上方左侧是黑白骰子头与粉色游戏部件的 Meeple，右侧 Poco。"
+    }
+  ],
+  "resolved_previous_cases": [
+    1,
+    17,
+    18,
+    19,
+    20,
+    22,
+    24,
+    25,
+    30,
+    31,
+    32,
+    35,
+    49,
+    51,
+    52,
+    53
+  ],
+  "retained_single_pick_isolation": [
+    2
+  ]
+}

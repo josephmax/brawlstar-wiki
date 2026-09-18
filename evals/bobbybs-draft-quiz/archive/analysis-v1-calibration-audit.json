@@ -1,0 +1,708 @@
+[
+  {
+    "ordinal": 1,
+    "id": "bobby-JxRGZPCa8Us-q1",
+    "changes": [
+      {
+        "field": "input.allies",
+        "before": [
+          "Griff",
+          "Star Nova"
+        ],
+        "after": [
+          "Griff",
+          "Starr Nova"
+        ],
+        "basis": "canonical_entity_spelling",
+        "video_seconds": null
+      }
+    ],
+    "checks": [],
+    "remaining_issues": [
+      "敌方阵容缺失；第六手为推定，不能进行完整局面评分。"
+    ]
+  },
+  {
+    "ordinal": 2,
+    "id": "bobby-JxRGZPCa8Us-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.enemies",
+        "value": "Wendy",
+        "status": "valid_canonical_entity_not_a_typo"
+      }
+    ],
+    "remaining_issues": [
+      "4/5 连选具体顺序未直接确认；按下一手 Sprout 与后续配合分析。"
+    ]
+  },
+  {
+    "ordinal": 3,
+    "id": "bobby-BzIBRZCMiMM-q1",
+    "changes": [],
+    "checks": [
+      {
+        "field": "reference.accepted",
+        "value": "Nita",
+        "status": "portrait_review",
+        "video_seconds": 20
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 4,
+    "id": "bobby-BzIBRZCMiMM-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 5,
+    "id": "bobby-BzIBRZCMiMM-q3",
+    "changes": [],
+    "checks": [
+      {
+        "field": "reference.build",
+        "observed_caption": "Decacap / anti stun",
+        "candidates": [
+          "Da Capo!",
+          "Protective Tunes"
+        ],
+        "status": "contextual_mechanism_inference_not_direct_audio_review"
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 6,
+    "id": "bobby-ai3KY3I5xRY-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 7,
+    "id": "bobby-ai3KY3I5xRY-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 8,
+    "id": "bobby-ai3KY3I5xRY-q3",
+    "changes": [
+      {
+        "field": "reference.accepted",
+        "before": [],
+        "after": [
+          "Jae-yong"
+        ],
+        "basis": "portrait_review",
+        "video_seconds": 55
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 9,
+    "id": "bobby-aItvGu49FEo-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 10,
+    "id": "bobby-aItvGu49FEo-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.allies",
+        "value": "Nori",
+        "status": "valid_canonical_entity_not_a_typo"
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 11,
+    "id": "bobby-aItvGu49FEo-q3",
+    "changes": [
+      {
+        "field": "input.map",
+        "before": "Pitstop",
+        "after": "Pit Stop",
+        "basis": "canonical_map_spelling",
+        "video_seconds": null
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 12,
+    "id": "bobby-sGgIg02ctoU-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 13,
+    "id": "bobby-sGgIg02ctoU-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 14,
+    "id": "bobby-sGgIg02ctoU-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 15,
+    "id": "bobby-c7C6B5cjD9o-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 16,
+    "id": "bobby-c7C6B5cjD9o-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.allies",
+        "value": "Nita",
+        "status": "portrait_review",
+        "video_seconds": 30
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 17,
+    "id": "bobby-c7C6B5cjD9o-q3",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.enemies",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "input.enemies 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 18,
+    "id": "bobby-ZdWs3kiDrJ8-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 19,
+    "id": "bobby-ZdWs3kiDrJ8-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 20,
+    "id": "bobby-ZdWs3kiDrJ8-q3",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.enemies",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "input.enemies 中 Nita 尚待该题画面确认；候选：Nita/Najia",
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 21,
+    "id": "bobby-8CGXicuVjbs-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 22,
+    "id": "bobby-8CGXicuVjbs-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "reference.accepted",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "reference.accepted 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 23,
+    "id": "bobby-8CGXicuVjbs-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 24,
+    "id": "bobby-qajAIs6gTLM-q1",
+    "changes": [],
+    "checks": [
+      {
+        "field": "reference.accepted",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "reference.accepted 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 25,
+    "id": "bobby-qajAIs6gTLM-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.bans",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "input.bans 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 26,
+    "id": "bobby-qajAIs6gTLM-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 27,
+    "id": "bobby-itE4PAuap_E-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 28,
+    "id": "bobby-itE4PAuap_E-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 29,
+    "id": "bobby-itE4PAuap_E-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 30,
+    "id": "bobby-5HP07EygUio-q1",
+    "changes": [
+      {
+        "field": "reference.accepted",
+        "before": [
+          "Gene",
+          "Pierce",
+          "Nita"
+        ],
+        "after": [
+          "Gene",
+          "Pierce",
+          "Najia"
+        ],
+        "basis": "portrait_review",
+        "video_seconds": 11
+      }
+    ],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 31,
+    "id": "bobby-5HP07EygUio-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.bans",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": "Najia"
+      }
+    ],
+    "remaining_issues": [
+      "input.bans 中 Nita 尚待该题画面确认；候选：Nita/Najia",
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 32,
+    "id": "bobby-5HP07EygUio-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Dynamike（相邻期为 Damian，不能自动替换）"
+    ]
+  },
+  {
+    "ordinal": 33,
+    "id": "bobby-m4P2v_NfmlY-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 34,
+    "id": "bobby-m4P2v_NfmlY-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 35,
+    "id": "bobby-m4P2v_NfmlY-q3",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.enemies",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "input.enemies 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 36,
+    "id": "bobby-BiABMt4w2qI-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 37,
+    "id": "bobby-BiABMt4w2qI-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 38,
+    "id": "bobby-BiABMt4w2qI-q3",
+    "changes": [
+      {
+        "field": "input.map",
+        "before": null,
+        "after": "Undermine",
+        "basis": "video_layout_matches_local_map_asset",
+        "video_seconds": 35
+      },
+      {
+        "field": "input.mode",
+        "before": null,
+        "after": "Gem Grab",
+        "basis": "visible_gem_map_and_series_context",
+        "video_seconds": 35
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 39,
+    "id": "bobby-K7iG6U18pR4-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 40,
+    "id": "bobby-K7iG6U18pR4-q2",
+    "changes": [
+      {
+        "field": "input.map",
+        "before": "Pinball Panic",
+        "after": "Pinhole Punt",
+        "basis": "video_layout_matches_local_map_asset",
+        "video_seconds": 15
+      },
+      {
+        "field": "input.allies",
+        "before": [
+          "Lumi",
+          "Cozette"
+        ],
+        "after": [
+          "Lumi",
+          "Kaze"
+        ],
+        "basis": "portrait_review",
+        "video_seconds": 15
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 41,
+    "id": "bobby-K7iG6U18pR4-q3",
+    "changes": [
+      {
+        "field": "input.allies",
+        "before": [
+          "Chester",
+          "Nita"
+        ],
+        "after": [
+          "Chester",
+          "Najia"
+        ],
+        "basis": "portrait_review",
+        "video_seconds": 35
+      }
+    ],
+    "checks": [
+      {
+        "field": "reference.accepted",
+        "value": "Shade",
+        "status": "portrait_review",
+        "video_seconds": 40
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 42,
+    "id": "bobby-58k8-_o9sKU-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 43,
+    "id": "bobby-58k8-_o9sKU-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.allies",
+        "value": "Nita",
+        "status": "portrait_review",
+        "video_seconds": 25
+      }
+    ],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 44,
+    "id": "bobby-58k8-_o9sKU-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 45,
+    "id": "bobby-SoRLuUmTPG4-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 46,
+    "id": "bobby-SoRLuUmTPG4-q2",
+    "changes": [
+      {
+        "field": "input.allies",
+        "before": [
+          "Gus",
+          "Kazi"
+        ],
+        "after": [
+          "Gus",
+          "Kaze"
+        ],
+        "basis": "portrait_review",
+        "video_seconds": 25
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 47,
+    "id": "bobby-SoRLuUmTPG4-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 48,
+    "id": "bobby-StONtQp8uZ4-q1",
+    "changes": [
+      {
+        "field": "reference.accepted",
+        "before": [
+          "Sirius",
+          "Edgar",
+          "Colette"
+        ],
+        "after": [
+          "Sirius",
+          "Najia",
+          "Edgar",
+          "Colette"
+        ],
+        "basis": "portrait_review_plus_caption_answers",
+        "video_seconds": 15
+      }
+    ],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 49,
+    "id": "bobby-StONtQp8uZ4-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "reference.accepted",
+        "observed_caption": "Nita",
+        "candidates": [
+          "Nita",
+          "Najia"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": null
+      }
+    ],
+    "remaining_issues": [
+      "reference.accepted 中 Nita 尚待该题画面确认；候选：Nita/Najia"
+    ]
+  },
+  {
+    "ordinal": 50,
+    "id": "bobby-StONtQp8uZ4-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 51,
+    "id": "bobby-uw_BQfFSFZY-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Nija"
+    ]
+  },
+  {
+    "ordinal": 52,
+    "id": "bobby-uw_BQfFSFZY-q2",
+    "changes": [],
+    "checks": [
+      {
+        "field": "input.enemies",
+        "observed_caption": "Meepo",
+        "candidates": [
+          "Meeple"
+        ],
+        "status": "unresolved",
+        "preferred_hypothesis": "Meeple"
+      }
+    ],
+    "remaining_issues": [
+      "input.enemies 中 Meepo 尚待该题画面确认；候选：Meeple",
+      "全片禁用名称未直接确认：Nija"
+    ]
+  },
+  {
+    "ordinal": 53,
+    "id": "bobby-uw_BQfFSFZY-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": [
+      "全片禁用名称未直接确认：Nija"
+    ]
+  },
+  {
+    "ordinal": 54,
+    "id": "bobby-02w4WJrpZOg-q1",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 55,
+    "id": "bobby-02w4WJrpZOg-q2",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  },
+  {
+    "ordinal": 56,
+    "id": "bobby-02w4WJrpZOg-q3",
+    "changes": [],
+    "checks": [],
+    "remaining_issues": []
+  }
+]
