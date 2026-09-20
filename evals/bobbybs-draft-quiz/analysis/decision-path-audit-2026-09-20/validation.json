@@ -1,0 +1,12 @@
+{
+  "checks": "passed",
+  "cases": 56,
+  "candidate_records": 115,
+  "query_calls_per_run": 784,
+  "replay_exact_match": true,
+  "answer_include_ids": 0,
+  "dataset_strict_knowledge": "passed",
+  "knowledge_drift": [],
+  "local_links": 894,
+  "scope": "Deterministic retrieval and rule-path audit, not model selection accuracy"
+}

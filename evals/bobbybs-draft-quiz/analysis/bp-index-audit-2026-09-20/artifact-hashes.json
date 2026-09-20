@@ -1,0 +1,12 @@
+{
+  "REPORT.md": "960585f0192fd1db1aca8d54bb39d1013ee1d674fd74dea5048d642b6dba6827",
+  "index-evidence.jsonl": "bca3a4c48ed99f001511ff63de36a7d11e90f9f96b217a7f7f4627f754479e9e",
+  "provenance.json": "25cbf4484d2b15c7c6a6da16d03fd1bd7b9f12b19400da9c662ba3215c8d5d2f",
+  "reproduce_retrieval.py": "a018b51b3ca5e536f98512356b2a3cc0ed79eb860033fbcde75166904d07699b",
+  "retrieval-results.json": "57757bf86843cced5238ee34556dd5953f8a6698e93db8089251071d785a8733",
+  "reviews.jsonl": "16705c2cf338892961b7b9b14de0c5393190d18ab798ac763bc321a7db42461c",
+  "source-only-comparison.jsonl": "9951ffc7f3b4121eb80fb10ac7eb8c2e7f66273c8abe274dfd16e86e6808b027",
+  "summary.json": "6e69cd663209c7dbcd579a91d5de369312e42d1f323b74a4f466472cc831e638",
+  "validation.json": "2579b6694ad326e1d6f4df014bca0d5a1926516bb395199b327fdf195bf22ec4",
+  "verify_audit.py": "68f85fefaf1543fb59858f57ec7e8afe1447f7afa53b85630d25a837e51dad4e"
+}

@@ -40,8 +40,12 @@
 
 ## BP Maintenance
 
+- [BobbyBS 练习题清洗稿（已确认，53 题导出）](../evals/bobbybs-draft-quiz/practice/REVIEW.md)：112 个新增三档选项提案、原答案争议分支与 3 题暂缓；未进入 runtime。
+
 - [[sources/BobbyBS-Draft-Quiz|BobbyBS 专家 BP 题库来源与核验入口]]（维护/测评专用，不进入 runtime）
 - [题库维护 skill](../skills/brawl-stars-bp-eval-maintenance/SKILL.md)：采集、核源、校准、分析与输入隔离。
+- [56 题 BP-index 充分性审计（2026-09-20）](../evals/bobbybs-draft-quiz/analysis/bp-index-audit-2026-09-20/REPORT.md)：机制支持、未解前提与编译召回缺口；维护侧材料，不进入 runtime。
+- [56 题决策路径审计（2026-09-20）](../evals/bobbybs-draft-quiz/analysis/decision-path-audit-2026-09-20/REPORT.md)：识别地图桶、窗口阈值、排序预算及决策规则的过早排除；重点核查第六手反制/队友联动。
 
 - [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]]
 - [[syntheses/BP-维护归档|BP 维护归档]]

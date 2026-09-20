@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-20",
+  "scope": "56-case deterministic recall-path and rule audit; not an end-to-end model run",
+  "no_answer_include_ids": true,
+  "probe_count": 784,
+  "index_and_rule_hashes": {
+    "skills/brawl-stars-bp-slot-decision/SKILL.md": "a2e50cc3ef224e100b63a51db243db7ff63cfa7c11976041c56ae8580bd24bfc",
+    "skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md": "957e310d08c61c002212fd4a7766beb7a046163152bdd62fb72f5e24fdba5b8e",
+    "skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py": "123bfdeb4df57989d17d81c736654f370b274f9bf46afdee068dc20bfec8b7ee",
+    "skills/brawl-stars-bp-slot-decision/scripts/compile_runtime_index.py": "594c08192ab30891cd7a608bac609538f0dfc42f35dad267f190829b6a2d75ca",
+    "skills/brawl-stars-bp-slot-decision/scripts/runtime_index_tools.py": "c270898461513be2ac66f2e80730ba3a032f6326339a9bcd13a90bb53ad62f7c",
+    "outputs/runtime-bp-index/default-runtime-index.json": "bbe2026807bcaaa250179344c01cae88300316426b87489227669e3b0c14dd1f"
+  },
+  "app_source_hashes": {
+    "server/tools.ts": "378c15cf5ad1a332d4a89da1aee9d275e2df1e369670528a692b966881739f57",
+    "skills/brawl-bp-analysis/SKILL.md": "f9e3be39bcf5aa3e18c5507b5f0b0c940d6581dd06bfa0564ee6641484380dcb",
+    "config/knowledge-version": "f79d74b66e4139fde6fa985e1765d36acc4d04773e615a68df96e588227b55da"
+  },
+  "production_scope": "local knowledge source; no NAS run; app pinned knowledge version may differ",
+  "policy_risk_vs_observation": "matrix records tool output; decision-rule rejection is risk inferred from rules, not an observed model decision"
+}

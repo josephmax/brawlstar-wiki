@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-20",
+  "audit_coverage_and_live_hashes": "passed",
+  "retrieval_reproduction": {
+    "query_calls": 112,
+    "exact_match": true
+  },
+  "dataset_strict_validation": {
+    "checks": "passed",
+    "cases": 56,
+    "videos": 19,
+    "development_inputs": 55,
+    "paired_review_inputs": 1,
+    "gold": 0,
+    "transcript_hashes": 19,
+    "screenshot_hashes": 15,
+    "knowledge_files": 91,
+    "knowledge_drift": [],
+    "local_links": 890
+  },
+  "scope": "Artifact/data integrity and deterministic retrieval; no semantic proof, new video verification, or Jev model run."
+}

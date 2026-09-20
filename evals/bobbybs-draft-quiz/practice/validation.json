@@ -1,0 +1,57 @@
+{
+  "cases": 56,
+  "supplements": 112,
+  "correct_branch_supported_cases": 53,
+  "blocked_cases": [
+    41,
+    44,
+    47
+  ],
+  "input_variants": 56,
+  "enabled_cases": 0,
+  "gold_cases": 0,
+  "checks_passed": [
+    "56 source cases retained",
+    "original candidate mechanisms unchanged",
+    "canonical option names",
+    "known bans/picks excluded",
+    "pair cardinality",
+    "distinct options",
+    "option-only export"
+  ],
+  "not_verified": [
+    "new option semantic grades",
+    "user confirmation",
+    "isolated model correctness",
+    "current patch validity",
+    "application UI"
+  ],
+  "runtime_index_sha256": "1343621819bffe31b9b9b85e6f654ed44b44c73da6e5f73471de44c375fa622d",
+  "skill_hashes": {
+    "skills/brawl-stars-bp-slot-decision/.pytest_cache/README.md": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+    "skills/brawl-stars-bp-slot-decision/SKILL.md": "a2e50cc3ef224e100b63a51db243db7ff63cfa7c11976041c56ae8580bd24bfc",
+    "skills/brawl-stars-bp-slot-decision/references/candidate-mask.md": "214c106712de24465a366cc40d7c3747f5c5861933882a1f2f48f8cc9d1c7dfb",
+    "skills/brawl-stars-bp-slot-decision/references/compile-knowledge.md": "4e3c859cae2d6592c4a146d162d3ab85aac4cf1db36dcf209e622adc29628d46",
+    "skills/brawl-stars-bp-slot-decision/references/runtime-decision-knowledge.md": "957e310d08c61c002212fd4a7766beb7a046163152bdd62fb72f5e24fdba5b8e",
+    "skills/brawl-stars-bp-slot-decision/scripts/bp_index.py": "99ef8fca06afb6ac1b599264d24d1646b7546419808c367381ff974c985ee5f5",
+    "skills/brawl-stars-bp-slot-decision/scripts/candidate_mask.py": "09efa16094d996a685dea59085fdad0190534744ea7ed5cb8290c1f1afe5dc19",
+    "skills/brawl-stars-bp-slot-decision/scripts/compile_runtime_index.py": "594c08192ab30891cd7a608bac609538f0dfc42f35dad267f190829b6a2d75ca",
+    "skills/brawl-stars-bp-slot-decision/scripts/hydrate_runtime_facts.py": "e0f1d06f9b4634abffc4ab556fd44711713cbebd30b8e49d3f2b45a00d18b8e7",
+    "skills/brawl-stars-bp-slot-decision/scripts/query_matchup_census.py": "524b13143ed96c32c7836a63b2b903e27589189648202ef7145e38601a2b42f1",
+    "skills/brawl-stars-bp-slot-decision/scripts/query_runtime_facts.py": "123bfdeb4df57989d17d81c736654f370b274f9bf46afdee068dc20bfec8b7ee",
+    "skills/brawl-stars-bp-slot-decision/scripts/runtime_index_precheck.py": "1b2d2c835104e47746defbe4375f694d7fd05f2b51dc32d314f9da2c2fb6f3fe",
+    "skills/brawl-stars-bp-slot-decision/scripts/runtime_index_tools.py": "c270898461513be2ac66f2e80730ba3a032f6326339a9bcd13a90bb53ad62f7c",
+    "skills/brawl-stars-bp-slot-decision/tests/.pytest_cache/README.md": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+    "skills/brawl-stars-bp-slot-decision/tests/test_bp_index.py": "3ad86c37abaeb0c6156425764790c0ce20796b3fa30f73ed3cc6d24c1e8d6516",
+    "skills/brawl-stars-bp-slot-decision/tests/test_candidate_mask.py": "6493a83a6d7f6168b65720d74f489fefca13d46209e1d396a7d7421bede86d40",
+    "skills/brawl-stars-bp-slot-decision/tests/test_compile_runtime_index.py": "4ea842f776a913b355054d9b9f75c3d67685f11495520bce7e8dcb21457aab34",
+    "skills/brawl-stars-bp-slot-decision/tests/test_runtime_index_tools.py": "2bcdd82e2f950364b7c47ddc7e7a7750461a672f7e5a09d535b475c00a3b0b15"
+  },
+  "artifacts": {
+    "supplements.draft.jsonl": "f8fc40a71bcc8ea98b067e2e52c9e92dbc110b92f0de64676a99a653ca98f325",
+    "questions.draft.jsonl": "1ece29239636d7e0347baa1aebfa8feeb4b21f69b35d5326e122785915e086bf",
+    "inputs.options-only.jsonl": "137efb9aea6b37d8adf4cd95f3df2ee64054b1641eec4306e87feede813a4b54",
+    "labels.draft.jsonl": "ca25880f7ced5a6128a30b289384a7580183d06235409e1f8ed1f702b33af9b1",
+    "index-evidence.jsonl": "b683df0d6fd2bac930460d424687f27eb8a341e4efef49f32f38aab0842a2e7d"
+  }
+}

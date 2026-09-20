@@ -1,0 +1,13 @@
+{
+  "status": "user_confirmed",
+  "date": "2026-09-20",
+  "user_confirmation": "我觉得这稿不错，可以继续",
+  "questions_sha256": "1ece29239636d7e0347baa1aebfa8feeb4b21f69b35d5326e122785915e086bf",
+  "withheld_ordinals": [
+    41,
+    44,
+    47
+  ],
+  "scope": "practice_grading_not_current_patch_gold",
+  "model_validation": "pending"
+}

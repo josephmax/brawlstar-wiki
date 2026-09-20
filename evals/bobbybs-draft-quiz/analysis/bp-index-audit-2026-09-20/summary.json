@@ -1,0 +1,327 @@
+{
+  "case_count": 56,
+  "case_status_counts": {
+    "S": 51,
+    "T": 2,
+    "P": 3
+  },
+  "case_ordinals_by_status": {
+    "S": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      42,
+      43,
+      45,
+      46,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56
+    ],
+    "P": [
+      41,
+      44,
+      47
+    ],
+    "T": [
+      4,
+      48
+    ]
+  },
+  "candidate_component_count": 115,
+  "component_status_counts": {
+    "S": 107,
+    "P": 6,
+    "T": 2
+  },
+  "answer_plan_count": 114,
+  "answer_plan_status_counts": {
+    "S": 106,
+    "P": 6,
+    "T": 2
+  },
+  "ordinary_case_count": 55,
+  "paired_case_count": 1,
+  "conditional_plan_count": 1,
+  "formal_gold_count_unchanged": 0,
+  "maps_in_cases": 19,
+  "primary_maps": 35,
+  "s49_maps": 26,
+  "s49_missing_map_cases": [
+    11,
+    16,
+    25,
+    40,
+    52
+  ],
+  "nonempty_reference_rationale_cases": 14,
+  "bucket_only": {
+    "missing_components": 29,
+    "affected_cases": 24,
+    "missing": [
+      {
+        "ordinal": 4,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 4,
+        "candidate": "Mortis"
+      },
+      {
+        "ordinal": 7,
+        "candidate": "Lou"
+      },
+      {
+        "ordinal": 11,
+        "candidate": "R-T"
+      },
+      {
+        "ordinal": 15,
+        "candidate": "Fang"
+      },
+      {
+        "ordinal": 17,
+        "candidate": "Lumi"
+      },
+      {
+        "ordinal": 18,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 20,
+        "candidate": "Byron"
+      },
+      {
+        "ordinal": 20,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 21,
+        "candidate": "Edgar"
+      },
+      {
+        "ordinal": 21,
+        "candidate": "Ruffs"
+      },
+      {
+        "ordinal": 23,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 23,
+        "candidate": "Chuck"
+      },
+      {
+        "ordinal": 25,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 25,
+        "candidate": "Byron"
+      },
+      {
+        "ordinal": 27,
+        "candidate": "Finx"
+      },
+      {
+        "ordinal": 28,
+        "candidate": "Otis"
+      },
+      {
+        "ordinal": 32,
+        "candidate": "Mortis"
+      },
+      {
+        "ordinal": 34,
+        "candidate": "Chuck"
+      },
+      {
+        "ordinal": 35,
+        "candidate": "Shade"
+      },
+      {
+        "ordinal": 37,
+        "candidate": "Bull"
+      },
+      {
+        "ordinal": 38,
+        "candidate": "Charlie"
+      },
+      {
+        "ordinal": 39,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 44,
+        "candidate": "Otis"
+      },
+      {
+        "ordinal": 45,
+        "candidate": "Lumi"
+      },
+      {
+        "ordinal": 46,
+        "candidate": "Ziggy"
+      },
+      {
+        "ordinal": 47,
+        "candidate": "Edgar"
+      },
+      {
+        "ordinal": 50,
+        "candidate": "Gray"
+      },
+      {
+        "ordinal": 52,
+        "candidate": "Kenji"
+      }
+    ]
+  },
+  "bucket_plus_enemy_relations": {
+    "missing_components": 25,
+    "affected_cases": 20,
+    "missing": [
+      {
+        "ordinal": 4,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 4,
+        "candidate": "Mortis"
+      },
+      {
+        "ordinal": 11,
+        "candidate": "R-T"
+      },
+      {
+        "ordinal": 17,
+        "candidate": "Lumi"
+      },
+      {
+        "ordinal": 18,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 20,
+        "candidate": "Byron"
+      },
+      {
+        "ordinal": 20,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 21,
+        "candidate": "Edgar"
+      },
+      {
+        "ordinal": 21,
+        "candidate": "Ruffs"
+      },
+      {
+        "ordinal": 23,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 23,
+        "candidate": "Chuck"
+      },
+      {
+        "ordinal": 25,
+        "candidate": "Belle"
+      },
+      {
+        "ordinal": 25,
+        "candidate": "Byron"
+      },
+      {
+        "ordinal": 27,
+        "candidate": "Finx"
+      },
+      {
+        "ordinal": 28,
+        "candidate": "Otis"
+      },
+      {
+        "ordinal": 32,
+        "candidate": "Mortis"
+      },
+      {
+        "ordinal": 34,
+        "candidate": "Chuck"
+      },
+      {
+        "ordinal": 35,
+        "candidate": "Shade"
+      },
+      {
+        "ordinal": 37,
+        "candidate": "Bull"
+      },
+      {
+        "ordinal": 38,
+        "candidate": "Charlie"
+      },
+      {
+        "ordinal": 39,
+        "candidate": "Colette"
+      },
+      {
+        "ordinal": 44,
+        "candidate": "Otis"
+      },
+      {
+        "ordinal": 46,
+        "candidate": "Ziggy"
+      },
+      {
+        "ordinal": 47,
+        "candidate": "Edgar"
+      },
+      {
+        "ordinal": 50,
+        "candidate": "Gray"
+      }
+    ]
+  }
+}
