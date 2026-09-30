@@ -1730,3 +1730,7 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 ## 2026-09-20 BobbyBS 练习确认与应用导出
 
 用户确认上一轮清洗稿后，新增 approval.json 绑定草案哈希及 export_bank.py / bank.json，导出 53 题；第 41/44/47 题保持暂缓，原始作者标签和 gold 状态不变。应用侧已实现只读导出件安装、确定性洗牌、持久进度、三档评分、AG-UI 与新手引导。用户随后明确要求模型自洽回归先记 TODO；准备工具已保留，未发送真实模型请求。题库文件结构/原有 strict-knowledge 校验与练习导出通过，不宣称语义或模型准确率通过。
+
+## 2026-09-30：排位源刷新与版本限制核查
+
+新增不可变站点/GCS/官方补丁抓取及哈希；先写来源摘要，复核当前排位源口径。源页明确 l1 为传奇本段，修复维护 fetcher 和环境 reference 的传奇以上误标，其他 tier 不再继承 l1 标记。重建 pickrate.sqlite3，更新 current/index；固定 S49 的 26 张图均有样本。新增 version_review.json 明确样本起止和补丁分段仍缺失，因此不能把本次刷新写成 current_version_evidence=true。9 月 16 日补丁既有账本与官方页面对应；本次不修改稳定英雄/地图机制，不重复生成断点矩阵。来源详情见 [[sources/Brawl-Planet-版本适用性复核-2026-09-30]]。

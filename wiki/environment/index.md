@@ -76,3 +76,10 @@ outputs/runtime-bp-index/<current>.json                    ← runtime_bp_index�
 - `decide`：只经 `query_runtime_facts.py` / `hydrate_runtime_facts.py` 读 index 内嵌证据；不直接读本目录。
 - 外部应用可直接 `sqlite3 wiki/environment/2026-08/archive.sqlite3` 查询行列数据。
 - 环境证据**永远不能**生成 tier、推翻机制约束、改变 fit / eligibility、升级 slot 资格。
+
+## 2026-09-30 刷新与版本复核
+
+- pickrate.sqlite3 已从当日不可变 GCS 抓取重新生成；固定 S49 池 26/26 图有数据。
+- l1 段位标签更正为 legendary_only；旧传奇以上推断撤销。
+- `version_review.json` 单独保存统计适用性复核和缺口；`current.json.version_review` 定位此记录。读者不得把归档刷新成功等同于当前版本校验通过。
+- 来源：[[../sources/Brawl-Planet-版本适用性复核-2026-09-30]]。

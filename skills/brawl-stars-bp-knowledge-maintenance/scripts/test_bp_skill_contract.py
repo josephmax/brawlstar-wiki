@@ -461,4 +461,6 @@ if __name__ == "__main__":
     test_player_skill_contract()
     test_recall_mask_wire_contract()
     test_maintenance_skill_contract()
+    assert "Legendary only" in read(PLAYER_COMPILE_REF)
+    assert "Legendary only" in read(PLAYER_DECIDE_REF)
     print("bp skill contract ok")

@@ -56,6 +56,15 @@ BRAWLERS = [{"name": "Griff", "rarity": "epic", "future": False}]
 
 
 class RankedPoolFilterTest(unittest.TestCase):
+    def test_l1_scope_is_legendary_only(self):
+        signal = build_signal(PICKRATE, BRAWLERS, {"Griff"}, MANIFEST)
+        self.assertEqual(signal["rank_floor"], "legendary_only")
+
+    def test_alternate_file_does_not_inherit_l1_scope(self):
+        signal = build_signal(PICKRATE, BRAWLERS, {"Griff"}, MANIFEST, tier="m1")
+        self.assertEqual(signal["rank_floor"], "unverified")
+        self.assertEqual(signal["source"]["file"], "pl-m1-results.json.gz")
+
     def test_pool_key_distinguishes_punctuation_variants(self):
         self.assertNotEqual(pool_key("Safe Zone", "Heist"), pool_key("Safe(r) Zone", "Heist"))
         self.assertEqual(pool_key("Dry Season ", "Bounty"), pool_key("dry season", "bounty"))

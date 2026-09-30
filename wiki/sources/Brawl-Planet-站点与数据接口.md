@@ -1,5 +1,11 @@
 # Brawl Planet 站点与数据接口
 
+## 2026-09-30 口径更正（优先于下方历史核查）
+
+已重新抓取站点页面和 GCS 文件。`pl-l1` 明确为 **Legendary only**，各段位分别统计，不包含更高段位；下方 2026-09-07 的 Legendary I+ / legendary_plus 推断撤销。文件名和探测到其它文件不能证明段位下限。当前归档字段改为 `rank_floor: legendary_only`（字段名为兼容旧协议而保留）。
+
+本次原始数据、时间与哈希见 [[Brawl-Planet-版本适用性复核-2026-09-30]]。最新样本仍无法按补丁拆分；抓取更新不等于当前强度校验通过。
+
 ## 来源信息
 
 - 标题：Brawl Planet — Ranked stats & pick/use rate data source

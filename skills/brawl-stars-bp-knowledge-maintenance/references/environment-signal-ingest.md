@@ -1,6 +1,6 @@
 # Environment Signal Ingest
 
-Use this reference when maintaining the BP environment signal: the high-rank pick/use-rate layer and the monthly ban layer. The environment signal is the successor of the retired strength layer (see `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`); it is the evidence layer for the three-dimension decision framework: mechanism constraints (highest weight) + Legendary+ ladder anchor (high, with lag label) + monthly ban hint (low). The mechanism layer is complete and authoritative; the environment signal updates and corroborates it, never overrides it.
+Use this reference when maintaining the BP environment signal: the high-rank pick/use-rate layer and the monthly ban layer. The environment signal is the successor of the retired strength layer (see `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`); it is the evidence layer for the three-dimension decision framework: mechanism constraints (highest weight) + Legendary only ladder anchor (high, with lag label) + monthly ban hint (low). The mechanism layer is complete and authoritative; the environment signal updates and corroborates it, never overrides it.
 
 ## Signal Structure
 
@@ -8,10 +8,11 @@ The environment signal has two layers with different windows:
 
 | Layer | Source | Window | Rank floor | Rate |
 | --- | --- | --- | --- | --- |
-| pick / use rate | Brawl Planet `pl-l1-results.json.gz` | rolling 10 weeks | Legendary+ | `use_rate` (ur %) |
+| pick / use rate | Brawl Planet `pl-l1-results.json.gz` | rolling 10 weeks | Legendary only | `use_rate` (ur %) |
 | ban rate | Liquipedia Monthly Finals aggregation | monthly | pro (legendary+ approximation) | `ban_rate` |
 
-- **Ranked-pool filter (2026-09-07)**: the pick layer defaults to the current Ranked map pool via `wiki/environment/ranked_pool.json` (`brawlstar.ranked_pool_manifest.v1`). The fetcher counts only in-pool active maps in the global aggregate, keeps only in-pool rows in `per_map`, and records out-of-pool maps in `summary.excluded_maps`; `--no-ranked-pool-filter` fetches raw ladder-wide data. Update the manifest every season rotation (see Rules). The source cannot slice per-tier stats: `pl-l1` is a Legendary I+ floor whose sample already includes Masters-and-above matches; no Masters/Esports-Elite-specific file exists (verified 2026-09-07).
+- **Ranked-pool filter**: `wiki/environment/ranked_pool.json` selects the pinned season pool. Keep excluded and missing maps in the audit. Neither an `active` flag nor complete map coverage independently verifies the current game pool.
+- **Rank scope correction (2026-09-30)**: the live page states that each rank is measured separately, not pooled with higher ranks. `pl-l1` is Legendary only. The legacy JSON field `rank_floor` now contains `legendary_only`; its field name does not imply a floor. Other tier files must be reviewed separately.
 
 - **Current status (2026-08-14 architecture turn): compile-folded evidence.** Maintenance archives the signals under `wiki/environment/`; `compile` is the only aggregator and folds them into the `runtime_bp_index` as per-brawler `environment_evidence` (`ladder_anchor` / `monthly_finals`) plus `environment_ladder_per_map`, with window / rank_floor / fetch-or-capture labels. `decide` reads the embedded evidence through `hydrate_runtime_facts.py` for `evidence_roles`; it never reads signal files directly. The evidence never becomes fit/eligibility and never generates tiers. It is corroboration for the decision, not a replacement for mechanism reasoning. Evidence strength changes with each update (new month, refreshed 10-week window) without changing the three-dimension framework itself.
 - Keep the two layers as separate fields with explicit `window` labels; never average them into one number.
@@ -22,7 +23,7 @@ The environment signal has two layers with different windows:
 wiki/environment/
   current.json                        # environment_archive_pointer.v1：compile 只读此指针
   <YYYY-MM>/archive.sqlite3           # SQLite 行列归档（event/series/set/pick/ban + metric_* + signal_brawler 表）
-  pickrate.sqlite3                    # brawlstar.environment_signal_pickrate.v1（Legendary+ 滚动快照，行列表）
+  pickrate.sqlite3                    # brawlstar.environment_signal_pickrate.v1（Legendary only 滚动快照，行列表）
   index.md                            # 归档索引与 provenance 表格
 ```
 
@@ -33,7 +34,7 @@ wiki/environment/
 
 ## Monthly Workflow
 
-1. **Pick layer**: run `fetch_brawlplanet_pickrate.py --tier l1` (Legendary+; defaults to the Ranked-pool manifest `wiki/environment/ranked_pool.json`) and write to `wiki/environment/pickrate.sqlite3` (`--db`；`--output` 为可选 JSON 导出). Check `summary.ranked_pool.pool_maps_missing_from_source` — a non-empty list means the season manifest is stale and must be updated first.
+1. **Pick layer**: run `fetch_brawlplanet_pickrate.py --tier l1` (Legendary only; defaults to the Ranked-pool manifest `wiki/environment/ranked_pool.json`) and write to `wiki/environment/pickrate.sqlite3` (`--db`；`--output` 为可选 JSON 导出). Check `summary.ranked_pool.pool_maps_missing_from_source` — investigate any non-empty list before claiming pool coverage; absence in this source alone does not prove a map was removed from the game.
 2. **Ban layer**: after the monthly finals of the month are fully played, capture each region with `capture_liquipedia_event.py`, analyze with `analyze_esports_event.py --db wiki/environment/<YYYY-MM>/archive.sqlite3`（内含逐 set 行列表），then aggregate with `aggregate_environment_signal.py --profile wiki/environment/<YYYY-MM>/archive.sqlite3 --db wiki/environment/<YYYY-MM>/archive.sqlite3` (paired pick/ban per brawler, set-level denominator). Do not aggregate an unfinished month.
 3. Update `current.json` to point at the new month's signal, refresh `wiki/environment/index.md`, append `wiki/log.md`.
 4. Recompile the runtime index (default `--environment-manifest wiki/environment/current.json`) so the next `decide` consumes the new evidence; `manifest.environment_provenance` records which archive snapshot was folded.
@@ -60,3 +61,11 @@ wiki/environment/
 - `scripts/aggregate_environment_signal.py`
 - `scripts/capture_liquipedia_event.py` / `scripts/analyze_esports_event.py`
 - `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`
+
+## Version applicability review (2026-09-30)
+
+Refresh the archive and review version applicability separately. Record the immutable payload hashes, source-page scope, known patch ledger and exact sample bounds (null when absent) in `wiki/environment/version_review.json`, with a linked source summary. Re-fetching does not advance the actual sample start.
+
+Before declaring current-version statistics, require an independently evidenced sample start/end after the latest relevant balance/rules/new-brawler change, matching rank scope and denominator. If the API provides only latest_match_time, retain `current_version_evidence: false` and explain the missing start/patch segmentation. Do not synthesize daily counts or subtract old aggregate snapshots. Current knowledge maintenance and numeric breakpoint audits do not validate a statistical window.
+
+A downstream application must read this review rather than hardcode approval. Its separate decision on whether to display labeled mixed-window data must not relabel that data as current-version evidence. Expired reviews and newly published patches require another review. Run the ranked-pool filter tests and BP skill contract before publishing.

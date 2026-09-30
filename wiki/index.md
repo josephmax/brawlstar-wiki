@@ -2,6 +2,8 @@
 
 这是这套《荒野乱斗》知识图谱的导航入口。
 
+- [[sources/Brawl-Planet-版本适用性复核-2026-09-30|2026-09-30 排位统计版本复核]]
+
 ## Start Here
 
 - [[syntheses/Brawl-Stars-资源系统综述|Brawl Stars 资源系统综述]]

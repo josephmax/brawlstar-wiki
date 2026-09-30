@@ -1,37 +1,11 @@
 #!/usr/bin/env python3
-"""Fetch high-rank pick/use rates from Brawl Planet (Legendary+).
+"""Fetch Brawl Planet rank-specific statistics.
 
-Brawl Planet exposes its data as static JSON on Google Cloud Storage:
-  https://storage.googleapis.com/brawlanalyzer-public/<file>.json.gz
-The `.json.gz` suffix is a naming convention; the payload is plain JSON.
-
-Files:
-  pl-l1-results.json.gz  -> Legendary I+ per-map per-brawler stats
-  pl-m1-results.json.gz  -> Mythic I+ (alternative tier floor)
-  pl-m3-results.json.gz  -> Mythic III+ (verified 2026-09-07, not linked in site nav)
-  pl-d1-results.json.gz  -> Diamond I band (verified 2026-09-07)
-  pl-results.json.gz     -> Diamond I+ (default powerleague page)
-  brawlers.json.gz       -> brawler catalog (names, rarity, future flag)
-
-No higher-tier floor exists (verified 2026-09-07: masters/elite/pro candidates 403;
-site nav exposes only d1/m1/l1 variants). `pl-l1` is a rank FLOOR: the Legendary I+
-sample already contains every higher in-game tier (Masters and above); the source
-just cannot slice per-tier stats.
-
-Ranked-pool filter: by default the signal only covers the current Ranked map pool
-(`wiki/environment/ranked_pool.json`, `brawlstar.ranked_pool_manifest.v1`). The
-global aggregate counts only in-pool active maps and `per_map` keeps in-pool rows
-only; out-of-pool / inactive entries are reported in `summary.excluded_maps` for
-audit. Pass `--no-ranked-pool-filter` to fetch the raw ladder-wide data instead.
-
-Output: `brawlstar.environment_signal_pickrate.v1` — per-map use/win rates plus a
-match-weighted global aggregate, as the pick-rate half of the BP environment signal.
-The ban-rate half comes from monthly Liquipedia aggregation (aggregate_environment_signal.py).
-
-Archive: write to `wiki/environment/pickrate.sqlite3` via `--db` (SQLite row storage,
-persistent knowledge-base layer); the slot-decision compile folds it into the
-runtime_bp_index via the `wiki/environment/current.json` pointer. `--output` writes a
-JSON export for review. Tier generation is forbidden.
+As verified 2026-09-30, pl-l1 is Legendary only, NOT Legendary-and-above.
+Other files require their own scope review; never relabel them as Legendary.
+The .json.gz resource may contain plain JSON or gzip. Preserve the source scope,
+rolling-window uncertainty and pinned Ranked pool when interpreting the archive.
+Canonical output is wiki/environment/pickrate.sqlite3; compile folds its evidence.
 """
 
 from __future__ import annotations
@@ -61,7 +35,7 @@ TIER_FILE_MAP = {
     "default": "pl-results.json.gz",
 }
 DEFAULT_UA = "Mozilla/5.0 brawlstar-wiki-maintainer/1.0 (https://github.com/josephmax/brawlstar-wiki)"
-RANK_FLOOR = "legendary_plus"
+RANK_FLOOR = "legendary_only"  # Legacy field name; this is a rank band, not a floor.
 RANKED_POOL_MANIFEST = Path(__file__).resolve().parents[3] / "wiki" / "environment" / "ranked_pool.json"
 
 
@@ -136,6 +110,7 @@ def build_signal(
     brawlers: list[dict[str, Any]],
     canonical: set[str],
     ranked_pool: dict[str, Any] | None = None,
+    tier: str = "l1",
 ) -> dict[str, Any]:
     future_names = {
         str(b.get("name") or "").upper()
@@ -236,12 +211,12 @@ def build_signal(
     return {
         "schema": "brawlstar.environment_signal_pickrate.v1",
         "window": "rolling_10_weeks",
-        "rank_floor": RANK_FLOOR,
+        "rank_floor": RANK_FLOOR if tier == "l1" else "unverified",
         "source": {
             "kind": "brawlplanet-gcs-static-json",
             "bucket": "brawlanalyzer-public",
-            "file": DEFAULT_FILES["pickrate"],
-            "page": "https://www.brawlplanet.com/powerleague/pl-l1",
+            "file": TIER_FILE_MAP[tier],
+            "page": "https://www.brawlplanet.com/powerleague" + ("" if tier == "default" else f"/pl-{tier}"),
             "sample_size_label": "match_count per map",
         },
         "policy": {
@@ -260,7 +235,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", default=str(Path(__file__).resolve().parents[3]))
     parser.add_argument("--user-agent", default=DEFAULT_UA)
-    parser.add_argument("--tier", default="l1", choices=sorted(TIER_FILE_MAP), help="GCS stat file floor: l1 (Legendary+, default), m1, m3, d1, or default (Diamond+).")
+    parser.add_argument("--tier", default="l1", choices=sorted(TIER_FILE_MAP), help="GCS file: l1 (Legendary only, default); other tiers require independent scope review.")
     parser.add_argument("--ranked-pool-manifest", default=str(RANKED_POOL_MANIFEST), help="Ranked-pool manifest used to filter maps (default: wiki/environment/ranked_pool.json).")
     parser.add_argument("--no-ranked-pool-filter", action="store_true", help="Fetch raw ladder-wide data without Ranked-pool filtering.")
     parser.add_argument("--output", default="", help="Write JSON to this path (optional export).")
@@ -276,7 +251,7 @@ def main() -> int:
     brawlers = load_json_bytes(fetch(brawlers_url, args.user_agent))
     canonical = canonical_names(Path(args.repo))
     ranked_pool = None if args.no_ranked_pool_filter else load_ranked_pool(Path(args.ranked_pool_manifest))
-    signal = build_signal(pickrate, brawlers, canonical, ranked_pool)
+    signal = build_signal(pickrate, brawlers, canonical, ranked_pool, tier=args.tier)
     if ranked_pool is not None:
         pool_summary = (signal.get("summary") or {}).get("ranked_pool") or {}
         missing = pool_summary.get("pool_maps_missing_from_source") or []

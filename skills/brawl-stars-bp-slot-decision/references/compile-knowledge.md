@@ -25,7 +25,7 @@ If the needed map pool is missing, compile a partial index and mark the gap in `
 
 ## Environment Signal (high-rank pickrate)
 
-The system's environment signal is `high_rank_pickrate` (Brawl Planet Legendary+ pick layer, `wiki/environment/pickrate.sqlite3`) paired with `ban_rate` (Liquipedia monthly aggregation, `wiki/environment/<YYYY-MM>/archive.sqlite3`). The archive lives under `wiki/environment/` and `current.json` is the machine-readable pointer. **Compile is the only aggregator**: it folds the archived signals into the index as per-brawler `environment_evidence` (`ladder_anchor` / `monthly_finals`) plus `environment_ladder_per_map`. `decide` never reads signal files; it consumes the embedded evidence from the index through `hydrate_runtime_facts.py`.
+The system's environment signal is `high_rank_pickrate` (Brawl Planet Legendary only pick layer, `wiki/environment/pickrate.sqlite3`) paired with `ban_rate` (Liquipedia monthly aggregation, `wiki/environment/<YYYY-MM>/archive.sqlite3`). The archive lives under `wiki/environment/` and `current.json` is the machine-readable pointer. **Compile is the only aggregator**: it folds the archived signals into the index as per-brawler `environment_evidence` (`ladder_anchor` / `monthly_finals`) plus `environment_ladder_per_map`. `decide` never reads signal files; it consumes the embedded evidence from the index through `hydrate_runtime_facts.py`.
 
 - With the archive present, `manifest.pickrate_status` is `"loaded"` and `manifest.pickrate_source` records the pointer path; without the pointer (or with `--no-environment`) the slot stays `"empty"`.
 - Compile does not invent pick rates, tiers, or rankings. Missing environment evidence is explicit uncertainty; it must not upgrade or demote any candidate.
