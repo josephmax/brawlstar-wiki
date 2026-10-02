@@ -463,4 +463,7 @@ if __name__ == "__main__":
     test_maintenance_skill_contract()
     assert "Legendary only" in read(PLAYER_COMPILE_REF)
     assert "Legendary only" in read(PLAYER_DECIDE_REF)
+    temporal = read(ROOT / "skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md")
+    for term in ["query_allowed", "descriptive_only", "24-hour", "snapshot hash", "current_version_evidence"]:
+        assert term in temporal, term
     print("bp skill contract ok")

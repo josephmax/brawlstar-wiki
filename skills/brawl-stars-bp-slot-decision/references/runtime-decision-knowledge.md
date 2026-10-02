@@ -450,3 +450,8 @@ Each candidate explanation should cite facts from `map_fact_packet`, `fact_windo
 - Treating a small-sample environment number as a stable anchor: a Legendary only use rate under roughly 2% or a monthly pick count under ~5 is anecdotal, not a trend. Report the sample with the number.
 - Ignoring map false-positive filters because a relation edge looks attractive.
 - Producing a confident pick without naming which evidence dimension each reason came from, or without reporting confidence when evidence is thin.
+
+
+### Mixed-window evidence boundary (2026-10-03)
+
+Environment statistics may be shown as descriptive evidence with their actual rank, sample window and archive provenance. A missing current-patch certificate does not forbid retrieval or independently supported mechanism analysis. It does forbid treating mixed/unknown-window rates as current-patch strength, tiers or numeric pick rankings. Knowledge maintenance owns the consumption policy in `wiki/environment/version_review.json`; application live-query adapters consume that policy, while slot decisions continue to consume only compiled evidence. Do not bypass compile or read maintenance sources during a decision.

@@ -68,4 +68,15 @@ Refresh the archive and review version applicability separately. Record the immu
 
 Before declaring current-version statistics, require an independently evidenced sample start/end after the latest relevant balance/rules/new-brawler change, matching rank scope and denominator. If the API provides only latest_match_time, retain `current_version_evidence: false` and explain the missing start/patch segmentation. Do not synthesize daily counts or subtract old aggregate snapshots. Current knowledge maintenance and numeric breakpoint audits do not validate a statistical window.
 
-A downstream application must read this review rather than hardcode approval. Its separate decision on whether to display labeled mixed-window data must not relabel that data as current-version evidence. Expired reviews and newly published patches require another review. Run the ranked-pool filter tests and BP skill contract before publishing.
+A downstream application must read this review rather than hardcode approval. Its separate decision on whether to display labeled mixed-window data must not relabel that data as current-version evidence. Newly published patches or changed source contracts require another review. Run the ranked-pool filter tests and BP skill contract before publishing.
+
+
+## Query availability and evidence quality (2026-10-03)
+
+`version_review.json` also carries `consumption_policy` with schema `brawlstar.environment_consumption_policy.v1`: `query_allowed=true`, `mixed_window_use=descriptive_only`, `requires_window_label=true`, and `current_strength_requires_post_patch_evidence=true`. This is a maintained source-use contract, not approval of current-patch strength.
+
+- A successful live query may display actual returned statistics with rank, pinned map pool, denominator, capture time and mixed/unknown sample window. `current_version_evidence=false` must not block that descriptive answer or cause repeated identical fetches.
+- A 24-hour review expiry or changed snapshot hash must not disable queries. Keep snapshot hash for provenance and matching exact sample evidence only; rolling payload changes are expected. Do not auto-renew the patch review by merely fetching data.
+- Current-patch ratings still require independently sourced post-patch samples. New heroes, Buffies, rules/map rotations and indirect matchup changes all count as review triggers; no direct change to one hero does not prove its environment unchanged.
+- If no segmented window exists, return the descriptive data and explain that current-patch numerical rating is unavailable. Stable, reviewed mechanisms can independently support conditional gameplay/BP reasoning; do not invent a statistical rating or claim the whole task cannot be answered.
+- Maintenance is complete with an honest gap record plus usable descriptive statistics. Do not repeatedly refetch waiting for false to become true. Keep monthly tournaments separate, label actual event dates, and never use June events as current-version proof.

@@ -1,13 +1,13 @@
 {
   "schema": "brawlstar.environment_version_review.v1",
-  "reviewed_at": "2026-09-30T12:52:58.946335+00:00",
-  "review_expires_at": "2026-10-01T12:52:58.946335+00:00",
+  "reviewed_at": "2026-10-02T17:49:37.581507+00:00",
+  "review_expires_at": null,
   "status": "reviewed_with_gaps",
   "rank_scope": "legendary_only",
   "rank_scope_verified": true,
   "source": "https://storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz",
-  "capture": "raw/sources/version-review/2026-09-30/provenance.json",
-  "snapshot_sha256": "ca2074e0111696b7fade030797e7eb972194d2b4056220e05a09a0a7b2c6c8bc",
+  "capture": "raw/sources/version-review/2026-10-03/provenance.json",
+  "snapshot_sha256": "4c296cc5c5108f3528fea09f3eab928be662b8cfd2ff27b7082af4c77d8cbbbb",
   "patch_ledger": "wiki/sources/Fandom-Maintenance-September-16-2026.md",
   "latest_observed_patch": "2026-09-16",
   "official_source": "https://supercell.com/en/games/brawlstars/blog/release-notes/release-notes-august-2026/",
@@ -26,5 +26,13 @@
     "Pinned Season 49 pool is covered by this payload; source active flags do not independently verify current game pool.",
     "No evidence for pooled Legendary-and-above statistics."
   ],
-  "source_summary": "wiki/sources/Brawl-Planet-版本适用性复核-2026-09-30.md"
+  "source_summary": "wiki/sources/Brawl-Planet-版本适用性复核-2026-10-03.md",
+  "consumption_policy": {
+    "schema": "brawlstar.environment_consumption_policy.v1",
+    "query_allowed": true,
+    "mixed_window_use": "descriptive_only",
+    "requires_window_label": true,
+    "current_strength_requires_post_patch_evidence": true,
+    "review_trigger": "source_contract_or_relevant_patch_change"
+  }
 }

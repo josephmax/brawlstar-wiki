@@ -225,3 +225,8 @@ The output must be smaller than the underlying wiki pages and must not require t
 ## Compiler Output Discipline
 
 Write generated indexes to `outputs/` or another caller-provided intermediate path. Do not write generated runtime indexes back into the long-term wiki unless the user explicitly asks for an audit artifact.
+
+
+### Mixed-window evidence boundary (2026-10-03)
+
+Environment statistics may be shown as descriptive evidence with their actual rank, sample window and archive provenance. A missing current-patch certificate does not forbid retrieval or independently supported mechanism analysis. It does forbid treating mixed/unknown-window rates as current-patch strength, tiers or numeric pick rankings. Knowledge maintenance owns the consumption policy in `wiki/environment/version_review.json`; application live-query adapters consume that policy, while slot decisions continue to consume only compiled evidence. Do not bypass compile or read maintenance sources during a decision.

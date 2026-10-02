@@ -1734,3 +1734,8 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 ## 2026-09-30：排位源刷新与版本限制核查
 
 新增不可变站点/GCS/官方补丁抓取及哈希；先写来源摘要，复核当前排位源口径。源页明确 l1 为传奇本段，修复维护 fetcher 和环境 reference 的传奇以上误标，其他 tier 不再继承 l1 标记。重建 pickrate.sqlite3，更新 current/index；固定 S49 的 26 张图均有样本。新增 version_review.json 明确样本起止和补丁分段仍缺失，因此不能把本次刷新写成 current_version_evidence=true。9 月 16 日补丁既有账本与官方页面对应；本次不修改稳定英雄/地图机制，不重复生成断点矩阵。来源详情见 [[sources/Brawl-Planet-版本适用性复核-2026-09-30]]。
+
+
+## 2026-10-03 统计查询解锁与证据边界维护
+
+按 maintenance skill 捕获官方更新索引、补丁说明、传奇源页面与数据；新增不可变来源与复核摘要，刷新 pickrate SQLite/current 指针。37 源图、固定池 26/26、106 英雄；当前游戏池与补丁后窗口仍未验证。新增 consumption_policy 允许标注窗口的描述性查询，撤销应用将审核时效/滚动哈希用作查询开关的依据；不把 current_version_evidence 伪改 true，不生成星级或稳定对位。maintenance 与 runtime references、契约同步；详见 [[sources/Brawl-Planet-版本适用性复核-2026-10-03]]。

@@ -1,0 +1,37 @@
+[
+  {
+    "file": "ladder.json",
+    "url": "https://storage.googleapis.com/brawlanalyzer-public/pl-l1-results.json.gz",
+    "captured_at": "2026-10-02T17:49:32.725595+00:00",
+    "sha256": "4c296cc5c5108f3528fea09f3eab928be662b8cfd2ff27b7082af4c77d8cbbbb",
+    "last_modified": "Fri, 02 Oct 2026 12:10:46 GMT"
+  },
+  {
+    "file": "brawlers.json",
+    "url": "https://storage.googleapis.com/brawlanalyzer-public/brawlers.json.gz",
+    "captured_at": "2026-10-02T17:49:33.846332+00:00",
+    "sha256": "8cd23496f683312ae9ca872df5a7566d1426b6f8aa7b71fe26bfdc51bb3a8b57",
+    "last_modified": "Sun, 20 Sep 2026 20:50:54 GMT"
+  },
+  {
+    "file": "brawlplanet.html",
+    "url": "https://www.brawlplanet.com/powerleague/pl-l1",
+    "captured_at": "2026-10-02T17:49:35.358212+00:00",
+    "sha256": "bbe05f05bb4f8e2f079445c0a8c60dfc15ccd187b242e3073e94c822ef252181",
+    "last_modified": null
+  },
+  {
+    "file": "supercell.html",
+    "url": "https://supercell.com/en/games/brawlstars/blog/release-notes/release-notes-august-2026/",
+    "captured_at": "2026-10-02T17:49:36.497369+00:00",
+    "sha256": "33614361b5b409e33e5bc17f60f80dc50a1c43a646d363d9afc6881f54409c66",
+    "last_modified": "Fri, 02 Oct 2026 12:25:50 GMT"
+  },
+  {
+    "file": "news.html",
+    "url": "https://supercell.com/en/games/brawlstars/blog/",
+    "captured_at": "2026-10-02T17:49:37.581507+00:00",
+    "sha256": "199c9470d0ee00488a9c156794415bb331fcad6e11b31168285b0d26fc1a27b8",
+    "last_modified": "Fri, 02 Oct 2026 12:25:49 GMT"
+  }
+]
