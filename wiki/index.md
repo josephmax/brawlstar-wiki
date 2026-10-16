@@ -485,3 +485,8 @@
 - 查询时优先从本页进入相关页面，再沿页面底部的关联链接追溯来源。
 - 页面分类、命名和来源接入规则以 `AGENTS.md` 为准。
 - BP 维护者讨论 / wiki 查询优先进入 [[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]，再读 [[syntheses/条件化对位模型|条件化对位模型]]、[[syntheses/BP-运行时索引编译架构|BP 运行时索引编译架构]]、[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]、[[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]、地图、模式、英雄和来源页补证据；批量维护和缺口排查再读 [[syntheses/BP-英雄建模标准流程|BP 英雄建模标准流程]] 与 [[syntheses/BP-维护归档|BP 维护归档]]。BP skill 执行不读取 syntheses，按 skill 内 `compile` / `decide` references 与 `runtime_bp_index` 分治。
+
+## 新英雄机制与资源对齐（2026-10-16）
+
+- [[entities/brawlers/Cosmo|Cosmo]]：机制、两妙具和两星辉；BP 对位/地图待审核。
+- [[entities/brawlers/Vince|Vince]]：预览机制与能力，来源仍标为 FutureUpdate。

@@ -1,0 +1,295 @@
+# Direct Raw Capture: PLP Cosmo
+
+- Title: Best build for Cosmo | Brawl Stars loadout, gears & counters | PL Prodigy
+- URL: https://powerleagueprodigy.com/cosmo
+- Capture date: 2026-10-16
+- Correction note: nested `build` fields are preserved explicitly.
+- Source type: third-party competitive guide
+- Capture method: public Next.js page payload + metadata via curl
+- Capture boundary: structured guide/loadout/mode/matchup fields only; page HTML and marketing UI omitted.
+- Payload sourceUpdatedAt: unknown
+- Meta description: Best Cosmo Brawl Stars build: use Ammo Attractor Star Power, Planetary Pushback Gadget, and Shield and Damage gears. See counters, matchup advice, and loadout choices. Best modes: Bounty and Heist.
+
+## Guide Fields
+
+```json
+{
+  "key": "COSMO",
+  "internalName": "COSMO",
+  "name": "Cosmo",
+  "slug": "cosmo",
+  "id": 16000109,
+  "description": "Cosmo is the lead astronomer at Starr Park's Observatory. Besides teaching visitors about the universe, he is constantly gazing at the stars searching for something...",
+  "catalog_class": "Controller",
+  "catalog_rarity": "Mythic",
+  "gadget": {
+    "id": 23001444,
+    "slot": 1,
+    "code": "GADGET_1",
+    "label": "Planetary Pushback",
+    "name": "Planetary Pushback",
+    "slug": "planetary-pushback",
+    "description": "Cosmo knocks enemies back from the targeted area.",
+    "descriptionHtml": "Cosmo knocks enemies back from the targeted area.",
+    "iconUrl": "https://cdn.brawlify.com/gadgets/regular/23001444.png",
+    "tooltipNotes": [
+      "Use Planetary Pushback into other Tanks and Assassins to keep aggro away."
+    ],
+    "recommended": true,
+    "guideHighlighted": false,
+    "rawChoice": "BOTH",
+    "defaultDecisionRequired": true,
+    "options": [
+      {
+        "id": 23001444,
+        "slot": 1,
+        "code": "GADGET_1",
+        "label": "Planetary Pushback",
+        "name": "Planetary Pushback",
+        "slug": "planetary-pushback",
+        "description": "Cosmo knocks enemies back from the targeted area.",
+        "descriptionHtml": "Cosmo knocks enemies back from the targeted area.",
+        "iconUrl": "https://cdn.brawlify.com/gadgets/regular/23001444.png",
+        "tooltipNotes": [
+          "Use Planetary Pushback into other Tanks and Assassins to keep aggro away."
+        ],
+        "recommended": true,
+        "guideHighlighted": false
+      },
+      {
+        "id": 23001445,
+        "slot": 2,
+        "code": "GADGET_2",
+        "label": "Telescope Trap",
+        "name": "Telescope Trap",
+        "slug": "telescope-trap",
+        "description": "Cosmo uses his telescope to reveal an area for 6 seconds, including invisible enemies. Enemy Brawlers inside this area cannot use movement abilities, including dashes, jumps, and teleports.",
+        "descriptionHtml": "Cosmo uses his telescope to reveal an area for 6 seconds, including invisible enemies. Enemy Brawlers inside this area cannot use movement abilities, including dashes, jumps, and teleports.",
+        "iconUrl": "https://cdn.brawlify.com/gadgets/regular/23001445.png",
+        "tooltipNotes": [
+          "Use Telescope Trap when Mortis, Kaze, Mico, or Kenji is present; blocking their movement is more valuable than pushback.",
+          "Use Telescope Trap by default when aggro pressure is absent."
+        ],
+        "recommended": true,
+        "guideHighlighted": false
+      }
+    ]
+  },
+  "starPower": {
+    "id": 23001443,
+    "slot": 2,
+    "code": "STAR_POWER_2",
+    "label": "Ammo Attractor",
+    "name": "Ammo Attractor",
+    "slug": "ammo-attractor",
+    "description": "Hitting an enemy with Cosmo's Super reloads 2 ammo.",
+    "descriptionHtml": "Hitting an enemy with Cosmo's Super reloads 2 ammo.",
+    "iconUrl": "https://cdn.brawlify.com/star-powers/regular/23001443.png",
+    "tooltipNotes": [],
+    "recommended": true,
+    "guideHighlighted": false,
+    "rawChoice": "2",
+    "defaultDecisionRequired": false,
+    "options": [
+      {
+        "id": 23001442,
+        "slot": 1,
+        "code": "STAR_POWER_1",
+        "label": "Precession",
+        "name": "Precession",
+        "slug": "precession",
+        "description": "Increases the orbit speed of Cosmo's main attack by 25%.",
+        "descriptionHtml": "Increases the orbit speed of Cosmo's main attack by 25%.",
+        "iconUrl": "https://cdn.brawlify.com/star-powers/regular/23001442.png",
+        "tooltipNotes": [],
+        "recommended": false,
+        "guideHighlighted": false
+      },
+      {
+        "id": 23001443,
+        "slot": 2,
+        "code": "STAR_POWER_2",
+        "label": "Ammo Attractor",
+        "name": "Ammo Attractor",
+        "slug": "ammo-attractor",
+        "description": "Hitting an enemy with Cosmo's Super reloads 2 ammo.",
+        "descriptionHtml": "Hitting an enemy with Cosmo's Super reloads 2 ammo.",
+        "iconUrl": "https://cdn.brawlify.com/star-powers/regular/23001443.png",
+        "tooltipNotes": [],
+        "recommended": true,
+        "guideHighlighted": false
+      }
+    ]
+  },
+  "gears": [
+    {
+      "id": 62000004,
+      "code": "SHIELD",
+      "label": "Shield",
+      "name": "Shield",
+      "slug": "shield",
+      "description": "Gain a 900-health consumable shield. The shield regenerates over 10 seconds while at full health.",
+      "rarity": "super-rare",
+      "iconUrl": "https://raw.githubusercontent.com/Brawlify/CDN/master/gears/regular/62000004.png",
+      "tooltipNotes": []
+    },
+    {
+      "id": 62000002,
+      "code": "DAMAGE",
+      "label": "Damage",
+      "name": "Damage",
+      "slug": "damage",
+      "description": "Deal 15% extra damage while below 50% health.",
+      "rarity": "super-rare",
+      "iconUrl": "https://raw.githubusercontent.com/Brawlify/CDN/master/gears/regular/62000002.png",
+      "tooltipNotes": []
+    }
+  ],
+  "notes": [],
+  "notesRaw": "",
+  "modes": [
+    {
+      "code": "BOUNTY",
+      "label": "Bounty"
+    },
+    {
+      "code": "HEIST",
+      "label": "Heist"
+    }
+  ],
+  "modesRaw": null,
+  "counters": [],
+  "countersRaw": "",
+  "avoid": [],
+  "avoidRaw": "",
+  "sourceRow": null,
+  "gearsRaw": null,
+  "guideHref": "/cosmo",
+  "hasLegacyGuide": false,
+  "legacySlug": "",
+  "legacyGuideHref": ""
+}
+```
+
+## Matchup Fields
+
+```json
+{
+  "countersThese": [
+    {
+      "key": "MAX",
+      "id": 16000032,
+      "name": "Max",
+      "slug": "max",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000032.png"
+    },
+    {
+      "key": "MANDY",
+      "id": 16000065,
+      "name": "Mandy",
+      "slug": "mandy",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000065.png"
+    },
+    {
+      "key": "BROCK",
+      "id": 16000003,
+      "name": "Brock",
+      "slug": "brock",
+      "imageUrl": "/brawlers/Brock.webp"
+    },
+    {
+      "key": "BYRON",
+      "id": 16000042,
+      "name": "Byron",
+      "slug": "byron",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000042.png"
+    },
+    {
+      "key": "GENE",
+      "id": 16000021,
+      "name": "Gene",
+      "slug": "gene",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000021.png"
+    },
+    {
+      "key": "BEA",
+      "id": 16000029,
+      "name": "Bea",
+      "slug": "bea",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000029.png"
+    },
+    {
+      "key": "COLT",
+      "id": 16000001,
+      "name": "Colt",
+      "slug": "colt",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000001.png"
+    },
+    {
+      "key": "BELLE",
+      "id": 16000046,
+      "name": "Belle",
+      "slug": "belle",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000046.png"
+    }
+  ],
+  "counteredBy": [
+    {
+      "key": "NANI",
+      "id": 16000036,
+      "name": "Nani",
+      "slug": "nani",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000036.png"
+    },
+    {
+      "key": "ANGELO",
+      "id": 16000079,
+      "name": "Angelo",
+      "slug": "angelo",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000079.png"
+    },
+    {
+      "key": "TICK",
+      "id": 16000022,
+      "name": "Tick",
+      "slug": "tick",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000022.png"
+    },
+    {
+      "key": "RT",
+      "id": 16000066,
+      "name": "R-T",
+      "slug": "rt",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000066.png"
+    },
+    {
+      "key": "MORTIS",
+      "id": 16000011,
+      "name": "Mortis",
+      "slug": "mortis",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000011.png"
+    },
+    {
+      "key": "BONNIE",
+      "id": 16000058,
+      "name": "Bonnie",
+      "slug": "bonnie",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000058.png"
+    },
+    {
+      "key": "LEON",
+      "id": 16000023,
+      "name": "Leon",
+      "slug": "leon",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000023.png"
+    },
+    {
+      "key": "SPROUT",
+      "id": 16000037,
+      "name": "Sprout",
+      "slug": "sprout",
+      "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000037.png"
+    }
+  ]
+}
+```

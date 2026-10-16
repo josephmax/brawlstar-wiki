@@ -1739,3 +1739,7 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 ## 2026-10-03 统计查询解锁与证据边界维护
 
 按 maintenance skill 捕获官方更新索引、补丁说明、传奇源页面与数据；新增不可变来源与复核摘要，刷新 pickrate SQLite/current 指针。37 源图、固定池 26/26、106 英雄；当前游戏池与补丁后窗口仍未验证。新增 consumption_policy 允许标注窗口的描述性查询，撤销应用将审核时效/滚动哈希用作查询开关的依据；不把 current_version_evidence 伪改 true，不生成星级或稳定对位。maintenance 与 runtime references、契约同步；详见 [[sources/Brawl-Planet-版本适用性复核-2026-10-03]]。
+
+## 2026-10-16 — 新英雄与应用资源覆盖
+
+抓取 Cosmo、Vince 的 Fandom/PLP 四份 raw，新增四份来源摘要和两份机制实体。未将预览或未审计资料标为 BP-ready。应用发现 109 头像；修复带空格的 Fandom 章节解析和完整同步遗漏发现名单的问题，补能力图标。静态图片由应用保存，不由知识库推断排位资格。
