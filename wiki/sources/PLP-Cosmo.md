@@ -4,8 +4,8 @@
 
 - 标题：Best build for Cosmo | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Cosmo | Power League Prodigy](https://powerleagueprodigy.com/cosmo)
-- 读取日期：2026-10-16
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/cosmo.md]]
+- 读取日期：2026-10-21
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/cosmo-2026-10-21.md|10-21 抓取]]；[[../../raw/sources/pl-prodigy/brawlers/cosmo.md|10-16 抓取]]保留，来源更新时间不明；两次推荐及对位名单未见变化。
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：unknown
@@ -41,6 +41,6 @@
 - [[sources/Fandom-Cosmo|Fandom 来源摘要: Cosmo]]
 - [[entities/brawlers/Cosmo|Cosmo]]
 
-## 本次整合边界（2026-10-16）
+## 当前整合边界（2026-10-21）
 
 已整合到 [[entities/brawlers/Cosmo|Cosmo]] 的机制/能力页面；未晋升 BP-ready。不采纳未经机制验证的 Tips 保证性结论。

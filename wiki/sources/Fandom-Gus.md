@@ -4,8 +4,8 @@
 
 - 标题：Gus
 - 来源：[Gus | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gus)
-- 读取日期：2026-09-03
-- Fandom 页面最后编辑：2026-09-03T03:36:20Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-15T14:46:38Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/gus.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Super Rare
 - 官方定位: Support
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)<br>863 (with Spirit Animal + Star Buffie)
 - 生命值: 3300
 - 攻击距离: 9.33 (Very Long)
 - 装填: 1.5 seconds (Normal)
@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Gus|Gus]]
 - [[sources/PLP-Gus|PLP 来源摘要: Gus]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Health Bonanza 为基础灵体治疗的 1.75 倍。Knockback Spirit 冷却 18 秒；Super shield 的 infobox 2600/P1 对应 5200/P11，治疗/盾衰减仍为时序资源。

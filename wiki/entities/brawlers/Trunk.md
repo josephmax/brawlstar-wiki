@@ -32,7 +32,7 @@ bp_brawler_profile:
     burst: medium_high_if_edge_damage_or_full_combo_lands
     sustained_dps: high_while_standing_on_ant_area
     objective_damage: low_direct_heist_value
-    mobility: medium_high_with_ant_speed_and_super_dash; Super 可越水并弹墙
+    mobility: medium_high_with_ant_speed_and_super_dash; Super 可越水并弹墙，蚁区加速只在区域条件满足时生效；精确加速数值来源冲突，不据此承诺追上特定目标
     survivability: high_body_with_super_damage_reduction_and_Worker_Ants_heal_window
     engage: medium_high_on_grass_wall_or_zone_routes
     disengage: medium_with_super_dash_or_speed_area

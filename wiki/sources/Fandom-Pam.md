@@ -4,8 +4,8 @@
 
 - 标题：Pam
 - 来源：[Pam | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pam)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T09:19:36Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-01T13:02:06Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/pam.md]]
 - source_quality：direct_raw_capture
@@ -20,13 +20,13 @@
 
 - 稀有度: Epic
 - 官方定位: Support
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 5000
 - 攻击距离: 9 (Long)
 - 装填: 1.3 seconds (Very Fast)
 - 普攻数值: 300
 - Super 距离: 5
-- Super 数值: 3040
+- Super 数值: 3300
 - Gadgets: Pulse Modulator, Scrapsucker
 
 ## BP 建模可抽取信号
@@ -60,3 +60,7 @@
 
 - [[entities/brawlers/Pam|Pam]]
 - [[sources/PLP-Pam|PLP 来源摘要: Pam]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+普通炮台 Health=3300/P1、healing=600/P1，Power 11 分别 6600、每秒 1200；Hypercharge 正文炮台 9000。炮台和治疗不纳入英雄本体静态血池。

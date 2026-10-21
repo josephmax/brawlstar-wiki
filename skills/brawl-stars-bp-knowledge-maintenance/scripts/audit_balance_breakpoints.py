@@ -240,7 +240,7 @@ def capture_rank(path: Path, text: str | None = None) -> tuple[str, int, str]:
 
 
 def raw_slug(path: Path) -> str:
-    return re.sub(r"-\d{4}-\d{2}-\d{2}(?:-v\d+)?\.md$", "", path.name)
+    return re.sub(r"-\d{4}-\d{2}-\d{2}(?:-v\d+)?$", "", path.stem)
 
 
 def extract_raw_name(text: str) -> str | None:

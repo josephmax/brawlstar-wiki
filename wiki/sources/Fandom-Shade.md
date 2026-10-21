@@ -4,8 +4,8 @@
 
 - 标题：Shade
 - 来源：[Shade | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Shade)
-- 读取日期：2026-09-03
-- Fandom 页面最后编辑：2026-09-03T03:31:37Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-03T22:53:09Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/shade.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Assassin
-- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>3000 (Super dash)<br>1066 (with Super)<br>1230 (with Super and Hypercharge)<br>943 (with Spooky Speedster)<br>1107 (with Spooky Speedster and Hypercharge)
+- 移动速度: 855 (Very Fast)<br>3000 (Super dash)<br>1112 (with Super)<br>1026 (with Spooky Speedster)
 - 生命值: 3700
 - 攻击距离: 3.67 (Short)<br>5.33 (with Longarms)
 - 装填: 0.8 seconds (Very Fast)
@@ -64,3 +64,7 @@
 
 - [[entities/brawlers/Shade|Shade]]
 - [[sources/PLP-Shade|PLP 来源摘要: Shade]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+来源冲突：官方 Hyper Buffie 75%→30%，当前个人页又描述中心伤害 +15% 加超充 5%，不认定同一分母；撤销旧 +44.375% 确定计算。墙内治疗引语/正文为每秒 1000；来源未提供一致的各等级表，BP 不保留旧 2000 的确定量。Jump Scare 的具体范围不可从公告 opaque 参数直接换算格数。

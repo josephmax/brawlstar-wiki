@@ -1743,3 +1743,41 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 ## 2026-10-16 — 新英雄与应用资源覆盖
 
 抓取 Cosmo、Vince 的 Fandom/PLP 四份 raw，新增四份来源摘要和两份机制实体。未将预览或未审计资料标为 BP-ready。应用发现 109 头像；修复带空格的 Fandom 章节解析和完整同步遗漏发现名单的问题，补能力图标。静态图片由应用保存，不由知识库推断排位资格。
+
+## [2026-10-21] maintenance+ingest | 新英雄头像、最新平衡概览与 LCQ
+
+- 核对 Supercell 当前 release notes 与 Fandom Version History/2026：最新可验证平衡维护仍为 2026-09-16（Fandom revision 219043 未变）。新增完整官方 raw，补到原 canonical 补丁来源页；新建 [[syntheses/最新平衡性概览-2026-10|最新平衡性概览]]，自包含整理 9 削弱 / 9 增强、最新断点覆盖、来源冲突和 10 月新英雄获取边界。
+- 补齐 Nori / Wendy / Cosmo / Vince 四位头像资产及 provenance，图片映射由 104→108；重建 catalog 为 106 个现有英雄 / 106 张可解析头像。Cosmo / Vince 的 Brawlify 图片未能下载，使用 Fandom imageinfo 确认的角色原画，保留服务实际返回的 WebP 字节，未合成或编辑图片。见 [[sources/新英雄头像与发布状态复核-2026-10|头像复核]]。
+- 新增 Cosmo / Vince 的 Fandom 全文、PLP structured guide 和四份来源摘要；修正 [[sources/Brawler-Roster|roster]] 中失效 raw 链接、将“8 月已发布”纠正为公告预告与后续实际获取时间、将“PLP 404”更新为已上线。Cosmo 10-01 常规获取，Vince 10-19 提前获取；完整 reviewed BP profile 仍为 106 人，二人的六模式、地图与条件对位建模列为后续缺口，不自动升级。
+- 通过 Liquipedia API 抓取 [[sources/Liquipedia-Brawl-Stars-Championship-2026-Last-Chance-Qualifier|LCQ]] revision 274777（2026-10-19），新增 source/entity 与 `wiki/environment/2026-10/archive.sqlite3`：15 场实际 series / 60 sets、360 选角 / 360 local ban 提名 / 60 global ban 提名，8 队、零弃权；NAVI / Team Heretics 晋级。
+- 修复解析器的 LCQ 适配：Infobox 注释污染字段、sdate/edate、国际赛区、跨 bracket 重复 ID，以及把最后一场误当冠亚军赛。资格赛按上下半区决赛胜者记录晋级队；原 raw 中旧 parsed JSON 快照不改，消费者从完整 wikitext 重解析，来源页显式说明。新增真实赛事回归测试。
+- LCQ 观察独立归档并登记到 `current.json.observations`，保留 8 月完整四赛区 Monthly Finals 指针；没有将 LCQ 误聚合为月赛信号。已有 8 月 SQLite、pickrate SQLite 与题库练习文件的用户未提交修改未覆盖。
+- 联赛结构审计发现 Deathcap Trap 缺页，补抓 Fandom revision 218554 并建立 source / Gem Grab 稳定地图实体；侧 Z 草、中央矿区、横墙部署点与探查/撤退责任有原文依据。地图缺口从 1→0，尚余 Cosmo reviewed profile 缺口 1。
+- 修复断点脚本 `raw_slug` 未剥离无日期文件 `.md` 后缀、重复计入英雄的问题；回归测试先失败后通过。当前唯一目标 108、254 防御态、33 已复核包；9 月维护增量为 330 命中数变化 / 132 构筑压力变化。Belle 三发池 24→39，相对旧表新增 Cosmo/Vince 两个当前目标的反事实结果；继承五个旧 manifest/profile 缺失或冲突，完整列在概览，不宣称全链无缺口。
+- 链接检查额外发现 Nori canonical raw 缺失，已新抓 2026-10-21 现页并刷新来源摘要：P1 HP 3500 与原 BP YAML 的 Power 11 7000 一致、满充 2.5 秒、移速 855/1026；同步修正旧 2 秒满充与旧速度文案、清除 Nori 页面已退役的 strength/tier 说明。此补抓使旧 Nori 一致性排除消除，显式排除总数 114→113；Gadget infobox/引语数值差异保留在来源层。
+- 验证：Liquipedia 6 项、断点 11 项、SQLite 3 项、环境协议 4 项、catalog 2 项及 BP skill contract 通过；106 个 BP-ready profile 零 blocker；新地图单图编译无 missing input，月赛 provenance 仍为 8 月。更新 [[index|导航]]、环境索引及旧断点篇页首更正。
+
+## [2026-10-21] sync | 合并远端知识库更新
+
+- 从 `eb508a3` 快进到 `6f89c77`，拉取 3 个远端提交：排位源刷新、查询可用性与补丁证据分离、Cosmo/Vince 机制实体。
+- 拉取前完整备份本地已修改和未跟踪文件；合并两侧日志、导航与环境指针，保留 `version_review` 和 LCQ 独立观察。pickrate SQLite 的本地未提交版本与旧 HEAD 逻辑转储完全一致，采用远端较新的排位数据，无本地记录丢失。
+- 远端 10-16 与本地 10-21 的四份新英雄 raw 为不同日期/页面状态，均保留原始字节；10-21 抓取以日期文件名归档，canonical 来源页合并最新状态与远端机制实体链接。Vince 10-19 提前获取证据更新旧预览描述，排位资格与 BP-ready 仍未确认。
+- 接入两位机制实体的本地头像并刷新 catalog；完整 reviewed BP profile 仍为 106，不将机制页计作运行时模型。
+- 合并校验：排位池 9 项、断点 11 项、Liquipedia 6 项、catalog 2 项与 BP skill contract 通过；22 个本轮 wiki 页的链接检查无缺失，Git 无冲突或空白错误。重编译索引载入远端 `legendary_only` 数据；108 张卡中仅 106 张具备已复核能力，两位机制页为空卡且全部 slot eligibility 为 false。
+
+## [2026-10-21] review | 拉取后的维护成果复核
+
+- 修正导航与环境索引中残留的 Legendary+ / S48 / 30 图 / 9 月快照描述：当前为 Legendary only、固定 S49 26 图、北京时间 10-03 抓取、106 英雄有样本、11 张池外图。当前游戏池和完整样本窗口仍未验证。
+- 修正导航“Cosmo / Vince 缺 PLP 来源”旧结论，明确双源与机制实体已有，缺口是两份完整 BP profile；roster 注明远端 10-16 建档与本地 10-21 复核的关系。全库质量审计为 108 实体、106 bp_ready 零结构 blocker、2 missing_profile，不再把局部零 blocker 当全库无缺口。
+- 最新平衡概览补上远端统计消费边界：十周混合统计可以带标签查询，但新英雄获取和公告复核不验证补丁后胜率；LCQ 仍不并入月赛信号。
+- 对合并后的全部来源重新运行断点审计，结果仍为 108 目标、330 命中数变化、132 构筑压力变化、113 显式排除；无需改动数值结论。已有五个历史数值冲突及两份 BP profile 缺口继续公开保留。
+
+## [2026-10-21] fix | 平衡性 BP 审计修复与推送准备
+
+- 按维护 skill 对本期 18 英雄和 Hank / Jacky / Melodie 完成 Fandom、PLP 双源复核；先更新来源摘要、配装与名单差分，再内联修正英雄当前数值和机制。详情见 [[最新平衡性概览-2026-10#BP 审计修复闭环|修复闭环]]；不新建版本覆盖层，不自动反转条件边。
+- 修复 El Primo 把毁弹写成完全免伤、Meg 投射物与爆炸击退混淆，更新治疗/召唤物/Power 11 数值、R-T Recording 构筑。Colette / Shade / Trunk 来源口径冲突保持公开，移除未经证实的固定循环或倍率保证。
+- Chuck / Hank / Jacky / Meg / Melodie 五项历史 manifest/profile 缺失失配已消除。当前重算 108 血量目标、256 条件防御态、33 复核伤害包；332 命中变化、134 构筑压力变化，108 显式时序/机制等排除。尚有两份完整 BP profile 与 176 条 PLP 新候选待复核，不把候选当 runtime 克制。
+- 修复 source ingest 优先旧 canonical 的选择问题，以及 PLP 审计按文件名重复身份、忽略 canonical 抓取日期的问题；新增回归用例。PLP 来源去重后 108 份、1600 候选，1424 与 runtime 重合。
+- 回归发现旧排位写入只 upsert，导致 S49 元数据下残留 6 张池外图。完整快照写入改为事务性替换，旧库读取按自身 excluded_maps 过滤；编译实际消费 26 图。原有两份 SQLite 本地改动与题库实验文件均不提交。
+- 更新 roster/地图增长后的编译计数断言与按地图规模计算的体积预算，保留 Cosmo / Vince 空卡所有 slot 不可用的回归断言；没有放松机制建模门槛。
+- 最终验证：维护脚本 unittest 47 项、runtime unittest 43 项、catalog 2 项与 BP skill contract 全部通过；106 个 BP-ready profile 零结构 blocker，2 个机制页仍缺 profile；80 个本轮 wiki 页无断链。非 raw 变更无空白错误；raw 中原站点尾随空格和缩进保持不变，不为 lint 改写抓取原文。

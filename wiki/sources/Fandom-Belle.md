@@ -4,10 +4,10 @@
 
 - 标题：Belle
 - 来源：[Belle | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Belle)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-16T09:30:19Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-19T21:32:18Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/belle.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/belle-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -58,3 +58,7 @@
 
 - [[entities/brawlers/Belle|Belle]]
 - [[sources/PLP-Belle|PLP 来源摘要: Belle]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+当前主弹 1140/P1 即 2280/P11；静态三发线不推翻墙体遮挡或回复时序前提。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/belle.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

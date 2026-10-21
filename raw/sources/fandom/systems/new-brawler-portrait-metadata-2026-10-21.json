@@ -1,0 +1,51 @@
+{
+  "batchcomplete": true,
+  "query": {
+    "normalized": [
+      {
+        "fromencoded": false,
+        "from": "File:Cosmo_Portrait.png",
+        "to": "File:Cosmo Portrait.png"
+      },
+      {
+        "fromencoded": false,
+        "from": "File:Vince_Portrait.png",
+        "to": "File:Vince Portrait.png"
+      }
+    ],
+    "pages": [
+      {
+        "pageid": 75527,
+        "ns": 6,
+        "title": "File:Cosmo Portrait.png",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 434673,
+            "width": 1759,
+            "height": 1110,
+            "url": "https://static.wikia.nocookie.net/brawlstars/images/c/c1/Cosmo_Portrait.png/revision/latest?cb=20260906195614",
+            "descriptionurl": "https://brawlstars.fandom.com/wiki/File:Cosmo_Portrait.png",
+            "descriptionshorturl": "https://brawlstars.fandom.com/index.php?curid=75527"
+          }
+        ]
+      },
+      {
+        "pageid": 75543,
+        "ns": 6,
+        "title": "File:Vince Portrait.png",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 546478,
+            "width": 2400,
+            "height": 1600,
+            "url": "https://static.wikia.nocookie.net/brawlstars/images/5/53/Vince_Portrait.png/revision/latest?cb=20260906195539",
+            "descriptionurl": "https://brawlstars.fandom.com/wiki/File:Vince_Portrait.png",
+            "descriptionshorturl": "https://brawlstars.fandom.com/index.php?curid=75543"
+          }
+        ]
+      }
+    ]
+  }
+}

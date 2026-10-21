@@ -46,7 +46,7 @@ bp_brawler_profile:
     area_control: "high_in_mecha; 宽弹幕和 swing 能守入口、热区和球门"
     scouting_or_vision: "low"
     team_support: "conditional; Jolting Volts Buffie 可同时治疗机甲与附近队友，Heavy Metal Buffie 可从被 Super 命中的敌人偷取 ammo"
-    spawnable_or_pet: "none; Toolbox 不再部署 reload turret，而是弹射当前机甲并开始回充 Super"
+    spawnable_or_pet: "none; Repurpose 弹射当前机甲并开始回充 Super，不是 reload turret"
     crowd_control: "conditional; 进入机甲时会范围伤害并击退，充能后的 Mecha Super swing 可驱赶近身，Hypercharge 还会短暂减速附近敌人；不能假设每轮目标战都有 swing"
 
   build_switches:
@@ -54,7 +54,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Meg|PLP-Meg]]"
       changes_capabilities:
         - "Jolting Volts 延长机甲 uptime；Buffie 还会治疗附近队友并把持续时间从 5 秒延长到 6 秒"
-        - "Heavy Metal 让 Mecha Super 每命中一个敌人回复 1200 生命；Buffie 还会从每个被命中的敌人偷取 1 ammo，但机甲普攻每枚命中只充 2.703% Super，这属于需要预先积累的关键目标战资源"
+        - "Heavy Metal 让 Mecha Super 每命中一个敌人回复生命；引语与百分比正文的量纲未对齐，不保证固定回血值。Buffie 从每个被命中的敌人偷取 1 ammo，机甲普攻每枚命中只充 2.703% Super，属于需要预先积累的关键目标战资源"
       enables:
         - "Hot Zone/Brawl Ball 的目标区身体"
         - "Heist 的机甲期 safe 压力"
@@ -67,11 +67,11 @@ bp_brawler_profile:
       best_when: "地图奖励站点、守入口或持续目标压力"
       poor_when: "敌方能用墙后投掷、召唤物或高爆发近身持续打断机甲循环，或 BP 计划依赖每轮目标战重复获得 Mecha Super"
       bp_use: "default_plp_mecha_control_build"
-    - build: "Toolbox / Force Field or Heavy Metal / Shield, Damage"
+    - build: "Repurpose / Force Field or Heavy Metal / Shield, Damage"
       source: "[[sources/Fandom-Meg|Fandom-Meg]]"
       changes_capabilities:
-        - "Toolbox 让 Meg 主动弹出并向前发射机甲，沿途和爆炸时造成伤害，随后在 6 秒内回充 Super"
-        - "Force Field 在离开机甲后提供 40% 护盾；Buffie 在护盾期间再提供 20% 移速"
+        - "Repurpose 让 Meg 主动弹出并向前发射机甲；沿途投射物造成伤害但不击退，只有末端爆炸击退，随后在 6 秒内回充 Super；冷却 25 秒，不能用飞行段拦截持球或突进"
+        - "Force Field 在机甲被摧毁或 Repurpose 弹出后提供 30% 减伤，最多 5 秒；重新入机甲提前结束，Buffie 在护盾期间再提供 20% 移速"
       enables:
         - "把即将失效的机甲转成直线伤害并计划性重进机甲"
         - "Heist/Hot Zone 中的短暂离甲换位和第二轮机甲压力"
@@ -181,7 +181,7 @@ bp_brawler_profile:
     - id: "base_form_collapse_after_mecha_destroyed"
       active_when: "机甲被打掉后，本体 Power 11 4800 HP 被追击"
       exposed_by: "stateful HP and no hard escape"
-      mitigation: "Force Field、提前用 Toolbox 计划性弹射并选择安全回充路线、队友 peel、避免本体携带关键目标"
+      mitigation: "Force Field、提前用 Repurpose 计划性弹射并选择安全回充路线、队友 peel、避免本体携带关键目标；投射物飞行段无击退，不能替代保镖"
       bp_use: "avoid_as_sole_carrier_or_last_body"
     - id: "thrower_spawnable_or_close_swarm_tax"
       active_when: "敌方用 Nita、Larry & Lawrie、Damian、Lumi 或墙后投掷持续消耗机甲"
@@ -268,11 +268,11 @@ bp_brawler_profile:
     "damage_packets": [],
     "defense_modifiers": [
       {
-        "id": "force_field_post_mecha",
+        "id": "force_field_out_of_mecha",
         "source_kind": "star_power",
         "loadout_group": "star_power",
         "applies_to_states": ["meg"],
-        "effect": {"type": "damage_reduction", "ratio": 0.40},
+        "effect": {"type": "damage_reduction", "ratio": 0.30},
         "active_when": "Mecha 被摧毁后的 5 秒，且 Meg 尚未再次进入 Mecha",
         "sequence_validity": "只保护脱甲后的 Meg，不保护 Mecha",
         "source_ref": "[[sources/Fandom-Meg|Fandom-Meg]]"

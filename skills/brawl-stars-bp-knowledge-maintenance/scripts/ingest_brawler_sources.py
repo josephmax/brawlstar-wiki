@@ -71,18 +71,19 @@ def capture_rank(path: Path) -> tuple[str, int]:
 
 
 def latest_direct_raw(directory: Path, slug: str) -> Path:
-    # 2026-09-03: 文件名不再带日期；优先精确名，兼容旧日期命名。
-    exact = directory / f"{slug}.md"
-    if exact.exists() and "Direct Raw Capture" in exact.read_text(encoding="utf-8", errors="replace")[:160]:
-        return exact
+    # Canonical and dated captures are immutable snapshots; choose freshness,
+    # not filename style, and do not absorb another hero sharing a prefix.
     candidates = []
-    for path in directory.glob(f"{slug}-*.md"):
+    pattern = re.compile(rf"{re.escape(slug)}(?:-\d{{4}}-\d{{2}}-\d{{2}}(?:-v\d+)?)?\.md")
+    for path in directory.glob(f"{slug}*.md"):
+        if not pattern.fullmatch(path.name):
+            continue
         head = path.read_text(encoding="utf-8", errors="replace")[:160]
         if "Direct Raw Capture" in head:
             candidates.append(path)
     if not candidates:
         raise FileNotFoundError(f"no direct raw for {slug} in {directory}")
-    return sorted(candidates, key=capture_rank)[-1]
+    return max(candidates, key=lambda path: (*capture_rank(path), path.name))
 
 
 def rel_wikilink(path: Path) -> str:

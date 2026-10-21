@@ -4,8 +4,8 @@
 
 - 标题：Jacky
 - 来源：[Jacky | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Jacky)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-08T14:43:33Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-20T15:47:43Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/jacky.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Super Rare
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>963 (with Pneumatic Booster)<br>1117 (with Pneumatic Booster and Hypercharge)
+- 移动速度: 800 (Fast)<br>1000 (with Pneumatic Booster)
 - 生命值: 5200
 - 攻击距离: 3.33 (Short)
 - 装填: 1.8 seconds (Normal)
@@ -60,3 +60,7 @@
 
 - [[entities/brawlers/Jacky|Jacky]]
 - [[sources/PLP-Jacky|PLP 来源摘要: Jacky]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Hardy Hard Hat 当前引语与正文均为 25% 减伤，与 8 月账本一致；替换旧 20% profile，不能自动改变对位方向。

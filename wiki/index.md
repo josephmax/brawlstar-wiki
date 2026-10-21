@@ -40,7 +40,7 @@
 
 ## Environment Archive（环境信号与赛事观察数据归档）
 
-- 环境信号与赛事观察数据（`tournament_observation_profile.v1`、月赛 pick/ban 聚合、Legendary+ pickrate）持久归档在 `wiki/environment/`，由 `compile` 折叠进 `runtime_bp_index` 作为标注证据；归档索引与指针见 [[environment/index|环境信号与赛事观察数据归档]]。
+- 环境信号与赛事观察数据（`tournament_observation_profile.v1`、月赛 pick/ban 聚合、Legendary only pickrate）持久归档在 `wiki/environment/`，由 `compile` 折叠月赛与排位信号进 `runtime_bp_index` 作为标注证据；LCQ 保持独立观察，归档索引与指针见 [[environment/index|环境信号与赛事观察数据归档]]。
 
 ## BP Maintenance
 
@@ -56,6 +56,7 @@
 
 ## BP Archive
 
+- [[syntheses/最新平衡性概览-2026-10|最新平衡性概览（截至 2026-10-21；最新可核验补丁为 9 月 16 日）]]
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 - [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]
 - [[syntheses/2026六月至八月平衡性断点双向评估|2026 六月至八月平衡性断点双向评估]]
@@ -65,6 +66,7 @@
 ## Sources
 
 - 赛事来源：
+- [[sources/Liquipedia-Brawl-Stars-Championship-2026-Last-Chance-Qualifier|Liquipedia：BSC 2026 LCQ（10 月 17–18 日，15 series / 60 sets）]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-EMEA-Monthly-Finals|Liquipedia：BSC 2026 July EMEA Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-South-America-Monthly-Finals|Liquipedia：BSC 2026 July South America Monthly Finals]]
 - [[sources/Liquipedia-Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|Liquipedia：BSC 2026 July East Asia Monthly Finals]]
@@ -76,10 +78,14 @@
 - [[sources/BSC-2026-July-Observed-Map-Fit-Review|BSC 2026 July 三张补充地图的适配复核]]
 
 - 站点与 manifest：
+- [[sources/新英雄头像与发布状态复核-2026-10|新英雄头像与发布状态复核（2026-10）]]
+- [[sources/Fandom-Cosmo|Fandom Cosmo]] / [[sources/PLP-Cosmo|PLP Cosmo]]（双源已齐，BP profile 待完整复核）
+- [[sources/Fandom-Vince|Fandom Vince]] / [[sources/PLP-Vince|PLP Vince]]（10 月 19 日提前获取；双源已齐，BP profile 待完整复核）
+- [[sources/Fandom-Deathcap-Trap|Fandom Deathcap Trap]] / [[entities/maps/Deathcap Trap|Deathcap Trap（Gem Grab 稳定结构）]]
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
-- [[sources/Brawl-Planet-站点与数据接口|Brawl Planet 站点与数据接口]]（环境信号 pick 层数据源，Legendary+）
+- [[sources/Brawl-Planet-站点与数据接口|Brawl Planet 站点与数据接口]]（环境信号 pick 层数据源，Legendary only）
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
-- [[sources/Brawler-Roster|Brawler Roster（2026-07-11 复核）]]
+- [[sources/Brawler-Roster|Brawler Roster（2026-10-21 复核：108 身份、106 BP-ready）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]（8 月补丁：新英雄 Cosmo/Vince、Wendy/Nori 极限充能、6 个新芭菲、平衡性调整，含 balance_patch_manifest）
 - [[sources/Fandom-Maintenance-September-16-2026|Fandom 来源摘要: Maintenance - September 16, 2026]]（9 月 16 日维护补丁：9 削弱 9 增强，含 balance_patch_manifest，effective_order 5）
@@ -313,8 +319,8 @@
 - [[entities/events/Brawl-Stars-Championship-2026-July-East-Asia-Monthly-Finals|BSC 2026 July East Asia Monthly Finals]]
 - [[entities/events/Brawl-Stars-Championship-2026-July-North-America-Monthly-Finals|BSC 2026 July North America Monthly Finals]]
 
-- 英雄（游戏已发布 108 个；本地稳定运行层 106 个 `bp_ready`。`Wendy` 已发布并双源闭环建档；`Cosmo`、`Vince` 已发布但 PLP 未覆盖，按规则暂不进入 BP 英雄集合，见 [[sources/Brawler-Roster|Brawler Roster]]。`Wendy`、`Nori` 的极限充能与 2026-08 补丁见 [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]）：
-- 当前缺口：Cosmo、Vince 的竞技来源（PLP guide）覆盖。
+- 英雄（已开放获取 108 个，含提前获取；本地 108 个实体中有 106 个 `bp_ready`。`Cosmo`、`Vince` 双源和机制页已齐，完整 BP 模型待复核；Vince 提前获取不等于常规获取或排位资格，见 [[sources/Brawler-Roster|Brawler Roster]]。`Wendy`、`Nori` 的极限充能与 2026-08 补丁见 [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]）：
+- 当前缺口：Cosmo、Vince 的完整六模式、地图职责与条件对位 profile（不是 PLP 来源缺失）。
 - [[entities/brawlers/8-Bit|8-Bit]]
 - [[entities/brawlers/Alli|Alli]]
 - [[entities/brawlers/Amber|Amber]]
@@ -489,4 +495,4 @@
 ## 新英雄机制与资源对齐（2026-10-16）
 
 - [[entities/brawlers/Cosmo|Cosmo]]：机制、两妙具和两星辉；BP 对位/地图待审核。
-- [[entities/brawlers/Vince|Vince]]：预览机制与能力，来源仍标为 FutureUpdate。
+- [[entities/brawlers/Vince|Vince]]：机制与能力；提前获取已由 History 记录，常规获取、排位资格与 BP 模型仍待复核。

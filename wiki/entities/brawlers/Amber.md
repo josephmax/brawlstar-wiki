@@ -22,8 +22,8 @@ Amber 是用持续喷火和燃油地形把路线变成高成本区域的 Control
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
       - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
@@ -35,7 +35,7 @@ bp_brawler_profile:
     burst: "medium_low_immediate; Dancing Flames 和点燃燃油可爆发，Oil Spill Buffie 下普攻命中附带点燃状态，默认主攻击没有硬控瞬秒"
     sustained_dps: "high_if_ammo_managed; 40 flame ammo 长时间压线，空弹后恢复慢"
     objective_damage: "medium_high_with_dancing_flames_and_ignited_oil; Heist 可用持续火线、点燃油区（含油桶洒油）和 Dancing Flames 固定目标窗口"
-    mobility: "medium; 默认 720 移速，技能本体无加速；Fire Starters 为掷桶铺油，加速依赖 Dancing Flames Buffie +20%、Wild Flames Buffie 近油 +10% 与 Hypercharge"
+    mobility: "medium; 默认 750 移速，技能本体无加速；Fire Starters 为掷桶铺油，加速依赖 Dancing Flames Buffie +20%、Wild Flames Buffie 近油 +10% 与 Hypercharge"
     survivability: "medium_low; Power 11 本体 6800 HP，依靠距离、燃油墙和 Shield gear"
     engage: "medium; 通过燃油封路逼近，不是硬开团"
     disengage: "medium_with_fire_wall; 点燃燃油、油桶洒油和 Wild Flames 油迹可把追击路线变成可点火油面"
@@ -43,7 +43,7 @@ bp_brawler_profile:
     anti_tank: "medium_high_if_distance_held; 连续火线和燃油穿越税能磨高血量"
     wall_break: "bush_destroy_only; 点燃燃油可烧草，不破墙"
     throw_or_wall_bypass: "super_lob; Super 可越墙投掷燃油，主攻击不能越墙"
-    area_control: "very_high; 多滩 Super 油持久并存互不清除，Fire Starters 油桶（7000 耐久，Power 11）洒油可连片，点燃火墙和草丛清除"
+    area_control: "very_high; 多滩 Super 油持久并存互不清除，Fire Starters 油桶（2600 耐久，Power 11）洒油可连片，点燃火墙和草丛清除"
     scouting_or_vision: "high_with_vision_gear_and_bush_burn; Vision gear 配持续命中，燃油点火清草"
     team_support: "medium_high; 把敌人赶出 chokepoint 和队友射线"
     spawnable_or_pet: "none"
@@ -57,8 +57,8 @@ bp_brawler_profile:
     - build: "Fire Starters / Wild Flames / Vision, Shield, Reload"
       source: "[[sources/PLP-Amber|PLP-Amber]]"
       changes_capabilities:
-        - "Fire Starters 掷出 7000 耐久（Power 11）油桶，被毁或每秒 12% 自然衰减（至多 9 秒）后在落点洒出 3x3 燃油，与 Super 油同质且互不清除，冷却 24 秒"
-        - "Wild Flames 使燃油黏滞：敌人沾油后被附着并随移动留下至多 3 秒油迹，油区内敌人减速 10%"
+        - "Fire Starters 掷出 2600 耐久（Power 11）油桶，被毁或每秒 12% 自然衰减（至多 9 秒）后在落点洒出 3x3 燃油，与 Super 油同质且互不清除，冷却 24 秒"
+        - "Wild Flames 使燃油黏滞：敌人沾油后被附着并随移动留下至多 1 秒油迹，油区内敌人减速 10%"
         - "Fire Starters Buffie 可同时部署 2 个油桶（双桶放下后才开始冷却）；Wild Flames Buffie 靠近火/油迹时 +10% 移速"
         - "Vision gear 让持续火线命中后服务草区侦测，Reload gear 缓解空弹风险"
       enables:

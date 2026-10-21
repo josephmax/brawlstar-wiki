@@ -4,8 +4,8 @@
 
 - 标题：Trunk
 - 来源：[Trunk | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Trunk)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T10:17:13Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-09-20T05:24:36Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/trunk.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>963 (with ants)<br>924 (with Hypercharge)<br>1046 (with ants and Hypercharge)<br>2400 (with Super)
+- 移动速度: 800 (Fast)<br>1000 (with ants)<br>2400 (with Super)
 - 生命值: 5200
 - 攻击距离: 3.33 (Short)
 - 装填: 1.5 seconds (Normal)
@@ -57,3 +57,7 @@
 
 - [[entities/brawlers/Trunk|Trunk]]
 - [[sources/PLP-Trunk|PLP 来源摘要: Trunk]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+官方蚁区移速增益为 30%，当前个人页 Infobox 800→1000 及正文 +25% 不一致；BP 保留蚁区加速机制，不保证精确追击阈值。

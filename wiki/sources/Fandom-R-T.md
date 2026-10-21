@@ -4,10 +4,10 @@
 
 - 标题：R-T
 - 来源：[R-T | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/R-T)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-16T14:07:12Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-01T13:06:26Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/r-t.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/r-t-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/R-T|R-T]]
 - [[sources/PLP-R-T|PLP 来源摘要: R-T]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Split Attack2=1240/P1，单端 Power 11 2480；Recording 头部 25%、腿部 55% 替代固有 29%，不相加。需与 Quick Maths 二选一，不默认同时拥有。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/r-t.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

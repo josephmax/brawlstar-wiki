@@ -4,10 +4,10 @@
 
 - 标题：Wendy
 - 来源：[Wendy | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Wendy)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-16T20:35:03Z（revid 219087）
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-21T03:10:15Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/wendy.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/wendy-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 - 补丁刷新：2026-09-17 重抓以反映 2026-09-16 维护补丁（血量、出生护盾、普攻自盾、Solar Shield、GREEN ENERGY 数值），见 [[sources/Fandom-Maintenance-September-16-2026|Maintenance - September 16, 2026]]
@@ -21,11 +21,11 @@
 
 - 稀有度: Mythic
 - 官方定位: Support
-- 移动速度: 800 (Fast)（2026-09-01 全英雄移速上调 770→800）
+- 移动速度: 800 (Fast)
 - 生命值: 2500
 - 攻击距离: 8 (Long)
 - 装填: 1.45 seconds (Fast)
-- 普攻数值: 1000（自盾 300 / 队友盾 760，Power 1）
+- 普攻数值: 1000
 - Super 距离: 5 (Normal)
 - Super 数值: 2500
 - Gadgets: Wind-Powered, Green Grenade
@@ -61,3 +61,7 @@
 
 - [[entities/brawlers/Wendy|Wendy]]
 - [[sources/PLP-Wendy|PLP 来源摘要: Wendy]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+本体与出生盾已同步。发生器加成的历史多口径冲突保留，不用暂存盾、分摊和治疗循环伪造永久 EHP。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/wendy.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

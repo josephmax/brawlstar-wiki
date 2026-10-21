@@ -4,8 +4,8 @@
 
 - 标题：Hank
 - 来源：[Hank | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Hank)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-11T09:01:37Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-03T22:54:31Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/hank.md]]
 - source_quality：direct_raw_capture
@@ -20,8 +20,8 @@
 
 - 稀有度: Epic
 - 官方定位: Tank
-- 移动速度: 720 (Normal)<br>792 (with It's Gonna Blow)<br>864 (with Hypercharge)<br>924 (with It's Gonna Blow and Hypercharge)
-- 生命值: 5200
+- 移动速度: 750 (Normal)<br>825 (with It's Gonna Blow)
+- 生命值: 5500
 - 攻击距离: 1.67 (min. range)<br> 3.33 (max. range)
 - 装填: 0.25 seconds (Very Fast)
 - 普攻数值: 525
@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Hank|Hank]]
 - [[sources/PLP-Hank|PLP 来源摘要: Hank]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+当前 Health=5500/P1，即 Power 11 11000，与 8 月补丁账本一致；本次补抓闭合历史回落旧血量的缺口。

@@ -4,11 +4,11 @@
 
 - 标题：Best build for Shade | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Shade | Power League Prodigy](https://powerleagueprodigy.com/shade)
-- 读取日期：2026-06-29
+- 读取日期：2026-10-21
 - 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/shade.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at： unknown
 
 ## 可用范围
 
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Mr. P`, `Jessie`, `Gale`, `Sprout`, `Brock`, `Jae-Yong`, `Squeak`, `Nani`
-- counteredBy: `Doug`, `Jacky`, `Trunk`, `Frank`, `Finx`, `Bibi`, `Ash`, `Hank`
+- countersThese: `Mr. P`, `Jessie`, `Gale`, `Grom`, `Ziggy`, `Squeak`, `Najia`, `Cosmo`
+- counteredBy: `Jacky`, `Trunk`, `Doug`, `Rosa`, `Nori`, `Kenji`, `Amber`, `Bibi`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Shade|Fandom 来源摘要: Shade]]
 - [[entities/brawlers/Shade|Shade]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+countersThese：新增 Cosmo, Grom, Najia, Ziggy；移除 Brock, Jae-Yong, Nani, Sprout。 counteredBy：新增 Amber, Kenji, Nori, Rosa；移除 Ash, Finx, Frank, Hank。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。

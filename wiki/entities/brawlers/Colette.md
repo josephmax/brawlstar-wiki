@@ -33,7 +33,7 @@ bp_brawler_profile:
     effective_range: "long_mid; 8.67 格直线 projectile，Super 11 格往返"
     projectile_reliability: "medium_high_on_linear_lanes; 单发直线，命中率依赖路线和墙体"
     burst: "high_vs_high_hp_or_special_targets; 两普攻加 Super 可击杀多数无盾/无回复目标"
-    sustained_dps: "medium; 1.6 秒装填，伤害随目标当前血量下降；普通攻击每发只充 22.5% Super，默认要命中 5 发；Gotcha! 最多三发各 25%，随后一发普通攻击累计也只有 97.5%，不能恢复固定 4 发循环"
+    sustained_dps: "medium; 1.6 秒装填，伤害随目标当前血量下降；Super 充能口径存在来源差异，不保证固定四发或五发循环，进场前检查实际充能与命中机会"
     objective_damage: "very_high_in_heist; safe 作为 special target，Super 往返和 Hypercharge 可造成大额固定伤害"
     mobility: "conditional; Super 快速往返、可过水，但会撞墙停止并回起点"
     survivability: "low_medium; Power 11 本体 7200 HP，Mass Tax 在 Super 中 60% 减伤对应 18000 EHP，叠满 Shield gear 为 20250；这是短暂往返窗口且不能与 Super 后 30% 护盾叠加"
@@ -72,7 +72,8 @@ bp_brawler_profile:
     - build: "Gotcha! / Mass Tax / Shield, Damage"
       source: "[[sources/Fandom-Colette|Fandom-Colette]]"
       changes_capabilities:
-        - "Gotcha! 让接下来最多三发攻击按伤害 80% 回血，并把这三发的 Super 充能提高到每发 25%；三发后接一发普通攻击累计 97.5%，仍不能把下一次 Super 当作固定四发资源"
+        - "Gotcha! 让接下来最多三发攻击按伤害 80% 回血；其资源收益与普通攻击充能的来源口径存在差异，不用于承诺固定命中数后必有 Super"
+        - "Hyper Buffie 在普攻后跟随第二枚较小弹，按命中时当前生命结算；不能把两弹当相同伤害包或将其与 Super 路径上的灵体混淆。第二弹比例来源冲突，不承诺固定斩杀/打库总量"
         - "Mass Tax 在 Super 中给 60% 减伤，并在命中后给 30% 短盾"
       enables:
         - "Heist 反复 Super safe 后存活"
@@ -204,8 +205,8 @@ bp_brawler_profile:
   failure_modes:
     - id: "super_cycle_is_not_a_fixed_four_hits"
       active_when: "阵容把 Colette 的下一次 Super 当成四次命中后的固定资源，包括误以为 Gotcha! 三发加一发普通攻击即可充满"
-      exposed_by: "[[sources/Fandom-Colette|Fandom-Colette]] 普攻每发 22.5%；Gotcha! 只有最多三发各 25%，三发后接一发普通攻击累计 97.5%"
-      mitigation: "无既有充能时按 5 次有效命中预算 Super；Gotcha! 只用于续航和缩小充能缺口，不用它承诺四发循环"
+      exposed_by: "[[sources/Fandom-Colette|Fandom-Colette]] 充能和 Hyper Buffie 第二弹均有来源口径差异；百分比伤害还随先后命中改变"
+      mitigation: "目标战前确认实际 Super 资源；Gotcha! 按续航窗口使用，不以未经核实的固定四发/五发或两弹总伤害规划强行进场"
       bp_use: "resource_tracking.super_cycle_by_build"
     - id: "low_health_target_damage_floor"
       active_when: "敌人已低血，Colette 普攻只打最低伤害而无法立刻收割"

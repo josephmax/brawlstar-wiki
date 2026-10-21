@@ -29,6 +29,13 @@ Follow [Liquipedia API terms](https://liquipedia.net/api-terms-of-use):
 
 Fresh event pages can receive corrections. A capture is a revision-specific observation, not an assertion that the page can never change. Recapture to a new dated raw file or explicitly overwrite the same-date target with `--force`; do not silently mutate old revision provenance.
 
+### Last Chance Qualifier support (2026-10-21)
+
+- LCQ has GSL groups and a double-elimination playoff awarding two World Finals slots. The upper/lower final winners are `qualified_teams`, not champion/runner-up; no grand final is implied.
+- Infobox dates may use `sdate` / `edate`. Remove HTML comments before parsing fields. Repeated R1M1 keys across brackets receive unique source-order IDs, without implying chronological order.
+- Legacy LCQ raw parser snapshots are re-parsed from their immutable full wikitext by `load_raw_capture`; original raw and revision provenance remain unchanged. Source summaries must disclose this correction.
+- Archive LCQ as independent observation data under its event month. Do not aggregate it through the Monthly Finals signal script or advance `current.json.monthly` with it. Register it in the pointer's `observations` list and the environment index.
+
 ## Layering
 
 | Artifact | Path | Responsibility |

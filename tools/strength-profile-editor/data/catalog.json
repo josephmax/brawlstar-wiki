@@ -28,6 +28,14 @@
   ],
   "maps": [
     {
+      "name": "Crystal Arcade",
+      "mode": "Gem Grab"
+    },
+    {
+      "name": "Deathcap Trap",
+      "mode": "Gem Grab"
+    },
+    {
       "name": "Double Swoosh",
       "mode": "Gem Grab"
     },
@@ -40,11 +48,19 @@
       "mode": "Gem Grab"
     },
     {
+      "name": "Rustic Arcade",
+      "mode": "Gem Grab"
+    },
+    {
       "name": "Undermine",
       "mode": "Gem Grab"
     },
     {
       "name": "Backyard Bowl",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Beach Ball",
       "mode": "Brawl Ball"
     },
     {
@@ -56,7 +72,15 @@
       "mode": "Brawl Ball"
     },
     {
+      "name": "Pinhole Punt",
+      "mode": "Brawl Ball"
+    },
+    {
       "name": "Sneaky Fields",
+      "mode": "Brawl Ball"
+    },
+    {
+      "name": "Spiraling Out",
       "mode": "Brawl Ball"
     },
     {
@@ -92,11 +116,19 @@
       "mode": "Hot Zone"
     },
     {
+      "name": "In the Liminal",
+      "mode": "Hot Zone"
+    },
+    {
       "name": "Open Business",
       "mode": "Hot Zone"
     },
     {
       "name": "Parallel Plays",
+      "mode": "Hot Zone"
+    },
+    {
+      "name": "Quick Travel",
       "mode": "Hot Zone"
     },
     {
@@ -109,6 +141,10 @@
     },
     {
       "name": "Flaring Phoenix",
+      "mode": "Knockout"
+    },
+    {
+      "name": "Goldarm Gulch",
       "mode": "Knockout"
     },
     {
@@ -353,6 +389,11 @@
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000070.png"
     },
     {
+      "name": "Cosmo",
+      "aliases": [],
+      "image_url": "../../raw/assets/brawlers/cosmo.webp"
+    },
+    {
       "name": "Crow",
       "aliases": [
         "黑鸦",
@@ -502,7 +543,8 @@
       "name": "Glowy",
       "aliases": [
         "格洛薇",
-        "Clowbert"
+        "Clowbert",
+        "Glowbert"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000101.png"
     },
@@ -555,6 +597,7 @@
     {
       "name": "Jae-yong",
       "aliases": [
+        "jae",
         "Jae-Yong",
         "Jae Yong",
         "载勇"
@@ -786,6 +829,11 @@
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000008.png"
     },
     {
+      "name": "Nori",
+      "aliases": [],
+      "image_url": "../../raw/assets/brawlers/nori.png"
+    },
+    {
       "name": "Ollie",
       "aliases": [
         "奥利"
@@ -952,6 +1000,7 @@
     {
       "name": "Starr Nova",
       "aliases": [
+        "nova",
         "⭐"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000105.png"
@@ -998,6 +1047,16 @@
         "树桩"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000096.png"
+    },
+    {
+      "name": "Vince",
+      "aliases": [],
+      "image_url": "../../raw/assets/brawlers/vince.webp"
+    },
+    {
+      "name": "Wendy",
+      "aliases": [],
+      "image_url": "../../raw/assets/brawlers/wendy.png"
     },
     {
       "name": "Willow",
@@ -1099,6 +1158,7 @@
     "64": "Cordelius",
     "蘑菇": "Cordelius",
     "🍄": "Cordelius",
+    "Cosmo": "Cosmo",
     "Crow": "Crow",
     "黑鸦": "Crow",
     "乌鸦": "Crow",
@@ -1168,6 +1228,7 @@
     "Glowy": "Glowy",
     "格洛薇": "Glowy",
     "Clowbert": "Glowy",
+    "Glowbert": "Glowy",
     "Gray": "Gray",
     "格雷": "Gray",
     "Griff": "Griff",
@@ -1185,6 +1246,7 @@
     "雅琪": "Jacky",
     "牢琪": "Jacky",
     "Jae-yong": "Jae-yong",
+    "jae": "Jae-yong",
     "Jae-Yong": "Jae-yong",
     "Jae Yong": "Jae-yong",
     "载勇": "Jae-yong",
@@ -1283,6 +1345,7 @@
     "Nita": "Nita",
     "妮塔": "Nita",
     "🐻": "Nita",
+    "Nori": "Nori",
     "Ollie": "Ollie",
     "奥利": "Ollie",
     "Otis": "Otis",
@@ -1349,6 +1412,7 @@
     "史奎克": "Squeak",
     "口水怪": "Squeak",
     "Starr Nova": "Starr Nova",
+    "nova": "Starr Nova",
     "⭐": "Starr Nova",
     "Stu": "Stu",
     "斯图": "Stu",
@@ -1368,6 +1432,8 @@
     "桩": "Trunk",
     "滚木": "Trunk",
     "树桩": "Trunk",
+    "Vince": "Vince",
+    "Wendy": "Wendy",
     "Willow": "Willow",
     "薇洛": "Willow",
     "🐸": "Willow",

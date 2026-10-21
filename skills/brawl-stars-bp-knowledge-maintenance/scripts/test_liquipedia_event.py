@@ -54,6 +54,20 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 class LiquipediaEventTest(unittest.TestCase):
+    def test_lcq_groups_and_qualification_are_not_a_grand_final(self) -> None:
+        path = ROOT / "raw/sources/liquipedia/events/brawl-stars-championship-2026-last-chance-qualifier-2026-10-21.md"
+        event = load_raw_capture(path)
+        self.assertEqual(event["event"]["date"], "2026-10-17 – 2026-10-18")
+        self.assertEqual(event["event"]["region"], "International")
+        self.assertEqual(event["event"]["team_number"], 8)
+        self.assertEqual(event["summary"]["played_series"], 15)
+        self.assertEqual(event["summary"]["played_sets"], 60)
+        self.assertIsNone(event["summary"]["champion"])
+        self.assertIsNone(event["summary"]["runner_up"])
+        self.assertEqual(set(event["summary"]["qualified_teams"]), {"NAVI", "Team Heretics"})
+        ids = [row["match_id"] for row in event["matches"]]
+        self.assertEqual(len(ids), len(set(ids)))
+
     def test_parse_query_api_response(self) -> None:
         payload = {
             "query": {

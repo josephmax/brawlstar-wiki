@@ -45,11 +45,11 @@ bp_brawler_profile:
   capability_vector:
     effective_range: short_to_mid_with_Longarms
     projectile_reliability: high_in_wall_or_choke_range; attack has wind-up and center sweet spot
-    burst: high_if_center_hit_or_Hypercharged_Super; The Frightener Buffie 中心伤害 +44.375% 且拥抱体积 +50%
+    burst: high_if_center_hit_or_Hypercharged_Super; The Frightener 的 Hyper Buffie 扩大中心拥抱体积；伤害倍率来源口径不一致，不承诺固定增伤比例或斩杀线
     sustained_dps: medium_high; very fast reload but short range
     objective_damage: medium_conditional; close-range DPS if it reaches target
     mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 6 秒（Hardened Hoodie Buffie +1 秒），Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
-    survivability: medium_high_during_Super_with_Hardened_Hoodie_30pct; The Frightener 墙内每秒回 2000（Power 11），Jump Scare Buffie 跳跃护盾 2000（Power 11，每 0.5 秒衰减 5%）
+    survivability: medium_high_during_Super_with_Hardened_Hoodie_30pct; The Frightener 在墙内持续回血，Jump Scare Buffie 提供衰减护盾；两者是时序窗口，不作为固定有效血量
     engage: high_from_wall_phase_water_route_or_Jump_Scare_wall_hop
     disengage: medium_high_if_Super_duration_remaining; Jump Scare 越墙跳+恐惧也能脱离追击
     anti_aggro: medium_high_with_Jump_Scare_fear; 落地恐惧 1 秒使敌人逃跑、40% 减速且无法攻击/开 Super，但 Shade 仍偏好借地形先手
@@ -69,7 +69,7 @@ bp_brawler_profile:
     - build: "Longarms / Hardened Hoodie / Shield, Damage"
       source: "[[sources/PLP-Shade|PLP-Shade]]"
       changes_capabilities:
-        - "Longarms 下一发普攻 +50% 射程（3.67→5.33 格）并帮助从更远处安全充能 Super；Buffie 使强化攻击命中的敌人被拉向拥抱中心"
+        - "Longarms 下一发普攻射程从 3.67 提高到 5.33 格，冷却 20 秒；帮助从更远处充能 Super，Buffie 使命中的敌人被拉向拥抱中心"
         - "Hardened Hoodie 虚体形态 30% 减伤；Buffie 使 Super 时长 +1 秒（6→7 秒）"
         - "Shield/Damage stabilizes short-range entry trades"
       enables:
@@ -85,7 +85,7 @@ bp_brawler_profile:
     - build: "Jump Scare / Spooky Speedster chase variant"
       source: "[[sources/Fandom-Shade|Fandom-Shade]]"
       changes_capabilities:
-        - "Jump Scare 短距跳跃（至多 4 格、可越墙，空中免伤），落地范围恐惧 1 秒：敌人逃跑、40% 减速且无法攻击/开 Super；Buffie 跳跃时获得 2000 护盾（Power 11，每 0.5 秒衰减 5%）"
+        - "Jump Scare 短距越墙跳跃、冷却 18 秒，落地近身范围恐惧 1 秒：敌人逃跑、40% 减速且无法攻击/开 Super；需实际落点覆盖目标，不能把旧大范围恐惧当远距先手。Buffie 提供衰减护盾，不把跳后持续承伤视为免伤"
         - "Spooky Speedster 中心命中 +20% 移速 2 秒；Buffie 命中后按当前冷却 -15% 缩短 Gadget 冷却"
       enables:
         - close_range_chase
@@ -122,7 +122,7 @@ bp_brawler_profile:
         - Parallel Plays
       bp_use: map_bp_factors.route_gate_and_false_positive_filter
     - map_feature_type: "wall_phase_survival_anchor"
-      uses_feature_by: "Super lets Shade hide inside/through walls while pressuring nearby enemies; The Frightener 墙内每秒回 2000（Power 11）延长驻墙续航，Hardened Hoodie Buffie 再 +1 秒虚体"
+      uses_feature_by: "Super lets Shade hide inside/through walls while pressuring nearby enemies; The Frightener 墙内持续回血延长驻墙续航，Hardened Hoodie Buffie 再 +1 秒虚体；离墙或虚体结束就失去该续航前提"
       route_or_position: "wall next to zone, gem mine, or ball lane"
       objective_conversion: "stall zone, threaten carrier, or deny defender position"
       active_when: "enemy lacks through-wall answer and Shade tracks Super duration"

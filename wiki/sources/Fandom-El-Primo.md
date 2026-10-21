@@ -4,10 +4,10 @@
 
 - 标题：El Primo
 - 来源：[El Primo | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/El_Primo)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-16T18:21:36Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-01T12:53:59Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/el-primo.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/el-primo-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -64,3 +64,9 @@
 
 - [[entities/brawlers/El Primo|El Primo]]
 - [[sources/PLP-El-Primo|PLP 来源摘要: El Primo]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+重要机制更正：Asteroid Belt 只销毁接触护盾的飞行投射物，当前正文明确排除无飞行时间攻击及以英雄身体为投射物的攻击（如 Bibi、Mortis）。旧 BP 的“完全免伤”过度泛化必须撤销；被销毁投射物的回充也不是一切受击回充翻倍。
+
+Meteor Rush 加速/减伤窗口 3 秒，Star Buffie 减伤 15%；Asteroid Belt 冷却 20 秒。配装窗口需同步 BP 第一份 YAML，不仅更新 combat profile。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/el-primo.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

@@ -6,6 +6,14 @@
     "db": "wiki/environment/2026-08/archive.sqlite3"
   },
   "ladder": "wiki/environment/pickrate.sqlite3",
-  "updated_at": "2026-10-02T17:49:37.581507+00:00",
-  "version_review": "wiki/environment/version_review.json"
+  "version_review": "wiki/environment/version_review.json",
+  "observations": [
+    {
+      "archive_id": "2026-10",
+      "db": "wiki/environment/2026-10/archive.sqlite3",
+      "kind": "last_chance_qualifier",
+      "compile_status": "observation_only_not_monthly_finals"
+    }
+  ],
+  "updated_at": "2026-10-21T09:56:16+00:00"
 }

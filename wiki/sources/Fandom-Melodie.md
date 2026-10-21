@@ -4,8 +4,8 @@
 
 - 标题：Melodie
 - 来源：[Melodie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Melodie)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-27T09:52:51Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-09-11T20:25:47Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/melodie.md]]
 - source_quality：direct_raw_capture
@@ -20,8 +20,8 @@
 
 - 稀有度: Mythic
 - 官方定位: Assassin
-- 移动速度: 720 (Normal)<br>763 (with Fast Beats and one monster note)<br>806 (with Fast Beats and two monster notes)<br>850 (with Fast Beats and three monster notes)<br>893 (with Fast Beats and four monster notes)<br>864 (with Hypercharge)<br>936 (with Fast Beats and five monster notes)<br>907 (with Hypercharge, Fast Beats and one monster note)<br>979 (with Fast Beats and six monster notes)<br>950 (with Hypercharge, Fast Beats and two monster notes)<br>993 (with Hypercharge, Fast Beats, and three monster notes)<br>1036 (with Hypercharge, Fast Beats, and four monster notes)<br>1079 (with Hypercharge, Fast Beats, and five monster notes)<br>1122 (with Hypercharge, Fast Beats, and six monster notes)<br>3700 (with Super)
-- 生命值: 3800
+- 移动速度: 750 (Normal)<br>810 (with Fast Beats and one monster note)<br>870 (with Fast Beats and two monster notes)<br>930 (with Fast Beats and three monster notes)<br>990 (with Fast Beats and four monster notes)<br>1050 (with Fast Beats and five monster notes)<br>1110 (with Fast Beats and six monster notes)<br>3700 (with Super)
+- 生命值: 4000
 - 攻击距离: 8 (Long)<br>2.17 (monster notes)<br>3.47 (monster notes; with Perfect Pitch)
 - 装填: 1.5 seconds (Normal)
 - 普攻数值: 460
@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Melodie|Melodie]]
 - [[sources/PLP-Melodie|PLP 来源摘要: Melodie]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+当前 Health=4000/P1，即 Power 11 8000，与 8 月补丁账本一致；补抓闭合历史回落旧血量的缺口。

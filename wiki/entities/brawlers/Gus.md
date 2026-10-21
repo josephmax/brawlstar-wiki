@@ -40,8 +40,8 @@ bp_brawler_profile:
   profile_status: bp_ready
   review_gate: reviewed_with_sources_map_hooks_and_matchup_edges
   source_quality:
-    fandom: "[[sources/Fandom-Gus|Fandom-Gus]] direct_raw_capture_2026-06-30"
-    plp: "[[sources/PLP-Gus|PLP-Gus]] direct_raw_capture_2026-06-30"
+    fandom: "[[sources/Fandom-Gus|Fandom-Gus]] direct_raw_capture_2026-10-21"
+    plp: "[[sources/PLP-Gus|PLP-Gus]] direct_raw_capture_2026-10-21"
     user_notes: "none"
 
   capability_vector:
@@ -51,7 +51,7 @@ bp_brawler_profile:
     sustained_dps: "medium with 1.5s reload; pressure is valuable because hits build spirit resources"
     objective_damage: "low direct safe/objective DPS; objective contribution is protection, carrier support, and pick conversion"
     mobility: "low; no dash or reposition tool"
-    survivability: "low self body at Power 11 6600 health, but high ally survivability through 2600 shield and knockback"
+    survivability: "low self body at Power 11 6600 health, but high ally survivability through an initial 5200 shield (Power 11, decaying over time) and knockback"
     engage: "medium as support engage when shield and the Spirit Animal buff, a 25% damage boost plus a Buffied 15% speed window, are placed on a mobile teammate"
     disengage: "high peel when Super shield and knockback are timed on the threatened ally"
     anti_aggro: "high as shield-plus-knockback resource against single dive or close engage"
@@ -85,7 +85,7 @@ bp_brawler_profile:
     - build: "Kooky Popper / Health Bonanza / Shield, Gadget Charge"
       source: "[[sources/Fandom-Gus|Fandom-Gus]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "doubles spirit healing and makes placed spirits a stronger retreat resource; the Buffie makes spirits drift toward the nearest ally"
+        - "increases spirit healing by 75% (1.75 times baseline) and makes placed spirits a stronger retreat resource; the Buffie makes spirits drift toward the nearest ally"
         - "keeps Kooky Popper as area deterrent around predictable approaches; the Buffie strips 1 ammo from enemies hit"
       enables:
         - "gem carrier retreat support"
@@ -245,7 +245,7 @@ bp_brawler_profile:
         - "Pam"
       direction: "target_favored"
       source: "[[sources/PLP-Gus|PLP-Gus]]"
-      mechanism: "spawnables, longer-range burst, split bodies, or turret sustain block Gus's straight shots and punish low health before his support cycle matters; Nori joins the list per the PLP 2026-09-17 list update (Mandy dropped) - hook gap-close plus 1.25s root interrupts the shield/spirit cycle, and MASTER FISHERMAN pull-in drops burst directly on the low-health body"
+      mechanism: "spawnables, longer-range burst, split bodies, or turret sustain block Gus's straight shots and punish low health before his support cycle matters; Nori hook gap-close plus 1.25s root interrupts the shield/spirit cycle, and MASTER FISHERMAN pull-in drops burst directly on the low-health body"
       active_when: "map gives them wall cover, body-blocks, or open sightlines where Gus cannot safely charge spirits; against Nori, when the hook engage reaches Gus before the shield/spirit cycle is up"
       fails_when: "Gus's team clears bodies first or a shielded teammate collapses before their range advantage stabilizes"
       bp_use: "must_answer_range_and_body_block"

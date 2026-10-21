@@ -120,8 +120,8 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         self.assertIn("fetched_at", brock_env["ladder_anchor"])
         self.assertIn("captured_at", brock_env["monthly_finals"])
         self.assertIn("environment_ladder_per_map", index)
-        # 2026-09-07: pick 层默认按 wiki/environment/ranked_pool.json 只保留 Ranked 池（S48 30 图）
-        self.assertEqual(30, len(index["environment_ladder_per_map"]))
+        # The archived S49 snapshot explicitly excludes out-of-pool legacy rows.
+        self.assertEqual(26, len(index["environment_ladder_per_map"]))
 
     def test_runtime_v2_includes_candidate_cards_matchups_and_audit(self):
         index = run_compile()
@@ -129,8 +129,10 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         map_context = safe_zone["map_context"]
         candidate_index = safe_zone["candidate_index"]
 
-        # 2026-09-03: roster 增至 106 个 bp_ready 实体（Wendy 双源闭环建档）；计数锁随 roster 变更更新
-        self.assertEqual(106, len(candidate_index))
+        # Two mechanics-only entities must remain ineligible, not silently BP-ready.
+        self.assertEqual(108, len(candidate_index))
+        for name in ("Cosmo", "Vince"):
+            self.assertFalse(any(candidate_index[name]["slot_eligibility"].values()))
         self.assertIn("objective_contracts", map_context)
         self.assertIn("hard_gates", map_context)
         self.assertIn("slot_pressure", map_context)
@@ -169,8 +171,8 @@ class CompileRuntimeIndexTest(unittest.TestCase):
 
         audit = index["audit_summary"]
         self.assertEqual(1, audit["map_count"])
-        self.assertEqual(106, audit["brawler_count"])
-        self.assertEqual(106, audit["candidate_index_entries"]["Safe Zone"])
+        self.assertEqual(108, audit["brawler_count"])
+        self.assertEqual(108, audit["candidate_index_entries"]["Safe Zone"])
 
     def test_mode_contract_does_not_promote_without_map_signal(self):
         index = run_compile_for_map("Bridge Too Far")
@@ -284,7 +286,9 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         )
         index = json.loads(result.stdout)["runtime_bp_index"]
         self.assertGreaterEqual(len(index["map_pool_signature"]), 20)
-        self.assertLess(len(result.stdout.encode("utf-8")), 6_000_000)
+        # A fixed whole-vault cap breaks when reviewed maps are added.
+        # Retain a bounded shared-card budget plus a per-map projection budget.
+        self.assertLess(len(result.stdout.encode("utf-8")), 2_000_000 + 115_000 * len(index["map_pool_signature"]))
 
     def test_non_brawler_targets_are_excluded_from_matchup_index(self):
         """Matchup targets that do not normalize to a roster brawler (mode

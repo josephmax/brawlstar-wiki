@@ -4,8 +4,8 @@
 
 - 标题：Amber
 - 来源：[Amber | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Amber)
-- 读取日期：2026-09-03
-- Fandom 页面最后编辑：2026-09-03T03:33:47Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-17T15:54:38Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/amber.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Legendary
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>792 (With Wild Flames and Buffie)<br>864 (with Hypercharge)<br>864 (with Dancing Flames and Buffie)<br>936 (With Wild Flames + Buffie and Hypercharge)<br>1008 (with Dancing Flames + Buffie and Hypercharge)
+- 移动速度: 750 (Normal)<br>825 (With Wild Flames and Star Buffie)<br>900 (with Dancing Flames and Gadget Buffie)
 - 生命值: 3400
 - 攻击距离: 8.33 (Long)
 - 装填: 0.22 seconds (8.8 seconds max; Very Fast)
@@ -62,3 +62,7 @@
 
 - [[entities/brawlers/Amber|Amber]]
 - [[sources/PLP-Amber|PLP 来源摘要: Amber]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Fire Starters 引语为 2600、正文为最大血量 38.24%，与 Power 11 本体 6800 对应；Infobox Gadget1=2080 不按 P1 机械翻倍。Wild Flames 油迹 1 秒。Hyper Buffie 主攻附加灼烧为超充 Super 灼烧的减半版本，必须按时间序列而非单包分析。

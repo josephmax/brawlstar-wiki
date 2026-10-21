@@ -51,8 +51,8 @@ Chuck 是靠预铺 Posts 和有限 4 充能 Super 建立“路径优势窗口”
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-09-03"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     user_notes: "none"
 
   capability_vector:
@@ -69,7 +69,7 @@ bp_brawler_profile:
     anti_tank: "low_medium; dash damage of 1600 (Power 11) is meaningful, but tanks with CC/burst punish predictable paths against only 35% dash damage reduction"
     wall_break: low
     throw_or_wall_bypass: "high_with_Ghost_Train; Posts can be thrown over walls, Ghost Train opens 8 seconds of wall-crossing dashes, and the Buffied fire trail adds 2400 (Power 11) of path denial"
-    area_control: "medium; up to 4 Posts reshape where enemies can safely stand, and the Buffied Pit Stop burn zone adds 400 (Power 1, up to 4 ticks over 4s; 2026-09-16 由 100 上调) of post-denial damage"
+    area_control: "medium; up to 4 Posts reshape where enemies can safely stand, and the Buffied Pit Stop burn zone adds 800 (Power 11 per tick, up to 4 ticks over 4s only while the target remains in the area) of post-denial damage"
     scouting_or_vision: low
     team_support: "low_direct; Chuck creates route pressure and objective races, not buffs"
     spawnable_or_pet: "medium_as_route_anchor; Posts are persistent route anchors dealing 800 (Power 11) on landing rather than damage pets, capped at 4"
@@ -86,7 +86,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Chuck|PLP-Chuck]]"
       changes_capabilities:
         - "Rerouting removes the nearest Post and refunds 50% of one Super charge; the Buffie adds a 20% damage-reduction shield for 5 seconds on activation"
-        - "Pit Stop slows enemies hit by Post placement by 30% for 2 seconds (2026-09-16 由 20%/1s 上调); the Buffie leaves a 4-second burn area on placement dealing 400 (Power 1) per tick, up to 4 ticks"
+        - "Pit Stop slows enemies hit by Post placement by 30% for 2 seconds; the Buffie leaves a 4-second burn area on placement dealing 800 (Power 11) per tick, up to 4 ticks"
         - "Shield and Damage gears improve survival and safe-race pressure while the route stands"
       enables:
         - heist_safe_route_burst
@@ -313,4 +313,29 @@ bp_brawler_profile:
     slot_2_3: "usable early because the Super starts full, but pair with immediate lane/safe pressure so the finite pool is not traded away before the route exists."
     slot_4_5: "best when enemy 2-3 lack Super denial or endpoint camping and the team still needs a bounded objective-access window."
     slot_6: "punishes drafts that cannot stop a fixed safe route after bans/picks have removed Charlie, Otis, Cordelius, or endpoint tanks; the opening full pool makes late picks immediately live."
+```
+
+## 战斗断点输入
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Chuck",
+    "target_states": [{
+      "id": "body", "entity_class": "brawler_body", "roster_target": true,
+      "health": {"amount": 4400, "at_power_level": 1, "scaling": "standard"},
+      "source_ref": "[[sources/Fandom-Chuck|Fandom-Chuck]]"
+    }],
+    "damage_packets": [],
+    "defense_modifiers": [{
+      "id": "super_dash_shield", "source_kind": "super", "loadout_group": "super_state",
+      "applies_to_states": ["body"],
+      "effect": {"type": "damage_reduction", "ratio": 0.35},
+      "active_when": "仅 Super 站间冲刺正在进行；不是布站或整场常驻减伤",
+      "sequence_validity": "冲刺结束即失效，仍可受眩晕或减速",
+      "source_ref": "[[sources/Fandom-Chuck|Fandom-Chuck]]"
+    }]
+  }
+}
 ```

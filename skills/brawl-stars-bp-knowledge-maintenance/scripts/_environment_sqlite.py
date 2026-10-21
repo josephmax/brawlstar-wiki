@@ -316,6 +316,11 @@ def write_pickrate(db_path: str | Path, pickrate: dict[str, Any]) -> None:
     """Write a brawlstar.environment_signal_pickrate.v1 into the pickrate database."""
     con = connect(db_path)
     try:
+        # A pickrate payload is a complete snapshot, not an incremental upsert.
+        # Keep deletion and insertion in the same transaction.
+        con.execute("DELETE FROM ladder_global")
+        con.execute("DELETE FROM ladder_per_map")
+        con.execute("DELETE FROM meta WHERE key LIKE 'pickrate.%'")
         for key in ("schema", "window", "rank_floor", "fetched_at"):
             if pickrate.get(key) is not None:
                 _set_meta(con, f"pickrate.{key}", pickrate.get(key))
@@ -510,7 +515,16 @@ def read_pickrate(db_path: str | Path) -> dict[str, Any]:
         for row in con.execute("SELECT * FROM ladder_global"):
             global_rows[row["brawler"]] = {"use_rate": row["use_rate"], "win_rate": row["win_rate"]}
         per_map: dict[str, dict[str, Any]] = {}
+        # Older upsert-only archives can retain rows explicitly excluded by
+        # the current snapshot. Honor its own exclusions without mutating it.
+        excluded = {
+            (str(item.get("map", "")).casefold(), str(item.get("mode", "")).replace(" ", "").casefold())
+            for item in (meta.get("summary") or {}).get("excluded_maps", [])
+            if item.get("reason") == "not_in_ranked_pool"
+        }
         for row in con.execute("SELECT * FROM ladder_per_map ORDER BY source_key, brawler"):
+            if (str(row["map"]).casefold(), str(row["mode"]).replace(" ", "").casefold()) in excluded:
+                continue
             key = row["source_key"]  # GCS 原始 key（保留 Safe Zone / Safe(r) Zone 等变体）
             entry = per_map.setdefault(key, {
                 "map": row["map"], "mode": row["mode"], "match_count": row["match_count"],

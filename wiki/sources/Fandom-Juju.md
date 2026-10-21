@@ -4,10 +4,10 @@
 
 - 标题：Juju
 - 来源：[Juju | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Juju)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-16T20:09:23Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-19T09:15:19Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/juju.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/juju-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -57,3 +57,7 @@
 
 - [[entities/brawlers/Juju|Juju]]
 - [[sources/PLP-Juju|PLP 来源摘要: Juju]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+本体 Health=3500/P1、Gris-Gris Super=4000/P1，分别为 Power 11 7000 与 8000；两者分开，不把召唤物耐久加进本体。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/juju.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

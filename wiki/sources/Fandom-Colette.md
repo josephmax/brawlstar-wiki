@@ -4,8 +4,8 @@
 
 - 标题：Colette
 - 来源：[Colette | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Colette)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-15T20:56:07Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-01T13:02:27Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/colette.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Damage Dealer
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>4000 (with Super)<br>6000 (with Super + Push It and Star Buffie)
+- 移动速度: 750 (Normal)<br>4000 (with Super)<br>6000 (with Super + Push It and Star Buffie)
 - 生命值: 3600
 - 攻击距离: 8.67 (Long)
 - 装填: 1.6 seconds (Normal)
@@ -58,3 +58,7 @@
 
 - [[entities/brawlers/Colette|Colette]]
 - [[sources/PLP-Colette|PLP 来源摘要: Colette]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+来源冲突：本期官方 Hyper Buffie 第二弹倍率 35%，个人页正文却写当前生命 22.5%，不能相互换算或给固定爆发总量。新 infobox 普攻 Super 充能 25%，与既有 22.5% 复核记录不同；保留冲突，不再承诺固定四发或五发循环。

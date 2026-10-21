@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium_by_autoaim_spam; 0.25 秒 reload 很快，但高爆发依赖蓄力"
     objective_damage: "medium; 能威胁近身目标和守门/守区，不是远程 race"
     mobility: "medium_with_its_gonna_blow; 满蓄 80% 后 +10% 速度"
-    survivability: "high_body_with_resource; Power 11 本体 10400 HP，Barricade 3 秒 40% 减伤，Super 治疗 50% 已损生命"
+    survivability: "high_body_with_resource; Power 11 本体 11000 HP，Barricade 3 秒 40% 减伤，Super 治疗 50% 已损生命"
     engage: "medium; 靠墙体、满蓄移速和 Barricade 走入范围"
     disengage: "low_to_medium; 主要靠 Barricade 和 Super 治疗，缺直接位移"
     anti_aggro: "high_at_point_blank; 近身 Super 和满蓄爆发能惩罚刺客/坦克"

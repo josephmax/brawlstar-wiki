@@ -4,11 +4,11 @@
 
 - 标题：Best build for El Primo | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[El Primo | Power League Prodigy](https://powerleagueprodigy.com/elprimo)
-- 读取日期：2026-06-30
+- 读取日期：2026-10-21
 - 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/el-primo.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at： unknown
 
 ## 可用范围
 
@@ -17,8 +17,8 @@
 
 ## 结构化字段摘要
 
-- 推荐 Gadget: `Suplex Supplement`
-- 推荐 Star Power: `El Fuego`
+- 推荐 Gadget: `Asteroid Belt`
+- 推荐 Star Power: `Meteor Rush`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Brawl Ball, Heist
 - Notes: none observed
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Squeak`, `Jae-Yong`, `Sprout`, `Poco`, `Tick`, `Alli`, `Piper`, `Grom`
-- counteredBy: `Clancy`, `Colette`, `Colt`, `Nita`, `Otis`, `8-Bit`, `Edgar`, `Maisie`
+- countersThese: `Nori`, `Grom`, `Ziggy`, `Gigi`, `Meeple`, `Najia`, `Barley`, `Leon`
+- counteredBy: `Clancy`, `8-Bit`, `Shade`, `Mico`, `Amber`, `Brock`, `Bonnie`, `Melodie`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-El-Primo|Fandom 来源摘要: El Primo]]
 - [[entities/brawlers/El Primo|El Primo]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+countersThese：新增 Barley, Gigi, Leon, Meeple, Najia, Nori, Ziggy；移除 Alli, Jae-Yong, Piper, Poco, Sprout, Squeak, Tick。 counteredBy：新增 Amber, Bonnie, Brock, Melodie, Mico, Shade；移除 Colette, Colt, Edgar, Maisie, Nita, Otis。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。

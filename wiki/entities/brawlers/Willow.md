@@ -22,8 +22,8 @@ Willow 是远程投掷控制英雄，普攻 `Lantern's Curse` 以 7.33 格弧线
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
       - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
@@ -33,10 +33,10 @@ bp_brawler_profile:
     effective_range: "long_thrower; 普攻 7.33 格投掷，Super 8.33 格单发"
     projectile_reliability: "medium_low; 普攻/Hex 都可被移动躲避，弹道偏慢"
     burst: "medium_with_spellbound; 默认是 DoT，Spellbound 可把三跳毒伤一次结算并额外加伤"
-    sustained_dps: "low_medium; 2 秒 slow reload，靠毒伤和控位"
+    sustained_dps: "low_medium; 1.8 秒 reload，靠毒伤和控位"
     objective_damage: "low; 主要控人/控区，不是 Heist race"
     mobility: "low; Dive 是无敌停滞，不是位移"
-    survivability: "low_without_dive; Power 11 7200 HP（2026-09-16 由 6600 上调），Hex 控人时自己仍会被第三方威胁"
+    survivability: "low_without_dive; Power 11 7200 HP，Hex 控人时自己仍会被第三方威胁"
     engage: "medium_with_hex; 命中 Hex 后可把目标拉近/赶走/移出目标点"
     disengage: "high_with_dive_or_hex; Dive 2 秒无敌，Hex 可让追击者走开"
     anti_aggro: "medium_high_if_hex_hits; 心控能打断突进路线，但 miss 后很脆"

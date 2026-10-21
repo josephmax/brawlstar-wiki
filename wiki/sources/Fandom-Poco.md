@@ -4,8 +4,8 @@
 
 - 标题：Poco
 - 来源：[Poco | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Poco)
-- 读取日期：2026-09-03
-- Fandom 页面最后编辑：2026-09-03T03:26:59Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-19T09:18:37Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/poco.md]]
 - source_quality：direct_raw_capture
@@ -20,7 +20,7 @@
 
 - 稀有度: Rare
 - 官方定位: Support
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 4000
 - 攻击距离: 7 (Long)
 - 装填: 1.6 seconds (Normal)
@@ -63,3 +63,7 @@
 
 - [[entities/brawlers/Poco|Poco]]
 - [[sources/PLP-Poco|PLP 来源摘要: Poco]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Tuning Fork 引语/正文每波 1400，启动时及 2、4 秒各一波，共三波；不是每秒一次。Da Capo 引语额外 800，加基础 400 后 Power 11 合计 1200（8000 HP 的 15%）。Gadget/Star infobox 与引语混用等级，不机械翻倍。

@@ -42,6 +42,20 @@ def wrapped_json(key: str, payload: dict) -> str:
 
 
 class BreakpointMathTest(unittest.TestCase):
+    def test_canonical_and_dated_raw_share_one_latest_target(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            raw_dir = root / 'heroes'
+            roster = root / 'roster.md'
+            write(roster, '| canonical_name | fandom_url |\n| --- | --- |\n| Belle | https://brawlstars.fandom.com/wiki/Belle |\n')
+            write(raw_dir / 'belle-2026-07-17.md', raw_capture('Belle', 2600))
+            write(raw_dir / 'belle.md', raw_capture('Belle', 2900, '2026-09-17'))
+            targets, exclusions, count = audit.load_base_targets(roster, raw_dir)
+            self.assertEqual(len(targets), 1)
+            self.assertEqual(targets[0].name, 'Belle')
+            self.assertEqual(targets[0].health_p1, 2900)
+            self.assertEqual(exclusions, [])
+
     def test_reference_command_aliases(self) -> None:
         args = audit.parse_args(
             [

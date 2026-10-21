@@ -4,8 +4,8 @@
 
 - 标题：Meg
 - 来源：[Meg | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Meg)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-16T17:05:20Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-12T20:42:49Z
 - 分类：Brawlers / Fandom hero page
 - 上游 raw：[[../../raw/sources/fandom/heroes/meg.md]]
 - source_quality：direct_raw_capture
@@ -20,10 +20,10 @@
 
 - 稀有度: Legendary
 - 官方定位: Tank
-- 移动速度: 820 (Very Fast)<br>984 (with Force Field and Star Buffie)<br>1148 (with Force Field, Star Buffie, and Hypercharge)<br>984 (with Hypercharge)<br>720 (Mecha; Normal)<br>864 (Mecha; with Hypercharge)
+- 移动速度: 855 (Very Fast)<br>1026 (with Force Field and Star Buffie)<br>750 (Mecha; Normal)
 - 生命值: 2400
 - 攻击距离: 9 (Long)<br>7.33 (Mecha; Long)
-- 装填: 1.3 seconds (Very Fast)<br>0.845 seconds (with Toolbox)<br>1.1 seconds (Mecha; Very Fast)<br>0.715 seconds (Mecha; with Toolbox)
+- 装填: 1.3 seconds (Very Fast)<br>1.1 seconds (Mecha; Very Fast)
 - 普攻数值: 300
 - Super 距离: 4.33 (Normal)<br>6.67 (with Hypercharge)
 - Super 数值: 3700
@@ -58,3 +58,9 @@
 
 - [[entities/brawlers/Meg|Meg]]
 - [[sources/PLP-Meg|PLP 来源摘要: Meg]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Force Field 当前引语与正文为 30% 减伤、最多 5 秒，再次进入机甲提前终止；与本库旧 BP/combat 的 40% 不符，按当前原文修正。Heavy Metal 引语 1200 与按伤害 70.59% 的正文存在量纲差异，BP 暂不使用固定回血数。
+
+Repurpose 当前原文明确投射物不击退，只有爆炸击退；与进入机甲的击退及机甲 Super swing 分开。Gadget2 Infobox 和引语量纲不统一，不发布未经复核的固定爆发包。

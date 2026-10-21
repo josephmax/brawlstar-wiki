@@ -6,7 +6,17 @@
     "captured_at": "2026-07-06T12:51:43.462269+00:00",
     "field": "imageUrl2"
   },
+  "supplement": {
+    "captured_at": "2026-10-21",
+    "source_page": "wiki/sources/新英雄头像与发布状态复核-2026-10.md",
+    "local_path_base": "tools/strength-profile-editor/index.html",
+    "note": "Nori/Wendy use the verified Brawlify GitHub mirror; Cosmo/Vince use Fandom original portraits because CDN assets were unavailable. Existing 104 mappings are preserved."
+  },
   "images": {
+    "Nori": "../../raw/assets/brawlers/nori.png",
+    "Wendy": "../../raw/assets/brawlers/wendy.png",
+    "Cosmo": "../../raw/assets/brawlers/cosmo.webp",
+    "Vince": "../../raw/assets/brawlers/vince.webp",
     "8-Bit": "https://cdn.brawlify.com/brawlers/borderless/16000027.png",
     "Alli": "https://cdn.brawlify.com/brawlers/borderless/16000095.png",
     "Amber": "https://cdn.brawlify.com/brawlers/borderless/16000040.png",

@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Juju 的 BP 价值来自“站位所在地形改变能力”。站在地面时伤害提高，站在草里射程提升到长程，站在水上攻击附带 3 秒 slow；她本身可在水上移动，`Elementalist` 又按地形提供护盾、隐身或水上加速。Super 召唤 4000 基础生命的 Gris-Gris，可在水上移动并追击敌人，`Guarded Gris-Gris` 再给召唤物额外衰减护盾。BP 中必须把 Juju 的价值绑定到具体地形：水域如果不连接目标路线，就只是移动噪声；草丛如果被清空，长射程和隐身价值会下降；地面高伤害则要求她能安全站位。
+Juju 的 BP 价值来自“站位所在地形改变能力”。站在地面时伤害提高，站在草里射程提升到长程，站在水上攻击附带 3 秒 slow；她本身可在水上移动，`Elementalist` 又按地形提供护盾、隐身或水上加速。Super 召唤 8000 生命（Power 11）的 Gris-Gris，可在水上移动并追击敌人，`Guarded Gris-Gris` 再给召唤物额外衰减护盾。BP 中必须把 Juju 的价值绑定到具体地形：水域如果不连接目标路线，就只是移动噪声；草丛如果被清空，长射程和隐身价值会下降；地面高伤害则要求她能安全站位。
 
 ## BP 建模资料
 
@@ -22,7 +22,7 @@ Juju 的 BP 价值来自“站位所在地形改变能力”。站在地面时�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-07-17
+    fandom: direct_raw_capture_2026-10-21
     plp: "[[sources/PLP-Juju|PLP-Juju]]"
     user_notes: none
 
@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: medium; 1.6 秒 reload，Voodoo Chile active reload slows to 2 秒
     objective_damage: conditional_heist_thrower_pressure_not_primary_race
     mobility: high_on_water_with_trait_and_Elementalist_speed
-    survivability: low_medium; Power 11 本体 6200 HP, Elementalist ground shield or bush invis can protect windows
+    survivability: low_medium; Power 11 本体 7000 HP, Elementalist ground shield or bush invis can protect windows
     engage: medium_with_bush_invis_or_water_speed
     disengage: medium_high_with_water_route_or_Elementalist
     anti_aggro: conditional_with_water_slow_or_Gris_Gris_body
@@ -43,7 +43,7 @@ bp_brawler_profile:
     area_control: medium_high_with_splash_and_Gris_Gris
     scouting_or_vision: low_medium; Gris-Gris can chase nearest target but is not full reveal
     team_support: route_slow_and_spawnable_body
-    spawnable_or_pet: Gris_Gris_4000_HP_water_crossing_body
+    spawnable_or_pet: Gris_Gris_8000_HP_Power_11_water_crossing_body
     crowd_control: water_attack_slow_or_Numbing_Needles_variant
     terrain_destruction: none
 
@@ -52,7 +52,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Juju|PLP-Juju]]"
       changes_capabilities:
         - "Elementalist 在地面给 30% shield、草中给不因攻击失效的短隐身、水上给 40% speed"
-        - "4000 基础生命的 Gris-Gris 已能承担更长 ammo tax；Guarded Gris-Gris 再提供初始为其最大生命 30% 的衰减护盾"
+        - "8000 生命（Power 11）的 Gris-Gris 已能承担更长 ammo tax；Guarded Gris-Gris 再提供初始为其最大生命 30% 的衰减护盾"
         - "Shield/Damage 补低血投掷位容错和地形伤害窗口"
       enables:
         - "water_slow_or_speed_route"
@@ -116,7 +116,7 @@ bp_brawler_profile:
         - Parallel Plays
       bp_use: map_bp_factors.elemental_zone_entry_control
     - map_feature_type: knockout_bounty_gris_gris_wall_control
-      uses_feature_by: "投掷弧线和 4000 基础生命的 Guarded Gris-Gris 在墙边/回合末制造更持久的 ammo tax 和追击压力"
+      uses_feature_by: "投掷弧线和 8000 生命（Power 11）的 Guarded Gris-Gris 在墙边/回合末制造更持久的 ammo tax 和追击压力"
       route_or_position: "wall pocket、late-round choke、low-health retreat、long-lane side cover"
       objective_conversion: "逼低血目标不能安全回复，或让单发长手先处理召唤物再 peek"
       active_when: "Gris-Gris 能贴近目标或从墙边迫使其交弹药，Juju 本体有安全投掷位"
@@ -203,14 +203,14 @@ bp_brawler_profile:
       mitigation: "BP 时把水/草/地面位置写成具体路线，不用泛化标签"
       bp_use: map_factor_hard_gate
     - id: low_health_dive_pressure
-      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 Power 11 7000 HP Juju（2026-09-16 由 6200 上调）"
+      active_when: "Edgar、Sam、Kaze、Trunk 等越过投掷/slow，直接接触 Power 11 7000 HP Juju"
       exposed_by: "[[sources/PLP-Juju|PLP-Juju]] counteredBy list"
       mitigation: "保留 Elementalist 逃生，配队友 peel 或选择水/草安全角"
       bp_use: draft_requires_peel
     - id: gris_gris_deleted_or_misdirected
       active_when: "Gris-Gris 从远处追目标低命中，或被 splash/pierce/summon 清掉"
       exposed_by: "[[sources/Fandom-Juju|Fandom-Juju]] Gris-Gris chase and tips"
-      mitigation: "4000 基础生命提高首轮存活率，但仍需靠近目标或墙边部署；Guarded Gris-Gris 只视为更持久 ammo tax，不视为必杀"
+      mitigation: "8000 生命（Power 11）提高首轮存活率，但仍需靠近目标或墙边部署；Guarded Gris-Gris 只视为更持久 ammo tax，不视为必杀"
       bp_use: spawnable_value_check
     - id: water_false_positive
       active_when: "地图有水但水线不影响 safe、zone、mine、ball 或回合角度"

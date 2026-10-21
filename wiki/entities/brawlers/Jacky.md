@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: "中；装填 1.8 秒较慢，打完一轮后需要撤出或等弹药"
     objective_damage: "低到中；主要不是 Heist safe DPS，而是足球/热区目标控制"
     mobility: "Pneumatic Booster 提供 4 秒 25% 加速，可用于接近、追击、撤退和抢目标"
-    survivability: "Power 11 本体 10400 HP；Hardy Hard Hat 20% 减伤对应 13000 EHP，叠满 Shield gear 为 14125；Trait 受击充 Super"
+    survivability: "Power 11 本体 10400 HP；Hardy Hard Hat 常驻 25% 减伤，Shield gear 是独立且需回复的护盾资源；Trait 受击充 Super"
     engage: "依赖草墙、墙后压迫、加速和敌方目标位置"
     disengage: "Pneumatic Booster 可撤退，但被 slow/knockback 后撤退质量下降"
     anti_aggro: "强；圆形即时伤害和 Counter Crush 惩罚 Mortis/Edgar 等贴身刺客"
@@ -286,7 +286,7 @@ bp_brawler_profile:
         "source_kind": "star_power",
         "loadout_group": "star_power",
         "applies_to_states": ["body"],
-        "effect": {"type": "damage_reduction", "ratio": 0.20},
+        "effect": {"type": "damage_reduction", "ratio": 0.25},
         "active_when": "装备 Hardy Hard Hat；整场被动生效",
         "sequence_validity": "常驻，直到构筑改变",
         "source_ref": "[[sources/Fandom-Jacky|Fandom-Jacky]]"

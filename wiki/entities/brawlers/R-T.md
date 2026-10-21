@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-R-T 的 BP 价值分为两种形态：普通形态用长射程标记把一次命中变成全队集火窗口；分体形态的头与腿各自释放 1240 基础伤害的短距瞬时范围信号，能直接惩罚贴近、绕墙和单一路线身体。分体不是免费增强，腿部静止、可被炮台/溅射/穿透处理，且 Hot Zone 只计算移动的头部站圈，BP 必须把“高伤分体能否覆盖接触点”和“分体后是否会送双端弱点”拆开判断。
+R-T 的 BP 价值分为两种形态：普通形态用长射程标记把一次命中变成全队集火窗口；分体形态的头与腿各自释放 2480 伤害（Power 11，单端）的短距瞬时范围信号，能直接惩罚贴近、绕墙和单一路线身体。分体不是免费增强，腿部静止、可被炮台/溅射/穿透处理，且 Hot Zone 只计算移动的头部站圈，BP 必须把“高伤分体能否覆盖接触点”和“分体后是否会送双端弱点”拆开判断。
 
 ## BP 建模资料
 
@@ -22,14 +22,14 @@ R-T 的 BP 价值分为两种形态：普通形态用长射程标记把一次命
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-07-17
+    fandom: direct_raw_capture_2026-10-21
     plp: "[[sources/PLP-R-T|PLP-R-T]]"
     user_notes: none
 
   capability_vector:
     effective_range: very_long_in_normal; short_dual_area_in_split
     projectile_reliability: medium_high_on_open_lane; drops_if_enemy_uses_walls_or_speed
-    burst: very_high_if_mark_is_consumed_or_split_dual_area_hits; 头与腿的 Eat Static 各有 1240 基础伤害并可穿墙瞬时生效
+    burst: very_high_if_mark_is_consumed_or_split_dual_area_hits; 头与腿的 Eat Static 各有 2480 伤害（Power 11，单端）并可穿墙瞬时生效
     sustained_dps: medium_in_normal_high_in_short_split_contact; 普通形态更依赖标记转化，分体形态以 1.8 秒装填维持近距双端压力
     objective_damage: low_direct_heist_value
     mobility: low_normal; medium_in_split_head_with_water_crossing
@@ -37,10 +37,10 @@ bp_brawler_profile:
     engage: low_in_normal; medium_as_split_counter_entry
     disengage: medium_with_Radar_Waves_recall
     anti_aggro: very_high_if_split_ready_endpoint_safe_and_contact_visible
-    anti_tank: high_against_single_route_body_when_1240_split_pulses_can_overlap_or_mark_converts
+    anti_tank: high_against_single_route_body_when_2480_split_pulses_can_overlap_or_mark_converts
     wall_break: none
     throw_or_wall_bypass: medium_in_split_area_signals_through_walls
-    area_control: medium_high_on_short_routes_with_split_dual_1240_radius_and_mark_threat
+    area_control: medium_high_on_short_routes_with_split_dual_2480_radius_and_mark_threat
     scouting_or_vision: low
     team_support: mark_damage_amplification_for_allies
     spawnable_or_pet: split_legs_as_stationary_body_liability
@@ -51,7 +51,7 @@ bp_brawler_profile:
     - build: Out Of Line / Quick Maths / Shield, Damage, Health
       source: "[[sources/PLP-R-T|PLP-R-T]]"
       changes_capabilities:
-        - Out Of Line 提供立即进入分体的资源开关；1240 基础伤害 Eat Static 让它既是反突进，也能在短口/墙边目标争夺前预置直接威胁
+        - Out Of Line 提供立即进入分体的资源开关；2480 伤害（Power 11，单端） Eat Static 让它既是反突进，也能在短口/墙边目标争夺前预置直接威胁
         - Quick Maths 延长标记持续时间，让 Bounty/Knockout 的集火窗口更稳定
         - Shield/Health 缓解 R-T 分体或长线被开到时的血量风险
       enables:
@@ -64,6 +64,20 @@ bp_brawler_profile:
       poor_when:
         - 敌方能用穿透、溅射、炮台或召唤物稳定打腿
       bp_use: bounty_knockout_default_with_split_resource_tracking
+
+    - build: Out Of Line / Recording / Shield, Damage
+      source: "[[sources/Fandom-R-T|Fandom-R-T]]"
+      changes_capabilities:
+        - 分体头部减伤 25%，腿部减伤 55% 替代固有 29% 而非相加；每端伤害仍单独结算
+        - Recording 与 Quick Maths 互斥，选择近身分体承伤就放弃延长标记的星辉收益
+      enables:
+        - split_form_anti_aggro
+        - round_lead_bodyguard
+      mitigates_failure_modes:
+        - split_legs_unprotected
+      best_when: 敌方必须走单一近身入口、头腿能形成接触火力且腿部有安全掩体
+      poor_when: 敌人能安全投掷、弹射或穿透清腿，或需要远距标记延时而不是分体接触
+      bp_use: build_pressure.split_contact_survival_without_assuming_mark_extension
 
   map_feature_hooks:
     - map_feature_type: bounty_knockout_long_mark_focus
@@ -78,7 +92,7 @@ bp_brawler_profile:
         - New Horizons
       bp_use: map_bp_factors.long_lane_mark_focus
     - map_feature_type: split_form_anti_aggro_wall_body
-      uses_feature_by: 分体后头和腿各自释放 1240 基础伤害的近距离瞬时范围信号，可隔墙惩罚跳脸、滚入或短手绕墙
+      uses_feature_by: 分体后头和腿各自释放 2480 伤害（Power 11，单端）的近距离瞬时范围信号，可隔墙惩罚跳脸、滚入或短手绕墙
       objective_conversion: 保护后排、守淘汰回合空间、阻止球路或入口突进
       active_when: 腿部能藏在安全点，头/腿至少一端能覆盖接触点，敌方突进路线单一且必须进入短范围
       fails_if: 腿暴露给炮台/投掷/穿透，或敌方直接绕开 R-T 打队友
@@ -88,7 +102,7 @@ bp_brawler_profile:
         - Center Stage
       bp_use: candidate_eval.split_form_endpoint_guard
     - map_feature_type: gem_or_ball_split_speed_objective_touch
-      uses_feature_by: 分体头部移速更快且可越水，能短时间抢宝石、追球或用 1240 基础范围信号清接触点
+      uses_feature_by: 分体头部移速更快且可越水，能短时间抢宝石、追球或用 2480 范围信号（Power 11，单端）清接触点
       objective_conversion: 争矿、救球、追击 low HP carrier 或清短口，而不是稳定站点
       active_when: 使用目标是一次性触碰/追击，腿部安全且 Radar Waves 可回收
       fails_if: 队伍要求 R-T 当主 carrier/scorer，或腿部被敌方固定火力处理
@@ -156,7 +170,7 @@ bp_brawler_profile:
       can_fulfill:
         - mark_focus_on_ball_carrier_or_defender
         - split_head_one_touch_ball_pressure_or_water_route
-        - anti_dive_door_guard_with_split_1240_pulse
+        - anti_dive_door_guard_with_split_2480_pulse
       cannot_fulfill:
         - primary_scorer
         - reliable_ball_carry_with_split_legs_alive
@@ -202,7 +216,7 @@ bp_brawler_profile:
     - target: ["Mico", "El Primo", "Melodie", "Sam", "Buzz", "Hank", "Lily", "Kaze"]
       direction: subject_favored
       source: "[[sources/PLP-R-T|PLP-R-T]]"
-      mechanism: 分体头腿各自 1240 基础范围伤害与标记集火，能惩罚必须进入短距离的跳脸、滚入、冲刺或高身体路线
+      mechanism: 分体头腿各自 2480 范围伤害（Power 11，单端）与标记集火，能惩罚必须进入短距离的跳脸、滚入、冲刺或高身体路线
       active_when: 突进路线可见、腿部安全、R-T 有 Super 或 Out Of Line 可立即分体
       fails_when: 目标绕开 R-T 打后排，或先用队友资源清腿/逼分体
       bp_use: anti_aggro_response_pick
@@ -224,7 +238,7 @@ bp_brawler_profile:
   slot_notes:
     slot_1: 适合长线 Bounty/Knockout 先手，但必须确认敌方低成本清腿和多角突进面不宽。
     slot_2_3: 可作为长线体系核心或反突进保护手，最好搭配能吃标记的稳定输出。
-    slot_4_5: 用来回答敌方短手/刺客或单一短口计划；1240 分体范围伤害提高接触点惩罚，但仍要检查敌方最后手能否用投掷/炮台处理腿。
+    slot_4_5: 用来回答敌方短手/刺客或单一短口计划；2480 分体范围伤害（Power 11，单端）提高接触点惩罚，但仍要检查敌方最后手能否用投掷/炮台处理腿。
     slot_6: 如果敌方三人缺穿透/溅射/炮台且必须从单一路线进场，R-T last pick 的反突进上限很高。
 ```
 

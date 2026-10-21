@@ -25,6 +25,20 @@ RAW_DIR = REPO / "raw" / "sources" / "liquipedia" / "events"
 
 
 class EnvironmentSqliteTest(unittest.TestCase):
+    def test_pickrate_replaces_snapshot_and_filters_legacy_exclusions(self):
+        import sqlite3
+        with tempfile.TemporaryDirectory() as tmp:
+            db = Path(tmp) / "pickrate.sqlite3"
+            row = {"map": "Old Map", "mode": "Heist", "individual": {"Brock": {"use_rate": 1}}}
+            write_pickrate(db, {"global": {"Brock": {"use_rate": 1}}, "per_map": {"old": row}})
+            with sqlite3.connect(db) as con:
+                con.execute("INSERT OR REPLACE INTO meta VALUES (?,?)", ("pickrate.summary", json.dumps({"excluded_maps": [{"map": "Old Map", "mode": "Heist", "reason": "not_in_ranked_pool"}]})))
+            self.assertEqual({}, read_pickrate(db)["per_map"])
+            write_pickrate(db, {"global": {"Poco": {"use_rate": 2}}, "per_map": {}})
+            self.assertEqual({"Poco"}, set(read_pickrate(db)["global"]))
+            with sqlite3.connect(db) as con:
+                self.assertEqual(0, con.execute("SELECT COUNT(*) FROM ladder_per_map").fetchone()[0])
+
     def _august_raw_events(self):
         canonical = load_brawler_names(REPO)
         raws = [

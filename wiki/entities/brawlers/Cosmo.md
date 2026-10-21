@@ -2,13 +2,15 @@
 title: Cosmo
 type: brawler
 status: mechanics_only_pending_bp_review
-updated: 2026-10-16
+updated: 2026-10-21
 sources:
   - "[[Fandom-Cosmo]]"
   - "[[PLP-Cosmo]]"
 ---
 
 # Cosmo
+
+![[../../../raw/assets/brawlers/cosmo.webp]]
 
 ## 稳定机制
 
@@ -29,7 +31,7 @@ Fandom Tips 包含“必中”“穿过目标同时伤害金库”等较强推�
 
 ## 资源引用
 
-应用资源目录使用 `brawler:cosmo` 头像，以及以上英文能力名称对应的妙具、星辉资源。图片由应用维护，不在知识仓库复制；有图片不代表排位资格。
+应用资源目录使用 `brawler:cosmo` 头像，以及以上英文能力名称对应的妙具、星辉资源。本库保存上述 Fandom 肖像原图，出处见 [[新英雄头像与发布状态复核-2026-10]]；有图片不代表排位资格。
 
 ## 来源
 

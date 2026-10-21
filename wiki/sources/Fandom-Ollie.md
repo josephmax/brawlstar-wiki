@@ -4,10 +4,10 @@
 
 - 标题：Ollie
 - 来源：[Ollie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Ollie)
-- 读取日期：2026-09-17
+- 读取日期：2026-10-21
 - Fandom 页面最后编辑：2026-09-16T19:39:43Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/ollie.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/ollie-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -58,3 +58,7 @@
 
 - [[entities/brawlers/Ollie|Ollie]]
 - [[sources/PLP-Ollie|PLP 来源摘要: Ollie]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+当前单发伤害 1000/P1 即 2000/P11；控制仍依赖合法进场、蓄力和队友跟伤。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/ollie.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

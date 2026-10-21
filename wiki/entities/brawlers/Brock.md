@@ -35,8 +35,8 @@ Brock 是远程炮击和拆墙开图的代表英雄。和 `Colt` 相比，他更
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: direct_raw_capture_2026-07-17
-    plp: direct_raw_capture_2026-07-11
+    fandom: direct_raw_capture_2026-10-21
+    plp: direct_raw_capture_2026-10-21
     user_notes: none
 
   capability_vector:
@@ -49,7 +49,7 @@ bp_brawler_profile:
     survivability: low_base_health; Shield Gear 可缓解但不能替代保护
     engage: low
     disengage: "medium_high_with_Rocket_Laces; 起跳和落地两端均有击退/伤害，但状态效果与持续伤害仍会保留"
-    anti_aggro: "conditional; 可瞄准 Rocket Laces 以双端击退跨墙脱离，但有 20 秒冷却且不是持续硬控"
+    anti_aggro: "conditional; 可瞄准 Rocket Laces 以双端击退跨墙脱离，但有 22 秒冷却且不是持续硬控"
     anti_tank: medium_if_range_kept
     wall_break: "high; 跟随 Brock 移动轨迹的 Super 可大面积改图，Rocket Fuel 提供单发精确开墙"
     throw_or_wall_bypass: medium; Super 可越墙轰炸

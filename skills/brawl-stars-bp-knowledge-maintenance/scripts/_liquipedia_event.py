@@ -145,6 +145,8 @@ def extract_balanced(text: str, start: int) -> str:
 
 
 def parse_template(template: str, expected_name: str) -> tuple[dict[str, str], list[str]]:
+    # Comments between fields must not become part of a key/value.
+    template = re.sub(r"<!--.*?-->", "", template, flags=re.S)
     match = re.match(r"\{\{\s*([^|}\n]+)", template)
     actual_name = match.group(1).strip() if match else ""
     if normalized_key(actual_name) != normalized_key(expected_name):
@@ -213,6 +215,8 @@ def parse_mediawiki_query(payload: dict[str, Any]) -> dict[str, Any]:
 
 def _event_region(page_title: str) -> str:
     normalized = page_title.replace("_", " ")
+    if normalized.endswith("/Last Chance Qualifier"):
+        return "International"
     if "/South America/" in normalized:
         return "South America"
     if "/EMEA/" in normalized:
@@ -330,21 +334,45 @@ def parse_event_wikitext(
             "vod": fields.get("vod") or None,
         })
 
+    # Separate group/playoff brackets reuse R1M1 etc. Preserve source order
+    # while assigning unique ids so rows remain addressable across brackets.
+    ids = [item["match_id"] for item in matches]
+    if len(set(ids)) != len(ids):
+        for index, item in enumerate(matches, 1):
+            item["match_id"] = f"M{index:02d}-{item['match_id']}"
+
+    is_lcq = page_title.replace("_", " ").endswith("/Last Chance Qualifier")
     final = max(matches, key=lambda item: (item["round"], item["match"])) if matches else None
     champion = final.get("winner_team") if final else None
     runner_up = None
     if final and final.get("winner_side") in (1, 2):
         runner_up = final["teams"][1 if final["winner_side"] == 1 else 0]
+    qualified_teams: list[str] = []
+    if is_lcq:
+        # This two-slot qualifier has no grand final. Its upper and lower
+        # bracket final winners qualify; neither is a tournament champion.
+        playoff_text = re.split(r"===\s*\{\{Stage\|Playoffs\}\}\s*===", wikitext, flags=re.I)
+        if len(playoff_text) > 1:
+            playoff_templates = list(_match_templates(playoff_text[-1]))
+            playoff_matches = matches[-len(playoff_templates):] if playoff_templates else []
+            for item in playoff_matches:
+                if item["round"] == 2 and item["match"] in (1, 2) and item.get("winner_team"):
+                    qualified_teams.append(item["winner_team"])
+        champion, runner_up = None, None
+    event_date = info.get("date") or info.get("sdate") or "unknown"
+    if info.get("edate") and info["edate"] != event_date:
+        event_date += " – " + info["edate"]
     played_sets = sum(len(match["sets"]) for match in matches)
     return {
         "schema": EVENT_SCHEMA,
         "source": dict(source),
         "event": {
             "name": name,
-            "date": clean_text(info.get("date", "unknown")),
+            "date": clean_text(event_date),
             "region": _event_region(page_title),
             "format": clean_text(info.get("format", "unknown")),
             "team_number": _parse_int(info.get("team_number")),
+            "event_type": "last_chance_qualifier" if is_lcq else "monthly_finals",
         },
         "summary": {
             "series": len(matches),
@@ -353,6 +381,7 @@ def parse_event_wikitext(
             "forfeits": sum(match["status"] == "forfeit" for match in matches),
             "champion": champion,
             "runner_up": runner_up,
+            **({"qualified_teams": qualified_teams} if is_lcq else {}),
         },
         "matches": matches,
     }
@@ -392,7 +421,13 @@ def load_raw_capture(path: Path) -> dict[str, Any]:
     match = re.search(r"## Parsed Event JSON\n\n```json\n(.*?)\n```", text, re.S)
     if not match:
         raise ValueError(f"missing Parsed Event JSON in {path}")
-    return json.loads(match.group(1))
+    event = json.loads(match.group(1))
+    # Reparse legacy LCQ snapshots with the corrected format semantics;
+    # immutable raw text and its original parser snapshot stay untouched.
+    if str(event.get("source", {}).get("page_title", "")).replace("_", " ").endswith("/Last Chance Qualifier"):
+        repo = Path(__file__).resolve().parents[3]
+        return parse_event_wikitext(load_raw_wikitext(path), source=event["source"], canonical_names=load_brawler_names(repo))
+    return event
 
 
 def load_raw_wikitext(path: Path) -> str:

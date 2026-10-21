@@ -28,6 +28,16 @@ def load_audit_module():
 
 
 class PLPMatchupCoverageAuditTest(unittest.TestCase):
+    def test_canonical_capture_metadata_and_payload_identity_win(self):
+        audit = load_audit_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            raw_dir = Path(tmp)
+            (raw_dir / "elprimo-2026-09-01.md").write_text(
+                '```json\n{"name":"El Primo"}\n```\n', encoding="utf-8")
+            newest = raw_dir / "el-primo.md"
+            newest.write_text('- Capture date: 2026-10-21\n```json\n{"name":"El Primo"}\n```\n', encoding="utf-8")
+            self.assertEqual([newest], audit.latest_plp_raw_paths(raw_dir))
+
     def test_latest_capture_per_brawler_excludes_superseded_matchups(self):
         audit = load_audit_module()
         with tempfile.TemporaryDirectory() as tmp:
@@ -109,9 +119,8 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
         self.assertEqual("Glowy", seed["target"])
         self.assertIn("review_prompt", seed)
 
-    def test_real_data_audit_runs_and_is_fully_covered(self):
-        """The real repo audit runs end-to-end; with all gaps filled it must
-        report zero PLP-only pairs (full coverage of the latest PLP captures)."""
+    def test_real_data_audit_runs_and_accounts_for_review_seeds(self):
+        """Fresh PLP captures may create seeds; they must not require automatic promotion."""
         with tempfile.TemporaryDirectory() as tmp:
             index_path = Path(tmp) / "safe-zone-index.json"
             subprocess.run(
@@ -148,14 +157,15 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
             payload = json.loads(result.stdout)["plp_matchup_coverage"]
 
         summary = payload["summary"]
-        # 2026-09-03: Wendy 双源闭环建档后 PLP raw 页增至 106；计数锁随 roster 变更更新
-        self.assertEqual(106, summary["plp_raw_pages"])
+        # 2026-10-21: Cosmo / Vince have sources, not BP-ready matchup profiles.
+        self.assertEqual(108, summary["plp_raw_pages"])
         self.assertGreaterEqual(summary["plp_raw_files"], summary["plp_raw_pages"])
         self.assertGreater(summary["plp_pairs"], 1000)
         self.assertGreater(summary["compiled_pairs"], 1000)
         self.assertGreater(summary["overlap_pairs"], 1000)
-        # All PLP pairs are now covered by the compiled index.
-        self.assertEqual(0, summary["plp_only_pairs"])
+        self.assertEqual(summary["plp_pairs"], summary["overlap_pairs"] + summary["plp_only_pairs"])
+        self.assertEqual(summary["plp_only_pairs"], len(payload["plp_only_seeds"]))
+        self.assertTrue(all(seed["status"] == "needs_mechanism_review" for seed in payload["plp_only_seeds"]))
 
 
 if __name__ == "__main__":

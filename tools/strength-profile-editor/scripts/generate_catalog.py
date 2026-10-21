@@ -35,7 +35,7 @@ def _parse_alias_page(path):
     section = None
     current = None
     for raw in match.group(1).splitlines():
-        if not raw.strip():
+        if not raw.strip() or raw.lstrip().startswith('#'):
             continue
         if not raw.startswith(" "):
             section = raw.rstrip(":")

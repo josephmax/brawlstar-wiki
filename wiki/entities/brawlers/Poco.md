@@ -40,8 +40,8 @@ Poco 是典型的治疗支援英雄，核心不是打出最高伤害，而是让
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-09-03"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     user_notes: "none"
 
   capability_vector:
@@ -60,7 +60,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: "medium_for_heal; Super travels through obstacles to heal allies"
     area_control: "medium; wide spread checks grass and clustered enemies but does not deny space by damage alone"
     scouting_or_vision: "medium; wide attack can check large bushes"
-    team_support: "very_high; constant Power Chord ally healing (400 Power 11 per hit, 1040 Power 11 with Da Capo!, ≈13% of max health), Tuning Fork pulse heals, Super heal, cleanse, status immunity, and overheal shield define his pick value"
+    team_support: "very_high; constant Power Chord ally healing (400 Power 11 per hit, 1200 Power 11 with Da Capo!, 15% of max health), Tuning Fork pulse heals, Super heal, cleanse, status immunity, and overheal shield define his pick value"
     spawnable_or_pet: low
     crowd_control: "medium_as_cleanse_answer; Protective Tunes removes slows, stuns, poison, burns, Frost, marks, and silence-like effects but does not displace enemies, and the Screeching Solo Buffie makes Encore silence hit enemies for 0.5 seconds (attacks, Supers, Gadgets, and Hypercharges blocked)"
     terrain_creation: low
@@ -75,7 +75,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Poco|PLP-Poco]] + [[sources/Fandom-Poco|Fandom-Poco]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
         - "Protective Tunes creates a 3-tile-radius area for 4 seconds that cleanses all adverse effects and grants immunity while inside (cleanse reach 6 tiles); its Buffie increases the radius to 4 tiles and the duration to 6 seconds"
-        - "Power Chord now constantly heals allies it hits for 400 Power 11, and Da Capo! adds 640 Power 11 more (1040 Power 11 per hit, ≈13% of max health), enabling tank or scorer sustain even before Super; its Buffie grants full-health teammates 3 seconds of 10% Super charge rate"
+        - "Power Chord now constantly heals allies it hits for 400 Power 11, and Da Capo! adds 800 Power 11 more (1200 Power 11 per hit, 15% of max health), enabling tank or scorer sustain even before Super; its Buffie grants full-health teammates 3 seconds of 10% Super charge rate"
         - "Shield gear improves Poco's own survival; Damage gear helps convert low-damage chip when he is already safe"
         - "Medic's Melody Hypercharge keeps converting Encore overheal into a 5-second decaying shield; its Buffie widens main attacks to a 180-degree cone during Hypercharge"
       enables:
@@ -93,7 +93,7 @@ bp_brawler_profile:
     - build: "Tuning Fork / Screeching Solo variants"
       source: "[[sources/Fandom-Poco|Fandom-Poco]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "Tuning Fork heals Poco and nearby allies for 1000 Power 11 three times (a 3-second buff healing 12.5% of max health per second in a 3.33-tile radius, not a persistent area); its Buffie gives allies inside the radius 3 seconds of 25% reload speed"
+        - "Tuning Fork heals Poco and nearby allies for 1400 Power 11 per wave at activation and again after 2 and 4 seconds (3.33-tile radius per wave; not continuous healing or a static EHP bonus); its Buffie gives allies inside the radius 3 seconds of 25% reload speed"
         - "Screeching Solo makes Super hit enemies for 1520 Power 11 without charging Super from that damage, keeping the low-damage finishing role; its Buffie silences Encore-hit enemies for 0.5 seconds"
       enables:
         - local_zone_heal

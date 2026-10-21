@@ -46,12 +46,19 @@ def read_json_blocks(path: Path) -> list[dict[str, Any]]:
 
 
 def latest_plp_raw_paths(raw_dir: Path) -> list[Path]:
-    """Return only the newest dated raw capture for each PLP guide slug."""
+    """Select one capture per payload identity, using metadata for canonical files."""
     selected: dict[str, tuple[str, Path]] = {}
     for path in sorted(raw_dir.glob("*.md")):
         match = DATED_CAPTURE_RE.match(path.stem)
         slug = match.group("slug") if match else path.stem
         capture_date = match.group("date") if match else ""
+        text = path.read_text(encoding="utf-8")
+        meta_date = re.search(r"^- Capture date:\s*(\d{4}-\d{2}-\d{2})", text, re.MULTILINE)
+        if meta_date:
+            capture_date = meta_date.group(1)
+        blocks = read_json_blocks(path)
+        identity = next((block.get("name") for block in blocks if block.get("name")), slug)
+        slug = normalize_key(str(identity))
         current = selected.get(slug)
         candidate = (capture_date, path)
         if current is None or (candidate[0], candidate[1].name) > (current[0], current[1].name):

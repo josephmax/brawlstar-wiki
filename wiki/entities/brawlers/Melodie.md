@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒装填，音符持续 8 秒，资源断档后输出下降"
     objective_damage: "high_conditional_heist; 三段 dash 可快速接触 safe，但要先有音符和生存窗口"
     mobility: "very_high_with_super; 三段 5.33 格 dash 可分次用于进场、追击、得分或撤退"
-    survivability: "medium_resource_based; Power 11 本体 7600 HP，Interlude 根据音符提供衰减护盾，护盾时效短"
+    survivability: "medium_resource_based; Power 11 本体 8000 HP，Interlude 根据音符提供衰减护盾，护盾时效短"
     engage: "high_when_notes_and_super_ready; 需要先叠音符再 dash 进场"
     disengage: "medium_high_with_remaining_dash; Super 未用完时可撤，三段用尽后危险"
     anti_aggro: "medium; 可先 dash 避开区域 Super 再回身，但怕硬控和近战爆发"

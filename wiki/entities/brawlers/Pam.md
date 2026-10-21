@@ -22,8 +22,8 @@ Pam 是用 `Mama's Kiss` 治疗炮台和宽散射压制来拉长团战的支援�
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-06-30"
-    plp: "direct_raw_capture_2026-06-30"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
       - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
@@ -46,7 +46,7 @@ bp_brawler_profile:
     area_control: "high_sustain_area; 治疗炮台定义可站区域，Mama's Squeeze 变体可反压墙边"
     scouting_or_vision: "medium_bush_sweep; 宽散射可扫草但不提供显形"
     team_support: "very_high; 炮台、Pulse Modulator、Mama's Hug 和 Super Turret 支撑队友"
-    spawnable_or_pet: "healing_station; 3040 HP 炮台，3.33 格治疗半径"
+    spawnable_or_pet: "healing_station; 6600 HP 炮台（Power 11；常规每秒治疗 1200，超充炮台耐久 9000），3.33 格治疗半径"
     crowd_control: "ammo_denial; Scrapsucker 移除弹药而非 slow/stun/knockback"
     source_trace:
       - "[[sources/Fandom-Pam|Fandom-Pam]]"

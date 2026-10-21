@@ -23,7 +23,8 @@ class GenerateCatalogTest(unittest.TestCase):
 
         self.assertEqual(catalog["schema"], "brawlstar.strength_profile.catalog.v1")
         self.assertEqual(catalog["tiers"], ["S", "A", "B", "C", "D", "E"])
-        self.assertEqual(len(catalog["brawlers"]), 104)
+        expected_names = {path.stem for path in (REPO / "wiki/entities/brawlers").glob("*.md")}
+        self.assertEqual({row["name"] for row in catalog["brawlers"]}, expected_names)
         self.assertIn("Brawl Ball", catalog["modes"])
         self.assertIn("Heist", catalog["modes"])
         self.assertIn(
@@ -34,7 +35,9 @@ class GenerateCatalogTest(unittest.TestCase):
         by_name = {brawler["name"]: brawler for brawler in catalog["brawlers"]}
         self.assertTrue(by_name["Brock"]["image_url"].startswith("https://cdn.brawlify.com/brawlers/borderless/"))
         self.assertTrue(by_name["Ziggy"]["image_url"].startswith("https://cdn.brawlify.com/brawlers/borderless/"))
-        self.assertEqual(sum(1 for brawler in catalog["brawlers"] if brawler["image_url"]), 104)
+        self.assertEqual(sum(1 for brawler in catalog["brawlers"] if brawler["image_url"]), len(expected_names))
+        for name in ("Nori", "Wendy"):
+            self.assertTrue((REPO / "tools/strength-profile-editor" / by_name[name]["image_url"]).resolve().is_file())
 
         self.assertEqual(catalog["alias_index"]["506"], "Edgar")
         self.assertEqual(catalog["alias_index"]["64"], "Cordelius")
@@ -53,7 +56,7 @@ class GenerateCatalogTest(unittest.TestCase):
                 out_path.unlink()
 
         self.assertEqual(parsed["schema"], "brawlstar.strength_profile.catalog.v1")
-        self.assertEqual(len(parsed["brawlers"]), 104)
+        self.assertEqual(len(parsed["brawlers"]), len(list((REPO / "wiki/entities/brawlers").glob("*.md"))))
 
 
 if __name__ == "__main__":

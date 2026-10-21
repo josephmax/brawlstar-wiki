@@ -4,11 +4,11 @@
 
 - 标题：Best build for Brock | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Brock | Power League Prodigy](https://powerleagueprodigy.com/brock)
-- 读取日期：2026-07-11
+- 读取日期：2026-10-21
 - 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/brock.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at： unknown
 
 ## 可用范围
 
@@ -18,7 +18,7 @@
 ## 结构化字段摘要
 
 - 推荐 Gadget: `Rocket Laces`
-- 推荐 Star Power: `More Rockets`
+- 推荐 Star Power: `More Rockets!`
 - 推荐 Gears: Damage, Shield
 - 推荐 Modes: Heist, Bounty, Knockout
 - Notes: GADGET 1 INTO AGGRO
@@ -27,7 +27,7 @@
 ## Matchup 候选
 
 - countersThese: `8-Bit`, `Nita`, `Pam`, `Shelly`, `Mr. P`, `Hank`, `Spike`, `Emz`
-- counteredBy: `Stu`, `Crow`, `Max`, `Cordelius`, `Leon`, `Mortis`, `Bibi`, `Edgar`
+- counteredBy: `Cosmo`, `Mina`, `Max`, `Stu`, `Crow`, `Cordelius`, `Leon`, `Mortis`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Brock|Fandom 来源摘要: Brock]]
 - [[entities/brawlers/Brock|Brock]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+countersThese：新增 无；移除 无。 counteredBy：新增 Cosmo, Mina；移除 Bibi, Edgar。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。

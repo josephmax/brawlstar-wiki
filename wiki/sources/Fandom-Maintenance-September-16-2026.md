@@ -10,6 +10,9 @@
 - 受影响英雄当前态 raw：Wendy / Willow / Juju / Ollie / Belle / El Primo / R-T / Chuck 共 8 人于 2026-09-17 重抓（Wendy 经同一 MediaWiki API 通道手动抓取，脚本默认 roster 不含她）
 - source_quality：direct_raw_capture_patch_notes
 - source_type：maintenance_balance_change_index
+- 官方复核：2026-10-21 读取 [Supercell 当前 release notes](https://supercell.com/en/games/brawlstars/blog/release-notes/release-notes-august-2026/)；顶部仍为 September 16th，无更新平衡段落。官方 direct raw：[[../../raw/sources/supercell/maintenance-september-16-2026-2026-10-21|2026-10-21 官方复核抓取]]。
+- Fandom 版本索引复核：2026-10-21 API 返回 revision 219043，仍为本页原 revision，未出现 10 月平衡补丁。
+- 最新概览：[[syntheses/最新平衡性概览-2026-10|最新平衡性概览（截至 2026-10-21）]]。
 
 ## 可用范围
 

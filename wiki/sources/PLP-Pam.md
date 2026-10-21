@@ -4,11 +4,11 @@
 
 - 标题：Best build for Pam | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Pam | Power League Prodigy](https://powerleagueprodigy.com/pam)
-- 读取日期：2026-06-30
+- 读取日期：2026-10-21
 - 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/pam.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at： unknown
 
 ## 可用范围
 
@@ -18,7 +18,7 @@
 ## 结构化字段摘要
 
 - 推荐 Gadget: `Scrapsucker`
-- 推荐 Star Power: `Mamas Hug`
+- 推荐 Star Power: `Mama's Hug`
 - 推荐 Gears: Damage, Super Turret
 - 推荐 Modes: Gem Grab, Hot Zone
 - Notes: none observed
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Jae-Yong`, `Sprout`, `Alli`, `Kaze`, `Buzz`, `Nani`, `Glowy`, `Piper`
-- counteredBy: `Bibi`, `Rosa`, `Nita`, `Edgar`, `Lumi`, `Sandy`, `Sirius`, `Bull`
+- countersThese: `Nori`, `Squeak`, `Gray`, `Jacky`, `Byron`, `Kit`, `Meeple`, `Shelly`
+- counteredBy: `Amber`, `Juju`, `Shade`, `Larry & Lawrie`, `Nita`, `Sirius`, `Emz`, `Ash`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Pam|Fandom 来源摘要: Pam]]
 - [[entities/brawlers/Pam|Pam]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+countersThese：新增 Byron, Gray, Jacky, Kit, Meeple, Nori, Shelly, Squeak；移除 Alli, Buzz, Glowy, Jae-Yong, Kaze, Nani, Piper, Sprout。 counteredBy：新增 Amber, Ash, Emz, Juju, Larry & Lawrie, Shade；移除 Bibi, Bull, Edgar, Lumi, Rosa, Sandy。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。

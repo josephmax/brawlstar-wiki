@@ -1,5 +1,7 @@
 # Nori
 
+![[../../../raw/assets/brawlers/nori.png]]
+
 ## 基本信息
 
 - 稀有度：Legendary
@@ -16,7 +18,7 @@
 
 ## 角色定位总结
 
-Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 2000，P11 口径，可一次收多条鱼），hold 充能钩子突进（钩击 1440，P11 口径；钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +4% 巨鱼伤害，即使空命中也消耗。Hypercharge `MASTER FISHERMAN` 让 Nori 跳入水中时把范围内敌人拉入并向水坑中心聚拢，再结算范围伤害，把进场/聚拢/终结压进同一窗口。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗（18s 冷却）。风险在于充能期不能回血、被 stun 取消，Super 空放会浪费鱼资源，且缺 strength profile 档位导致 runtime tier 未知。
+Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 2000，P11 口径，可一次收多条鱼），hold 充能钩子突进（钩击 1440，P11 口径；钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +4% 巨鱼伤害，即使空命中也消耗。Hypercharge `MASTER FISHERMAN` 让 Nori 跳入水中时把范围内敌人拉入并向水坑中心聚拢，再结算范围伤害，把进场/聚拢/终结压进同一窗口。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗（18s 冷却）。风险在于 2.5 秒满充期间不能自然回血、被控制可取消，Super 空放也会浪费鱼资源。
 
 ## BP 建模
 
@@ -24,23 +26,22 @@ Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 20
 bp_brawler_profile:
   profile_status: bp_ready
   source_quality:
-    fandom: "direct_raw_capture_2026-07-11"
-    plp: "direct_raw_capture_2026-08-11"
+    fandom: "direct_raw_capture_2026-10-21"
+    plp: "direct_raw_capture_2026-10-21"
     patch_fix: "supercell_maintenance_2026-08-04"
     user_notes: "none"
     reviewed_against:
       - "[[syntheses/BP-推理DSL规范|BP 推理 DSL 规范]]"
       - "[[syntheses/BP-地图建模与决策规范|BP 地图建模与决策规范]]"
       - "[[syntheses/条件化对位模型|条件化对位模型]]"
-    gap_note: "strength profile 无 Nori 档位（iKaoss11 July 输入早于 Nori 发布）；runtime compile 时 tier=unknown，需玩家补强度输入后才能进 runtime 池排序"
 
   capability_vector:
     effective_range: "dual_form; tap melee 8.33 格弧形 AOE，hold hook 13.33-16.67 格充能突进，满充可跳墙"
     projectile_reliability: "medium; tap 弧形稳定多目标，hook 需充能预判且可被墙/miss 取消"
     burst: "high_with_fish_super; tap 斩击 2000（P11）AOE 多目标，满鱼 Super 巨鱼 3500+（P11）成长，hook+tap 链可秒脆皮；MASTER FISHERMAN 聚拢后巨鱼伤害落在拉入目标上，终结确定性更高"
-    sustained_dps: "medium; 装填 0.1s（ammo-bar 充能型，满充 2s），tap 可连续挥杆但 hold 充能期不能回血"
+    sustained_dps: "medium; 装填 0.1s（ammo-bar 充能型，满充 2.5s），tap 可连续挥杆但 hold 充能期不能回血"
     objective_damage: "medium_high; PLP 推荐 Heist，Super 成长巨鱼可打库，hook 可改路线接近金库"
-    mobility: "very_high; Very Fast 820 基础，hook 拉墙位移，满充跳墙，His Mother's Son 命中后 984"
+    mobility: "very_high; Very Fast 855 基础，hook 拉墙位移，满充跳墙，His Mother's Son 命中后 1026"
     survivability: "medium_high; Power 11 本体 7000 血，Sushi Snack 鱼换治疗（18s 冷却），Super 落地后消失躲爆发，root 可断开团"
     engage: "high; hook 突进 + root + Super 水坑区域接管；MASTER FISHERMAN 让 Super 入水时拉入范围内敌人并向中心聚拢，越墙/水域进场自带聚拢+爆发终结窗口"
     disengage: "medium; hook 拉墙后撤，Super 消失躲关键技能，但回点在坑中心"
@@ -64,7 +65,7 @@ bp_brawler_profile:
     - build: "Sushi Snack / Big Haul / Health, Shield"
       source: "[[sources/PLP-Nori|PLP-Nori]]"
       changes_capabilities:
-        - "Sushi Snack 吃最多 3 条鱼每条治疗 1000（PLP）/ 700（Fandom Infobox），18s 冷却，提供进场后续战"
+        - "Sushi Snack 消耗已有鱼换治疗，18s 冷却；按剩余鱼与接触窗口评估续战，来源数值量纲不一致时不承诺固定总回血"
         - "Big Haul Super 命中每敌收 3 鱼，加速 Super 成长循环，PLP 标注为推荐优于 His Mother's Son"
         - "Health+Shield 提升进场第一轮容错和低血确认"
       enables:
@@ -80,8 +81,8 @@ bp_brawler_profile:
     - build: "Gonna Need a Bigger Net / His Mother's Son variant"
       source: "[[sources/Fandom-Nori|Fandom-Nori]]"
       changes_capabilities:
-        - "Bigger Net 800 伤 + 1.25s root（PLP）/ 480（Fandom Infobox），反刺客开团"
-        - "His Mother's Son 命中 +20% 移速 1s（820→984），增强 hook 追击和撤退"
+        - "Bigger Net 命中提供 1.25s root，反刺客或打断进场；伤害来源量纲未对齐，不用于固定斩杀保证"
+        - "His Mother's Son 命中 +20% 移速 1s（855→1026），增强 hook 追击和撤退"
       enables:
         - "反刺客断开团"
         - "高机动追击/脱战"
@@ -264,7 +265,7 @@ bp_brawler_profile:
       bp_use: "avoid_into_long_burst_or_silence_chain"
 
   slot_notes:
-    slot_1: "Hot Zone/Heist 强图可早手：MASTER FISHERMAN 让进场自带聚拢+爆发终结，早手价值上调，但本体 7000（P11）仍会暴露给 Bolt/Starr Nova 长线；缺 strength 档位时谨慎首抢"
+    slot_1: "Hot Zone/Heist 路线明确且缺少保镖反制时可早手：MASTER FISHERMAN 提供聚拢+终结窗口，但本体 7000（Power 11）与 2.5 秒满充仍会暴露给敌方爆发和控制，须确认安全启动路线"
     slot_2_3: "适合作为 hook/root 核心或成长 Super 打库/清区手，后续补长手和反控制"
     slot_4_5: "看到敌方中速长手/控场缺保镖时可响应；Damian/Surge/Otis 已暴露时避免"
     slot_6: "最后手惩罚无长线爆发的阵容很强；Bolt/Starr Nova/Pam 在场时不要硬锁"

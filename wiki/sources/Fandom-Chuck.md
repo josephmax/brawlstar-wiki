@@ -4,10 +4,10 @@
 
 - 标题：Chuck
 - 来源：[Chuck | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chuck)
-- 读取日期：2026-09-17
-- Fandom 页面最后编辑：2026-09-15T20:33:04Z
+- 读取日期：2026-10-21
+- Fandom 页面最后编辑：2026-10-16T08:04:50Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/chuck.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/chuck-2026-10-21.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -57,3 +57,7 @@
 
 - [[entities/brawlers/Chuck|Chuck]]
 - [[sources/PLP-Chuck|PLP 来源摘要: Chuck]]
+
+## 2026-10-21 补丁 BP 修复复核
+
+Pit Stop 30% slow 持续 2 秒；Buffie 每跳 400/P1 即 800/P11，至多四跳且依赖敌人驻留，不是一次静态伤害包。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/chuck.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

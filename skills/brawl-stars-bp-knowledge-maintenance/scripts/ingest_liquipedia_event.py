@@ -36,6 +36,13 @@ def result_rows(event: dict) -> str:
     return "\n".join(rows)
 
 
+def result_summary(event: dict) -> str:
+    summary = event["summary"]
+    if event["event"].get("event_type") == "last_chance_qualifier":
+        return "- 晋级 World Finals：" + "、".join(summary.get("qualified_teams") or ["待核验"]) + "\n- 本赛事为双名额资格赛，无冠亚军决赛。"
+    return f"- 冠军：{summary['champion']}\n- 亚军：{summary['runner_up']}"
+
+
 def top_picks(event: dict, limit: int = 10) -> str:
     profile = analyze_events([event], generated_at="source-summary")
     total = event["summary"]["played_sets"]
@@ -91,8 +98,7 @@ def source_page(event: dict, raw_path: Path, repo: Path, entity_name: str) -> st
 - 日期：{event['event']['date']}
 - 赛区：{event['event']['region']}
 - 赛制：{event['event']['format']}
-- 冠军：{summary['champion']}
-- 亚军：{summary['runner_up']}
+{result_summary(event)}
 - 系列赛：{summary['series']}（实际进行 {summary['played_series']}，弃权 {summary['forfeits']}）
 - 实际进行的 sets：{summary['played_sets']}
 
@@ -141,7 +147,7 @@ def entity_page(event: dict, source_name: str) -> str:
 
 ## 身份
 
-- 类型：Brawl Stars Championship Monthly Finals
+- 类型：{event['event'].get('event_type', 'monthly_finals')}
 - 日期：{event['event']['date']}
 - 赛区：{event['event']['region']}
 - 赛制：{event['event']['format']}
@@ -150,8 +156,7 @@ def entity_page(event: dict, source_name: str) -> str:
 
 ## 结果
 
-- 冠军：{summary['champion']}
-- 亚军：{summary['runner_up']}
+{result_summary(event)}
 - 系列赛：{summary['series']}（实际进行 {summary['played_series']}，弃权 {summary['forfeits']}）
 - 实际进行的 sets：{summary['played_sets']}
 
@@ -161,7 +166,7 @@ def entity_page(event: dict, source_name: str) -> str:
 
 ## 知识边界
 
-本页保存可持续追踪的赛事事实，不把赛事频率直接写成英雄强度、稳定地图适配或对位结论。逐 set 选用 / ban 明细保留在上游 raw，描述性聚合由 `tournament_observation_profile.v1` 在 `outputs/` 生成。
+本页保存可持续追踪的赛事事实，不把赛事频率直接写成英雄强度、稳定地图适配或对位结论。逐 set 选用 / ban 明细保留在上游 raw，描述性聚合持久归档见 [[../../environment/index|环境信号与赛事观察数据归档]]。
 
 ## 关联页面
 

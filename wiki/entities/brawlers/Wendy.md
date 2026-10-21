@@ -1,5 +1,7 @@
 # Wendy
 
+![[../../../raw/assets/brawlers/wendy.png]]
+
 ## 基本信息
 
 - 稀有度：Mythic
