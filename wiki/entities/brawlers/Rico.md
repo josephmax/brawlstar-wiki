@@ -23,6 +23,7 @@
 - 墙体多、走廊多的地图
 - 需要远距离消耗和压线的模式
 - 需要通过角度打穿敌方站位的对局
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -270,15 +271,10 @@ bp_brawler_profile:
       active_when: "walls create a narrow approach and Rico can preserve a bounce/control resource"
       fails_when: "target approaches from open angle, has hard CC, safely clears the vending machine, or walls are removed"
       bp_use: "response_pick_candidate_on_closed_maps"
-    - target:
-        - "Sprout"
-        - "Tara"
-        - "Barley"
-        - "Carl"
-        - "Stu"
+    - target: ["Sprout", "Barley", "Carl", "Stu"]
       direction: "target_favored"
       source: "[[sources/PLP-Rico|PLP-Rico]]"
-      mechanism: "thrower control, pull/CC, wallbreak, or high mobility can deny Rico's chosen bounce lane"
+      mechanism: "thrower control, wallbreak, or high mobility can deny Rico's chosen bounce lane"
       active_when: "enemy has deeper wall pocket, reliable wallbreak, or multiple approach angles"
       fails_when: "Rico's team opens enemy pocket while preserving Rico's own bounce walls"
       bp_use: "must_answer_before_locking_rico"
@@ -300,7 +296,6 @@ bp_brawler_profile:
       active_when: "summons are placed near walls or lane choke"
       fails_when: "summon anchors are protected by thrower pocket or force Rico into open field"
       bp_use: "summon_pressure_response_candidate"
-
     - target: ["Crow"]
       direction: "subject_favored"
       source: "[[sources/PLP-Rico|PLP-Rico]]"
@@ -326,6 +321,6 @@ bp_brawler_profile:
   slot_notes:
     slot_1: "只在耐久反弹路线很明确，或贩卖机有受保护的目标锚点时先手；仍要预留对投掷、穿透清点和选择性开墙的回答。"
     slot_2_3: "可围绕耐久墙廊建立反弹核心，或用贩卖机补一个临时掩体/反弹面；需要队友保留关键墙体。"
-    slot_4_5: "用于补 Brawl Ball/Gem/Knockout 的封路、临时掩体或分裂减速；先检查敌方是否已有穿透/投掷清贩卖机资源。"
+    slot_4_5: "用于补 Brawl Ball/Gem/Knockout 的封路、临时掩体或分裂减速；先检查敌方是否已有穿透/投掷清贩卖机资源。 Tara 需在射程劣势下积攒 Super 才有拉人秒杀窗口；不能把有大招时的威胁写成普遍克制。"
     slot_6: "当敌方缺开墙、缺安全清贩卖机手段，且必须经过墙边或窄口时，Rico 是高收益惩罚位。"
 ```

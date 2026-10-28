@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Juju|Fandom 来源摘要: Juju]]
 - PLP：[[sources/PLP-Juju|PLP 来源摘要: Juju]]
 - PLP 推荐模式候选：Brawl Ball, Heist, Hot Zone, Bounty, Knockout
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -219,7 +220,7 @@ bp_brawler_profile:
       bp_use: false_positive_filter.water_must_convert_objective
 
   conditional_matchups:
-    - target: ["Jae-yong", "Poco", "Berry"]
+    - target: ["Jae-yong", "Poco"]
       direction: subject_favored
       source: "[[sources/PLP-Juju|PLP-Juju]]"
       mechanism: "Juju 用投掷弧线、元素 slow/damage 和 Gris-Gris ammo tax 压低支援壳的固定站位"
@@ -240,6 +241,13 @@ bp_brawler_profile:
       active_when: "地图给 Juju 墙袋/水/草角度，目标被迫守固定路口"
       fails_when: "资源层吸收 Gris-Gris 或目标在开阔中距离先压 Juju"
       bp_use: "map_geometry_and_resource_check"
+    - target: ["Berry"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Juju|Fandom-Juju]]"
+      mechanism: "Juju 能保持射程与输出压力时压制 Berry 的铺地站位；这是距离窗口的优势，不把 Berry 视为缺自保的支援"
+      active_when: "地形和站位允许 Juju 保持有效射程与输出优势，Berry 暂不能用位移接近/脱离或用击退改变接触"
+      fails_when: "Berry 利用位移或击退改变距离与输出窗口；双方各有胜负手，不作为稳定硬克制"
+      bp_use: "conditional_range_pressure"
 
   slot_notes:
     slot_1: "只有地图水/草/墙袋明确服务目标时才早手；否则后手会被突进或长手针对。"

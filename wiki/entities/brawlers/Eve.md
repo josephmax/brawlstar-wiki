@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
 - PLP：[[sources/PLP-Eve|PLP 来源摘要: Eve]]
 - PLP 推荐模式候选：Heist, Bounty, Knockout
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -250,7 +251,6 @@ bp_brawler_profile:
       active_when: "地图有水域或长线角度让 Eve 保持距离，Najia 无队友突进保护且必须用弹药清 hatchling"
       fails_when: "地图无水域且 Najia 从墙后弧线持续命中 Eve（罐子可越墙），或敌方范围清理免费清 hatchling，或 Najia 队友突进跨水贴脸"
       bp_use: "response_pick_candidate_against_poison_route_control"
-
     - target: ["Shelly", "Meg", "Rosa", "El Primo", "Mortis", "Edgar"]
       direction: "subject_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]] + [[sources/Fandom-Eve|Fandom-Eve]]"
@@ -258,13 +258,6 @@ bp_brawler_profile:
       active_when: "水域直接参与主战场，短手没有跳跃/钩子/隐身或队友开路"
       fails_when: "短手拥有跨距手段、草墙逼迫 Eve 离水、或目标模式要求 Eve 站到陆地"
       bp_use: "map-dependent anti-aggro；BP 输出必须引用具体地图 feature"
-    - target: ["Grom"]
-      direction: "target_favored"
-      source: "[[sources/PLP-Eve|PLP-Eve]]"
-      mechanism: "Grom 的弧线投掷可跨水域从墙后持续命中 Eve 的蓄力位，清 hatchling 的成本也拖慢 Eve 的资源节奏"
-      active_when: "Grom 有墙后投掷角度，Eve 无法用水域完全规避弹道"
-      fails_when: "Eve 从开阔水域/跳位拿到 Grom 投掷覆盖外的角度，或队友先逼 Grom 转位"
-      bp_use: "must_answer_thrower_arc_before_eve"
     - target: ["Rico", "Jessie"]
       direction: "subject_favored"
       source: "[[sources/PLP-Eve|PLP-Eve]]"
@@ -272,6 +265,13 @@ bp_brawler_profile:
       active_when: "Eve 保持水域或长线距离，Rico/Jessie 必须跨水或进入 hatchling 覆盖才能兑现价值"
       fails_when: "墙体角度让 Rico 弹墙或 Jessie 炮台绕过水域，或 Eve 被逼离水进入其有效射程"
       bp_use: "response_pick_candidate_against_water_unfriendly_lane"
+    - target: ["Grom"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Eve|Fandom-Eve]]; [[sources/Fandom-Grom|Fandom-Grom]]"
+      mechanism: "地形允许 Grom 依靠射程和墙后攻击压制 Eve；优势来自有效交战距离，不要求 Eve 在固定位置蓄力"
+      active_when: "Grom 有安全输出地形并能维持射程优势，Eve 无法借水路缩短实际交战距离"
+      fails_when: "Eve 的水路路线弥补射程距离，或 Grom 不能保持安全远距离输出；不再成立该射程压制优势"
+      bp_use: "terrain_dependent_range_response"
 
   slot_notes:
     slot_1: "只在地图水域/长线是硬职责且敌方低成本答案被 ban 时可早手；否则容易被后手范围清理或突进惩罚"

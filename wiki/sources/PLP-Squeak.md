@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Squeak|Fandom 来源摘要: Squeak]]
 - [[entities/brawlers/Squeak|Squeak]]
+
+## 2026-10-28 维护者对位复核
+
+1、13：Edgar 攻击回血与 Stu 机动/条件破墙分别解释，不按同一反投掷机制。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

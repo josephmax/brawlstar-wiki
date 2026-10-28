@@ -44,3 +44,7 @@
 ## 2026-10-21 补丁 BP 修复复核
 
 countersThese：新增 Cosmo, Grom, Najia, Ziggy；移除 Brock, Jae-Yong, Nani, Sprout。 counteredBy：新增 Amber, Kenji, Nori, Rosa；移除 Ash, Finx, Frank, Hank。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。
+
+## 2026-10-28 维护者对位复核
+
+3：Finx 取决于地形，撤回共享厚身体/短程解释与普遍方向。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

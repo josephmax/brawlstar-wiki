@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Finx|Fandom 来源摘要: Finx]]
 - PLP：[[sources/PLP-Finx|PLP 来源摘要: Finx]]
 - PLP 推荐模式：Gem Grab, Brawl Ball, Heist, Hot Zone
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -223,7 +224,7 @@ bp_brawler_profile:
       bp_use: "team_synergy_and_enemy_attack_type_check"
 
   conditional_matchups:
-    - target: ["Piper", "Gigi", "Nani", "Byron", "Mandy"]
+    - target: ["Piper", "Nani", "Byron", "Mandy"]
       direction: "subject_favored"
       source: "[[sources/PLP-Finx|PLP-Finx]]"
       mechanism: "Time Warp 改写 projectile 速度，Finx 和队友的弹道更快，敌方长线 projectile 更难命中"
@@ -255,7 +256,7 @@ bp_brawler_profile:
   slot_notes:
     slot_1: "只有当地图和我方前两手明显奖励 projectile field 时才早手；否则容易被近身/召唤物低成本回答"
     slot_2_3: "适合与长线 projectile 队友一起建立 lane 计划，并让后续补前排或反突进"
-    slot_4_5: "看到敌方主要是 projectile 长手/支援时，Finx 可以作为节奏改写和 reload tax 补位"
+    slot_4_5: "看到敌方主要是 projectile 长手/支援时，Finx 可以作为节奏改写和 reload tax 补位 Gigi 不作为已核实克制目标；与 Shade 的优劣取决于地形，不能由弹道控速或厚身体类别推出普遍优势。"
     slot_6: "可最后手惩罚缺突进的长线阵容；不能用来单独解决 tank、assassin 或 sustain shell"
 ```
 

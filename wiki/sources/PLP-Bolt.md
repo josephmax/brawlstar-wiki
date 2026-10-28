@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Bolt|Fandom 来源摘要: Bolt]]
 - [[entities/brawlers/Bolt|Bolt]]
+
+## 2026-10-28 维护者对位复核
+
+6：Rosa 反制只在身体/护盾与减速条件下成立，不能无条件反杀。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

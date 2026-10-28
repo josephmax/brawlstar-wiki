@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Jacky|Fandom 来源摘要: Jacky]]
 - PLP：[[sources/PLP-Jacky|PLP 来源摘要: Jacky]]
 - PLP 推荐模式候选：Brawl Ball, Hot Zone
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -216,7 +217,7 @@ bp_brawler_profile:
       bp_use: "ammo_state_check"
 
   conditional_matchups:
-    - target: ["Mortis", "Edgar", "Tick", "Dynamike", "Grom", "Poco", "Doug", "Hank"]
+    - target: ["Mortis", "Edgar", "Tick", "Dynamike", "Grom", "Poco"]
       direction: "subject_favored"
       source: "[[sources/PLP-Jacky|PLP-Jacky]]"
       mechanism: "Jacky 的即时圆形伤害、隔墙命中和 Counter Crush 惩罚必须贴身或靠墙输出的低中血目标"
@@ -237,6 +238,20 @@ bp_brawler_profile:
       active_when: "Jacky 被迫正面互打且没有队友压血或拉人目标收益"
       fails_when: "Jacky 只需守墙角/掉球，或对方资源已交且进入 Counter Crush 半径"
       bp_use: "close_tank_mirror_check"
+    - target: ["Doug"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Jacky|Fandom-Jacky]]"
+      mechanism: "Jacky 的 Pneumatic Booster 加速缩短接触距离，Super 拉扯可打断对方攻击，极限充能的额外减速延长贴身窗口；优势不依赖目标低血量"
+      active_when: "Pneumatic Booster 可用且有接近路线，Super 能在对方输出窗口命中；极限充能就绪时才计入其额外减速"
+      fails_when: "加速/大招资源不足或接近路线被阻断，无法打断并维持贴身；Doug 的治疗/复活或队友保护使首轮压制无法转化为击杀"
+      bp_use: "engage_interrupt_response"
+    - target: ["Hank"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Jacky|Fandom-Jacky]]"
+      mechanism: "Jacky 的 Pneumatic Booster 加速缩短接触距离，Super 拉扯可打断对方攻击，极限充能的额外减速延长贴身窗口；优势不依赖目标低血量"
+      active_when: "Pneumatic Booster 可用且有接近路线，Super 能在对方输出窗口命中；极限充能就绪时才计入其额外减速"
+      fails_when: "加速/大招资源不足或接近路线被阻断，无法打断并维持贴身；Hank 保持安全距离或保留贴身 Super 反打"
+      bp_use: "engage_interrupt_response"
 
   slot_notes:
     slot_1: "通常不适合一抢；只有足球/热区地图明确有草墙入口且主要反坦可 ban 时才考虑"

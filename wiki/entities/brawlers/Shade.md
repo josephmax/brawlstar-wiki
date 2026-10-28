@@ -23,6 +23,7 @@
 - 墙体密集、路线复杂的地图
 - 需要贴身骚扰和绕后的模式
 - 对手依赖固定站位的局面
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -246,15 +247,7 @@ bp_brawler_profile:
       active_when: "map has walls near the target and Shade can charge or activate Super before being kited"
       fails_when: "target has through-wall answer, bodyguard, or open retreat space"
       bp_use: "response_pick_candidate_against_wall_backline"
-    - target:
-        - "Doug"
-        - "Jacky"
-        - "Trunk"
-        - "Frank"
-        - "Finx"
-        - "Bibi"
-        - "Ash"
-        - "Hank"
+    - target: ["Doug", "Jacky", "Trunk", "Frank", "Bibi", "Ash", "Hank"]
       direction: "target_favored"
       source: "[[sources/PLP-Shade|PLP-Shade]]"
       mechanism: "bulky short-range or through-wall punishers survive Shade's burst and punish its close-range timing"
@@ -272,6 +265,6 @@ bp_brawler_profile:
   slot_notes:
     slot_1: "只在墙体密集且敌方 through-wall 回答受限时考虑先手；开阔图先手风险很高。"
     slot_2_3: "适合回答依赖固定墙位的后排/控场，同时要求队友补远程输出。"
-    slot_4_5: "可用于补墙体进场、Hot Zone 贴墙压制或 Brawl Ball 后排骚扰；Jump Scare 提供越墙位移与恐惧自保，The Frightener 强化贴墙驻留；检查敌方 6 位坦克/投掷回答。"
+    slot_4_5: "可用于补墙体进场、Hot Zone 贴墙压制或 Brawl Ball 后排骚扰；Jump Scare 提供越墙位移与恐惧自保，The Frightener 强化贴墙驻留；检查敌方 6 位坦克/投掷回答。 与 Finx 的优劣更多取决于对战地形，没有已核实的普遍单向克制。"
     slot_6: "敌方缺厚前排、缺穿墙/投掷答案且关键目标靠墙时，Shade 可以作为惩罚位。"
 ```

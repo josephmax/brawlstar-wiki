@@ -32,6 +32,8 @@ Wendy 是把团队伤害分摊和护盾资源做到极致的近最低血量 Supp
 
 ## 关联页面
 
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
+
 - [[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]
 - [[sources/PLP-Wendy|Power League Prodigy 来源摘要: Wendy]]
 - [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]
@@ -232,9 +234,7 @@ bp_brawler_profile:
       bp_use: "false_positive_filter_into_burst_drafts"
 
   conditional_matchups:
-    - target:
-        - "Max"
-        - "Bolt"
+    - target: ["Max"]
       direction: "subject_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
       mechanism: "speed-reliant pokers cannot break the shield cycle or the turbine, while Wendy's long blast chips them reliably and the slow field punishes their exit routes"
@@ -268,15 +268,12 @@ bp_brawler_profile:
       active_when: "summons sit between Wendy and her targets on lane maps"
       fails_when: "the team clears bodies first and the turbine zone denies the summon's standing space"
       bp_use: "must_answer_body_block"
-    - target:
-        - "Bo"
-        - "Surge"
-        - "Pierce"
+    - target: ["Bo", "Surge"]
       direction: "subject_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking, Pierce's charged shots); the shield absorb margin is roughly halved since 2026-09-16 (spawn shield 40% max, per-hit self shield 600 at Power 11)"
+      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking); the shield absorb margin is roughly halved since 2026-09-16 (spawn shield 40% max, per-hit self shield 600 at Power 11)"
       active_when: "open lanes let her keep the shield cycle while the turbine covers the contested space"
-      fails_when: "they outrange the turbine edge after Surge stacks late stages, mines deny her cycle lane, or charged shots overkill the shield bar faster than she replenishes it"
+      fails_when: "they outrange the turbine edge after Surge stacks late stages, mines deny her cycle lane, or burst overkills the shield bar faster than she replenishes it"
       bp_use: "support_lane_response_candidate"
     - target:
         - "Ash"
@@ -297,11 +294,18 @@ bp_brawler_profile:
       active_when: "they reach Wendy or the turbine before the team answers, or walls protect the Ego/attack path"
       fails_when: "turbine slow plus grenade peel kites the dive, or focus fire removes the Ego before it strips the cycle"
       bp_use: "avoid_or_pair_with_control"
+    - target: ["Bolt"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Wendy|Fandom-Wendy]]"
+      mechanism: "Wendy 的区域减速削弱 Bolt 的蓄速和接触路线，提供一定程度的反制"
+      active_when: "Slowing Shield 星徽的发生器减速区覆盖 Bolt 路线，或 Green Grenade 命中 Bolt；区域/技能资源可用"
+      fails_when: "Bolt 绕开区域、发生器被摧毁、减速资源未命中/未就绪，或短免控窗口穿过控制；不能保证所有进场都被拦下"
+      bp_use: "area_slow_response"
 
   slot_notes:
     slot_1: "risky as an opener on burst-heavy drafts; acceptable on long-lane or water-route maps where the shield cycle is safe"
     slot_2_3: "strong after a carrier, bruiser or high-HP teammate is visible to receive shields and turbine value"
-    slot_4_5: "good response to chip, speed and sustain comps; check the enemy has no pierce or max-health damage first"
+    slot_4_5: "good response to chip, speed and sustain comps; check the enemy has no pierce or max-health damage first. 与 Pierce 各有胜负手：Pierce 射程及连续拾弹壳爆发占优，Wendy 防御承受能力占优；不能假定护盾能扛住其连续爆发。"
     slot_6: "punishes drafts with no burst overkill and no summon body-block; verify a destructible-turbine answer is absent"
 ```
 

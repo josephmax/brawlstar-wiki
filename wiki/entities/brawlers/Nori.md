@@ -15,6 +15,7 @@
 - PLP 推荐模式：Hot Zone, Heist, Bounty
 - 8/4 补丁 fix：[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]
 - Hypercharge MASTER FISHERMAN 与当前数值口径：[[sources/Fandom-Nori|Fandom-Nori]] / [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -256,19 +257,26 @@ bp_brawler_profile:
       active_when: "目标缺 bodyguard，Nori 有 hook/root 资源，并能避开第一轮预瞄"
       fails_when: "目标有硬控保镖挡 hook，或 Nori 充能期被打断"
       bp_use: "response_pick_into_mid_speed_control_or_summons"
-    - target: ["Bolt", "Starr Nova", "Pam", "Otis", "Chester", "Angelo", "Surge", "Damian"]
+    - target: ["Pam", "Otis", "Chester", "Angelo", "Surge", "Damian"]
       direction: "target_favored"
       source: "[[sources/PLP-Nori|PLP-Nori]]"
-      mechanism: "Bolt/Starr Nova 长线爆发惩罚 Nori 充能期；Pam 续航 out-sustain；Otis 沉默断充能；Chester 随机 Super 不可预判；Angelo 长线 poke；Surge 阶段成长反打；Damian 突进 burst"
+      mechanism: "Pam 续航 out-sustain；Otis 沉默断充能；Chester 随机 Super 不可预判；Angelo 长线 poke；Surge 阶段成长反打；Damian 突进 burst"
       active_when: "他们守区口、长线或预瞄 Nori 充能窗口"
       fails_when: "关键爆发/控制已交，Nori 用 root 断或 Super 躲第一轮后从另一角度切"
       bp_use: "avoid_into_long_burst_or_silence_chain"
+    - target: ["Bolt"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Nori|Fandom-Nori]]; [[sources/Fandom-Bolt|Fandom-Bolt]]"
+      mechanism: "Bolt 携带 Toss Up 在满速接触时击退/击飞 Nori，干扰其充能与进场节奏"
+      active_when: "Bolt 携带 Toss Up，能维持满速并在 Nori 关键充能/进场窗口完成接触"
+      fails_when: "Bolt 未带 Toss Up、未满速、路线被减速/阻挡或不能接触 Nori；不能把其他配装也当作满速击退"
+      bp_use: "full_speed_knockback_response"
 
   slot_notes:
     slot_1: "Hot Zone/Heist 路线明确且缺少保镖反制时可早手：MASTER FISHERMAN 提供聚拢+终结窗口，但本体 7000（Power 11）与 2.5 秒满充仍会暴露给敌方爆发和控制，须确认安全启动路线"
     slot_2_3: "适合作为 hook/root 核心或成长 Super 打库/清区手，后续补长手和反控制"
     slot_4_5: "看到敌方中速长手/控场缺保镖时可响应；Damian/Surge/Otis 已暴露时避免"
-    slot_6: "最后手惩罚无长线爆发的阵容很强；Bolt/Starr Nova/Pam 在场时不要硬锁"
+    slot_6: "最后手可惩罚缺反进场资源的阵容；Bolt 的 Toss Up 满速击飞、Pam 续航应单独评估，不用长线爆发解释 Bolt"
 ```
 
 ## 关联页面

@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Eve|Fandom 来源摘要: Eve]]
 - [[entities/brawlers/Eve|Eve]]
+
+## 2026-10-28 维护者对位复核
+
+9：Grom 关系限地形允许的射程压制，水路补偿距离即失效。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

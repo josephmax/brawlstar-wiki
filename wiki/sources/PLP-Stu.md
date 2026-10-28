@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Stu|Fandom 来源摘要: Stu]]
 - [[entities/brawlers/Stu|Stu]]
+
+## 2026-10-28 维护者对位复核
+
+13：Gigi 按风筝、Squeak 按机动压制及条件破墙分别建模。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

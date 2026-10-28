@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Rico|Fandom 来源摘要: Rico]]
 - [[entities/brawlers/Rico|Rico]]
+
+## 2026-10-28 维护者对位复核
+
+11：Tara 需要在射程劣势下攒 Super，不能由击杀窗口推出普遍克制。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

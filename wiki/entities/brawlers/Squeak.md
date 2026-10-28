@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Squeak|Fandom 来源摘要: Squeak]]
 - PLP：[[sources/PLP-Squeak|PLP 来源摘要: Squeak]]
 - PLP 推荐模式：Hot Zone、Bounty、Knockout
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -242,7 +243,7 @@ bp_brawler_profile:
       active_when: "地图有墙角/矿区/区口让目标必须停留或绕路"
       fails_when: "目标在完全开阔处 outrange，或 Meg 直接用 body 压 Squeak"
       bp_use: "delayed_area_response_to_static_damage"
-    - target: ["Bolt", "Bibi", "Edgar", "Ollie"]
+    - target: ["Bolt", "Bibi", "Ollie"]
       direction: "target_favored"
       source: "[[sources/PLP-Squeak|PLP-Squeak]]"
       mechanism: "高速进场、坦克控制或近身爆发能在延迟爆炸前逼出击杀"
@@ -256,6 +257,13 @@ bp_brawler_profile:
       active_when: "目标有 sustain/控制或能从墙后压 Squeak"
       fails_when: "Squeak 与队友形成交叉火力并把他们赶进固定 choke"
       bp_use: "requires_frontline_and_control_answer"
+    - target: ["Edgar"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Squeak|Fandom-Squeak]]; [[sources/Fandom-Edgar|Fandom-Edgar]]"
+      mechanism: "Squeak 延迟出伤且缺少直接近身自保；Edgar 跳中贴脸后以快速攻击和攻击回血压过其出伤节奏"
+      active_when: "Edgar 的 Super 跳中并能持续贴身输出，Squeak 未获队友即时保护"
+      fails_when: "跳空或无法持续接触，或 Squeak 队友用控制/爆发阻止 Edgar 持续攻击回血"
+      bp_use: "close_contact_sustain_response"
 
   slot_notes:
     slot_1: "Hot Zone/Bounty/Knockout 有明确 choke 和反突进队友时可早手"

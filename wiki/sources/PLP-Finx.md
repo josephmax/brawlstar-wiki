@@ -5,7 +5,7 @@
 - 标题：Best build for Finx | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Finx | Power League Prodigy](https://powerleagueprodigy.com/finx)
 - 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/finx.md]]
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/finx-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
 - payload_source_updated_at：2026-05-25T17:15:02Z
@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Finx|Fandom 来源摘要: Finx]]
 - [[entities/brawlers/Finx|Finx]]
+
+## 2026-10-28 维护者对位复核
+
+2：Gigi 候选被用户否定，撤回已核实边；原始 winRate=0.628 不构成机制证明。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

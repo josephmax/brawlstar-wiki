@@ -23,6 +23,7 @@
 - 需要频繁转点的模式
 - 地图中有很多可利用路径时
 - 适合高操作、快节奏的对局
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -232,15 +233,7 @@ bp_brawler_profile:
       bp_use: "map_factor_false_positive_check"
 
   conditional_matchups:
-    - target:
-        - "Sprout"
-        - "Dynamike"
-        - "Piper"
-        - "Tick"
-        - "Ziggy"
-        - "Gigi"
-        - "Mandy"
-        - "Squeak"
+    - target: ["Sprout", "Dynamike", "Piper", "Tick", "Ziggy", "Mandy"]
       direction: "subject_favored"
       source: "[[sources/PLP-Stu|PLP-Stu]]"
       mechanism: "dash chain lets Stu dodge skillshots, close onto throwers/snipers, or break their cover timing"
@@ -273,6 +266,20 @@ bp_brawler_profile:
       active_when: "Stu keeps Super charged or can land a projectile before contact"
       fails_when: "enemy chains CC, catches Stu without ammo/Super, or blocks retreat path"
       bp_use: "anti_aggro_response_candidate"
+    - target: ["Gigi"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Stu|Fandom-Stu]]"
+      mechanism: "Stu 连续位移风筝 Gigi，使其第一轮未完成斩杀后难以持续贴身输出；不是把 Gigi 当作投掷或狙击目标"
+      active_when: "Stu 能命中续充 Super，有位移空间，在 Gigi 第一轮接触后存活并继续拉开距离"
+      fails_when: "Gigi 首轮完成斩杀，或狭窄地形/队友控制封住 Stu 的位移空间、使其无法续充"
+      bp_use: "dash_kiting_response"
+    - target: ["Squeak"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Stu|Fandom-Stu]]"
+      mechanism: "Stu 以高机动躲开延迟爆炸并在可输出距离压制 Squeak；Breakthrough 可破墙削弱 Squeak 的地形优势"
+      active_when: "Stu 可命中续充并有闪避空间；破墙收益仅在携带 Breakthrough、妙具可用且目标墙可破坏时计入"
+      fails_when: "钢墙不能被破坏，Squeak 因此保有安全地形时该优势可能不成立；或 Stu 被封路且无法连续位移"
+      bp_use: "mobility_and_conditional_wallbreak_response"
 
   slot_notes:
     slot_1: "可在 Brawl Ball/Hot Zone/Gem 作为高机动先手，但要避开敌方 2-3 位坦克控制组合。"

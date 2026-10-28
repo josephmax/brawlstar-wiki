@@ -1791,3 +1791,13 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 - 新增 test_matchup_provenance.py：修复前 Gray/Squeak 断言失败，修复后 2 项通过；检查真实编译卡及索引不含错误边，并保留 Sprout/Grom/Dynamike 及其他既有对局和条件。来源候选保留。
 - 验证：BP skill contract、runtime 43 项测试通过；全库结构审计 106 个 bp_ready 无 blocker，Cosmo/Vince 两个既有 missing_profile 保留；PLP 覆盖审计 1600 候选、177 个仅来源候选（原 176 + 撤回的 Gray/Squeak），没有把覆盖率提高当作真实性目标。
 - 应用侧跟踪文档位于 skill-chat-agent 的 evals/chat-regression/quality-issues.md，首批仅闭环 Gray/Squeak；Rico/Tara、Shade/Finx 等同类分组仍待逐项核实。源库已有 d078cc5 更新与本次修复分开记录；用户两份 SQLite 和题库练习文件未修改或提交。NAS 未部署。
+
+
+## [2026-10-28] fix | 用户逐项复核 13 组克制归因
+
+- 新增用户回复原文与 [[sources/User-Note-Matchup-Review-2026-10-28|来源摘要]]，按明确维护者判断修正 15 个英雄页；能力前提对照本地来源，用户判断不冒称官方或独立实测胜率。原有 raw 不变。
+- Finx/Gigi、Finx/Shade、Wendy/Pierce、Bea/Gene、Tara/Rico、Sirius/Berry 撤回泛化方向；Starr Nova/Nori 的长线爆发解释撤回，新原因尚缺，保留来源候选。对局平衡/地形边界写入可编译 slot notes，不新造 neutral 方向。
+- 其余按独立机制及成立/失效条件建模；Berry/8-Bit 按开阔长线和墙后安全覆盖分别表达，Squeak/Edgar、Bolt/Rosa、Juju/Berry 的另一侧同步修正。Toss Up、Slowing Shield、极限充能、Breakthrough 等前提保留，不把配装技能写成常驻。
+- Finx/Gigi 追溯到 PLP 6 月抓取确有 0.628 的统计候选；66d834a 升级 bp_ready 时补上不适用的弹道机制。样本口径和上游错误成因未获证明，原始观察保留；修复 PLP-Finx 指向不存在 finx.md 的链接。
+- 归因回归新增 4 项（含多个子案例），修复前 29 个子检查失败；修复后总 6 项通过。真实编译/决策代码的离线 runtime 测试 43 项、维护契约通过；结构审计 106 个 bp_ready 零 blocker，Cosmo/Vince 两个既有 missing_profile 保留。PLP 1600 候选、181 仅来源；不会为了覆盖率重新提升被撤回候选。
+- 未调用真实模型、未部署 NAS；应用后续同步固定知识版本并保留修复及接续验证文档。已有环境数据库和题库实验改动不纳入本次提交。

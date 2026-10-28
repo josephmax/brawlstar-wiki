@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Berry|Fandom 来源摘要: Berry]]
 - PLP：[[sources/PLP-Berry|PLP 来源摘要: Berry]]
 - PLP 推荐模式候选：Heist, Hot Zone
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -240,14 +241,13 @@ bp_brawler_profile:
       active_when: "进场路线可预判，Berry 有 gadget 或队友能跟伤"
       fails_when: "Buzz/刺客从侧草或多角度进入，或先骗掉 Friendship 再开团"
       bp_use: anti_aggro_support_if_route_locked
-    - target: ["Trunk", "Bibi", "Sam", "Ash", "Juju", "Gray", "Sirius", "8-Bit"]
+    - target: ["Trunk", "Bibi", "Sam", "Ash"]
       direction: target_favored
       source: "[[sources/PLP-Berry|PLP-Berry]]"
       mechanism: "高身体、位移/控制、召唤物或稳定 DPS 会压缩 Berry 的铺地时间，并迫使低血支援先交自保资源"
       active_when: "他们能守住 zone、球路、矿区或金库入口，迫使 Berry 进入其有效范围"
       fails_when: "Berry 在墙后只治疗队友，并由队友先清掉身体/召唤层"
       bp_use: must_answer_body_or_resource_before_berry
-
     - target: ["Sprout", "Rico", "Chuck", "Najia"]
       direction: "subject_favored"
       source: "[[sources/PLP-Berry|PLP-Berry]]"
@@ -255,11 +255,39 @@ bp_brawler_profile:
       active_when: "Berry 能覆盖他们必须经过的入口或支援己方处理路线"
       fails_when: "几何让对方从更安全角度输出，或固定路线绕开 Berry puddle"
       bp_use: "map_geometry_check_before_accepting_candidate"
+    - target: ["Juju"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Berry|Fandom-Berry]]; [[sources/Fandom-Juju|Fandom-Juju]]"
+      mechanism: "Juju 能保持射程与输出压力时压制 Berry 的铺地站位；这是距离窗口的优势，不把 Berry 视为缺自保的支援"
+      active_when: "地形和站位允许 Juju 保持有效射程与输出优势，Berry 暂不能用位移接近/脱离或用击退改变接触"
+      fails_when: "Berry 利用位移或击退改变距离与输出窗口；双方各有胜负手，不作为稳定硬克制"
+      bp_use: "conditional_range_pressure"
+    - target: ["Gray"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Berry|Fandom-Berry]]; [[sources/Fandom-Gray|Fandom-Gray]]"
+      mechanism: "Gray 用 Walking Cane 拉出 Berry 的掩体保护，再以传送位移接近完成斩杀；这是对投掷站位的直接反制"
+      active_when: "Walking Cane 拉人或传送入口可用且能命中/接近 Berry，后续输出足以兑现击杀窗口"
+      fails_when: "拉人落空、传送入口被防守，或 Berry 用击退/位移和队友保护脱离接触"
+      bp_use: "pull_and_teleport_response"
+    - target: ["8-Bit"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Berry|Fandom-Berry]]; [[sources/Fandom-8-Bit|Fandom-8-Bit]]"
+      mechanism: "开阔长线直接对枪时 8-Bit 的射程和持续火力能压制 Berry；不跨地形推广"
+      active_when: "开阔长线形成直接射线，Berry 没有安全墙体覆盖位置，8-Bit 能保持距离输出"
+      fails_when: "Berry 获得墙体保护，可隔墙覆盖增伤器或目标区并持续占地"
+      bp_use: "open_lane_range_response"
+    - target: ["8-Bit"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Berry|Fandom-Berry]]; [[sources/Fandom-8-Bit|Fandom-8-Bit]]"
+      mechanism: "Berry 在墙后用投掷与持续地面覆盖压制 8-Bit 的增伤器及目标区，利用无法直接还击的地形反制"
+      active_when: "存在安全墙体，Berry 能从墙后覆盖 8-Bit 的增伤器或其必须争夺的目标点并持续占地"
+      fails_when: "墙体被破、目标/增伤器不在安全覆盖范围，或地形变成 8-Bit 可直接输出的开阔长线"
+      bp_use: "wall_protected_objective_response"
 
   slot_notes:
     slot_1: "只在地图强奖励持续治疗控区，且敌方低成本突进/投掷反制面窄时早手；否则会暴露低血和慢 reload。"
     slot_2_3: "适合和站区身体、Heist 主 DPS 或中路 carrier 组成支援计划，但必须补 anti-dive。"
-    slot_4_5: "可用来回答低爆发支援壳或固定路线阵容，同时检查敌方最后手是否能拿硬突进/投掷。"
+    slot_4_5: "可用来回答低爆发支援壳或固定路线阵容，同时检查敌方最后手是否能拿硬突进/投掷。 Sirius 的克制方向不明确；Juju 有射程/输出窗口但 Berry 有位移和击退。8-Bit 开阔长线占优，墙体允许安全覆盖增伤器时 Berry 可反制。"
     slot_6: "如果敌方三人缺远程清支援位和硬突进，Berry 可以作为高质量续航封口 pick。"
 ```
 

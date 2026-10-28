@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Rosa|Fandom 来源摘要: Rosa]]
 - PLP：[[sources/PLP-Rosa|PLP 来源摘要: Rosa]]
 - PLP 推荐模式：Gem Grab, Brawl Ball, Hot Zone
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -200,7 +201,7 @@ bp_brawler_profile:
       active_when: "草/墙/目标区让 Rosa 接近，且支援身边缺 anti-tank DPS"
       fails_when: "支援队友有高爆发或控制链保护"
       bp_use: "punish_low_damage_support_shell"
-    - target: ["Sprout", "Squeak", "Piper", "Mandy", "Bolt"]
+    - target: ["Sprout", "Squeak", "Piper", "Mandy"]
       direction: "subject_favored"
       source: "[[sources/PLP-Rosa|PLP-Rosa]]"
       mechanism: "Grow Light/草线和 Super 可越过 poke 或控制窗口，迫使低血远程/控制位后退"
@@ -221,6 +222,13 @@ bp_brawler_profile:
       active_when: "他们控制草口、球门或 zone 入口"
       fails_when: "Rosa 有 Super、草线和队友清召唤物/控制"
       bp_use: "requires_clear_and_control_bait"
+    - target: ["Bolt"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Rosa|Fandom-Rosa]]"
+      mechanism: "Rosa 的身体与 Super 护盾使 Bolt 难以完成击杀；可用减速进一步限制 Bolt 蓄速接触"
+      active_when: "Rosa 有承伤资源且能维持接触；减速收益需 Unfriendly Bushes 命中草内 Bolt，或极限充能减速覆盖 Bolt"
+      fails_when: "Rosa 护盾/减速资源不足、无法维持接触，或 Bolt 免控窗口绕过减速；难被击杀不等于必能反杀 Bolt"
+      bp_use: "conditional_body_and_slow_response"
 
   slot_notes:
     slot_1: "只在明确草图/目标身体图可早手；否则容易被破草和 anti-tank 后手针对"

@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Edgar|Fandom 来源摘要: Edgar]]
 - PLP：[[sources/PLP-Edgar|PLP 来源摘要: Edgar]]
 - PLP 推荐模式候选：Gem Grab, Brawl Ball, Heist, Hot Zone, Knockout
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -217,7 +218,7 @@ bp_brawler_profile:
       bp_use: "map_factor_false_positive_check"
 
   conditional_matchups:
-    - target: ["Dynamike", "Grom", "Sprout", "Squeak"]
+    - target: ["Dynamike", "Grom", "Sprout"]
       direction: "subject_favored"
       source: "[[sources/PLP-Edgar|PLP-Edgar]]"
       mechanism: "Super/Let's Fly 绕过墙体保护并贴脸击杀缺近战自保的投掷"
@@ -245,6 +246,13 @@ bp_brawler_profile:
       active_when: "敌方攻击前摇长、弹药不足、Edgar 可绕身位并持续命中"
       fails_when: "敌方有控制、队友补伤害、或 Edgar 贴脸后无法规避高额爆发"
       bp_use: "不是无条件 anti-tank；只作为局部近战窗口判断"
+    - target: ["Squeak"]
+      direction: "subject_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Edgar|Fandom-Edgar]]"
+      mechanism: "Squeak 延迟出伤且缺少直接近身自保；Edgar 跳中贴脸后以快速攻击和攻击回血压过其出伤节奏"
+      active_when: "Edgar 的 Super 跳中并能持续贴身输出，Squeak 未获队友即时保护"
+      fails_when: "跳空或无法持续接触，或 Squeak 队友用控制/爆发阻止 Edgar 持续攻击回血"
+      bp_use: "close_contact_sustain_response"
 
   slot_notes:
     slot_1: "不适合作稳定一抢；除非地图明确奖励 Brawl Ball scorer 且高优先反制已被 ban"

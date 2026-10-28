@@ -11,6 +11,7 @@
 - Fandom：[[sources/Fandom-Bolt|Fandom 来源摘要: Bolt]]
 - PLP：[[sources/PLP-Bolt|PLP 来源摘要: Bolt]]
 - PLP 推荐模式：Bounty
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -249,13 +250,20 @@ bp_brawler_profile:
       active_when: "他们守住 Bolt 必须经过的 choke、球路或 Bounty 接触线"
       fails_when: "控制被 bait，Bolt 在 Unstoppaball 开启后的 1 秒内完成关键接触，或队友从另一路分散控制"
       bp_use: "avoid_without_cc_bait_plan"
-    - target: ["Clancy", "Rosa", "Melodie", "Meg"]
+    - target: ["Clancy", "Melodie", "Meg"]
       direction: "target_favored"
       source: "[[sources/PLP-Bolt|PLP-Bolt]]"
       mechanism: "高身体、稳定 DPS、草路盾量或多段位移能吃住 Bolt 第一轮接触并反杀失速点"
       active_when: "目标区迫使 Bolt front-to-back 撞身体，且他没有 Oil Change/Super 资源"
       fails_when: "Bolt 绕开身体直接撞后排，或队友先削弱目标血线"
       bp_use: "avoid_raw_frontline_answer"
+    - target: ["Rosa"]
+      direction: "target_favored"
+      source: "[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]; [[sources/Fandom-Bolt|Fandom-Bolt]]; [[sources/Fandom-Rosa|Fandom-Rosa]]"
+      mechanism: "Rosa 的身体与 Super 护盾使 Bolt 难以完成击杀；可用减速进一步限制 Bolt 蓄速接触"
+      active_when: "Rosa 有承伤资源且能维持接触；减速收益需 Unfriendly Bushes 命中草内 Bolt，或极限充能减速覆盖 Bolt"
+      fails_when: "Rosa 护盾/减速资源不足、无法维持接触，或 Bolt 免控窗口绕过减速；难被击杀不等于必能反杀 Bolt"
+      bp_use: "conditional_body_and_slow_response"
 
   slot_notes:
     slot_1: "不适合盲早手；除非地图路线极清楚且敌方已暴露缺 CC，否则容易被控制和地形低成本回答"

@@ -44,6 +44,8 @@
 
 ## BP Maintenance
 
+- [[sources/User-Note-Matchup-Review-2026-10-28|13 组克制关系用户复核及 Finx/Gigi 历史溯源]]
+
 - [BobbyBS 练习题清洗稿（已确认，53 题导出）](../evals/bobbybs-draft-quiz/practice/REVIEW.md)：112 个新增三档选项提案、原答案争议分支与 3 题暂缓；未进入 runtime。
 
 - [[sources/BobbyBS-Draft-Quiz|BobbyBS 专家 BP 题库来源与核验入口]]（维护/测评专用，不进入 runtime）

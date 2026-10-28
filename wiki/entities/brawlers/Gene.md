@@ -30,6 +30,7 @@
 - 在目标型模式里，Gene 的价值更偏向“拉人制造减员”而不是自己承担推进职责
 - 一条来自用户经验的修正指出：在 `Brawl Ball` 中，不应把 Gene 当成理想的持球推进核心
 - 更合理的理解是：他通过拉人或抓失位来创造进球窗口，再让更适合推进的队友完成推进
+- 对位复核：[[sources/User-Note-Matchup-Review-2026-10-28|用户逐项复核]]
 
 ## 角色定位总结
 
@@ -259,13 +260,6 @@ bp_brawler_profile:
       active_when: 地图给目标侧路、跳墙、隔水或召唤物挡手，Gene 无法用队友先清资源
       fails_when: 路线被视野锁住，或 Gene 保留 Lamp Blowout / Magic Hand 等关键资源等真正进场
       bp_use: must_answer_mobility_or_body_block_before_gene
-    - target: ["Bea"]
-      direction: "target_favored"
-      source: "[[sources/PLP-Gene|PLP-Gene]]"
-      mechanism: "Bea 的 10 格单发和 Supercharged 高伤能在 Gene 攒出 Magic Hand 前持续压制低血中距离控制位，Honeycomb 30% 盾提高其长线对枪容错；Gene 慢弹道和 low burst 难以消耗开阔线上的 Bea"
-      active_when: "开阔长线图（Bounty/Knockout），Gene 无法借墙/视野安全攒 Super，Bea 有队友挡住侧路"
-      fails_when: "Gene 借墙和 Vision Gear 安全攒出 Super，Magic Hand 穿墙拉中 Bea 并由队友集火；或 Bea 单发 miss、被贴脸打断节奏"
-      bp_use: "avoid_first_pick_on_pure_long_range_maps"
     - target: ["Emz"]
       direction: "subject_favored"
       source: "[[sources/PLP-Gene|PLP-Gene]]"
@@ -277,7 +271,7 @@ bp_brawler_profile:
   slot_notes:
     slot_1: 不宜在纯长线且敌方有多个自然长狙答案时裸先；可在 Bounty/Knockout 需要控制和支援时作为可延展先手。
     slot_2_3: 适合回答敌方短手/进场计划，并与爆发队友成组建立抓单路线。
-    slot_4_5: 适合修复己方缺控制/续航/探草的问题，但要防敌方 6 位补长狙或刺客。
+    slot_4_5: "适合修复己方缺控制/续航/探草的问题，但要防敌方 6 位补长狙或刺客。 与 Bea 多数情况下各有胜负手，没有普遍单向克制；Honeycomb 护盾只在对应星徽且持有强化弹时生效。"
     slot_6: 如果敌方三人缺召唤物、长线压制或贴脸答案，Gene 可以作为拉人惩罚位。
 ```
 
