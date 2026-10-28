@@ -56,6 +56,7 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/ingest_brawler_bp_profiles.py`
 - `scripts/audit_bp_profile_quality.py`
 - `scripts/audit_plp_matchup_coverage.py`
+- `scripts/audit_matchup_attribution.py`
 - `scripts/capture_liquipedia_event.py`
 - `scripts/ingest_liquipedia_event.py`
 - `scripts/analyze_esports_event.py`
@@ -71,6 +72,8 @@ Use `--dry-run` when a script offers it before large writes. Treat script output
 `scripts/capture_brawler_sources.py` is the repeatable hero source capture script. Its `--sites` parameter accepts `fandom`, `plp`, or both; map Fandom raw capture is handled through the map ingest flow in `references/source-ingest.md`.
 
 `scripts/audit_plp_matchup_coverage.py` compares PLP raw `countersThese` / `counteredBy` pairs with a compiled `runtime_bp_index.matchup_index`. It writes generated reports to `outputs/` and treats PLP-only pairs as review seeds, not runtime matchup edges. Promote a seed only by adding mechanism, `active_when`, `fails_when`, and `bp_use` to the relevant brawler entity page.
+
+`scripts/audit_matchup_attribution.py` inventories every hero and conditional matchup using the runtime compiler parser. It preserves mechanisms, conditions, file hashes, source lines, duplicate and opposite-direction pairs, and latest-PLP comparison cues under `outputs/matchup-audit/`. These cues require human per-target review; they are not semantic error verdicts and never modify entities. Run `python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/audit_matchup_attribution.py` from the knowledge repository.
 
 For current-coverage audits, it reads the latest direct raw per Brawler. Older dated captures remain immutable history but must not be unioned into the current PLP matchup set.
 
