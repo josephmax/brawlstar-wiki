@@ -81,13 +81,13 @@
 
 - 站点与 manifest：
 - [[sources/新英雄头像与发布状态复核-2026-10|新英雄头像与发布状态复核（2026-10）]]
-- [[sources/Fandom-Cosmo|Fandom Cosmo]] / [[sources/PLP-Cosmo|PLP Cosmo]]（双源已齐，BP profile 待完整复核）
+- [[sources/Fandom-Cosmo|Fandom Cosmo]] / [[sources/PLP-Cosmo|PLP Cosmo]]（10-28 完成 BP profile；六模式、四地图、四条条件性劣势）
 - [[sources/Fandom-Vince|Fandom Vince]] / [[sources/PLP-Vince|PLP Vince]]（10 月 19 日提前获取；双源已齐，BP profile 待完整复核）
 - [[sources/Fandom-Deathcap-Trap|Fandom Deathcap Trap]] / [[entities/maps/Deathcap Trap|Deathcap Trap（Gem Grab 稳定结构）]]
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
 - [[sources/Brawl-Planet-站点与数据接口|Brawl Planet 站点与数据接口]]（环境信号 pick 层数据源，Legendary only）
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
-- [[sources/Brawler-Roster|Brawler Roster（2026-10-21 复核：108 身份、106 BP-ready）]]
+- [[sources/Brawler-Roster|Brawler Roster（2026-10-28：108 身份、107 BP-ready）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]
 - [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]（8 月补丁：新英雄 Cosmo/Vince、Wendy/Nori 极限充能、6 个新芭菲、平衡性调整，含 balance_patch_manifest）
 - [[sources/Fandom-Maintenance-September-16-2026|Fandom 来源摘要: Maintenance - September 16, 2026]]（9 月 16 日维护补丁：9 削弱 9 增强，含 balance_patch_manifest，effective_order 5）

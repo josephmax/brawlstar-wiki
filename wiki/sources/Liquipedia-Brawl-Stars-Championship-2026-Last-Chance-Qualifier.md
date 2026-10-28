@@ -111,3 +111,9 @@
 
 - [[../index|Wiki Index]]
 - [[../concepts/英雄名称归一化|英雄名称归一化]]
+
+## Cosmo 选用追溯（2026-10-28 复核已有归档）
+
+Cosmo 共选用 1 set、选用方 set 胜场 0，local ban 1 次、global ban 1 次。具体为 M02-R1M2，KDS Esports 对 FUT Esports Academy 第 4 set，Hideout / Bounty：KDS 的 Glowy、Stu、Piper 以 2:0 小局比分击败 FUT 的 Mina、Cosmo、Meeple。slot 是阵容字段位置，不推定英雄 draft 先后顺序。
+
+该记录支持 Cosmo 已进入此赛事 BP，不能据此将 Glowy、Stu、Piper 自动写成克制，也不能将 Hideout 出场等同为稳定优势。本轮将该地图的稳定结构与 Cosmo 机制独立复核后写入英雄地图 hook；未审阅 VOD，不声称掌握逐局分路或选手意图。

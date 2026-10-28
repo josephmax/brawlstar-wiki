@@ -63,8 +63,12 @@
 - [[entities/brawlers/Cosmo|Cosmo]]
 - [[sources/PLP-Cosmo|PLP 来源摘要: Cosmo]]
 
-## 当前整合边界（2026-10-21）
+## BP 复核（2026-10-28）
 
-已整合到 [[entities/brawlers/Cosmo|Cosmo]] 的机制/能力页面；未晋升 BP-ready。不采纳未经机制验证的 Tips 保证性结论。
+以 10-21 抓取、10-01 页面修订为机制证据，本次没有将维护日期冒充来源更新日期。复核后建立 [[entities/brawlers/Cosmo|Cosmo BP profile]]：六模式职责、四条地图路线、两种妙具配装、失败条件及逐目标条件对位。
 
-Tips 的 Super 无视射线、穿墙自动击杀、金库连带收益等描述仍为待验证提示，不当作保证。完整六模式、地图与条件对位复核仍待完成；头像与获取日期见 [[sources/新英雄头像与发布状态复核-2026-10]]。
+- 采纳 Orbit 距离成长、2 秒装填；Power 11 生命 6800，单弹随距离 500–2000，但不推定三弹全中。
+- 采纳 Super 先命中目标、随后区域内弹道吸引、持续 6 秒；不推定穿墙、必中、瞬杀或同时穿透英雄打金库。
+- Precession 增加公转速度，不是弹道前进速度。Telescope Trap 是有区域和持续时间的限制，不等于全场封锁或必定中断已开始的位移。
+- 对位判断是维护者依据双方机制和 PLP 方向进行的条件推导，不是实测胜率结论；逐条记录见 [[PLP-Cosmo#逐目标复核（2026-10-28）]]。
+- 地图依据来自 Hideout、Shooting Star、Out in the Open、Bridge Too Far 实体。LCQ 只证明在 Hideout 有选用，不证明该阵容或英雄占优。

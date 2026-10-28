@@ -47,3 +47,7 @@
 - [[sources/Fandom-Wendy|Fandom 来源摘要: Wendy]]
 - [[sources/Supercell-Wendy-Announcement-June-2026|Supercell 来源摘要: Wendy Announcement]]
 - [[sources/Fandom-Maintenance-July-8-2026|Fandom 来源摘要: Maintenance - July 8, 2026]]
+
+## 当前 BP 覆盖增量（2026-10-28）
+
+Cosmo 已完成六模式职责、四个具体地图 hook、四条逐目标条件性劣势关系与配装/失败条件复核，升级为 bp_ready；并非其全部 16 条 PLP 候选已获验证。当前 108 实体、107 bp_ready；仅 Vince 保留 missing_profile。上文 10-21 的 106/2 是历史核查口径，不是本次结果。

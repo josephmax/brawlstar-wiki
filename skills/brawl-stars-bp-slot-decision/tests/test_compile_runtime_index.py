@@ -69,6 +69,36 @@ def run_compile_raw(*args):
 
 
 class CompileRuntimeIndexTest(unittest.TestCase):
+    def test_cosmo_reviewed_profile_reaches_runtime_without_promoting_all_seeds(self):
+        index = run_compile_for_map("Hideout", "--no-environment")
+        card = index["brawler_runtime_cards"]["Cosmo"]
+        self.assertEqual({"Gem Grab", "Brawl Ball", "Heist", "Bounty", "Hot Zone", "Knockout"},
+                         {item["mode"] for item in card["objective_contracts"]})
+        self.assertEqual(2, len(card["build_switches"]))
+        self.assertGreaterEqual(len(card["failure_modes"]), 3)
+        fit = index["map_pool_signature"]["Hideout"]["candidate_index"]["Cosmo"]
+        self.assertIn("cosmo_hideout_side_support", fit["active_hook_ids"])
+        self.assertTrue(fit["slot_eligibility"]["response_pick"])
+        self.assertIn("protected_thrower", fit["failure_gates"])
+        matchups = index["matchup_index"]["by_brawler"]["Cosmo"]
+        self.assertEqual([], matchups["answers"])
+        self.assertEqual({"Nani", "Tick", "Sprout", "Mortis"},
+                         {edge["target"] for edge in matchups["is_answered_by"]})
+        mortis = next(e for e in matchups["is_answered_by"] if e["target"] == "Mortis")
+        self.assertIn("Telescope Trap", mortis["fails_when"])
+        self.assertIn("Planetary Pushback", mortis["active_when"])
+        self.assertNotIn("environment_evidence", card)
+
+    def test_cosmo_map_hooks_do_not_enable_unreviewed_maps(self):
+        for map_name in ("Hideout", "Shooting Star", "Out in the Open", "Bridge Too Far"):
+            index = run_compile_for_map(map_name, "--no-environment")
+            fit = index["map_pool_signature"][map_name]["candidate_index"]["Cosmo"]
+            self.assertTrue(fit["slot_eligibility"]["response_pick"], map_name)
+        # Mode contracts document jobs; they must not invent map-level coverage.
+        index = run_compile_for_map("Safe Zone", "--no-environment")
+        fit = index["map_pool_signature"]["Safe Zone"]["candidate_index"]["Cosmo"]
+        self.assertFalse(any(fit["slot_eligibility"].values()))
+
     def test_manifest_records_empty_environment_slot_without_fabrication(self):
         index = run_compile("--no-environment")
         safe_zone = index["map_pool_signature"]["Safe Zone"]
@@ -129,9 +159,9 @@ class CompileRuntimeIndexTest(unittest.TestCase):
         map_context = safe_zone["map_context"]
         candidate_index = safe_zone["candidate_index"]
 
-        # Two mechanics-only entities must remain ineligible, not silently BP-ready.
+        # Vince remains mechanics-only; Cosmo now has a reviewed profile.
         self.assertEqual(108, len(candidate_index))
-        for name in ("Cosmo", "Vince"):
+        for name in ("Vince",):
             self.assertFalse(any(candidate_index[name]["slot_eligibility"].values()))
         self.assertIn("objective_contracts", map_context)
         self.assertIn("hard_gates", map_context)

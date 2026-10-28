@@ -157,7 +157,7 @@ class PLPMatchupCoverageAuditTest(unittest.TestCase):
             payload = json.loads(result.stdout)["plp_matchup_coverage"]
 
         summary = payload["summary"]
-        # 2026-10-21: Cosmo / Vince have sources, not BP-ready matchup profiles.
+        # Source coverage includes both reviewed Cosmo and mechanics-only Vince.
         self.assertEqual(108, summary["plp_raw_pages"])
         self.assertGreaterEqual(summary["plp_raw_files"], summary["plp_raw_pages"])
         self.assertGreater(summary["plp_pairs"], 1000)

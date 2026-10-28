@@ -1801,3 +1801,15 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 - Finx/Gigi 追溯到 PLP 6 月抓取确有 0.628 的统计候选；66d834a 升级 bp_ready 时补上不适用的弹道机制。样本口径和上游错误成因未获证明，原始观察保留；修复 PLP-Finx 指向不存在 finx.md 的链接。
 - 归因回归新增 4 项（含多个子案例），修复前 29 个子检查失败；修复后总 6 项通过。真实编译/决策代码的离线 runtime 测试 43 项、维护契约通过；结构审计 106 个 bp_ready 零 blocker，Cosmo/Vince 两个既有 missing_profile 保留。PLP 1600 候选、181 仅来源；不会为了覆盖率重新提升被撤回候选。
 - 未调用真实模型、未部署 NAS；应用后续同步固定知识版本并保留修复及接续验证文档。已有环境数据库和题库实验改动不纳入本次提交。
+
+
+## 2026-10-28 — Cosmo BP profile 完成与运行时回归
+
+- 依据已有 10-21 Cosmo Fandom/PLP raw 和双方机制原文，先更新来源摘要，再补齐英雄 profile；本轮不是重新抓取全库或补丁刷新。
+- Cosmo 升级 bp_ready：六模式 objective contracts、4 条具体地图 hook（Hideout、Shooting Star、Out in the Open、Bridge Too Far）、2 种互斥妙具配装、5 个失败条件、4 段选位说明。
+- 条件性劣势逐目标复核 Nani（延伸射程）、Tick（墙后布雷）、Sprout（投掷与封路）、Mortis（自保空窗下突进）；保留各自 active/fails 条件，Mortis 不脱离 Telescope Trap / Planetary Pushback 状态判断。另 12 个 PLP 候选仍在来源层，未判假、未晋升。
+- 复核 LCQ 归档：Cosmo 在 Hideout 选用 1 set、输 0:2，另 local/global ban 各 1；不把比赛结果提升成克制或稳定图适配，未审阅 VOD。
+- 不采纳 Fandom Tips 中 Super 必中、穿墙自动击杀、金库穿透联动、公转速度等于飞行速度等无支持保证；四个对手机制 source 的失效 canonical raw 链接修到实际日期版。
+- 实际编译新增回归：四张图可召回，Safe Zone 不因存在 Heist 契约而自动获得资格；四条劣势边和妙具失效条件保留，未把 16 条名单全量导入。
+- 验证：runtime 45 项测试通过，matchup provenance 6 项通过，BP skill contract 通过；结构审计 107 bp_ready 无 blocker、Vince 单独缺 profile。PLP 覆盖审计已执行；这些检查不等于实际模型回答或 NAS 业务验收。
+- 保留用户既有 8 月赛事与 pickrate SQLite 修改及独立题库工作，未纳入本次提交。
