@@ -7,7 +7,7 @@
 - 读取日期：2026-06-30
 - Fandom 页面最后编辑：2026-05-22T10:05:33Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/squeak.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/squeak-2026-06-30.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -34,6 +34,12 @@
 - `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
 - `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
 - 本页不直接生成 counter 或 pick 顺位结论。
+
+## 普攻与墙体的机制范围
+
+`Attack: Sticky Blomb` 原文说明普攻粘弹附着障碍或目标，延迟爆炸可伤害墙后目标。这里应分别记录“弹体碰到障碍后的行为”和“爆炸作用范围”，不能由后者推出普通攻击弹道可越过墙体。`Super: Big Blob` 是独立技能，不把它的投掷描述混入普攻。
+
+原文使用 `throwing`，因此不能仅按中文“投掷”一词裁判错误；Controller 分类也不单独证明弹道性质。这些机制事实不直接证明 Gray 对 Squeak 的克制原因，关系候选边界见 [[sources/PLP-Gray#Gray 对 Squeak 的机制证据边界|Gray 对 Squeak 的复核]]。
 
 ## 抓取覆盖
 

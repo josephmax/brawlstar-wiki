@@ -111,6 +111,16 @@ A damage change can be complete against all indexed target states while an HP ch
 
 ## Contract Test
 
+### Matchup attribution regressions
+
+```bash
+python3 skills/brawl-stars-bp-knowledge-maintenance/scripts/test_matchup_provenance.py
+```
+
+This runs the real compiler against reviewed attribution cases. Gray/Squeak checks that the raw PLP candidate survives while its unsupported promotion is absent from both the entity card and runtime matchup index. Positive controls retain the other Gray targets and their active/failure conditions. It does not judge all strategic mechanisms, require an online extractor, or block an active chat task. New evidence may justify promoting a candidate after source review and updating the case.
+
+### Skill boundary contract
+
 Run:
 
 ```bash

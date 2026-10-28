@@ -1781,3 +1781,13 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 - 回归发现旧排位写入只 upsert，导致 S49 元数据下残留 6 张池外图。完整快照写入改为事务性替换，旧库读取按自身 excluded_maps 过滤；编译实际消费 26 图。原有两份 SQLite 本地改动与题库实验文件均不提交。
 - 更新 roster/地图增长后的编译计数断言与按地图规模计算的体积预算，保留 Cosmo / Vince 空卡所有 slot 不可用的回归断言；没有放松机制建模门槛。
 - 最终验证：维护脚本 unittest 47 项、runtime unittest 43 项、catalog 2 项与 BP skill contract 全部通过；106 个 BP-ready profile 零结构 blocker，2 个机制页仍缺 profile；80 个本轮 wiki 页无断链。非 raw 变更无空白错误；raw 中原站点尾随空格和缩进保持不变，不为 lint 改写抓取原文。
+
+
+## [2026-10-28] fix | Gray/Squeak 对位机制归因
+
+- 从 PLP Gray 原始 Matchup Fields 确认 Squeak 只是有利对局候选；先更新 [[sources/PLP-Gray|来源边界]] 与 [[sources/Fandom-Squeak|普攻/爆炸机制区分]]，再从 Gray 的共享反投掷条件边移除 Squeak。没有反转对局方向，也没有补写未经证实的新原因。原始资料不变。
+- Squeak 能力字段明确爆炸波及墙后不代表普攻弹道越墙；没有修改能力等级、数值或 Super 规则。
+- 维护规则新增 shared_target_mechanism_review：共享关系名单不是共享机制证明，逐目标核对，机制不同则拆分，证据不足则留来源候选；不引入在线提炼或聊天任务门槛。
+- 新增 test_matchup_provenance.py：修复前 Gray/Squeak 断言失败，修复后 2 项通过；检查真实编译卡及索引不含错误边，并保留 Sprout/Grom/Dynamike 及其他既有对局和条件。来源候选保留。
+- 验证：BP skill contract、runtime 43 项测试通过；全库结构审计 106 个 bp_ready 无 blocker，Cosmo/Vince 两个既有 missing_profile 保留；PLP 覆盖审计 1600 候选、177 个仅来源候选（原 176 + 撤回的 Gray/Squeak），没有把覆盖率提高当作真实性目标。
+- 应用侧跟踪文档位于 skill-chat-agent 的 evals/chat-regression/quality-issues.md，首批仅闭环 Gray/Squeak；Rico/Tara、Shade/Finx 等同类分组仍待逐项核实。源库已有 d078cc5 更新与本次修复分开记录；用户两份 SQLite 和题库练习文件未修改或提交。NAS 未部署。

@@ -64,6 +64,7 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/test_balance_breakpoints.py`
 - `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
+- `scripts/test_matchup_provenance.py`
 
 Use `--dry-run` when a script offers it before large writes. Treat script output as a maintenance aid, not proof that a brawler or map is strategically correct.
 
@@ -86,3 +87,4 @@ The Liquipedia event scripts preserve revision-specific event raw, create source
 - Audits and generated runtime indexes go to `outputs/` or caller-provided paths; observation profiles and environment signals are archived under `wiki/environment/` (persistent knowledge-base layer, git tracked).
 - Every patch with health, discrete damage, barrier, or damage-reduction changes has a source manifest and a breakpoint coverage audit; exclusions remain explicit.
 - `scripts/test_bp_skill_contract.py` passes after changing BP skills, references, or maintenance boundaries.
+- After changing matchup attribution, run `scripts/test_matchup_provenance.py`; retain source candidates separately from mechanisms that have not survived per-target review.

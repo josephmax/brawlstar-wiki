@@ -47,6 +47,7 @@ MAINTENANCE_SCRIPTS = [
     MAINTENANCE_SCRIPT_DIR / "test_balance_breakpoints.py",
     MAINTENANCE_SCRIPT_DIR / "test_liquipedia_event.py",
     MAINTENANCE_SCRIPT_DIR / "test_bp_skill_contract.py",
+    MAINTENANCE_SCRIPT_DIR / "test_matchup_provenance.py",
 ]
 
 
@@ -461,6 +462,9 @@ if __name__ == "__main__":
     test_player_skill_contract()
     test_recall_mask_wire_contract()
     test_maintenance_skill_contract()
+    modeling = read(ROOT / "skills/brawl-stars-bp-knowledge-maintenance/references/brawler-modeling.md")
+    assert "shared_target_mechanism_review" in modeling
+    assert "countersThese" in modeling and "逐目标" in modeling
     assert "Legendary only" in read(PLAYER_COMPILE_REF)
     assert "Legendary only" in read(PLAYER_DECIDE_REF)
     temporal = read(ROOT / "skills/brawl-stars-bp-knowledge-maintenance/references/environment-signal-ingest.md")

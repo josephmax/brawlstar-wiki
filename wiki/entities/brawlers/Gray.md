@@ -235,7 +235,7 @@ bp_brawler_profile:
       bp_use: "projectile_and_wallbreak_reliability_gate"
 
   conditional_matchups:
-    - target: ["Sprout", "Grom", "Dynamike", "Squeak"]
+    - target: ["Sprout", "Grom", "Dynamike"]
       direction: "subject_favored"
       source: "[[sources/PLP-Gray|PLP-Gray]]"
       mechanism: "Gray 用传送门绕过墙体或用 Walking Cane 拉出投掷，减少正面穿口成本"

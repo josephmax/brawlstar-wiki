@@ -61,6 +61,20 @@ Fandom and PLP are complementary here. PLP does not replace Fandom mechanics, an
 
 ## Common Mistakes
 
+### Shared target mechanism review
+
+`shared_target_mechanism_review`：PLP 的 `countersThese` / `counteredBy` 只提供关系候选，不提供每个目标的机制证明。把多个目标放入同一条 `conditional_matchups` 前必须逐目标检查：
+
+1. `mechanism`、`active_when`、`fails_when` 的同一解释是否对每个目标都成立。共同出现在名单里不等于拥有同一类型或能力。
+2. 原始关系来源与机制事实来源分开核实；把“投掷控制、拉人、破墙或高机动”并在一段，不代表每个成员都拥有全部能力。
+3. 不同原因拆成独立条目；只有共同机制确实逐项成立时才保留多目标条目。不能只拆名单后复制同一段未经核实的原因。
+4. 无法核实的对象留在来源页的候选及缺口说明中，从已核实实体条件边移除；不能为了补字段编造机制。撤回机制不等于证明对局关系为假。
+5. 分开描述普攻弹道、爆炸作用范围和 Super 能力。类型名称或 `throw_or_wall_bypass` 汇总维度不能替代具体技能事实。
+
+已知回归案例：Gray 的 PLP 名单含 Squeak，但这不足以让 Squeak 继承 Sprout/Grom/Dynamike 的“反投掷”解释。运行 `scripts/test_matchup_provenance.py` 验证来源候选保留、错误边不进入编译索引、其他目标和条件没有被一并删除。该检查只覆盖已审阅案例，不证明全库策略正确；有新证据时一并更新来源、实体和案例。
+
+### Other mistakes
+
 - Copying PLP `countersThese` into unconditional `conditional_matchups`.
 - Putting non-brawler targets (mode objectives like Heist safe / Zone holder, spawnables, hero-type descriptions like Open_map_snipers, or mechanism fragments like Water / Flying) into `conditional_matchups`. The `target` of every matchup entry must be a canonical brawler name. Mode-objective and spawnable knowledge belongs to mode-level signals (e.g. the high-rank environment signal layer) or to `failure_modes` / `slot_notes`, never to the hero-vs-hero matchup fields. Compile skips any target that does not normalize to a roster brawler (with a warning).
 - Using non-matchup directions in `conditional_matchups`. The only allowed directions are `subject_favored` and `target_favored`. A conditionally-two-sided matchup is not a third direction: express it as a one-way edge whose `active_when` is the win condition and whose `fails_when` is the fail condition (the target's own window). `volatile` was removed (2026-08-14) because raising it into `answers` would over-attend to targets the brawler does not actually answer. A teammate-combo note (e.g. `ally_synergy`) is not a counter edge either: keep it in `slot_notes` as build/comp knowledge, or leave it out of the matchup fields — compile skips any non-whitelisted direction with a warning instead of silently treating it as a one-way counter.

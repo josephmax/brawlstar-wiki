@@ -42,7 +42,7 @@ bp_brawler_profile:
     anti_aggro: "medium_if_route_closed; 延迟爆炸对固定入口有效，但怕即时 burst"
     anti_tank: "medium; 大范围粘弹可逼坦克绕路，但缺硬控和即时伤害"
     wall_break: "none"
-    throw_or_wall_bypass: "high_area; 爆炸可伤害墙后目标，粘弹可贴障碍"
+    throw_or_wall_bypass: "high_area; 普攻粘弹附着障碍，延迟爆炸可伤害墙后目标；此处描述爆炸作用范围，不表示普攻弹道越墙；Super 单独按 Big Blob 机制判断"
     area_control: "very_high; 普攻/Super/Residue 封 chokepoint、草区和目标点"
     scouting_or_vision: "high_with_residue; Residue 6 秒揭草并 slow"
     team_support: "medium; 延迟区把敌人赶进队友射线"
