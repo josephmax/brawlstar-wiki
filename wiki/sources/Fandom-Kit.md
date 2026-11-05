@@ -4,10 +4,10 @@
 
 - 标题：Kit
 - 来源：[Kit | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Kit)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-22T10:06:58Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T20:29:09Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/kit.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/kit-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Legendary
 - 官方定位: Support
-- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>0–4000 (with Super; jumping)<br>2000 (with Super; detaching)
+- 移动速度: 855 (Very Fast)<br>2000 (with Super; detaching)
 - 生命值: 3100
 - 攻击距离: 3.67 (Short)<br> 7.33 (attached; Long)<br>10 (attached; with Hypercharge)
 - 装填: 0.8 seconds (Very Fast)<br>2 seconds (attached; Slow)

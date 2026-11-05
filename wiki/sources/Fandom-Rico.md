@@ -4,10 +4,10 @@
 
 - 标题：Rico
 - 来源：[Rico | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Rico)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-16T19:51:58Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T12:33:33Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/rico.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/rico-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,14 +20,14 @@
 
 - 稀有度: Super Rare
 - 官方定位: Damage Dealer
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>972 (with Robo Retreat)<br>1157 (with Robo Retreat and Hypercharge)
+- 移动速度: 750 (Normal)<br>900 (with Robo Retreat)<br>1050 (with Robo Retreat and Star Buffie)
 - 生命值: 3000
 - 攻击距离: 9.67 (Very Long)
 - 装填: 1.1 seconds (Very Fast)
 - 普攻数值: 300
 - Super 距离: 13.33 (Very Long)
 - Super 数值: 360
-- Gadgets: Multiball Launcher, Bouncy Castle
+- Gadgets: Multiball Launcher, Multiball
 
 ## BP 建模可抽取信号
 
@@ -41,7 +41,7 @@
 - Attack: Bouncy Bullets
 - Super: Trick Shot
 - Gadgets / Multiball Launcher
-- Gadgets / Bouncy Castle
+- Gadgets / Multiball
 - Star Powers / Super Bouncy
 - Star Powers / Robo Retreat
 - Hypercharge: Trick Shot King

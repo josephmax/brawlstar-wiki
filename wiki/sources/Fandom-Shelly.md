@@ -4,10 +4,10 @@
 
 - 标题：Shelly
 - 来源：[Shelly | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Shelly)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-12T18:20:33Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T19:19:20Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/shelly.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/shelly-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,13 +20,13 @@
 
 - 稀有度: Starting Brawler
 - 官方定位: Damage Dealer
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>2400 (with Fast Forward)
+- 移动速度: 800 (Fast)<br>2400 (with Fast Forward)
 - 生命值: 3900
 - 攻击距离: 7.67 (Long)<br>10 (with Clay Pigeons)
 - 装填: 1.5 seconds (Normal)
-- 普攻数值: 300
+- 普攻数值: 340
 - Super 距离: 7.67 (Long)
-- Super 数值: 320
+- Super 数值: 360
 - Gadgets: Fast Forward, Clay Pigeons
 
 ## BP 建模可抽取信号

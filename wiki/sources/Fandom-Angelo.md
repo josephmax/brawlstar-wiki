@@ -4,10 +4,10 @@
 
 - 标题：Angelo
 - 来源：[Angelo | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Angelo)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-04-28T18:03:59Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T19:41:11Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/angelo.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/angelo-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Marksman
-- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>1025 (with Flow)<br>1189 (with Flow and Hypercharge)<br>2000 (with Stinging Flight)
+- 移动速度: 855 (Very Fast)<br>1069 (with Flow)<br>2000 (with Stinging Flight)
 - 生命值: 3100
 - 攻击距离: 10 (Very Long)
 - 装填: 0.1 seconds (Very Fast)

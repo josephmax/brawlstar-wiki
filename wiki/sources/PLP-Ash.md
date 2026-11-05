@@ -4,11 +4,11 @@
 
 - 标题：Best build for Ash | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Ash | Power League Prodigy](https://powerleagueprodigy.com/ash)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/ash.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/ash-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -17,16 +17,16 @@
 
 ## 结构化字段摘要
 
-- 推荐 Gadget: `Chill Pill`
-- 推荐 Star Power: `First Bash`
+- 推荐 Gadget: `Rotten Banana`
+- 推荐 Star Power: `Mad As Heck`
 - 推荐 Gears: Damage, Speed
-- 推荐 Modes: Gem Grab, Brawl Ball
+- 推荐 Modes: Gem Grab, Brawl Ball, Hot Zone
 - Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Nita`, `Otis`, `Darryl`, `Mr. P`, `Leon`, `Sandy`, `Sam`, `Cordelius`
+- countersThese: `Wendy`, `Nita`, `Otis`, `Darryl`, `Mr. P`, `Leon`, `Sandy`, `Sam`
 - counteredBy: `Shelly`, `El Primo`, `Barley`, `Rosa`, `Rico`, `Spike`, `Crow`, `Amber`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。

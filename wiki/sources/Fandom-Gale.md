@@ -4,10 +4,10 @@
 
 - 标题：Gale
 - 来源：[Gale | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Gale)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-04T01:29:56Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-04T03:15:41Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/gale.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/gale-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,14 +20,14 @@
 
 - 稀有度: Epic
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 720 (Normal)
 - 生命值: 4000
 - 攻击距离: 8.33 (Long)
 - 装填: 1.2 seconds (Very Fast)
 - 普攻数值: 300
 - Super 距离: 10 (Very Long)
 - Super 数值: 800
-- Gadgets: Spring Ejector, Twister
+- Gadgets: North Wind Wall, Twister
 
 ## BP 建模可抽取信号
 
@@ -40,11 +40,11 @@
 - Lead excerpt
 - Attack: Polar Vortex
 - Super: Gale Force!
-- Gadgets / Spring Ejector
+- Gadgets / North Wind Wall
 - Gadgets / Twister
 - Star Powers / Blustery Blow
 - Star Powers / Freezing Snow
-- Hypercharge: Blizzard
+- Hypercharge: Raging Blizzard
 - Tips / Game Modes and Maps
 - Tips / Recommended Build
 - Tips / Strategies

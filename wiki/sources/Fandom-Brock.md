@@ -4,10 +4,10 @@
 
 - 标题：Brock
 - 来源：[Brock | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Brock)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-10-15T16:54:52Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T21:20:21Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/brock.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/brock-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Rare
 - 官方定位: Marksman
-- 移动速度: 750 (Normal)<br>975 (with Rocket Laces + Gadget Buffie)<br>975 (with More Rockets! + Star Buffie)
+- 移动速度: 750 (Normal)<br>975 (with Rocket Laces + Gadget Buffie)<br>900 (with More Rockets! + Star Buffie)
 - 生命值: 3000
 - 攻击距离: 9 (Long)<br>11 (with Rocket No. 4 and Buffie)
 - 装填: 1.95 seconds (Normal)
@@ -60,7 +60,3 @@
 
 - [[entities/brawlers/Brock|Brock]]
 - [[sources/PLP-Brock|PLP 来源摘要: Brock]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-Rocket Laces 冷却 22 秒；第二轮自保窗口必须检查资源，Super 回充参数不直接翻译成固定命中数。

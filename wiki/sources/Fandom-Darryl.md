@@ -4,10 +4,10 @@
 
 - 标题：Darryl
 - 来源：[Darryl | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Darryl)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T07:46:48Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T19:37:49Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/darryl.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/darryl-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,13 +20,13 @@
 
 - 稀有度: Super Rare
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>924 (with Hypercharge)<br>2400 (with Super)
+- 移动速度: 800 (Fast)<br>2400 (with Super)
 - 生命值: 5500
 - 攻击距离: 6 (Normal)
 - 装填: 1.8 seconds (Normal)<br>0.9 seconds (with Rolling Reload)
 - 普攻数值: 240
 - Super 距离: 7 (Long)
-- Super 数值: 660
+- Super 数值: 720
 - Gadgets: Recoiling Rotator, Tar Barrel
 
 ## BP 建模可抽取信号

@@ -4,11 +4,11 @@
 
 - 标题：Best build for Draco | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Draco | Power League Prodigy](https://powerleagueprodigy.com/draco)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/draco.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/draco-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -27,7 +27,7 @@
 ## Matchup 候选
 
 - countersThese: `Squeak`, `Lily`, `Kenji`, `Meeple`, `Melodie`, `Stu`, `Sprout`, `Gray`
-- counteredBy: `Maisie`, `8-Bit`, `Doug`, `Shelly`, `Clancy`, `Gale`, `Darryl`, `Nita`
+- counteredBy: `Maisie`, `8-Bit`, `Doug`, `Shelly`, `Clancy`, `Gale`, `Darryl`, `El Primo`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

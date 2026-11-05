@@ -276,3 +276,52 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Squeak|Fandom 来源摘要: Squeak]]
 - [[sources/PLP-Squeak|PLP 来源摘要: Squeak]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Squeak",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {
+          "amount": 1280,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one sticky bomb explosion without Chain Reaction",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      },
+      {
+        "id": "super.one_blob",
+        "ability_kind": "super",
+        "packet_unit": "one_secondary_blob",
+        "delivery_variant": "single_hit",
+        "repeat_model": "one_off",
+        "damage": {
+          "amount": 1100,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one secondary Super blob explodes on target; six spread; no combined or repeated assumption",
+        "source_ref": "[[sources/Fandom-Squeak]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

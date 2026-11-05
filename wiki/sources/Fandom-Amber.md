@@ -4,10 +4,10 @@
 
 - 标题：Amber
 - 来源：[Amber | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Amber)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-10-17T15:54:38Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-04T10:36:27Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/amber.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/amber-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -26,7 +26,7 @@
 - 装填: 0.22 seconds (8.8 seconds max; Very Fast)
 - 普攻数值: 210
 - Super 距离: 7.33 (Long)
-- Super 数值: 480
+- Super 数值: 400
 - Gadgets: Fire Starters, Dancing Flames
 
 ## BP 建模可抽取信号
@@ -54,15 +54,7 @@
 - `Amber` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
 - 后续升级 [[entities/brawlers/Amber|Amber]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Amber|PLP 竞技信号]] 分层合并。
 
-## 来源差异备注（2026-09-03）
-
-- 官方 Release Notes August 2026 写 Wild Flames Buffied 为靠近火/油迹时 `15%` 移速；当前 Fandom 页 infobox 为 `792`（720 × 1.10，即 `10%`）。本库以当前 direct raw 的 `10%` 为稳定事实，差异保留于本备注，不写入 `balance_patch_manifest`（属新增选项而非既有输入变化）。
-
 ## 关联页面
 
 - [[entities/brawlers/Amber|Amber]]
 - [[sources/PLP-Amber|PLP 来源摘要: Amber]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-Fire Starters 引语为 2600、正文为最大血量 38.24%，与 Power 11 本体 6800 对应；Infobox Gadget1=2080 不按 P1 机械翻倍。Wild Flames 油迹 1 秒。Hyper Buffie 主攻附加灼烧为超充 Super 灼烧的减半版本，必须按时间序列而非单包分析。

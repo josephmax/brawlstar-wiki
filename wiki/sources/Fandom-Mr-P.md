@@ -4,10 +4,10 @@
 
 - 标题：Mr. P
 - 来源：[Mr. P | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mr._P)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-20T04:53:25Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-04T03:02:37Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/mr-p.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/mr-p-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,13 +20,13 @@
 
 - 稀有度: Mythic
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 3700
 - 攻击距离: 7 (Long)<br>10.33 (after bounce)
 - 装填: 1.6 seconds (Normal)
 - 普攻数值: 760
 - Super 距离: 5
-- Super 数值: 2500
+- Super 数值: 2800
 - Gadgets: Service Bell, Porter Reinforcements
 
 ## BP 建模可抽取信号

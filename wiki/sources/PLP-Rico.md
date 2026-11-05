@@ -4,11 +4,11 @@
 
 - 标题：Best build for Rico | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Rico | Power League Prodigy](https://powerleagueprodigy.com/rico)
-- 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/rico.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/rico-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,7 +21,7 @@
 - 推荐 Star Power: `Super Bouncy`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Gem Grab, Brawl Ball, Heist, Knockout
-- Notes: GADGET 1 AGGRO, SP 1 CLOSED MAP
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
@@ -40,7 +40,3 @@
 
 - [[sources/Fandom-Rico|Fandom 来源摘要: Rico]]
 - [[entities/brawlers/Rico|Rico]]
-
-## 2026-10-28 维护者对位复核
-
-11：Tara 需要在射程劣势下攒 Super，不能由击杀窗口推出普遍克制。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

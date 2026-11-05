@@ -19,7 +19,7 @@ sources:
 ## 妙具与星辉
 
 - Planetary Pushback：范围击退；来源冷却为 14 秒。
-- Telescope Trap：揭示指定区域 6 秒，包括隐形目标；区域内限制冲刺、跳跃、传送等移动能力；来源冷却为 20 秒。
+- Telescope Trap：揭示指定区域 6 秒，包括隐形目标；区域内限制冲刺、跳跃、传送等移动能力；来源冷却为 24 秒。
 - Precession：普攻行星的环绕速度增加 25%，不等同于飞行速度增加。
 - Ammo Attractor：超级技能命中英雄时补回 2 发弹药。
 
@@ -53,7 +53,7 @@ bp_brawler_profile:
     sustained_dps: "limited_by_2_second_reload; Ammo Attractor restores 2 ammo only on Super hit"
     objective_damage: "conditional_at_range; no guaranteed safe piercing or homing safe damage"
     mobility: "normal; no native dash or water crossing"
-    survivability: "Power 11 health 6800; relies on spacing and selected gadget, no unconditional self sustain"
+    survivability: "Power 11 health 7200; relies on spacing and selected gadget, no unconditional self sustain"
     engage: "ranged_mark_and_team_followup; Super must hit first"
     disengage: "conditional_Planetary_Pushback_or_preplaced_Telescope_Trap"
     anti_aggro: "build_and_cooldown_dependent; one gadget only, no permanent movement lock"
@@ -84,7 +84,7 @@ bp_brawler_profile:
     - build: "Telescope Trap / Ammo Attractor / Shield, Damage"
       source: "[[sources/Fandom-Cosmo]]"
       changes_capabilities:
-        - "投掷区域揭示隐形并限制区域内移动能力，持续 6 秒、冷却 20 秒"
+        - "投掷区域揭示隐形并限制区域内移动能力，持续 6 秒、冷却 24 秒"
         - "替换击退妙具，不会同时拥有 Planetary Pushback"
       enables:
         - "temporary_reveal"
@@ -269,4 +269,31 @@ bp_brawler_profile:
     slot_2_3: "补远程支援与标记集火；敌方未暴露时保留反投掷和自保位置。"
     slot_4_5: "按已知敌人选择击退或区域禁位移；确保队友有弹道、弹药和射线跟进标记。"
     slot_6: "核对实际分路和退路后补选；敌方墙后投掷或可避开妙具的突进未解决则规避，不因 PLP 名单宣称必胜。"
+```
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Cosmo",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {
+          "amount": 3600,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
 ```

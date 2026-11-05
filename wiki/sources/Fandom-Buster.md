@@ -4,10 +4,10 @@
 
 - 标题：Buster
 - 来源：[Buster | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Buster)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-20T12:10:10Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T11:52:52Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/buster.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/buster-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Mythic
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>620 (while Super is active)<br>924 (with Hypercharge)
+- 移动速度: 800 (Fast)<br>650 (while Super is active)
 - 生命值: 5000
 - 攻击距离: 5.33 (Normal)
 - 装填: 1.8 seconds (Normal)

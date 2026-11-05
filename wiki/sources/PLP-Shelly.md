@@ -4,11 +4,11 @@
 
 - 标题：Best build for Shelly | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Shelly | Power League Prodigy](https://powerleagueprodigy.com/shelly)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/shelly.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/shelly-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,7 +21,7 @@
 - 推荐 Star Power: `Band-Aid`
 - 推荐 Gears: Shield, Damage, Speed, Gadget Cooldown
 - 推荐 Modes: Gem Grab, Brawl Ball, Hot Zone
-- Notes: PREFERENCE, GADGET 1 PRO
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选

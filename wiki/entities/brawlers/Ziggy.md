@@ -276,3 +276,38 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Ziggy|Fandom 来源摘要: Ziggy]]
 - [[sources/PLP-Ziggy|PLP 来源摘要: Ziggy]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Ziggy",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {
+          "amount": 1050,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "direct hit without Great Ziggini bonus",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

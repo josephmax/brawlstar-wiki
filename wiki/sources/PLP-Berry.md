@@ -4,11 +4,11 @@
 
 - 标题：Best build for Berry | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Berry | Power League Prodigy](https://powerleagueprodigy.com/berry)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/berry.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/berry-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,13 +21,13 @@
 - 推荐 Star Power: `Floor Is Fine`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Heist, Hot Zone
-- Notes: GADGET 2 HEIST
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Jae-Yong`, `Sprout`, `Poco`, `Rico`, `Buzz`, `Najia`, `Chuck`, `Gene`
-- counteredBy: `Trunk`, `Bibi`, `8-Bit`, `Sam`, `Ash`, `Juju`, `Gray`, `Sirius`
+- countersThese: `Nani`, `Cosmo`, `Brock`, `Squeak`, `Piper`, `Angelo`, `Byron`, `Crow`
+- counteredBy: `Hank`, `Trunk`, `Rosa`, `Shade`, `Juju`, `Bibi`, `Ash`, `Wendy`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,7 +40,3 @@
 
 - [[sources/Fandom-Berry|Fandom 来源摘要: Berry]]
 - [[entities/brawlers/Berry|Berry]]
-
-## 2026-10-28 维护者对位复核
-
-12：Juju 条件性优势；Gray 独立反投掷机制；Sirius 方向不明确；8-Bit 随墙体与长线条件改变。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

@@ -4,11 +4,11 @@
 
 - 标题：Best build for Mr. P | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Mr. P | Power League Prodigy](https://powerleagueprodigy.com/mrp)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/mr-p.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/mr-p-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -22,12 +22,12 @@
 - 推荐 Gears: Shield, Damage, Pet Power
 - 推荐 Modes: Bounty, Knockout
 - Notes: none observed
-- Avoid: GIGI
+- Avoid: none observed
 
 ## Matchup 候选
 
 - countersThese: `Bea`, `Piper`, `Gene`, `Crow`, `Stu`, `Gray`, `Maisie`, `Colette`
-- counteredBy: `Buzz`, `Carl`, `Sam`, `Fang`, `Barley`, `Penny`, `Edgar`, `Mortis`
+- counteredBy: `Gigi`, `Alli`, `Buzz`, `Darryl`, `Edgar`, `Fang`, `Kaze`, `Kenji`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

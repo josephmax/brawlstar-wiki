@@ -4,11 +4,11 @@
 
 - 标题：Best build for Pierce | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Pierce | Power League Prodigy](https://powerleagueprodigy.com/pierce)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/pierce.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/pierce-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -18,16 +18,16 @@
 ## 结构化字段摘要
 
 - 推荐 Gadget: `Bottomless Mags`
-- 推荐 Star Power: `Mission Swimpossible`
+- 推荐 Star Power: `Mission: Swimpossible`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Gem Grab, Brawl Ball, Heist, Hot Zone, Bounty, Knockout
-- Notes: GADGET 2 AGGRO
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Gale`, `Jacky`, `Meg`, `El Primo`, `R-T`, `Dynamike`, `Sam`, `Jae-Yong`
-- counteredBy: `Chuck`, `Damian`, `Barley`, `Amber`, `Eve`, `Sprout`, `Lola`, `Nita`
+- countersThese: `Gale`, `Vince`, `Kit`, `Crow`, `Lumi`, `Byron`, `Lily`, `Ruffs`
+- counteredBy: `Wendy`, `Nori`, `Barley`, `Amber`, `Ash`, `Sprout`, `Bibi`, `Larry & Lawrie`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

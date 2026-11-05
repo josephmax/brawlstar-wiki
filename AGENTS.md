@@ -13,6 +13,7 @@
 | `wiki/index.md` | 内容导航入口 | query、ingest、lint 时用来定位页面和检查导航覆盖 |
 | `wiki/log.md` | 维护操作日志 | ingest、重要 query、lint、结构变更和 cleanup 后追加 |
 | `skills/brawl-stars-bp-knowledge-maintenance/` | BP 知识维护 skill，`$markdown-llm-wiki` 的 Brawl Stars BP 领域子集 | source ingest、英雄/地图建模、BP profile 审计、runtime 边界治理 |
+| `skills/brawl-stars-breakpoint-brief/` | 断点审计头像快报 Skill | 将现有断点审计结果生成可编辑 HTML 与 PNG，完整逐状态明细保留在 HTML |
 | `skills/brawl-stars-bp-eval-maintenance/` | 专家题库维护 skill | 视频采集、核源、名称校准、考点拆解、输入隔离与题库校验 |
 | `skills/run-brawl-stars-bp/` | BP 裁判 / 对局编排 skill | 运行模拟 BP、同步 ban、顺序 pick、生成 match report |
 | `skills/brawl-stars-bp-slot-decision/` | 单手 BP 决策 skill | 执行 `compile` / `decide`，从稳定事实和 `runtime_bp_index` 做选手侧决策 |

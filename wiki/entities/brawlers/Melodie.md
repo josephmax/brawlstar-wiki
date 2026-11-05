@@ -235,3 +235,57 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Melodie|Fandom 来源摘要: Melodie]]
 - [[sources/PLP-Melodie|PLP 来源摘要: Melodie]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Melodie",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {
+          "amount": 500,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "direct projectile; orbiting notes excluded",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      },
+      {
+        "id": "main.orbit_note",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.orbit_note",
+        "delivery_variant": "impact",
+        "repeat_model": "resource_gated",
+        "damage": {
+          "amount": 1000,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one orbiting note contact; requires note; no repeated-count claim",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

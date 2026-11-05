@@ -4,10 +4,10 @@
 
 - 标题：Draco
 - 来源：[Draco | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Draco)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-18T17:04:33Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T12:08:57Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/draco.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/draco-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,13 +20,13 @@
 
 - 稀有度: Legendary
 - 官方定位: Tank
-- 移动速度: 720 (Normal)<br>828 (with Super)<br>864 (with Hypercharge)<br>972 (with Super and Hypercharge)
+- 移动速度: 750 (Normal)<br>900 (with Super)
 - 生命值: 5600
 - 攻击距离: 4 (Normal)
 - 装填: 1 second (Very Fast)
 - 普攻数值: 700
 - Super 距离: 5.67 (Normal)<br>9 (with Hypercharge)
-- Super 数值: 70
+- Super 数值: 81
 - Gadgets: Upper Cut, Last Stand
 
 ## BP 建模可抽取信号

@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.5 秒装填和单发节奏，适合稳定换血而非近距离持续战"
     objective_damage: "conditional_heist_lane; Safe Zone 等直线角度可用 Super 打 safe，但不是 PLP 主模式"
     mobility: "low; 专注和 Super 都要求站位纪律"
-    survivability: "low_medium_conditional; Power 11 本体 6000 HP，Hard Candy Focus 状态按 50% 减伤为 12000 EHP，叠满 Shield gear 为 13800；移动会立刻失去 Focus 与该承伤线"
+    survivability: "low; Power 11 本体 6000 HP；依靠距离、站位与 Shield gear 承伤"
     engage: "low; 主要通过射程先手压线，不主动进场"
     disengage: "low_medium; Caramelize 可拖接近，但没有位移"
     anti_aggro: "low; 贴脸后只能靠 slow、队友和提前击杀"
@@ -73,10 +73,10 @@ bp_brawler_profile:
       best_when: "敌方需要经过开阔窄口接近，且我方已有穿墙/收割手段"
       poor_when: "敌方主要躲在墙后，Mandy 需要 Cookie Crumbs 打掩体后目标"
       bp_use: "anti_approach_variant"
-    - build: "Cookie Crumbs or Caramelize / Hard Candy / Shield"
+    - build: "Cookie Crumbs or Caramelize / Gobstopper / Shield"
       source: "[[sources/Fandom-Mandy|Fandom-Mandy]]"
       changes_capabilities:
-        - "Hard Candy 在 Mandy 保持 Focus 时提供 50% shield，把可预判的单线换血变成更耐久的静态长线锚点"
+        - "Gobstopper 扩大 Super 弹体；Focused 提供射程，但不提供减伤"
         - "放弃 In My Sights 会失去 Focus 弹速修正，因此耐久提升不等于命中可靠性提升"
       enables:
         - "在固定长线或回合末 choke 中持有 Focus 并承受一次远程换血"
@@ -183,7 +183,7 @@ bp_brawler_profile:
     - id: "focused_immobility_dive_window"
       active_when: "Mandy 为了 12 格射程站定，敌方用 dash、jump、侧草或水域 off-angle 接近"
       exposed_by: "Focus requires standing still; low HP"
-      mitigation: "保留 Caramelize、队友 peel、选择开阔可视路线；Hard Candy 的 50% Focus shield 只缓解可预判换血，不能解决被迫移动或贴脸"
+      mitigation: "保留 Caramelize、队友 peel、选择开阔可视路线；Focused 无额外减伤，无法靠站桩抵消贴脸压力"
       bp_use: "check_enemy_engage_before_pick"
     - id: "super_cancelled_by_cc"
       active_when: "敌方有 stun、pull、knockback 或快速贴身打断 0.75 秒前摇"
@@ -255,7 +255,11 @@ bp_brawler_profile:
         "id": "body",
         "entity_class": "brawler_body",
         "roster_target": true,
-        "health": {"amount": 3000, "at_power_level": 1, "scaling": "standard"},
+        "health": {
+          "amount": 3000,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
         "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
       }
     ],
@@ -266,24 +270,17 @@ bp_brawler_profile:
         "packet_unit": "impact",
         "delivery_variant": "impact",
         "repeat_model": "identical",
-        "damage": {"amount": 1400, "at_power_level": 1, "scaling": "standard"},
+        "damage": {
+          "amount": 1400,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
         "active_when": "单枚普攻命中；Focused 只改变射程，不改变此伤害",
         "source_conflict_status": "none",
         "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
       }
     ],
-    "defense_modifiers": [
-      {
-        "id": "hard_candy",
-        "source_kind": "star_power",
-        "loadout_group": "star_power",
-        "applies_to_states": ["body"],
-        "effect": {"type": "damage_reduction", "ratio": 0.50},
-        "active_when": "Mandy 保持 Focus",
-        "sequence_validity": "开始移动并失去 Focus 时立即失效",
-        "source_ref": "[[sources/Fandom-Mandy|Fandom-Mandy]]"
-      }
-    ]
+    "defense_modifiers": []
   }
 }
 ```

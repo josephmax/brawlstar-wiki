@@ -305,3 +305,38 @@ bp_brawler_profile:
     slot_4_5: "good for adding route-based engage after seeing enemy 2-3, while reserving a final answer to anti-tank or long-range punish."
     slot_6: "strongest when enemy lacks endpoint CC, spawnable body-block, or close burst and the map gives a confirmed roll angle to target or safe."
 ```
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Darryl",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "super.impact",
+        "ability_kind": "super",
+        "packet_unit": "super.impact",
+        "delivery_variant": "impact",
+        "repeat_model": "one_off",
+        "damage": {
+          "amount": 720,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one Super contact; no repeat assumption",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

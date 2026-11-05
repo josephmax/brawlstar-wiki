@@ -4,10 +4,10 @@
 
 - 标题：Mandy
 - 来源：[Mandy | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Mandy)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-08T14:45:18Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T21:15:28Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/mandy.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/mandy-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Marksman
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 3000
 - 攻击距离: 9 (Long)<br> 12 (Focused)
 - 装填: 1.5 seconds (Normal)
@@ -43,7 +43,7 @@
 - Gadgets / Caramelize
 - Gadgets / Cookie Crumbs
 - Star Powers / In My Sights
-- Star Powers / Hard Candy
+- Star Powers / Gobstopper
 - Hypercharge: Sugar for All!
 - Tips / Game Modes and Maps
 - Tips / Recommended Build

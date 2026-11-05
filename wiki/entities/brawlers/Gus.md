@@ -273,3 +273,38 @@ bp_brawler_profile:
     slot_4_5: "good response to single-lane engage or fragile control lanes, but check spawnable and wall-pocket counters"
     slot_6: "punishes enemy drafts with no body-block, no deep thrower pocket, and one clear target to shield against"
 ```
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Gus",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "gadget.knockback_spirit",
+        "ability_kind": "gadget",
+        "packet_unit": "gadget.knockback_spirit",
+        "delivery_variant": "impact",
+        "repeat_model": "resource_gated",
+        "damage": {
+          "amount": 260,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one spirit explosion triggered by gadget; spirit and cooldown required",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

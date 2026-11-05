@@ -1,6 +1,6 @@
 # Think Like a Pro Brawlstar Player
 
-这个仓库维护一套《荒野乱斗》BP 知识库和 3 个 agent skill。目标不是手写任何 tier list 或强度榜，而是让 agent 基于稳定事实（英雄能力、地图职责、条件化对位）像高水平选手一样按地图、模式、已 ban/pick、阵容职责和风险做 BP。环境信号（高分 pick rate）作为三维决策证据由 decide 按需查询，不进 compile。
+这个仓库维护一套《荒野乱斗》BP 知识库和配套 agent skills。目标不是手写任何 tier list 或强度榜，而是让 agent 基于稳定事实（英雄能力、地图职责、条件化对位）像高水平选手一样按地图、模式、已 ban/pick、阵容职责和风险做 BP。环境信号（高分 pick rate）作为三维决策证据由 decide 按需查询，不进 compile。
 
 ## 为什么要做这套东西
 
@@ -49,6 +49,20 @@ BP 决策不是套公式，而是：先有一个先验想法 → 分别去月赛
 `tools/strength-profile-editor/` 已从 runtime 消费路径退役（保留代码但不再被 compile 消费）；tier 编辑产物不得进入 runtime。事实召回脚本和报告渲染器是 skill 内部实现，不是用户入口。
 
 ## 如何使用
+
+
+### 平衡断点快报
+
+使用 [`brawl-stars-breakpoint-brief`](skills/brawl-stars-breakpoint-brief/SKILL.md) 将已有平衡断点审计和经人工复核的机制变化制作成头像快报。它生成可调整的 HTML 与单屏 PNG，完整逐状态变化和构筑压力保留在 HTML 中；补丁审计仍由 `brawl-stars-bp-knowledge-maintenance` 完成。
+
+本机仓库下的 `.agents/skills` 与 `.claude/skills` 入口链接到 `skills/`，这些本地入口不纳入版本库；新检出如需客户端自动发现，可从仓库根目录创建相对链接：
+
+```sh
+mkdir -p .agents/skills .claude/skills
+ln -s ../../skills/brawl-stars-breakpoint-brief .agents/skills/brawl-stars-breakpoint-brief
+ln -s ../../skills/brawl-stars-breakpoint-brief .claude/skills/brawl-stars-breakpoint-brief
+```
+
 
 ### 1. 先生成运行时索引
 

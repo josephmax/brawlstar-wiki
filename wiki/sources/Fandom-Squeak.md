@@ -4,10 +4,10 @@
 
 - 标题：Squeak
 - 来源：[Squeak | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Squeak)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-05-22T10:05:33Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T20:26:11Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/squeak-2026-06-30.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/squeak-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,13 +20,13 @@
 
 - 稀有度: Mythic
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 3800
 - 攻击距离: 7.67 (Long)<br>15.33 (with Windup; Very Long)
 - 装填: 2.1 seconds (Slow)
-- 普攻数值: 1160
+- 普攻数值: 1280
 - Super 距离: 8.33 (Long)<br>13.33 (with Hypercharge)
-- Super 数值: 1000
+- Super 数值: 1100
 - Gadgets: Windup, Residue
 
 ## BP 建模可抽取信号
@@ -34,12 +34,6 @@
 - `普攻 / Super / Gadget / Star Power / Hypercharge` 可以拆成稳定机制原子。
 - `Tips / Recommended Build` 只能进入候选层；如果涉及模式或地图，后续必须转成 objective contract 或 map feature hook。
 - 本页不直接生成 counter 或 pick 顺位结论。
-
-## 普攻与墙体的机制范围
-
-`Attack: Sticky Blomb` 原文说明普攻粘弹附着障碍或目标，延迟爆炸可伤害墙后目标。这里应分别记录“弹体碰到障碍后的行为”和“爆炸作用范围”，不能由后者推出普通攻击弹道可越过墙体。`Super: Big Blob` 是独立技能，不把它的投掷描述混入普攻。
-
-原文使用 `throwing`，因此不能仅按中文“投掷”一词裁判错误；Controller 分类也不单独证明弹道性质。这些机制事实不直接证明 Gray 对 Squeak 的克制原因，关系候选边界见 [[sources/PLP-Gray#Gray 对 Squeak 的机制证据边界|Gray 对 Squeak 的复核]]。
 
 ## 抓取覆盖
 

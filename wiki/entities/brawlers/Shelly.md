@@ -274,3 +274,57 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Shelly|Fandom 来源摘要: Shelly]]
 - [[sources/PLP-Shelly|PLP 来源摘要: Shelly]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Shelly",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.full_connect",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.full_connect",
+        "delivery_variant": "full_connect",
+        "repeat_model": "identical",
+        "damage": {
+          "amount": 1700,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "5 shells of one main attack all hit",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      },
+      {
+        "id": "super.full_connect",
+        "ability_kind": "super",
+        "packet_unit": "super.full_connect",
+        "delivery_variant": "full_connect",
+        "repeat_model": "one_off",
+        "damage": {
+          "amount": 3240,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "9 shells of one normal Super all hit; excludes Hypercharge",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

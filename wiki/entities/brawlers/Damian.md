@@ -265,7 +265,11 @@ bp_brawler_profile:
         "id": "body",
         "entity_class": "brawler_body",
         "roster_target": true,
-        "health": {"amount": 5600, "at_power_level": 1, "scaling": "standard"},
+        "health": {
+          "amount": 5600,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
         "source_ref": "[[sources/Fandom-Damian|Fandom-Damian]]"
       }
     ],
@@ -273,14 +277,21 @@ bp_brawler_profile:
       {
         "id": "main.fire_punch",
         "ability_kind": "main_attack",
-        "packet_unit": "empowered_punch_impact",
-        "delivery_variant": "resource_ready",
+        "packet_unit": "main.fire_punch",
+        "delivery_variant": "impact",
         "repeat_model": "resource_gated",
-        "damage": {"amount": 800, "at_power_level": 1, "scaling": "standard"},
-        "active_when": "强化攻击已充满并直接命中；不含后续 explosion",
-        "excluded_modifiers": ["damage_gear", "hypercharge"],
-        "source_conflict_status": "none_for_current_infobox_and_official_patch",
-        "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+        "damage": {
+          "amount": 880,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "charged direct punch only; excludes delayed explosion",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
       },
       {
         "id": "main.explosion",
@@ -288,9 +299,17 @@ bp_brawler_profile:
         "packet_unit": "explosion_impact",
         "delivery_variant": "marked_target_resolution",
         "repeat_model": "resource_gated",
-        "damage": {"amount": 400, "at_power_level": 1, "scaling": "standard"},
+        "damage": {
+          "amount": 400,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
         "active_when": "强化攻击标记后的 explosion 命中；P1 400 对应官方 P11 800",
-        "excluded_modifiers": ["chain_target_count", "damage_gear", "hypercharge"],
+        "excluded_modifiers": [
+          "chain_target_count",
+          "damage_gear",
+          "hypercharge"
+        ],
         "source_conflict_status": "none_for_current_infobox_and_official_patch",
         "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
       },
@@ -300,11 +319,37 @@ bp_brawler_profile:
         "packet_unit": "collision",
         "delivery_variant": "impact",
         "repeat_model": "one_off",
-        "damage": {"amount": 400, "at_power_level": 1, "scaling": "standard"},
+        "damage": {
+          "amount": 400,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
         "active_when": "目标从圈内碰到 speaker，speaker 随后破碎",
-        "excluded_modifiers": ["multiple_speakers", "hypercharge_fire"],
+        "excluded_modifiers": [
+          "multiple_speakers",
+          "hypercharge_fire"
+        ],
         "source_conflict_status": "official_and_infobox_400_fandom_quote_stale_at_800",
         "source_ref": "[[sources/Supercell-Maintenance-August-4-2026|Maintenance - August 4, 2026]]"
+      },
+      {
+        "id": "main.regular_punch",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.regular_punch",
+        "delivery_variant": "impact",
+        "repeat_model": "resource_gated",
+        "damage": {
+          "amount": 800,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "normal punch only; charged punch changes cycle",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
       }
     ],
     "defense_modifiers": [],

@@ -4,10 +4,10 @@
 
 - 标题：Ash
 - 来源：[Ash | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Ash)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-15T10:07:39Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-01T21:47:29Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/ash.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/ash-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Epic
 - 官方定位: Tank
-- 移动速度: 720 (Normal)<br>770 (Fast; half Rage)<br>820 (Very Fast, full Rage)<br>864 (with Hypercharge)<br>924 (half Rage and with Hypercharge)<br> 984 (full Rage and with Hypercharge)
+- 移动速度: 750 (Normal)<br>800 (Fast; half Rage)<br>850 (Very Fast, full Rage)
 - 生命值: 5900
 - 攻击距离: 4.67 (Normal)
 - 装填: 1.4 seconds (Fast)<br>1 second (with full Rage and Mad As Heck)
@@ -38,6 +38,7 @@
 ## 抓取覆盖
 
 - Lead excerpt
+- Trait
 - Attack: Clean-Up
 - Super: Little Helpers
 - Gadgets / Chill Pill

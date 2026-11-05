@@ -4,11 +4,11 @@
 
 - 标题：Best build for Brock | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Brock | Power League Prodigy](https://powerleagueprodigy.com/brock)
-- 读取日期：2026-10-21
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/brock.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/brock-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at： unknown
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,7 +21,7 @@
 - 推荐 Star Power: `More Rockets!`
 - 推荐 Gears: Damage, Shield
 - 推荐 Modes: Heist, Bounty, Knockout
-- Notes: GADGET 1 INTO AGGRO
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
@@ -40,7 +40,3 @@
 
 - [[sources/Fandom-Brock|Fandom 来源摘要: Brock]]
 - [[entities/brawlers/Brock|Brock]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-countersThese：新增 无；移除 无。 counteredBy：新增 Cosmo, Mina；移除 Bibi, Edgar。 与旧来源摘要相比的名单差分仅是候选证据；不自动删除旧机制成立的边、不直接新增对位方向。未变化项记为 checked-negative，不能证明攻略已跟随每次重做。 当前配装/模式详情以本页上游 raw Guide Fields 为准，旧条件边仍须逐条通过机制与地形门槛。

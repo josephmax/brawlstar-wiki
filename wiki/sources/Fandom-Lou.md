@@ -4,10 +4,10 @@
 
 - 标题：Lou
 - 来源：[Lou | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Lou)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-02T01:31:12Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T22:18:39Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/lou.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/lou-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,14 +20,14 @@
 
 - 稀有度: Mythic
 - 官方定位: Controller
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)
+- 移动速度: 750 (Normal)
 - 生命值: 3500
 - 攻击距离: 9.33 (Very Long)
 - 装填: 1.1 seconds (Very Fast)
 - 普攻数值: 440
 - Super 距离: 7.67 (Long)
 - Super 数值: 40
-- Gadgets: Ice Block, Cryo Syrup
+- Gadgets: Ice Block, Avalanche
 
 ## BP 建模可抽取信号
 
@@ -41,8 +41,8 @@
 - Attack: Brain Freeze
 - Super: Can-Do
 - Gadgets / Ice Block
-- Gadgets / Cryo Syrup
-- Star Powers / Supercool
+- Gadgets / Avalanche
+- Star Powers / Cold Snap
 - Star Powers / Hypothermia
 - Hypercharge: Slushie Storm
 - Tips / Game Modes and Maps

@@ -4,11 +4,11 @@
 
 - 标题：Best build for Angelo | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Angelo | Power League Prodigy](https://powerleagueprodigy.com/angelo)
-- 读取日期：2026-06-29
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/angelo.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/angelo-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -22,12 +22,12 @@
 - 推荐 Gears: Damage, Shield, Gadget Cooldown
 - 推荐 Modes: Heist, Bounty, Knockout
 - Notes: none observed
-- Avoid: KIT
+- Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Belle`, `Colette`, `Brock`, `Bea`, `Gene`, `Pearl`, `Colt`, `Byron`
-- counteredBy: `Mandy`, `Grom`, `Larry & Lawrie`, `Tara`, `Nani`, `Ruffs`, `Lola`, `Mr. P`
+- countersThese: `Cosmo`, `Nori`, `Belle`, `Colette`, `Brock`, `Bea`, `Gene`, `Pearl`
+- counteredBy: `Kit`, `Mandy`, `Grom`, `Larry & Lawrie`, `Tara`, `Nani`, `Ruffs`, `Lola`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

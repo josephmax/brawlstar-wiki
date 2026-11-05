@@ -4,10 +4,10 @@
 
 - 标题：Chester
 - 来源：[Chester | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chester)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-05T03:17:46Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-04T03:02:03Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/chester.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/chester-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,14 +20,14 @@
 
 - 稀有度: Legendary
 - 官方定位: Damage Dealer
-- 移动速度: 770 (Fast)<br>920 (with Candy Beans)<br>955 (with Hypercharge)<br>1105 (with Candy Beans and Hypercharge)
+- 移动速度: 800 (Fast)<br>950 (with Candy Beans)
 - 生命值: 3800
 - 攻击距离: 8.33 (Long)
 - 装填: 1.9 seconds (Normal)<br>0.76 seconds (with Candy Beans)
 - 普攻数值: 670
 - Super 距离: 6.33 (Normal)
 - Super 数值: 1600
-- Gadgets: Spicy Dice, Candy Beans
+- Gadgets: Prankster's Surprise, Candy Beans
 
 ## BP 建模可抽取信号
 
@@ -45,10 +45,10 @@
 - Super: Jack in the Box / Salmiakki
 - Super: Jack in the Box / Pop Rocks
 - Super: Jack in the Box / Strong Mint
-- Gadgets / Spicy Dice
+- Gadgets / Prankster's Surprise
 - Gadgets / Candy Beans
 - Star Powers / Single Bell 'O' Mania
-- Star Powers / Sneak Peek
+- Star Powers / Jester's Privilege
 - Hypercharge: Crunchy, Chewy, Gooey
 - Tips
 

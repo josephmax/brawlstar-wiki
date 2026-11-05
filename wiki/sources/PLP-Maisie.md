@@ -4,11 +4,11 @@
 
 - 标题：Best build for Maisie | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Maisie | Power League Prodigy](https://powerleagueprodigy.com/maisie)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/maisie.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/maisie-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -17,7 +17,7 @@
 
 ## 结构化字段摘要
 
-- 推荐 Gadget: `Disengage`
+- 推荐 Gadget: `Disengage!`
 - 推荐 Star Power: `Tremors`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Brawl Ball, Hot Zone
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Jae-Yong`, `Gigi`, `Piper`, `Darryl`, `Lily`, `Chuck`, `El Primo`, `Nani`
-- counteredBy: `Sandy`, `Rosa`, `Larry & Lawrie`, `Damian`, `Sirius`, `Nita`, `8-Bit`, `Bibi`
+- countersThese: `Squeak`, `Gigi`, `Buzz`, `Byron`, `Lumi`, `Leon`, `Najia`, `Crow`
+- counteredBy: `Vince`, `Amber`, `Ash`, `Willow`, `Shade`, `Hank`, `Wendy`, `Rosa`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

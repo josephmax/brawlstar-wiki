@@ -4,10 +4,10 @@
 
 - 标题：Pierce
 - 来源：[Pierce | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Pierce)
-- 读取日期：2026-07-17
-- Fandom 页面最后编辑：2026-07-02T22:36:51Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T21:01:18Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/pierce.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/pierce-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Legendary
 - 官方定位: Marksman
-- 移动速度: 720 (Normal)<br>828 (with Slip 'n Snipe)<br>864 (with Hypercharge)<br>972 (with Slip 'n Snipe and Hypercharge)
+- 移动速度: 750 (Normal)<br>868 (with Slip 'n Snipe)
 - 生命值: 3000
 - 攻击距离: 10 (Very Long)
 - 装填: 3 seconds (full ammo bar; Very Slow)

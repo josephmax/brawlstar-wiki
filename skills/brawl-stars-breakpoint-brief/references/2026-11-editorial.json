@@ -1,0 +1,6 @@
+{
+  "patch_id": "2026-11-03-release",
+  "source_url": "https://supercell.com/en/games/brawlstars/blog/game-updates/release-notes-november-2026/",
+  "compact_packets": [{"brawler": "Melodie", "packet_id": "main.impact", "reason": "普攻直击通常不是主要击杀来源；具体断点仍保留在完整明细"}],
+  "mechanic_highlights": [{"brawlers": ["Melodie", "Darryl", "Chuck"], "title": "阵亡后保留未使用的大招充能", "description": "三人未使用的大招次数不再因阵亡清零；资源机制变化，并非伤害断点。"}]
+}

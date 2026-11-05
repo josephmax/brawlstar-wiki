@@ -4,10 +4,10 @@
 
 - 标题：Colette
 - 来源：[Colette | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Colette)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-10-01T13:02:27Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T20:06:33Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/colette.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/colette-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -58,7 +58,3 @@
 
 - [[entities/brawlers/Colette|Colette]]
 - [[sources/PLP-Colette|PLP 来源摘要: Colette]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-来源冲突：本期官方 Hyper Buffie 第二弹倍率 35%，个人页正文却写当前生命 22.5%，不能相互换算或给固定爆发总量。新 infobox 普攻 Super 充能 25%，与既有 22.5% 复核记录不同；保留冲突，不再承诺固定四发或五发循环。

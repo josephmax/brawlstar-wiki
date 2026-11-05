@@ -4,11 +4,11 @@
 
 - 标题：Best build for Surge | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Surge | Power League Prodigy](https://powerleagueprodigy.com/surge)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/surge.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/surge-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,13 +21,13 @@
 - 推荐 Star Power: `Serve Ice Cold`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Gem Grab, Brawl Ball
-- Notes: GADGET 2 IF INTO ASSASSINS OR TANKS
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Bull`, `Jacky`, `El Primo`, `Frank`, `Edgar`, `Bibi`, `Buzz`, `Doug`
-- counteredBy: `Tick`, `Barley`, `Sprout`, `Willow`, `Belle`, `Crow`, `Bonnie`, `Piper`
+- countersThese: `Nori`, `Bolt`, `Bull`, `Jacky`, `El Primo`, `Frank`, `Edgar`, `Bibi`
+- counteredBy: `Wendy`, `Tick`, `Barley`, `Sprout`, `Willow`, `Belle`, `Crow`, `Bonnie`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

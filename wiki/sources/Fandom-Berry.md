@@ -4,10 +4,10 @@
 
 - 标题：Berry
 - 来源：[Berry | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Berry)
-- 读取日期：2026-06-30
-- Fandom 页面最后编辑：2026-06-02T20:41:05Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T22:21:38Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/berry.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/berry-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,14 +20,14 @@
 
 - 稀有度: Epic
 - 官方定位: Support
-- 移动速度: 720 (Normal)<br>864 (with Hypercharge)<br>3000 (with Super)
+- 移动速度: 750 (Normal)<br>3000 (with Super)
 - 生命值: 2600
 - 攻击距离: 6.33 (Normal)
 - 装填: 2.4 seconds (Very Slow)<br>1.6 seconds (With Floor is Fine; Normal)
 - 普攻数值: 660
 - Super 距离: 8.33 (Long)
 - Super 数值: 1520
-- Gadgets: Friendship is Great, Healthy Additives
+- Gadgets: Friendship is Great, Secret Formula
 
 ## BP 建模可抽取信号
 
@@ -42,9 +42,9 @@
 - Attack: Meltdown
 - Super: Sweet Swirl
 - Gadgets / Friendship is Great
-- Gadgets / Healthy Additives
+- Gadgets / Secret Formula
 - Star Powers / Floor is Fine
-- Star Powers / Making a Mess
+- Star Powers / Sticky Toppings
 - Hypercharge: Double Scoops
 - Tips / Games Modes and Maps
 - Tips / Recommended Build

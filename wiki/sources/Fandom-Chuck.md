@@ -4,10 +4,10 @@
 
 - 标题：Chuck
 - 来源：[Chuck | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Chuck)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-10-16T08:04:50Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T12:38:03Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/chuck-2026-10-21.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/chuck-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -23,7 +23,7 @@
 - 移动速度: 800 (Fast)<br>3200 (with Super)<br>4000 (with Tickets Please! and Star Buffie)
 - 生命值: 4400
 - 攻击距离: 6 (Normal)
-- 装填: 2 seconds (Slow)
+- 装填: 1.8 seconds (Normal)
 - 普攻数值: 540
 - Super 距离: 10 (post; Very Long)<br>6.67 (dash; Normal)
 - Super 数值: 400
@@ -57,7 +57,3 @@
 
 - [[entities/brawlers/Chuck|Chuck]]
 - [[sources/PLP-Chuck|PLP 来源摘要: Chuck]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-Pit Stop 30% slow 持续 2 秒；Buffie 每跳 400/P1 即 800/P11，至多四跳且依赖敌人驻留，不是一次静态伤害包。 旧摘要所指抓取：[[../../raw/sources/fandom/heroes/chuck.md]]（若原 canonical 链接缺失，本次已补回；日期不同的历史抓取保留）。

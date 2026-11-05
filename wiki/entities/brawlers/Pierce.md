@@ -244,3 +244,38 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Pierce|Fandom 来源摘要: Pierce]]
 - [[sources/PLP-Pierce|PLP 来源摘要: Pierce]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Pierce",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.last_ammo",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.last_ammo",
+        "delivery_variant": "impact",
+        "repeat_model": "resource_gated",
+        "damage": {
+          "amount": 1400,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "last ammo shot only; requires last-ammo state",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

@@ -4,11 +4,11 @@
 
 - 标题：Best build for Ziggy | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Ziggy | Power League Prodigy](https://powerleagueprodigy.com/ziggy)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/ziggy.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/ziggy-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Meg`, `Ruffs`, `Lou`, `Lola`, `Charlie`, `Emz`, `Otis`, `Bea`
-- counteredBy: `Edgar`, `Bibi`, `Mortis`, `Damian`, `Kaze`, `Sam`, `Mico`, `Melodie`
+- countersThese: `Sirius`, `Ruffs`, `Meeple`, `Charlie`, `Gale`, `Nani`, `Cosmo`, `Pierce`
+- counteredBy: `Bolt`, `Shade`, `Bibi`, `Edgar`, `Sam`, `Mortis`, `Nori`, `Kenji`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

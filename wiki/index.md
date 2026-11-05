@@ -44,6 +44,8 @@
 
 ## BP Maintenance
 
+- `skills/brawl-stars-breakpoint-brief/`：平衡补丁快报 Skill，汇总机制变化和攻防断点，生成 HTML、PNG，完整审计明细保留在 HTML。
+
 - [[sources/User-Note-Matchup-Review-2026-10-28|13 组克制关系用户复核及 Finx/Gigi 历史溯源]]
 
 - [BobbyBS 练习题清洗稿（已确认，53 题导出）](../evals/bobbybs-draft-quiz/practice/REVIEW.md)：112 个新增三档选项提案、原答案争议分支与 3 题暂缓；未进入 runtime。
@@ -58,6 +60,7 @@
 
 ## BP Archive
 
+- [[syntheses/2026十一月平衡性断点双向评估|2026 年 11 月平衡性断点双向评估]]；[[sources/Supercell-Release-Notes-November-2026|官方版本账本]]
 - [[syntheses/最新平衡性概览-2026-10|最新平衡性概览（截至 2026-10-21；最新可核验补丁为 9 月 16 日）]]
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 - [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]

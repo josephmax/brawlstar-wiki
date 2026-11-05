@@ -257,3 +257,38 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Maisie|Fandom 来源摘要: Maisie]]
 - [[sources/PLP-Maisie|PLP 来源摘要: Maisie]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Maisie",
+    "target_states": [],
+    "damage_packets": [
+      {
+        "id": "main.impact",
+        "ability_kind": "main_attack",
+        "packet_unit": "main.impact",
+        "delivery_variant": "impact",
+        "repeat_model": "identical",
+        "damage": {
+          "amount": 1360,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "active_when": "one direct hit without Pinpoint Precision",
+        "excluded_modifiers": [
+          "damage_gear",
+          "hypercharge"
+        ],
+        "source_conflict_status": "none_for_reviewed_packet",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "defense_modifiers": [],
+    "exclusions": []
+  }
+}
+```

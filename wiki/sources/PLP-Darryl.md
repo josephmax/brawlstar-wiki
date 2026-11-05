@@ -4,11 +4,11 @@
 
 - 标题：Best build for Darryl | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Darryl | Power League Prodigy](https://powerleagueprodigy.com/darryl)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/darryl.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/darryl-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -26,8 +26,8 @@
 
 ## Matchup 候选
 
-- countersThese: `Mr. P`, `Jessie`, `Alli`, `Sprout`, `Piper`, `Jae-Yong`, `Ziggy`, `Poco`
-- counteredBy: `Chester`, `Bull`, `8-Bit`, `Willow`, `Sandy`, `Colette`, `Nita`, `Bibi`
+- countersThese: `Mr. P`, `Jessie`, `Piper`, `Alli`, `Ziggy`, `Cosmo`, `Dynamike`, `Crow`
+- counteredBy: `Chester`, `Bull`, `Colette`, `Nita`, `Shade`, `Wendy`, `R-T`, `Pearl`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 

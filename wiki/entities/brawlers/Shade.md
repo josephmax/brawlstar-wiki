@@ -49,8 +49,8 @@ bp_brawler_profile:
     burst: high_if_center_hit_or_Hypercharged_Super; The Frightener 的 Hyper Buffie 扩大中心拥抱体积；伤害倍率来源口径不一致，不承诺固定增伤比例或斩杀线
     sustained_dps: medium_high; very fast reload but short range
     objective_damage: medium_conditional; close-range DPS if it reaches target
-    mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 6 秒（Hardened Hoodie Buffie +1 秒），Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
-    survivability: medium_high_during_Super_with_Hardened_Hoodie_30pct; The Frightener 在墙内持续回血，Jump Scare Buffie 提供衰减护盾；两者是时序窗口，不作为固定有效血量
+    mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 4 秒（Hardened Hoodie Buffie +1 秒），Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
+    survivability: medium_high_during_Super_with_Hardened_Hoodie_20pct; The Frightener 在墙内持续回血，Jump Scare Buffie 提供衰减护盾；两者是时序窗口，不作为固定有效血量
     engage: high_from_wall_phase_water_route_or_Jump_Scare_wall_hop
     disengage: medium_high_if_Super_duration_remaining; Jump Scare 越墙跳+恐惧也能脱离追击
     anti_aggro: medium_high_with_Jump_Scare_fear; 落地恐惧 1 秒使敌人逃跑、40% 减速且无法攻击/开 Super，但 Shade 仍偏好借地形先手
@@ -71,7 +71,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Shade|PLP-Shade]]"
       changes_capabilities:
         - "Longarms 下一发普攻射程从 3.67 提高到 5.33 格，冷却 20 秒；帮助从更远处充能 Super，Buffie 使命中的敌人被拉向拥抱中心"
-        - "Hardened Hoodie 虚体形态 30% 减伤；Buffie 使 Super 时长 +1 秒（6→7 秒）"
+        - "Hardened Hoodie 虚体形态 20% 减伤；Buffie 使 Super 时长 +1 秒（4→5 秒）"
         - "Shield/Damage stabilizes short-range entry trades"
       enables:
         - wall_phase_entry
@@ -267,4 +267,47 @@ bp_brawler_profile:
     slot_2_3: "适合回答依赖固定墙位的后排/控场，同时要求队友补远程输出。"
     slot_4_5: "可用于补墙体进场、Hot Zone 贴墙压制或 Brawl Ball 后排骚扰；Jump Scare 提供越墙位移与恐惧自保，The Frightener 强化贴墙驻留；检查敌方 6 位坦克/投掷回答。 与 Finx 的优劣更多取决于对战地形，没有已核实的普遍单向克制。"
     slot_6: "敌方缺厚前排、缺穿墙/投掷答案且关键目标靠墙时，Shade 可以作为惩罚位。"
+```
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Shade",
+    "target_states": [
+      {
+        "id": "body",
+        "entity_class": "brawler_body",
+        "roster_target": true,
+        "health": {
+          "amount": 3400,
+          "at_power_level": 1,
+          "scaling": "standard"
+        },
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "damage_packets": [],
+    "defense_modifiers": [
+      {
+        "id": "hardened_hoodie",
+        "source_kind": "star_power",
+        "loadout_group": "star_power",
+        "applies_to_states": [
+          "body"
+        ],
+        "effect": {
+          "type": "damage_reduction",
+          "ratio": 0.2
+        },
+        "active_when": "Star Power active during Super",
+        "sequence_validity": "only while Super remains active; no healing modeled",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "exclusions": []
+  }
+}
 ```

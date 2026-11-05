@@ -4,11 +4,11 @@
 
 - 标题：Best build for Chester | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Chester | Power League Prodigy](https://powerleagueprodigy.com/chester)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/chester.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/chester-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -18,7 +18,7 @@
 ## 结构化字段摘要
 
 - 推荐 Gadget: `Candy Beans`
-- 推荐 Star Power: `Single Bellomania`
+- 推荐 Star Power: `Single Bell'o'mania`
 - 推荐 Gears: Speed, Damage
 - 推荐 Modes: Gem Grab, Brawl Ball, Hot Zone
 - Notes: none observed
@@ -26,7 +26,7 @@
 
 ## Matchup 候选
 
-- countersThese: `Edgar`, `Mortis`, `Kit`, `Sandy`, `Lily`, `Pam`, `Jacky`, `Frank`
+- countersThese: `Nori`, `Gale`, `Alli`, `Buzz`, `Damian`, `Darryl`, `Edgar`, `Fang`
 - counteredBy: `Piper`, `Belle`, `Angelo`, `Charlie`, `Meg`, `Willow`, `Byron`, `Lola`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。

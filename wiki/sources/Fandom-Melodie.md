@@ -4,10 +4,10 @@
 
 - 标题：Melodie
 - 来源：[Melodie | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Melodie)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-09-11T20:25:47Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-10-30T19:38:12Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/melodie.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/melodie-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -24,7 +24,7 @@
 - 生命值: 4000
 - 攻击距离: 8 (Long)<br>2.17 (monster notes)<br>3.47 (monster notes; with Perfect Pitch)
 - 装填: 1.5 seconds (Normal)
-- 普攻数值: 460
+- 普攻数值: 500
 - Super 距离: 5.33 (Normal)
 - Super 数值: unknown
 - Gadgets: Perfect Pitch, Interlude
@@ -59,7 +59,3 @@
 
 - [[entities/brawlers/Melodie|Melodie]]
 - [[sources/PLP-Melodie|PLP 来源摘要: Melodie]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-当前 Health=4000/P1，即 Power 11 8000，与 8 月补丁账本一致；补抓闭合历史回落旧血量的缺口。

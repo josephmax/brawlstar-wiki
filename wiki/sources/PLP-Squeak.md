@@ -4,11 +4,11 @@
 
 - 标题：Best build for Squeak | Brawl Stars loadout, gears & counters | PL Prodigy
 - 来源：[Squeak | Power League Prodigy](https://powerleagueprodigy.com/squeak)
-- 读取日期：2026-06-30
-- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/squeak.md]]
+- 读取日期：2026-11-04
+- 上游 raw：[[../../raw/sources/pl-prodigy/brawlers/squeak-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：third_party_competitive_guide
-- payload_source_updated_at：2026-05-25T17:15:02Z
+- payload_source_updated_at：unknown
 
 ## 可用范围
 
@@ -21,13 +21,13 @@
 - 推荐 Star Power: `Chain Reaction`
 - 推荐 Gears: Shield, Damage
 - 推荐 Modes: Hot Zone, Bounty, Knockout
-- Notes: GADGET 2 HOTZONE
+- Notes: none observed
 - Avoid: none observed
 
 ## Matchup 候选
 
-- countersThese: `Gene`, `Jae-Yong`, `Lola`, `Mandy`, `Maisie`, `Meg`, `Berry`, `Ruffs`
-- counteredBy: `Bolt`, `Bibi`, `Edgar`, `Ollie`, `Rosa`, `Bull`, `Trunk`, `Willow`
+- countersThese: `Lola`, `R-T`, `Byron`, `Sirius`, `Charlie`, `Ruffs`, `8-Bit`, `Cosmo`
+- counteredBy: `Bolt`, `Rosa`, `Shade`, `Kenji`, `Starr Nova`, `Amber`, `Hank`, `Trunk`
 
 这些 matchup 只作为 `conditional_matchup_seed`，不能写成无条件克制。进入 BP 模型前必须补机制、地图条件、build 条件、失效条件和 BP 用途。
 
@@ -40,7 +40,3 @@
 
 - [[sources/Fandom-Squeak|Fandom 来源摘要: Squeak]]
 - [[entities/brawlers/Squeak|Squeak]]
-
-## 2026-10-28 维护者对位复核
-
-1、13：Edgar 攻击回血与 Stu 机动/条件破墙分别解释，不按同一反投掷机制。 详见 [[sources/User-Note-Matchup-Review-2026-10-28|逐项来源与判断边界]]。上方第三方名单保留为来源观察，不覆盖本次复核，不自动重新提升为 runtime 克制。

@@ -4,10 +4,10 @@
 
 - 标题：Shade
 - 来源：[Shade | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Shade)
-- 读取日期：2026-10-21
-- Fandom 页面最后编辑：2026-10-03T22:53:09Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-04T09:02:58Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/shade.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/shade-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -21,7 +21,7 @@
 - 稀有度: Epic
 - 官方定位: Assassin
 - 移动速度: 855 (Very Fast)<br>3000 (Super dash)<br>1112 (with Super)<br>1026 (with Spooky Speedster)
-- 生命值: 3700
+- 生命值: 3400
 - 攻击距离: 3.67 (Short)<br>5.33 (with Longarms)
 - 装填: 0.8 seconds (Very Fast)
 - 普攻数值: 800
@@ -56,15 +56,7 @@
 - `Shade` 的 Fandom 页面已有 direct raw，可作为稳定机制来源。
 - 后续升级 [[entities/brawlers/Shade|Shade]] 时，应优先从本 raw 抽取机制事实，再与 [[sources/PLP-Shade|PLP 竞技信号]] 分层合并。
 
-## 来源差异备注（2026-09-03）
-
-- 官方 Release Notes August 2026 与当前 Fandom 页存在三处口径差，本库以当前 direct raw 为稳定事实：Jump Scare 恐惧时长 raw 为 `1 秒`（release notes 写 0.5 秒）；Hardened Hoodie Buffied Super 持续 raw 为 `+1 秒`（release notes 写 +2 秒）；The Frightener Buffied 拥抱中心 raw 为 `伤害 +44.375%、体积 +50%`（release notes 只写 +50% 的合并表述）。
-
 ## 关联页面
 
 - [[entities/brawlers/Shade|Shade]]
 - [[sources/PLP-Shade|PLP 来源摘要: Shade]]
-
-## 2026-10-21 补丁 BP 修复复核
-
-来源冲突：官方 Hyper Buffie 75%→30%，当前个人页又描述中心伤害 +15% 加超充 5%，不认定同一分母；撤销旧 +44.375% 确定计算。墙内治疗引语/正文为每秒 1000；来源未提供一致的各等级表，BP 不保留旧 2000 的确定量。Jump Scare 的具体范围不可从公告 opaque 参数直接换算格数。

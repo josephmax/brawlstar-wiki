@@ -4,10 +4,10 @@
 
 - 标题：Max
 - 来源：[Max | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Max)
-- 读取日期：2026-08-10
-- Fandom 页面最后编辑：2026-08-04T09:26:41Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-03T13:28:18Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/max.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/max-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,7 +20,7 @@
 
 - 稀有度: Mythic
 - 官方定位: Support
-- 移动速度: 820 (Very Fast)<br>984 (with Hypercharge)<br>1120 (with Super)<br>1208 (with Super and Hypercharge)<br>1167 (with Hypercharged Super)<br>2400 (with Phase Shifter)
+- 移动速度: 855 (Very Fast)<br>1155 (with Super)<br>1167 (with Hypercharged Super)<br>2400 (with Phase Shifter)
 - 生命值: 3500
 - 攻击距离: 8.33 (Long)
 - 装填: 1.3 seconds (Very Fast)<br>1.1 seconds (with Run n' Gun)
@@ -46,6 +46,7 @@
 - Star Powers / Super Charged
 - Star Powers / Run n' Gun
 - Hypercharge: Unlimited Energy
+- Tips / Game Modes and Maps
 - Tips / Recommended Build
 - Tips / Strategies
 - Tips / Other

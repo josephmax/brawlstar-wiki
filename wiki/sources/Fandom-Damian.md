@@ -4,10 +4,10 @@
 
 - 标题：Damian
 - 来源：[Damian | Brawl Stars Wiki | Fandom](https://brawlstars.fandom.com/wiki/Damian)
-- 读取日期：2026-08-10
-- Fandom 页面最后编辑：2026-08-04T10:31:23Z
+- 读取日期：2026-11-04
+- Fandom 页面最后编辑：2026-11-02T14:20:24Z
 - 分类：Brawlers / Fandom hero page
-- 上游 raw：[[../../raw/sources/fandom/heroes/damian.md]]
+- 上游 raw：[[../../raw/sources/fandom/heroes/damian-2026-11-04.md]]
 - source_quality：direct_raw_capture
 - source_type：official_or_wiki_mechanics
 
@@ -20,11 +20,11 @@
 
 - 稀有度: Mythic
 - 官方定位: Tank
-- 移动速度: 770 (Fast)<br>1001 (when using charged attack)<br>924 (with Hypercharge)
+- 移动速度: 800 (Fast)<br>1040 (when using charged attack)<br>2400 (jump)
 - 生命值: 5600
 - 攻击距离: 2.67 (Short)
-- 装填: 1.2 seconds (Fast)
-- 普攻数值: 700
+- 装填: 1.2 seconds (Very Fast)
+- 普攻数值: 800
 - Super 距离: 6 (Normal)
 - Super 数值: 400
 - Gadgets: Spiritual Healing, Wall of Sound

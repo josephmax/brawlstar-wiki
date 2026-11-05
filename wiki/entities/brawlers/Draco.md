@@ -33,7 +33,7 @@ bp_brawler_profile:
     sustained_dps: "high_while_dragon_ammo_bar_active; very fast reload, 50% ammo refund on Super, and auto-reloading dragon ammo bar"
     objective_damage: "medium; PLP modes emphasize Gem Grab, Brawl Ball, and Hot Zone body pressure rather than safe-race damage"
     mobility: "conditional_high; Dragon Solo grants 20% speed and Hypercharge extends both speed and range"
-    survivability: "very_high; Power 11 11200 health, 20% shield in Dragon Solo, Last Stand, and Shredding heal"
+    survivability: "very_high; Power 11 11200 health, 25% shield in Dragon Solo, Last Stand, and Shredding heal"
     engage: "high_with_Super_or_Last_Stand; can cross a choke after Super is active or use Last Stand to absorb a key focus window"
     disengage: "low_medium; Upper Cut can be an escape build, but PLP default gives up that hard interrupt for Last Stand"
     anti_aggro: "medium_high; high health, Last Stand, optional Upper Cut, and close cone damage punish direct entries"
@@ -275,3 +275,34 @@ bp_brawler_profile:
 
 - [[sources/Fandom-Draco|Fandom 来源摘要: Draco]]
 - [[sources/PLP-Draco|PLP 来源摘要: Draco]]
+
+## combat_breakpoint_profile
+
+```json
+{
+  "combat_breakpoint_profile": {
+    "schema": "brawler_breakpoint_profile.v1",
+    "brawler": "Draco",
+    "target_states": [],
+    "damage_packets": [],
+    "defense_modifiers": [
+      {
+        "id": "dragon_solo",
+        "source_kind": "super",
+        "loadout_group": "super_form",
+        "applies_to_states": [
+          "body"
+        ],
+        "effect": {
+          "type": "damage_reduction",
+          "ratio": 0.25
+        },
+        "active_when": "Super dragon form only",
+        "sequence_validity": "only while Super remains active; no healing modeled",
+        "source_ref": "[[sources/Supercell-Release-Notes-November-2026]]"
+      }
+    ],
+    "exclusions": []
+  }
+}
+```
