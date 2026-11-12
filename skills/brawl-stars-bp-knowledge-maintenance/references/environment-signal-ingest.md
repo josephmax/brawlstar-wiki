@@ -62,7 +62,13 @@ wiki/environment/
 - `scripts/capture_liquipedia_event.py` / `scripts/analyze_esports_event.py`
 - `wiki/syntheses/BP-强度层语义回归与高分选取率估计器.md`
 
-## Version applicability review (2026-09-30)
+## Version applicability: superseded by the fold ledger (2026-11-12)
+
+Whether a ladder or tournament statistic still describes a brawler is now derived from the `version_fold_ledger` blocks in patch source pages, not from a hand-maintained review. The rule is defined once in `references/version-update.md` ("动态数据有效性"): a brawler with a ledger row after the start of the 10-week window has its ladder statistics withheld; a brawler changed after an event ended has that event's statistics withheld; every other brawler's statistics are used normally. The 10-week window start is taken from the source's own definition (latest match time minus 70 days).
+
+`wiki/environment/version_review.json` is no longer updated. It stays in place only for application versions that still read it and is removed once they are upgraded. The two sections below are kept as the history of that mechanism; do not follow them for new maintenance.
+
+## Version applicability review (2026-09-30, historical)
 
 Refresh the archive and review version applicability separately. Record the immutable payload hashes, source-page scope, known patch ledger and exact sample bounds (null when absent) in `wiki/environment/version_review.json`, with a linked source summary. Re-fetching does not advance the actual sample start.
 
@@ -71,7 +77,7 @@ Before declaring current-version statistics, require an independently evidenced 
 A downstream application must read this review rather than hardcode approval. Its separate decision on whether to display labeled mixed-window data must not relabel that data as current-version evidence. Newly published patches or changed source contracts require another review. Run the ranked-pool filter tests and BP skill contract before publishing.
 
 
-## Query availability and evidence quality (2026-10-03)
+## Query availability and evidence quality (2026-10-03, historical)
 
 `version_review.json` also carries `consumption_policy` with schema `brawlstar.environment_consumption_policy.v1`: `query_allowed=true`, `mixed_window_use=descriptive_only`, `requires_window_label=true`, and `current_strength_requires_post_patch_evidence=true`. This is a maintained source-use contract, not approval of current-patch strength.
 

@@ -133,6 +133,8 @@ outputs/
 
 每次平衡补丁中的英雄血量、离散伤害包、固定护盾和减伤变化，先在对应 `wiki/sources/` 页面建立 `balance_breakpoint_manifest.v1` 版本账本，再用英雄当前数值事实与 `wiki/concepts/伤害与生存断点.md` 规则生成 `outputs/balance-breakpoints/` 下的 `balance_breakpoint_audit.v1`。伤害变化应覆盖全部已索引目标状态；血量/减伤变化只能声明覆盖已复核攻击包，不得把裸 `Attack` 字段当完整一发。生成结果不得自动生成 strength tier、稳定 map fit、hard gate、slot eligibility、条件化对位边或 runtime 推荐。
 
+**版本更新固定流水线**：平衡补丁或维护、新英雄、排位地图池轮换、赛事结束这四类版本变动，统一按 `skills/brawl-stars-bp-knowledge-maintenance/references/version-update.md` 执行。先运行 `scripts/version_status.py --online` 查看待办，做完再运行一次确认。每个补丁来源页必须带 `version_fold_ledger`，逐个记录受影响英雄的官方原文行和处置状态；处置状态只记在来源页，不写进英雄页。排位与赛事统计对某个英雄是否仍适用，由账本按该文档的“动态数据有效性”规则推导，不再人工维护 `wiki/environment/version_review.json`。
+
 **outputs 永不持久化原则**：`outputs/`（含 `runtime_bp_index` 与断点审计账本）是不入 git 的可再生计算产物，即编即用、可随时删除重建，永远不是知识库的组成部分或任何页面的依赖。wiki 任何页面不得链接或引用 outputs 路径；消化审计结论的 syntheses 页必须自包含地携带结论（需要机器账本时，用维护 skill 记录的审计命令按 manifest 与稳定 profile 确定性重生成），只把有价值的审计报告和结论写进 syntheses。
 
 如果一个词既像实体又像概念，按下面的优先级决定：
@@ -218,7 +220,7 @@ BP 推演、Ban Pick 建模、英雄克制关系、阵容评价和 draft 顺位�
 - 维护者讨论 / wiki 查询：先读 `wiki/index.md`，再读相关 syntheses、来源页、地图页、英雄页，并把有长期价值的结论沉淀回 wiki。
 - BP skill 执行：不得把 `wiki/syntheses/` 作为运行时依赖。`brawl-stars-bp-slot-decision` 必须遵循自身 `compile` / `decide` 分治：`compile` 只读取 skill 内 `references/compile-knowledge.md`、`wiki/entities/maps/`、`wiki/entities/brawlers/` 与环境归档 `wiki/environment/current.json`（环境证据折叠，无强度输入），生成 `runtime_bp_index`；`decide` 只读取 skill 内 `references/runtime-decision-knowledge.md`、当前草稿状态和已生成的 `runtime_bp_index`。如果没有 runtime index，先编译或声明信息不足，不得临场改读 syntheses 来补决策。
 
-执行全量英雄 BP 建模、补抓 Fandom/Power League Prodigy 英雄详情页、扩展英雄覆盖、地图 source ingest、平衡补丁断点审计、或批量升级 `wiki/entities/brawlers/` / `wiki/entities/maps/` 时，必须使用 `skills/brawl-stars-bp-knowledge-maintenance/`。先读该 skill 的 `SKILL.md`，再按任务读取 `references/source-ingest.md`、`brawler-modeling.md`、`map-modeling.md`、`balance-breakpoint-audit.md`、`audit-and-validation.md` 或 `runtime-boundary.md`。`wiki/syntheses/BP-英雄建模标准流程.md` 和 `wiki/syntheses/BP-维护归档.md` 只作为维护背景 / 历史归档，不是执行入口。该任务必须先读取 roster manifest，再按当前 BP-active 英雄集合分批保留 raw；已下架或无有效来源覆盖的 roster 行不进入 BP 英雄集合、PLP 缺口追踪、对位边或运行时编译索引。禁止直接批量生成 BP-ready 字段。
+执行全量英雄 BP 建模、补抓 Fandom/Power League Prodigy 英雄详情页、扩展英雄覆盖、地图 source ingest、平衡补丁断点审计、或批量升级 `wiki/entities/brawlers/` / `wiki/entities/maps/` 时，必须使用 `skills/brawl-stars-bp-knowledge-maintenance/`。先读该 skill 的 `SKILL.md`，版本变动先读 `references/version-update.md`，再按任务读取 `references/source-ingest.md`、`brawler-modeling.md`、`map-modeling.md`、`balance-breakpoint-audit.md`、`audit-and-validation.md` 或 `runtime-boundary.md`。`wiki/syntheses/BP-英雄建模标准流程.md` 和 `wiki/syntheses/BP-维护归档.md` 只作为维护背景 / 历史归档，不是执行入口。该任务必须先读取 roster manifest，再按当前 BP-active 英雄集合分批保留 raw；已下架或无有效来源覆盖的 roster 行不进入 BP 英雄集合、PLP 缺口追踪、对位边或运行时编译索引。禁止直接批量生成 BP-ready 字段。
 
 英雄页治理：`wiki/entities/brawlers/` 只保存当前最新的 BP 建模结果和当前稳定数值输入，不保存版本记录、补丁来源、更新过程、历史状态、`版本覆盖`、`当前 BP 判断` 或类似覆盖层段落。第一份 `bp_brawler_profile` YAML 只含 runtime 可编译字段；可追加第二份 fenced JSON `combat_breakpoint_profile`，只保存经复核的当前 target states、离散 damage packets、专属 defense modifiers/variants 和明确 exclusion，由 maintainer 断点脚本消费，runtime 必须忽略。版本 / meta 资料如果足以改变 BP 模型，必须直接内联改写该英雄已有的 `capability_vector`、`build_switches`、`map_feature_hooks`、`objective_contracts`、`failure_modes`、`conditional_matchups` 或 `slot_notes` 等稳定字段；如果不能确定定性影响，只能留在来源页、审计页或日志，不能写进英雄页。
 

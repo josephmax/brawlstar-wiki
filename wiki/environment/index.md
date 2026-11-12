@@ -45,7 +45,7 @@ outputs/runtime-bp-index/<current>.json                    ← runtime_bp_index�
 | `<YYYY-MM>/archive.sqlite3` | 该月归档：`event`（source_events）+ `metric_*`（scopes 聚合）+ `series/set/set_pick/set_ban`（逐 set 行列，来自 raw 解析）+ `signal_brawler`（月赛信号） |
 | `pickrate.sqlite3` | `brawlstar.environment_signal_pickrate.v1`：Legendary only 滚动 10 周快照，**只含本库固定 S49 池**（`ladder_global` + `ladder_per_map`，带 `fetched_at`；池外图在生产侧过滤）；完整样本起止和当前游戏池未获验证 |
 | `ranked_pool.json` | `brawlstar.ranked_pool_manifest.v1`：本库固定 S49 地图池 manifest（26 图 + provenance）；`fetch_brawlplanet_pickrate.py` 默认按它过滤，池覆盖完整不等于当前游戏池已验证 |
-| `version_review.json` | 统计来源、窗口缺口与消费策略；允许带范围标注的描述性查询，`current_version_evidence=false` |
+| `version_review.json` | 已停止更新（2026-11-12）。统计数据是否仍适用改由补丁来源页的 `version_fold_ledger` 推导，规则见维护 skill 的 `references/version-update.md`；本文件仅保留给尚未升级的应用版本读取，升级后删除 |
 | `index.md` | 本索引页 |
 
 ## 当前归档

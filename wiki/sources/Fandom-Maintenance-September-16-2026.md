@@ -111,3 +111,274 @@
 - [[sources/Supercell-Maintenance-August-4-2026|Supercell 来源摘要: Maintenance - August 4, 2026]]
 - [[sources/Fandom-Release-Notes-August-2026|Fandom 来源摘要: Release Notes August 2026]]
 - [[entities/brawlers/Wendy|Wendy]]、[[entities/brawlers/Willow|Willow]]、[[entities/brawlers/Juju|Juju]]、[[entities/brawlers/Ollie|Ollie]]、[[entities/brawlers/Belle|Belle]]、[[entities/brawlers/El Primo|El Primo]]、[[entities/brawlers/R-T|R-T]]、[[entities/brawlers/Chuck|Chuck]]
+
+## version_fold_ledger
+
+本块是本次维护的并入账本，2026-11-12 依据官方原文回填；字段与状态取值见维护 skill 的 `references/version-update.md`。`bug_fixes` 只作记录，默认不计入“英雄直接改动”。
+
+```json
+{
+  "version_fold_ledger": {
+    "schema": "brawlstar.version_fold_ledger.v1",
+    "patch_id": "2026-09-16-maintenance",
+    "effective_at": "2026-09-16",
+    "official_source": "https://supercell.com/en/games/brawlstars/blog/release-notes/release-notes-august-2026/",
+    "raw": "raw/sources/supercell/maintenance-september-16-2026-2026-10-21.md",
+    "upstream": {
+      "fandom_version_history_revision": 219043
+    },
+    "brawlers": [
+      {
+        "brawler": "Amber",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Gadget 'Fire Starters' - health reduced from 1750 → 1300",
+          "Star Power 'Wild Flames' - oil trail duration reduced from 3s → 1s",
+          "Hypercharge Buffie - burn damage reduced from 500 → 240"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Belle",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Main attack damage increased from 1040 → 1140"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Brock",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Gadget 'Rocket Laces' - cooldown increased from 20s → 22s",
+          "Super Charge from Super - reduced from 80 → 70"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Chuck",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Starpower 'Pit Stop' - slow duration increased from 1 sec → 2 sec",
+          "Star Power 'Pit Stop' - slow potency increased from 20% → 30%",
+          "Star Power 'Pit Stop' Buffie - area damage increased from 100 → 400"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Colette",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Hypercharge Buffie - second projectile damage reduced from 50% → 35%"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "El Primo",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Gadget 'Asteroid Belt' - cooldown increased from 16s → 20s",
+          "Gadget 'Asteroid Belt' - Super gained from projectiles reduced by 50%",
+          "Starpower 'Meteor Rush' - speedboost duration reduced from 4s → 3s",
+          "Star Power 'Meteor Rush' - shield reduced from 20% → 15%"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Gus",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Gadget 'Knockback spirit' - cooldown increased to 18s",
+          "Star Power 'Health Bonanza' - healing increase reduced from 100% → 75%"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Juju",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Health increased from 3100 → 3500",
+          "Super Charge rate increased from 65 → 75"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Meg",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Gadget 'Repurpose' - knockback on projectile removed (now only on the explosion)"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Nori",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Main Attack - max charge time increased by 25%",
+          "Hypercharge rate reduced from 50 → 28"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Ollie",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Main attack damage increased from 900 → 1000"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Pam",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Super - turret health increased from 3040 → 3300",
+          "Super - healing increased from 500 → 600",
+          "Hypercharge - turret health increased from 4200 → 4500"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Poco",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Gadget 'Tuning Fork' - healing increased from 500 → 700",
+          "Star Power 'Da Capo' - healing increased from 320 → 400"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "R-T",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Star Power 'Recording' - damage resistance increased from 20% → 25%"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Shade",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Super Charge when near enemies reduced by 15%",
+          "Gadget 'Long arms' - cooldown increased from 18s → 20s",
+          "Gadget 'Jump scare' - fear radius reduced from 1000 → 600",
+          "Hypercharge Buffie - bonus damage reduced from 75% → 30%"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Trunk",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Main attack movement speed on ants increased from 25% → 30%",
+          "Super Charge rate increased from 70 → 75"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Wendy",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "nerf",
+        "rows": [
+          "Health Increased from 2000 → 2500",
+          "Shield on spawn - reduced from 100% max health → 40% max health",
+          "Shield gained from main attack - reduced from 580 → 300",
+          "Star Power 'Solar Shield' - bonus health reduced from 1000 → 600",
+          "Hypercharge - turret health reduced from 4500 → 3500",
+          "Gadget 'Wind-Powered' can now jump on water"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      },
+      {
+        "brawler": "Willow",
+        "kinds": [
+          "balance"
+        ],
+        "direction": "buff",
+        "rows": [
+          "Main Attack reload speed increased from 2000 → 1800",
+          "Health increased from 3300 → 3600"
+        ],
+        "fold": "folded",
+        "note": "2026-10-21 平衡性 BP 审计修复已对本期英雄完成 Fandom/PLP 双源复核并内联修正；逐英雄处置类别当时未单列。"
+      }
+    ],
+    "environment": [],
+    "bug_fixes": [
+      "Respawn shields are now removed when using a dash or jump ability",
+      "Kaze, Moe, Meg, and Bonnie no longer receive an unintended respawn shield when changing forms in Showdown",
+      "Colt's Star Power 'Magnum Special' now increases bullet speed correctly when using a Skin",
+      "Bea's Gadget 'Rattled Hive' and Cosmo's main attack now end in the same position on mirrored maps",
+      "Cosmo's main attack now follows the same path on both the True Blue and True Red sides",
+      "Eve's Hypercharged Super now spawns 4 hatchlings when it explodes (as it should)"
+    ],
+    "excluded": []
+  }
+}
+```

@@ -155,6 +155,28 @@ def connect(db_path: str | Path) -> sqlite3.Connection:
     return con
 
 
+def connect_readonly(db_path: str | Path) -> sqlite3.Connection:
+    """Open an existing archive for reading without touching the file.
+
+    `connect` stamps `user_version` and re-runs the DDL, which rewrites the
+    SQLite header on every open. Readers (compile, audits, briefs) must not
+    dirty a git-tracked archive, so they open it with `mode=ro` instead.
+    """
+    path = Path(db_path)
+    if not path.exists() or path.stat().st_size == 0:
+        raise EnvironmentProtocolError(f"{path}: archive not found or empty")
+    con = sqlite3.connect(f"{path.resolve().as_uri()}?mode=ro", uri=True)
+    con.row_factory = sqlite3.Row
+    existing = con.execute("PRAGMA user_version").fetchone()[0]
+    if existing not in (0, SCHEMA_VERSION):
+        con.close()
+        raise EnvironmentProtocolError(
+            f"{path}: archive user_version={existing} != protocol {SCHEMA_VERSION}; "
+            "regenerate the archive or upgrade the protocol"
+        )
+    return con
+
+
 # ------------------------------------------------------------------ write ----
 
 def _set_meta(con: sqlite3.Connection, key: str, value: Any) -> None:
@@ -360,7 +382,7 @@ def read_raw_events(db_path: str | Path) -> list[dict[str, Any]]:
     This is the full-detail view used for JSON export or per-set review; the
     aggregated consumers read `read_profile` / `read_signal` instead.
     """
-    con = connect(db_path)
+    con = connect_readonly(db_path)
     try:
         events: dict[str, dict[str, Any]] = {}
         for row in con.execute("SELECT * FROM event"):
@@ -435,7 +457,7 @@ def read_profile(db_path: str | Path) -> dict[str, Any]:
     per-event metric projection is not stored; query the row tables directly for
     per-event or per-set data).
     """
-    con = connect(db_path)
+    con = connect_readonly(db_path)
     try:
         meta = _meta_dict(con, "profile")
         source_events: list[dict[str, Any]] = []
@@ -482,7 +504,7 @@ def read_profile(db_path: str | Path) -> dict[str, Any]:
 
 def read_signal(db_path: str | Path) -> dict[str, Any]:
     """Expand the signal tables back into a brawlstar.environment_signal.v1 dict."""
-    con = connect(db_path)
+    con = connect_readonly(db_path)
     try:
         meta = _meta_dict(con, "signal")
         brawlers: dict[str, dict[str, Any]] = {}
@@ -508,7 +530,7 @@ def read_signal(db_path: str | Path) -> dict[str, Any]:
 
 def read_pickrate(db_path: str | Path) -> dict[str, Any]:
     """Expand the pickrate tables back into a brawlstar.environment_signal_pickrate.v1 dict."""
-    con = connect(db_path)
+    con = connect_readonly(db_path)
     try:
         meta = _meta_dict(con, "pickrate")
         global_rows: dict[str, dict[str, Any]] = {}

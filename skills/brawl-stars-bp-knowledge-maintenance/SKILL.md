@@ -23,6 +23,7 @@ Then load only the relevant reference below.
 
 ## Reference Routing
 
+- For any game-version change — balance patch or maintenance, new brawler, Ranked season map rotation, or a finished esports event — start with `references/version-update.md`. It is the single pipeline; run `scripts/version_status.py --online` first to see what is open and again at the end. The references below describe how each step is done, not which steps a version change needs.
 - For layer ownership, runtime boundaries, and two-stage intake, read `references/repo-layering.md`.
 - For Fandom, PLP, roster, patch, map, or user-note ingest, read `references/source-ingest.md`.
 - For `wiki/entities/brawlers/` profiles, read `references/brawler-modeling.md`.
@@ -66,6 +67,10 @@ The current domain scripts live under this skill's `scripts/` directory:
 - `scripts/test_liquipedia_event.py`
 - `scripts/test_bp_skill_contract.py`
 - `scripts/test_matchup_provenance.py`
+- `scripts/version_status.py`
+- `scripts/test_version_status.py`
+
+`scripts/version_status.py` is read-only. It parses the `version_fold_ledger` blocks in patch source pages and reports open pipeline steps: affected brawlers without a post-patch raw capture or a recorded fold disposition, open environment items, a stale Ranked pool manifest, a stale esports archive, and brawlers without a `bp_ready` profile. `--online` also compares recorded upstream revisions with the live Fandom and Liquipedia pages. Its `load_patch_index` is the only parser for "which brawler changed in which patch"; other tools import it instead of re-reading source pages.
 
 Use `--dry-run` when a script offers it before large writes. Treat script output as a maintenance aid, not proof that a brawler or map is strategically correct.
 
@@ -88,6 +93,7 @@ The Liquipedia event scripts preserve revision-specific event raw, create source
 - Source summaries explain what each source can and cannot prove.
 - Version strength and short-lived meta stay in source/audit/log layers unless they change a stable capability, map hook, matchup condition, or slot rule.
 - Audits and generated runtime indexes go to `outputs/` or caller-provided paths; observation profiles and environment signals are archived under `wiki/environment/` (persistent knowledge-base layer, git tracked).
+- Every patch has a `version_fold_ledger` in its source page listing every affected brawler with the official rows and a fold disposition; `scripts/version_status.py --online --strict` exits 0, or every remaining item is `deferred` with a reason.
 - Every patch with health, discrete damage, barrier, or damage-reduction changes has a source manifest and a breakpoint coverage audit; exclusions remain explicit.
 - `scripts/test_bp_skill_contract.py` passes after changing BP skills, references, or maintenance boundaries.
 - After changing matchup attribution, run `scripts/test_matchup_provenance.py`; retain source candidates separately from mechanisms that have not survived per-target review.
