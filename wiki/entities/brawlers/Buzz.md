@@ -47,7 +47,7 @@ bp_brawler_profile:
     scouting_or_vision: "high_in_bush_maps; Trait 对隐身/草丛敌人充能，Eyes Sharp 扩到 8 格，X-Ray-Shades 共享揭草"
     team_support: "conditional; X-Ray-Shades 给队友 12 秒草丛视野"
     spawnable_or_pet: "none"
-    crowd_control: "high_if_super_hits; 0.6-1.5 秒距离缩放眩晕，Tougher Torpedo 提高最低 stun"
+    crowd_control: "普通 Super 冲刺中使用 Reserve Buoy 不移除当前落地眩晕；妙具充出的下次 Super 不眩晕，不能靠碰到正在 Super 冲刺的目标保证打断"
     source_trace:
       - "[[sources/Fandom-Buzz|Fandom-Buzz]]"
       - "[[sources/PLP-Buzz|PLP-Buzz]]"

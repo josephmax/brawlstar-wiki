@@ -34,19 +34,19 @@ bp_brawler_profile:
     projectile_reliability: "high_for_area_sweep_medium_for_focus_kill; 6 个雪弹宽线易扫草/多人，但正常体型近距离最多约 4 发命中"
     burst: "medium_with_super_or_blustery_wall_stun; Super 本身已有 800 基础伤害，推墙 1.25 秒 stun 后可继续接普攻，但仍不是独立爆发核心"
     sustained_dps: "medium; 1.2 秒 very fast reload 支撑持续压线，但单发伤害低"
-    objective_damage: "low_to_medium; Heist 只能靠近距离多雪弹或 Spring Ejector 送队友，不是主 race"
-    mobility: "team_route_tool; Spring Ejector 6 格弹板提供转点/返场/进库路径"
+    objective_damage: "近距离多雪弹可补伤害，不是主打库手"
+    mobility: "无弹板转点；风墙只改变投射物路线"
     survivability: "medium; Power 11 本体 8000 HP，靠推离、减速和 Twister 保距离"
     engage: "medium; 可用 Super 把敌人推入队友或墙，不是自带突进"
     disengage: "high; Super 推开、Twister 断路、Freezing Snow 减速"
     anti_aggro: "high; Super/Twister/slow 对刺客、坦克、抓钩和冲锋进场成本很低"
     anti_tank: "high_when_route_is_narrow; 推离、减速和 Twister 让短手失去接触窗口"
     wall_break: "none"
-    throw_or_wall_bypass: "medium_control_only; Super 穿障碍推人，Spring Ejector 越过地形，但普攻不能隔墙输出"
+    throw_or_wall_bypass: "Super 可穿障碍推人；普攻不能隔墙输出"
     area_control: "high; Twister 2 格半径持续 5 秒，Super 宽风路清入口"
     scouting_or_vision: "medium; 宽普攻扫草，Twister/slow 逼出草口路径"
-    team_support: "high; 弹板转点、Super 保 carrier、Twister 帮队友守区"
-    spawnable_or_pet: "terrain_tool; Spring Ejector 是持久弹板，Twister 是短时地形控制物"
+    team_support: "正面风墙重定向投射物，Super 与 Twister 保护目标"
+    spawnable_or_pet: "短时风墙与 Twister；不阻挡英雄移动"
     crowd_control: "very_high; knockback, slow, wall-stun, route denial"
     source_trace:
       - "[[sources/Fandom-Gale|Fandom-Gale]]"
@@ -69,20 +69,20 @@ bp_brawler_profile:
       best_when: "地图有窄口、草边或目标点入口，敌方依赖短手/位移/持球进入"
       poor_when: "敌方主输出可在 Twister 外远程打人，或队伍缺少实际击杀/目标伤害"
       bp_use: "default_plp_control_build"
-    - build: "Spring Ejector / Blustery Blow variants"
+    - build: "North Wind Wall / Blustery Blow variants"
       source: "[[sources/Fandom-Gale|Fandom-Gale]]"
       changes_capabilities:
-        - "Spring Ejector 可隐藏在草里并长期存在，用于返场、进区、进库或越过障碍"
+        - "风墙持续 5 秒；偏转敌弹 20%，装配芭菲时友方穿墙弹道加速 20%；26 秒冷却"
         - "Blustery Blow 在 Super 把敌人推到墙体时提供 1.25 秒 stun"
       enables:
-        - "队友快速回区或越墙进攻"
-        - "Heist/Siege 类目标快速接触"
+        - "掩护队友穿过正面火线"
+        - "削弱敌方从正面射入的投射物"
         - "墙边击杀确认"
       mitigates_failure_modes:
-        - "team_cannot_rotate_to_objective"
+        - "wind_wall_flanked"
         - "super_only_pushes_without_kill"
-      best_when: "地图有安全弹板落点、关键目标需要快速抵达，或墙体能稳定承接 Super"
-      poor_when: "落点被守、弹板给敌人同样利用，或团队更需要 Twister 断突进"
+      best_when: "敌方正面投射物路径集中，或墙体能稳定承接 Super"
+      poor_when: "对方可绕开墙面或直接贴身，或团队更需要 Twister 断突进"
       bp_use: "rotation_or_wall_stun_variant"
 
   map_feature_hooks:
@@ -120,18 +120,6 @@ bp_brawler_profile:
         - "[[entities/maps/Gem Fort|Gem Fort]]"
         - "[[entities/maps/Hard Rock Mine|Hard Rock Mine]]"
       bp_use: "candidate_eval.gem_carrier_protection"
-    - id: "spring_ejector_safe_or_zone_rotation"
-      map_feature_type: "team_rotation_pad"
-      uses_feature_by: "Spring Ejector 在草里或安全位铺弹板，让队友快速返区/进库/越过障碍"
-      route_or_position: "己方出生到热区捷径、Heist 侧路进库线、Brawl Ball 后场返中路"
-      objective_conversion: "把一次 Gadget 转成先到点、逼回防或 surprise lane entry"
-      active_when: "落点未被敌方预控，队友能利用弹板后的短窗口打目标"
-      fails_if: "敌方守落点、弹板方向暴露，或敌人反过来利用同一路径"
-      example_maps:
-        - "[[entities/maps/Pit Stop|Pit Stop]]"
-        - "[[entities/maps/Hot Potato|Hot Potato]]"
-        - "[[entities/maps/Dueling Beetles|Dueling Beetles]]"
-      bp_use: "map_bp_factors.rotation_shortcut_with_landing_risk"
 
   objective_contracts:
     - mode: "Gem Grab"
@@ -149,7 +137,7 @@ bp_brawler_profile:
       can_fulfill:
         - "门前推离与掉球"
         - "Twister 封进球路线"
-        - "Spring Ejector 快速返场或侧路推进"
+        - "风墙掩护正面推进"
       cannot_fulfill:
         - "稳定破墙"
         - "纯靠自己射门结束回合"
@@ -169,7 +157,7 @@ bp_brawler_profile:
       false_positive: "Twister 只挡移动不挡射击；敌方能在外面打区时 Gale 需要队友补输出"
     - mode: "Heist"
       can_fulfill:
-        - "Spring_Ejector_rotation_to_speed_teammate_into_safe_angle"
+        - "wind_wall_covers_frontal_fire_only"
         - "Super_knockback_to_peel_safe_defenders_off_a_racing_teammate"
         - "wide_snowball_slow_on_defender_return_route"
       cannot_fulfill:
@@ -179,7 +167,7 @@ bp_brawler_profile:
       needs_teammate_support:
         - "primary safe DPS dealer to actually race"
         - "burst or wallbreak follow-up to convert his peel into damage"
-      false_positive: "Gale 没有破墙也没有稳定 safe 伤害；在 Bridge Too Far、Hot Potato、Kaboom Canyon、Pit Stop、Safe Zone、Safe(r) Zone 这些竞速图，他只能用弹板和 Super 给队友制造打库角度，不能独自承担 race。"
+      false_positive: "Gale 没有破墙也没有稳定 safe 伤害；在 Bridge Too Far、Hot Potato、Kaboom Canyon、Pit Stop、Safe Zone、Safe(r) Zone 这些竞速图，他只能用风墙和 Super 给队友制造打库角度，不能独自承担 race。"
     - mode: "Bounty"
       can_fulfill:
         - "wide_snowball_slow_and_bush_sweep_on_star_lane"
@@ -223,11 +211,11 @@ bp_brawler_profile:
       exposed_by: "Fandom attack spread and close-range snowball hit count"
       mitigation: "800 基础伤害 Super 可补一段确认，但仍把 Gale 作为控制/peel 位，另补 burst 或 objective DPS"
       bp_use: "role_gap_filter"
-    - id: "spring_pad_landing_trap"
-      active_when: "弹板落点被敌方预控，或敌方也能利用弹板"
-      exposed_by: "Spring Ejector launches any target and has fixed facing/landing behavior"
-      mitigation: "隐藏在草里、改位置、只在落点有队友压制时启用"
-      bp_use: "rotation_risk_gate"
+    - id: "wind_wall_flanked"
+      active_when: "敌方绕侧翼或走过风墙"
+      exposed_by: "风墙不会封闭通路，26 秒冷却不能覆盖每轮推进"
+      mitigation: "靠队友保护侧路，保留 Super 击退"
+      bp_use: "peel_resource_gate"
 
   conditional_matchups:
     - target: ["Mortis", "Fang", "Leon", "Mina"]

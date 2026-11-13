@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Gale|Gale]]
 - [[sources/PLP-Gale|PLP 来源摘要: Gale]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/gale.md)；风墙不能载人越墙；26 秒冷却，偏转与芭菲加速各 20%，侧面射线不受正面墙保护。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

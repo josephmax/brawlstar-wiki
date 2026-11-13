@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Buzz|Buzz]]
 - [[sources/PLP-Buzz|PLP 来源摘要: Buzz]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/buzz.md)；保留常规冲刺眩晕，区分妙具补充的下次 Super，不假设打断敌方 Super 冲刺。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

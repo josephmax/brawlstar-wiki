@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Emz|Fandom 来源摘要: Emz]]
 - [[entities/brawlers/Emz|Emz]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/pl-prodigy/brawlers/emz.md)；countersThese：新增 Finx, Kit, Leon, Pam, Ruffs, Shade；移除 Brock, Doug, Gale, Jae-Yong, Meg, Shelly；counteredBy：新增 Bo, Chuck, El Primo, Juju, Kenji, Mico, Willow；移除 8-Bit, Bea, Bolt, Gray, Grom, Ollie, Sam。名单差分仅作候选，不自动新增或反转机制边。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

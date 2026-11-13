@@ -1,0 +1,32 @@
+{
+  "patch_id": "2026-11-11-maintenance",
+  "source_url": "https://supercell.com/brawlstars/en/blog/game-updates/release-notes-november-2026/",
+  "mechanic_highlights": [
+    {
+      "brawlers": [
+        "Amber",
+        "Wendy"
+      ],
+      "title": "直击与回盾分开算",
+      "description": "Amber 每枚火苗 420→360，不是每发 3600。Wendy 单发 2000→1600；命中自盾按 38%，回复不算永久血量。"
+    },
+    {
+      "brawlers": [
+        "Gale",
+        "Lou",
+        "Mr. P"
+      ],
+      "title": "入口控制的资源窗口",
+      "description": "风墙冷却 26 秒、偏转 20%；雪球命中加 40% 冻条；增援消耗弹药，冷却 26 秒。"
+    },
+    {
+      "brawlers": [
+        "Vince",
+        "Chester",
+        "Mandy"
+      ],
+      "title": "召唤物与妙具循环",
+      "description": "Vince 超充只出 4 只且掉血更快；Chester 盒子更脆、芭菲超充弹回充降低；Mandy 妙具命中可充能，饼干返冷降为 30%。"
+    }
+  ]
+}

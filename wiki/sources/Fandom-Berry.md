@@ -60,3 +60,7 @@
 
 - [[entities/brawlers/Berry|Berry]]
 - [[sources/PLP-Berry|PLP 来源摘要: Berry]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/berry.md)；冲刺经过聚集队友时可治疗多人，不是单目标治疗。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

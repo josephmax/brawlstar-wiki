@@ -72,7 +72,7 @@ bp_brawler_profile:
     - build: "Porter Reinforcements / Handle With Care variant"
       source: "[[sources/Fandom-Mr-P|Fandom-Mr-P]]"
       changes_capabilities:
-        - "Porter Reinforcements 在下一发落点生成弱 porter，用于挡弹或立刻逼退低伤长手"
+        - "Porter Reinforcements 消耗一格弹药，26 秒冷却，在手提箱落点生成弱 porter，用于挡弹或立刻逼退低伤长手"
         - "Handle With Care 每 4 秒强化弹跳段伤害，在墙多图提升 poke"
       enables:
         - "即时挡弹"

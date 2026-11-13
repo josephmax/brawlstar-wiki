@@ -61,3 +61,7 @@
 
 - [[entities/brawlers/Chester|Chester]]
 - [[sources/PLP-Chester|PLP 来源摘要: Chester]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/chester.md)；盒子是独立可破坏物；按放置时机和充能资源判断，不计为本体护盾。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

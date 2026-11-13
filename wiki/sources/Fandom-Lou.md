@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Lou|Lou]]
 - [[sources/PLP-Lou|PLP 来源摘要: Lou]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/lou.md)；Avalanche 为需弹药且需落点命中的 40% 冰冻量，不是敌人在冰面中就能瞬冻。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

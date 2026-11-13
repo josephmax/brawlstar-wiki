@@ -60,7 +60,7 @@
 
 ## BP Archive
 
-- [[syntheses/2026十一月平衡性断点双向评估|2026 年 11 月平衡性断点双向评估]]；[[sources/Supercell-Release-Notes-November-2026|官方版本账本]]
+- [[sources/Supercell-Maintenance-November-11-2026|11 月 11 日维护：机制、断点与全英雄 BP 审计]]；上一期：[[syntheses/2026十一月平衡性断点双向评估|11 月 3 日断点评估]]、[[sources/Supercell-Release-Notes-November-2026|发行账本]]。
 - [[syntheses/最新平衡性概览-2026-10|最新平衡性概览（截至 2026-10-21；最新可核验补丁为 9 月 16 日）]]
 - [[syntheses/2026-06-30版本BP影响评估|2026-06-30 版本 BP 影响评估]]
 - [[syntheses/2026六月至七月平衡性断点双向评估|2026 六月至七月平衡性断点双向评估]]

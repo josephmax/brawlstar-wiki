@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Buzz|Fandom 来源摘要: Buzz]]
 - [[entities/brawlers/Buzz|Buzz]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/pl-prodigy/brawlers/buzz.md)；countersThese：新增 Cosmo, Gigi, Grom, Najia；移除 Jae-Yong, Nani, Sprout, Squeak；counteredBy：新增 8-Bit, Chuck, Jacky, Nita, Rosa, Shelly；移除 Clancy, Colette, Damian, Sandy, Tara, Willow。名单差分仅作候选，不自动新增或反转机制边。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

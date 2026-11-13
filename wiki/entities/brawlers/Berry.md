@@ -43,7 +43,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: high_for_attack_lobs; none_for_super_route
     area_control: very_high_with_persistent_puddles
     scouting_or_vision: low; puddle 可试探草口但没有真实 reveal
-    team_support: very_high_heal_over_time_and_emergency_heal
+    team_support: "冲刺沿途可治疗所有靠近的队友；离开路径者不受益，不把群疗算作静态生命"
     spawnable_or_pet: none
     crowd_control: knockback_with_Friendship_is_Great
     terrain_creation: temporary_heal_damage_puddles

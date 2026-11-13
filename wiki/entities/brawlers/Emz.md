@@ -62,7 +62,7 @@ bp_brawler_profile:
     scouting_or_vision: "medium as wide spray/bush sweep at close to mid range"
     team_support: "indirect peel through slow, knockback, and forced spacing"
     spawnable_or_pet: "none"
-    crowd_control: "high with Super slow and Friendzoner knockback; Buffie wall-stun variant adds a punish angle"
+    crowd_control: "high with Super slow and Friendzoner knockback; Gadget-specific wall-stun is not a stun from the Hypercharged Super itself"
     terrain_creation: "none"
     terrain_destruction: "none"
 

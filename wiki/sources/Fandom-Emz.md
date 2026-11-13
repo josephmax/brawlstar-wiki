@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Emz|Emz]]
 - [[sources/PLP-Emz|PLP 来源摘要: Emz]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/emz.md)；超充 Super 将人顶墙不附加眩晕；区分妙具效果。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Mr-P|Fandom 来源摘要: Mr. P]]
 - [[entities/brawlers/Mr. P|Mr. P]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/pl-prodigy/brawlers/mr-p.md)；countersThese：新增 无；移除 无；counteredBy：新增 无；移除 无。名单差分仅作候选，不自动新增或反转机制边。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

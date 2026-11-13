@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Mandy|Fandom 来源摘要: Mandy]]
 - [[entities/brawlers/Mandy|Mandy]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/pl-prodigy/brawlers/mandy.md)；countersThese：新增 Kaze, Lola, Pierce；移除 Fang, Kit, Tick；counteredBy：新增 Edgar, Mr. P；移除 Darryl, Wendy。名单差分仅作候选，不自动新增或反转机制边。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

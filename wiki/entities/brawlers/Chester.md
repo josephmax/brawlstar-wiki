@@ -64,18 +64,18 @@ bp_brawler_profile:
       best_when: "地图有中近距离接触点，Chester 能预热到 3/4 铃并保留 Super 或 Candy Beans"
       poor_when: "地图完全开放，敌方长手可在 Chester 接近前持续消耗"
       bp_use: default_competitive_variance_build
-    - build: "Spicy Dice Super selection variant"
+    - build: "Prankster's Surprise / choke trap"
       source: "[[sources/Fandom-Chester|Fandom-Chester]]"
       changes_capabilities:
-        - "Spicy Dice 可重抽当前 Super，让 Chester 更主动寻找 stun、knockback、area 或 self-heal 需求"
+        - "布置可摧毁的惊吓盒；敌人靠近触发随机效果，不可指定。盒子不是本体护盾；芭菲超充弹的 Super 回充减少 35%，不保证连续超充"
       enables:
-        - "resource_tracking.super_type_before_objective_fight"
-        - "last_pick_super_swing"
+        - "trap_at_forced_entry"
+        - "conditional_area_denial"
       mitigates_failure_modes:
-        - "wrong_random_super_for_current_task"
-      best_when: "阵容需要某类 Super 才能处理球路、热区入口或淘汰回合"
+        - "open_sniper_range_tax"
+      best_when: "对方必须经过可布盒的入口"
       poor_when: "队伍更需要 Candy Beans 的稳定短窗属性"
-      bp_use: super_type_control_variant
+      bp_use: conditional_trap_variant
 
   map_feature_hooks:
     - map_feature_type: brawl_ball_close_bell_burst_and_super_utility
@@ -201,7 +201,7 @@ bp_brawler_profile:
     - id: random_super_variance
       active_when: "当前 Super 与目标任务不匹配，例如需要 stun 但只有 heal/poison，或需要 wallbreak 但没有 Candy Popper"
       exposed_by: "[[sources/Fandom-Chester|Fandom-Chester]] random Super mechanics"
-      mitigation: "进入关键团前记录 Super 类型，必要时使用 Spicy Dice 变体"
+      mitigation: "进入关键团前记录 Super 类型，不要把随机 Super 当作指定控制"
       bp_use: resource_tracking.current_super_type
     - id: sequence_misalignment
       active_when: "Chester 以 1 铃或 2 铃进入必须爆发的近身对抗"

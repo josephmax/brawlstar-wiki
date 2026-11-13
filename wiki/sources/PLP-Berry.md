@@ -40,3 +40,7 @@
 
 - [[sources/Fandom-Berry|Fandom 来源摘要: Berry]]
 - [[entities/brawlers/Berry|Berry]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/pl-prodigy/brawlers/berry.md)；countersThese：新增 Grom, Najia, Shade, Wendy；移除 Angelo, Crow, Nani, Squeak；counteredBy：新增 Frank, Lou, Melodie；移除 Shade, Trunk, Wendy。名单差分仅作候选，不自动新增或反转机制边。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

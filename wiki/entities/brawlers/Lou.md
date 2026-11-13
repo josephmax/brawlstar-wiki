@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚约 0.4 格宽的雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；扩大后的弹体降低了窄口和目标区内连续命中的门槛，但仍需多次命中。Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Cryo Syrup / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板仍是 Power 11 本体 7000 HP、0.7 秒三连发可能被高速横移拆散，且 Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤仍会打断叠层。
+Lou 是靠 Frost 进度和 Super 冰面控制目标区的 Controller。普攻三枚约 0.4 格宽的雪锥每枚叠 14.3% Frost，累计满后眩晕 1.5 秒；扩大后的弹体降低了窄口和目标区内连续命中的门槛，但仍需多次命中。Super `Can-Do` 可越墙投放 10 秒冰面，区域内持续叠 Frost、阻断自然回血并让转向变难。PLP 默认 `Avalanche / Hypothermia` 把 Hot Zone 中的敌人快速推向冰冻，并随 Frost 进度最高削 50% 输出。短板仍是 Power 11 本体 7000 HP、0.7 秒三连发可能被高速横移拆散，且 Frost 2.5 秒后会衰减；机动长手、范围消耗和拉人/毒伤仍会打断叠层。
 
 ## BP 建模
 
@@ -47,16 +47,16 @@ bp_brawler_profile:
     scouting_or_vision: "medium_with_vision_gear; Super 阻回血/迫移动，Vision gear 支持草区持续标记"
     team_support: "high; stun、slow-like滑地、输出削减给队友击杀窗口"
     spawnable_or_pet: "area_syrup; Super 生成 10 秒区域"
-    crowd_control: "very_high; Frost stun 1.5 秒，Cryo Syrup 即时 +50% Frost，Hyper Super 落点瞬冻"
+    crowd_control: "very_high; Frost stun 1.5 秒，Avalanche 命中 +40% Frost，Hyper Super 落点瞬冻"
     source_trace:
       - "[[sources/Fandom-Lou|Fandom-Lou]]"
       - "[[sources/PLP-Lou|PLP-Lou]]"
 
   build_switches:
-    - build: "Cryo Syrup / Hypothermia / Super Charge, Vision, Damage, Shield"
+    - build: "Avalanche / Hypothermia / Super Charge, Vision, Damage, Shield"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
       changes_capabilities:
-        - "Cryo Syrup 只能在敌人处于 Lou Super 内时使用，并立即增加 50% Frost"
+        - "Avalanche 消耗弹药投掷雪球，落点命中增加 40% Frost；无需 Super 冰面"
         - "Hypothermia 随 Frost 进度降低敌方输出，最高 50%，让站区 body 和坦克推进变弱"
         - "Super Charge gear 加速冰面循环，Vision 支持草区/Hot Zone 持续标记"
       enables:
@@ -69,11 +69,11 @@ bp_brawler_profile:
       best_when: "敌方必须站在固定区域或通过单一入口，且 Lou 可循环 Super"
       poor_when: "敌方多机动长手分散站位，从冰面外持续输出"
       bp_use: "default_plp_hot_zone_control_build"
-    - build: "Ice Block / Supercool variant"
+    - build: "Ice Block / Cold Snap variant"
       source: "[[sources/Fandom-Lou|Fandom-Lou]]"
       changes_capabilities:
         - "Ice Block 1 秒无敌可吃 Nani/Tick/Mandy/Dynamike Super 或刺客第一轮爆发"
-        - "Supercool 把 Super 区内 Frost 叠加从 14%/秒提高到 16%/秒"
+        - "Cold Snap 对已被眩晕或冻结的敌方增伤 25%，需在控制仍生效时命中"
       enables:
         - "反爆发保命"
         - "更稳定 zone freeze"
@@ -87,7 +87,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "hot_zone_super_full_zone_freeze"
       map_feature_type: "zone_area_freeze_control"
-      uses_feature_by: "Super 10 秒冰面覆盖区口/区内，Cryo Syrup 快速补 50% Frost"
+      uses_feature_by: "Super 10 秒冰面覆盖区口/区内，Avalanche 命中补 40% Frost"
       route_or_position: "单热区中心、区口窄线、敌方回区路径"
       objective_conversion: "让敌方进区即被滑地/冻结/削伤，转成己方踩区时间"
       active_when: "目标区可被 Super 覆盖，敌方必须站点或穿过冰面"
@@ -171,7 +171,7 @@ bp_brawler_profile:
     - mode: "Heist"
       can_fulfill:
         - "Super 越墙铺冰面拖延敌方入库 aggro 路线"
-        - "Cryo Syrup 在 Super 内快速冰冻入库者"
+        - "Avalanche 在 Super 内快速冰冻入库者"
       cannot_fulfill:
         - "稳定远程 safe DPS race"
         - "独自承担整局防守"
@@ -182,7 +182,7 @@ bp_brawler_profile:
       can_fulfill:
         - "Hypothermia 削低血站线者输出"
         - "Super 越墙铺冰惩罚直线撤退和保星位"
-        - "Cryo Syrup 快速冰冻孤立目标"
+        - "Avalanche 快速冰冻孤立目标"
       cannot_fulfill:
         - "开阔长线对狙或远程稳定单点"
         - "处理分散多路后排"
@@ -192,7 +192,7 @@ bp_brawler_profile:
     - mode: "Knockout"
       can_fulfill:
         - "Super 越墙铺冰面锁缩圈/窄口路线"
-        - "Cryo Syrup 或 Hyper Super 落点瞬冻完成不可复活击杀"
+        - "Avalanche 命中已积够冻条目标或 Hyper Super 落点瞬冻完成不可复活击杀"
         - "Hypothermia 削回合末站桩者输出"
       cannot_fulfill:
         - "远距离对枪首杀"
@@ -205,12 +205,12 @@ bp_brawler_profile:
     - id: "narrow_burst_and_frost_decay"
       active_when: "敌方高速横移拆散 Lou 的三连发，导致间断命中，并在 2.5 秒后让 Frost 开始衰减"
       exposed_by: "[[sources/Fandom-Lou|Fandom-Lou]] Frost meter and projectile details"
-      mitigation: "约 0.4 格弹体在 choke/zone 路线较易连续命中，但仍需铺 Super 后再用 Cryo Syrup/普攻补满"
+      mitigation: "约 0.4 格弹体在 choke/zone 路线较易连续命中，但仍需铺 Super 后再用 Avalanche/普攻补满"
       bp_use: "projectile_reliability_gate"
-    - id: "cryo_syrup_requires_enemy_inside_super"
-      active_when: "Lou 没有 Super 区内目标却指望 Gadget 直接冻人"
-      exposed_by: "Cryo Syrup cannot be used if no enemies are in Lou's Super"
-      mitigation: "先铺 Super 覆盖目标任务点，再等敌方进区使用 Gadget"
+    - id: "avalanche_requires_ammo_and_hit"
+      active_when: "目标冻条不足 60% 或雪球落空却指望妙具单独冻人"
+      exposed_by: "Avalanche consumes ammo; target must be in the landing area"
+      mitigation: "先积累冻条，保留弹药并预判落点"
       bp_use: "build_resource_sequence_check"
     - id: "ice_block_immobile_after_control"
       active_when: "Lou 用 Ice Block 吃控制但解冻后仍被 stun/围杀"

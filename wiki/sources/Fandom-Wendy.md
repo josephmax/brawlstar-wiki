@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Wendy|Wendy]]
 - [[sources/PLP-Wendy|PLP 来源摘要: Wendy]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/wendy-2026-11-13.md)；直击 PL11 2000→1600；命中敌方自盾比例 30%→38%，非永久血量。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

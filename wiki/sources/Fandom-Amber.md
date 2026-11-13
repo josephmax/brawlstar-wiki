@@ -58,3 +58,7 @@
 
 - [[entities/brawlers/Amber|Amber]]
 - [[sources/PLP-Amber|PLP 来源摘要: Amber]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/amber-2026-11-13.md)；单火苗 PL11 420→360，而非每枚 4200→3600；耗弹、追踪和油区回充分别处理。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

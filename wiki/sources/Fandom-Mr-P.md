@@ -59,3 +59,7 @@
 
 - [[entities/brawlers/Mr. P|Mr. P]]
 - [[sources/PLP-Mr-P|PLP 来源摘要: Mr. P]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/mr-p.md)；增援消耗一格弹药，26 秒冷却；对手清掉小兵后不再假设有免费补压。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

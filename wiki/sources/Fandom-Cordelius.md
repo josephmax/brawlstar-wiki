@@ -57,3 +57,7 @@
 
 - [[entities/brawlers/Cordelius|Cordelius]]
 - [[sources/PLP-Cordelius|PLP 来源摘要: Cordelius]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/cordelius.md)；变身结束不使 Meg、Moe、Draco 提前离开暗影领域。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。

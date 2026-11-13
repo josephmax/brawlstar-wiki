@@ -65,7 +65,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: "medium_high; Super projectile passes through walls and Replanting crosses terrain, but main attack still needs line"
     area_control: "medium; Trait rewards camping near contested chokes and Super can force enemies away from key objective space"
     scouting_or_vision: "medium; Trait charges from invisible or bush-camping enemies and Shadow Realm removes bush hiding, but it is proximity information rather than full reveal"
-    team_support: "high_indirect; isolating a defender, carrier, or scorer creates teammate objective windows"
+    team_support: "隔离创造目标窗口；Meg、Moe、Draco 在领域内结束变身不会提前脱离"
     spawnable_or_pet: low
     crowd_control: "very_high_single_target; Shadow Realm blocks Supers, Gadgets, Hypercharges, and charging for 8 seconds, while Poison Mushroom prevents actions for 1 second"
     terrain_creation: low

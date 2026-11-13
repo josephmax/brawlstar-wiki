@@ -52,7 +52,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long 8 tile straight blast; best when she can chip and shield-cycle behind a frontline on open lanes"
     projectile_reliability: "medium to high on open lanes; straight projectile blocked by walls and bodies, and the shield cycle stalls when shots miss"
-    burst: "low to medium; Power 11 单发 2000 的稳定输出，无爆发包"
+    burst: "low to medium; Power 11 单发 1600 的稳定输出，无爆发包"
     sustained_dps: "medium with 1.45s fast reload; sustained pressure exists but is support-grade"
     objective_damage: "low direct safe/objective DPS; objective contribution is shields, damage redirection and zone mitigation"
     mobility: "medium base 800 fast plus water walking; Wind-Powered adds a 5 tile jump over walls and water with airborne immunity"
@@ -271,7 +271,7 @@ bp_brawler_profile:
     - target: ["Bo", "Surge"]
       direction: "subject_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking); the shield absorb margin is roughly halved since 2026-09-16 (spawn shield 40% max, per-hit self shield 600 at Power 11)"
+      mechanism: "chip-tempo pokers rely on repeated ranged hits to win the lane, but shields absorb the chip, the turbine blunts the lane, and Wendy's fast-reload long blast out-cycles their slower timers (Bo's arc, Surge's stage stacking); the shield absorb margin is roughly halved since 2026-09-16 (spawn shield 40% max, successful enemy hit replenishes self-shield by 38% of attack damage)"
       active_when: "open lanes let her keep the shield cycle while the turbine covers the contested space"
       fails_when: "they outrange the turbine edge after Surge stacks late stages, mines deny her cycle lane, or burst overkills the shield bar faster than she replenishes it"
       bp_use: "support_lane_response_candidate"
@@ -281,7 +281,7 @@ bp_brawler_profile:
         - "Bull"
       direction: "target_favored"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
-      mechanism: "sustained or burst-heavy bodies out-trade her moderate damage; Ash and Carl chip through shields continuously and Bull's burst exceeds shield breakpoints in one window (easier since 2026-09-16: spawn shield 40% max and per-hit self shield 600 at Power 11)"
+      mechanism: "sustained or burst-heavy bodies out-trade her moderate damage; Ash and Carl chip through shields continuously and Bull's burst exceeds shield breakpoints in one window (easier since 2026-09-16: spawn shield 40% max and successful enemy hit replenishes self-shield by 38% of attack damage)"
       active_when: "they reach Wendy or the turbine before the team answers"
       fails_when: "turbine slow plus grenade peel breaks the engage before the shield stack is stripped"
       bp_use: "avoid_or_pair_with_control"
@@ -330,7 +330,7 @@ bp_brawler_profile:
         "packet_unit": "blast_impact",
         "delivery_variant": "impact",
         "repeat_model": "identical",
-        "damage": 1000,
+        "damage": 800,
         "at_power_level": 1,
         "active_when": "单发 blast 直接命中；不假设多目标",
         "source_ref": "[[sources/Fandom-Wendy|Fandom-Wendy]]"
@@ -349,7 +349,7 @@ bp_brawler_profile:
       }
     ],
     "exclusions": [
-      {"id": "attack_granted_shields", "reason": "普攻自盾 300 / 队友盾 760（Power 1，2026-09-16 自盾 580->300、队友盾不变）是随攻击循环与时序变化的临时护盾，不建模为静态 EHP", "change_class": "temporal_survival_excluded"},
+      {"id": "attack_granted_shields", "reason": "命中敌人回复相当于普攻伤害 38% 的自盾；队友盾另算是随攻击循环与时序变化的临时护盾，不建模为静态 EHP", "change_class": "temporal_survival_excluded"},
       {"id": "planet_protector_redirect", "reason": "发生器把范围内多人伤害的 60%（Hypercharge 90%）redirect 到可被摧毁的 deployable，是伤害分配时序模型", "change_class": "unsupported_mechanic"},
       {"id": "turbine_health", "reason": "发生器耐久 2500（Power 1）与 Solar Shield 加成、GREEN ENERGY 加成 1000（Power 1，2026-09-16 由 2000 下调）属 deployable durability，不进英雄分母；Solar Shield 加成当前存在 1080/1200/24% 多口径冲突，见 [[sources/Fandom-Maintenance-September-16-2026|2026-09 维护账本]]", "change_class": "non_breakpoint"},
       {"id": "green_energy_hypercharge", "reason": "Hypercharge 期间 90% 吸收与耐久提升依赖激活窗口", "change_class": "temporal_survival_excluded"}

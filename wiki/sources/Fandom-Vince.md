@@ -64,3 +64,7 @@
 
 - [[entities/brawlers/Vince|Vince]]
 - [[sources/PLP-Vince|PLP 来源摘要: Vince]]
+
+## 11 月 11 日维护复核（11 月 13 日抓取）
+
+本期[个人页快照](../../raw/sources/fandom/heroes/vince-2026-11-13.md)；超充生成 4 只，宠物掉血加快；仅更新机制，不能据此开放顺位。 见 [[Supercell-Maintenance-November-11-2026]]。以上早期摘要保留当时口径，当前判断以本节为准。
