@@ -21,6 +21,15 @@
 | Hot Zone | Dueling Beetles、Open Business、Parallel Plays、Ring of Fire |
 | Knockout | Belle's Rock、Flaring Phoenix、New Horizons、Out in the Open |
 
+### 地图实体入口
+
+- Gem Grab：[[entities/maps/Double Swoosh|Double Swoosh]]、[[entities/maps/Gem Fort|Gem Fort]]、[[entities/maps/Hard Rock Mine|Hard Rock Mine]]、[[entities/maps/Undermine|Undermine]]
+- Heist：[[entities/maps/Bridge Too Far|Bridge Too Far]]、[[entities/maps/Hot Potato|Hot Potato]]、[[entities/maps/Kaboom Canyon|Kaboom Canyon]]、[[entities/maps/Safe Zone|Safe Zone]]
+- Bounty：[[entities/maps/Dry Season|Dry Season]]、[[entities/maps/Hideout|Hideout]]、[[entities/maps/Layer Cake|Layer Cake]]、[[entities/maps/Shooting Star|Shooting Star]]
+- Brawl Ball：[[entities/maps/Beach Ball|Beach Ball]]、[[entities/maps/Center Stage|Center Stage]]、[[entities/maps/Pinball Dreams|Pinball Dreams]]、[[entities/maps/Sneaky Fields|Sneaky Fields]]、[[entities/maps/Spiraling Out|Spiraling Out]]、[[entities/maps/Triple Dribble|Triple Dribble]]
+- Hot Zone：[[entities/maps/Dueling Beetles|Dueling Beetles]]、[[entities/maps/Open Business|Open Business]]、[[entities/maps/Parallel Plays|Parallel Plays]]、[[entities/maps/Ring of Fire|Ring of Fire]]
+- Knockout：[[entities/maps/Belle's Rock|Belle's Rock]]、[[entities/maps/Flaring Phoenix|Flaring Phoenix]]、[[entities/maps/New Horizons|New Horizons]]、[[entities/maps/Out in the Open|Out in the Open]]
+
 ## 与 Season 49 的差异
 
 | 模式 | S49 图数 | S50 图数 | 变化 | 新增 | 移除 |
