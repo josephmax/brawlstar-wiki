@@ -29,7 +29,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: short_alone_long_thrower_when_attached
     projectile_reliability: high_short_claw; medium_attached_yarn_balls_with_delay
-    burst: medium_on_isolated_enemy_jump; high_with_attached_yarn_followup
+    burst: medium_on_isolated_enemy_jump; Super 伤害在 0.75 秒与 1.5 秒落地（旧为 1 秒/2 秒），兑现更快；high_with_attached_yarn_followup
     sustained_dps: low_medium_alone; conditional_high_with_good_teammate_carrier
     objective_damage: low; objective value comes from sustain, pick, and route pressure
     mobility: high_with_super_jump_and_detach_dash

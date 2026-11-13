@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "short_to_mid; 标称 7.67 格，但高伤需要多弹近身命中"
     projectile_reliability: "high_close_low_range; 近身霰弹稳定，远距单弹伤害低"
-    burst: "very_high_close_range; 普攻 + Super 近距离可瞬间压低坦克/刺客"
+    burst: "very_high_close_range; 5 发普攻全中 1700（PL11 3400），9 发 Super 全中 3240（PL11 6480）；近距离可瞬间压低坦克/刺客"
     sustained_dps: "medium; 1.5 秒 reload，Fast Forward 可瞬间回满弹药"
     objective_damage: "medium_close_range; 可打 safe/目标但需要贴近，不是远程 race"
     mobility: "medium_with_fast_forward; 2.67 格 dash 并回满弹，16 秒 cooldown，不能穿墙/水"

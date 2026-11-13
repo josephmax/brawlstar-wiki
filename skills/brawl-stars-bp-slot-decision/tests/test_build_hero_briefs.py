@@ -74,15 +74,22 @@ class HeroBriefUnitTest(unittest.TestCase):
         self.assertIn("bp_brawler_profile", text)
         self.assertIn("[[sources/Fandom-Gray]]", text)
 
-    def test_event_record_is_withheld_when_the_brawler_changed_after_the_event(self):
+    def test_event_record_is_withheld_when_this_brawler_changed_after_the_event(self):
         after = [patch("nov", "2026-11-03", ["Gray"])]
         block = briefs.esports_block("Gray", EVENT, after)
         self.assertEqual(block["status"], "withheld")
         self.assertEqual(block["changed_by"], [{"patch_id": "nov", "effective_at": "2026-11-03"}])
         self.assertNotIn("overall", block)
 
-    def test_event_record_is_shown_when_only_other_brawlers_or_older_patches_changed(self):
+    def test_event_record_is_withheld_when_any_brawler_changed_after_the_event(self):
         patches = [patch("sep", "2026-09-16", ["Gray"]), patch("nov", "2026-11-03", ["Shade"])]
+        block = briefs.esports_block("Gray", EVENT, patches)
+        self.assertEqual(block["status"], "withheld")
+        self.assertEqual(block["changed_by"], [{"patch_id": "nov", "effective_at": "2026-11-03"}])
+        self.assertNotIn("overall", block)
+
+    def test_event_record_is_shown_when_only_older_patches_exist(self):
+        patches = [patch("sep", "2026-09-16", ["Gray"]), patch("sep2", "2026-09-15", ["Shade"])]
         block = briefs.esports_block("Gray", EVENT, patches)
         self.assertEqual(block["status"], "ok")
         self.assertEqual(block["overall"]["pick_rate"], 0.05)
@@ -123,15 +130,14 @@ class HeroBriefRepositoryTest(unittest.TestCase):
     def test_strict_event_rule_holds_for_every_brawler(self):
         event = self.manifest["latest_event"]
         self.assertIsNotNone(event)
-        changed_after = {
-            name
+        patches_after = [
+            item
             for item in self.manifest["patches"]
             if (item["effective_at"] or "") > event["end_date"]
-            for name in item["brawlers"]
-        }
+        ]
         for name, brief in self.briefs.items():
             withheld = brief["esports"]["status"] == "withheld"
-            self.assertEqual(withheld, name in changed_after, name)
+            self.assertEqual(withheld, bool(patches_after), name)
 
     def test_unfolded_patch_rows_reach_the_brief_verbatim(self):
         ledgered = [item for item in self.manifest["patches"] if item["has_ledger"]]

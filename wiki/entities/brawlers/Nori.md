@@ -19,7 +19,7 @@
 
 ## 角色定位总结
 
-Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 2000，P11 口径，可一次收多条鱼），hold 充能钩子突进（钩击 1440，P11 口径；钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +4% 巨鱼伤害，即使空命中也消耗。Hypercharge `MASTER FISHERMAN` 让 Nori 跳入水中时把范围内敌人拉入并向水坑中心聚拢，再结算范围伤害，把进场/聚拢/终结压进同一窗口。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗（18s 冷却）。风险在于 2.5 秒满充期间不能自然回血、被控制可取消，Super 空放也会浪费鱼资源。
+Nori 的核心是 tap/hold 双形态切换：tap 打近身弧形 AOE（斩击 2000，P11 口径，可一次收多条鱼），hold 充能钩子突进（钩击 1440，P11 口径；钩墙位移、满充跳墙、钩敌低伤）。鱼资源（上限 10 条）驱动 Super `Catch of the Day` 的成长——消耗全部鱼，每条 +5% 坑半径 / +3% 巨鱼伤害，即使空命中也消耗。Hypercharge `MASTER FISHERMAN` 让 Nori 跳入水中时把范围内敌人拉入并向水坑中心聚拢，再结算范围伤害，把进场/聚拢/终结压进同一窗口。Gadget `Gonna Need a Bigger Net` 提供 1.25 秒 root，是反刺客开团的硬 CC；`Sushi Snack` 用鱼换即时治疗（18s 冷却）。风险在于 2.5 秒满充期间不能自然回血、被控制可取消，Super 空放也会浪费鱼资源。
 
 ## BP 建模
 
@@ -39,7 +39,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "dual_form; tap melee 8.33 格弧形 AOE，hold hook 13.33-16.67 格充能突进，满充可跳墙"
     projectile_reliability: "medium; tap 弧形稳定多目标，hook 需充能预判且可被墙/miss 取消"
-    burst: "high_with_fish_super; tap 斩击 2000（P11）AOE 多目标，满鱼 Super 巨鱼 3500+（P11）成长，hook+tap 链可秒脆皮；MASTER FISHERMAN 聚拢后巨鱼伤害落在拉入目标上，终结确定性更高"
+    burst: "high_with_fish_super; tap 斩击 2000（P11）AOE 多目标，巨鱼按每鱼 +3% 伤害成长（满鱼 +30%，P11 基础 3250），hook+tap 链可秒脆皮；MASTER FISHERMAN 聚拢后巨鱼伤害落在拉入目标上，终结确定性更高"
     sustained_dps: "medium; 装填 0.1s（ammo-bar 充能型，满充 2.5s），tap 可连续挥杆但 hold 充能期不能回血"
     objective_damage: "medium_high; PLP 推荐 Heist，Super 成长巨鱼可打库，hook 可改路线接近金库"
     mobility: "very_high; Very Fast 855 基础，hook 拉墙位移，满充跳墙，His Mother's Son 命中后 1026"
@@ -96,7 +96,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Nori|Fandom-Nori]] / [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
         - "MASTER FISHERMAN：Nori 跳入水中时把范围内敌人拉入，落地把目标抛起并向水坑中心聚拢，再结算范围伤害；Super 立即获得 10 条鱼强度，激活期 +20% 移速、+5% 伤害与护盾"
-        - "改变进场/聚拢/终结窗口：越墙或水域进场自带聚拢+爆发终结，满鱼巨鱼 3500（P11 口径）直接落在拉入目标上"
+        - "改变进场/聚拢/终结窗口：越墙或水域进场自带聚拢+爆发终结，满鱼巨鱼按 +30% 成长（P11 基础 3250）直接落在拉入目标上"
       enables:
         - "越墙/水域进场聚拢脆皮或站区者，落地即终结"
         - "Heist 用聚拢+爆发一次性收库"

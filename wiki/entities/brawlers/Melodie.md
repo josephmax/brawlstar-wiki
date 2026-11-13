@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long_setup_short_finish; 8 格普攻叠音符，主要击杀来自 2.17 格 orbiting notes 贴身命中"
     projectile_reliability: "medium; 主弹低伤但用于叠资源，贴身音符稳定性取决于走位和绕圈方向"
-    burst: "high_with_three_notes; 三音符加 Super 穿身可快速打残后排"
+    burst: "high_with_three_notes; 三音符加 Super 穿身可快速打残后排；死亡不再丢失未使用的 Super 充能"
     sustained_dps: "medium; 1.5 秒装填，音符持续 8 秒，资源断档后输出下降"
     objective_damage: "high_conditional_heist; 三段 dash 可快速接触 safe，但要先有音符和生存窗口"
     mobility: "very_high_with_super; 三段 5.33 格 dash 可分次用于进场、追击、得分或撤退"

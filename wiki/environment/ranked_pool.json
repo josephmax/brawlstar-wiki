@@ -1,14 +1,14 @@
 {
   "schema": "brawlstar.ranked_pool_manifest.v1",
-  "season": 49,
-  "featured_mode": "Hot Zone",
-  "window_started_at": "2026-09-17",
+  "season": 50,
+  "featured_mode": "Brawl Ball",
+  "window_started_at": "2026-10-15",
   "source": {
     "page": "https://brawlstars.fandom.com/wiki/Ranked",
-    "anchor": "Active maps (Season 49)",
-    "revision_id": 219103,
-    "captured_at": "2026-09-17",
-    "index_page": "wiki/syntheses/Ranked-Season-49-地图Map-Profile总览.md"
+    "anchor": "Active maps (Season 50)",
+    "revision_id": 221755,
+    "captured_at": "2026-11-13",
+    "index_page": "wiki/syntheses/Ranked-Season-50-地图Map-Profile总览.md"
   },
   "maps": [
     {
@@ -60,6 +60,10 @@
       "mode": "Bounty"
     },
     {
+      "map": "Beach Ball",
+      "mode": "Brawl Ball"
+    },
+    {
       "map": "Center Stage",
       "mode": "Brawl Ball"
     },
@@ -72,6 +76,10 @@
       "mode": "Brawl Ball"
     },
     {
+      "map": "Spiraling Out",
+      "mode": "Brawl Ball"
+    },
+    {
       "map": "Triple Dribble",
       "mode": "Brawl Ball"
     },
@@ -80,15 +88,7 @@
       "mode": "Hot Zone"
     },
     {
-      "map": "In the Liminal",
-      "mode": "Hot Zone"
-    },
-    {
       "map": "Open Business",
-      "mode": "Hot Zone"
-    },
-    {
-      "map": "Quick Travel",
       "mode": "Hot Zone"
     },
     {

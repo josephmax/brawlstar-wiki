@@ -139,6 +139,14 @@ Coverage must distinguish:
 
 If attacker packet coverage is incomplete, the report must not say “no other matchup changed.”
 
+### 持续喷射：优先报告暴露时间（continuous_exposure_time）
+
+每次补丁复核，按攻击方式选单位：琥珀普攻、德拉科龙息等持续喷射，正文与快报回答「目标需要连续暴露多久才能被击倒，补丁前后相差几秒」。十几次命中通常提示应换单位，但 **10 次不是过滤线**；普通离散射击仍可报发数，原始命中数、目标状态和攻击包明细全部保留。
+
+- 写明目标血量、护盾或减伤、距离、实际覆盖、起始弹药，以及是否假设连续全中、无治疗。默认从**首次命中**计到致死命中，不含起手和首弹飞行时间。
+- 等间隔且弹药足够时，若需 N 次有效命中、命中间隔为 Δt，暴露时间为 **(N−1) × Δt**。分别核验补丁前后的伤害、节奏和弹仓，不把本期射速当永久常数。例如 11 月 11 日琥珀对 7200 裸血，18→20 枚、间隔 0.1 秒，对应 1.7→1.9 秒。
+- 跨弹仓、间歇开火或距离改变喷射覆盖时，须另建时序模型。德拉科不能把同一波同时命中的多枚喷射物算成多个时间间隔；距离、有效覆盖或节奏未核实时，写「该距离的暴露时间待核验」，不按面板 DPS 硬除，也不据此推导克制关系。
+
 ## Promotion Gate
 
 A generated transition may enter an existing BP field only when all are true:

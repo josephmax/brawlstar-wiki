@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long_area; 普攻 7.33 格指定区域，Super 13.33 格 very long"
     projectile_reliability: "medium_on_choke_low_open; 普攻 0.75 秒延迟，Super 轨迹可侧移躲"
-    burst: "medium; 普攻 950 范围伤害，Electric Shuffle 连续追加"
+    burst: "medium; 普攻 1050 范围伤害，Electric Shuffle 连续追加"
     sustained_dps: "medium; 1.8 秒 reload，Electric Shuffle 5 秒内每秒免费落雷"
     objective_damage: "medium_with_storm_or_shuffle; Heist 需固定路线/目标"
     mobility: "medium_with_teleport_variant; 默认无位移，Now You See Me 需等攻击完成后传送"
@@ -73,7 +73,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Ziggy|Fandom-Ziggy]]"
       changes_capabilities:
         - "Now You See Me 让下一次落雷完成后把 Ziggy 传送到该位置"
-        - "The Great Ziggini 命中后让下一次普攻 +18% 伤害，miss 会丢失加成"
+        - "The Great Ziggini 命中后让下一次普攻 +7% 伤害，miss 会丢失加成"
       enables:
         - "重定位/越墙 endpoint"
         - "命中链伤害节奏"

@@ -40,12 +40,12 @@ bp_brawler_profile:
     user_notes: none
 
   capability_vector:
-    effective_range: "long; Rocket No. 4 Buffie 每 6 秒让下一发额外射程 2 格，不是持续射程"
+    effective_range: "long; Rocket No. 4 Buffie 每 8 秒让下一发额外射程 2 格，不是持续射程"
     projectile_reliability: medium; 火箭弹速慢，需要预判，打固定目标更稳定
-    burst: high_when_ammo_or_super_available
+    burst: high_when_ammo_or_super_available; Hypercharge 充能率降低 28%，不能按旧频率规划超充爆发
     sustained_dps: medium; 慢装填，需要 Reload Gear 或弹药管理
     objective_damage: high_in_heist_when_safe_angle_exists
-    mobility: "conditional_high_with_aimable_Rocket_Laces; 可瞄准跳跃最高 4 格并越墙/水，命中敌方的 Buffie 还提供 2 秒 30% 加速"
+    mobility: "conditional_high_with_aimable_Rocket_Laces; 可瞄准跳跃最高 4 格并越墙/水，命中敌方的 Buffie 还提供 2 秒 20% 加速"
     survivability: low_base_health; Shield Gear 可缓解但不能替代保护
     engage: low
     disengage: "medium_high_with_Rocket_Laces; 起跳和落地两端均有击退/伤害，但状态效果与持续伤害仍会保留"
@@ -63,8 +63,8 @@ bp_brawler_profile:
       source: "[[sources/PLP-Brock|PLP-Brock]]"
       changes_capabilities:
         - "Rocket Laces 可瞄准跳最高 4 格、越墙/水，在起跳与落地的 2 格圆内击退并造成伤害"
-        - "Rocket Laces Buffie 命中英雄后再获得 2 秒 30% 加速，能把一次自保转成二次重定位"
-        - "More Rockets 增加 Super 火箭并压缩发射间隔；Buffie 让 Brock 施放 Super 时提速 30%"
+        - "Rocket Laces Buffie 命中英雄后再获得 2 秒 20% 加速，能把一次自保转成二次重定位"
+        - "More Rockets 增加 Super 火箭并压缩发射间隔；Buffie 让 Brock 施放 Super 时提速 20%"
         - "Damage + Shield 更偏向爆发阈值与低血容错"
       enables:
         - long_range_pressure
@@ -97,7 +97,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Brock|Fandom-Brock]]"
       changes_capabilities:
         - "弹药上限从 3 变 4，但装填速度不变，打空后全回满的时间更长"
-        - "Buffie 每 6 秒充好一次，仅让下一发多 2 格射程；这是可储存的单发对线资源，不是持续 11 格射程"
+        - "Buffie 每 8 秒充好一次，仅让下一发多 2 格射程；这是可储存的单发对线资源，不是持续 11 格射程"
       enables:
         - intermittent_range_advantage
         - four_ammo_burst_or_round_start_hold
@@ -131,7 +131,7 @@ bp_brawler_profile:
         - Gem Fort
       bp_use: terrain_state_plan.transform
     - map_feature_type: charged_extra_range_long_sightline
-      uses_feature_by: "Rocket No. 4 Buffie 在 6 秒节奏后储存一发额外 2 格射程火箭"
+      uses_feature_by: "Rocket No. 4 Buffie 在 8 秒节奏后储存一发额外 2 格射程火箭"
       objective_conversion: "在 Bounty/Knockout 开局、回合重置或卡位期先逼退长手，为后续普通射程换血抢位"
       active_when: "长直线有可预判目标，Brock 能保留该发而不被迫先清路"
       fails_if: "需要持续输出、高机动目标躲掉充能发，或把单发射程误当整个对线期的常驻射程"
@@ -173,7 +173,7 @@ bp_brawler_profile:
         - reliable_close_range_duel
       needs_teammate_support:
         - bush_check_or_peel
-      false_positive: "Rocket No. 4 的 11 格只是每 6 秒一发；长线图若敌方有高机动接近和队友保护不足，Brock 仍会变成暴露点"
+      false_positive: "Rocket No. 4 的 11 格只是每 8 秒一发；长线图若敌方有高机动接近和队友保护不足，Brock 仍会变成暴露点"
     - mode: Brawl Ball
       can_fulfill:
         - break_goal_wall
@@ -207,7 +207,7 @@ bp_brawler_profile:
       needs_teammate_support:
         - "草区侦测和近身 peel"
         - "视野或开墙配合"
-      false_positive: "Rocket No. 4 的 11 格只是每 6 秒一发；Dry Season/Shooting Star 这类长线图上 Brock 仍是 9 格基础射程，且低血慢弹道容易被高速目标惩罚"
+      false_positive: "Rocket No. 4 的 11 格只是每 8 秒一发；Dry Season/Shooting Star 这类长线图上 Brock 仍是 9 格基础射程，且低血慢弹道容易被高速目标惩罚"
     - mode: "Hot Zone"
       can_fulfill:
         - "长线 poke 压退进区 body"
@@ -293,7 +293,7 @@ bp_brawler_profile:
   slot_notes:
     slot_1: "只在 Heist 长线或选择性开墙能立即转化时先手；不得用 Rocket No. 4 的单发 11 格虚构持续射程优势。"
     slot_2_3: "可建立远程开墙或跟随式 Super 逼位计划；需要 anti-aggro，也要预先决定 Laces 是保命还是为 Super 转位。"
-    slot_4_5: "适合修复己方缺远程/开墙的问题；若选 Rocket No. 4，需确认 6 秒充能节奏真能换到目标位。"
+    slot_4_5: "适合修复己方缺远程/开墙的问题；若选 Rocket No. 4，需确认 8 秒充能节奏真能换到目标位。"
     slot_6: "敌方缺高机动和远程答案时，可用打库、精确开墙或单发超距离消耗惩罚；不能把 Laces 当无限击退。"
 ```
 

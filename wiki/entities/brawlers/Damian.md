@@ -32,7 +32,7 @@ bp_brawler_profile:
     burst: medium_high_with_empowered_attack_chain_explosion
     sustained_dps: medium; 1.2 秒 fast reload 但需要持续贴身
     objective_damage: low_medium; 主要通过清人/站点转目标
-    mobility: high_with_super_jump_over_obstacles_or_lakes
+    mobility: high_with_super_jump_over_obstacles_or_lakes; 跳跃速度 3000→2400，进场兑现更慢但落点不变
     survivability: high_health_and_tank_trait; depends_on_damage_taken_for_super
     engage: high_with_mosh_pit_or_empowered_speed
     disengage: medium_with_super_escape_or_spiritual_healing

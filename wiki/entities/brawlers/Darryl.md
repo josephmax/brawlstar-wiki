@@ -51,7 +51,7 @@ bp_brawler_profile:
     objective_damage: "high_if_heist_entry_connects; Recoiling Rotator and point-blank shells can damage safe, but he needs a route and Super timing"
     mobility: "high_resource_based; auto-charging double Barrel Roll gives two long, shielded entries and can cross water"
     survivability: "high_during_entry; Power 11 11000 health, 50% roll shield, and Steel Hoops 25% post-roll shield let him absorb one engage window"
-    engage: "high_route_based; roll knockback and Tar Barrel force contact when terrain narrows the entry"
+    engage: "high_route_based; roll knockback and Tar Barrel force contact when terrain narrows the entry; 死亡不再丢失未使用的 Super 充能"
     disengage: "medium_high; roll can escape or cross water, but spending both rolls removes pressure until auto-charge returns"
     anti_aggro: "medium_high; knockback, Tar Barrel slow, and shotgun burst punish divers if Darryl has roll or close spacing"
     anti_tank: "medium; close burst is real, but percent damage, knockback chains, or heavier melee can reverse the trade"

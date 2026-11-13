@@ -19,7 +19,8 @@ sources:
 ## 妙具与星辉
 
 - Planetary Pushback：范围击退；来源冷却为 14 秒。
-- Telescope Trap：揭示指定区域 6 秒，包括隐形目标；区域内限制冲刺、跳跃、传送等移动能力；来源冷却为 24 秒。
+- Telescope Trap：揭示指定区域 6 秒，包括隐形目标；区域内限制冲刺、跳跃、传送等移动能力；来源冷却为 24 秒，作用尺寸由 1300 降至 1000（官方相对缩放）。
+- Hypercharge COSMIC CAPTURE：Super 会追踪目标并将其 root 2 秒；仍需要 Super 命中目标才形成引力区域。
 - Precession：普攻行星的环绕速度增加 25%，不等同于飞行速度增加。
 - Ammo Attractor：超级技能命中英雄时补回 2 发弹药。
 
@@ -56,7 +57,7 @@ bp_brawler_profile:
     survivability: "Power 11 health 7200; relies on spacing and selected gadget, no unconditional self sustain"
     engage: "ranged_mark_and_team_followup; Super must hit first"
     disengage: "conditional_Planetary_Pushback_or_preplaced_Telescope_Trap"
-    anti_aggro: "build_and_cooldown_dependent; one gadget only, no permanent movement lock"
+    anti_aggro: "build_and_cooldown_dependent; one gadget only, no permanent movement lock; COSMIC CAPTURE 提供 2 秒 root 但依赖 Hypercharge 与 Super 命中"
     anti_tank: "requires_range_and_team_fire; weak_point_blank_trade"
     wall_break: "none"
     throw_or_wall_bypass: "no_reliable_main_attack_wall_bypass; lobbed_gadget_is_not_damage_lane"
@@ -84,7 +85,7 @@ bp_brawler_profile:
     - build: "Telescope Trap / Ammo Attractor / Shield, Damage"
       source: "[[sources/Fandom-Cosmo]]"
       changes_capabilities:
-        - "投掷区域揭示隐形并限制区域内移动能力，持续 6 秒、冷却 24 秒"
+        - "投掷区域揭示隐形并限制区域内移动能力，持续 6 秒、冷却 24 秒，作用尺寸由 1300 降至 1000"
         - "替换击退妙具，不会同时拥有 Planetary Pushback"
       enables:
         - "temporary_reveal"

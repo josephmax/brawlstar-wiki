@@ -23,7 +23,8 @@
 - [[syntheses/BP-下一阶段迭代方向决策记录|BP 下一阶段迭代方向决策记录（讨论中）]]
 - [[syntheses/BP-强度层语义回归与高分选取率估计器|BP 强度层语义回归与高分选取率估计器（讨论中）]]
 - [[syntheses/BP-strength-profile-tierlist-maker调研|BP strength_profile tier list maker 调研]]
-- [[syntheses/Ranked-Season-49-地图Map-Profile总览|Ranked Season 49 地图 Map Profile 总览]]（当前赛季，featured = Hot Zone）
+- [[syntheses/Ranked-Season-50-地图Map-Profile总览|Ranked Season 50 地图 Map Profile 总览]]（当前赛季，featured = Brawl Ball）
+- [[syntheses/Ranked-Season-49-地图Map-Profile总览|Ranked Season 49 地图 Map Profile 总览]]（已过期，featured = Hot Zone）
 - [[syntheses/Ranked-Season-48-地图Map-Profile总览|Ranked Season 48 地图 Map Profile 总览]]（已过期，featured = Brawl Ball）
 - [[syntheses/Ranked-Season-47-地图Map-Profile总览|Ranked Season 47 地图 Map Profile 总览]]（已过期，保留作历史索引）
 - [[syntheses/Ranked-Season-46-地图Map-Profile总览|Ranked Season 46 地图 Map Profile 总览]]（已过期，保留作历史索引）

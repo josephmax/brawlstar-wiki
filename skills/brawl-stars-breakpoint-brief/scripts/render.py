@@ -44,7 +44,16 @@ def main():
   for (before,after),entries in ([] if compact else sorted(groups.items())):
    icons=''.join('<span class="target">'+img(e['target'])+('<b title="等值边界需核验">·</b>' if e.get('rounding_review_required') else '')+('<i title="攻击与目标同时变化">+</i>' if len(e.get('change_drivers',[]))>1 else '')+'</span>' for e in entries)
    cls='up' if after<before else 'down'
-   lines.append(f'<div class="group"><div class="change {cls}">{before}<small>→</small>{after}<em>发</em></div><div class="faces">{icons}</div><span class="count">{len(entries)}</span></div>')
+   unit='发'
+   if (who,pid)==('Amber','main.single_flame'):
+    unit='秒'
+    if max(before,after)>40:
+     before,after='跨弹仓','时间待核验'
+    else:
+     before,after=(f'{(hits-1)/10:.1f}' for hits in (before,after))
+   lines.append(f'<div class="group"><div class="change {cls}">{before}<small>→</small>{after}<em>{unit}</em></div><div class="faces">{icons}</div><span class="count">{len(entries)}</span></div>')
+  if (who,pid)==('Amber','main.single_flame'):
+   packet_names[pid]='连续暴露时间 · 从首枚命中计，满弹全中、不计飞行；单枚伤害'
   label='普攻 · 5 弹全中' if who=='Shelly' and pid=='main.full_connect' else packet_names.get(pid,pid); cards.append(f'<article class="card"><header>{img(who,"hero")}<div><strong>{esc(who)}</strong><p>{esc(label)} · {esc(old)} → {esc(new)}</p></div><span class="badge">{len(rows)} 条</span></header>{"".join(lines)}</article>')
  target_changes=[z for z in pairs if any(v in z.get('change_drivers',[]) for v in ('target_health','damage_reduction')) and z.get('comparison_kind')=='repeated_identical_packets']
  defense_cards=[]

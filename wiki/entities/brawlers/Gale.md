@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Gale 的 BP 价值来自低门槛的路线控制：8.33 格宽普攻负责扫草和持续减速，10 格 Super 可以穿障碍推人，`Twister` 用 5 秒封住短手、坦克、抓钩和冲锋入口。他不是纯输出位，也不是稳定破墙位；他的强度来自把敌方进场、持球、踩区和 carrier 追击转化成“必须绕路或被推走”的时间税。需要注意的是，`Twister` 只阻碍移动不阻止敌人攻击，Super 推远 Piper/Emz 这类远距离收益目标也可能反向放大对方输出。
+Gale 的 BP 价值来自低门槛的路线控制：8.33 格宽普攻负责扫草和持续减速，10 格 Super 可以穿障碍推人，`Twister` 用 5 秒推开试图穿过的敌人，`North Wind Wall` 则重定向穿过风墙的敌方投射物。他不是纯输出位，也不是稳定破墙位；他的强度来自把敌方进场、持球、踩区和 carrier 追击转化成“必须绕路或被推走”的时间税。需要注意的是，`Twister` 只阻碍移动不阻止敌人攻击，Super 推远 Piper/Emz 这类远距离收益目标也可能反向放大对方输出。
 
 ## BP 建模
 
@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long_control; 普攻 8.33 格，Super 10 格并可穿障碍"
     projectile_reliability: "high_for_area_sweep_medium_for_focus_kill; 6 个雪弹宽线易扫草/多人，但正常体型近距离最多约 4 发命中"
-    burst: "medium_with_super_or_blustery_wall_stun; Super 本身已有 800 基础伤害，推墙 1.25 秒 stun 后可继续接普攻，但仍不是独立爆发核心"
+    burst: "medium_with_super_or_blustery_wall_stun; Super 本身已有 800 基础伤害，推墙 1.25 秒 stun 后可继续接普攻；Blustery Blow 芭菲在眩晕时额外造成 440 伤害，但仍不是独立爆发核心"
     sustained_dps: "medium; 1.2 秒 very fast reload 支撑持续压线，但单发伤害低"
     objective_damage: "近距离多雪弹可补伤害，不是主打库手"
     mobility: "无弹板转点；风墙只改变投射物路线"
@@ -43,10 +43,10 @@ bp_brawler_profile:
     anti_tank: "high_when_route_is_narrow; 推离、减速和 Twister 让短手失去接触窗口"
     wall_break: "none"
     throw_or_wall_bypass: "Super 可穿障碍推人；普攻不能隔墙输出"
-    area_control: "high; Twister 2 格半径持续 5 秒，Super 宽风路清入口"
+    area_control: "high; Twister 2 格半径持续 5 秒并把试图穿过的敌人推开，芭菲给穿过的队友 2 秒 20% 移速；Super 宽风路清入口，Hyper Raging Blizzard 更宽并连发两次"
     scouting_or_vision: "medium; 宽普攻扫草，Twister/slow 逼出草口路径"
-    team_support: "正面风墙重定向投射物，Super 与 Twister 保护目标"
-    spawnable_or_pet: "短时风墙与 Twister；不阻挡英雄移动"
+    team_support: "North Wind Wall 重定向敌方投射物，并给穿过的友方投射物 20% 弹速（芭菲）；Twister 推开敌方并给友方 20% 移速；Super 保护目标"
+    spawnable_or_pet: "短时风墙与 Twister；Twister 会推开试图穿过的敌方，不阻挡友方移动"
     crowd_control: "very_high; knockback, slow, wall-stun, route denial"
     source_trace:
       - "[[sources/Fandom-Gale|Fandom-Gale]]"
@@ -56,8 +56,8 @@ bp_brawler_profile:
     - build: "Twister / Freezing Snow / Shield, Damage"
       source: "[[sources/PLP-Gale|PLP-Gale]]"
       changes_capabilities:
-        - "Twister 把 5 秒入口封锁加入 Gadget 资源，用来挡 Buzz/Fang/Darryl/Bull/Colette 等位移路线"
-        - "Freezing Snow 让每次普攻命中附带 0.5 秒 slow，提升压区和防突进稳定性"
+        - "Twister 把 5 秒入口封锁加入 Gadget 资源，用来推开 Buzz/Fang/Darryl/Bull/Colette 等位移路线；芭菲给穿过的队友 2 秒 20% 移速"
+        - "Freezing Snow 让每次普攻命中附带 0.5 秒 slow；芭菲按距离最多减速 50%，越接近 Gale 越强"
         - "Shield gear 给中血控制位更多站线容错，Damage gear 配合 800 基础伤害 Super 提高推离或推墙后的击杀确认"
       enables:
         - "Hot Zone 单区入口封锁"
@@ -72,8 +72,9 @@ bp_brawler_profile:
     - build: "North Wind Wall / Blustery Blow variants"
       source: "[[sources/Fandom-Gale|Fandom-Gale]]"
       changes_capabilities:
-        - "风墙持续 5 秒；偏转敌弹 20%，装配芭菲时友方穿墙弹道加速 20%；26 秒冷却"
-        - "Blustery Blow 在 Super 把敌人推到墙体时提供 1.25 秒 stun"
+        - "风墙持续 5 秒；重定向穿过风墙的敌方投射物并偏转 20%，芭菲让友方穿墙弹道加速 20%；26 秒冷却"
+        - "Blustery Blow 在 Super 把敌人推到墙体时提供 1.25 秒 stun；芭菲额外造成 440 伤害"
+        - "Hyper Raging Blizzard 让 Super 更宽并连发两次，把敌人推得更远；芭菲追加一颗更大的雪球"
       enables:
         - "掩护队友穿过正面火线"
         - "削弱敌方从正面射入的投射物"

@@ -35,10 +35,10 @@ bp_brawler_profile:
   capability_vector:
     effective_range: mid_at_stage0_or_stage1_long_after_stage2; Serve Ice Cold 解决首个速度阶段但不会提前给 8.67 格射程
     projectile_reliability: medium_at_stage0_or_stage1_high_after_stage2; 开局可立即取得 820 移速改善走位，真正的长线和分裂压力仍依赖第二次升级
-    burst: high_with_three_ammo_or_split_hits_but_slower_470ms_unload
+    burst: high_with_three_ammo_or_split_hits; 卸弹 400ms（由 470ms 加快）
     sustained_dps: medium_low_reload; 装填慢但单轮爆发高
     objective_damage: low_medium; 不是 Heist 主 race
-    mobility: high_after_opening_Super_with_Serve_Ice_Cold; Stage 0 为 680，默认开局满 Super 可立即进入 820 移速的 Stage 1
+    mobility: high_after_opening_Super_with_Serve_Ice_Cold; Stage 0 为 680，默认开局满 Super 可立即进入 820 移速的 Stage 1；Hypercharge Super 不再立即升到 level 5
     survivability: medium; Super 免疫窗口和 Power Shield 提供关键对拼容错
     engage: medium; 短跳可接近或躲技能，但不是长距离刺客进场
     disengage: medium_with_Super_or_speed
@@ -76,7 +76,7 @@ bp_brawler_profile:
     - build: Power Shield into assassins_or_tanks
       source: "[[sources/PLP-Surge|PLP-Surge]] / [[sources/Fandom-Surge|Fandom-Surge]]"
       changes_capabilities:
-        - 下一次受击减伤并补 1 ammo，仍能提高近身反杀容错，但不再一次补回大半弹仓
+        - 下一次受击减伤并补 1 ammo，冷却 18 秒；Buffie 返冷 30%。仍能提高近身反杀容错，但不再一次补回大半弹仓
       enables:
         - anti_assassin_duel
         - anti_tank_ammo_refund

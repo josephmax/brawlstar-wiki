@@ -1838,9 +1838,21 @@ Gus 案例评审（维护者确认 active_when/fails_when 边界分析准确、G
 
 - [[sources/Supercell-Maintenance-November-11-2026|本期来源、处置与断点账本]]：归档官方更新和 12 名现有英雄双源，记录两名预发布英雄的调整、暂缓排位建模。新账本 12/12 处置，未覆盖或冲突的时序、单位保留在来源层。
 - 复算 108 英雄 / 258 防御态；Amber 按单枚火苗，Wendy 按单发直击，得到 504 条变化及 179 条装备压力。重审全库结构与对位归属，修正旧风墙、雪球、惊吓盒、增援弹药与其他技能条件；不按命中数直接生成克制边。按快报技能生成本期专用可编辑 HTML 和 PNG。全库状态仍有 11 月 3 日旧账本、地图池等独立待办。
+- 快报展示口径：琥珀改为满弹连续命中、从首枚命中计的暴露秒数；德拉科龙息按距离区分，缺少覆盖与喷射节奏时标为待核验。原始断点与配装明细不变。
 
 ## [2026-11-13] maintenance | 官方简中 / 繁中英雄名归一化
 
 - 从 BrawlAPI 公开游戏数据快照 `2026-10-03T16:59:28.000Z` 提取 108 个英雄的官方简体中文名和繁体中文名，保留内部角色名与文本 TID，新增 [[sources/BrawlAPI-英雄名称本地化-2026-10-03|来源摘要]] 和聚焦 raw capture。
 - 在 [[concepts/英雄名称归一化|英雄名称归一化]] 中补齐缺失的官方中文译名，并补上原先缺项的 Nori、Wendy 条目；社区称谓、emoji 和官方译名仍共用同一张多对一映射表。
 - `拜瑞`/`貝瑞` 现在直接归一化到 Berry，不再进入 Berry / Byron 的近似候选；工具侧应从该归一化页重新生成局部消费产物，不另建中文别名表。
+
+## [2026-11-13] 断点审计规范 | 持续喷射的暴露时间
+
+- 将持续喷射优先报告暴露秒数的准则从快报提升到断点审计维护规范。每期重新核验命中节奏、距离与弹仓；资料不足则标待核验，底层命中数明细不删。未改变断点计算或 BP 对位方向。
+
+## [2026-11-13] maintenance | 结清 2026-11-03 平衡补丁 34/34
+
+- 按 `version_fold_ledger` 官方原文逐英雄并入 34 个待办项：20 个 `model_changed`、14 个 `numbers_only`；Berry 的 `Secret Formula`、Chester 的可见下一 Super、Gale/Lou/Mandy/Mr. P 的 Buffie 重做均改写稳定字段，11/11 最终覆盖值保持不变。
+- 建成 Vince 的完整 `bp_ready` profile（六模式 contract、3 个 map hook、对位与 slot notes），并更新环境项：新英雄暂缓、Ranked 规则写入 [[concepts/Ranked|Ranked]]、18 张社区地图核对后确认不在当前 Ranked 池。
+- 重抓 Fandom Ranked 页（revid 221755，2026-11-13），地图池由 Season 49 更新为 Season 50（featured Brawl Ball），新增 [[syntheses/Ranked-Season-50-地图Map-Profile总览|Season 50 地图索引]]；11 月 3 日账本上游修订号写为 222450。
+- 验证：`version_status.py --strict` 为 error 0 / open 0；维护 skill 64 项测试、`test_version_status.py` 11 项、`test_balance_breakpoints.py` 11 项通过；108 名英雄 BP profile 审计 0 blocker；11 月断点审计无新增一致性错误。

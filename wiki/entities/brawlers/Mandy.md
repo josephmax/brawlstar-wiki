@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Mandy 的 BP 价值来自 12 格 Focus 射程、In My Sights 在专注命中后的射程叠加、Cookie Crumbs 的墙后惩罚，以及 Sugar Ray 的超长直线收割。她适合把 Bounty/Knockout 的“先拿空间、逼对手分散、在窄线里一枪改局”做极致；弱点是专注需要站定，Super 可被打断，且 Power 11 6000 HP 对刺客和高压长线都很脆。
+Mandy 的 BP 价值来自 12 格 Focus 射程、旧 In My Sights 的专注弹速已并入基础 kit、In My Sights 在专注命中后的射程叠加、Cookie Crumbs 的墙后惩罚，以及 Sugar Ray 的超长直线收割。她适合把 Bounty/Knockout 的“先拿空间、逼对手分散、在窄线里一枪改局”做极致；弱点是专注默认需要站定，Super 可被打断，且 Power 11 6000 HP 对刺客和高压长线都很脆。
 
 ## BP 建模
 
@@ -31,7 +31,7 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: "very_long; 9 格基础射程，站定 0.45 秒后 Focus 到 12 格，Super 40 格穿墙直线"
-    projectile_reliability: "专注时基础弹速提高；In My Sights 延长命中后的射程，不保证命中，未专注或被迫移动时可靠性下降"
+    projectile_reliability: "专注时基础弹速提高（旧 In My Sights 效果已并入基础 kit）；In My Sights 每命中一个敌人延长 1 格射程，直到解除专注，不保证命中；芭菲允许移动后 0.75 秒内保持专注"
     burst: "high_pick_burst; Power 11 普攻单发 2800，未带盾/减伤的基础血量 <=5600 为两发线、<=8400 为三发线；Sugar Ray 直线伤害可跨屏收割或逼退低血"
     sustained_dps: "medium; 1.5 秒装填和单发节奏，适合稳定换血而非近距离持续战"
     objective_damage: "conditional_heist_lane; Safe Zone 等直线角度可用 Super 打 safe，但不是 PLP 主模式"
@@ -46,14 +46,14 @@ bp_brawler_profile:
     area_control: "medium; Super 直线威慑窄口和撤退线，但没有持续地面控制"
     scouting_or_vision: "medium_with_vision_gear; 长线和 Vision gear 可跟踪草后撤退目标"
     team_support: "low; 通过长线压制间接保护队友"
-    crowd_control: "Caramelize 命中减速 10%–25%，芭菲加速 10%–25%；Cookie Crumbs 穿墙命中英雄才触发芭菲返冷 30%。两妙具命中可充 Super，不能保证固定循环"
+    crowd_control: "Caramelize 可瞄准、消耗弹药，命中减速 10%–25% 持续 2 秒；芭菲加速 10%–25%。Cookie Crumbs 可瞄准、消耗弹药，穿墙命中英雄触发芭菲返冷 30%。两妙具命中均可充 Super，不能保证固定循环"
 
   build_switches:
     - build: "Cookie Crumbs / In My Sights / Shield, Damage"
       source: "[[sources/PLP-Mandy|PLP-Mandy]]"
       changes_capabilities:
-        - "把墙后残血、掩体后复位和 Knockout 缩圈前躲墙目标纳入击杀线"
-        - "In My Sights 在专注命中英雄后每次增加 1 格射程，解除专注后重置"
+        - "Cookie Crumbs 可瞄准并消耗弹药，把墙后残血、掩体后复位和 Knockout 缩圈前躲墙目标纳入击杀线；穿墙命中英雄触发芭菲返冷 30%"
+        - "In My Sights 在专注命中英雄后每次增加 1 格射程，解除专注后重置；芭菲在移动后 0.75 秒内仍保持 Focus"
       enables:
         - "Bounty/Knockout 中穿墙收割和远程对狙"
       mitigates_failure_modes:
@@ -65,7 +65,7 @@ bp_brawler_profile:
     - build: "Caramelize / In My Sights / Shield, Vision"
       source: "[[sources/Fandom-Mandy|Fandom-Mandy]]"
       changes_capabilities:
-        - "把单发从纯伤害改成反接近和窄口控制"
+        - "Caramelize 可瞄准并消耗弹药，命中减速 10%–25% 持续 2 秒；把单发从纯伤害改成反接近和窄口控制"
       enables:
         - "开阔图减速前排、迫使突进者交资源、追踪草后撤退"
       mitigates_failure_modes:
@@ -76,8 +76,8 @@ bp_brawler_profile:
     - build: "Cookie Crumbs or Caramelize / Gobstopper / Shield"
       source: "[[sources/Fandom-Mandy|Fandom-Mandy]]"
       changes_capabilities:
-        - "Gobstopper 扩大 Super 弹体；Focused 提供射程，但不提供减伤"
-        - "放弃 In My Sights 就失去命中后叠加射程；扩大 Super 弹体不是本体减伤"
+        - "Gobstopper 让 Super 扩大 20%；芭菲让 Focused 状态下 Super 前摇加快 50%"
+        - "放弃 In My Sights 就失去命中后叠加射程；Hyper Sugar For All! 向三个方向发射 Super，芭菲在 Hyper 期间保持 Focus 并拉远镜头"
       enables:
         - "在固定长线或回合末 choke 中持有 Focus 并承受一次远程换血"
       mitigates_failure_modes:

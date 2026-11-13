@@ -49,15 +49,15 @@ bp_brawler_profile:
     burst: high_if_center_hit_or_Hypercharged_Super; The Frightener 的 Hyper Buffie 扩大中心拥抱体积；伤害倍率来源口径不一致，不承诺固定增伤比例或斩杀线
     sustained_dps: medium_high; very fast reload but short range
     objective_damage: medium_conditional; close-range DPS if it reaches target
-    mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 4 秒（Hardened Hoodie Buffie +1 秒），Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
-    survivability: medium_high_during_Super_with_Hardened_Hoodie_20pct; The Frightener 在墙内持续回血，Jump Scare Buffie 提供衰减护盾；两者是时序窗口，不作为固定有效血量
+    mobility: very_high_with_Super_water_Jump_Scare_and_water_trait; Super 穿墙 4 秒（Hardened Hoodie Buffie +1 秒），Super 充能率 -12%，Jump Scare 至多 4 格越墙短跳，Spooky Speedster 中心命中 +20% 移速 2 秒
+    survivability: medium_high_during_Super_with_Hardened_Hoodie_20pct; The Frightener 在墙内持续回血，Jump Scare Buffie 提供 400 护盾；两者是时序窗口，不作为固定有效血量
     engage: high_from_wall_phase_water_route_or_Jump_Scare_wall_hop
     disengage: medium_high_if_Super_duration_remaining; Jump Scare 越墙跳+恐惧也能脱离追击
     anti_aggro: medium_high_with_Jump_Scare_fear; 落地恐惧 1 秒使敌人逃跑、40% 减速且无法攻击/开 Super，但 Shade 仍偏好借地形先手
     anti_tank: low_medium; high-health melee can punish short range
     wall_break: low
     throw_or_wall_bypass: very_high; attacks through walls and Super passes obstacles
-    area_control: medium; wall threat and Radius trait tax nearby enemies
+    area_control: medium; wall threat and Radius trait tax nearby enemies; Trait 面积充能效率 -13%
     scouting_or_vision: medium; Radius trait charges even from invisible/bush enemies in range
     team_support: low; pressure and route denial are indirect
     water_route_access: high
@@ -86,7 +86,7 @@ bp_brawler_profile:
     - build: "Jump Scare / Spooky Speedster chase variant"
       source: "[[sources/Fandom-Shade|Fandom-Shade]]"
       changes_capabilities:
-        - "Jump Scare 短距越墙跳跃、冷却 18 秒，落地近身范围恐惧 1 秒：敌人逃跑、40% 减速且无法攻击/开 Super；需实际落点覆盖目标，不能把旧大范围恐惧当远距先手。Buffie 提供衰减护盾，不把跳后持续承伤视为免伤"
+        - "Jump Scare 短距越墙跳跃、冷却 24 秒，落地近身范围恐惧 1 秒：敌人逃跑、40% 减速且无法攻击/开 Super；需实际落点覆盖目标，不能把旧大范围恐惧当远距先手。Buffie 提供 400 护盾，不把跳后持续承伤视为免伤"
         - "Spooky Speedster 中心命中 +20% 移速 2 秒；Buffie 命中后按当前冷却 -15% 缩短 Gadget 冷却"
       enables:
         - close_range_chase

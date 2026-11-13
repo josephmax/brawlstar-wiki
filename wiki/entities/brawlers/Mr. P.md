@@ -56,8 +56,8 @@ bp_brawler_profile:
     - build: "Service Bell / Revolving Door / Shield, Damage, Pet Power"
       source: "[[sources/PLP-Mr-P|PLP-Mr-P]]"
       changes_capabilities:
-        - "Service Bell 给当前 porter 回满并提高约 52.9% HP / 43.8% damage"
-        - "Revolving Door 提高 Super porters 20% HP / 30% damage"
+        - "Service Bell 强化当前 porter：+114 damage、+740 health，且不再有距离限制；芭菲让被强化 porter 与 Mr. P 各获得 1070 护盾，也可在没有 porter 时单独给 Mr. P 护盾"
+        - "Revolving Door 提高 Super porters 20% HP / 30% damage；芭菲让公文包命中 porter 时治疗 420"
         - "Pet Power 强化 porter damage，适合 Bounty/Knockout 消耗"
       enables:
         - "Bounty/Knockout long lane ammo tax"
@@ -72,8 +72,8 @@ bp_brawler_profile:
     - build: "Porter Reinforcements / Handle With Care variant"
       source: "[[sources/Fandom-Mr-P|Fandom-Mr-P]]"
       changes_capabilities:
-        - "Porter Reinforcements 消耗一格弹药，26 秒冷却，在手提箱落点生成弱 porter，用于挡弹或立刻逼退低伤长手"
-        - "Handle With Care 每 4 秒强化弹跳段伤害，在墙多图提升 poke"
+        - "Porter Reinforcements 消耗一格弹药，26 秒冷却；手提箱造成 760 伤害并在落点生成 mini-Porter。芭菲每命中一个敌人额外生成一个 Porter"
+        - "Handle With Care 每 4 秒让下一次 overstuffed suitcase 爆炸伤害 +40%；芭菲让爆炸第二次触发并造成 50% 伤害"
       enables:
         - "即时挡弹"
         - "墙后二段伤害"
@@ -87,7 +87,7 @@ bp_brawler_profile:
   map_feature_hooks:
     - id: "bounty_knockout_porter_ammo_tax"
       map_feature_type: "long_lane_spawnable_tax"
-      uses_feature_by: "home base 持续产 porter，Service Bell/Revolving Door 让对手花 ammo 清宠"
+      uses_feature_by: "home base 持续产 porter，Service Bell 给当前 porter +114 damage/+740 health 且无距离限制，Revolving Door 让对手花 ammo 清宠；Hyper 可同时维持两只 Super Porter"
       route_or_position: "Bounty 长线、Knockout 中线、星差防守墙后"
       objective_conversion: "保护星差、逼长手后退、制造队友 peek 窗口"
       active_when: "home base 能被墙保护，敌方缺穿透/弹射/投掷快速清"
@@ -112,7 +112,7 @@ bp_brawler_profile:
       bp_use: "map_bp_factors.pseudo_thrower_single_wall_poke"
     - id: "bush_porter_scouting"
       map_feature_type: "spawnable_bush_scout"
-      uses_feature_by: "porter 会追踪敌人，可把草内隐藏目标逼出来或吃第一发"
+      uses_feature_by: "porter 会追踪敌人，可把草内隐藏目标逼出来或吃第一发；Hyper Buffie 让 overstuffed suitcase 爆炸后向 Mr. P 弹回 3 次并再次爆炸"
       route_or_position: "中心草、侧草绕后、Brawl Ball/Gem Grab 草口"
       objective_conversion: "降低草伏击风险，保护星差或 carrier 撤退"
       active_when: "敌方依赖隐藏接近，且 porter 能从安全 base 持续生成"

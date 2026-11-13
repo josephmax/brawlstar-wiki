@@ -51,11 +51,11 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: "long 8 tile straight blast; best when she can chip and shield-cycle behind a frontline on open lanes"
-    projectile_reliability: "medium to high on open lanes; straight projectile blocked by walls and bodies, and the shield cycle stalls when shots miss"
+    projectile_reliability: "medium to high on open lanes; 弹体宽 1.34 格（本次 -20%），直线弹道会被墙和身体阻挡，失手会中断护盾循环"
     burst: "low to medium; Power 11 单发 1600 的稳定输出，无爆发包"
     sustained_dps: "medium with 1.45s fast reload; sustained pressure exists but is support-grade"
     objective_damage: "low direct safe/objective DPS; objective contribution is shields, damage redirection and zone mitigation"
-    mobility: "medium base 800 fast plus water walking; Wind-Powered adds a 5 tile jump over walls and water with airborne immunity"
+    mobility: "medium base 800 fast plus water walking; Wind-Powered adds a 3.33 tile jump over walls and water with airborne immunity"
     survivability: "near-lowest body in game at Power 11 5000 (second-lowest per Fandom lead), but effective spawn health is Power 11 7000 with the non-decaying starting shield at 40% max health; ally shields add Power 11 1520 per hit with stacking to 4x"
     engage: "medium as shield-entry support; feeding shields to a mobile or high-HP teammate creates a protected entry window"
     disengage: "high with Wind-Powered jump over walls or water and the slowing Green Grenade"
@@ -63,7 +63,7 @@ bp_brawler_profile:
     anti_tank: "low to medium; moderate single-target damage does not cut through high-HP bodies, contribution is mitigation for the team answer"
     wall_break: "none"
     throw_or_wall_bypass: "Super is lobbed over walls to place the turbine; Wind-Powered jumps walls; attack remains line-of-sight"
-    area_control: "high around a planted turbine: Slowing Shield field plus 60% damage redirection makes the zone a fortification; Green Grenade adds 2 tile slow and 5s anti-heal"
+    area_control: "high around a planted turbine: Slowing Shield slows enemies inside by 15%, and 60% damage redirection makes the zone a fortification; Green Grenade adds 2 tile slow and 5s anti-heal"
     scouting_or_vision: "low; no reveal tool"
     team_support: "very_high; personal and ally shields, team-wide damage redirection, water-route taxi via own mobility is limited to herself, shield-feeding turns a carrier into the effective health pool"
     spawnable_or_pet: "deployable turbine only; it is destructible and focusable, not a pet"
@@ -75,7 +75,7 @@ bp_brawler_profile:
     - build: "Wind-Powered / Solar Shield / Shield, Damage, Vision"
       source: "[[sources/PLP-Wendy|PLP-Wendy]]"
       changes_capabilities:
-        - "jump adds wall and water escape or entry with airborne immunity"
+        - "jump adds 3.33 格越墙/过水逃生或进场，并获得空中免伤"
         - "Solar Shield raises turbine durability, extending the fortification window（2026-09-16 削弱后加成值存在来源口径冲突，见 [[sources/Fandom-Maintenance-September-16-2026|9 月维护账本]]）"
       enables:
         - "shield-fed carrier push on Brawl Ball goal routes"
@@ -90,7 +90,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Wendy|Fandom-Wendy]]"
       changes_capabilities:
         - "grenade adds 2 tile slow with 5s anti-heal, answering sustain comps"
-        - "Slowing Shield turns the turbine into a slow field for peel and zone denial"
+        - "Slowing Shield turns the turbine into a 15% slow field for peel and zone denial"
       enables:
         - "anti-heal answer into Byron, Poco, Juju style sustain"
         - "Hot Zone circle denial anchored on the turbine"

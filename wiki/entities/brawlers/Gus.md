@@ -48,7 +48,7 @@ bp_brawler_profile:
     effective_range: "very_long 9.33 tile straight projectile; best on lanes where Gus can tag safely while supporting a higher-value teammate"
     projectile_reliability: "medium to high on open lanes; blocked by walls, bodies, and spawnables because the attack is a straight projectile"
     burst: "medium baseline, high only when Kooky Popper spirits stack or Spirit Animal damage boost converts through an ally"
-    sustained_dps: "medium with 1.5s reload; pressure is valuable because hits build spirit resources"
+    sustained_dps: "medium with 1.5s reload; pressure is valuable because hits build spirit resources; Super 充能率 -8%"
     objective_damage: "low direct safe/objective DPS; objective contribution is protection, carrier support, and pick conversion"
     mobility: "low; no dash or reposition tool"
     survivability: "low self body at Power 11 6600 health, but high ally survivability through an initial 5200 shield (Power 11, decaying over time) and knockback"
@@ -58,10 +58,10 @@ bp_brawler_profile:
     anti_tank: "medium through protected teammate and Kooky Popper traps; low as a solo tank duel"
     wall_break: "none"
     throw_or_wall_bypass: "Super passes through walls to shield an ally; attack remains line-of-sight"
-    area_control: "medium through spirit pickup placement and Kooky Popper threat around gem or lane approaches"
+    area_control: "medium through spirit pickup placement and Kooky Popper threat around gem or lane approaches; 场上 spirits 上限由 10 降至 3"
     scouting_or_vision: "low to medium because spirits can mark contested spaces but do not replace true reveal"
-    team_support: "very_high with shield, healing spirits, damage boost and Buffied 15% speed window, dive peel, Kooky Popper Buffie ammo steal, and homing spirits under the Health Bonanza Buffie"
-    spawnable_or_pet: "resource pickups rather than autonomous pets; can still tax space when Kooky Popper is available"
+    team_support: "very_high with shield, healing spirits, damage boost and Buffied 15% speed window, dive peel, Kooky Popper Buffie ammo steal; Health Bonanza Buffie 让 spirits 缓慢追向队友但移速 -50%，Spooky Pop Buffie 的弹体尺寸相对 -15%"
+    spawnable_or_pet: "resource pickups rather than autonomous pets; 场上最多 3 个 spirits，Kooky Popper 仍可把存量转成区域税"
     crowd_control: "medium knockback around Super target plus the reworked Knockback Spirit gadget knockback; Buffied Knockback Spirit spawns a spirit for each Brawler hit"
     terrain_creation: "none"
     terrain_destruction: "none"
@@ -72,7 +72,7 @@ bp_brawler_profile:
       changes_capabilities:
         - "turns spirit placement into a burst trap or zone deterrent; the Buffie also strips 1 ammo from every enemy hit"
         - "adds a 25% damage boost to the shielded target for a short conversion window; the Buffie pairs it with a 15% speed window"
-        - "Spooky Pop Hyper Buffie grows the balloons and makes them pierce walls, upgrading the hyper-window burst through cover"
+        - "Spooky Pop Hyper Buffie grows the balloons and makes them pierce walls（本次相对缩减 15%），升级 hyper 窗口的穿墙爆发"
       enables:
         - "Bounty star-holder protection"
         - "Knockout shielded engage or peel"
@@ -85,7 +85,7 @@ bp_brawler_profile:
     - build: "Kooky Popper / Health Bonanza / Shield, Gadget Charge"
       source: "[[sources/Fandom-Gus|Fandom-Gus]] + [[sources/Fandom-Release-Notes-August-2026|Release Notes August 2026]]"
       changes_capabilities:
-        - "increases spirit healing by 75% (1.75 times baseline) and makes placed spirits a stronger retreat resource; the Buffie makes spirits drift toward the nearest ally"
+        - "increases spirit healing by 50% (1.5 times baseline) and makes placed spirits a stronger retreat resource; the Buffie makes spirits drift toward the nearest ally at 50% reduced movement speed"
         - "keeps Kooky Popper as area deterrent around predictable approaches; the Buffie strips 1 ammo from enemies hit"
       enables:
         - "gem carrier retreat support"

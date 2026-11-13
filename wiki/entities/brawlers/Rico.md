@@ -50,7 +50,7 @@ bp_brawler_profile:
     burst: "high_if_bounce_volley_vending_explosion_or_split_projectiles_connect"
     sustained_dps: "high; 1.1 秒快装填，可持续用墙面压线"
     objective_damage: "high_conditional_on_durable_bounce_lane_or_safe_angle"
-    mobility: "low_base_high_at_low_health_with_Robo_Retreat; 低于 40% HP 提速，Buffie 在极低血时最高提到 60%"
+    mobility: "low_base_high_at_low_health_with_Robo_Retreat; 低于 40% HP 提速 25%，Buffie 在极低血时最高提到 40%"
     survivability: "low_base_conditional_with_vending_cover_Bouncy_slow_or_Robo_Retreat; Bouncy Castle 不提供自疗"
     engage: "low_medium_with_Bouncy_Castle_slow_or_vending_angle"
     disengage: "medium_with_vending_cover_Bouncy_slow_or_Robo_Retreat"
@@ -63,7 +63,7 @@ bp_brawler_profile:
     team_support: "lane_denial_temporary_projectile_cover_and_Bouncy_slow"
     wall_dependency: "medium_high; 贩卖机能短时制造反弹面，但不可代替耐久墙廊"
     spawnable_or_pet: "conditional; Multiball Launcher 贩卖机可挡非穿透弹道、承接反弹，被毁后环状放弹"
-    crowd_control: "conditional_with_Bouncy_Castle_Buffie; 分裂小弹减速 2 秒"
+    crowd_control: "conditional_with_Bouncy_Castle_Buffie; 分裂小弹减速 20% 持续 2 秒"
     source_trace:
       - "[[sources/Fandom-Rico|Fandom-Rico]]"
       - "[[sources/PLP-Rico|PLP-Rico]]"
@@ -92,8 +92,8 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Rico|Fandom-Rico]]"
       changes_capabilities:
         - "Bouncy Castle 不消耗弹药发射大子弹，碰墙或命中英雄后分成 3 枚小子弹"
-        - "Gadget Buffie 让分裂小弹对英雄减速 2 秒，提供追击、脱离或路口集火窗口"
-        - "Robo Retreat 在低血提供高移速，Buffie 让极低血逃生与走位更强"
+        - "Gadget Buffie 让分裂小弹对英雄减速 20% 持续 2 秒，提供追击、脱离或路口集火窗口"
+        - "Robo Retreat 在低血提供 25% 移速，Buffie 让极低血最高 40% 移速，增强逃生与走位"
       enables:
         - split_projectile_route_control
         - ranged_slow_confirm

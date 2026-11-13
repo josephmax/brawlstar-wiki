@@ -370,7 +370,7 @@
     "official_source": "https://supercell.com/en/games/brawlstars/blog/game-updates/release-notes-november-2026/",
     "raw": "raw/sources/supercell/release-notes-november-2026-2026-11-04.html",
     "upstream": {
-      "fandom_version_history_revision": null
+      "fandom_version_history_revision": 222450
     },
     "brawlers": [
       {
@@ -386,8 +386,8 @@
           "Super damage over time reduced from 480 to 400",
           "Hypercharge Super radius reduced from 1600 to 1200"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "Fire Starters 28s、Dancing Flames 20s、Super DoT 400、Hyper 半径 1200 已并入；11/11 单火苗 180 与 Super 回充 40 保留。"
       },
       {
         "brawler": "Angelo",
@@ -398,8 +398,8 @@
         "rows": [
           "Main Attack time to fully charge reduced by 10%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "蓄满时间相对缩短 10%；Fandom 11-04 仍写 2.25 秒且未给新绝对值，未编造秒数。"
       },
       {
         "brawler": "Ash",
@@ -411,8 +411,8 @@
           "Super charge gained from Super reduced by 40%",
           "Super charge rate reduced by 15%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Super 自 Super 充能 -40%、Super 充能率 -15% 已并入 resource/cycle 说明；无可用绝对充能值。"
       },
       {
         "brawler": "Berry",
@@ -437,8 +437,8 @@
           "Sweet Swirl drops double the scoops of ice cream!",
           "Buffied: Berry's main attack splits into two after the first hit, leaving smaller, shorter-lasting puddles on each side."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Secret Formula 替代 Healthy Additives，Friendship/Floor/Sticky/Double Scoops 与 11/11 群疗修复已并入；12 秒旧口径移除。"
       },
       {
         "brawler": "Brock",
@@ -451,8 +451,8 @@
           "Star Power - More Rockets Buffie movement speed reduced from 30% to 20%",
           "Star Power - Rocket No. 4 Buffie time for extra range shot increased from 6s to 8s"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Rocket No.4 8s、More Rockets 20%、Hyper 充能率 -28% 已并入；旧 6s/30% 口径清除。"
       },
       {
         "brawler": "Buster",
@@ -463,8 +463,8 @@
         "rows": [
           "Trait Super charge near allies increased by 10%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "Trait 靠近队友充能 +10% 已并入 team_support；无数值表。"
       },
       {
         "brawler": "Chester",
@@ -491,8 +491,8 @@
           "Chester throws a sweet that explodes and deals damage, spreads a poison cloud, then leaves a slowing area for a few seconds.",
           "Buffied: Chester's attack fires double the bells (2/4/6/8 instead of 1/2/3/4), each dealing 65% damage."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "下一个 Super 可见、Prankster 2 格随机控制、Bell'O'Mania/Jester's Privilege/Candy Beans Buffie/Hyper 已并入；11/11 盒子 1800 与超充普攻回充 -35% 保留。"
       },
       {
         "brawler": "Chuck",
@@ -504,8 +504,8 @@
           "Main Attack reload speed reduced from 2000 to 1800",
           "Super no longer loses unused charges on death"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "装填 1.8s、死亡保留未用 Super 充能已并入；旧 2s/清空口径清除。"
       },
       {
         "brawler": "Colette",
@@ -516,8 +516,8 @@
         "rows": [
           "Hypercharge Super second projectile Super charge rate reduced by 75%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "Hyper Super 第二弹 Super 充能率 -75% 已并入；第二弹伤害比例仍按来源冲突处理。"
       },
       {
         "brawler": "Cosmo",
@@ -532,8 +532,8 @@
           "Gadget - Telescope Trap size reduced from 1300 to 1000",
           "Cosmo (COSMIC CAPTURE): The hyper projectile now homes in on its target and roots it for 2 seconds."
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "Telescope Trap 24s/尺寸 1000、COSMIC CAPTURE 追踪+root 2s 已并入；Health 3600 保留。"
       },
       {
         "brawler": "Damian",
@@ -546,8 +546,8 @@
           "Main Attack regular punch damage increased from 700 to 800",
           "Main Attack fire punch damage increased from 800 to 880"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Super 跳跃速度 2400、普攻/火焰拳 800/880 已并入；高血与短手模型不变。"
       },
       {
         "brawler": "Darryl",
@@ -559,8 +559,8 @@
           "Super damage increased from 660 to 720",
           "Super no longer loses unused charges on death"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "Super 伤害 720、死亡保留未用充能已并入；滚动/护盾模型不变。"
       },
       {
         "brawler": "Draco",
@@ -573,8 +573,8 @@
           "Super damage increased from 1120 to 1620",
           "Super damage reduction increased from 20% to 25%"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "Super 伤害应用更一致、官方 1120→1620、减伤 25% 已并入；逐弹 81×4 冲突保留，不生成固定斩杀线。"
       },
       {
         "brawler": "Gale",
@@ -599,8 +599,8 @@
           "Gale's Super is slightly wider and fires twice, pushing enemies even further away.",
           "Buffied: Gale fires an extra, larger snowball shortly after his attack."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "North Wind Wall/Twister/Blustery/Freezing/Hyper 重做已并入；11/11 最终 26s、偏转 20%、芭菲弹速 20% 保留。"
       },
       {
         "brawler": "Gus",
@@ -617,8 +617,8 @@
           "Star Power - Healing Bonanza Buffie spirit movement speed reduced by 50%",
           "Hypercharge Buffie projectile size reduced by 15%"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "spirits 上限 3、Super 充能 -8%、Knockback 26s/260、Health Bonanza 50%/-50%、Hyper 弹体 -15% 已并入。"
       },
       {
         "brawler": "Hank",
@@ -629,8 +629,8 @@
         "rows": [
           "Health increased from 5500 to 6000"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Health 6000 已在 profile 与 PL11 12000 口径；模型不变。"
       },
       {
         "brawler": "Kit",
@@ -641,8 +641,8 @@
         "rows": [
           "Super damage is now more consistent, landing at 0.75s and 1.5s instead of 1s and 2s"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Super 伤害 0.75s/1.5s 落地已并入 burst；engage 模型不变。"
       },
       {
         "brawler": "Lou",
@@ -667,8 +667,8 @@
           "Lou's Super instantly freezes enemies in the area.",
           "Buffied: Lou's attacks create a slippery area under them as they travel."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Ice Block 2s、Avalanche 500/40%、Cold Snap 任意 frozen/stunned +25%、Hypothermia 芭菲 40、Hyper Slushie 已并入；11/11 40% 保留。"
       },
       {
         "brawler": "Maisie",
@@ -679,8 +679,8 @@
         "rows": [
           "Main Attack damage reduced from 1500 to 1360"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Main Attack 1360（PL11 2720）已并入；Finish Them/Shove 模型不变。"
       },
       {
         "brawler": "Mandy",
@@ -707,8 +707,8 @@
           "Mandy fires her Super in three different directions.",
           "Buffied: Mandy stays Focused for the whole Hypercharge, even while moving, and her camera zooms out."
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "基础 kit 专注弹速、Caramelize/Cookie 可瞄耗弹、In My Sights/Gobstopper/Hyper 已并入；11/11 25/10%、返冷 30% 保留。"
       },
       {
         "brawler": "Max",
@@ -722,8 +722,8 @@
           "Gadget - Sneaky Sneakers cooldown increased from 18s to 24s",
           "Gadget - Sneaky Sneakers duration reduced from 3s to 2s"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "移动充能 -23%、Super Charged 护盾 3s、Sneaky 24s/2s 已并入；旧 4s/3s/18s 口径清除。"
       },
       {
         "brawler": "Melodie",
@@ -736,8 +736,8 @@
           "Main Attack note damage increased from 920 to 1000",
           "Super no longer loses unused charges on death"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "主攻/环绕音 500/1000、死亡保留未用 Super 充能已并入；三段 dash 模型不变。"
       },
       {
         "brawler": "Mr. P",
@@ -762,8 +762,8 @@
           "Mr. P's home base spawns much stronger Porters, and he can have two Super Porters active at the same time.",
           "Buffied: After exploding, overstuffed suitcases bounce back towards Mr. P 3 times, exploding again each time."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Service Bell/Porter Reinforcements/Handle With Care/Revolving Door/Hyper 重做已并入；11/11 耗弹 26s 保留。"
       },
       {
         "brawler": "Nori",
@@ -774,8 +774,8 @@
         "rows": [
           "Super damage per fish reduced from 4% to 3%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "每鱼 Super 伤害 +3% 已并入；巨鱼绝对伤害按 P11 基础 3250 与满鱼 +30% 表述，不沿用旧 3500。"
       },
       {
         "brawler": "Pierce",
@@ -786,8 +786,8 @@
         "rows": [
           "Main Attack last shot damage reduced from 1500 to 1400"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "最后一发 1400（PL11 2800）已并入；弹壳循环模型不变。"
       },
       {
         "brawler": "R-T",
@@ -798,8 +798,8 @@
         "rows": [
           "Main Attack projectile size increased by 15%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "主攻弹体尺寸 +15% 已并入；raw 未给绝对值，不编造格数。"
       },
       {
         "brawler": "Rico",
@@ -812,8 +812,8 @@
           "Star Power - Robo Retreat movement speed reduced from 35% to 25%",
           "Star Power - Robo Retreat Buffie max movement speed reduced from 50% to 40%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "numbers_only",
+        "note": "Multiball 减速 20%、Robo Retreat 25/40% 已并入；旧 30/35/60% 口径清除。"
       },
       {
         "brawler": "Shade",
@@ -830,8 +830,8 @@
           "Gadget - Jump Scare shield reduced from 1000 to 400",
           "Star Power - Hardened Hoodie shield reduced from 30% to 20%"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "model_changed",
+        "note": "Health 3400、Super 4s/-12%、Trait 面积 -13%、Jump Scare 24s/400 盾、Hoodie 20% 已并入。"
       },
       {
         "brawler": "Shelly",
@@ -843,8 +843,8 @@
           "Main Attack damage increased from 300 to 340",
           "Super damage increased from 320 to 360"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Main 340/Super 360 与全中包 1700/3240 已并入；近距离模型不变。"
       },
       {
         "brawler": "Squeak",
@@ -857,8 +857,8 @@
           "Super damage increased from 1000 to 1100",
           "Star Power - Chain Reaction bonus damage reduced from 15% to 10%"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Main 1280/Super 1100、Chain Reaction 10% 已并入；多 blob 不可合并机制保留。"
       },
       {
         "brawler": "Surge",
@@ -872,8 +872,8 @@
           "Gadget - Power Shield cooldown reduced from 22s to 18s",
           "Gadget - Power Shield Buffie cooldown refund reduced from 50% to 30%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "Hyper 不再直升 5、卸弹 400ms、Power Shield 18s/30% 返冷已并入；Stage 模型不变。"
       },
       {
         "brawler": "Vince",
@@ -884,8 +884,8 @@
         "rows": [
           "Vince (BUG SWARM): Vince's Super is always at max power and releases Hypercharged caterpillars around him."
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "BUG SWARM 最大威力 Super + 4 只 Hyper 毛毛虫已并入，并建成完整 bp_ready profile；11/11 衰减 +30% 保留。"
       },
       {
         "brawler": "Wendy",
@@ -898,8 +898,8 @@
           "Gadget - Wind-Powered range reduced from 15 to 10",
           "Star Power - Slowing Shield slow potency reduced from 20% to 15%"
         ],
-        "fold": "pending",
-        "note": ""
+        "fold": "model_changed",
+        "note": "主攻 800、弹体 1.34 格（-20%）、Wind-Powered 3.33 格、Slowing Shield 15% 已并入；11/11 自盾 38% 保留。"
       },
       {
         "brawler": "Ziggy",
@@ -911,26 +911,26 @@
           "Main Attack damage increased from 950 to 1050",
           "Starpower - The Great Ziggini bonus damage reduced from 18% to 7%"
         ],
-        "fold": "partial",
-        "note": "2026-11-04 已更新断点数值与部分当前数值；其余改动行和定性影响未逐项记录处置。"
+        "fold": "numbers_only",
+        "note": "Main 1050、Great Ziggini 7% 已并入；storm/slow 模型不变。"
       }
     ],
     "environment": [
       {
         "id": "new_brawlers",
         "kind": "new_brawler",
-        "status": "pending",
+        "status": "deferred",
         "rows": [
           "Thunder Frogs - Legendary - Artillery",
           "Rey - Mythic - Marksman",
           "Ruby - Mythic - Damage Dealer"
         ],
-        "note": "尚未入 roster；上线日期与排位资格未记录。"
+        "note": "Thunder Frogs、Rey、Ruby 仍属预发布/未入 roster；2026-11-11 账本已把 Thunder Frogs 与 Rey 标为 deferred，待 roster 身份、发布状态与排位资格核实后建模。"
       },
       {
         "id": "new_maps",
         "kind": "map_rotation",
-        "status": "pending",
+        "status": "done",
         "rows": [
           "Framework - Hotzone",
           "Sectioned - Hotzone",
@@ -951,12 +951,12 @@
           "Eye of the Beholder - Bounty",
           "Sudden Movement - Bounty"
         ],
-        "note": "官方称 18 张社区地图加入轮换；ranked_pool.json 仍为 2026-09-17 抓取的 Season 49，未复核当前排位池。"
+        "note": "已核对 Fandom Ranked Season 50（revid 221755，2026-11-13）：18 张社区地图不在当前 Ranked 池；地图池已更新为 Season 50。社区地图轮换本身仍不生成 map fit。"
       },
       {
         "id": "ranked_refresh",
         "kind": "ranked_rules",
-        "status": "pending",
+        "status": "done",
         "rows": [
           "Ranked now requires Power 11 Brawlers at every rank, up from Power 9 in Bronze through Diamond.",
           "Diamond now needs 12 Brawlers, the same as Mythic, increased from 9.",
@@ -977,7 +977,7 @@
           "Besides changing your loadout and swapping Brawlers, you can now also change your Skin.",
           "Added quick chat during final preparation, so you can tell teammates what position you'll play, or send Pins and quick chat callouts to teammates and opponents."
         ],
-        "note": "排位准入改为全段位 Power 11、可在选人阶段提议交换顺位等；未核对对 BP 规则页与应用个人池口径的影响。"
+        "note": "已把全段位 Power 11、Diamond 12 英雄、Ranked 5000 奖杯解锁、赛季重置 2 段、选人交换顺位等规则写入 wiki/concepts/Ranked.md；BP skill 不依赖在线 UI 顺位。"
       }
     ],
     "excluded": [

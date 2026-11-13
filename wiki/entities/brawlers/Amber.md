@@ -33,7 +33,7 @@ bp_brawler_profile:
     effective_range: "long_mid_stream; 主攻击 8.33 格，持续火流有轻微 spread 和 travel delay"
     projectile_reliability: "high_on_constrained_routes_medium_vs_dash; 连续喷射容错高，但要预判移动方向"
     burst: "medium_low_immediate; Dancing Flames 和点燃燃油可爆发，Oil Spill Buffie 下普攻命中附带点燃状态，默认主攻击没有硬控瞬秒"
-    sustained_dps: "Power 11 每枚火苗 360；一秒全部命中才有标称 3600，实际受瞄准、弹仓和中断限制；Super 造成的回充参数为 40，不译为固定命中数"
+    sustained_dps: "Power 11 每枚火苗 360；一秒全部命中才有标称 3600，实际受瞄准、弹仓和中断限制；Super DoT 400（P1，由 480 下调），回充参数为 40，不译为固定命中数"
     objective_damage: "medium_high_with_dancing_flames_and_ignited_oil; Heist 可用持续火线、点燃油区（含油桶洒油）和 Dancing Flames 固定目标窗口"
     mobility: "medium; 默认 750 移速，技能本体无加速；Fire Starters 为掷桶铺油，加速依赖 Dancing Flames Buffie +20%、Wild Flames Buffie 近油 +10% 与 Hypercharge"
     survivability: "medium_low; Power 11 本体 6800 HP，依靠距离、燃油墙和 Shield gear"
@@ -43,7 +43,7 @@ bp_brawler_profile:
     anti_tank: "medium_high_if_distance_held; 连续火线和燃油穿越税能磨高血量"
     wall_break: "bush_destroy_only; 点燃燃油可烧草，不破墙"
     throw_or_wall_bypass: "super_lob; Super 可越墙投掷燃油，主攻击不能越墙"
-    area_control: "very_high; 多滩 Super 油持久并存互不清除，Fire Starters 油桶（2000 耐久，Power 11）洒油可连片，点燃火墙和草丛清除"
+    area_control: "very_high; 多滩 Super 油持久并存互不清除，Fire Starters 油桶（2000 耐久，Power 11）洒油可连片；Hyper Super 半径由 1600 降至 1200，点燃火墙和草丛清除"
     scouting_or_vision: "high_with_vision_gear_and_bush_burn; Vision gear 配持续命中，燃油点火清草"
     team_support: "medium_high; 把敌人赶出 chokepoint 和队友射线"
     spawnable_or_pet: "none"
@@ -57,7 +57,7 @@ bp_brawler_profile:
     - build: "Fire Starters / Wild Flames / Vision, Shield, Reload"
       source: "[[sources/PLP-Amber|PLP-Amber]]"
       changes_capabilities:
-        - "Fire Starters 掷出 2000 耐久（Power 11）油桶，被毁或每秒 12% 自然衰减（至多 9 秒）后在落点洒出 3x3 燃油，与 Super 油同质且互不清除，冷却 24 秒"
+        - "Fire Starters 掷出 2000 耐久（Power 11）油桶，被毁或每秒 12% 自然衰减（至多 9 秒）后在落点洒出 3x3 燃油，与 Super 油同质且互不清除，冷却 28 秒"
         - "Wild Flames 使燃油黏滞：敌人沾油后被附着并随移动留下至多 1 秒油迹，油区内敌人减速 10%"
         - "Fire Starters Buffie 可同时部署 2 个油桶（双桶放下后才开始冷却）；Wild Flames Buffie 靠近火/油迹时 +10% 移速"
         - "Vision gear 让持续火线命中后服务草区侦测，Reload gear 缓解空弹风险"
@@ -76,7 +76,7 @@ bp_brawler_profile:
     - build: "Dancing Flames / Scorchin' Siphon variant"
       source: "[[sources/Fandom-Amber|Fandom-Amber]]"
       changes_capabilities:
-        - "Dancing Flames 在身边生成 3 个环绕火球持续 5 秒，适合防突脸或 Heist 固定目标贴身输出；Buffie 自我附焰 +20% 移速并对触碰敌人每秒 400 伤害（Power 11，至多 5 跳）"
+        - "Dancing Flames 在身边生成 3 个环绕火球持续 5 秒，冷却 20 秒，适合防突脸或 Heist 固定目标贴身输出；Buffie 自我附焰 +20% 移速并对触碰敌人每秒 400 伤害（Power 11，至多 5 跳）"
         - "Scorching Siphon 在敌人因燃烧油受伤（非普攻直伤）时回充 7% 弹条（约 3 发火焰），适合围绕已铺油区控线；Buffie 使燃烧状态 +1 秒（4→5 秒）"
       enables:
         - "刺客近身惩罚"

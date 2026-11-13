@@ -57,7 +57,7 @@ bp_brawler_profile:
     objective_damage: low_medium; contributes lane pressure more than direct safe race
     mobility: very_high; fast base speed, team Super speed, Phase Shifter dash
     survivability: "medium_high_with_Phase_Shifter_or_Sneaky_Sneakers; 前者有双段免伤 dash 窗口，后者回到锚点时恢复期间损失的生命"
-    engage: "high_as_team_tempo_enabler; Super Charged Buffie 还为被 Super 覆盖的队友提供 4 秒 25% 护盾"
+    engage: "high_as_team_tempo_enabler; Super Charged Buffie 还为被 Super 覆盖的队友提供 3 秒 25% 护盾；移动充能效率 -23%，Super 循环更慢"
     disengage: "high; Super、双段 Phase Shifter 和 Sneaky Sneakers 回程都能重置交火"
     anti_aggro: "medium; speed/two-dash immunity/return anchor 可规避爆发，但无硬控且 dash 仍会保留状态效果"
     anti_tank: medium_if_kiting_space_exists
@@ -65,7 +65,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: low; Phase Shifter cannot pass walls or water
     area_control: medium_by_tempo_and_chip_not_zone_denial
     scouting_or_vision: low
-    team_support: "very_high; Super 提速改变进退/转点，Super Charged Buffie 给队友 4 秒护盾，Sneaky Sneakers Buffie 在回程锚点治疗附近队友，Hyper Buffie 每次命中给 2.67 格内队友 7% Super 充能"
+    team_support: "very_high; Super 提速改变进退/转点，Super Charged Buffie 给队友 3 秒护盾，Sneaky Sneakers Buffie 在回程锚点治疗附近队友，Hyper Buffie 每次命中给 2.67 格内队友 7% Super 充能"
     tempo_control: high
     source_trace:
       - "[[sources/Fandom-Max|Fandom-Max]]"
@@ -76,8 +76,8 @@ bp_brawler_profile:
     - build: "Sneaky Sneakers / Super Charged / Shield, Damage"
       source: "[[sources/PLP-Max|PLP-Max]] / [[sources/Fandom-Max|Fandom-Max]]"
       changes_capabilities:
-        - "Sneaky Sneakers 记录一个 3 秒回程锚点；Max 存活回程时恢复期间损失的生命，Buffie 还回满弹药并以同等恢复量治疗锚点附近队友"
-        - "Super Charged 让 Max 在自身 Super 生效期间每命中一发延长 0.25 秒加速窗口；Buffie 使被 Super 覆盖的队友获得 4 秒 25% 护盾"
+        - "Sneaky Sneakers 记录一个 2 秒回程锚点（24 秒冷却）；Max 存活回程时恢复期间损失的生命，Buffie 还回满弹药并以同等恢复量治疗锚点附近队友"
+        - "Super Charged 让 Max 在自身 Super 生效期间每命中一发延长 0.25 秒加速窗口；Buffie 使被 Super 覆盖的队友获得 3 秒 25% 护盾"
         - "Shield and Damage stabilize mid-range skirmishes while Max keeps tempo"
       enables:
         - team_speed_engage
@@ -90,7 +90,7 @@ bp_brawler_profile:
         - slow_team_rotation
       poor_when:
         - "队伍没有能利用加速进场或追击的队友，Max 会只剩中等输出"
-        - "return marker 可被守点，Max 可在 3 秒内被击杀，或队友无法在锚点附近安全接受治疗"
+        - "return marker 可被守点，Max 可在 2 秒内被击杀，或队友无法在锚点附近安全接受治疗"
       bp_use: current_plp_default_team_tempo_with_return_anchor
     - build: "Phase Shifter / Run n' Gun mobility variant"
       source: "[[sources/Fandom-Max|Fandom-Max]]"
@@ -112,7 +112,7 @@ bp_brawler_profile:
 
   map_feature_hooks:
     - map_feature_type: "team_speed_rotation"
-      uses_feature_by: "Super 给 Max 和 4 格内队友提速；Super Charged 用命中延长窗口，Buffie 再给队友 4 秒 25% 护盾"
+      uses_feature_by: "Super 给 Max 和 4 格内队友提速；Super Charged 用命中延长窗口，Buffie 再给队友 3 秒 25% 护盾"
       route_or_position: "wide mid or split-lane map where rotating first creates objective access"
       objective_conversion: "Gem carrier retreat, Hot Zone rotation, Brawl Ball push, Knockout collapse"
       active_when: "team has brawlers that convert speed/shield into pressure or survival, and allies can enter the initial Super radius"
@@ -148,10 +148,10 @@ bp_brawler_profile:
         - Gem Fort
       bp_use: slot_task.engage_timing_support
     - map_feature_type: "sneaky_sneakers_safe_return_anchor"
-      uses_feature_by: "Max 从安全锚点向前压 3 秒后回程，回满弹药并按自身恢复量治疗锚点附近队友"
+      uses_feature_by: "Max 从安全锚点向前压 2 秒后回程，回满弹药并按自身恢复量治疗锚点附近队友"
       route_or_position: "宝石 carrier 撤退线、热区边墙后、或足球中场的己方安全口袋"
       objective_conversion: "用一次可回收换血逼退对手，回程时为自己重装并给保护锚点的队友一次团队恢复"
-      active_when: "锚点不在敌方草丛/出生点旁，Max 不会在 3 秒内被秒，队友可在锚点附近安全集结"
+      active_when: "锚点不在敌方草丛/出生点旁，Max 不会在 2 秒内被秒，队友可在锚点附近安全集结"
       fails_if: "敌方守住回程标记、Max 在回程前被击杀，或队伍终始分路而无法吃到治疗"
       example_maps:
         - Hard Rock Mine
@@ -261,7 +261,7 @@ bp_brawler_profile:
       mitigation: "bait CC first, choose alternate route, or avoid speed engage plan; Phase Shifter immunity does not cleanse statuses"
       bp_use: "must_avoid_or_plan_protection"
     - id: "return_or_dash_anchor_punished"
-      active_when: "Sneaky Sneakers marker is camped, Phase Shifter endpoint is blocked by terrain/control, or Max dies before the three-second return"
+      active_when: "Sneaky Sneakers marker is camped, Phase Shifter endpoint is blocked by terrain/control, or Max dies before the two-second return"
       exposed_by: "[[sources/Fandom-Max|Fandom-Max]] Gadget tips warn about ambush at return location"
       mitigation: "place return marker away from bushes/spawn or prefer Phase Shifter"
       bp_use: "false_positive_filter"
@@ -345,7 +345,7 @@ bp_brawler_profile:
         "id": "super_charged_star_buffie_ally_shield",
         "effect": {"type": "damage_reduction", "ratio": 0.25},
         "applies_to": "allies affected by Max Super",
-        "active_when": "Super 命中队友后的 4 秒",
+        "active_when": "Super 命中队友后的 3 秒",
         "audit_status": "recorded_not_expanded_across_roster_in_v1",
         "source_ref": "[[sources/Fandom-Max|Fandom-Max]]"
       }

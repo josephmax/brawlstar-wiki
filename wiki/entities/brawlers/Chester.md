@@ -14,7 +14,7 @@
 
 ## 角色定位总结
 
-Chester 的 BP 价值不是“随机所以万能”，而是他在中近距离用 1/2/3/4 铃铛序列制造爆发窗口，并用随机 Super 在不同局面承担击退、眩晕、毒伤、区域 slow 或自奶功能。Fandom 明确提醒：近距离 3/4 铃铛可以处理大量刺客/坦克，但开阔图遇到多个长射程时远端伤害不足。BP 中必须同时检查铃铛序列、当前 Super、地形是否允许接近，以及敌方是否能在 Chester 进入有效范围前先打掉他。
+Chester 的 BP 价值不是“随机所以万能”，而是他在中近距离用 1/2/3/4 铃铛序列制造爆发窗口，并能提前看到下一个 Super，按结果规划击退、眩晕、毒伤、区域 slow 或自奶功能。Fandom 明确提醒：近距离 3/4 铃铛可以处理大量刺客/坦克，但开阔图遇到多个长射程时远端伤害不足。BP 中必须同时检查铃铛序列、可见的下一个 Super、地形是否允许接近，以及敌方是否能在 Chester 进入有效范围前先打掉他。
 
 ## BP 建模资料
 
@@ -28,31 +28,32 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: mid_long_but_best_mid_close; 8.33 格基础射程，真正爆发依赖近中距离多铃命中
-    projectile_reliability: variable; 铃铛数和扩散改变命中形态，Super 随机导致计划稳定性下降
-    burst: high_with_3_or_4_bells_at_close_range
-    sustained_dps: medium; Candy Beans 在 5 秒内随机提供 20% damage、2.5x reload、150 移速或每秒 420 治疗之一，效果不可指定且冷却 15 秒
+    projectile_reliability: variable; 铃铛数和扩散改变命中形态；下一个 Super 可见，计划稳定性提高但仍要按实际结果选择进场
+    burst: high_with_3_or_4_bells_at_close_range; Bell'O'Mania 首铃 150% 伤害；Hyper Crunchy, Chewy, Gooey 爆炸后留下毒云与减速区，芭菲让攻击铃数翻倍（2/4/6/8）但每铃 65% 伤害
+    sustained_dps: medium; Candy Beans 在 5 秒内随机提供 20% damage、2.5x reload、150 移速或每秒 420 治疗之一，效果不可指定且冷却 15 秒；芭菲击杀返还 50% Gadget 冷却
     objective_damage: low_medium; 主要靠击杀和清人转目标，不是 Heist race 核心
     mobility: low_base; Candy_Beans_speed_buff_is_random
-    survivability: medium; Power 11 本体 7600 HP，加随机 Strong Mint 或 Candy Beans heal 可短窗续航
+    survivability: medium; Power 11 本体 7600 HP，加随机 Strong Mint 或 Candy Beans heal 可短窗续航；Prankster's Surprise 盒子 1800 HP，是独立可破坏物，不计为本体护盾
     engage: medium_if_speed_or_stun_super_available
     disengage: medium_with_Candy_Popper_knockback_or_Jawbreaker_stun
-    anti_aggro: high_when_sequence_and_super_are_ready
+    anti_aggro: high_when_sequence_and_super_are_ready; Jester's Privilege 让 4 铃命中额外获得 30% Super 充能，芭菲在 Super 后让下一次攻击直接发射 4 铃
     anti_tank: high_in_close_burst_windows; poor_if_forced_to_cross_open_lane
     wall_break: conditional_with_Candy_Popper
     throw_or_wall_bypass: low_conditional; Candy Popper lob can hit over obstacles
     area_control: conditional_with_Pop_Rocks_slow_zone
     scouting_or_vision: low
     team_support: low; 主要通过控制/击杀减压
-    spawnable_or_pet: none
-    crowd_control: Jawbreaker_stun_or_Pop_Rocks_slow_or_Candy_Popper_knockback
+    spawnable_or_pet: Prankster's Surprise 盒子 1800 HP；可被提前摧毁，不是永久地形
+    crowd_control: Jawbreaker_stun_or_Pop_Rocks_slow_or_Candy_Popper_knockback; Prankster's Surprise 在 2 格内随机 fear/slow/damage
     terrain_destruction: Candy_Popper_wall_break
 
   build_switches:
-    - build: "Candy Beans / Single Bellomania / Speed, Damage"
+    - build: "Candy Beans / Bell'O'Mania / Speed, Damage"
       source: "[[sources/PLP-Chester|PLP-Chester]]"
       changes_capabilities:
-        - "Candy Beans 提供 5 秒随机 buff：20% damage、每秒 420 治疗、2.5x reload 或 150 移速之一；不可指定且冷却 15 秒"
-        - "Single Bellomania 让第一铃伤害更高，改善序列前段的换血和开局预热"
+        - "Candy Beans 提供 5 秒随机 buff：20% damage、每秒 420 治疗、2.5x reload 或 150 移速之一；不可指定且冷却 15 秒；芭菲击杀返还 50% 冷却"
+        - "Bell'O'Mania 让第一铃造成 150% 伤害，改善序列前段的换血和开局预热；芭菲让第一铃附带下一个 Super 的效果（额外 50% 伤害、slow、poison 或 heal）"
+        - "Jester's Privilege 让 4 铃攻击额外获得 30% Super 充能；芭菲在 Super 后让下一次攻击发射 4 铃"
         - "Speed/Damage 让 Chester 在草图和斩杀线附近更容易完成近中距离爆发"
       enables:
         - "Brawl Ball 中场/门前反突进"
@@ -61,13 +62,13 @@ bp_brawler_profile:
       mitigates_failure_modes:
         - "sequence_low_burst_start"
         - "short_window_survivability"
-      best_when: "地图有中近距离接触点，Chester 能预热到 3/4 铃并保留 Super 或 Candy Beans"
+      best_when: "地图有中近距离接触点，Chester 能预热到 3/4 铃，并能看到下一个 Super 决定是否进场"
       poor_when: "地图完全开放，敌方长手可在 Chester 接近前持续消耗"
       bp_use: default_competitive_variance_build
     - build: "Prankster's Surprise / choke trap"
       source: "[[sources/Fandom-Chester|Fandom-Chester]]"
       changes_capabilities:
-        - "布置可摧毁的惊吓盒；敌人靠近触发随机效果，不可指定。盒子不是本体护盾；芭菲超充弹的 Super 回充减少 35%，不保证连续超充"
+        - "Prankster's Surprise 盒子 1800 HP，跳出后在 2 格内随机 fear/slow/damage；不可指定，且盒子不是本体护盾。芭菲多扔一个假盒子并加快隐藏；超充普攻的 Super 回充减少 35%，不保证连续超充"
       enables:
         - "trap_at_forced_entry"
         - "conditional_area_denial"
@@ -199,14 +200,14 @@ bp_brawler_profile:
 
   failure_modes:
     - id: random_super_variance
-      active_when: "当前 Super 与目标任务不匹配，例如需要 stun 但只有 heal/poison，或需要 wallbreak 但没有 Candy Popper"
+      active_when: "下一个 Super 可见但与目标任务不匹配，例如需要 stun 但只有 heal/poison，或需要 wallbreak 但没有 Candy Popper"
       exposed_by: "[[sources/Fandom-Chester|Fandom-Chester]] random Super mechanics"
-      mitigation: "进入关键团前记录 Super 类型，不要把随机 Super 当作指定控制"
+      mitigation: "利用可见的下一个 Super 提前规划进场；仍不要把随机结果当作指定控制"
       bp_use: resource_tracking.current_super_type
     - id: sequence_misalignment
       active_when: "Chester 以 1 铃或 2 铃进入必须爆发的近身对抗"
       exposed_by: "[[sources/Fandom-Chester|Fandom-Chester]] bell sequence tips"
-      mitigation: "开局/团前预热铃铛，保留 3/4 铃给刺客、持球者或坦克"
+      mitigation: "开局/团前预热铃铛，保留 3/4 铃给刺客、持球者或坦克；Jester's Privilege 可用 4 铃加快下一个 Super"
       bp_use: resource_tracking.bell_sequence_before_fight
     - id: open_sniper_range_tax
       active_when: "Piper、Belle、Angelo、Byron 等在开阔长线持续输出，Chester 不能进入多铃有效距离"
@@ -216,7 +217,7 @@ bp_brawler_profile:
     - id: candy_beans_rng_window
       active_when: "Candy Beans roll 出的 buff 不是当前需要的 damage/reload/speed/heal"
       exposed_by: "[[sources/Fandom-Chester|Fandom-Chester]] Candy Beans random buff"
-      mitigation: "按当前 20% damage / 2.5x reload / 150 speed / 420 HPS 的 5 秒随机结果估算，并把 15 秒冷却后的下一次使用当独立资源；不写成确定开团能力"
+      mitigation: "按当前 20% damage / 2.5x reload / 150 speed / 420 HPS 的 5 秒随机结果估算，并把 15 秒冷却后的下一次使用当独立资源；芭菲击杀返冷 50% 时再评估第二次窗口，不写成确定开团能力"
       bp_use: build_rng_gate
 
   conditional_matchups:

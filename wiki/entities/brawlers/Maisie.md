@@ -32,7 +32,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: "long; 主攻 8.67 格，Super 半径 5 格"
     projectile_reliability: "medium; 主攻初速慢后段快，靠预判/slow/stun 提高命中"
-    burst: "high_if_hit_chain; 单发 1500，Finish Them 可按目标缺失生命加伤，Hyper 近身爆发高"
+    burst: "high_if_hit_chain; 单发 1360（Power 11 2720），Finish Them 可按目标缺失生命加伤，Hyper 近身爆发高"
     sustained_dps: "medium; 1.5 秒装填，弹药有限且需要命中"
     objective_damage: "medium_high_on_stationary_targets; Fandom 支持 Heist fixed safe burst，但 PLP 主推 Ball/Zone"
     mobility: "medium_with_disengage; Gadget dash 2.67 格并可 0.5 秒 stun 近敌，不能过墙/水"

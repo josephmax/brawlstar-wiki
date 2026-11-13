@@ -11,13 +11,13 @@
 - 普通攻击是三团中距离蒸汽，穿透敌人
 - 所有距离伤害一致（单团 540，Power 11 1080），近距离优势来自命中密度与压制，而不是伤害加成
 - 弹速 2700，射程 6.67 格（Normal）
-- 装填 2 秒（Slow），持续输出仍受限于装填
+- 装填 1.8 秒（Slow），持续输出仍受限于装填
 
 ## 超级技能特征
 
 - Trait：开局自带满 Super，共 4 充能
 - 每次放 Post 或每次 dash 各消耗 1 充能；Super 不随时间自动充能，打空后只能靠命中回充（普攻 13.5%、Post 命中 10%、dash 命中 43.75%）
-- 满充能时被击倒，重生保留全部充能；只要用过任意一次充能，被击倒后剩余充能清空
+- 被击倒后不再丢失未使用的 Super 充能；满充能与用过部分充能都按当前剩余量保留
 - dash 冲向 6.67 格内最近的 Post，若 10 格内还有无阻挡的下一根 Post 会连锁冲刺；冲撞对路径敌人造成 1600（Power 11）伤害，期间获得 35% 减伤，仍可被眩晕或减速，冲撞移速 3200
 - 手动瞄准或范围内没有 Post 时，投出一根 Post：落地造成 1.83 格半径 800（Power 11）范围伤害，无击退；场上上限 4 根，超放时最早放置的消失
 - Post 永久存在，直到 Brawl Ball 得分或 Knockout/Duels 回合结束
@@ -57,9 +57,9 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: "mid; 6.67-tile steam with 2700 projectile speed and identical damage at every range, so 1080 per cloud (Power 11) holds full value at max range"
-    projectile_reliability: "medium_high; three piercing steam clouds stay consistent through bodies, but 2s slow reload still punishes misses"
+    projectile_reliability: "medium_high; three piercing steam clouds stay consistent through bodies, but 1.8s slow reload still punishes misses"
     burst: "high_in_charge_window; each dash deals 1600 (Power 11) and the opening 4-charge pool converts into a multi-dash burst before any passive refill exists"
-    sustained_dps: "low; 2s reload and a finite charge pool make raw laning weaker than timed route pressure"
+    sustained_dps: "low; 1.8s reload and a finite charge pool make raw laning weaker than timed route pressure"
     objective_damage: "high_if_route_ready; safe and turret dashes are planned bursts of 1600 each (Power 11) paid from the charge pool, not a free repeating cycle"
     mobility: "charge_limited_very_high; the Super starts full, every Post throw or dash spends one of four charges, and there is no time-based refill"
     survivability: "medium; 8800 health (Power 11) plus 35% damage reduction only while dashing, and remaining charges are wiped once any charge has been used before a knockout"
@@ -264,7 +264,7 @@ bp_brawler_profile:
       bp_use: must_avoid_or_ban_reason
     - id: "raw_laning_without_posts"
       active_when: "Chuck is forced into standard lane fighting after his charges are spent and no useful post graph remains"
-      exposed_by: "Fandom 2s slow reload and mid range; steady full-value attack damage does not replace route pressure"
+      exposed_by: "Fandom 1.8s slow reload and mid range; steady full-value attack damage does not replace route pressure"
       mitigation: "evaluate him by route-to-objective, not by generic lane DPS, and time the charge pool around objective spawns"
       bp_use: candidate_eval.route_dependency
 

@@ -36,7 +36,7 @@ bp_brawler_profile:
     sustained_dps: "medium; 1.1 秒 very fast reload，但单枚伤害低"
     objective_damage: "low; 主要控区/控球/控 carrier，不是 Heist race"
     mobility: "low; 无位移"
-    survivability: "medium_with_ice_block; Power 11 7000 HP，Ice Block 可 1 秒无敌但不能动/攻击"
+    survivability: "medium_with_ice_block; Power 11 7000 HP，Ice Block 可 2 秒无敌但不能动/攻击"
     engage: "low_to_medium; 靠 Super 预铺目标点而非主动接触"
     disengage: "high_against_short_range; Frost、冰面和 Ice Block 可拖突进"
     anti_aggro: "high_if_frost_stacks; 眩晕、滑地、Hypothermia 输出削减惩罚坦克/刺客"
@@ -47,7 +47,7 @@ bp_brawler_profile:
     scouting_or_vision: "medium_with_vision_gear; Super 阻回血/迫移动，Vision gear 支持草区持续标记"
     team_support: "high; stun、slow-like滑地、输出削减给队友击杀窗口"
     spawnable_or_pet: "area_syrup; Super 生成 10 秒区域"
-    crowd_control: "very_high; Frost stun 1.5 秒，Avalanche 命中 +40% Frost，Hyper Super 落点瞬冻"
+    crowd_control: "very_high; Frost stun 1.5 秒，Avalanche 500 伤害并 +40% Frost，Cold Snap 对任意 frozen/stunned +25% 伤害，Hypothermia 最高削 50% 输出；Hyper Slushie Storm 落点瞬冻"
     source_trace:
       - "[[sources/Fandom-Lou|Fandom-Lou]]"
       - "[[sources/PLP-Lou|PLP-Lou]]"
@@ -56,7 +56,7 @@ bp_brawler_profile:
     - build: "Avalanche / Hypothermia / Super Charge, Vision, Damage, Shield"
       source: "[[sources/PLP-Lou|PLP-Lou]]"
       changes_capabilities:
-        - "Avalanche 消耗弹药投掷雪球，落点命中增加 40% Frost；无需 Super 冰面"
+        - "Avalanche 消耗弹药投掷雪球，落点造成 500 伤害并增加 40% Frost；无需 Super 冰面。芭菲在落点留下 2 秒冰面"
         - "Hypothermia 随 Frost 进度降低敌方输出，最高 50%，让站区 body 和坦克推进变弱"
         - "Super Charge gear 加速冰面循环，Vision 支持草区/Hot Zone 持续标记"
       enables:
@@ -72,8 +72,8 @@ bp_brawler_profile:
     - build: "Ice Block / Cold Snap variant"
       source: "[[sources/Fandom-Lou|Fandom-Lou]]"
       changes_capabilities:
-        - "Ice Block 1 秒无敌可吃 Nani/Tick/Mandy/Dynamike Super 或刺客第一轮爆发"
-        - "Cold Snap 对已被眩晕或冻结的敌方增伤 25%，需在控制仍生效时命中"
+        - "Ice Block 2 秒无敌可吃 Nani/Tick/Mandy/Dynamike Super 或刺客第一轮爆发；芭菲在周围生成跟随 Lou 的 2 秒冰面，每秒 600 伤害并累积冻条"
+        - "Cold Snap 对任何 frozen 或 stunned 的敌方增伤 25%（包括非 Lou 来源的眩晕），需在控制仍生效时命中；芭菲在冻结结束时炸出 400 范围伤害"
       enables:
         - "反爆发保命"
         - "更稳定 zone freeze"
@@ -191,9 +191,9 @@ bp_brawler_profile:
       false_positive: "Frost 需要多次命中且 2.5 秒后衰减；Bounty 开阔图叠层比 Hot Zone 难"
     - mode: "Knockout"
       can_fulfill:
-        - "Super 越墙铺冰面锁缩圈/窄口路线"
+        - "Super 越墙铺冰面锁缩圈/窄口路线；Hyper Slushie Storm 直接在落点冻结敌人"
         - "Avalanche 命中已积够冻条目标或 Hyper Super 落点瞬冻完成不可复活击杀"
-        - "Hypothermia 削回合末站桩者输出"
+        - "Hypothermia 削回合末站桩者输出；芭菲让 Super 外缘形成 40 伤害并更快冻结的冰刺环"
       cannot_fulfill:
         - "远距离对枪首杀"
         - "独自守住被强开的侧路"

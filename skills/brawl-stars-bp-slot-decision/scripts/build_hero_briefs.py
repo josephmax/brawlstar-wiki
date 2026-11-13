@@ -139,17 +139,19 @@ def esports_block(name: str, event: dict[str, Any] | None, patches: list[dict[st
         "played_sets": event["played_sets"],
         "played_series": event["played_series"],
     }
-    # Strict rule: a record from before the brawler was changed is not shown.
+    # Strict rule: any balance patch after the event invalidates the whole
+    # competitive sample, even when this brawler was not changed. The event
+    # describes an environment that no longer exists.
     blocking = [
         patch
         for patch in patches
-        if name in patch["brawlers"] and (patch["effective_at"] or "") > event["end_date"]
+        if (patch["effective_at"] or "") > event["end_date"]
     ]
     if blocking:
         return {
             "status": "withheld",
             "event": summary,
-            "reason": "该英雄在赛事结束后被直接改动，赛事数据不再描述当前英雄，按规则不展示。",
+            "reason": "赛事结束后发生过平衡性调整，整份赛事样本不再代表当前环境，按规则不展示。",
             "changed_by": [
                 {"patch_id": patch["patch_id"], "effective_at": patch["effective_at"]} for patch in blocking
             ],

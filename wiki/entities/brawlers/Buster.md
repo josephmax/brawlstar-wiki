@@ -60,7 +60,7 @@ bp_brawler_profile:
     throw_or_wall_bypass: low
     area_control: "medium; barrier changes projectile lanes and cone pressure taxes grouped chokes"
     scouting_or_vision: low
-    team_support: "high; Trait charges near allies and Super shields allies from many projectile lanes"
+    team_support: "high; Trait charges near allies（本次提高 10%）and Super shields allies from many projectile lanes"
     spawnable_or_pet: low
     crowd_control: "medium; Slo-Mo Replay pulls enemies and Kevlar Vest resists slows/stuns/knockbacks during Super"
     terrain_creation: low

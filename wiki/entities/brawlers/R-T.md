@@ -28,7 +28,7 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: very_long_in_normal; short_dual_area_in_split
-    projectile_reliability: medium_high_on_open_lane; drops_if_enemy_uses_walls_or_speed
+    projectile_reliability: medium_high_on_open_lane; 主攻弹体尺寸 +15%（官方相对值，raw 未给绝对值）；敌方用墙/速度仍会掉命中
     burst: very_high_if_mark_is_consumed_or_split_dual_area_hits; 头与腿的 Eat Static 各有 2480 伤害（Power 11，单端）并可穿墙瞬时生效
     sustained_dps: medium_in_normal_high_in_short_split_contact; 普通形态更依赖标记转化，分体形态以 1.8 秒装填维持近距双端压力
     objective_damage: low_direct_heist_value

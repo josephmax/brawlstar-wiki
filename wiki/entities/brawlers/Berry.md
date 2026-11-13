@@ -15,7 +15,7 @@
 
 ## 角色定位总结
 
-Berry 的 BP 价值来自持续地面控制和治疗循环：普攻越墙生成 puddle，同时伤害敌人、治疗队友，并且实际治疗会给自己充能 Super。`Floor Is Fine` 让他站在自己 puddle 上获得装填收益，`Healthy Additives` 可以把下一块 puddle 延长到适合守点或 Heist 压库的时间。不要把 Berry 的 Super 当成通用绕图位移：Fandom 明确说明 Super dash 不能越墙或过水，且会被 stun/knockback 取消；它更像短距离进退场、救队友或沿路铺地工具。
+Berry 的 BP 价值来自持续地面控制和治疗循环：普攻越墙生成 puddle，同时伤害敌人、治疗队友，并且实际治疗会给自己充能 Super。`Floor Is Fine` 让他在自己 puddle 上获得 50% 装填收益，`Secret Formula` 可以投出更长持续的额外 scoop puddle，普攻落回其中会继续扩大 puddle，并消耗一格弹药。不要把 Berry 的 Super 当成通用绕图位移：Fandom 明确说明 Super dash 不能越墙或过水，且会被 stun/knockback 取消；它更像短距离进退场、救队友或沿路铺地工具。
 
 ## BP 建模资料
 
@@ -31,22 +31,22 @@ bp_brawler_profile:
     effective_range: mid_thrower; 6.33 格越墙 puddle，靠地面持续收益而非远程爆发
     projectile_reliability: medium_on_fixed_routes; puddle 持续 6 秒适合预铺，直接追高速目标效率低
     burst: medium_with_super_hit_or_impact_stack
-    sustained_dps: conditional; 基础 2.4 秒 very_slow reload，站在自身 puddle 后由 Floor_Is_Fine 改善
-    objective_damage: conditional_heist_puddle_pressure_with_Healthy_Additives
+    sustained_dps: conditional; 基础 2.4 秒 very_slow reload，站在自身 puddle 后由 Floor_Is_Fine 提高 50% 装填
+    objective_damage: conditional_heist_puddle_pressure_with_Secret_Formula
     mobility: medium_short_dash_with_super; cannot_cross_walls_or_water
-    survivability: low_base_health_but_self_heal_and_Friendship_knockback
+    survivability: low_base_health_but_self_heal_and_Friendship_knockback; Friendship Is Great 击退并治疗附近队友 520
     engage: medium_if_super_dash_reaches_fixed_target
     disengage: medium_with_super_dash_or_Friendship_knockback
     anti_aggro: medium_if_Friendship_available_and_route_is_predictable
     anti_tank: low_medium; 可拖慢和治疗队友，但自身不应单独正面抗高身体
     wall_break: none
     throw_or_wall_bypass: high_for_attack_lobs; none_for_super_route
-    area_control: very_high_with_persistent_puddles
+    area_control: very_high_with_persistent_puddles; Double Scoops 让 Sweet Swirl 掉落双倍 scoop，芭菲让主攻首次命中后分裂为两块更小更短 puddle
     scouting_or_vision: low; puddle 可试探草口但没有真实 reveal
-    team_support: "冲刺沿途可治疗所有靠近的队友；离开路径者不受益，不把群疗算作静态生命"
+    team_support: "冲刺沿途可治疗所有靠近的队友（2026-11-11 修复后重新治疗聚集的多人）；Floor Is Fine 芭菲让站在 Berry 冰激凌上的队友也获得 20% 装填加速"
     spawnable_or_pet: none
-    crowd_control: knockback_with_Friendship_is_Great
-    terrain_creation: temporary_heal_damage_puddles
+    crowd_control: knockback_with_Friendship_is_Great; Sticky Toppings 让主攻首次命中减速 10% 持续 1 秒，芭菲在减速敌人时给 Berry +10% 移速
+    terrain_creation: temporary_heal_damage_puddles; Secret Formula 的额外 scoop puddle 可被后续主攻扩大
     terrain_destruction: none
 
   build_switches:
@@ -66,17 +66,17 @@ bp_brawler_profile:
       best_when: "地图目标需要反复站点、回区或在固定入口交战，且 Berry 能安全站在 puddle 周边循环"
       poor_when: "敌方用高机动直接越过 puddle，或开阔图迫使 Berry 长距离裸走"
       bp_use: default_support_control_build
-    - build: "Healthy Additives Heist/control variant"
+    - build: "Secret Formula Heist/control variant"
       source: "[[sources/Fandom-Berry|Fandom-Berry]] / [[sources/PLP-Berry|PLP-Berry]]"
       changes_capabilities:
-        - "下一次普攻 puddle 持续约 12 秒，适合覆盖 safe、热区入口或回防路线"
-        - "Fandom tips 提到 Healthy Additives 配 Making a Mess 在 Heist 可造成高额固定目标收益"
+        - "Secret Formula 投出额外 scoop，形成更长持续的 puddle；主攻落入其中会继续扩大 puddle，消耗一格弹药。官方未给具体持续秒数"
+        - "芭菲让落入 Gadget puddle 的主攻继续弹跳前进，适合覆盖 safe、热区入口或回防路线"
       enables:
         - "long_puddle_safe_or_entry_pressure"
         - "zone_reentry_denial"
       mitigates_failure_modes:
         - "puddle_duration_too_short_for_objective"
-      best_when: "敌方必须从同一入口回防或 safe 周边有可反复覆盖的固定位置"
+      best_when: "敌方必须从同一入口回防或 safe 周边有可反复覆盖的固定位置，且 Berry 有余弹维持扩大循环"
       poor_when: "敌方分路打远程 race，Berry 无法把长 puddle 转成真实目标压力"
       bp_use: objective_duration_variant
 
@@ -93,8 +93,8 @@ bp_brawler_profile:
         - Ring of Fire
         - Parallel Plays
       bp_use: map_bp_factors.zone_sustain_and_entry_tax
-    - map_feature_type: heist_healthy_additives_safe_or_lane_control
-      uses_feature_by: "长持续 puddle 可以覆盖 safe、defender path 或基地入口，Super 沿路铺地补短窗压力"
+    - map_feature_type: heist_secret_formula_safe_or_lane_control
+      uses_feature_by: "Secret Formula 的长持续 puddle 可以覆盖 safe、defender path 或基地入口，主攻落回其中继续扩大，Super 沿路铺地补短窗压力"
       route_or_position: "safe 侧墙、金库入口、defender 回防线、边路赢线后的投掷角"
       objective_conversion: "把 lane win 转成金库持续伤害、迫使防守者绕路或回身处理 Berry"
       active_when: "Berry 有安全投掷角且队友已有主 safe DPS，Berry 作为持续压力和防守路线干扰"

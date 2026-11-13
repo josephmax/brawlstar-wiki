@@ -44,7 +44,7 @@ bp_brawler_profile:
 
   capability_vector:
     effective_range: very_long
-    projectile_reliability: medium_high; one charged arrow is high value but miss cost is large
+    projectile_reliability: medium_high; one charged arrow is high value but miss cost is large; 蓄满时间相对缩短 10%（Fandom 11-04 仍写 2.25 秒，未给新绝对值）
     burst: very_high_when_charged_and_poisoned
     sustained_dps: medium; quick reload but meaningful damage requires charge time
     objective_damage: high_conditional_in_Heist_with_safe_access_and_Super

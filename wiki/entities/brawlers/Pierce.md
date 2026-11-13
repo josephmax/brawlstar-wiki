@@ -29,7 +29,7 @@ bp_brawler_profile:
   capability_vector:
     effective_range: very_long_but_best_on_medium_long_objective_lanes
     projectile_reliability: medium; 直线长手命中稳定性受弹壳位置和敌方机动影响
-    burst: high_if_last_ammo_bonus_or_super_homing_hits
+    burst: high_if_last_ammo_bonus_or_super_homing_hits; 最后一发 Power 11 2800，其他弹药按普通弹壳循环
     sustained_dps: conditional_on_shell_pickups; empty_ammo_reload_is_slow
     objective_damage: conditional_heist_lane_pressure_after_shell_cycle
     mobility: low_base; short_speed_burst_with_Slip_n_Snipe_if_selected

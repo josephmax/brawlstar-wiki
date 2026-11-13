@@ -417,6 +417,7 @@ def test_maintenance_skill_contract() -> None:
         "balance_breakpoint_audit.v1",
         "scripts/audit_balance_breakpoints.py",
         "damage_reduction_stack_rule",
+        "continuous_exposure_time",
         "must not auto-generate",
         "scripts/test_liquipedia_event.py",
         "must not auto-generate",

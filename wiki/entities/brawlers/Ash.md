@@ -47,7 +47,7 @@ bp_brawler_profile:
     effective_range: short_mid; Fandom attack range 4.67 with piercing shockwave
     projectile_reliability: medium_in_choke_low_in_open; 0.3s wind-up and 0.7s attack cycle make open-field burst less reliable
     burst: high_after_rage; damage scales from 800 to 1600 as Rage rises
-    sustained_dps: high_if_rage_is_maintained; fast reload becomes faster with Mad As Heck
+    sustained_dps: high_if_rage_is_maintained; fast reload becomes faster with Mad As Heck; Super 自 Super 获得充能 -40%、Super 充能率 -15%，循环更慢
     objective_damage: low_medium; contributes through lane pressure, ball carry, and body presence rather than safe race
     mobility: conditional_high; Rage raises speed from normal to very fast
     survivability: high_health_body_with_Chill_Pill_reset

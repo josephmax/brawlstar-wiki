@@ -58,7 +58,7 @@ bp_brawler_profile:
       source: "[[sources/PLP-Squeak|PLP-Squeak]]"
       changes_capabilities:
         - "Windup 让下一发射程翻倍到 15.33 格并提高 50% 伤害"
-        - "Chain Reaction 对爆炸半径内每个敌方 Brawler 线性增加 15% 伤害，至少命中一个 Brawler 时有额外收益"
+        - "Chain Reaction 对爆炸半径内每个敌方 Brawler 线性增加 10% 伤害，至少命中一个 Brawler 时有额外收益"
       enables:
         - "Bounty / Knockout 长线补刀"
         - "grouped target 惩罚"

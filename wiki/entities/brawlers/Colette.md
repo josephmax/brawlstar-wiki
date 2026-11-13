@@ -73,7 +73,7 @@ bp_brawler_profile:
       source: "[[sources/Fandom-Colette|Fandom-Colette]]"
       changes_capabilities:
         - "Gotcha! 让接下来最多三发攻击按伤害 80% 回血；其资源收益与普通攻击充能的来源口径存在差异，不用于承诺固定命中数后必有 Super"
-        - "Hyper Buffie 在普攻后跟随第二枚较小弹，按命中时当前生命结算；不能把两弹当相同伤害包或将其与 Super 路径上的灵体混淆。第二弹比例来源冲突，不承诺固定斩杀/打库总量"
+        - "Hyper Buffie 在普攻后跟随第二枚较小弹，按命中时当前生命结算；不能把两弹当相同伤害包或将其与 Super 路径上的灵体混淆。第二弹比例来源冲突，且第二弹的 Super 充能率降低 75%，不承诺固定斩杀/打库总量"
         - "Mass Tax 在 Super 中给 60% 减伤，并在命中后给 30% 短盾"
       enables:
         - "Heist 反复 Super safe 后存活"
