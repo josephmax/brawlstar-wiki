@@ -42,6 +42,11 @@ class GenerateCatalogTest(unittest.TestCase):
         self.assertEqual(catalog["alias_index"]["506"], "Edgar")
         self.assertEqual(catalog["alias_index"]["64"], "Cordelius")
         self.assertEqual(catalog["alias_index"]["张雪峰"], "Bolt")
+        self.assertEqual(catalog["alias_index"]["拜瑞"], "Berry")
+        self.assertEqual(catalog["alias_index"]["貝瑞"], "Berry")
+        self.assertEqual(catalog["alias_index"]["比特8號"], "8-Bit")
+        self.assertEqual(catalog["alias_index"]["阿宪"], "Nori")
+        self.assertEqual(catalog["alias_index"]["溫蒂"], "Wendy")
         self.assertEqual(catalog["ambiguous"]["猴子"], ["Brock", "Mico"])
 
     def test_write_catalog_round_trips_as_json(self):

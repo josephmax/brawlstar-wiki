@@ -89,6 +89,7 @@
 - [[sources/Fandom-Deathcap-Trap|Fandom Deathcap Trap]] / [[entities/maps/Deathcap Trap|Deathcap Trap（Gem Grab 稳定结构）]]
 - [[sources/Brawl-Stars-Wiki-站点地图|Brawl Stars Wiki 站点地图]]
 - [[sources/Brawl-Planet-站点与数据接口|Brawl Planet 站点与数据接口]]（环境信号 pick 层数据源，Legendary only）
+- [[sources/BrawlAPI-英雄名称本地化-2026-10-03|BrawlAPI 英雄名称本地化]]（108 英雄官方简中 / 繁中名快照）
 - [[sources/Power-League-Prodigy-站点与抽检|Power League Prodigy 站点与抽检]]
 - [[sources/Brawler-Roster|Brawler Roster（2026-10-28：108 身份、107 BP-ready）]]
 - [[sources/Fandom-Release-Notes-June-2026|Fandom 来源摘要: Release Notes June 2026]]

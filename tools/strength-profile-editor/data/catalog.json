@@ -178,7 +178,8 @@
       "aliases": [
         "8比特",
         "老八",
-        "🕹️"
+        "🕹️",
+        "比特8號"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000027.png"
     },
@@ -187,7 +188,9 @@
       "aliases": [
         "鳄莉",
         "鳄鱼",
-        "🐊"
+        "🐊",
+        "鳄梨",
+        "愛莉"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000095.png"
     },
@@ -195,14 +198,16 @@
       "name": "Amber",
       "aliases": [
         "琥珀",
-        "🔥"
+        "🔥",
+        "安珀"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000040.png"
     },
     {
       "name": "Angelo",
       "aliases": [
-        "安吉洛"
+        "安吉洛",
+        "安傑洛"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000079.png"
     },
@@ -212,7 +217,8 @@
         "阿拾",
         "🧹",
         "🗑️",
-        "垃圾桶"
+        "垃圾桶",
+        "阿信"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000051.png"
     },
@@ -221,7 +227,8 @@
       "aliases": [
         "巴利",
         "酒保",
-        "🍾"
+        "🍾",
+        "保力"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000006.png"
     },
@@ -230,14 +237,16 @@
       "aliases": [
         "贝亚",
         "🐝",
-        "蜜蜂"
+        "蜜蜂",
+        "碧兒"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000029.png"
     },
     {
       "name": "Belle",
       "aliases": [
-        "贝尔"
+        "贝尔",
+        "蓓爾"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000046.png"
     },
@@ -245,7 +254,9 @@
       "name": "Berry",
       "aliases": [
         "贝瑞",
-        "🍦"
+        "🍦",
+        "拜瑞",
+        "貝瑞"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000082.png"
     },
@@ -253,7 +264,8 @@
       "name": "Bibi",
       "aliases": [
         "比比",
-        "⚾"
+        "⚾",
+        "嗶嗶"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000026.png"
     },
@@ -261,14 +273,17 @@
       "name": "Bo",
       "aliases": [
         "阿渤",
-        "🏹"
+        "🏹",
+        "鷹獵人 爆"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000014.png"
     },
     {
       "name": "Bolt",
       "aliases": [
-        "张雪峰"
+        "张雪峰",
+        "博尔特",
+        "博爾特"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000106.png"
     },
@@ -290,7 +305,8 @@
       "name": "Bull",
       "aliases": [
         "公牛",
-        "🐂"
+        "🐂",
+        "狂牛"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000002.png"
     },
@@ -306,7 +322,8 @@
       "name": "Buzz",
       "aliases": [
         "巴兹",
-        "🦖"
+        "🦖",
+        "霸子"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000049.png"
     },
@@ -314,7 +331,8 @@
       "name": "Byron",
       "aliases": [
         "拜伦",
-        "🧪"
+        "🧪",
+        "拜倫"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000042.png"
     },
@@ -322,7 +340,8 @@
       "name": "Carl",
       "aliases": [
         "卡尔",
-        "⛏️"
+        "⛏️",
+        "卡爾"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000025.png"
     },
@@ -341,7 +360,8 @@
         "切斯特",
         "小丑",
         "消愁",
-        "🤡"
+        "🤡",
+        "查斯特"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000063.png"
     },
@@ -358,14 +378,16 @@
       "aliases": [
         "克兰西",
         "龙虾",
-        "🦞"
+        "🦞",
+        "克蘭西"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000083.png"
     },
     {
       "name": "Colette",
       "aliases": [
-        "科莱特"
+        "科莱特",
+        "葛蕾特"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000039.png"
     },
@@ -373,7 +395,8 @@
       "name": "Colt",
       "aliases": [
         "柯尔特",
-        "孤儿特"
+        "孤儿特",
+        "柯爾特"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000001.png"
     },
@@ -384,13 +407,16 @@
         "kd64",
         "64",
         "蘑菇",
-        "🍄"
+        "🍄",
+        "康迪留斯"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000070.png"
     },
     {
       "name": "Cosmo",
-      "aliases": [],
+      "aliases": [
+        "科斯莫"
+      ],
       "image_url": "../../raw/assets/brawlers/cosmo.webp"
     },
     {
@@ -398,14 +424,16 @@
       "aliases": [
         "黑鸦",
         "乌鸦",
-        "🐦‍⬛"
+        "🐦‍⬛",
+        "鴉"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000012.png"
     },
     {
       "name": "Damian",
       "aliases": [
-        "达米安"
+        "达米安",
+        "達米安"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000104.png"
     },
@@ -415,7 +443,8 @@
         "达里尔",
         "🛢️",
         "桶子",
-        "滚筒"
+        "滚筒",
+        "達里爾"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000018.png"
     },
@@ -436,7 +465,8 @@
       "aliases": [
         "德拉科",
         "🐉",
-        "龙"
+        "龙",
+        "德拉古"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000080.png"
     },
@@ -446,7 +476,8 @@
         "爆破麦克",
         "麦克",
         "炸弹人",
-        "🧨"
+        "🧨",
+        "爆破麥克"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000009.png"
     },
@@ -467,7 +498,9 @@
         "943",
         "修胎",
         "橡皮人",
-        "荒野勒布朗"
+        "荒野勒布朗",
+        "艾尔·普里莫",
+        "艾爾普里莫"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000010.png"
     },
@@ -475,7 +508,8 @@
       "name": "Emz",
       "aliases": [
         "艾魅",
-        "喷雾"
+        "喷雾",
+        "艾謎"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000030.png"
     },
@@ -485,7 +519,8 @@
         "伊芙",
         "🥚",
         "外星人",
-        "👽"
+        "👽",
+        "異芙"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000056.png"
     },
@@ -494,7 +529,8 @@
       "aliases": [
         "阿方",
         "🦶",
-        "方"
+        "方",
+        "范"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000054.png"
     },
@@ -509,7 +545,8 @@
       "name": "Frank",
       "aliases": [
         "弗兰肯",
-        "大锤"
+        "大锤",
+        "法蘭克"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000020.png"
     },
@@ -517,7 +554,8 @@
       "name": "Gale",
       "aliases": [
         "盖尔",
-        "格尔"
+        "格尔",
+        "格爾"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000035.png"
     },
@@ -544,14 +582,18 @@
       "aliases": [
         "格洛薇",
         "Clowbert",
-        "Glowbert"
+        "Glowbert",
+        "格鲁伊",
+        "格魯伊"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000101.png"
     },
     {
       "name": "Gray",
       "aliases": [
-        "格雷"
+        "格雷",
+        "戈雷",
+        "蓋瑞"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000064.png"
     },
@@ -566,7 +608,8 @@
     {
       "name": "Grom",
       "aliases": [
-        "格罗姆"
+        "格罗姆",
+        "葛羅姆"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000048.png"
     },
@@ -582,7 +625,8 @@
       "name": "Hank",
       "aliases": [
         "汉克",
-        "🦐"
+        "🦐",
+        "漢克"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000069.png"
     },
@@ -590,7 +634,8 @@
       "name": "Jacky",
       "aliases": [
         "雅琪",
-        "牢琪"
+        "牢琪",
+        "賈姬"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000034.png"
     },
@@ -600,7 +645,8 @@
         "jae",
         "Jae-Yong",
         "Jae Yong",
-        "载勇"
+        "载勇",
+        "載勇"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000093.png"
     },
@@ -608,20 +654,25 @@
       "name": "Janet",
       "aliases": [
         "珍妮特",
-        "牢珍"
+        "牢珍",
+        "珍娜"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000057.png"
     },
     {
       "name": "Jessie",
       "aliases": [
-        "杰西"
+        "杰西",
+        "潔西"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000007.png"
     },
     {
       "name": "Juju",
-      "aliases": [],
+      "aliases": [
+        "珠珠",
+        "茱茱"
+      ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000087.png"
     },
     {
@@ -629,7 +680,8 @@
       "aliases": [
         "风机",
         "风姬",
-        "小风"
+        "小风",
+        "小風"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000094.png"
     },
@@ -639,7 +691,8 @@
         "肯吉",
         "🍣",
         "🥷",
-        "健次"
+        "健次",
+        "賢治"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000085.png"
     },
@@ -649,7 +702,9 @@
         "猫咪",
         "猫",
         "键帽",
-        "🐱"
+        "🐱",
+        "凯特",
+        "凱特"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000076.png"
     },
@@ -663,7 +718,8 @@
         "LarryLawrie",
         "Larry Lawrie",
         "LL",
-        "👮"
+        "👮",
+        "賴瑞和羅瑞"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000077.png"
     },
@@ -687,7 +743,8 @@
       "name": "Lola",
       "aliases": [
         "萝拉",
-        "💃"
+        "💃",
+        "蘿拉"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000053.png"
     },
@@ -696,7 +753,8 @@
       "aliases": [
         "卢",
         "🧊",
-        "小罗"
+        "小罗",
+        "阿魯"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000041.png"
     },
@@ -711,7 +769,8 @@
       "name": "Maisie",
       "aliases": [
         "梅茜",
-        "麦茜"
+        "麦茜",
+        "麥希"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000068.png"
     },
@@ -719,14 +778,16 @@
       "name": "Mandy",
       "aliases": [
         "曼迪",
-        "🍬"
+        "🍬",
+        "曼蒂"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000065.png"
     },
     {
       "name": "Max",
       "aliases": [
-        "麦克斯"
+        "麦克斯",
+        "麥克絲"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000032.png"
     },
@@ -735,7 +796,9 @@
       "aliases": [
         "米普尔",
         "🎲",
-        "秘宝"
+        "秘宝",
+        "谜宝",
+        "謎寶"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000089.png"
     },
@@ -755,7 +818,8 @@
       "aliases": [
         "麦乐迪",
         "梅洛蒂",
-        "🎵"
+        "🎵",
+        "美樂蒂"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000078.png"
     },
@@ -763,14 +827,16 @@
       "name": "Mico",
       "aliases": [
         "米科",
-        "吗喽"
+        "吗喽",
+        "米可"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000075.png"
     },
     {
       "name": "Mina",
       "aliases": [
-        "米娜"
+        "米娜",
+        "蜜娜"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000097.png"
     },
@@ -780,7 +846,9 @@
         "莫伊",
         "键鼠",
         "老鼠",
-        "🐭"
+        "🐭",
+        "阿萌",
+        "莫"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000084.png"
     },
@@ -808,7 +876,9 @@
       "name": "Najia",
       "aliases": [
         "娜迦",
-        "🐍"
+        "🐍",
+        "娜吉亚",
+        "娜吉亞"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000103.png"
     },
@@ -816,7 +886,8 @@
       "name": "Nani",
       "aliases": [
         "纳妮",
-        "👁️"
+        "👁️",
+        "納妮"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000036.png"
     },
@@ -830,13 +901,17 @@
     },
     {
       "name": "Nori",
-      "aliases": [],
+      "aliases": [
+        "阿宪",
+        "憲"
+      ],
       "image_url": "../../raw/assets/brawlers/nori.png"
     },
     {
       "name": "Ollie",
       "aliases": [
-        "奥利"
+        "奥利",
+        "奧利"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000090.png"
     },
@@ -844,7 +919,8 @@
       "name": "Otis",
       "aliases": [
         "奥蒂斯",
-        "🐙"
+        "🐙",
+        "歐提斯"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000059.png"
     },
@@ -859,7 +935,9 @@
       "name": "Pearl",
       "aliases": [
         "佩尔",
-        "🍪"
+        "🍪",
+        "珀尔",
+        "珀爾"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000072.png"
     },
@@ -867,7 +945,8 @@
       "name": "Penny",
       "aliases": [
         "潘妮",
-        "🏴‍☠️"
+        "🏴‍☠️",
+        "佩妮"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000019.png"
     },
@@ -876,7 +955,8 @@
       "aliases": [
         "皮尔斯",
         "p24",
-        "P24"
+        "P24",
+        "皮爾斯"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000099.png"
     },
@@ -886,7 +966,8 @@
         "佩佩",
         "派珀",
         "牢佩",
-        "☂️"
+        "☂️",
+        "小辣椒"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000015.png"
     },
@@ -894,7 +975,8 @@
       "name": "Poco",
       "aliases": [
         "波克",
-        "🎸"
+        "🎸",
+        "波可"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000013.png"
     },
@@ -903,7 +985,8 @@
       "aliases": [
         "RT",
         "R T",
-        "📹"
+        "📹",
+        "阿尔缇"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000066.png"
     },
@@ -911,7 +994,8 @@
       "name": "Rico",
       "aliases": [
         "瑞科",
-        "弹球"
+        "弹球",
+        "彈射"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000004.png"
     },
@@ -919,7 +1003,8 @@
       "name": "Rosa",
       "aliases": [
         "罗莎",
-        "🌹"
+        "🌹",
+        "羅莎"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000024.png"
     },
@@ -931,7 +1016,8 @@
         "上校",
         "🐶",
         "狗子",
-        "狗"
+        "狗",
+        "拉夫"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000044.png"
     },
@@ -953,7 +1039,8 @@
     {
       "name": "Shade",
       "aliases": [
-        "谢德"
+        "谢德",
+        "謝德"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000086.png"
     },
@@ -967,7 +1054,10 @@
     },
     {
       "name": "Sirius",
-      "aliases": [],
+      "aliases": [
+        "西里乌斯",
+        "西里烏斯"
+      ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000102.png"
     },
     {
@@ -975,7 +1065,8 @@
       "aliases": [
         "斯派克",
         "仙人掌",
-        "🌵"
+        "🌵",
+        "史派克"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000005.png"
     },
@@ -993,7 +1084,8 @@
       "aliases": [
         "史魁克",
         "史奎克",
-        "口水怪"
+        "口水怪",
+        "斯威克"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000047.png"
     },
@@ -1001,14 +1093,17 @@
       "name": "Starr Nova",
       "aliases": [
         "nova",
-        "⭐"
+        "⭐",
+        "丝塔诺娃",
+        "絲塔諾娃"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000105.png"
     },
     {
       "name": "Stu",
       "aliases": [
-        "斯图"
+        "斯图",
+        "駛徒"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000045.png"
     },
@@ -1018,7 +1113,8 @@
         "瑟奇",
         "奔腾",
         "瑟爹",
-        "🥤"
+        "🥤",
+        "奔騰"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000038.png"
     },
@@ -1033,7 +1129,8 @@
     {
       "name": "Tick",
       "aliases": [
-        "迪克"
+        "迪克",
+        "滴答"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000022.png"
     },
@@ -1050,25 +1147,34 @@
     },
     {
       "name": "Vince",
-      "aliases": [],
+      "aliases": [
+        "文斯"
+      ],
       "image_url": "../../raw/assets/brawlers/vince.webp"
     },
     {
       "name": "Wendy",
-      "aliases": [],
+      "aliases": [
+        "温蒂",
+        "溫蒂"
+      ],
       "image_url": "../../raw/assets/brawlers/wendy.png"
     },
     {
       "name": "Willow",
       "aliases": [
         "薇洛",
-        "🐸"
+        "🐸",
+        "葳洛"
       ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000067.png"
     },
     {
       "name": "Ziggy",
-      "aliases": [],
+      "aliases": [
+        "兹奇",
+        "茲奇"
+      ],
       "image_url": "https://cdn.brawlify.com/brawlers/borderless/16000098.png"
     }
   ],
@@ -1077,41 +1183,56 @@
     "8比特": "8-Bit",
     "老八": "8-Bit",
     "🕹️": "8-Bit",
+    "比特8號": "8-Bit",
     "Alli": "Alli",
     "鳄莉": "Alli",
     "鳄鱼": "Alli",
     "🐊": "Alli",
+    "鳄梨": "Alli",
+    "愛莉": "Alli",
     "Amber": "Amber",
     "琥珀": "Amber",
     "🔥": "Amber",
+    "安珀": "Amber",
     "Angelo": "Angelo",
     "安吉洛": "Angelo",
+    "安傑洛": "Angelo",
     "Ash": "Ash",
     "阿拾": "Ash",
     "🧹": "Ash",
     "🗑️": "Ash",
     "垃圾桶": "Ash",
+    "阿信": "Ash",
     "Barley": "Barley",
     "巴利": "Barley",
     "酒保": "Barley",
     "🍾": "Barley",
+    "保力": "Barley",
     "Bea": "Bea",
     "贝亚": "Bea",
     "🐝": "Bea",
     "蜜蜂": "Bea",
+    "碧兒": "Bea",
     "Belle": "Belle",
     "贝尔": "Belle",
+    "蓓爾": "Belle",
     "Berry": "Berry",
     "贝瑞": "Berry",
     "🍦": "Berry",
+    "拜瑞": "Berry",
+    "貝瑞": "Berry",
     "Bibi": "Bibi",
     "比比": "Bibi",
     "⚾": "Bibi",
+    "嗶嗶": "Bibi",
     "Bo": "Bo",
     "阿渤": "Bo",
     "🏹": "Bo",
+    "鷹獵人 爆": "Bo",
     "Bolt": "Bolt",
     "张雪峰": "Bolt",
+    "博尔特": "Bolt",
+    "博爾特": "Bolt",
     "Bonnie": "Bonnie",
     "邦妮": "Bonnie",
     "Brock": "Brock",
@@ -1119,18 +1240,22 @@
     "Bull": "Bull",
     "公牛": "Bull",
     "🐂": "Bull",
+    "狂牛": "Bull",
     "Buster": "Buster",
     "巴斯特": "Buster",
     "🎥": "Buster",
     "Buzz": "Buzz",
     "巴兹": "Buzz",
     "🦖": "Buzz",
+    "霸子": "Buzz",
     "Byron": "Byron",
     "拜伦": "Byron",
     "🧪": "Byron",
+    "拜倫": "Byron",
     "Carl": "Carl",
     "卡尔": "Carl",
     "⛏️": "Carl",
+    "卡爾": "Carl",
     "Charlie": "Charlie",
     "查莉": "Charlie",
     "查理": "Charlie",
@@ -1140,6 +1265,7 @@
     "小丑": "Chester",
     "消愁": "Chester",
     "🤡": "Chester",
+    "查斯特": "Chester",
     "Chuck": "Chuck",
     "查克": "Chuck",
     "🚂": "Chuck",
@@ -1147,29 +1273,37 @@
     "克兰西": "Clancy",
     "龙虾": "Clancy",
     "🦞": "Clancy",
+    "克蘭西": "Clancy",
     "Colette": "Colette",
     "科莱特": "Colette",
+    "葛蕾特": "Colette",
     "Colt": "Colt",
     "柯尔特": "Colt",
     "孤儿特": "Colt",
+    "柯爾特": "Colt",
     "Cordelius": "Cordelius",
     "科迪琉斯": "Cordelius",
     "kd64": "Cordelius",
     "64": "Cordelius",
     "蘑菇": "Cordelius",
     "🍄": "Cordelius",
+    "康迪留斯": "Cordelius",
     "Cosmo": "Cosmo",
+    "科斯莫": "Cosmo",
     "Crow": "Crow",
     "黑鸦": "Crow",
     "乌鸦": "Crow",
     "🐦‍⬛": "Crow",
+    "鴉": "Crow",
     "Damian": "Damian",
     "达米安": "Damian",
+    "達米安": "Damian",
     "Darryl": "Darryl",
     "达里尔": "Darryl",
     "🛢️": "Darryl",
     "桶子": "Darryl",
     "滚筒": "Darryl",
+    "達里爾": "Darryl",
     "Doug": "Doug",
     "道格": "Doug",
     "热狗": "Doug",
@@ -1181,11 +1315,13 @@
     "德拉科": "Draco",
     "🐉": "Draco",
     "龙": "Draco",
+    "德拉古": "Draco",
     "Dynamike": "Dynamike",
     "爆破麦克": "Dynamike",
     "麦克": "Dynamike",
     "炸弹人": "Dynamike",
     "🧨": "Dynamike",
+    "爆破麥克": "Dynamike",
     "Edgar": "Edgar",
     "艾德加": "Edgar",
     "506": "Edgar",
@@ -1197,26 +1333,33 @@
     "修胎": "El Primo",
     "橡皮人": "El Primo",
     "荒野勒布朗": "El Primo",
+    "艾尔·普里莫": "El Primo",
+    "艾爾普里莫": "El Primo",
     "Emz": "Emz",
     "艾魅": "Emz",
     "喷雾": "Emz",
+    "艾謎": "Emz",
     "Eve": "Eve",
     "伊芙": "Eve",
     "🥚": "Eve",
     "外星人": "Eve",
     "👽": "Eve",
+    "異芙": "Eve",
     "Fang": "Fang",
     "阿方": "Fang",
     "🦶": "Fang",
     "方": "Fang",
+    "范": "Fang",
     "Finx": "Finx",
     "芬克斯": "Finx",
     "Frank": "Frank",
     "弗兰肯": "Frank",
     "大锤": "Frank",
+    "法蘭克": "Frank",
     "Gale": "Gale",
     "盖尔": "Gale",
     "格尔": "Gale",
+    "格爾": "Gale",
     "Gene": "Gene",
     "吉恩": "Gene",
     "灯神": "Gene",
@@ -1229,47 +1372,63 @@
     "格洛薇": "Glowy",
     "Clowbert": "Glowy",
     "Glowbert": "Glowy",
+    "格鲁伊": "Glowy",
+    "格魯伊": "Glowy",
     "Gray": "Gray",
     "格雷": "Gray",
+    "戈雷": "Gray",
+    "蓋瑞": "Gray",
     "Griff": "Griff",
     "格里夫": "Griff",
     "撒币": "Griff",
     "Grom": "Grom",
     "格罗姆": "Grom",
+    "葛羅姆": "Grom",
     "Gus": "Gus",
     "格斯": "Gus",
     "🎈": "Gus",
     "Hank": "Hank",
     "汉克": "Hank",
     "🦐": "Hank",
+    "漢克": "Hank",
     "Jacky": "Jacky",
     "雅琪": "Jacky",
     "牢琪": "Jacky",
+    "賈姬": "Jacky",
     "Jae-yong": "Jae-yong",
     "jae": "Jae-yong",
     "Jae-Yong": "Jae-yong",
     "Jae Yong": "Jae-yong",
     "载勇": "Jae-yong",
+    "載勇": "Jae-yong",
     "Janet": "Janet",
     "珍妮特": "Janet",
     "牢珍": "Janet",
+    "珍娜": "Janet",
     "Jessie": "Jessie",
     "杰西": "Jessie",
+    "潔西": "Jessie",
     "Juju": "Juju",
+    "珠珠": "Juju",
+    "茱茱": "Juju",
     "Kaze": "Kaze",
     "风机": "Kaze",
     "风姬": "Kaze",
     "小风": "Kaze",
+    "小風": "Kaze",
     "Kenji": "Kenji",
     "肯吉": "Kenji",
     "🍣": "Kenji",
     "🥷": "Kenji",
     "健次": "Kenji",
+    "賢治": "Kenji",
     "Kit": "Kit",
     "猫咪": "Kit",
     "猫": "Kit",
     "键帽": "Kit",
     "🐱": "Kit",
+    "凯特": "Kit",
+    "凱特": "Kit",
     "Larry & Lawrie": "Larry & Lawrie",
     "拉里和劳里": "Larry & Lawrie",
     "拉里劳里": "Larry & Lawrie",
@@ -1279,6 +1438,7 @@
     "Larry Lawrie": "Larry & Lawrie",
     "LL": "Larry & Lawrie",
     "👮": "Larry & Lawrie",
+    "賴瑞和羅瑞": "Larry & Lawrie",
     "Leon": "Leon",
     "里昂": "Leon",
     "🦎": "Leon",
@@ -1288,24 +1448,31 @@
     "Lola": "Lola",
     "萝拉": "Lola",
     "💃": "Lola",
+    "蘿拉": "Lola",
     "Lou": "Lou",
     "卢": "Lou",
     "🧊": "Lou",
     "小罗": "Lou",
+    "阿魯": "Lou",
     "Lumi": "Lumi",
     "露米": "Lumi",
     "Maisie": "Maisie",
     "梅茜": "Maisie",
     "麦茜": "Maisie",
+    "麥希": "Maisie",
     "Mandy": "Mandy",
     "曼迪": "Mandy",
     "🍬": "Mandy",
+    "曼蒂": "Mandy",
     "Max": "Max",
     "麦克斯": "Max",
+    "麥克絲": "Max",
     "Meeple": "Meeple",
     "米普尔": "Meeple",
     "🎲": "Meeple",
     "秘宝": "Meeple",
+    "谜宝": "Meeple",
+    "謎寶": "Meeple",
     "Meg": "Meg",
     "梅格": "Meg",
     "梅亩": "Meg",
@@ -1316,16 +1483,21 @@
     "麦乐迪": "Melodie",
     "梅洛蒂": "Melodie",
     "🎵": "Melodie",
+    "美樂蒂": "Melodie",
     "Mico": "Mico",
     "米科": "Mico",
     "吗喽": "Mico",
+    "米可": "Mico",
     "Mina": "Mina",
     "米娜": "Mina",
+    "蜜娜": "Mina",
     "Moe": "Moe",
     "莫伊": "Moe",
     "键鼠": "Moe",
     "老鼠": "Moe",
     "🐭": "Moe",
+    "阿萌": "Moe",
+    "莫": "Moe",
     "Mortis": "Mortis",
     "莫提斯": "Mortis",
     "铲子": "Mortis",
@@ -1339,48 +1511,64 @@
     "Najia": "Najia",
     "娜迦": "Najia",
     "🐍": "Najia",
+    "娜吉亚": "Najia",
+    "娜吉亞": "Najia",
     "Nani": "Nani",
     "纳妮": "Nani",
     "👁️": "Nani",
+    "納妮": "Nani",
     "Nita": "Nita",
     "妮塔": "Nita",
     "🐻": "Nita",
     "Nori": "Nori",
+    "阿宪": "Nori",
+    "憲": "Nori",
     "Ollie": "Ollie",
     "奥利": "Ollie",
+    "奧利": "Ollie",
     "Otis": "Otis",
     "奥蒂斯": "Otis",
     "🐙": "Otis",
+    "歐提斯": "Otis",
     "Pam": "Pam",
     "帕姆": "Pam",
     "Pearl": "Pearl",
     "佩尔": "Pearl",
     "🍪": "Pearl",
+    "珀尔": "Pearl",
+    "珀爾": "Pearl",
     "Penny": "Penny",
     "潘妮": "Penny",
     "🏴‍☠️": "Penny",
+    "佩妮": "Penny",
     "Pierce": "Pierce",
     "皮尔斯": "Pierce",
     "p24": "Pierce",
     "P24": "Pierce",
+    "皮爾斯": "Pierce",
     "Piper": "Piper",
     "佩佩": "Piper",
     "派珀": "Piper",
     "牢佩": "Piper",
     "☂️": "Piper",
+    "小辣椒": "Piper",
     "Poco": "Poco",
     "波克": "Poco",
     "🎸": "Poco",
+    "波可": "Poco",
     "R-T": "R-T",
     "RT": "R-T",
     "R T": "R-T",
     "📹": "R-T",
+    "阿尔缇": "R-T",
     "Rico": "Rico",
     "瑞科": "Rico",
     "弹球": "Rico",
+    "彈射": "Rico",
     "Rosa": "Rosa",
     "罗莎": "Rosa",
     "🌹": "Rosa",
+    "羅莎": "Rosa",
     "Ruffs": "Ruffs",
     "拉夫斯": "Ruffs",
     "拉夫上校": "Ruffs",
@@ -1388,6 +1576,7 @@
     "🐶": "Ruffs",
     "狗子": "Ruffs",
     "狗": "Ruffs",
+    "拉夫": "Ruffs",
     "Sam": "Sam",
     "山姆": "Sam",
     "Sandy": "Sandy",
@@ -1395,14 +1584,18 @@
     "😴": "Sandy",
     "Shade": "Shade",
     "谢德": "Shade",
+    "謝德": "Shade",
     "Shelly": "Shelly",
     "雪莉": "Shelly",
     "🐚": "Shelly",
     "Sirius": "Sirius",
+    "西里乌斯": "Sirius",
+    "西里烏斯": "Sirius",
     "Spike": "Spike",
     "斯派克": "Spike",
     "仙人掌": "Spike",
     "🌵": "Spike",
+    "史派克": "Spike",
     "Sprout": "Sprout",
     "芽芽": "Sprout",
     "斯普劳特": "Sprout",
@@ -1411,21 +1604,27 @@
     "史魁克": "Squeak",
     "史奎克": "Squeak",
     "口水怪": "Squeak",
+    "斯威克": "Squeak",
     "Starr Nova": "Starr Nova",
     "nova": "Starr Nova",
     "⭐": "Starr Nova",
+    "丝塔诺娃": "Starr Nova",
+    "絲塔諾娃": "Starr Nova",
     "Stu": "Stu",
     "斯图": "Stu",
+    "駛徒": "Stu",
     "Surge": "Surge",
     "瑟奇": "Surge",
     "奔腾": "Surge",
     "瑟爹": "Surge",
     "🥤": "Surge",
+    "奔騰": "Surge",
     "Tara": "Tara",
     "塔拉": "Tara",
     "🔮": "Tara",
     "Tick": "Tick",
     "迪克": "Tick",
+    "滴答": "Tick",
     "Trunk": "Trunk",
     "特朗克": "Trunk",
     "🪵": "Trunk",
@@ -1433,11 +1632,17 @@
     "滚木": "Trunk",
     "树桩": "Trunk",
     "Vince": "Vince",
+    "文斯": "Vince",
     "Wendy": "Wendy",
+    "温蒂": "Wendy",
+    "溫蒂": "Wendy",
     "Willow": "Willow",
     "薇洛": "Willow",
     "🐸": "Willow",
-    "Ziggy": "Ziggy"
+    "葳洛": "Willow",
+    "Ziggy": "Ziggy",
+    "兹奇": "Ziggy",
+    "茲奇": "Ziggy"
   },
   "ambiguous": {
     "猴子": [

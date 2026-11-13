@@ -1,0 +1,884 @@
+{
+  "schema": "brawler_name_localization_capture.v1",
+  "capture_kind": "focused_raw_excerpt",
+  "captured_at": "2026-11-13",
+  "source": {
+    "provider": "BrawlAPI",
+    "game_data_generated_at": "2026-10-03T16:59:28.000Z",
+    "urls": {
+      "index": "https://api.brawlapi.com/",
+      "locales": "https://api.brawlapi.com/v2/raw/csv_logic/locales",
+      "characters": "https://api.brawlapi.com/v2/raw/csv_logic/characters",
+      "en": "https://api.brawlapi.com/v2/raw/localization/texts",
+      "zh_cn": "https://api.brawlapi.com/v2/raw/localization/cn",
+      "zh_tw": "https://api.brawlapi.com/v2/raw/localization/cnt"
+    }
+  },
+  "selection_rule": "Entity canonical name -> exact EN localization value; candidate TID must map to a csv_logic/characters row. Gene uses the documented HookDude/TID_HOOK exception.",
+  "rows": [
+    {
+      "canonical_name": "8-Bit",
+      "character_name": "Arcade",
+      "tid": "TID_ARCADE",
+      "en": "8-BIT",
+      "zh_cn": "8比特",
+      "zh_tw": "比特8號"
+    },
+    {
+      "canonical_name": "Alli",
+      "character_name": "Stalker",
+      "tid": "TID_STALKER",
+      "en": "ALLI",
+      "zh_cn": "鳄梨",
+      "zh_tw": "愛莉"
+    },
+    {
+      "canonical_name": "Amber",
+      "character_name": "FireDude",
+      "tid": "TID_FIRE_DUDE",
+      "en": "AMBER",
+      "zh_cn": "琥珀",
+      "zh_tw": "安珀"
+    },
+    {
+      "canonical_name": "Angelo",
+      "character_name": "InsectMan",
+      "tid": "TID_INSECTMAN",
+      "en": "ANGELO",
+      "zh_cn": "安吉洛",
+      "zh_tw": "安傑洛"
+    },
+    {
+      "canonical_name": "Ash",
+      "character_name": "Knight",
+      "tid": "TID_KNIGHT",
+      "en": "ASH",
+      "zh_cn": "阿拾",
+      "zh_tw": "阿信"
+    },
+    {
+      "canonical_name": "Barley",
+      "character_name": "Barkeep",
+      "tid": "TID_BARKEEP",
+      "en": "BARLEY",
+      "zh_cn": "巴利",
+      "zh_tw": "保力"
+    },
+    {
+      "canonical_name": "Bea",
+      "character_name": "BeeSniper",
+      "tid": "TID_BEE_SNIPER",
+      "en": "BEA",
+      "zh_cn": "贝亚",
+      "zh_tw": "碧兒"
+    },
+    {
+      "canonical_name": "Belle",
+      "character_name": "ElectroSniper",
+      "tid": "TID_ELECTRO_SNIPER",
+      "en": "BELLE",
+      "zh_cn": "贝尔",
+      "zh_tw": "蓓爾"
+    },
+    {
+      "canonical_name": "Berry",
+      "character_name": "Painter",
+      "tid": "TID_PAINTER",
+      "en": "BERRY",
+      "zh_cn": "拜瑞",
+      "zh_tw": "貝瑞"
+    },
+    {
+      "canonical_name": "Bibi",
+      "character_name": "Baseball",
+      "tid": "TID_BASEBALL",
+      "en": "BIBI",
+      "zh_cn": "比比",
+      "zh_tw": "嗶嗶"
+    },
+    {
+      "canonical_name": "Bo",
+      "character_name": "BowDude",
+      "tid": "TID_BOW_DUDE",
+      "en": "BO",
+      "zh_cn": "阿渤",
+      "zh_tw": "鷹獵人 爆"
+    },
+    {
+      "canonical_name": "Bolt",
+      "character_name": "Rock",
+      "tid": "TID_ROCK",
+      "en": "BOLT",
+      "zh_cn": "博尔特",
+      "zh_tw": "博爾特"
+    },
+    {
+      "canonical_name": "Bonnie",
+      "character_name": "CannonGirl",
+      "tid": "TID_CANNON_GIRL",
+      "en": "BONNIE",
+      "zh_cn": "邦妮",
+      "zh_tw": "邦妮"
+    },
+    {
+      "canonical_name": "Brock",
+      "character_name": "RocketGirl",
+      "tid": "TID_ROCKET_GIRL",
+      "en": "BROCK",
+      "zh_cn": "布洛克",
+      "zh_tw": "布洛克"
+    },
+    {
+      "canonical_name": "Bull",
+      "character_name": "BullDude",
+      "tid": "TID_BULL_DUDE",
+      "en": "BULL",
+      "zh_cn": "公牛",
+      "zh_tw": "狂牛"
+    },
+    {
+      "canonical_name": "Buster",
+      "character_name": "ShieldTank",
+      "tid": "TID_SHIELD_TANK",
+      "en": "BUSTER",
+      "zh_cn": "巴斯特",
+      "zh_tw": "巴斯特"
+    },
+    {
+      "canonical_name": "Buzz",
+      "character_name": "RopeDude",
+      "tid": "TID_ROPE_DUDE",
+      "en": "BUZZ",
+      "zh_cn": "巴兹",
+      "zh_tw": "霸子"
+    },
+    {
+      "canonical_name": "Byron",
+      "character_name": "SnakeOil",
+      "tid": "TID_SNAKE_OIL",
+      "en": "BYRON",
+      "zh_cn": "拜伦",
+      "zh_tw": "拜倫"
+    },
+    {
+      "canonical_name": "Carl",
+      "character_name": "Whirlwind",
+      "tid": "TID_WHIRLWIND",
+      "en": "CARL",
+      "zh_cn": "卡尔",
+      "zh_tw": "卡爾"
+    },
+    {
+      "canonical_name": "Charlie",
+      "character_name": "Cocooner",
+      "tid": "TID_COCOONER",
+      "en": "CHARLIE",
+      "zh_cn": "查莉",
+      "zh_tw": "查莉"
+    },
+    {
+      "canonical_name": "Chester",
+      "character_name": "Jester",
+      "tid": "TID_JESTER",
+      "en": "CHESTER",
+      "zh_cn": "切斯特",
+      "zh_tw": "查斯特"
+    },
+    {
+      "canonical_name": "Chuck",
+      "character_name": "Conductor",
+      "tid": "TID_CONDUCTOR",
+      "en": "CHUCK",
+      "zh_cn": "查克",
+      "zh_tw": "查克"
+    },
+    {
+      "canonical_name": "Clancy",
+      "character_name": "Crab",
+      "tid": "TID_CRAB",
+      "en": "CLANCY",
+      "zh_cn": "克兰西",
+      "zh_tw": "克蘭西"
+    },
+    {
+      "canonical_name": "Colette",
+      "character_name": "Percenter",
+      "tid": "TID_PERCENTER",
+      "en": "COLETTE",
+      "zh_cn": "科莱特",
+      "zh_tw": "葛蕾特"
+    },
+    {
+      "canonical_name": "Colt",
+      "character_name": "Gunslinger",
+      "tid": "TID_GUNSLINGER",
+      "en": "COLT",
+      "zh_cn": "柯尔特",
+      "zh_tw": "柯爾特"
+    },
+    {
+      "canonical_name": "Cordelius",
+      "character_name": "Duelist",
+      "tid": "TID_DUELIST",
+      "en": "CORDELIUS",
+      "zh_cn": "科迪琉斯",
+      "zh_tw": "康迪留斯"
+    },
+    {
+      "canonical_name": "Cosmo",
+      "character_name": "Attractor",
+      "tid": "TID_ATTRACTOR",
+      "en": "COSMO",
+      "zh_cn": "科斯莫",
+      "zh_tw": "科斯莫"
+    },
+    {
+      "canonical_name": "Crow",
+      "character_name": "Crow",
+      "tid": "TID_CROW",
+      "en": "CROW",
+      "zh_cn": "黑鸦",
+      "zh_tw": "鴉"
+    },
+    {
+      "canonical_name": "Damian",
+      "character_name": "Gladiator",
+      "tid": "TID_GLADIATOR",
+      "en": "DAMIAN",
+      "zh_cn": "达米安",
+      "zh_tw": "達米安"
+    },
+    {
+      "canonical_name": "Darryl",
+      "character_name": "BarrelBot",
+      "tid": "TID_BARREL_BOT",
+      "en": "DARRYL",
+      "zh_cn": "达里尔",
+      "zh_tw": "達里爾"
+    },
+    {
+      "canonical_name": "Doug",
+      "character_name": "Reviver",
+      "tid": "TID_REVIVER",
+      "en": "DOUG",
+      "zh_cn": "道格",
+      "zh_tw": "道格"
+    },
+    {
+      "canonical_name": "Draco",
+      "character_name": "DragonRider",
+      "tid": "TID_DRAGON_RIDER",
+      "en": "DRACO",
+      "zh_cn": "德拉科",
+      "zh_tw": "德拉古"
+    },
+    {
+      "canonical_name": "Dynamike",
+      "character_name": "TntDude",
+      "tid": "TID_TNT_DUDE",
+      "en": "DYNAMIKE",
+      "zh_cn": "爆破麦克",
+      "zh_tw": "爆破麥克"
+    },
+    {
+      "canonical_name": "Edgar",
+      "character_name": "Enrager",
+      "tid": "TID_ENRAGER",
+      "en": "EDGAR",
+      "zh_cn": "艾德加",
+      "zh_tw": "艾德加"
+    },
+    {
+      "canonical_name": "El Primo",
+      "character_name": "Luchador",
+      "tid": "TID_LUCHADOR",
+      "en": "EL PRIMO",
+      "zh_cn": "艾尔·普里莫",
+      "zh_tw": "艾爾普里莫"
+    },
+    {
+      "canonical_name": "Emz",
+      "character_name": "Mummy",
+      "tid": "TID_MUMMY",
+      "en": "EMZ",
+      "zh_cn": "艾魅",
+      "zh_tw": "艾謎"
+    },
+    {
+      "canonical_name": "Eve",
+      "character_name": "Flea",
+      "tid": "TID_FLEA",
+      "en": "EVE",
+      "zh_cn": "伊芙",
+      "zh_tw": "異芙"
+    },
+    {
+      "canonical_name": "Fang",
+      "character_name": "KickerDude",
+      "tid": "TID_KICKER_DUDE",
+      "en": "FANG",
+      "zh_cn": "阿方",
+      "zh_tw": "范"
+    },
+    {
+      "canonical_name": "Finx",
+      "character_name": "Chronomancer",
+      "tid": "TID_CHRONOMANCER",
+      "en": "FINX",
+      "zh_cn": "芬克斯",
+      "zh_tw": "芬克斯"
+    },
+    {
+      "canonical_name": "Frank",
+      "character_name": "HammerDude",
+      "tid": "TID_HAMMER_DUDE",
+      "en": "FRANK",
+      "zh_cn": "弗兰肯",
+      "zh_tw": "法蘭克"
+    },
+    {
+      "canonical_name": "Gale",
+      "character_name": "Blower",
+      "tid": "TID_BLOWER",
+      "en": "GALE",
+      "zh_cn": "格尔",
+      "zh_tw": "格爾"
+    },
+    {
+      "canonical_name": "Gene",
+      "character_name": "HookDude",
+      "tid": "TID_HOOK",
+      "en": "GENE",
+      "zh_cn": "吉恩",
+      "zh_tw": "吉恩"
+    },
+    {
+      "canonical_name": "Gigi",
+      "character_name": "Daredevil",
+      "tid": "TID_DAREDEVIL",
+      "en": "GIGI",
+      "zh_cn": "琪琪",
+      "zh_tw": "琪琪"
+    },
+    {
+      "canonical_name": "Glowy",
+      "character_name": "Mender",
+      "tid": "TID_MENDER",
+      "en": "GLOWY",
+      "zh_cn": "格鲁伊",
+      "zh_tw": "格魯伊"
+    },
+    {
+      "canonical_name": "Gray",
+      "character_name": "DoorMan",
+      "tid": "TID_DOORMAN",
+      "en": "GRAY",
+      "zh_cn": "戈雷",
+      "zh_tw": "蓋瑞"
+    },
+    {
+      "canonical_name": "Griff",
+      "character_name": "AssaultShotgun",
+      "tid": "TID_ASSAULT_SHOTGUN",
+      "en": "GRIFF",
+      "zh_cn": "格里夫",
+      "zh_tw": "格里夫"
+    },
+    {
+      "canonical_name": "Grom",
+      "character_name": "CrossBomber",
+      "tid": "TID_CROSS_BOMBER",
+      "en": "GROM",
+      "zh_cn": "格罗姆",
+      "zh_tw": "葛羅姆"
+    },
+    {
+      "canonical_name": "Gus",
+      "character_name": "SoulCollector",
+      "tid": "TID_SOUL_COLLECTOR",
+      "en": "GUS",
+      "zh_cn": "格斯",
+      "zh_tw": "格斯"
+    },
+    {
+      "canonical_name": "Hank",
+      "character_name": "FishTank",
+      "tid": "TID_FISHTANK",
+      "en": "HANK",
+      "zh_cn": "汉克",
+      "zh_tw": "漢克"
+    },
+    {
+      "canonical_name": "Jacky",
+      "character_name": "Driller",
+      "tid": "TID_DRILLER",
+      "en": "JACKY",
+      "zh_cn": "雅琪",
+      "zh_tw": "賈姬"
+    },
+    {
+      "canonical_name": "Jae-yong",
+      "character_name": "Alternator",
+      "tid": "TID_ALTERNATOR",
+      "en": "JAE-YONG",
+      "zh_cn": "载勇",
+      "zh_tw": "載勇"
+    },
+    {
+      "canonical_name": "Janet",
+      "character_name": "JetpackGirl",
+      "tid": "TID_JETPACK_GIRL",
+      "en": "JANET",
+      "zh_cn": "珍妮特",
+      "zh_tw": "珍娜"
+    },
+    {
+      "canonical_name": "Jessie",
+      "character_name": "Mechanic",
+      "tid": "TID_MECHANIC",
+      "en": "JESSIE",
+      "zh_cn": "杰西",
+      "zh_tw": "潔西"
+    },
+    {
+      "canonical_name": "Juju",
+      "character_name": "Voodoo",
+      "tid": "TID_VOODOO",
+      "en": "JUJU",
+      "zh_cn": "珠珠",
+      "zh_tw": "茱茱"
+    },
+    {
+      "canonical_name": "Kaze",
+      "character_name": "Geisha",
+      "tid": "TID_GEISHA",
+      "en": "KAZE",
+      "zh_cn": "风姬",
+      "zh_tw": "小風"
+    },
+    {
+      "canonical_name": "Kenji",
+      "character_name": "Samurai",
+      "tid": "TID_SAMURAI",
+      "en": "KENJI",
+      "zh_cn": "健次",
+      "zh_tw": "賢治"
+    },
+    {
+      "canonical_name": "Kit",
+      "character_name": "Attacher",
+      "tid": "TID_ATTACHER",
+      "en": "KIT",
+      "zh_cn": "凯特",
+      "zh_tw": "凱特"
+    },
+    {
+      "canonical_name": "Larry & Lawrie",
+      "character_name": "Twins",
+      "tid": "TID_TWINS",
+      "en": "LARRY & LAWRIE",
+      "zh_cn": "拉里和劳里",
+      "zh_tw": "賴瑞和羅瑞"
+    },
+    {
+      "canonical_name": "Leon",
+      "character_name": "Ninja",
+      "tid": "TID_NINJA",
+      "en": "LEON",
+      "zh_cn": "里昂",
+      "zh_tw": "里昂"
+    },
+    {
+      "canonical_name": "Lily",
+      "character_name": "Ambusher",
+      "tid": "TID_AMBUSHER",
+      "en": "LILY",
+      "zh_cn": "莉莉",
+      "zh_tw": "莉莉"
+    },
+    {
+      "canonical_name": "Lola",
+      "character_name": "Duplicator",
+      "tid": "TID_DUPLICATOR",
+      "en": "LOLA",
+      "zh_cn": "萝拉",
+      "zh_tw": "蘿拉"
+    },
+    {
+      "canonical_name": "Lou",
+      "character_name": "IceDude",
+      "tid": "TID_ICE_DUDE",
+      "en": "LOU",
+      "zh_cn": "小罗",
+      "zh_tw": "阿魯"
+    },
+    {
+      "canonical_name": "Lumi",
+      "character_name": "Morningstar",
+      "tid": "TID_MORNINGSTAR",
+      "en": "LUMI",
+      "zh_cn": "露米",
+      "zh_tw": "露米"
+    },
+    {
+      "canonical_name": "Maisie",
+      "character_name": "Maisie",
+      "tid": "TID_MAISIE",
+      "en": "MAISIE",
+      "zh_cn": "麦茜",
+      "zh_tw": "麥希"
+    },
+    {
+      "canonical_name": "Mandy",
+      "character_name": "Beamer",
+      "tid": "TID_BEAMER",
+      "en": "MANDY",
+      "zh_cn": "曼迪",
+      "zh_tw": "曼蒂"
+    },
+    {
+      "canonical_name": "Max",
+      "character_name": "Speedy",
+      "tid": "TID_SPEEDY",
+      "en": "MAX",
+      "zh_cn": "麦克斯",
+      "zh_tw": "麥克絲"
+    },
+    {
+      "canonical_name": "Meeple",
+      "character_name": "Meeple",
+      "tid": "TID_MEEPLE",
+      "en": "MEEPLE",
+      "zh_cn": "谜宝",
+      "zh_tw": "謎寶"
+    },
+    {
+      "canonical_name": "Meg",
+      "character_name": "MechaDude",
+      "tid": "TID_MECHA_DUDE",
+      "en": "MEG",
+      "zh_cn": "梅格",
+      "zh_tw": "梅格"
+    },
+    {
+      "canonical_name": "Melodie",
+      "character_name": "AxeJuggler",
+      "tid": "TID_AXE_JUGGLER",
+      "en": "MELODIE",
+      "zh_cn": "麦乐迪",
+      "zh_tw": "美樂蒂"
+    },
+    {
+      "canonical_name": "Mico",
+      "character_name": "Leaper",
+      "tid": "TID_LEAPER",
+      "en": "MICO",
+      "zh_cn": "米科",
+      "zh_tw": "米可"
+    },
+    {
+      "canonical_name": "Mina",
+      "character_name": "Dancer",
+      "tid": "TID_DANCER",
+      "en": "MINA",
+      "zh_cn": "蜜娜",
+      "zh_tw": "蜜娜"
+    },
+    {
+      "canonical_name": "Moe",
+      "character_name": "Digger",
+      "tid": "TID_DIGGER",
+      "en": "MOE",
+      "zh_cn": "阿萌",
+      "zh_tw": "莫"
+    },
+    {
+      "canonical_name": "Mortis",
+      "character_name": "Undertaker",
+      "tid": "TID_UNDERTAKER",
+      "en": "MORTIS",
+      "zh_cn": "莫提斯",
+      "zh_tw": "莫提斯"
+    },
+    {
+      "canonical_name": "Mr. P",
+      "character_name": "SpawnerDude",
+      "tid": "TID_SPAWNER_DUDE",
+      "en": "MR. P",
+      "zh_cn": "P先生",
+      "zh_tw": "Mr. P"
+    },
+    {
+      "canonical_name": "Najia",
+      "character_name": "Redirecter",
+      "tid": "TID_REDIRECTER",
+      "en": "NAJIA",
+      "zh_cn": "娜吉亚",
+      "zh_tw": "娜吉亞"
+    },
+    {
+      "canonical_name": "Nani",
+      "character_name": "Controller",
+      "tid": "TID_CONTROLLER",
+      "en": "NANI",
+      "zh_cn": "纳妮",
+      "zh_tw": "納妮"
+    },
+    {
+      "canonical_name": "Nita",
+      "character_name": "Shaman",
+      "tid": "TID_SHAMAN",
+      "en": "NITA",
+      "zh_cn": "妮塔",
+      "zh_tw": "妮塔"
+    },
+    {
+      "canonical_name": "Nori",
+      "character_name": "KatanaKid",
+      "tid": "TID_KATANA_KID",
+      "en": "NORI",
+      "zh_cn": "阿宪",
+      "zh_tw": "憲"
+    },
+    {
+      "canonical_name": "Ollie",
+      "character_name": "Skater",
+      "tid": "TID_SKATER",
+      "en": "OLLIE",
+      "zh_cn": "奥利",
+      "zh_tw": "奧利"
+    },
+    {
+      "canonical_name": "Otis",
+      "character_name": "Silencer",
+      "tid": "TID_SILENCER",
+      "en": "OTIS",
+      "zh_cn": "奥蒂斯",
+      "zh_tw": "歐提斯"
+    },
+    {
+      "canonical_name": "Pam",
+      "character_name": "MinigunDude",
+      "tid": "TID_MINIGUN_DUDE",
+      "en": "PAM",
+      "zh_cn": "帕姆",
+      "zh_tw": "帕姆"
+    },
+    {
+      "canonical_name": "Pearl",
+      "character_name": "Cooker",
+      "tid": "TID_COOKER",
+      "en": "PEARL",
+      "zh_cn": "珀尔",
+      "zh_tw": "珀爾"
+    },
+    {
+      "canonical_name": "Penny",
+      "character_name": "ArtilleryDude",
+      "tid": "TID_ARTILLERY_DUDE",
+      "en": "PENNY",
+      "zh_cn": "潘妮",
+      "zh_tw": "佩妮"
+    },
+    {
+      "canonical_name": "Pierce",
+      "character_name": "Bulletstorm",
+      "tid": "TID_BULLETSTORM",
+      "en": "PIERCE",
+      "zh_cn": "皮尔斯",
+      "zh_tw": "皮爾斯"
+    },
+    {
+      "canonical_name": "Piper",
+      "character_name": "Sniper",
+      "tid": "TID_SNIPER",
+      "en": "PIPER",
+      "zh_cn": "佩佩",
+      "zh_tw": "小辣椒"
+    },
+    {
+      "canonical_name": "Poco",
+      "character_name": "DeadMariachi",
+      "tid": "TID_DEAD_MARIACHI",
+      "en": "POCO",
+      "zh_cn": "波克",
+      "zh_tw": "波可"
+    },
+    {
+      "canonical_name": "R-T",
+      "character_name": "Splitter",
+      "tid": "TID_SPLITTER",
+      "en": "R-T",
+      "zh_cn": "阿尔缇",
+      "zh_tw": "R-T"
+    },
+    {
+      "canonical_name": "Rico",
+      "character_name": "TrickshotDude",
+      "tid": "TID_TRICKSHOT_DUDE",
+      "en": "RICO",
+      "zh_cn": "瑞科",
+      "zh_tw": "彈射"
+    },
+    {
+      "canonical_name": "Rosa",
+      "character_name": "Rosa",
+      "tid": "TID_ROSA",
+      "en": "ROSA",
+      "zh_cn": "罗莎",
+      "zh_tw": "羅莎"
+    },
+    {
+      "canonical_name": "Ruffs",
+      "character_name": "Ruffs",
+      "tid": "TID_RUFFS",
+      "en": "RUFFS",
+      "zh_cn": "拉夫",
+      "zh_tw": "拉夫"
+    },
+    {
+      "canonical_name": "Sam",
+      "character_name": "WeaponThrower",
+      "tid": "TID_WEAPON_THROWER",
+      "en": "SAM",
+      "zh_cn": "山姆",
+      "zh_tw": "山姆"
+    },
+    {
+      "canonical_name": "Sandy",
+      "character_name": "Sandstorm",
+      "tid": "TID_SANDSTORM",
+      "en": "SANDY",
+      "zh_cn": "沙迪",
+      "zh_tw": "沙迪"
+    },
+    {
+      "canonical_name": "Shade",
+      "character_name": "Ghost",
+      "tid": "TID_GHOST",
+      "en": "SHADE",
+      "zh_cn": "谢德",
+      "zh_tw": "謝德"
+    },
+    {
+      "canonical_name": "Shelly",
+      "character_name": "ShotgunGirl",
+      "tid": "TID_SHOTGUN_GIRL",
+      "en": "SHELLY",
+      "zh_cn": "雪莉",
+      "zh_tw": "雪莉"
+    },
+    {
+      "canonical_name": "Sirius",
+      "character_name": "Shadowdemon",
+      "tid": "TID_SHADOWDEMON",
+      "en": "SIRIUS",
+      "zh_cn": "西里乌斯",
+      "zh_tw": "西里烏斯"
+    },
+    {
+      "canonical_name": "Spike",
+      "character_name": "Cactus",
+      "tid": "TID_CACTUS",
+      "en": "SPIKE",
+      "zh_cn": "斯派克",
+      "zh_tw": "史派克"
+    },
+    {
+      "canonical_name": "Sprout",
+      "character_name": "Wally",
+      "tid": "TID_WALLY",
+      "en": "SPROUT",
+      "zh_cn": "芽芽",
+      "zh_tw": "芽芽"
+    },
+    {
+      "canonical_name": "Squeak",
+      "character_name": "StickyBomb",
+      "tid": "TID_STICKY_BOMB",
+      "en": "SQUEAK",
+      "zh_cn": "史魁克",
+      "zh_tw": "斯威克"
+    },
+    {
+      "canonical_name": "Starr Nova",
+      "character_name": "MagicalGirl",
+      "tid": "TID_MAGICAL_GIRL",
+      "en": "STARR NOVA",
+      "zh_cn": "丝塔诺娃",
+      "zh_tw": "絲塔諾娃"
+    },
+    {
+      "canonical_name": "Stu",
+      "character_name": "Roller",
+      "tid": "TID_ROLLER",
+      "en": "STU",
+      "zh_cn": "斯图",
+      "zh_tw": "駛徒"
+    },
+    {
+      "canonical_name": "Surge",
+      "character_name": "PowerLeveler",
+      "tid": "TID_POWER_LEVELER",
+      "en": "SURGE",
+      "zh_cn": "瑟奇",
+      "zh_tw": "奔騰"
+    },
+    {
+      "canonical_name": "Tara",
+      "character_name": "BlackHole",
+      "tid": "TID_BLACK_HOLE",
+      "en": "TARA",
+      "zh_cn": "塔拉",
+      "zh_tw": "塔拉"
+    },
+    {
+      "canonical_name": "Tick",
+      "character_name": "ClusterBombDude",
+      "tid": "TID_CLUSTER_BOMB_DUDE",
+      "en": "TICK",
+      "zh_cn": "迪克",
+      "zh_tw": "滴答"
+    },
+    {
+      "canonical_name": "Trunk",
+      "character_name": "Domain",
+      "tid": "TID_DOMAIN",
+      "en": "TRUNK",
+      "zh_cn": "桩",
+      "zh_tw": "特朗克"
+    },
+    {
+      "canonical_name": "Vince",
+      "character_name": "Stacker",
+      "tid": "TID_STACKER",
+      "en": "VINCE",
+      "zh_cn": "文斯",
+      "zh_tw": "文斯"
+    },
+    {
+      "canonical_name": "Wendy",
+      "character_name": "FutureGirl",
+      "tid": "TID_FUTURE_GIRL",
+      "en": "WENDY",
+      "zh_cn": "温蒂",
+      "zh_tw": "溫蒂"
+    },
+    {
+      "canonical_name": "Willow",
+      "character_name": "Puppeteer",
+      "tid": "TID_PUPPETEER",
+      "en": "WILLOW",
+      "zh_cn": "薇洛",
+      "zh_tw": "葳洛"
+    },
+    {
+      "canonical_name": "Ziggy",
+      "character_name": "Fury",
+      "tid": "TID_FURY",
+      "en": "ZIGGY",
+      "zh_cn": "兹奇",
+      "zh_tw": "茲奇"
+    }
+  ]
+}
